@@ -1,0 +1,162 @@
+{
+  "app": {
+    "semantic": {
+      "accent": {
+        "accent": {
+          "$type": "color",
+          "$value": "{brand.postil.accent-dark}",
+          "$description": "Postil with a colour scheme, dark: soft off-white accent, the same in every brand."
+        },
+        "accent-light": {
+          "$type": "color",
+          "$value": "{brand.postil.accent-dark}",
+          "$description": "Postil with a colour scheme, dark: same as accent, so primary buttons are flat."
+        },
+        "on-accent": {
+          "$type": "color",
+          "$value": "{brand.postil.char-950}",
+          "$description": "Postil with a colour scheme, dark: text on the off-white accent."
+        },
+        "accent-soft": {
+          "$type": "color",
+          "$value": "{brand.postil.accent-dark}",
+          "$description": "Postil with a colour scheme, dark: soft accent wash.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.1
+            }
+          }
+        },
+        "accent-soft-strong": {
+          "$type": "color",
+          "$value": "{brand.postil.accent-dark}",
+          "$description": "Postil with a colour scheme, dark: stronger accent wash.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.18
+            }
+          }
+        },
+        "accent-subtle": {
+          "$type": "color",
+          "$value": "{brand.postil.accent-dark}",
+          "$description": "Postil with a colour scheme, dark: subtle accent surface.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.1
+            }
+          }
+        },
+        "accent-selected": {
+          "$type": "color",
+          "$value": "{brand.postil.accent-dark}",
+          "$description": "Postil with a colour scheme, dark: selected row wash.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.12
+            }
+          }
+        }
+      },
+      "surface": {
+        "bg-page": {
+          "$type": "color",
+          "$value": "{brand.postil.char-950}",
+          "$description": "Postil with a colour scheme, dark: charcoal page."
+        },
+        "bg-page-gradient": {
+          "$type": "color",
+          "$value": "{brand.postil.char-950}",
+          "$description": "Postil with a colour scheme, dark: flat charcoal, no glow."
+        },
+        "glass-base": {
+          "$type": "color",
+          "$value": "{brand.postil.char-950}",
+          "$description": "Postil with a colour scheme, dark: sliding screens are charcoal too.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.97
+            }
+          }
+        },
+        "glass-card": {
+          "$type": "color",
+          "$value": "{brand.postil.char-900}",
+          "$description": "Postil with a colour scheme, dark: cards are an opaque lighter sheet."
+        },
+        "glass-input": {
+          "$type": "color",
+          "$value": "{brand.postil.char-850}",
+          "$description": "Postil with a colour scheme, dark: input wells."
+        },
+        "surface-bar": {
+          "$type": "color",
+          "$value": "{brand.postil.char-900}",
+          "$description": "Postil with a colour scheme, dark: bottom dock."
+        },
+        "surface-sheet": {
+          "$type": "color",
+          "$value": "{brand.postil.char-850}",
+          "$description": "Postil with a colour scheme, dark: sheets."
+        },
+        "surface-track": {
+          "$type": "color",
+          "$value": "{brand.postil.char-800}",
+          "$description": "Postil with a colour scheme, dark: tracks."
+        },
+        "surface-row": {
+          "$type": "color",
+          "$value": "{brand.postil.char-900}",
+          "$description": "Postil with a colour scheme, dark: rows."
+        },
+        "surface-field": {
+          "$type": "color",
+          "$value": "{brand.postil.char-850}",
+          "$description": "Postil with a colour scheme, dark: fields."
+        },
+        "surface-selected": {
+          "$type": "color",
+          "$value": "{brand.postil.char-800}",
+          "$description": "Postil with a colour scheme, dark: selected segment."
+        },
+        "surface-control": {
+          "$type": "color",
+          "$value": "{brand.postil.char-800}",
+          "$description": "Postil with a colour scheme, dark: controls."
+        }
+      },
+      "text": {
+        "text-link": {
+          "$type": "color",
+          "$value": "{brand.postil.accent-dark}",
+          "$description": "Postil with a colour scheme, dark: links in off-white."
+        }
+      },
+      "outline": {
+        "outline-strong": {
+          "$type": "color",
+          "$value": "{brand.postil.char-700}",
+          "$description": "Postil with a colour scheme, dark: stronger edge."
+        }
+      },
+      "status": {
+        "tone-read-bg": {
+          "$type": "color",
+          "$value": "{brand.postil.char-800}",
+          "$description": "Postil with a colour scheme, dark: read badge on charcoal."
+        },
+        "tone-sent-bg": {
+          "$type": "color",
+          "$value": "{brand.postil.char-800}",
+          "$description": "Postil with a colour scheme, dark: sent badge on charcoal."
+        },
+        "tone-sent-fg": {
+          "$type": "color",
+          "$value": "{brand.postil.accent-dark}",
+          "$description": "Postil with a colour scheme, dark: sent badge text."
+        }
+      }
+    },
+    "component": {}
+  }
+}

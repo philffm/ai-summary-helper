@@ -393,6 +393,84 @@
   --font-reading: 'Iowan Old Style', 'Charter', 'Source Serif 4', 'Georgia', serif; /* Postil scheme, light: reading surfaces (summary, article) in a system serif, nothing bundled. */
   color-scheme: light;
 }
+/* Postil tinted with a colour scheme: the same paper and ink, a few percent of the brand colour in the surfaces and the brand accent (tools/postil-tints.mjs). */
+:root[data-design='postil'][data-scheme='kaivo'] {
+  /* semantic · accent */
+  --accent: #0A4650; /* Postil with a colour scheme, light: the colour scheme's own accent. */
+  --accent-light: #0A4650; /* Postil with a colour scheme, light: same as accent, so primary buttons are flat (no gradient). */
+  --accent-subtle: #E8F0EE; /* Postil with a colour scheme, light: subtle accent surface. */
+  /* semantic · surface */
+  --bg-page: #F1F6F4; /* Postil with a colour scheme, light: off-white e-paper page. */
+  --bg-page-gradient: #F1F6F4; /* Postil with a colour scheme, light: flat paper, no glow. */
+  --glass-base: rgba(241,246,244,0.97); /* Postil with a colour scheme, light: sliding screens are paper too. */
+  --glass-card: #F7FBFA; /* Postil with a colour scheme, light: cards are an opaque lighter sheet. */
+  --surface-bar: #F7FBFA; /* Postil with a colour scheme, light: bottom dock. */
+  --surface-sheet: #E8F0EE; /* Postil with a colour scheme, light: sheets. */
+  --surface-track: #DFE8E5; /* Postil with a colour scheme, light: tracks. */
+  --surface-row: #F7FBFA; /* Postil with a colour scheme, light: rows. */
+  --surface-field: #E8F0EE; /* Postil with a colour scheme, light: fields. */
+  --surface-selected: #F7FBFA; /* Postil with a colour scheme, light: selected segment. */
+  --surface-control: #F7FBFA; /* Postil with a colour scheme, light: controls. */
+  /* semantic · text */
+  --text-link: #0A4650; /* Postil with a colour scheme, light: links in graphite. */
+  /* semantic · outline */
+  --outline-strong: #D1DBD7; /* Postil with a colour scheme, light: stronger edge. */
+  /* semantic · status */
+  --tone-read-bg: #DFE8E5; /* Postil with a colour scheme, light: read badge on paper. */
+  --tone-sent-bg: #DFE8E5; /* Postil with a colour scheme, light: sent badge on paper. */
+}
+/* Postil tinted with a colour scheme: the same paper and ink, a few percent of the brand colour in the surfaces and the brand accent (tools/postil-tints.mjs). */
+:root[data-design='postil'][data-scheme='aish'] {
+  /* semantic · accent */
+  --accent: #0033CC; /* Postil with a colour scheme, light: the colour scheme's own accent. */
+  --accent-light: #0033CC; /* Postil with a colour scheme, light: same as accent, so primary buttons are flat (no gradient). */
+  --accent-subtle: #ECEFF2; /* Postil with a colour scheme, light: subtle accent surface. */
+  /* semantic · surface */
+  --bg-page: #F3F6F8; /* Postil with a colour scheme, light: off-white e-paper page. */
+  --bg-page-gradient: #F3F6F8; /* Postil with a colour scheme, light: flat paper, no glow. */
+  --glass-base: rgba(243,246,248,0.97); /* Postil with a colour scheme, light: sliding screens are paper too. */
+  --glass-card: #F9FBFC; /* Postil with a colour scheme, light: cards are an opaque lighter sheet. */
+  --surface-bar: #F9FBFC; /* Postil with a colour scheme, light: bottom dock. */
+  --surface-sheet: #ECEFF2; /* Postil with a colour scheme, light: sheets. */
+  --surface-track: #E3E7EB; /* Postil with a colour scheme, light: tracks. */
+  --surface-row: #F9FBFC; /* Postil with a colour scheme, light: rows. */
+  --surface-field: #ECEFF2; /* Postil with a colour scheme, light: fields. */
+  --surface-selected: #F9FBFC; /* Postil with a colour scheme, light: selected segment. */
+  --surface-control: #F9FBFC; /* Postil with a colour scheme, light: controls. */
+  /* semantic · text */
+  --text-link: #0033CC; /* Postil with a colour scheme, light: links in graphite. */
+  /* semantic · outline */
+  --outline-strong: #D6DBDD; /* Postil with a colour scheme, light: stronger edge. */
+  /* semantic · status */
+  --tone-read-bg: #E3E7EB; /* Postil with a colour scheme, light: read badge on paper. */
+  --tone-sent-bg: #E3E7EB; /* Postil with a colour scheme, light: sent badge on paper. */
+}
+/* Postil tinted with a colour scheme: the same paper and ink, a few percent of the brand colour in the surfaces and the brand accent (tools/postil-tints.mjs). */
+:root[data-design='postil'][data-scheme='viola'] {
+  /* semantic · accent */
+  --accent: #3F1BA6; /* Postil with a colour scheme, light: the colour scheme's own accent. */
+  --accent-light: #3F1BA6; /* Postil with a colour scheme, light: same as accent, so primary buttons are flat (no gradient). */
+  --accent-subtle: #EEEBF2; /* Postil with a colour scheme, light: subtle accent surface. */
+  /* semantic · surface */
+  --bg-page: #F5F3F8; /* Postil with a colour scheme, light: off-white e-paper page. */
+  --bg-page-gradient: #F5F3F8; /* Postil with a colour scheme, light: flat paper, no glow. */
+  --glass-base: rgba(245,243,248,0.97); /* Postil with a colour scheme, light: sliding screens are paper too. */
+  --glass-card: #FAF9FC; /* Postil with a colour scheme, light: cards are an opaque lighter sheet. */
+  --surface-bar: #FAF9FC; /* Postil with a colour scheme, light: bottom dock. */
+  --surface-sheet: #EEEBF2; /* Postil with a colour scheme, light: sheets. */
+  --surface-track: #E7E2EB; /* Postil with a colour scheme, light: tracks. */
+  --surface-row: #FAF9FC; /* Postil with a colour scheme, light: rows. */
+  --surface-field: #EEEBF2; /* Postil with a colour scheme, light: fields. */
+  --surface-selected: #FAF9FC; /* Postil with a colour scheme, light: selected segment. */
+  --surface-control: #FAF9FC; /* Postil with a colour scheme, light: controls. */
+  /* semantic · text */
+  --text-link: #3F1BA6; /* Postil with a colour scheme, light: links in graphite. */
+  /* semantic · outline */
+  --outline-strong: #DAD5DE; /* Postil with a colour scheme, light: stronger edge. */
+  /* semantic · status */
+  --tone-read-bg: #E7E2EB; /* Postil with a colour scheme, light: read badge on paper. */
+  --tone-sent-bg: #E7E2EB; /* Postil with a colour scheme, light: sent badge on paper. */
+}
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     /* semantic · surface */
@@ -769,6 +847,198 @@
   /* semantic · inverse */
   --link-inverse: #3A3834; /* Postil scheme, dark: links on the light inverse surface. */
   color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-design='postil'][data-scheme='kaivo']:not([data-theme='light']) {
+    /* semantic · accent */
+    --accent: #A8DDE3; /* Postil with a colour scheme, dark: soft off-white accent, the same in every brand. */
+    --accent-light: #A8DDE3; /* Postil with a colour scheme, dark: same as accent, so primary buttons are flat. */
+    --on-accent: #151A1A; /* Postil with a colour scheme, dark: text on the off-white accent. */
+    --accent-soft: rgba(168,221,227,0.1); /* Postil with a colour scheme, dark: soft accent wash. */
+    --accent-soft-strong: rgba(168,221,227,0.18); /* Postil with a colour scheme, dark: stronger accent wash. */
+    --accent-subtle: rgba(168,221,227,0.1); /* Postil with a colour scheme, dark: subtle accent surface. */
+    --accent-selected: rgba(168,221,227,0.12); /* Postil with a colour scheme, dark: selected row wash. */
+    /* semantic · surface */
+    --bg-page: #151A1A; /* Postil with a colour scheme, dark: charcoal page. */
+    --bg-page-gradient: #151A1A; /* Postil with a colour scheme, dark: flat charcoal, no glow. */
+    --glass-base: rgba(21,26,26,0.97); /* Postil with a colour scheme, dark: sliding screens are charcoal too. */
+    --glass-card: #1C2221; /* Postil with a colour scheme, dark: cards are an opaque lighter sheet. */
+    --glass-input: #222929; /* Postil with a colour scheme, dark: input wells. */
+    --surface-bar: #1C2221; /* Postil with a colour scheme, dark: bottom dock. */
+    --surface-sheet: #222929; /* Postil with a colour scheme, dark: sheets. */
+    --surface-track: #293130; /* Postil with a colour scheme, dark: tracks. */
+    --surface-row: #1C2221; /* Postil with a colour scheme, dark: rows. */
+    --surface-field: #222929; /* Postil with a colour scheme, dark: fields. */
+    --surface-selected: #293130; /* Postil with a colour scheme, dark: selected segment. */
+    --surface-control: #293130; /* Postil with a colour scheme, dark: controls. */
+    /* semantic · text */
+    --text-link: #A8DDE3; /* Postil with a colour scheme, dark: links in off-white. */
+    /* semantic · outline */
+    --outline-strong: #373F3D; /* Postil with a colour scheme, dark: stronger edge. */
+    /* semantic · status */
+    --tone-read-bg: #293130; /* Postil with a colour scheme, dark: read badge on charcoal. */
+    --tone-sent-bg: #293130; /* Postil with a colour scheme, dark: sent badge on charcoal. */
+    --tone-sent-fg: #A8DDE3; /* Postil with a colour scheme, dark: sent badge text. */
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-design='postil'][data-scheme='aish']:not([data-theme='light']) {
+    /* semantic · accent */
+    --accent: #ADC6FF; /* Postil with a colour scheme, dark: soft off-white accent, the same in every brand. */
+    --accent-light: #ADC6FF; /* Postil with a colour scheme, dark: same as accent, so primary buttons are flat. */
+    --on-accent: #171B21; /* Postil with a colour scheme, dark: text on the off-white accent. */
+    --accent-soft: rgba(173,198,255,0.1); /* Postil with a colour scheme, dark: soft accent wash. */
+    --accent-soft-strong: rgba(173,198,255,0.18); /* Postil with a colour scheme, dark: stronger accent wash. */
+    --accent-subtle: rgba(173,198,255,0.1); /* Postil with a colour scheme, dark: subtle accent surface. */
+    --accent-selected: rgba(173,198,255,0.12); /* Postil with a colour scheme, dark: selected row wash. */
+    /* semantic · surface */
+    --bg-page: #171B21; /* Postil with a colour scheme, dark: charcoal page. */
+    --bg-page-gradient: #171B21; /* Postil with a colour scheme, dark: flat charcoal, no glow. */
+    --glass-base: rgba(23,27,33,0.97); /* Postil with a colour scheme, dark: sliding screens are charcoal too. */
+    --glass-card: #1E2228; /* Postil with a colour scheme, dark: cards are an opaque lighter sheet. */
+    --glass-input: #242931; /* Postil with a colour scheme, dark: input wells. */
+    --surface-bar: #1E2228; /* Postil with a colour scheme, dark: bottom dock. */
+    --surface-sheet: #242931; /* Postil with a colour scheme, dark: sheets. */
+    --surface-track: #2C313A; /* Postil with a colour scheme, dark: tracks. */
+    --surface-row: #1E2228; /* Postil with a colour scheme, dark: rows. */
+    --surface-field: #242931; /* Postil with a colour scheme, dark: fields. */
+    --surface-selected: #2C313A; /* Postil with a colour scheme, dark: selected segment. */
+    --surface-control: #2C313A; /* Postil with a colour scheme, dark: controls. */
+    /* semantic · text */
+    --text-link: #ADC6FF; /* Postil with a colour scheme, dark: links in off-white. */
+    /* semantic · outline */
+    --outline-strong: #3A3F47; /* Postil with a colour scheme, dark: stronger edge. */
+    /* semantic · status */
+    --tone-read-bg: #2C313A; /* Postil with a colour scheme, dark: read badge on charcoal. */
+    --tone-sent-bg: #2C313A; /* Postil with a colour scheme, dark: sent badge on charcoal. */
+    --tone-sent-fg: #ADC6FF; /* Postil with a colour scheme, dark: sent badge text. */
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-design='postil'][data-scheme='viola']:not([data-theme='light']) {
+    /* semantic · accent */
+    --accent: #CDBDFF; /* Postil with a colour scheme, dark: soft off-white accent, the same in every brand. */
+    --accent-light: #CDBDFF; /* Postil with a colour scheme, dark: same as accent, so primary buttons are flat. */
+    --on-accent: #1B1721; /* Postil with a colour scheme, dark: text on the off-white accent. */
+    --accent-soft: rgba(205,189,255,0.1); /* Postil with a colour scheme, dark: soft accent wash. */
+    --accent-soft-strong: rgba(205,189,255,0.18); /* Postil with a colour scheme, dark: stronger accent wash. */
+    --accent-subtle: rgba(205,189,255,0.1); /* Postil with a colour scheme, dark: subtle accent surface. */
+    --accent-selected: rgba(205,189,255,0.12); /* Postil with a colour scheme, dark: selected row wash. */
+    /* semantic · surface */
+    --bg-page: #1B1721; /* Postil with a colour scheme, dark: charcoal page. */
+    --bg-page-gradient: #1B1721; /* Postil with a colour scheme, dark: flat charcoal, no glow. */
+    --glass-base: rgba(27,23,33,0.97); /* Postil with a colour scheme, dark: sliding screens are charcoal too. */
+    --glass-card: #221E29; /* Postil with a colour scheme, dark: cards are an opaque lighter sheet. */
+    --glass-input: #292431; /* Postil with a colour scheme, dark: input wells. */
+    --surface-bar: #221E29; /* Postil with a colour scheme, dark: bottom dock. */
+    --surface-sheet: #292431; /* Postil with a colour scheme, dark: sheets. */
+    --surface-track: #312C3A; /* Postil with a colour scheme, dark: tracks. */
+    --surface-row: #221E29; /* Postil with a colour scheme, dark: rows. */
+    --surface-field: #292431; /* Postil with a colour scheme, dark: fields. */
+    --surface-selected: #312C3A; /* Postil with a colour scheme, dark: selected segment. */
+    --surface-control: #312C3A; /* Postil with a colour scheme, dark: controls. */
+    /* semantic · text */
+    --text-link: #CDBDFF; /* Postil with a colour scheme, dark: links in off-white. */
+    /* semantic · outline */
+    --outline-strong: #403948; /* Postil with a colour scheme, dark: stronger edge. */
+    /* semantic · status */
+    --tone-read-bg: #312C3A; /* Postil with a colour scheme, dark: read badge on charcoal. */
+    --tone-sent-bg: #312C3A; /* Postil with a colour scheme, dark: sent badge on charcoal. */
+    --tone-sent-fg: #CDBDFF; /* Postil with a colour scheme, dark: sent badge text. */
+  }
+}
+:root[data-design='postil'][data-scheme='kaivo'][data-theme='dark'] {
+  /* semantic · accent */
+  --accent: #A8DDE3; /* Postil with a colour scheme, dark: soft off-white accent, the same in every brand. */
+  --accent-light: #A8DDE3; /* Postil with a colour scheme, dark: same as accent, so primary buttons are flat. */
+  --on-accent: #151A1A; /* Postil with a colour scheme, dark: text on the off-white accent. */
+  --accent-soft: rgba(168,221,227,0.1); /* Postil with a colour scheme, dark: soft accent wash. */
+  --accent-soft-strong: rgba(168,221,227,0.18); /* Postil with a colour scheme, dark: stronger accent wash. */
+  --accent-subtle: rgba(168,221,227,0.1); /* Postil with a colour scheme, dark: subtle accent surface. */
+  --accent-selected: rgba(168,221,227,0.12); /* Postil with a colour scheme, dark: selected row wash. */
+  /* semantic · surface */
+  --bg-page: #151A1A; /* Postil with a colour scheme, dark: charcoal page. */
+  --bg-page-gradient: #151A1A; /* Postil with a colour scheme, dark: flat charcoal, no glow. */
+  --glass-base: rgba(21,26,26,0.97); /* Postil with a colour scheme, dark: sliding screens are charcoal too. */
+  --glass-card: #1C2221; /* Postil with a colour scheme, dark: cards are an opaque lighter sheet. */
+  --glass-input: #222929; /* Postil with a colour scheme, dark: input wells. */
+  --surface-bar: #1C2221; /* Postil with a colour scheme, dark: bottom dock. */
+  --surface-sheet: #222929; /* Postil with a colour scheme, dark: sheets. */
+  --surface-track: #293130; /* Postil with a colour scheme, dark: tracks. */
+  --surface-row: #1C2221; /* Postil with a colour scheme, dark: rows. */
+  --surface-field: #222929; /* Postil with a colour scheme, dark: fields. */
+  --surface-selected: #293130; /* Postil with a colour scheme, dark: selected segment. */
+  --surface-control: #293130; /* Postil with a colour scheme, dark: controls. */
+  /* semantic · text */
+  --text-link: #A8DDE3; /* Postil with a colour scheme, dark: links in off-white. */
+  /* semantic · outline */
+  --outline-strong: #373F3D; /* Postil with a colour scheme, dark: stronger edge. */
+  /* semantic · status */
+  --tone-read-bg: #293130; /* Postil with a colour scheme, dark: read badge on charcoal. */
+  --tone-sent-bg: #293130; /* Postil with a colour scheme, dark: sent badge on charcoal. */
+  --tone-sent-fg: #A8DDE3; /* Postil with a colour scheme, dark: sent badge text. */
+}
+:root[data-design='postil'][data-scheme='aish'][data-theme='dark'] {
+  /* semantic · accent */
+  --accent: #ADC6FF; /* Postil with a colour scheme, dark: soft off-white accent, the same in every brand. */
+  --accent-light: #ADC6FF; /* Postil with a colour scheme, dark: same as accent, so primary buttons are flat. */
+  --on-accent: #171B21; /* Postil with a colour scheme, dark: text on the off-white accent. */
+  --accent-soft: rgba(173,198,255,0.1); /* Postil with a colour scheme, dark: soft accent wash. */
+  --accent-soft-strong: rgba(173,198,255,0.18); /* Postil with a colour scheme, dark: stronger accent wash. */
+  --accent-subtle: rgba(173,198,255,0.1); /* Postil with a colour scheme, dark: subtle accent surface. */
+  --accent-selected: rgba(173,198,255,0.12); /* Postil with a colour scheme, dark: selected row wash. */
+  /* semantic · surface */
+  --bg-page: #171B21; /* Postil with a colour scheme, dark: charcoal page. */
+  --bg-page-gradient: #171B21; /* Postil with a colour scheme, dark: flat charcoal, no glow. */
+  --glass-base: rgba(23,27,33,0.97); /* Postil with a colour scheme, dark: sliding screens are charcoal too. */
+  --glass-card: #1E2228; /* Postil with a colour scheme, dark: cards are an opaque lighter sheet. */
+  --glass-input: #242931; /* Postil with a colour scheme, dark: input wells. */
+  --surface-bar: #1E2228; /* Postil with a colour scheme, dark: bottom dock. */
+  --surface-sheet: #242931; /* Postil with a colour scheme, dark: sheets. */
+  --surface-track: #2C313A; /* Postil with a colour scheme, dark: tracks. */
+  --surface-row: #1E2228; /* Postil with a colour scheme, dark: rows. */
+  --surface-field: #242931; /* Postil with a colour scheme, dark: fields. */
+  --surface-selected: #2C313A; /* Postil with a colour scheme, dark: selected segment. */
+  --surface-control: #2C313A; /* Postil with a colour scheme, dark: controls. */
+  /* semantic · text */
+  --text-link: #ADC6FF; /* Postil with a colour scheme, dark: links in off-white. */
+  /* semantic · outline */
+  --outline-strong: #3A3F47; /* Postil with a colour scheme, dark: stronger edge. */
+  /* semantic · status */
+  --tone-read-bg: #2C313A; /* Postil with a colour scheme, dark: read badge on charcoal. */
+  --tone-sent-bg: #2C313A; /* Postil with a colour scheme, dark: sent badge on charcoal. */
+  --tone-sent-fg: #ADC6FF; /* Postil with a colour scheme, dark: sent badge text. */
+}
+:root[data-design='postil'][data-scheme='viola'][data-theme='dark'] {
+  /* semantic · accent */
+  --accent: #CDBDFF; /* Postil with a colour scheme, dark: soft off-white accent, the same in every brand. */
+  --accent-light: #CDBDFF; /* Postil with a colour scheme, dark: same as accent, so primary buttons are flat. */
+  --on-accent: #1B1721; /* Postil with a colour scheme, dark: text on the off-white accent. */
+  --accent-soft: rgba(205,189,255,0.1); /* Postil with a colour scheme, dark: soft accent wash. */
+  --accent-soft-strong: rgba(205,189,255,0.18); /* Postil with a colour scheme, dark: stronger accent wash. */
+  --accent-subtle: rgba(205,189,255,0.1); /* Postil with a colour scheme, dark: subtle accent surface. */
+  --accent-selected: rgba(205,189,255,0.12); /* Postil with a colour scheme, dark: selected row wash. */
+  /* semantic · surface */
+  --bg-page: #1B1721; /* Postil with a colour scheme, dark: charcoal page. */
+  --bg-page-gradient: #1B1721; /* Postil with a colour scheme, dark: flat charcoal, no glow. */
+  --glass-base: rgba(27,23,33,0.97); /* Postil with a colour scheme, dark: sliding screens are charcoal too. */
+  --glass-card: #221E29; /* Postil with a colour scheme, dark: cards are an opaque lighter sheet. */
+  --glass-input: #292431; /* Postil with a colour scheme, dark: input wells. */
+  --surface-bar: #221E29; /* Postil with a colour scheme, dark: bottom dock. */
+  --surface-sheet: #292431; /* Postil with a colour scheme, dark: sheets. */
+  --surface-track: #312C3A; /* Postil with a colour scheme, dark: tracks. */
+  --surface-row: #221E29; /* Postil with a colour scheme, dark: rows. */
+  --surface-field: #292431; /* Postil with a colour scheme, dark: fields. */
+  --surface-selected: #312C3A; /* Postil with a colour scheme, dark: selected segment. */
+  --surface-control: #312C3A; /* Postil with a colour scheme, dark: controls. */
+  /* semantic · text */
+  --text-link: #CDBDFF; /* Postil with a colour scheme, dark: links in off-white. */
+  /* semantic · outline */
+  --outline-strong: #403948; /* Postil with a colour scheme, dark: stronger edge. */
+  /* semantic · status */
+  --tone-read-bg: #312C3A; /* Postil with a colour scheme, dark: read badge on charcoal. */
+  --tone-sent-bg: #312C3A; /* Postil with a colour scheme, dark: sent badge on charcoal. */
+  --tone-sent-fg: #CDBDFF; /* Postil with a colour scheme, dark: sent badge text. */
 }
 /* Design High contrast: black on white, or white on black in dark. The colour scheme does not apply here (the accent is the one checked for contrast). */
 :root[data-design='contrast'] {

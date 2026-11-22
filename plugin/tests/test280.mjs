@@ -27,6 +27,14 @@ for (const f of ['styles.css', 'inPage.css']) {
   for (const d of ['postil', 'contrast']) assert(new RegExp(`\\[data-design='${d}'\\]\\[data-theme='dark'\\]`).test(css), f + ': ' + d + ' in forced dark');
   assert(/\[data-design='contrast'\]:not\(\[data-theme='light'\]\)/.test(css), f + ': High contrast follows a dark system');
   assert(!/data-theme='contrast'\]/.test(css) && !/data-scheme='(blue|postil)'/.test(css), f + ': nothing keyed on the old values');
+  // Postil with a colour scheme: tinted blocks, each light one before the Postil dark blocks and each dark one after them (so the dark ones win)
+  for (const sc of ['kaivo', 'aish', 'viola']) {
+    const light = css.indexOf(`[data-design='postil'][data-scheme='${sc}'] {`) >= 0 ? css.indexOf(`[data-design='postil'][data-scheme='${sc}'] {`) : css.indexOf(`[data-design='postil'][data-scheme='${sc}']) {`);
+    const postilDark = css.indexOf("[data-design='postil'][data-theme='dark']");
+    const tintDark = css.indexOf(`[data-design='postil'][data-scheme='${sc}'][data-theme='dark']`);
+    assert(light > 0 && postilDark > 0 && tintDark > 0, f + ': tinted Postil for ' + sc);
+    assert(light < postilDark && postilDark < tintDark, f + ': the order lets dark win for ' + sc);
+  }
   assert(/data-scheme='aish'/.test(css) && /data-scheme='viola'/.test(css), f + ': colour schemes');
 }
 console.log('TEST 280 OK'); process.exit(0);

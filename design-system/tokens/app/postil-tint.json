@@ -1,0 +1,112 @@
+{
+  "app": {
+    "semantic": {
+      "accent": {
+        "accent": {
+          "$type": "color",
+          "$value": "{brand.postil.accent}",
+          "$description": "Postil with a colour scheme, light: the colour scheme's own accent."
+        },
+        "accent-light": {
+          "$type": "color",
+          "$value": "{brand.postil.accent}",
+          "$description": "Postil with a colour scheme, light: same as accent, so primary buttons are flat (no gradient)."
+        },
+        "accent-subtle": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-150}",
+          "$description": "Postil with a colour scheme, light: subtle accent surface."
+        }
+      },
+      "surface": {
+        "bg-page": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-100}",
+          "$description": "Postil with a colour scheme, light: off-white e-paper page."
+        },
+        "bg-page-gradient": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-100}",
+          "$description": "Postil with a colour scheme, light: flat paper, no glow."
+        },
+        "glass-base": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-100}",
+          "$description": "Postil with a colour scheme, light: sliding screens are paper too.",
+          "$extensions": {
+            "eu.byphil.ds": {
+              "alpha": 0.97
+            }
+          }
+        },
+        "glass-card": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-50}",
+          "$description": "Postil with a colour scheme, light: cards are an opaque lighter sheet."
+        },
+        "surface-bar": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-50}",
+          "$description": "Postil with a colour scheme, light: bottom dock."
+        },
+        "surface-sheet": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-150}",
+          "$description": "Postil with a colour scheme, light: sheets."
+        },
+        "surface-track": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-200}",
+          "$description": "Postil with a colour scheme, light: tracks."
+        },
+        "surface-row": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-50}",
+          "$description": "Postil with a colour scheme, light: rows."
+        },
+        "surface-field": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-150}",
+          "$description": "Postil with a colour scheme, light: fields."
+        },
+        "surface-selected": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-50}",
+          "$description": "Postil with a colour scheme, light: selected segment."
+        },
+        "surface-control": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-50}",
+          "$description": "Postil with a colour scheme, light: controls."
+        }
+      },
+      "text": {
+        "text-link": {
+          "$type": "color",
+          "$value": "{brand.postil.accent}",
+          "$description": "Postil with a colour scheme, light: links in graphite."
+        }
+      },
+      "outline": {
+        "outline-strong": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-300}",
+          "$description": "Postil with a colour scheme, light: stronger edge."
+        }
+      },
+      "status": {
+        "tone-read-bg": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-200}",
+          "$description": "Postil with a colour scheme, light: read badge on paper."
+        },
+        "tone-sent-bg": {
+          "$type": "color",
+          "$value": "{brand.postil.paper-200}",
+          "$description": "Postil with a colour scheme, light: sent badge on paper."
+        }
+      }
+    },
+    "component": {}
+  }
+}

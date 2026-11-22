@@ -267,6 +267,8 @@ function renderRegion(output, brand) {
     for (const b of output.blocks) {
         // A block with "scheme": "<brand>" is a runtime colour scheme (Settings › Appearance › Color scheme): the same sets as the
         // theme block it follows, but only the colour tokens whose value differs from the build's own brand (fonts never switch).
+        // A block with "tint": "<brand>" is the same kind of thing for Postil: the sets are written with that brand's values whatever the
+        // build's own brand is (the tinted Postil differs from plain Postil even for the build's own brand), and every token is emitted.
         if (b.scheme && b.scheme === brand) continue;
         const toks = tokensOfSets(b.sets).filter((t) => !b.scheme || (t.type !== 'fontFamily' && cssValue(t, b.scheme) !== cssValue(t, brand)));
         if (!toks.length) continue;
@@ -282,7 +284,7 @@ function renderRegion(output, brand) {
         for (const t of toks) {
             const g = t.path.split('.').slice(1, 3).join(' · ');
             if (g !== group) { lines.push(`${ind}  /* ${g} */`); group = g; }
-            lines.push(`${ind}  --${t.name}: ${cssValue(t, b.scheme || brand)};${t.description ? ` /* ${t.description.replace(/\*\//g, '* /')} */` : ''}`);
+            lines.push(`${ind}  --${t.name}: ${cssValue(t, b.tint || b.scheme || brand)};${t.description ? ` /* ${t.description.replace(/\*\//g, '* /')} */` : ''}`);
         }
         for (const x of b.extra || []) lines.push(`${ind}  ${x};`);
         lines.push(`${ind}}`);

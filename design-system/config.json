@@ -38,6 +38,20 @@
           "app/dark",
           "app/dark-forced",
           "app/contrast-dark"
+        ],
+        "postil-tint": [
+          "app/base",
+          "app/light",
+          "app/postil",
+          "app/postil-tint"
+        ],
+        "postil-tint-dark": [
+          "app/base",
+          "app/light",
+          "app/dark",
+          "app/dark-forced",
+          "app/postil-dark",
+          "app/postil-tint-dark"
         ]
       },
       "defaultBrand": "kaivo"
@@ -128,6 +142,30 @@
           ]
         },
         {
+          "comment": "Postil tinted with a colour scheme: the same paper and ink, a few percent of the brand colour in the surfaces and the brand accent (tools/postil-tints.mjs).",
+          "tint": "kaivo",
+          "selector": ":root[data-design='postil'][data-scheme='kaivo']",
+          "sets": [
+            "app/postil-tint"
+          ]
+        },
+        {
+          "comment": "Postil tinted with a colour scheme: the same paper and ink, a few percent of the brand colour in the surfaces and the brand accent (tools/postil-tints.mjs).",
+          "tint": "aish",
+          "selector": ":root[data-design='postil'][data-scheme='aish']",
+          "sets": [
+            "app/postil-tint"
+          ]
+        },
+        {
+          "comment": "Postil tinted with a colour scheme: the same paper and ink, a few percent of the brand colour in the surfaces and the brand accent (tools/postil-tints.mjs).",
+          "tint": "viola",
+          "selector": ":root[data-design='postil'][data-scheme='viola']",
+          "sets": [
+            "app/postil-tint"
+          ]
+        },
+        {
           "media": "(prefers-color-scheme: dark)",
           "selector": ":root:not([data-theme='light'])",
           "sets": [
@@ -207,6 +245,51 @@
           ],
           "extra": [
             "color-scheme: dark"
+          ]
+        },
+        {
+          "tint": "kaivo",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-design='postil'][data-scheme='kaivo']:not([data-theme='light'])",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
+          "tint": "aish",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-design='postil'][data-scheme='aish']:not([data-theme='light'])",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
+          "tint": "viola",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-design='postil'][data-scheme='viola']:not([data-theme='light'])",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
+          "tint": "kaivo",
+          "selector": ":root[data-design='postil'][data-scheme='kaivo'][data-theme='dark']",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
+          "tint": "aish",
+          "selector": ":root[data-design='postil'][data-scheme='aish'][data-theme='dark']",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
+          "tint": "viola",
+          "selector": ":root[data-design='postil'][data-scheme='viola'][data-theme='dark']",
+          "sets": [
+            "app/postil-tint-dark"
           ]
         },
         {
@@ -302,6 +385,30 @@
           ]
         },
         {
+          "comment": "Postil tinted with a colour scheme: the same paper and ink, a few percent of the brand colour in the surfaces and the brand accent (tools/postil-tints.mjs).",
+          "tint": "kaivo",
+          "selector": ":host([data-design='postil'][data-scheme='kaivo'])",
+          "sets": [
+            "app/postil-tint"
+          ]
+        },
+        {
+          "comment": "Postil tinted with a colour scheme: the same paper and ink, a few percent of the brand colour in the surfaces and the brand accent (tools/postil-tints.mjs).",
+          "tint": "aish",
+          "selector": ":host([data-design='postil'][data-scheme='aish'])",
+          "sets": [
+            "app/postil-tint"
+          ]
+        },
+        {
+          "comment": "Postil tinted with a colour scheme: the same paper and ink, a few percent of the brand colour in the surfaces and the brand accent (tools/postil-tints.mjs).",
+          "tint": "viola",
+          "selector": ":host([data-design='postil'][data-scheme='viola'])",
+          "sets": [
+            "app/postil-tint"
+          ]
+        },
+        {
           "media": "(prefers-color-scheme: dark)",
           "selector": ":host(:not([data-theme='light']))",
           "sets": [
@@ -381,6 +488,51 @@
           ],
           "extra": [
             "color-scheme: dark"
+          ]
+        },
+        {
+          "tint": "kaivo",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-design='postil'][data-scheme='kaivo']:not([data-theme='light']))",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
+          "tint": "aish",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-design='postil'][data-scheme='aish']:not([data-theme='light']))",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
+          "tint": "viola",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-design='postil'][data-scheme='viola']:not([data-theme='light']))",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
+          "tint": "kaivo",
+          "selector": ":host([data-design='postil'][data-scheme='kaivo'][data-theme='dark'])",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
+          "tint": "aish",
+          "selector": ":host([data-design='postil'][data-scheme='aish'][data-theme='dark'])",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
+          "tint": "viola",
+          "selector": ":host([data-design='postil'][data-scheme='viola'][data-theme='dark'])",
+          "sets": [
+            "app/postil-tint-dark"
           ]
         },
         {

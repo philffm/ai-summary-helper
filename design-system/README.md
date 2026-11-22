@@ -19,6 +19,13 @@ npm run build -- --koru # extension in another brand: its regions are regenerate
 | **Semantic** | `tokens/<context>/<mode>.json` → `"semantic"` | what a value is for: `text-primary`, `accent`, `on-accent`, `ok`, `elevation-2` … | component tokens and component CSS |
 | **Component** | `tokens/<context>/base.json` → `"component"` | one component's roles, each **an alias of one semantic token** (`--sheet-bg: var(--surface-sheet)`), defined once, no theme of its own | that component's CSS |
 
+**Appearance in the extension has three axes** (set in Settings › Appearance, `plugin/src/modules/appearance.js`): brightness
+(`data-theme`: light / dark, none = follow the system), design (`data-design`: postil / contrast, none = standard) and colour
+scheme (`data-scheme`: kaivo / aish / viola, none = the build's own brand). Sets: `app/postil*` (Postil, light and dark),
+`app/contrast*` (High contrast, light and dark; the colour scheme does not apply there) and `app/postil-tint*`: Postil with a few
+percent of a brand colour, generated per brand by `node design-system/postil-tints.mjs` (the `brand.postil.*` primitives; the strength
+is the `TINT` table in that script). Blocks with `"tint": "<brand>"` in `config.json` write such a set with that brand's values.
+
 Contexts: `app` (extension) and `site` (website). Modes: `app/base` (theme-independent), `app/light`, `app/dark`,
 `app/dark-forced` (the three values that differ when dark is picked in Settings instead of following the OS), `app/contrast`;
 `site/base`, `site/dark` (the site's default), `site/light`, plus the scoped component sets `site/mock/*` (hero mock) and
