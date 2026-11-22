@@ -164,10 +164,15 @@ function wireLook(initial) {
   const cfg = { ...initial, ...normalizeAppearance(initial) };   // older settings are read onto the three axes
   // all three axes are written together, so an older stored shape (theme "contrast", scheme "postil") cannot lose one when another changes
   const change = async (patch) => { Object.assign(cfg, patch); applyA11y(cfg); try { await StorageManager.set({ ...patch, theme: cfg.theme, design: cfg.design, colorScheme: cfg.colorScheme }); } catch (_) { /* this page keeps the look */ } paint(); };
-  const seg = (label, key, options, current) => {
+  // dots: a round swatch per option instead of a word (the colour schemes); the name is the accessible name and the tooltip
+  const seg = (label, key, options, current, dots = false) => {
     const wrap = el('div', 'hm-look-row'); wrap.append(el('span', 'hm-look-label-row', label));
-    const g = el('div', 'a11y-seg a11y-seg--hug a11y-seg--sm'); g.setAttribute('role', 'group'); g.setAttribute('aria-label', label);
-    options.forEach(([value, text]) => { const b = el('button', '', text); b.type = 'button'; b.setAttribute('aria-pressed', String(current === value)); b.addEventListener('click', () => change({ [key]: value })); g.append(b); });
+    const g = el('div', 'a11y-seg ' + (dots ? 'a11y-seg--dots' : 'a11y-seg--hug a11y-seg--sm')); g.setAttribute('role', 'group'); g.setAttribute('aria-label', label);
+    options.forEach(([value, text]) => {
+      const b = el('button', '', dots ? '' : text); b.type = 'button'; b.setAttribute('aria-pressed', String(current === value));
+      if (dots) { const d = el('span', 'scheme-dot'); d.dataset.swatch = value; b.append(d); b.setAttribute('aria-label', text); b.title = text; }
+      b.addEventListener('click', () => change({ [key]: value })); g.append(b);
+    });
     wrap.append(g); return wrap;
   };
   function paint() {
@@ -176,7 +181,7 @@ function wireLook(initial) {
     menu.replaceChildren(
       seg(T('Brightness'), 'theme', [['system', T('Auto')], ['light', T('Light')], ['dark', T('Dark')]], n.theme),
       seg(T('Design'), 'design', [['standard', T('Standard')], ['postil', 'Postil'], ['contrast', T('High contrast')]], n.design),
-      seg(T('Color scheme'), 'colorScheme', [['default', T('Default')], ['kaivo', 'Kaivo'], ['aish', 'Aish'], ['viola', 'Viola'], ['graphite', T('Graphite')]], scheme));
+      seg(T('Color scheme'), 'colorScheme', [['default', T('Default')], ['kaivo', 'Kaivo'], ['aish', 'Aish'], ['viola', 'Viola'], ['graphite', T('Graphite')]], scheme, true));
     const size = el('div', 'hm-look-row'); size.append(el('span', 'hm-look-label-row', T('Text size')));
     const ctl = el('div', 'hm-look-size');
     const step = (d, label, text) => { const b = el('button', 'button-secondary btn-sm', text); b.type = 'button'; b.setAttribute('aria-label', label); b.disabled = (d < 0 && scale <= TEXT_SCALE_MIN) || (d > 0 && scale >= TEXT_SCALE_MAX); b.addEventListener('click', () => change({ textScale: clampScale(scale + d) })); return b; };

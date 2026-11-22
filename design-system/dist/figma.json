@@ -1139,6 +1139,30 @@
     "g": 16,
     "b": 15,
     "a": 1
+   },
+   "scheme/kaivo": {
+    "r": 28,
+    "g": 127,
+    "b": 142,
+    "a": 1
+   },
+   "scheme/aish": {
+    "r": 59,
+    "g": 130,
+    "b": 246,
+    "a": 1
+   },
+   "scheme/viola": {
+    "r": 116,
+    "g": 69,
+    "b": 248,
+    "a": 1
+   },
+   "scheme/graphite": {
+    "r": 104,
+    "g": 101,
+    "b": 95,
+    "a": 1
    }
   },
   "Brand": {
@@ -4585,6 +4609,216 @@
       "graphite-dark": {
        "alias": "Brand",
        "name": "accent/400"
+      }
+     }
+    },
+    "swatch/swatch-default": {
+     "codeSyntax": "var(--swatch-default)",
+     "description": "Colour dot of the Default colour scheme: this build's own accent.",
+     "modes": {
+      "light": {
+       "alias": "Brand",
+       "name": "accent/500"
+      },
+      "dark": {
+       "alias": "Brand",
+       "name": "accent/500"
+      },
+      "postil": {
+       "alias": "Brand",
+       "name": "accent/500"
+      },
+      "postil-dark": {
+       "alias": "Brand",
+       "name": "accent/500"
+      },
+      "contrast-dark": {
+       "alias": "Brand",
+       "name": "accent/500"
+      },
+      "postil-tint": {
+       "alias": "Brand",
+       "name": "accent/500"
+      },
+      "postil-tint-dark": {
+       "alias": "Brand",
+       "name": "accent/500"
+      },
+      "graphite": {
+       "alias": "Brand",
+       "name": "accent/500"
+      },
+      "graphite-dark": {
+       "alias": "Brand",
+       "name": "accent/500"
+      }
+     }
+    },
+    "swatch/swatch-kaivo": {
+     "codeSyntax": "var(--swatch-kaivo)",
+     "description": "Colour dot of the Kaivo colour scheme.",
+     "modes": {
+      "light": {
+       "alias": "Primitives",
+       "name": "scheme/kaivo"
+      },
+      "dark": {
+       "alias": "Primitives",
+       "name": "scheme/kaivo"
+      },
+      "postil": {
+       "alias": "Primitives",
+       "name": "scheme/kaivo"
+      },
+      "postil-dark": {
+       "alias": "Primitives",
+       "name": "scheme/kaivo"
+      },
+      "contrast-dark": {
+       "alias": "Primitives",
+       "name": "scheme/kaivo"
+      },
+      "postil-tint": {
+       "alias": "Primitives",
+       "name": "scheme/kaivo"
+      },
+      "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "scheme/kaivo"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "scheme/kaivo"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "scheme/kaivo"
+      }
+     }
+    },
+    "swatch/swatch-aish": {
+     "codeSyntax": "var(--swatch-aish)",
+     "description": "Colour dot of the Aish colour scheme.",
+     "modes": {
+      "light": {
+       "alias": "Primitives",
+       "name": "scheme/aish"
+      },
+      "dark": {
+       "alias": "Primitives",
+       "name": "scheme/aish"
+      },
+      "postil": {
+       "alias": "Primitives",
+       "name": "scheme/aish"
+      },
+      "postil-dark": {
+       "alias": "Primitives",
+       "name": "scheme/aish"
+      },
+      "contrast-dark": {
+       "alias": "Primitives",
+       "name": "scheme/aish"
+      },
+      "postil-tint": {
+       "alias": "Primitives",
+       "name": "scheme/aish"
+      },
+      "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "scheme/aish"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "scheme/aish"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "scheme/aish"
+      }
+     }
+    },
+    "swatch/swatch-viola": {
+     "codeSyntax": "var(--swatch-viola)",
+     "description": "Colour dot of the Viola colour scheme.",
+     "modes": {
+      "light": {
+       "alias": "Primitives",
+       "name": "scheme/viola"
+      },
+      "dark": {
+       "alias": "Primitives",
+       "name": "scheme/viola"
+      },
+      "postil": {
+       "alias": "Primitives",
+       "name": "scheme/viola"
+      },
+      "postil-dark": {
+       "alias": "Primitives",
+       "name": "scheme/viola"
+      },
+      "contrast-dark": {
+       "alias": "Primitives",
+       "name": "scheme/viola"
+      },
+      "postil-tint": {
+       "alias": "Primitives",
+       "name": "scheme/viola"
+      },
+      "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "scheme/viola"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "scheme/viola"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "scheme/viola"
+      }
+     }
+    },
+    "swatch/swatch-graphite": {
+     "codeSyntax": "var(--swatch-graphite)",
+     "description": "Colour dot of the Graphite colour scheme.",
+     "modes": {
+      "light": {
+       "alias": "Primitives",
+       "name": "scheme/graphite"
+      },
+      "dark": {
+       "alias": "Primitives",
+       "name": "scheme/graphite"
+      },
+      "postil": {
+       "alias": "Primitives",
+       "name": "scheme/graphite"
+      },
+      "postil-dark": {
+       "alias": "Primitives",
+       "name": "scheme/graphite"
+      },
+      "contrast-dark": {
+       "alias": "Primitives",
+       "name": "scheme/graphite"
+      },
+      "postil-tint": {
+       "alias": "Primitives",
+       "name": "scheme/graphite"
+      },
+      "postil-tint-dark": {
+       "alias": "Primitives",
+       "name": "scheme/graphite"
+      },
+      "graphite": {
+       "alias": "Primitives",
+       "name": "scheme/graphite"
+      },
+      "graphite-dark": {
+       "alias": "Primitives",
+       "name": "scheme/graphite"
       }
      }
     },

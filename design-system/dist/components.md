@@ -600,3 +600,22 @@ Status: beta · not in Figma yet
   - Name commands as verbs or places: “Sync now”, “Go to History”
 - Don't:
   - Put destructive actions in the palette without a confirm step
+
+## Colour dots
+
+Status: beta · not in Figma yet
+
+The segmented control with a round colour swatch per option instead of a word: the colour schemes in Settings › Appearance and in the home page's appearance menu.
+
+- CSS: `.a11y-seg--dots`, `.scheme-dot`
+- Source: `plugin/src/modules/segmented.js`, `plugin/src/modules/settings/general.js`, `plugin/src/home.js`
+- Properties: Selected (text)
+- Tokens: `--outline`, `--outline-strong`, `--swatch-aish`, `--swatch-default`, `--swatch-graphite`, `--swatch-kaivo`, `--swatch-viola`, `--text-primary`
+- Accessibility:
+  - Same radiogroup behaviour as the segmented control: arrow keys, roving tabindex, aria-checked
+  - The colour is never the only cue: each dot has the scheme's name as its aria-label and tooltip, and the selected dot has a ring
+  - The dots are not text; the ring keeps 3:1 against the page (outline-strong)
+- Do:
+  - Use for choices that are colours
+- Don't:
+  - Use for anything that has no swatch to show

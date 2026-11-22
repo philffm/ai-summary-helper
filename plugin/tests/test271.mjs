@@ -93,7 +93,9 @@ assert.equal(saved.theme, 'dark', 'and is saved with the other appearance settin
 assert.equal(d.documentElement.style.getPropertyValue('--text-scale'), '1.1', 'text size steps by 10 %');
 [...menu.querySelectorAll('button')].find((b) => b.textContent === 'Postil').click(); await tick(40);
 assert.equal(d.documentElement.getAttribute('data-design'), 'postil', 'the design is its own switch');
-[...menu.querySelectorAll('button')].find((b) => b.textContent === 'Viola').click(); await tick(40);
+const dots = [...menu.querySelectorAll('.a11y-seg--dots button')];
+assert(dots.length === 5 && dots.every((b) => b.querySelector('.scheme-dot') && b.getAttribute('aria-label')), 'the colour schemes are dots, each with its name as the accessible name');
+dots.find((b) => b.getAttribute('aria-label') === 'Viola').click(); await tick(40);
 assert.equal(d.documentElement.getAttribute('data-scheme'), 'viola', 'colour scheme');
 const saved3 = await new Promise((r) => chrome.storage.sync.get(['theme', 'design', 'colorScheme'], r));
 assert.deepEqual(saved3, { theme: 'dark', design: 'postil', colorScheme: 'viola' }, 'all three axes are saved together');

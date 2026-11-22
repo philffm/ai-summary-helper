@@ -640,6 +640,22 @@
       "night-950": {
         "$value": "#10100F"
       }
+    },
+    "scheme": {
+      "$type": "color",
+      "$description": "The swatch colour of each runtime colour scheme (the dots in Settings › Appearance › Color scheme): the middle of the scheme's accent ramp, fixed whatever the build's own brand is.",
+      "kaivo": {
+        "$value": "#1C7F8E"
+      },
+      "aish": {
+        "$value": "#3B82F6"
+      },
+      "viola": {
+        "$value": "#7445F8"
+      },
+      "graphite": {
+        "$value": "#68655F"
+      }
     }
   }
 }

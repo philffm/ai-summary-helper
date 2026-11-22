@@ -342,6 +342,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#3b82f6"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -1395,6 +1415,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#3b82f6"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -2450,6 +2490,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#3b82f6"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -3503,6 +3563,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#3b82f6"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -4558,6 +4638,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#3b82f6"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -5611,6 +5711,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#3b82f6"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -6666,6 +6786,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#3b82f6"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -7719,6 +7859,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#3b82f6"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -8774,6 +8934,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#3b82f6"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -9827,6 +10007,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#3b82f6"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -15004,6 +15204,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -16057,6 +16277,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -17112,6 +17352,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -18165,6 +18425,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -19220,6 +19500,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -20273,6 +20573,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -21328,6 +21648,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -22381,6 +22721,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -23436,6 +23796,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -24489,6 +24869,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -29666,6 +30066,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -30719,6 +31139,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -31774,6 +32214,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -32827,6 +33287,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -33882,6 +34362,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -34935,6 +35435,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -35990,6 +36510,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -37043,6 +37583,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -38098,6 +38658,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -39151,6 +39731,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -44328,6 +44928,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#2E9470"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -45381,6 +46001,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#2E9470"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -46436,6 +47076,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#2E9470"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -47489,6 +48149,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#2E9470"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -48544,6 +49224,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#2E9470"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -49597,6 +50297,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#2E9470"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -50652,6 +51372,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#2E9470"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -51705,6 +52445,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#2E9470"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -52760,6 +53520,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#2E9470"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -53813,6 +54593,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#2E9470"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -58990,6 +59790,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -60043,6 +60863,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -61098,6 +61938,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -62151,6 +63011,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -63206,6 +64086,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -64259,6 +65159,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -65314,6 +66234,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -66367,6 +67307,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",
@@ -67422,6 +68382,26 @@
      "tier": "semantic",
      "value": "1100px"
     },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
+    },
     "--player-cover-from": {
      "tier": "component",
      "value": "#6366f1"
@@ -68475,6 +69455,26 @@
     "--bp-split-3": {
      "tier": "semantic",
      "value": "1100px"
+    },
+    "--swatch-default": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-kaivo": {
+     "tier": "semantic",
+     "value": "#1C7F8E"
+    },
+    "--swatch-aish": {
+     "tier": "semantic",
+     "value": "#3B82F6"
+    },
+    "--swatch-viola": {
+     "tier": "semantic",
+     "value": "#7445F8"
+    },
+    "--swatch-graphite": {
+     "tier": "semantic",
+     "value": "#68655F"
     },
     "--player-cover-from": {
      "tier": "component",

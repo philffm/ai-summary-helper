@@ -141,6 +141,12 @@
   --bp-toolbar-labels: 780px; /* Article toolbar shows labels next to icons (JS). */
   --bp-settings-wide: 900px; /* Settings master–detail: list and panel side by side (JS). */
   --bp-split-3: 1100px; /* Split view: three panes from here (JS). */
+  /* semantic · swatch */
+  --swatch-default: #1C7F8E; /* Colour dot of the Default colour scheme: this build's own accent. */
+  --swatch-kaivo: #1C7F8E; /* Colour dot of the Kaivo colour scheme. */
+  --swatch-aish: #3B82F6; /* Colour dot of the Aish colour scheme. */
+  --swatch-viola: #7445F8; /* Colour dot of the Viola colour scheme. */
+  --swatch-graphite: #68655F; /* Colour dot of the Graphite colour scheme. */
   /* semantic · accent */
   --accent-a05: color-mix(in srgb, var(--accent) 5%, transparent); /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: color-mix(in srgb, var(--accent) 8%, transparent); /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
@@ -317,6 +323,8 @@
 }
 /* colour schemes: Settings › Appearance › Color scheme (data-scheme: aish, kaivo, viola). Brand schemes emit only the colours that differ from this build's brand; they come right after the light block so the dark blocks below still win. Design (data-design: postil, contrast) and brightness (data-theme: light, dark) are separate axes. */
 :host([data-scheme='aish']) {
+  /* semantic · swatch */
+  --swatch-default: #3b82f6; /* Colour dot of the Default colour scheme: this build's own accent. */
   /* semantic · accent */
   --accent: #2563eb; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #3b82f6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
@@ -335,6 +343,8 @@
   --link-inverse: #93c5fd; /* Action or link on surface-inverse (toast Undo). */
 }
 :host([data-scheme='viola']) {
+  /* semantic · swatch */
+  --swatch-default: #7445F8; /* Colour dot of the Default colour scheme: this build's own accent. */
   /* semantic · accent */
   --accent: #6233E8; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #7445F8; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
@@ -353,6 +363,8 @@
   --link-inverse: #B49CFF; /* Action or link on surface-inverse (toast Undo). */
 }
 :host([data-scheme='graphite']) {
+  /* semantic · swatch */
+  --swatch-default: #68655F; /* Colour dot of the Default colour scheme: this build's own accent. */
   /* semantic · accent */
   --accent: #46443F; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #68655F; /* Second stop of the accent gradient (primary button, nav blob, switch on). */

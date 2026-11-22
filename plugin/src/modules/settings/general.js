@@ -70,8 +70,11 @@ export function initGeneralSettings(storageData) {
     };
     // the words of the three switches (written in popup.html in English)
     { const words = { themeLabel: T('Brightness'), designLabel: T('Design'), schemeLabel: T('Color scheme') }; Object.entries(words).forEach(([id, t]) => { const e = $id(id); if (e) e.textContent = t; });
-      const lab = { themeSeg: { system: T('Auto'), light: T('Light'), dark: T('Dark') }, designSeg: { standard: T('Standard'), contrast: T('High contrast') }, schemeSeg: { default: T('Default'), graphite: T('Graphite') } };
+      const lab = { themeSeg: { system: T('Auto'), light: T('Light'), dark: T('Dark') }, designSeg: { standard: T('Standard'), contrast: T('High contrast') } };
       Object.entries(lab).forEach(([id, m]) => document.querySelectorAll('#' + id + ' [data-value]').forEach((b) => { if (m[b.dataset.value]) b.textContent = m[b.dataset.value]; })); }
+    // the colour dots have no words: the name is the accessible name and the tooltip
+    { const names = { default: T('Default'), kaivo: 'Kaivo', aish: 'Aish', viola: 'Viola', graphite: T('Graphite') };
+      document.querySelectorAll('#schemeSeg [data-value]').forEach((b) => { const n = names[b.dataset.value]; if (n) { b.setAttribute('aria-label', n); b.title = n; } }); }
     seg('themeSeg', (v) => setA11y({ theme: v === 'light' || v === 'dark' ? v : 'system' }));
     seg('designSeg', (v) => setA11y({ design: DESIGNS.includes(v) ? v : 'standard' }));
     seg('schemeSeg', (v) => setA11y({ colorScheme: SCHEMES.includes(v) ? v : 'default' }));
