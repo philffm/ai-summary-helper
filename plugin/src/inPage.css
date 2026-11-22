@@ -1252,6 +1252,7 @@
   --glass-border-strong: #000000; /* Stronger glass edge for floating panels and toasts. */
   --glass-inner-glow: transparent; /* 1px inner highlight at the top of glass surfaces. */
   --surface-bar: #ffffff; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
+  --surface-track: #cbd5e1; /* Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast). */
   /* semantic · outline */
   --outline: #000000; /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
   /* semantic · text */
@@ -1293,6 +1294,7 @@
     --glass-border-strong: #ffffff; /* Stronger glass edge for floating panels and toasts. */
     --glass-inner-glow: transparent; /* 1px inner highlight at the top of glass surfaces. */
     --surface-bar: #000000; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
+    --surface-track: #334155; /* Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast). */
     /* semantic · outline */
     --outline: #ffffff; /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
     /* semantic · text */
@@ -1334,6 +1336,7 @@
   --glass-border-strong: #ffffff; /* Stronger glass edge for floating panels and toasts. */
   --glass-inner-glow: transparent; /* 1px inner highlight at the top of glass surfaces. */
   --surface-bar: #000000; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
+  --surface-track: #334155; /* Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast). */
   /* semantic · outline */
   --outline: #ffffff; /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
   /* semantic · text */
@@ -1393,6 +1396,8 @@
   --accent-light: #000000; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
   --accent-a05: #F5F5F4; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: #E9E8E6; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  /* semantic · surface */
+  --surface-track: #D7D6D5; /* Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast). */
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -1429,6 +1434,8 @@
     --accent-light: #FFFFFF; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
     --accent-a05: #121110; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
     --accent-a08: #121110; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+    /* semantic · surface */
+    --surface-track: #464442; /* Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast). */
     color-scheme: dark;
   }
 }
@@ -1461,6 +1468,8 @@
   --accent-light: #FFFFFF; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
   --accent-a05: #121110; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: #121110; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  /* semantic · surface */
+  --surface-track: #464442; /* Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast). */
   color-scheme: dark;
 }
 @media (prefers-reduced-motion: reduce) {

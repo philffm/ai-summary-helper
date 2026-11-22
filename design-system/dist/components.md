@@ -110,7 +110,7 @@ On/off setting that takes effect at once.
 - CSS: `.switch`, `.slider-toggle`
 - Source: `plugin/src/popup.html`, `plugin/src/modules/accordion.js`
 - Variants: On (true / false) · State (Default / Disabled / Focus)
-- Tokens: `--accent`, `--accent-light`, `--duration-base`, `--easing-standard`, `--elevation-1`, `--outline`, `--radius-full`, `--switch-knob`
+- Tokens: `--accent`, `--accent-light`, `--duration-base`, `--easing-standard`, `--elevation-1`, `--radius-full`, `--surface-track`, `--switch-knob`
 - Accessibility:
   - <input type=checkbox role=switch> inside the row <label>
   - Knob vs track ≥ 3:1
@@ -521,7 +521,7 @@ Status line + bar “{a} of {n} sources checked” on collection cards and in th
 - CSS: `.coll-prog`, `.coll-status`, `.coll-bar`, `.coll-bar-fill`
 - Source: `plugin/src/modules/collectionsView.js`
 - Variants: Tone (Running / OK / Empty)
-- Tokens: `--accent`, `--duration-slow`, `--easing-standard`, `--fs-sm`, `--mood-pos`, `--mood-pos-text`, `--outline`, `--radius-full`, `--text-muted`, `--text-secondary`
+- Tokens: `--accent`, `--duration-slow`, `--easing-standard`, `--fs-sm`, `--mood-pos`, `--mood-pos-text`, `--radius-full`, `--surface-track`, `--text-muted`, `--text-secondary`
 - Accessibility:
   - Bar is role=progressbar with valuenow/valuemax and a label
   - Text carries the meaning; glyph is aria-hidden

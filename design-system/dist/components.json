@@ -378,8 +378,8 @@
         "--duration-base",
         "--easing-standard",
         "--elevation-1",
-        "--outline",
         "--radius-full",
+        "--surface-track",
         "--switch-knob"
       ]
     },
@@ -1650,8 +1650,8 @@
         "--fs-sm",
         "--mood-pos",
         "--mood-pos-text",
-        "--outline",
         "--radius-full",
+        "--surface-track",
         "--text-muted",
         "--text-secondary"
       ]

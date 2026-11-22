@@ -7389,12 +7389,8 @@
        "name": "char/800"
       },
       "contrast-dark": {
-       "value": {
-        "r": 255,
-        "g": 255,
-        "b": 255,
-        "a": 0.12
-       }
+       "alias": "Primitives",
+       "name": "slate/700"
       },
       "postil-tint": {
        "alias": "Brand",
@@ -7418,15 +7414,11 @@
       },
       "graphite-contrast": {
        "alias": "Primitives",
-       "name": "slate/200"
+       "name": "mono/slate-300"
       },
       "graphite-contrast-dark": {
-       "value": {
-        "r": 255,
-        "g": 255,
-        "b": 255,
-        "a": 0.12
-       }
+       "alias": "Primitives",
+       "name": "mono/slate-700"
       }
      }
     },

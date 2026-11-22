@@ -39,7 +39,7 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-link:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-inset); }
 .hm-link-title { font-size: var(--fs-md); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 .hm-link-sub { font-size: var(--fs-sm); color: var(--text-muted); }
-.hm-bar { height: 3px; margin-top: 4px; border-radius: 2px; background: var(--outline); overflow: hidden; }
+.hm-bar { height: 3px; margin-top: 4px; border-radius: 2px; background: var(--surface-track); overflow: hidden; }
 .hm-bar > i { display: block; height: 100%; background: var(--accent); }
 .hm-empty { margin: 0; font-size: var(--fs-sm); color: var(--text-muted); }
 .hm-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0; }

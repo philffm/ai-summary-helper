@@ -1,6 +1,13 @@
 {
   "app": {
     "semantic": {
+      "surface": {
+        "surface-track": {
+          "$type": "color",
+          "$value": "{color.mono.slate-300}",
+          "$description": "Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast)."
+        }
+      },
       "text": {
         "text-muted": {
           "$type": "color",

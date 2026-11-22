@@ -47,6 +47,11 @@
           "$type": "color",
           "$value": "{color.black}",
           "$description": "Background of fixed bars (pane headers, toolbars) above scrolling content."
+        },
+        "surface-track": {
+          "$type": "color",
+          "$value": "{color.slate.700}",
+          "$description": "Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast)."
         }
       },
       "outline": {

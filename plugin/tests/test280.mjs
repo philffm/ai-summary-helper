@@ -55,5 +55,8 @@ for (const f of ['styles.css', 'inPage.css']) {
     assert(i > 0 && /--accent-glow: transparent/.test(blk) && /--shadow-modal: none/.test(blk) && /--elevation-sheet: none/.test(blk), sel + ': no glow, no shadow');
   }
   assert(/data-design='contrast'\] \* \{ backdrop-filter: none/.test(css), 'no backdrop blur in High contrast');
+  // --outline is a solid line in High contrast: it must not be used as a fill (a white block with white text), tracks use --surface-track
+  const fills = css.split('\n').filter((l) => /background: var\(--outline\)/.test(l) && !/^\s*--/.test(l));
+  assert(fills.every((l) => /sep|::before|local-src-state/.test(l)), 'no fill uses the outline colour: ' + fills.join(' | ').slice(0, 300));
 }
 console.log('TEST 280 OK'); process.exit(0);

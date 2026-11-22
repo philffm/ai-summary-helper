@@ -2504,7 +2504,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--player-err": {
      "tier": "component",
@@ -2624,7 +2624,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--chart-0": {
      "tier": "component",
@@ -2940,7 +2940,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -5666,7 +5666,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--player-err": {
      "tier": "component",
@@ -5786,7 +5786,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--chart-0": {
      "tier": "component",
@@ -6102,7 +6102,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -10936,7 +10936,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--player-err": {
      "tier": "component",
@@ -11056,7 +11056,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--chart-0": {
      "tier": "component",
@@ -11372,7 +11372,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -11990,7 +11990,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--player-err": {
      "tier": "component",
@@ -12110,7 +12110,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--chart-0": {
      "tier": "component",
@@ -12426,7 +12426,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -19274,7 +19274,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--player-err": {
      "tier": "component",
@@ -19394,7 +19394,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--chart-0": {
      "tier": "component",
@@ -19710,7 +19710,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -22436,7 +22436,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--player-err": {
      "tier": "component",
@@ -22556,7 +22556,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--chart-0": {
      "tier": "component",
@@ -22872,7 +22872,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -27706,7 +27706,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--player-err": {
      "tier": "component",
@@ -27826,7 +27826,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--chart-0": {
      "tier": "component",
@@ -28142,7 +28142,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -28760,7 +28760,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--player-err": {
      "tier": "component",
@@ -28880,7 +28880,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--chart-0": {
      "tier": "component",
@@ -29196,7 +29196,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -36044,7 +36044,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--player-err": {
      "tier": "component",
@@ -36164,7 +36164,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--chart-0": {
      "tier": "component",
@@ -36480,7 +36480,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -39206,7 +39206,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--player-err": {
      "tier": "component",
@@ -39326,7 +39326,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--chart-0": {
      "tier": "component",
@@ -39642,7 +39642,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -44476,7 +44476,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--player-err": {
      "tier": "component",
@@ -44596,7 +44596,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--chart-0": {
      "tier": "component",
@@ -44912,7 +44912,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -45530,7 +45530,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--player-err": {
      "tier": "component",
@@ -45650,7 +45650,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--chart-0": {
      "tier": "component",
@@ -45966,7 +45966,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -52814,7 +52814,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--player-err": {
      "tier": "component",
@@ -52934,7 +52934,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--chart-0": {
      "tier": "component",
@@ -53250,7 +53250,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -55976,7 +55976,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--player-err": {
      "tier": "component",
@@ -56096,7 +56096,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--chart-0": {
      "tier": "component",
@@ -56412,7 +56412,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -61246,7 +61246,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--player-err": {
      "tier": "component",
@@ -61366,7 +61366,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--chart-0": {
      "tier": "component",
@@ -61682,7 +61682,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -62300,7 +62300,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--player-err": {
      "tier": "component",
@@ -62420,7 +62420,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--chart-0": {
      "tier": "component",
@@ -62736,7 +62736,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -69584,7 +69584,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--player-err": {
      "tier": "component",
@@ -69704,7 +69704,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--chart-0": {
      "tier": "component",
@@ -70020,7 +70020,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#e2e8f0"
+     "value": "#cbd5e1"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -72746,7 +72746,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--player-err": {
      "tier": "component",
@@ -72866,7 +72866,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--chart-0": {
      "tier": "component",
@@ -73182,7 +73182,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#334155"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -78016,7 +78016,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--player-err": {
      "tier": "component",
@@ -78136,7 +78136,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--chart-0": {
      "tier": "component",
@@ -78452,7 +78452,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#e2e8f0"
+     "value": "#D7D6D5"
     },
     "--surface-row": {
      "tier": "semantic",
@@ -79070,7 +79070,7 @@
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--player-err": {
      "tier": "component",
@@ -79190,7 +79190,7 @@
     },
     "--track-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--chart-0": {
      "tier": "component",
@@ -79506,7 +79506,7 @@
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.12)"
+     "value": "#464442"
     },
     "--surface-row": {
      "tier": "semantic",

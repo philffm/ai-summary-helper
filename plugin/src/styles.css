@@ -1261,6 +1261,7 @@
   --glass-border-strong: #000000; /* Stronger glass edge for floating panels and toasts. */
   --glass-inner-glow: transparent; /* 1px inner highlight at the top of glass surfaces. */
   --surface-bar: #ffffff; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
+  --surface-track: #cbd5e1; /* Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast). */
   /* semantic · outline */
   --outline: #000000; /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
   /* semantic · text */
@@ -1302,6 +1303,7 @@
     --glass-border-strong: #ffffff; /* Stronger glass edge for floating panels and toasts. */
     --glass-inner-glow: transparent; /* 1px inner highlight at the top of glass surfaces. */
     --surface-bar: #000000; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
+    --surface-track: #334155; /* Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast). */
     /* semantic · outline */
     --outline: #ffffff; /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
     /* semantic · text */
@@ -1343,6 +1345,7 @@
   --glass-border-strong: #ffffff; /* Stronger glass edge for floating panels and toasts. */
   --glass-inner-glow: transparent; /* 1px inner highlight at the top of glass surfaces. */
   --surface-bar: #000000; /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
+  --surface-track: #334155; /* Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast). */
   /* semantic · outline */
   --outline: #ffffff; /* Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005). */
   /* semantic · text */
@@ -1402,6 +1405,8 @@
   --accent-light: #000000; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
   --accent-a05: #F5F5F4; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: #E9E8E6; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  /* semantic · surface */
+  --surface-track: #D7D6D5; /* Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast). */
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -1438,6 +1443,8 @@
     --accent-light: #FFFFFF; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
     --accent-a05: #121110; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
     --accent-a08: #121110; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+    /* semantic · surface */
+    --surface-track: #464442; /* Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast). */
     color-scheme: dark;
   }
 }
@@ -1470,6 +1477,8 @@
   --accent-light: #FFFFFF; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
   --accent-a05: #121110; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: #121110; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
+  /* semantic · surface */
+  --surface-track: #464442; /* Unfilled part of progress bars, sliders and meters: a flat grey that stays apart from the page (High contrast). */
   color-scheme: dark;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2355,7 +2364,7 @@ ul#articleList {
   position: absolute;
   inset: 0;
   border-radius: var(--radius-full);
-  background: var(--outline);
+  background: var(--surface-track);
   transition: var(--duration-base) var(--easing-standard);
 }
 
@@ -3439,7 +3448,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   flex: 1;
   height: 6px;
   border-radius: 3px;
-  background: var(--outline);
+  background: var(--surface-track);
   overflow: hidden;
 }
 
@@ -3505,7 +3514,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
   align-items: center;
   padding: 8px 4px;
   border-radius: var(--radius-md);
-  background: var(--outline);
+  background: var(--surface-track);
 }
 
 .ar-savings-full { opacity: 0.6; }
@@ -3550,7 +3559,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 .ar-savings-bar-wrap {
   height: 6px;
   border-radius: 3px;
-  background: var(--outline);
+  background: var(--surface-track);
   overflow: hidden;
   margin-bottom: 6px;
 }
@@ -4338,7 +4347,7 @@ i.tp-s3 { background: var(--chart-3); } i.tp-s4 { background: var(--chart-4); } 
 .sd-flag-err { background: color-mix(in srgb, var(--danger) 14%, transparent); color: var(--danger-text); }
 .sd-diet { flex: none; width: 112px; text-align: right; }
 .sd-mood-row { display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
-.sd-mood { position: relative; width: 64px; height: 8px; border-radius: 4px; background: var(--outline); flex: none; }
+.sd-mood { position: relative; width: 64px; height: 8px; border-radius: 4px; background: var(--surface-track); flex: none; }
 .sd-mood-track { position: absolute; inset: 0; }
 .sd-mood-mid { position: absolute; left: 50%; top: -3px; bottom: -3px; width: 2px; background: var(--text-muted); transform: translateX(-1px); }
 .sd-mood-fill { position: absolute; top: 0; bottom: 0; border-radius: 4px; }
@@ -4389,7 +4398,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .sc-wait { color: var(--text-muted); font-variant-numeric: tabular-nums; }
 .sc-model { font-size: 11px; opacity: 0.5; margin-bottom: 4px; }
 .sc-progress { margin-bottom: 6px; }
-.sc-progress-track { height: 4px; background: var(--outline); border-radius: 999px; overflow: hidden; }
+.sc-progress-track { height: 4px; background: var(--surface-track); border-radius: 999px; overflow: hidden; }
 .sc-progress-bar { height: 100%; background: var(--accent); border-radius: 999px; transition: width var(--duration-slower) var(--easing-standard); }
 /* Live preview of the text being written. Fixed height, newest text at the bottom, older lines fade out at the top:
    the card keeps its size while words stream in instead of jumping between one and four lines with every update. */
@@ -4679,6 +4688,11 @@ html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-mo
    the backdrop blur of bars and sheets and the breathing glow of the working composer. */
 :root[data-design='contrast'] * { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; text-shadow: none; }
 :root[data-design='contrast'] .controls-bar[data-state="working"] .composer-pill { animation: none; box-shadow: none; }
+/* High contrast: blocks that were a faded or tinted fill are an outlined block with solid text (the time-saved row of the analytics report) */
+:root[data-design='contrast'] .ar-savings-block { background: transparent; border: 2px solid var(--outline); opacity: 1; }
+:root[data-design='contrast'] .ar-savings-saved .ar-savings-value { color: var(--text-primary); }
+:root[data-design='contrast'] .ar-savings-label, :root[data-design='contrast'] .ar-savings-arrow, :root[data-design='contrast'] .ar-savings-caption { color: var(--text-primary); }
+:root[data-design='contrast'] .ar-savings-bar-fill { background: var(--accent); }
 /* High contrast: the command palette (⌘K, also inline on the home page) has the same hard edges as the other surfaces, and the highlighted entry is
    a solid accent fill, not a faint tint */
 :root[data-design='contrast'] .cmdk-panel, :root[data-design='contrast'] .hm-box.is-open .cmdk-list, :root[data-design='contrast'] .hm-box.is-open .cmdk-empty { border: 2px solid var(--outline); box-shadow: none; }
@@ -5018,12 +5032,12 @@ body[data-surface="tab"] { min-width: 0; }
 /* histogram range: bars per month, two range inputs overlaid (still real inputs → keyboard + screen readers) */
 .graph-time-track { position: relative; height: 72px; margin: 2px 0 0; --lo: 0%; --hi: 100%; }
 .graph-time-bars { position: absolute; inset: 0 8px 14px; display: flex; align-items: flex-end; gap: 2px; }
-.graph-time-bars span { flex: 1; min-width: 2px; border-radius: 3px 3px 0 0; background: var(--outline); transition: background var(--duration-fast); }
+.graph-time-bars span { flex: 1; min-width: 2px; border-radius: 3px 3px 0 0; background: var(--surface-track); transition: background var(--duration-fast); }
 .graph-time-bars span.in { background: var(--accent); }
 .graph-time-bars span.is-empty { opacity: .5; }
 .graph-time-track input[type=range] { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 22px; margin: 0; background: transparent; pointer-events: none; -webkit-appearance: none; appearance: none; accent-color: var(--accent); }
-.graph-time-track input[type=range]::-webkit-slider-runnable-track { height: 4px; background: var(--outline); border-radius: 2px; }
-.graph-time-track input[type=range]::-moz-range-track { height: 4px; background: var(--outline); border-radius: 2px; }
+.graph-time-track input[type=range]::-webkit-slider-runnable-track { height: 4px; background: var(--surface-track); border-radius: 2px; }
+.graph-time-track input[type=range]::-moz-range-track { height: 4px; background: var(--surface-track); border-radius: 2px; }
 .graph-time-track input[type=range]:last-of-type::-webkit-slider-runnable-track { background: transparent; }
 .graph-time-track input[type=range]:last-of-type::-moz-range-track { background: transparent; }
 .graph-time-track input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; pointer-events: auto; width: 18px; height: 18px; margin-top: -7px; border-radius: 50%; background: var(--switch-knob); border: 2px solid var(--accent); cursor: grab; }
@@ -5596,7 +5610,7 @@ button.mcp-prompt:focus-visible { outline: var(--focus-ring-width) solid var(--f
 body.is-resizing, body.is-resizing *, body.is-resizing *::before, body.is-resizing *::after { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; transition: none !important; }
 
 /* Storage & cleanup: usage bar + legend, review sheet groups */
-.storage-bar { display: flex; gap: 2px; height: 14px; border-radius: 6px; overflow: hidden; background: var(--outline); }
+.storage-bar { display: flex; gap: 2px; height: 14px; border-radius: 6px; overflow: hidden; background: var(--surface-track); }
 .storage-bar[hidden], .storage-legend[hidden] { display: none; }
 .storage-bar > span { display: block; height: 100%; min-width: 0; }
 .storage-bar-img, .storage-dot.storage-bar-img { background: var(--accent); }
@@ -6029,7 +6043,7 @@ circle.graph-read-dim, text.graph-read-dim, .graph-blob.graph-read-dim { opacity
 .coll-status.is-done { color: var(--mood-pos-text); }
 .coll-status.is-empty { font-weight: 400; color: var(--text-muted); }
 .coll-status-glyph { flex: none; width: 1em; text-align: center; }
-.coll-bar { display: block; height: 6px; border-radius: var(--radius-full); background: var(--outline); overflow: hidden; }
+.coll-bar { display: block; height: 6px; border-radius: var(--radius-full); background: var(--surface-track); overflow: hidden; }
 .coll-bar-fill { display: block; height: 100%; width: var(--p, 0%); border-radius: inherit; background: var(--accent); transition: width var(--duration-slow) var(--easing-standard); }
 .coll-status.is-done + .coll-bar > .coll-bar-fill { background: var(--mood-pos); }
 .coll-toolbar.coll-toolbar--sub { justify-content: space-between; flex-wrap: nowrap; padding-bottom: 4px; }
