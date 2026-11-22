@@ -47,6 +47,24 @@ function applyPrefs() {
 }
 const setPref = (patch) => { prefs = { ...prefs, ...patch }; applyPrefs(); try { chrome.storage.local.set({ [PREFS_KEY]: prefs }); } catch (_) { /* optional */ } };
 
+// Toolbar buttons are icon + a label that is only shown where there is room: the full text is the tooltip and the accessible name
+function setText(btn, full, shown) {
+  if (!btn) return;
+  const l = btn.querySelector('.rp-label'); if (l) l.textContent = shown || full;
+  if (btn.classList.contains('rp-tool')) { btn.setAttribute('aria-label', full); btn.title = full; }
+}
+const setIcon = (btn, name) => { const u = btn && btn.querySelector('use'); if (u) u.setAttribute('href', '#i-' + name); };
+
+// Menus (text & theme, more): one open at a time; Escape or a click elsewhere closes
+function wireMenus() {
+  const pairs = [['rpDisplayBtn', 'rpDisplayMenu'], ['rpMoreBtn', 'rpMoreMenu']].map(([b, m]) => [$(b), $(m)]);
+  const closeAll = (except) => pairs.forEach(([b, m]) => { if (m !== except) { m.hidden = true; b.setAttribute('aria-expanded', 'false'); } });
+  pairs.forEach(([b, m]) => b.addEventListener('click', (e) => { e.stopPropagation(); const open = m.hidden; closeAll(m); m.hidden = !open; b.setAttribute('aria-expanded', String(open)); }));
+  document.addEventListener('click', (e) => { if (!e.target.closest('.rp-menu-wrap')) closeAll(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { const open = pairs.find(([, m]) => !m.hidden); if (open) { closeAll(); open[0].focus(); } } });
+  $('rpMoreMenu').addEventListener('click', (e) => { if (e.target.closest('button')) closeAll(); });
+}
+
 function labelControls() {
   $('rpSmaller').setAttribute('aria-label', T('Smaller text')); $('rpLarger').setAttribute('aria-label', T('Larger text'));
   $('rpFontGroup').setAttribute('aria-label', T('Font')); $('rpThemeGroup').setAttribute('aria-label', T('Theme')); $('rpViewGroup').setAttribute('aria-label', T('Show'));
@@ -56,9 +74,11 @@ function labelControls() {
   document.querySelectorAll('button[data-theme]').forEach(b => { b.textContent = th[b.dataset.theme]; });
   const vw = { both: T('Both'), summary: T('Summary'), content: T('Full text') };
   document.querySelectorAll('[data-view]').forEach(b => { b.textContent = vw[b.dataset.view]; });
-  $('rpPrint').textContent = T('Print');
-  $('rpListen').textContent = T('Read aloud');
-  $('rpApp').textContent = T('Open app');
+  setText($('rpPrint'), T('Print'));
+  setText($('rpListen'), T('Read aloud'));
+  setText($('rpApp'), T('Open app'), T('App'));
+  setText($('rpMoreBtn'), T('More'));
+  setText($('rpDisplayBtn'), T('Text and theme'), 'Aa');
 }
 
 function wireControls() {
@@ -176,7 +196,7 @@ function wireHighlights() {
   pop.addEventListener('mousedown', (e) => e.preventDefault());   // keeps the selection
   act.addEventListener('click', () => { if (!pending) return; pending.kind === 'add' ? doAdd(pending.range) : doRemove(pending.n); });
   if (btn) {
-    btn.textContent = T('Highlight'); btn.disabled = true;
+    setText(btn, T('Highlight')); btn.disabled = true;
     btn.addEventListener('mousedown', (e) => e.preventDefault());
     btn.addEventListener('click', () => { const r = content() && selectionIn(content()); if (r) doAdd(r.cloneRange()); });
   }
@@ -286,7 +306,8 @@ async function wireListen() {
   const paint = () => {
     const st = reader.state, mine = st.meta && st.meta.tool === 'reader' && st.meta.id === (raw && raw.id);
     const s = mine ? st.state : 'idle';
-    btn.textContent = s === 'playing' || s === 'waiting' ? T('Pause') : s === 'paused' ? T('Resume') : T('Read aloud');
+    setText(btn, s === 'playing' || s === 'waiting' ? T('Pause') : s === 'paused' ? T('Resume') : T('Read aloud'));
+    setIcon(btn, s === 'playing' || s === 'waiting' ? 'pause' : 'headphones');
     btn.setAttribute('aria-pressed', String(s === 'playing' || s === 'waiting'));
     if (mine && s !== 'idle') mark(st.index); else mark(-1);
   };
@@ -319,10 +340,17 @@ function wireApp() {
   let frame = null, grip = null;
   const setDock = (w) => { root.style.setProperty('--rp-dock', clampDock(w) + 'px'); if (grip) { grip.setAttribute('aria-valuenow', String(clampDock(w))); grip.setAttribute('aria-valuemin', String(DOCK_MIN)); grip.setAttribute('aria-valuemax', String(dockMax())); } };
   const saveDock = () => { prefs.dock = clampDock(parseInt(getComputedStyle(root).getPropertyValue('--rp-dock'), 10)); try { chrome.storage.local.set({ [PREFS_KEY]: prefs }); } catch (_) { /* optional */ } };
+  // the edge tab: a slim handle on the right edge of the window says the app lives there and can be pulled in
+  const edge = document.createElement('button');
+  edge.type = 'button'; edge.className = 'rp-edge'; edge.setAttribute('aria-label', T('Open app'));
+  edge.innerHTML = '<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-panel-right-open"/></svg>';
+  document.body.appendChild(edge);
   const close = () => {
-    if (frame) { frame.remove(); frame = null; }
+    const f = frame; frame = null;
+    if (f) { f.classList.remove('rp-in'); setTimeout(() => { f.remove(); if (!frame) root.classList.remove('rp-docked'); }, 320); }   // slides out first (the CSS transition is shorter than this)
     if (grip) { grip.remove(); grip = null; }
-    root.classList.remove('rp-docked'); btn.setAttribute('aria-pressed', 'false');
+    root.classList.remove('rp-open'); btn.setAttribute('aria-pressed', 'false'); setIcon(btn, 'panel-right-open');
+    edge.hidden = false;
   };
   function makeGrip() {
     const g = document.createElement('div');
@@ -348,15 +376,19 @@ function wireApp() {
     if (!wide && grip) { grip.remove(); grip = null; }
     if (wide) setDock(parseInt(getComputedStyle(root).getPropertyValue('--rp-dock'), 10) || prefs.dock);
   };
-  btn.addEventListener('click', () => {
+  const toggle = () => {
     if (frame) { close(); return; }
     frame = document.createElement('iframe');
     frame.className = 'rp-float'; frame.title = T('Open app');
     frame.src = chrome.runtime.getURL('popup.html') + '?surface=float';
     document.body.appendChild(frame);
-    btn.setAttribute('aria-pressed', 'true');
+    btn.setAttribute('aria-pressed', 'true'); setIcon(btn, 'panel-right-close'); edge.hidden = true;
+    root.classList.add('rp-open');
     setDock(prefs.dock); layout();
-  });
+    requestAnimationFrame(() => requestAnimationFrame(() => { if (frame) frame.classList.add('rp-in'); }));   // after the first paint, so it slides
+  };
+  btn.addEventListener('click', toggle);
+  edge.addEventListener('click', toggle);
   window.addEventListener('resize', layout);
   window.addEventListener('message', (e) => {
     if (frame && e.source === frame.contentWindow && e.origin === location.origin && e.data && e.data.aishFloat === 'close') close();
@@ -375,7 +407,7 @@ async function init() {
     applyA11y({ ...a, theme: appTheme });
   } catch (_) { /* tokens' own defaults */ }
   try { await applyTranslations(lang); } catch (_) { /* English */ }
-  labelControls(); wireControls(); applyPrefs();
+  labelControls(); wireControls(); wireMenus(); applyPrefs();
   await render();
   revealQuoteFromHash();
   wireHighlights();
