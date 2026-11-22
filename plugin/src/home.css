@@ -48,3 +48,16 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 @media (max-width: 720px) { .hm-appbar { position: static; justify-content: center; } }   /* narrow: above the greeting instead of beside it */
 .hm-quote { margin: 0 0 8px; padding: 0; font-size: var(--fs-md); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
 .hm-quote-src { display: block; margin-bottom: 10px; }
+
+.hm-card--wide { grid-column: span 2; }
+@media (max-width: 720px) { .hm-card--wide { grid-column: auto; } }
+.hm-brief-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin-bottom: 8px; }
+.hm-brief-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: var(--fs-sm); color: var(--text-muted); }
+.hm-mood { padding: 1px 8px; border: 1px solid var(--outline); border-radius: var(--radius-full); }
+.hm-brief-text { font-size: var(--fs-md); line-height: 1.5; }
+.hm-brief-list { margin: 8px 0 0; padding-inline-start: 18px; display: grid; gap: 6px; }
+.hm-brief-src { margin-top: 10px; font-size: var(--fs-sm); color: var(--text-muted); }
+.hm-brief-src summary { cursor: pointer; }
+.hm-brief-src ol { margin: 8px 0 0; padding-inline-start: 22px; display: grid; gap: 4px; }
+.hm-brief-src a { color: var(--text-primary); }
+.hm-brief-actions { margin-top: 12px; }

@@ -5616,3 +5616,12 @@ details.links-group > summary.links-cap { cursor: pointer; list-style-position: 
 .ask-chip--instant { border-color: var(--accent); }
 .ask-chip--instant .icon { color: var(--accent); }
 .ask-dig { margin-inline-start: auto; }
+
+/* Source chips in feed briefings (modules/recapCites.js): the numbers the model cited, each opening the item */
+.rc-cite { display: inline-block; vertical-align: baseline; margin-inline: 1px; padding: 0 5px; min-width: 1.2em; text-align: center; font-size: var(--fs-xs); font-weight: 600; line-height: 1.4; color: var(--accent); background: var(--accent-soft); border-radius: var(--radius-sm); text-decoration: none; }
+.rc-cite:hover { background: var(--accent); color: var(--surface-sheet); }
+.rc-cite:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+.feed-recap-sources { margin-top: 10px; font-size: var(--fs-sm); color: var(--text-muted); }
+.feed-recap-sources summary { cursor: pointer; }
+.feed-recap-sources ol { margin: 8px 0 0; padding-inline-start: 22px; display: grid; gap: 4px; }
+.feed-recap-sources a { color: var(--text-primary); }

@@ -31,6 +31,7 @@ import { buildIndex, search as indexSearch } from './localSearch.js';
 import { renderInsights } from './feedInsights.js';
 import { snapshotMood } from './feedMood.js';
 import { openRollup, coverage, weekCells, weekStart, monthStart, periodEnd, isoWeek, rangeText, rollKey, tally, isStale, moodBar, recapKeyTs, isDayRecapKey } from './feedRollup.js';
+import { chipCites, citedSources } from './recapCites.js';
 import { generateRecap, generateRecapUpdate, generateFeedTopics, translateFeedTopics, learnTagNames, uiLanguage, itemSig, scoreItems, MAX_RECAP_ITEMS, getRecapLimit, setRecapLimit, setAiDetail } from './feedAi.js';
 import { el } from './dom.js';
 import { renderAnswer, renderInline } from './qaView.js';
@@ -1854,7 +1855,7 @@ function renderRecapCard() {
     let stale = false;
     if (rec && sc === 'day') stale = !!(rec.covered && recapCovered(recapScope(ps, ui.source)).some(x => rec.covered[x.id] !== itemSig(x)));
     else if (rec) stale = isStale(sc, a, ctx);
-    if (rec && rec.overview) { const sum = el('div', 'feed-rc-sum md-body'); renderAnswer(sum, rec.overview); box.append(sum); }
+    if (rec && rec.overview) { const sum = el('div', 'feed-rc-sum md-body'); renderAnswer(sum, rec.overview); chipCites(sum, rec, new Map(items.map(x => [x.id, x]))); box.append(sum); }
     if (rec && sc === 'day' && rec.total > rec.n) box.append(el('p', 'feed-muted', TN(rec.total - rec.n, '{n} older item is not in this recap.', '{n} older items are not in this recap.')));
     if (rec) {
         const tl = tally(items, ctx, ps, Math.min(addDaysTs(pe, -1), startOfDay(Date.now())), itemMood);
@@ -1927,6 +1928,17 @@ async function openRecap(dayStart, label, source = ui.source, autoRefresh = fals
             const ul = el('ul', 'feed-recap-themes');
             r.themes.forEach(t => { const li = el('li'); renderInline(li, t); ul.append(li); });
             body.append(ul);
+        }
+        { // the numbers the model cited become chips that open the item; a marker that points to nothing is removed
+            const byId = new Map(items.map(x => [x.id, x]));
+            chipCites(body, r, byId);
+            const src = citedSources(r, byId);
+            if (src.length) {
+                const det = el('details', 'feed-recap-sources');
+                det.append(el('summary', null, TN(src.length, '{n} source', '{n} sources')));
+                const ol = el('ol'); src.forEach(({ n, item }) => { const li = el('li'); li.value = n; const a = el('a', null, item.title || item.link); a.href = item.link; a.target = '_blank'; a.rel = 'noopener noreferrer'; li.append(a, document.createTextNode(' · ' + (subMap().get(item.feedId)?.title || ''))); ol.append(li); });
+                det.append(ol); body.append(det);
+            }
         }
         if (missing.length) {
             const box = el('div', 'feed-recap-missing');

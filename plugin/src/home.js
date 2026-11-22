@@ -1,12 +1,14 @@
 // Home page: opened from Settings › Appearance or the ⌘K palette ("Home page"). It only reads what the library already holds;
 // every card is a plain list of links, and the user chooses which cards show (remembered on this device).
 import { bootPage } from './modules/pageBoot.js';
-import { T } from './modules/feedI18n.js';
+import { T, TN } from './modules/feedI18n.js';
 import StorageManager from './modules/storageManager.js';
 import { SK, hlPageKey } from './modules/storageKeys.js';
 import { bgMessage } from './modules/bgMessage.js';
 import { normalizeHighlights } from './modules/highlightRecords.js';
-import { continueReading, recentlySaved, latestFeed, mergeFeed, pickQuote, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
+import { renderInline, renderAnswer } from './modules/qaView.js';
+import { chipCites, citedSources } from './modules/recapCites.js';
+import { latestBriefing, briefingHeadlines, continueReading, recentlySaved, latestFeed, mergeFeed, pickQuote, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
 import { createAppDock } from './modules/appDock.js';
 import { mountCommandList } from './modules/commandPalette.js';
 import { externalCommands, externalArticleSearch } from './modules/paletteExternal.js';
@@ -30,7 +32,48 @@ function listOf(rows, emptyText) {
   const ul = el('ul', 'hm-list'); rows.forEach((r) => { const li = el('li'); li.append(r); ul.append(li); }); return ul;
 }
 
+function ago(ms) {
+  const m = Math.round((Date.now() - ms) / 60000), rtf = new Intl.RelativeTimeFormat(document.documentElement.lang || undefined, { numeric: 'auto' });
+  return m < 60 ? rtf.format(-Math.max(1, m), 'minute') : m < 1440 ? rtf.format(-Math.round(m / 60), 'hour') : rtf.format(-Math.round(m / 1440), 'day');
+}
+const MOOD = () => ({ pos: T('Mostly positive'), neu: T('Mixed'), neg: T('Mostly heavy') });
+
+// The feed briefing, with the numbered sources the model cited as chips (recapCites.js): the same briefing as in Feeds
+function briefingCard(d) {
+  const found = latestBriefing(d.recaps);
+  const body = el('div');
+  if (!found) { body.append(el('p', 'hm-empty', T('Write a recap in Feeds and it shows up here, with its sources.'))); return card(T('Briefing'), body); }
+  const r = found.recap, byId = new Map(d.feed.map((i) => [i.id, i]));
+  const meta = el('div', 'hm-brief-meta');
+  if (r.n) meta.append(el('span', '', TN(r.n, '{n} item', '{n} items')));
+  if (r.at) meta.append(el('span', '', T('Updated {when}', { when: ago(r.at) })));
+  meta.append(el('span', 'hm-mood', MOOD()[r.mood] || MOOD().neu));
+  const seg = el('div', 'a11y-seg a11y-seg--hug a11y-seg--sm hm-brief-seg'); seg.setAttribute('role', 'group'); seg.setAttribute('aria-label', T('Briefing size'));
+  const mk = (mode, label) => { const b = el('button', '', label); b.type = 'button'; b.setAttribute('aria-pressed', String(d.briefMode === mode)); b.addEventListener('click', () => { d.briefMode = mode; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock, briefMode: mode } }); } catch (_) { /* optional */ } render(); }); return b; };
+  seg.append(mk('full', T('Sections')), mk('short', T('Headlines')));
+  const head = el('div', 'hm-brief-head'); head.append(meta, seg);
+  const text = el('div', 'hm-brief-text');
+  if (d.briefMode === 'short') {
+    const ul = el('ul', 'hm-brief-list'); briefingHeadlines(r, 3).forEach((t) => { const li = el('li'); renderInline(li, t); ul.append(li); }); text.append(ul);
+  } else {
+    if (r.overview) { const ov = el('div', 'md-body'); renderAnswer(ov, r.overview); text.append(ov); }
+    if ((r.themes || []).length) { const ul = el('ul', 'hm-brief-list'); r.themes.forEach((t) => { const li = el('li'); renderInline(li, t); ul.append(li); }); text.append(ul); }
+  }
+  chipCites(text, r, byId);
+  body.append(head, text);
+  const src = citedSources(r, byId);
+  if (src.length) {
+    const det = el('details', 'hm-brief-src'); det.append(el('summary', '', TN(src.length, '{n} source', '{n} sources')));
+    const ol = el('ol'); src.forEach(({ n, item }) => { const li = el('li'); li.value = n; const a = el('a', '', item.title || item.link); a.href = item.link; a.target = '_blank'; a.rel = 'noopener noreferrer'; li.append(a); ol.append(li); });
+    det.append(ol); body.append(det);
+  }
+  const open = el('button', 'button-secondary btn-sm', T('Open in Feeds')); open.type = 'button'; open.addEventListener('click', () => dock && dock.open('feeds'));
+  body.append(el('div', 'hm-brief-actions')); body.lastChild.append(open);
+  const c = card(T('Today’s briefing'), body); c.classList.add('hm-card--wide'); return c;
+}
+
 const builders = {
+  briefing: (d) => briefingCard(d),
   continue: (d) => card(T('Continue reading'), listOf(continueReading(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url), a.progress)), T('Nothing in progress. Articles you start reading show up here.'))),
   recent: (d) => card(T('Recently saved'), listOf(recentlySaved(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url))), T('Your saved articles show up here.'))),
   feeds: (d) => card(T('Latest from your feeds'), listOf(latestFeed(d.feed, 4).map((i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link))), T('Subscribe to feeds to see new items here.'))),
@@ -50,18 +93,18 @@ const builders = {
     return card(T('Your library'), dl);
   },
 };
-const LABELS = { continue: 'Continue reading', recent: 'Recently saved', feeds: 'Latest from your feeds', quote: 'From your highlights', stats: 'Your library' };
+const LABELS = { briefing: 'Today’s briefing', continue: 'Continue reading', recent: 'Recently saved', feeds: 'Latest from your feeds', quote: 'From your highlights', stats: 'Your library' };
 
 const dockPrefs = { dock: undefined };
 let dock = null;
-let hidden = [], data = { index: [], feed: [], quote: null };
+let hidden = [], data = { index: [], feed: [], quote: null, recaps: {}, briefMode: 'full' };
 function render() {
   const grid = $('hmGrid'); grid.textContent = '';
   visibleWidgets(hidden).forEach((w) => grid.append(builders[w](data)));
   const box = $('hmCustom'); box.textContent = '';
   WIDGETS.forEach((w) => {
     const lab = el('label'); const cb = el('input'); cb.type = 'checkbox'; cb.checked = !hidden.includes(w);
-    cb.addEventListener('change', () => { hidden = cb.checked ? hidden.filter((x) => x !== w) : [...hidden, w]; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock } }); } catch (_) { /* optional */ } render(); });
+    cb.addEventListener('change', () => { hidden = cb.checked ? hidden.filter((x) => x !== w) : [...hidden, w]; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock, briefMode: data.briefMode } }); } catch (_) { /* optional */ } render(); });
     lab.append(cb, document.createTextNode(T(LABELS[w]))); box.append(lab);
   });
 }
@@ -119,9 +162,10 @@ async function loadQuote() {
 // Library and feed list as stored; the worker's newest finds (feeds:background) count too
 async function loadData() {
   try {
-    const got = await chrome.storage.local.get({ [PREFS_KEY]: {}, [SK.feedItems]: [], [SK.feedBackground]: {} });
+    const got = await chrome.storage.local.get({ [PREFS_KEY]: {}, [SK.feedItems]: [], [SK.feedBackground]: {}, [SK.feedRecaps]: {} });
     hidden = Array.isArray(got[PREFS_KEY].hidden) ? got[PREFS_KEY].hidden : [];
     if (got[PREFS_KEY].dock) dockPrefs.dock = got[PREFS_KEY].dock;
+    data.briefMode = got[PREFS_KEY].briefMode === 'short' ? 'short' : 'full'; data.recaps = got[SK.feedRecaps] || {};
     data.feed = mergeFeed(got[SK.feedItems], (got[SK.feedBackground] || {}).items);
     data.index = await StorageManager.getArticlesIndex();
   } catch (_) { /* empty cards explain themselves */ }

@@ -12,6 +12,7 @@ import { dedupeArticles } from './textUtils.js';
 import { resolveLocale } from './i18n.js';
 import { conceptKey, conceptId, conceptList, topicLabel, hasLabel, lexiconLearn, lexiconBroader, lexiconMarkName, normalizeTopic, humanizeTag } from './topicConcepts.js';
 import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
+import { resolveCites, stripCites, maxRef } from './recapCites.js';
 export const MAX_RECAP_ITEMS = 40;   // batch size for scoring requests
 let recapLimit = Infinity;            // items per recap request (user setting); 0 / Infinity = no limit
 export const getRecapLimit = () => recapLimit;
@@ -477,12 +478,13 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText, 
             : '')
         + (rate ? 'Then' : 'First') + ', 2-3 sentences of overview.\n'
         + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the source.\n'
+        + 'Right after each statement cite the numbered items it rests on in square brackets, like [3] or [3][5] (at most 3 per statement, only numbers from the list).\n'
         + 'Finally one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of the news).\n'
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const chunk = list.slice(0, recapLimit);
     const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}${AFTER.recap(rate)}`, onStage, signal,
         streamRatings(chunk.length, onProgress, rate && onRatings), { partial: true, service, feature: 'recap' });
-    const r = parseRecap(text, chunk.length);
+    const r = resolveCites(parseRecap(text, chunk.length), chunk);   // [k] → the item behind it, kept in r.refs
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return r;
 }
@@ -504,13 +506,14 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
             : '')
         + (rate ? 'Then' : 'First') + ', 2-3 sentences of overview.\n'
         + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the source.\n'
+        + 'Markers like [12] in the current recap cite earlier items: keep them exactly where their statement stays. Cite NEW/EDITED items as [+1], [+2] … (their numbers in the list), at most 3 per statement.\n'
         + 'Finally one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of ALL the news).\n'
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const chunk = fresh.slice(0, recapLimit);
     const cur = [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n');
     const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}${AFTER.recap(rate)}`, onStage, signal,
         streamRatings(chunk.length, onProgress, rate && onRatings), { partial: true, service, feature: 'recap' });
-    const r = parseRecap(text, chunk.length);
+    const r = resolveCites(parseRecap(text, chunk.length), chunk, prev.refs || {});   // [+k] continues the old numbering
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
     return { ...r, sent: chunk };
 }
@@ -713,10 +716,10 @@ export function recapSig(r) {
     return (h >>> 0).toString(36);
 }
 
-function partText(p) {
+function partText(p) {   // (the source markers of a day recap mean nothing in a roll-up: they are left out, see stripCites)
     const r = p.recap;
-    return [`[${p.label}] ${clip(r.overview, 400)}`,
-        ...(r.themes || []).slice(0, 5).map(t => '- ' + clip(t, 160)),
+    return [`[${p.label}] ${clip(stripCites(r.overview), 400)}`,
+        ...(r.themes || []).slice(0, 5).map(t => '- ' + clip(stripCites(t), 160)),
         `Mood: ${{ pos: 'positive', neg: 'negative' }[r.mood] || 'mixed'}`].join('\n');
 }
 

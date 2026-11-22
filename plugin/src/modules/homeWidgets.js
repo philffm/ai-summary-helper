@@ -52,7 +52,24 @@ export async function pickQuote(hlIndex, readPage, rand = Math.random, tries = 4
     return null;
 }
 
-export const WIDGETS = ['continue', 'recent', 'feeds', 'quote', 'stats'];
+/** The newest recap of "all feeds" (keys are "<dayStart>|all"): { key, recap } or null. */
+export function latestBriefing(recaps) {
+    let best = null;
+    for (const [key, r] of Object.entries(recaps || {})) {
+        if (!/\|all$/.test(key) || !r || (!r.overview && !(r.themes || []).length)) continue;
+        if (!best || (r.at || 0) > (best.recap.at || 0)) best = { key, recap: r };
+    }
+    return best;
+}
+
+/** The short form: up to `max` lines — the recap's themes, or the first sentences of its overview when it has none. */
+export function briefingHeadlines(recap, max = 3) {
+    const themes = (recap.themes || []).filter(Boolean);
+    if (themes.length) return themes.slice(0, max);
+    return String(recap.overview || '').split(/(?<=[.!?])\s+(?=[A-ZÄÖÜ0-9])/).map((x) => x.trim()).filter(Boolean).slice(0, max);
+}
+
+export const WIDGETS = ['briefing', 'continue', 'recent', 'feeds', 'quote', 'stats'];
 /** The widgets to show, in order, minus the ones the user hid. */
 export const visibleWidgets = (hidden) => WIDGETS.filter((w) => !(hidden || []).includes(w));
 

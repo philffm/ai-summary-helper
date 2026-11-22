@@ -10,6 +10,7 @@
 
 import { generateRollup, recapSig } from './feedAi.js';
 import { renderAnswer, renderInline } from './qaView.js';
+import { chipCites } from './recapCites.js';
 import { createRecapStatus } from './recapStatus.js';
 import { runningJob, trackJob, notifyReady } from './recapJobs.js';
 import { T, TN, locale, uiLocale } from './feedI18n.js';
@@ -165,7 +166,7 @@ export function openRollup(scope, anchor, ctx) {
         body.replaceChildren();
         const chip = { pos: T('😊 Mostly positive'), neu: T('😐 Mixed'), neg: T('😟 Mostly heavy') }[r.mood] || T('😐 Mixed');
         body.append(el('span', 'feed-recap-mood', chip));
-        if (r.overview) { const ov = el('div', 'feed-recap-overview md-body'); renderAnswer(ov, r.overview); body.append(ov); }
+        if (r.overview) { const ov = el('div', 'feed-recap-overview md-body'); renderAnswer(ov, r.overview); chipCites(ov, r, new Map()); body.append(ov); }
         if (r.themes.length) { const ul = el('ul', 'feed-recap-themes'); r.themes.forEach(t => { const li = el('li'); renderInline(li, t); ul.append(li); }); body.append(ul); }
         const tl = tally(ctx.getItems(), ctx, P.from, P.last, ctx.itemMood);
         if (tl.rated) {
