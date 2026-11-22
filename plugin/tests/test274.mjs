@@ -14,11 +14,27 @@ assert.equal(turns.length, 1); assert.equal(turns[0].pinned, true, 'the first qu
 assert.deepEqual(turns[0].sources, ['efficiency drops below minus seven degrees'], 'quotes found in the article are kept as sources');
 assert.deepEqual(saved, [1]); assert.equal(changed, 1, 'saved and the summary tab is told');
 assert(/Heat pumps lose efficiency/.test(d.querySelector('.ask-thread').textContent), 'the answer is in the thread');
-assert.deepEqual([...d.querySelectorAll('.ask-chip')].map((b) => b.textContent), ['Why does it drop?'], 'follow-up ideas from the answer replace the starters');
+assert.deepEqual([...d.querySelectorAll('.ask-chip')].map((b) => b.textContent.replace('⚡', '')), ['Why does it drop?'], 'follow-up ideas from the answer replace the starters: ' + [...d.querySelectorAll('.ask-chip')].map((b) => b.textContent));
 d.querySelector('.chat-pin').click(); await tick(20);
 assert.equal(turns[0].pinned, false, 'pin toggles'); assert.equal(saved.length, 2); assert.equal(changed, 2);
 // an error is shown and the question stays in the field
 const bad = createArticleAsk({ mount: d.body.appendChild(d.createElement('div')), article: { id: 'a2', title: 'x' }, content: 'c', summary: '', turns: [], save: async () => {}, ask: async () => { throw new Error('no key set'); }, doc: d });
 await bad.submit('Why?'); await tick(20);
 assert(/Could not get an answer: no key set/.test(d.body.textContent), 'the reason is shown');
+// suggestions with a ready answer (⚡) are answered at once; the others go to the model; an instant answer can be dug deeper
+const t3 = [], saved3 = []; let calls = 0;
+const m3 = d.body.appendChild(d.createElement('div'));
+const ask3 = async (system, user) => { calls++; return /EARLIER|THE READER ALREADY SEES/.test(user) && /ALREADY SEES/.test(user) ? 'More detail about defrost cycles.' : 'Model answer.'; };
+const c = createArticleAsk({ mount: m3, article: { id: 'a3', title: 'T' }, content: '<p>text</p>', summary: '', turns: t3, pool: ['Why does it drop?', 'Who pays?'], quick: { 'Why does it drop?': 'Defrost cycles.' }, save: async (t, p, q) => { saved3.push({ n: t.length, p: [...p], q: { ...q } }); }, ask: ask3, doc: d });
+const chips = [...m3.querySelectorAll('.ask-chip')];
+assert.deepEqual(chips.map((b) => b.textContent.replace('⚡', '')), ['Why does it drop?', 'Who pays?'], 'the instant one comes first');
+assert(chips[0].classList.contains('ask-chip--instant') && chips[0].querySelector('.ic') && !chips[1].querySelector('.ic'), 'only the ready one has the bolt');
+chips[0].click(); await tick(30);
+assert.equal(calls, 0, 'a ready answer needs no model call');
+assert(t3[0].quick === true && t3[0].a === 'Defrost cycles.', 'it is kept as an instant turn');
+assert.deepEqual(saved3.at(-1).p, ['Who pays?'], 'and leaves the suggestions'); assert.deepEqual(saved3.at(-1).q, {}, 'with its stored answer');
+m3.querySelector('.ask-dig').click(); await tick(40);
+assert.equal(calls, 1, 'Dig deeper asks the model'); assert(/Defrost cycles\. More detail/.test(t3[0].a) && !t3[0].quick, 'the model continues the instant answer');
+[...m3.querySelectorAll('.ask-chip')][0].click(); await tick(40);
+assert.equal(calls, 2, 'a suggestion without an answer goes to the model'); assert.equal(t3.length, 2);
 console.log('TEST 274 OK'); process.exit(0);

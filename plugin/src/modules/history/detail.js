@@ -576,8 +576,9 @@ export async function showArticleDetail(article) {
         if (asked || !article.id) return;
         const { createArticleAsk } = await import('../articleAsk.js');
         if (!Array.isArray(article.conversation)) article.conversation = [];
-        asked = createArticleAsk({ mount: articleDetailContent.querySelector('#askMount'), article, content: rawContentSource, summary: article.summary || '', turns: article.conversation,
-          save: (turns) => StorageManager.saveConversation(article.id, turns), onChange: () => renderDetailQa(article, articleDetailContent.querySelector('#qaMount')) });
+        const [pool, quick] = await Promise.all([StorageManager.getSuggested(article.id), StorageManager.getSuggestedAnswers(article.id)]);
+        asked = createArticleAsk({ mount: articleDetailContent.querySelector('#askMount'), article, content: rawContentSource, summary: article.summary || '', turns: article.conversation, pool, quick,
+          save: (turns, p, q) => StorageManager.saveConversation(article.id, turns, p, q), onChange: () => renderDetailQa(article, articleDetailContent.querySelector('#qaMount')) });
       };
       articleDetailContent.addEventListener('aish:detail-tab', (e) => { if (e.detail && e.detail.tab === 'ask') mountAsk().then(() => asked && asked.focus()); });
       if (tabs.current === 'ask') mountAsk();

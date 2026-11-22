@@ -458,9 +458,9 @@ async function toggleAsk() {
   head.append(h, x);
   const body = document.createElement('div'); body.className = 'rp-ask-body';
   el.append(head, body); document.body.append(el);
-  const turns = await StorageManager.getConversation(raw.id);
+  const [turns, pool, quick] = await Promise.all([StorageManager.getConversation(raw.id), StorageManager.getSuggested(raw.id), StorageManager.getSuggestedAnswers(raw.id)]);
   const ctl = createArticleAsk({ mount: body, article: { id: raw.id, title: raw.title }, content: raw.content || raw.html || raw.text || '', summary: raw.summaryBase !== undefined ? raw.summaryBase : (raw.summary || ''),
-    turns, save: (t) => StorageManager.saveConversation(raw.id, t), onChange: async () => { const y = window.scrollY; await render(); window.scrollTo(0, y); } });   // the pinned answers belong to the summary: redraw it, but stay where the reader is
+    turns, pool, quick, save: (t, p, q) => StorageManager.saveConversation(raw.id, t, p, q), onChange: async () => { const y = window.scrollY; await render(); window.scrollTo(0, y); } });   // the pinned answers belong to the summary: redraw it, but stay where the reader is
   el.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.stopPropagation(); toggleAsk(); } });
   askPanel = { el, destroy: ctl.destroy }; ctl.focus();
 }
