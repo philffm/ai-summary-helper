@@ -3,7 +3,7 @@
 // through the highlight store under its lock (the background's hl:apply takes the page from the sending tab and would not
 // know this one). Removing a user highlight also tells the worker (syncHlDeleted), so the next sync does not bring it back;
 // an AI (ghost) highlight is dismissed, never removed, or it would return with the next summary.
-import { ancBuildIndex, ancMakeSelector } from '../content/anchor.js';
+import { ancBuildIndex, ancMakeSelector, ancResolve, ancToRange } from '../content/anchor.js';
 import { pageKeyForUrl } from './pageKey.js';
 
 const newId = () => 'hl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
@@ -47,6 +47,34 @@ export function unwrapMarks(marks) {
     while (mk.firstChild) parent.insertBefore(mk.firstChild, mk);
     parent.removeChild(mk); parent.normalize();
   }
+}
+
+/**
+ * Draws the saved highlights into the page the way the website's highlighter finds them: by their text AND the text around it
+ * (anchor.js), so a sentence that occurs twice is marked at the occurrence that was highlighted. The full text first, the
+ * summary for what is not in it. Every place is resolved before anything is changed (wrapping splits the text nodes the index
+ * points at). → how many were placed. `annotations[n]` becomes data-hl-n on its marks.
+ */
+export function paintAll(roots, annotations) {
+  const idxs = roots.filter(Boolean).map((r) => ancBuildIndex(r));
+  const found = [];
+  annotations.forEach((ann, n) => {
+    if (!ann || ann.dismissed) return;
+    // no pos: it is a place in the website's text, this page's text differs (it adds headings)
+    const sel = ann.quote ? { exact: ann.quote.exact, prefix: ann.quote.prefix, suffix: ann.quote.suffix, text: ann.text } : { text: ann.text };
+    for (const idx of idxs) {
+      const hit = ancResolve(idx, sel);
+      const range = hit && ancToRange(idx, hit.start, hit.end);
+      if (range) { found.push({ n, ann, range }); return; }
+    }
+  });
+  let placed = 0;
+  for (const { n, ann, range } of found) {
+    const attrs = { 'data-hl-n': String(n), 'data-hl-type': ann.type === 'ghost' ? 'ghost' : 'user' };
+    if (ann.id) attrs['data-hl-id'] = ann.id;
+    if (wrapRange(range, attrs).length) placed++;
+  }
+  return placed;
 }
 
 /**

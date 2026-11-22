@@ -71,4 +71,16 @@ assert(!sent.some((m) => m.action === 'syncHlDeleted' && m.ids.includes('hl_ghos
 // an old record without id goes by its text
 d.querySelector('mark[data-hl-type="user"]').click(); await tick(20); act().click(); await tick(80);
 assert(!(await hls()).some((h) => h.text === 'important sentence here'), 'old record removed by text');
+// a sentence that occurs twice is marked where it was highlighted (text + context, like on the website), not at its first occurrence
+{
+  const w2 = d; const url2 = 'https://example.com/twice', k2 = pageKeyForUrl(url2);
+  store['hl:page:' + k2] = [{ id: 'hl_two', url: k2, text: 'The same sentence appears twice here.', type: 'user', timestamp: stamp, v: 2, quote: { exact: 'The same sentence appears twice here.', prefix: 'Intro words before the second one. ', suffix: ' And then it ends.' } }];
+  store['articles:index'] = [{ id: 'a2', url: url2, title: 'T2', timestamp: stamp }];
+  store[articleRecKey('a2')] = { id: 'a2', url: url2, title: 'T2', timestamp: stamp, summary: '<p>S</p>', content: '<p>Intro words before the first one. The same sentence appears twice here. Filler.</p><p>Intro words before the second one. The same sentence appears twice here. And then it ends.</p>' };
+  w2.documentElement.innerHTML = page.replace(/^[\s\S]*?<html[^>]*>/i, '').replace(/<\/html>[\s\S]*$/i, '');
+  w.location.hash = '#id=a2';
+  await imp('../src/readerPage.js'); await tick(250);
+  const ps = [...w2.querySelectorAll('.rp-content p')];
+  assert(!ps[0].querySelector('mark') && ps[1].querySelector('mark'), 'marked in the second paragraph, where the context points');
+}
 console.log('TEST 266 OK');

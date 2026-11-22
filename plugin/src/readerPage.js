@@ -5,7 +5,7 @@ import { applyTranslations } from './modules/i18n.js';
 import { T } from './modules/feedI18n.js';
 import { escapeHtml, cleanUntrustedHtml, countWords } from './modules/textUtils.js';
 import { withQuestions } from './modules/conversation.js';
-import { fetchAnnotationsForArticle, markHighlights } from './modules/annotationExporter.js';
+import { fetchAnnotationsForArticle } from './modules/annotationExporter.js';
 import StorageManager from './modules/storageManager.js';
 import { SK } from './modules/storageKeys.js';
 import { createSendTargets, loadSendPrefs } from './modules/sendSplit.js';
@@ -15,7 +15,7 @@ import { createReadTracker } from './modules/readProgress.js';
 import { applyA11y } from './modules/a11y.js';
 import { bp } from './modules/breakpoints.js';
 import { createHighlightStore } from './modules/highlightStore.js';
-import { createReaderHighlights, selectionIn } from './modules/readerHighlights.js';
+import { createReaderHighlights, selectionIn, paintAll } from './modules/readerHighlights.js';
 import { blockAtTop, placeOfBlock, blockOfPlace } from './modules/readerBookmark.js';
 
 const PREFS_KEY = 'reader:prefs';
@@ -279,10 +279,9 @@ async function render() {
 
   const annotations = await fetchAnnotationsForArticle(article);
   hlList = annotations; hlPage = article.url || '';
-  const placed = new Set();
   const contentRaw = article.content || article.html || article.text || '';
-  const contentHtml = markHighlights(clean(contentRaw), annotations, placed, { ids: true });
-  const summaryHtml = markHighlights(clean(article.summary), annotations, placed, { ids: true });
+  const contentHtml = clean(contentRaw);
+  const summaryHtml = clean(article.summary);
 
   const title = article.title || T('Article');
   document.title = title;
@@ -305,6 +304,7 @@ async function render() {
       ${summaryHtml ? `<section class="rp-summary" aria-labelledby="rpSumH"><h2 id="rpSumH">${escapeHtml(T('🧙 AI Summary'))}</h2>${summaryHtml}</section>` : ''}
       <section class="rp-content">${contentHtml ? `<h2 class="rp-sec">${escapeHtml(T('📄 Original Content'))}</h2>${contentHtml}` : `<p class="rp-empty">${escapeHtml(T('No content available.'))}</p>`}</section>
     </article>`;
+  paintAll([page.querySelector('.rp-content'), page.querySelector('.rp-summary')], annotations);   // after the page exists: placed by text + context, like on the website
   const toc = buildToc(page);
   if (toc) page.querySelector('.rp-meta').after(toc);
   if (!summaryHtml || !contentHtml) { prefs.view = 'both'; root.dataset.rpView = 'both'; $('rpViewGroup').hidden = true; }
