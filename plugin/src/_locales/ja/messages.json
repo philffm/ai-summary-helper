@@ -8038,5 +8038,14 @@
   },
   "f_questions_to_repeat_11ba": {
     "message": "復習する質問{n}件"
+  },
+  "f_from_your_notes_8f29": {
+    "message": "あなたのメモから"
+  },
+  "f_topics_show_up_here_once_you_c5be": {
+    "message": "記事を数件保存すると、トピックがここに表示されます。"
+  },
+  "f_your_topics_3f9e": {
+    "message": "あなたのトピック"
   }
 }

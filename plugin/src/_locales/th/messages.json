@@ -8321,5 +8321,14 @@
   },
   "f_questions_to_repeat_11ba": {
     "message": "คำถาม {n} ข้อที่ต้องทบทวน"
+  },
+  "f_from_your_notes_8f29": {
+    "message": "จากโน้ตของคุณ"
+  },
+  "f_topics_show_up_here_once_you_c5be": {
+    "message": "หัวข้อจะแสดงที่นี่เมื่อคุณบันทึกบทความสักสองสามรายการ"
+  },
+  "f_your_topics_3f9e": {
+    "message": "หัวข้อของคุณ"
   }
 }

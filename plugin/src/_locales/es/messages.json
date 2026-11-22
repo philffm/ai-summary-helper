@@ -8038,5 +8038,14 @@
   },
   "f_questions_to_repeat_11ba": {
     "message": "{n} preguntas para repasar"
+  },
+  "f_from_your_notes_8f29": {
+    "message": "De tus notas"
+  },
+  "f_topics_show_up_here_once_you_c5be": {
+    "message": "Los temas aparecen aquí cuando hayas guardado algunos artículos."
+  },
+  "f_your_topics_3f9e": {
+    "message": "Tus temas"
   }
 }

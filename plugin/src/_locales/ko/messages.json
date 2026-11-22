@@ -8020,5 +8020,14 @@
   },
   "f_questions_to_repeat_11ba": {
     "message": "복습할 질문 {n}개"
+  },
+  "f_from_your_notes_8f29": {
+    "message": "내 메모에서"
+  },
+  "f_topics_show_up_here_once_you_c5be": {
+    "message": "기사를 몇 개 저장하면 주제가 여기에 표시됩니다."
+  },
+  "f_your_topics_3f9e": {
+    "message": "내 주제"
   }
 }

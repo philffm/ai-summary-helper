@@ -8038,5 +8038,14 @@
   },
   "f_questions_to_repeat_11ba": {
     "message": "{n} вопросов для повторения"
+  },
+  "f_from_your_notes_8f29": {
+    "message": "Из ваших заметок"
+  },
+  "f_topics_show_up_here_once_you_c5be": {
+    "message": "Темы появятся здесь, когда вы сохраните несколько статей."
+  },
+  "f_your_topics_3f9e": {
+    "message": "Ваши темы"
   }
 }

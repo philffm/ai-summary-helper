@@ -92,8 +92,72 @@ export function dueQuizzes(recs, now = Date.now()) {
     return out.sort((a, b) => a.dueAt - b.dueAt);
 }
 
+/**
+ * A note of the user's own (kind "note", else a comment on a highlight), picked at random from the lean index; only that record is read.
+ * → { text, title, url } or null
+ */
+export async function pickNote(noteIndex, readRec, rand = Math.random) {
+    const list = (Array.isArray(noteIndex) ? noteIndex : []).filter((e) => e && e.id);
+    const own = list.filter((e) => e.kind === 'note'), pool = own.length ? own : list;
+    for (let i = 0; i < 3 && pool.length; i++) {
+        const e = pool.splice(Math.floor(rand() * pool.length), 1)[0];
+        let rec = null; try { rec = await readRec(e.id); } catch (_) { /* next */ }
+        const text = String((rec && rec.text) || '').replace(/\s+/g, ' ').trim();
+        if (text.length >= 12) return { text: text.slice(0, 600), title: (rec && rec.title) || '', url: (rec && rec.url) || '' };
+    }
+    return null;
+}
+
+/**
+ * What the "From your highlights" card shows: a highlight or a note, by chance when both exist (so it is not always the same kind), the other
+ * one when the first has nothing usable. → { kind: 'highlight' | 'note', text, url, title? } or null
+ */
+export async function pickSnippet({ hlIndex, readPage, noteIndex, readNote }, rand = Math.random) {
+    const hasHl = (Array.isArray(hlIndex) ? hlIndex : []).some((p) => p && p.k && p.n > 0), hasNote = (Array.isArray(noteIndex) ? noteIndex : []).length > 0;
+    const order = hasHl && hasNote ? (rand() < 0.5 ? ['highlight', 'note'] : ['note', 'highlight']) : hasHl ? ['highlight'] : hasNote ? ['note'] : [];
+    for (const kind of order) {
+        if (kind === 'highlight') { const q = await pickQuote(hlIndex, readPage, rand); if (q) return { kind, ...q }; }
+        else { const n = await pickNote(noteIndex, readNote, rand); if (n) return { kind, ...n }; }
+    }
+    return null;
+}
+
+/**
+ * The biggest topics of the library for the Topics card: [{ id, label, n }] by number of articles (language marks and one-article topics left out).
+ * tagId / tagLabel / isLanguage come from the graph code (graphGaps.js), so a topic is the same one as in the graph.
+ */
+export function topTopics(articles, { tagId, tagLabel, isLanguage = () => false }, max = 10, minArticles = 2) {
+    const by = new Map();
+    for (const a of live(articles)) for (const t of new Set(a.tags || [])) {
+        if (isLanguage(t)) continue;
+        const id = tagId(t); const e = by.get(id) || { id, label: tagLabel(t), n: 0 }; e.n++; by.set(id, e);
+    }
+    return [...by.values()].filter((e) => e.n >= minArticles).sort((a, b) => b.n - a.n || a.label.localeCompare(b.label)).slice(0, max);
+}
+
+/**
+ * Circles for the topics, packed into a w × h box without overlap: biggest first, each on the first free spot of a spiral around the middle.
+ * Radii follow √n. → [{ ...topic, x, y, r }] (fewer when one does not fit at the smallest size)
+ */
+export function packBubbles(topics, w, h, { gap = 3, maxR = Math.min(w, h) * 0.42, minR = 7 } = {}) {
+    if (!topics.length) return [];
+    const top = topics[0].n, placed = [];
+    for (const t of topics) {
+        const r = Math.max(minR, maxR * Math.sqrt(t.n / top));
+        let spot = null;
+        for (let k = 0; k < 900 && !spot; k++) {
+            const ang = k * 0.45, dist = 2.2 * k * Math.max(0.4, r / 24);
+            const x = w / 2 + Math.cos(ang) * dist * (w / h > 1.4 ? 1.8 : 1), y = h / 2 + Math.sin(ang) * dist;
+            if (x - r < 0 || x + r > w || y - r < 0 || y + r > h) continue;
+            if (placed.every((p) => Math.hypot(p.x - x, p.y - y) >= p.r + r + gap)) spot = { x, y };
+        }
+        if (spot) placed.push({ ...t, ...spot, r });
+    }
+    return placed;
+}
+
 // quiz and gaps are shown only when they have something to say
-export const WIDGETS = ['briefing', 'quote', 'stats', 'continue', 'recent', 'quiz', 'gaps'];
+export const WIDGETS = ['briefing', 'quote', 'stats', 'continue', 'recent', 'graph', 'quiz', 'gaps'];
 /** The widgets to show, in order, minus the ones the user hid. */
 export const visibleWidgets = (hidden) => WIDGETS.filter((w) => !(hidden || []).includes(w));
 

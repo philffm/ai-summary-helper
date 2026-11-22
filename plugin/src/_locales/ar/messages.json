@@ -8038,5 +8038,14 @@
   },
   "f_questions_to_repeat_11ba": {
     "message": "{n} أسئلة للمراجعة"
+  },
+  "f_from_your_notes_8f29": {
+    "message": "من ملاحظاتك"
+  },
+  "f_topics_show_up_here_once_you_c5be": {
+    "message": "تظهر المواضيع هنا بعد أن تحفظ بعض المقالات."
+  },
+  "f_your_topics_3f9e": {
+    "message": "مواضيعك"
   }
 }

@@ -8038,5 +8038,14 @@
   },
   "f_questions_to_repeat_11ba": {
     "message": "{n} प्रश्न दोहराने के लिए"
+  },
+  "f_from_your_notes_8f29": {
+    "message": "आपके नोट्स से"
+  },
+  "f_topics_show_up_here_once_you_c5be": {
+    "message": "कुछ लेख सहेजने के बाद विषय यहाँ दिखेंगे।"
+  },
+  "f_your_topics_3f9e": {
+    "message": "आपके विषय"
   }
 }

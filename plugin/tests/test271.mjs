@@ -15,7 +15,23 @@ assert.deepEqual(hw.continueReading(index).map((a) => a.id), ['e', 'a'], 'starte
 assert.equal(hw.recentlySaved(index, 2)[0].id, 'c');
 assert(!hw.recentlySaved(index, 10).some((a) => a.id === 'd'), 'archived is not recent');
 assert.deepEqual(hw.libraryStats(index, now), { total: 5, unread: 3, starred: 1, finishedThisWeek: 1 });
-assert.deepEqual(hw.visibleWidgets(['quote', 'stats', 'quiz', 'gaps']), ['briefing', 'continue', 'recent']);
+assert.deepEqual(hw.visibleWidgets(['quote', 'stats', 'quiz', 'gaps']), ['briefing', 'continue', 'recent', 'graph']);
+// highlight or note: by chance when both exist, the other when one has nothing usable
+const hlIdx = [{ k: 'p1', n: 1 }], readPage = async () => [{ url: 'https://a.com/x', text: 'A highlight that is long enough to be worth reading again.', type: 'user' }];
+const noteIdx = [{ id: 'n1', kind: 'note' }, { id: 'c1', kind: 'comment' }], readNote = async (id) => (id === 'n1' ? { text: 'My own thought about how this connects to the other article.', title: 'Notes on X', url: 'https://n.com/' } : { text: 'a comment that should lose against a note' });
+const kinds = new Set(); for (let i = 0; i < 12; i++) kinds.add((await hw.pickSnippet({ hlIndex: hlIdx, readPage, noteIndex: noteIdx, readNote }, () => (i % 2 ? 0.1 : 0.9))).kind);
+assert.deepEqual([...kinds].sort(), ['highlight', 'note'], 'both kinds come up, not always the same');
+assert.equal((await hw.pickSnippet({ hlIndex: [], readPage, noteIndex: noteIdx, readNote })).text.slice(0, 6), 'My own', 'a note (not a comment) when there are no highlights');
+assert.equal((await hw.pickSnippet({ hlIndex: hlIdx, readPage, noteIndex: [{ id: 'x', kind: 'note' }], readNote: async () => ({ text: 'short' }) }, () => 0.9)).kind, 'highlight', 'the other kind when one has nothing usable');
+assert.equal(await hw.pickSnippet({ hlIndex: [], readPage, noteIndex: [], readNote }), null);
+// topics and their bubbles
+const arts2 = [['AI', 'Energy'], ['AI'], ['AI', 'Energy'], ['Energy'], ['Solo'], ['AI', '🌐 de']].map((tags, i) => ({ id: 'z' + i, tags, timestamp: new Date().toISOString() }));
+const tt = hw.topTopics(arts2, { tagId: (t) => 'tag-' + t, tagLabel: (t) => t, isLanguage: (t) => t.startsWith('🌐') });
+assert.deepEqual(tt.map((x) => [x.label, x.n]), [['AI', 4], ['Energy', 3]], 'topics by article count; a language mark and a one-article topic are left out');
+const bub = hw.packBubbles(tt, 400, 120);
+assert.equal(bub.length, 2); assert(bub[0].r > bub[1].r, 'radius follows the number of articles');
+assert(Math.hypot(bub[0].x - bub[1].x, bub[0].y - bub[1].y) >= bub[0].r + bub[1].r, 'no overlap');
+assert(bub.every((b) => b.x - b.r >= 0 && b.x + b.r <= 400 && b.y - b.r >= 0 && b.y + b.r <= 120), 'inside the box');
 const nowQ = Date.now();
 const quizzes = [{ id: 'q1', name: 'Heat pumps', remindAt: new Date(nowQ - 3600e3).toISOString(), last: { at: new Date(nowQ - 3 * 864e5).toISOString(), missed: ['a', 'b'] }, questions: [1, 2, 3] },
   { id: 'q2', name: 'Not yet', remindAt: new Date(nowQ + 864e5).toISOString(), questions: [1] },
@@ -44,6 +60,7 @@ chrome.runtime.getURL = (p) => 'chrome-extension://x/' + p;
 const { SK } = await imp('../src/modules/storageKeys.js');
 const html = fs.readFileSync(new URL('../src/home.html', import.meta.url), 'utf8');
 w.document.documentElement.innerHTML = html.replace(/^[\s\S]*?<html[^>]*>/i, '').replace(/<\/html>[\s\S]*$/i, '');
+index[0].tags = ['Energy']; index[1].tags = ['Energy']; index[2].tags = ['Energy', 'AI']; index[4].tags = ['AI'];
 index.push({ id: 'g1', title: 'A topic started long ago', url: 'https://g.com/x', timestamp: iso(90), tags: ['Solo topic'] });
 chrome.storage.local.getKeys = async () => Object.keys(store);
 store[SK.articlesIndex] = index;
@@ -60,12 +77,12 @@ assert(/Fresh from worker/.test(w.document.getElementById('hmGrid').textContent)
 assert(w.document.getElementById('hmStatus').hidden && !w.document.querySelector('.hm-updating'), 'the "Updating feeds…" line (inside the feeds card) is gone when the refresh is done');
 const d = w.document;
 const cards = [...d.querySelectorAll('.hm-card h2')].map((h) => h.textContent);
-assert.equal(cards.length, 7, 'the glance card (with the latest feed items), highlights, library, two reading lists, and the quiz and gap cards that have something to say: ' + cards);
+assert.equal(cards.length, 8, 'the glance card (with the latest feed items), highlights, library, two reading lists, the topics strip, and the quiz and gap cards that have something to say: ' + cards);
 const brief = [...d.querySelectorAll('.hm-card')].find((c) => /Today at a glance/.test(c.textContent));
 assert(brief, 'the feed briefing card is there');
 const gridEl = d.getElementById('hmGrid');
 assert(gridEl.classList.contains('has-glance') && !d.querySelector('.hm-col'), 'with the glance card the cards are placed in one four-column grid');
-assert.deepEqual([...gridEl.children].map((c) => c.dataset.card), ['briefing', 'quote', 'stats', 'continue', 'recent', 'quiz', 'gaps'], 'half for the glance card; highlights and library above, the two reading lists below, then quiz and gaps');
+assert.deepEqual([...gridEl.children].map((c) => c.dataset.card), ['briefing', 'quote', 'stats', 'continue', 'recent', 'graph', 'quiz', 'gaps'], 'half for the glance card; highlights and library above, the two reading lists, the topics strip, then quiz and gaps');
 assert(brief.querySelector('.hm-latest') && /Feed news/.test(brief.querySelector('.hm-latest').textContent), 'the latest feed items sit in the glance card');
 assert(brief.querySelector('a.rc-cite') && brief.querySelector('a.rc-cite').href === 'https://f.com/n', 'its source chips open the feed item');
 assert(/1 source/.test(brief.textContent) && /Feed news/.test(brief.querySelector('.hm-brief-src').textContent), 'the sources are listed');
@@ -75,7 +92,7 @@ assert(/Half read/.test([...d.querySelectorAll('.hm-card')].find((c) => /Continu
 assert(/Feed news/.test(d.getElementById('hmGrid').textContent), 'feed item shown');
 assert([...d.querySelectorAll('.hm-link')].some((a) => a.href.includes('readerPage.html#id=')), 'saved articles open in the reading view');
 const box = d.querySelectorAll('#hmCustom input')[1]; box.checked = false; box.dispatchEvent(new w.Event('change', { bubbles: true })); await tick(50);
-assert.equal(d.querySelectorAll('.hm-card').length, 6, 'a card can be hidden');
+assert.equal(d.querySelectorAll('.hm-card').length, 7, 'a card can be hidden');
 assert.deepEqual(store['home:prefs'].hidden, ['quote'], 'and the choice is remembered');
 assert(d.querySelector('#hmBox .hm-key'), 'the command that opens the search is shown inside the field');
 const field = d.querySelector('#hmBox .cmdk-input'); assert(field, 'the search field is the command list, inline');
@@ -85,12 +102,15 @@ assert(/Continue/.test(d.querySelector('#hmBox .cmdk-list').textContent) && /Fre
 field.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true })); await tick(30);
 assert(!d.getElementById('hmBox').classList.contains('is-open'), 'Esc closes it again');
 // quizzes to repeat and topics started but never deepened: cards that appear only when there is something to say
-assert(d.getElementById('hmGrid').classList.contains('has-extra'), 'a third row appears for them');
+assert(/auto minmax\(0, 1fr\) auto auto/.test(d.getElementById('hmGrid').style.getPropertyValue('--hm-tracks')) && /span 4/.test(d.getElementById('hmGrid').style.getPropertyValue('--hm-glance-row')), 'rows for the topics strip and for quiz and gaps, the glance card beside all of them');
 const quizCard = d.querySelector('[data-card="quiz"]'), gapCard = d.querySelector('[data-card="gaps"]');
 assert(quizCard && /Heat pumps/.test(quizCard.textContent) && /2 questions to repeat/.test(quizCard.textContent), 'the due quiz, with what was missed: ' + (quizCard && quizCard.textContent));
 assert(gapCard && /Solo topic/.test(gapCard.textContent) && /never opened/.test(gapCard.textContent), 'a topic that was started and never opened');
 quizCard.querySelector('a.hm-link').click(); await tick(40);
 assert(/#quiz=q1$/.test(d.querySelector('iframe.app-dock').src), 'the quiz opens in the app beside the page');
+// the topics strip: bubbles for the biggest topics; a click opens the graph in the app beside the page
+const topics = d.querySelector('[data-card="graph"]');
+assert(topics && topics.querySelectorAll('circle').length >= 2 && /Energy/.test(topics.textContent), 'bubbles for the topics with at least two articles');
 // every card's heading links to its section: the app opens beside the page on that screen
 const links = [...d.querySelectorAll('.hm-card-link')];
 assert(links.length >= 4, 'each card has a link to its section: ' + links.length);

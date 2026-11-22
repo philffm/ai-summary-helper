@@ -136,6 +136,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         ui.showScreen(['notes', 'feeds', 'history', 'settings'].includes(scr) ? scr : (currentSurface() === 'float' ? 'history' : "main"));
         // #feeds/recap/<day>: the Feeds screen with that day's briefing opened and refreshed (the home page's update button)
         if (scr === 'feeds' && panel === 'recap' && control) setTimeout(async () => { try { await onDemand.feeds(); document.dispatchEvent(new CustomEvent('aish:recap-refresh', { detail: { day: Number(control) } })); } catch (_) { /* Feeds stays as it is */ } }, 0);
+        // #history/graph: History with the graph open (the home page's topics card leads there)
+        if (scr === 'history' && panel === 'graph') {
+            let tries = 0;
+            const open = () => {
+                const gc = document.getElementById('graphContainer'), btn = document.getElementById('graphToggleBtn');
+                if (gc && gc.style.display === 'block') return;
+                if (btn && tries > 1) btn.click();
+                if (++tries < 14) setTimeout(open, 250);
+            };
+            setTimeout(open, 250);
+        }
         // #history/stats: the History screen with its analytics report open (the home page's library numbers lead there)
         if (scr === 'history' && panel === 'stats') {
             let tries = 0;

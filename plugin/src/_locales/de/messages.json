@@ -8119,5 +8119,14 @@
   },
   "f_questions_to_repeat_11ba": {
     "message": "{n} Fragen zu wiederholen"
+  },
+  "f_from_your_notes_8f29": {
+    "message": "Aus deinen Notizen"
+  },
+  "f_topics_show_up_here_once_you_c5be": {
+    "message": "Themen erscheinen hier, sobald du ein paar Artikel gespeichert hast."
+  },
+  "f_your_topics_3f9e": {
+    "message": "Deine Themen"
   }
 }

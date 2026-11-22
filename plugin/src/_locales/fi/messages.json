@@ -8321,5 +8321,14 @@
   },
   "f_questions_to_repeat_11ba": {
     "message": "{n} kysymystä kerrattavana"
+  },
+  "f_from_your_notes_8f29": {
+    "message": "Muistiinpanoistasi"
+  },
+  "f_topics_show_up_here_once_you_c5be": {
+    "message": "Aiheet näkyvät tässä, kun olet tallentanut muutaman artikkelin."
+  },
+  "f_your_topics_3f9e": {
+    "message": "Aiheesi"
   }
 }

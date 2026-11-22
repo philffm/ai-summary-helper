@@ -8476,5 +8476,14 @@
   "f_questions_to_repeat_11ba": {
     "message": "{n} questions to repeat",
     "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_from_your_notes_8f29": {
+    "message": "From your notes"
+  },
+  "f_topics_show_up_here_once_you_c5be": {
+    "message": "Topics show up here once you have saved a few articles."
+  },
+  "f_your_topics_3f9e": {
+    "message": "Your topics"
   }
 }

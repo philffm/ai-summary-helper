@@ -8038,5 +8038,14 @@
   },
   "f_questions_to_repeat_11ba": {
     "message": "{n} 個問題待複習"
+  },
+  "f_from_your_notes_8f29": {
+    "message": "來自你的筆記"
+  },
+  "f_topics_show_up_here_once_you_c5be": {
+    "message": "儲存幾篇文章後，主題會顯示在這裡。"
+  },
+  "f_your_topics_3f9e": {
+    "message": "你的主題"
   }
 }

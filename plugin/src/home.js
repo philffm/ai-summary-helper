@@ -5,14 +5,15 @@ import { iconEl } from './modules/icons.js';
 import { applyA11y, SCHEMES, DESIGNS, normalizeAppearance, clampScale, TEXT_SCALE_MIN, TEXT_SCALE_MAX } from './modules/a11y.js';
 import { T, TN } from './modules/feedI18n.js';
 import StorageManager from './modules/storageManager.js';
-import { SK, hlPageKey, QUIZ_REC } from './modules/storageKeys.js';
+import { SK, hlPageKey, noteRecKey, QUIZ_REC } from './modules/storageKeys.js';
 import { bgMessage } from './modules/bgMessage.js';
 import { normalizeHighlights } from './modules/highlightRecords.js';
 import { renderInline, renderAnswer } from './modules/qaView.js';
 import { chipCites, citedSources } from './modules/recapCites.js';
 import { lazyList } from './modules/lazyList.js';
-import { findGaps } from './modules/graphGaps.js';
-import { dueQuizzes, latestBriefing, continueReading, recentlySaved, latestFeed, mergeFeed, pickQuote, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
+import { findGaps, tagIdOf, tagLabelOf } from './modules/graphGaps.js';
+import { isLanguageTag } from './modules/topicConcepts.js';
+import { pickSnippet, topTopics, packBubbles, dueQuizzes, latestBriefing, continueReading, recentlySaved, latestFeed, mergeFeed, pickQuote, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
 import { createAppDock } from './modules/appDock.js';
 import { mountCommandList } from './modules/commandPalette.js';
 import { externalCommands, externalArticleSearch } from './modules/paletteExternal.js';
@@ -37,7 +38,7 @@ function card(title, body, screen = '') {
   if (screen) { const a = el('button', 'hm-card-link'); a.type = 'button'; a.setAttribute('aria-label', T('Open {name}', { name: SECTION()[screen] })); a.title = a.getAttribute('aria-label'); a.append(document.createTextNode(SECTION()[screen]), el('span', '', ' →')); a.addEventListener('click', () => dock && dock.open(screen)); h.append(a); }
   c.append(h, body); return c;
 }
-const SECTION = () => ({ feeds: T('Feeds'), history: T('History'), notes: T('Notes'), settings: T('Settings'), 'history/stats': T('Stats') });
+const SECTION = () => ({ 'history/graph': T('Graph'), feeds: T('Feeds'), history: T('History'), notes: T('Notes'), settings: T('Settings'), 'history/stats': T('Stats') });
 const fillers = [];   // one per lazy list: top up the lists that are taller than their first page
 const fillLists = () => (window.requestAnimationFrame || setTimeout)(() => fillers.forEach((f) => f()));
 
@@ -135,27 +136,46 @@ const builders = {
   continue: (d) => lazyCard(T('Continue reading'), continueReading(d.index, 400), (a) => link(readerUrl(a), a.title || a.url, hostOf(a.url), a.progress), T('Nothing in progress. Articles you start reading show up here.'), 'history'),
   recent: (d) => lazyCard(T('Recently saved'), recentlySaved(d.index, 400), (a) => link(readerUrl(a), a.title || a.url, hostOf(a.url)), T('Your saved articles show up here.'), 'history'),
   quote: (d) => {
-    const body = el('div');
+    const body = el('div'), note = d.quote && d.quote.kind === 'note';
     if (d.quote) {
       const q = el('blockquote', 'hm-quote', d.quote.text);
-      const a = el('a', 'hm-link-sub hm-quote-src', hostOf(d.quote.url) || d.quote.url); a.href = d.quote.url; a.target = '_blank'; a.rel = 'noopener';
+      const label = note ? (d.quote.title || hostOf(d.quote.url)) : (hostOf(d.quote.url) || d.quote.url);
+      const a = d.quote.url ? el('a', 'hm-link-sub hm-quote-src', label || d.quote.url) : el('span', 'hm-link-sub hm-quote-src', label);
+      if (d.quote.url) { a.href = d.quote.url; a.target = '_blank'; a.rel = 'noopener'; }
       if (d.quoteFresh) { q.classList.add('hm-pop'); d.quoteFresh = false; }
       const more = el('button', 'button-secondary btn-sm', T('Another')); more.type = 'button'; more.addEventListener('click', () => { data.quoteFresh = true; loadQuote(); });
       body.append(q, a, el('div', 'hm-quote-more')); body.lastChild.append(more);
     } else body.append(el('p', 'hm-empty', T('Highlights you save show up here, one at a time.')));
-    return card(T('From your highlights'), body, 'notes');
+    return card(note ? T('From your notes') : T('From your highlights'), body, 'notes');   // a highlight or a note, by chance
   },
+  graph: (d) => {
+    const bubbles = d.topics || [];
+    const W = 420, H = 130, body = el('div', 'hm-topics');
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', T('Your topics'));
+    bubbles.forEach((b, i) => {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g'); g.setAttribute('class', 'hm-bubble');
+      const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); c.setAttribute('cx', b.x.toFixed(1)); c.setAttribute('cy', b.y.toFixed(1)); c.setAttribute('r', b.r.toFixed(1)); c.style.fill = `var(--chart-${i % 8})`;
+      const t = document.createElementNS('http://www.w3.org/2000/svg', 'title'); t.textContent = `${b.label} · ${b.n}`; g.append(t, c);
+      if (i < 4 && b.r > 17) { const tx = document.createElementNS('http://www.w3.org/2000/svg', 'text'); tx.setAttribute('x', b.x.toFixed(1)); tx.setAttribute('y', (b.y + 3).toFixed(1)); tx.setAttribute('class', 'hm-bubble-label'); tx.textContent = b.label.length > 12 ? b.label.slice(0, 11) + '…' : b.label; g.append(tx); }
+      svg.append(g);
+    });
+    if (!bubbles.length) body.append(el('p', 'hm-empty', T('Topics show up here once you have saved a few articles.')));
+    else { svg.addEventListener('click', () => dock && dock.open('history/graph')); body.append(svg); }
+    return card(T('Your topics'), body, 'history/graph');
+  },
+
   stats: (d) => {
     const s = libraryStats(d.index), dl = el('dl', 'hm-stats');
     [[T('Saved articles'), s.total], [T('Unread'), s.unread], [T('Starred'), s.starred], [T('Finished this week'), s.finishedThisWeek]].forEach(([k, v]) => { const g = el('div'), dd = el('dd', '', String(v)); g.append(el('dt', '', k), dd); dl.append(g); countUp(dd, v); });
     return card(T('Your library'), dl, 'history/stats');   // the numbers lead to the analytics report
   },
 };
-const LABELS = { quiz: 'Time to repeat', gaps: 'Started, never deepened', briefing: 'Today at a glance', continue: 'Continue reading', recent: 'Recently saved', quote: 'From your highlights', stats: 'Your library' };
+const LABELS = { graph: 'Your topics', quiz: 'Time to repeat', gaps: 'Started, never deepened', briefing: 'Today at a glance', continue: 'Continue reading', recent: 'Recently saved', quote: 'From your highlights', stats: 'Your library' };
 
 const dockPrefs = { dock: undefined };
 let dock = null;
-let hidden = [], data = { index: [], feed: [], quote: null, recaps: {}, updating: false, quizzes: [], gaps: [] };
+let hidden = [], data = { index: [], feed: [], quote: null, recaps: {}, updating: false, quizzes: [], gaps: [], topics: [] };
 // Two columns where the page is wide, one below that (the width of the page itself: with the app docked beside it, it is narrower)
 const colCount = () => { const w = (document.querySelector('.hm-wrap') || {}).clientWidth || 0; return !w || w >= 760 ? 2 : 1; };
 let lastCols = 0;
@@ -168,8 +188,10 @@ function render() {
   // With the glance card: a four-column grid. The glance card takes half (two columns, both rows), the other four cards a quarter each
   // beside it (Continue reading, Recently saved / Notes, Library). Without it the cards share two columns, shortest first.
   // Narrow (CSS): two columns, then one.
-  const shown = visibleWidgets(hidden).filter((w) => !(w === 'quiz' && !dueQuizzes(data.quizzes).length) && !(w === 'gaps' && !data.gaps.length)), glance = shown.includes('briefing');
-  grid.classList.toggle('has-extra', glance && (shown.includes('quiz') || shown.includes('gaps')));
+  const shown = visibleWidgets(hidden).filter((w) => !(w === 'quiz' && !dueQuizzes(data.quizzes).length) && !(w === 'gaps' && !data.gaps.length) && !(w === 'graph' && !data.topics.length)), glance = shown.includes('briefing');
+  // rows: highlights/library, the two lists, then the topics strip, then quiz and gaps when they are there; the glance card runs beside all of them
+  const rows = 2 + (shown.includes('graph') ? 1 : 0) + (shown.includes('quiz') || shown.includes('gaps') ? 1 : 0);
+  grid.style.setProperty('--hm-tracks', 'auto minmax(0, 1fr)' + ' auto'.repeat(rows - 2)); grid.style.setProperty('--hm-glance-row', '1 / span ' + rows);
   grid.classList.toggle('has-glance', glance);
   if (glance) {
     shown.forEach((w, i) => { const c = builders[w](data); c.style.order = String(WIDGETS.indexOf(w)); c.dataset.card = w; enter(c, i); grid.append(c); });
@@ -292,8 +314,11 @@ function bindSearchKeys() {
 // One random highlight: the page list is small (hl:index), and only the chosen page's record is read
 async function loadQuote() {
   try {
-    const idx = (await chrome.storage.local.get({ [SK.hlIndex]: [] }))[SK.hlIndex];
-    data.quote = await pickQuote(idx, async (k) => normalizeHighlights((await chrome.storage.local.get(hlPageKey(k)))[hlPageKey(k)]));
+    const got = await chrome.storage.local.get({ [SK.hlIndex]: [], [SK.notesIndex]: [] });
+    data.quote = await pickSnippet({
+      hlIndex: got[SK.hlIndex], readPage: async (k) => normalizeHighlights((await chrome.storage.local.get(hlPageKey(k)))[hlPageKey(k)]),
+      noteIndex: got[SK.notesIndex], readNote: async (id) => (await chrome.storage.local.get(noteRecKey(id)))[noteRecKey(id)],
+    });
   } catch (_) { data.quote = null; }
   render();
 }
@@ -308,6 +333,7 @@ async function loadData() {
     data.feed = mergeFeed(got[SK.feedItems], (got[SK.feedBackground] || {}).items);
     data.index = await StorageManager.getArticlesIndex();
     data.gaps = findGaps(data.index, { cap: 6 });
+    data.topics = packBubbles(topTopics(data.index, { tagId: tagIdOf, tagLabel: tagLabelOf, isLanguage: isLanguageTag }, 12), 420, 130);
     try {   // the saved quizzes (a handful of small records): the due ones become a card
       const keys = typeof chrome.storage.local.getKeys === 'function' ? (await chrome.storage.local.getKeys()).filter((k) => k.startsWith(QUIZ_REC)) : [];
       data.quizzes = keys.length ? Object.values(await chrome.storage.local.get(keys)) : [];

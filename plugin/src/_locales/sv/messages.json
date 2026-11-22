@@ -8321,5 +8321,14 @@
   },
   "f_questions_to_repeat_11ba": {
     "message": "{n} frågor att repetera"
+  },
+  "f_from_your_notes_8f29": {
+    "message": "Från dina anteckningar"
+  },
+  "f_topics_show_up_here_once_you_c5be": {
+    "message": "Ämnen visas här när du har sparat några artiklar."
+  },
+  "f_your_topics_3f9e": {
+    "message": "Dina ämnen"
   }
 }
