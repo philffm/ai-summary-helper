@@ -147,7 +147,7 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 @keyframes artDrift { from { transform: translate(-5%, -4%) scale(1) rotate(-3deg); } to { transform: translate(6%, 5%) scale(1.1) rotate(4deg); } }
 .hm-topics svg { display: block; width: 100%; height: auto; max-height: 9.5rem; overflow: visible; cursor: pointer; }
 .hm-glow { filter: blur(26px); opacity: .38; pointer-events: none; }
-.hm-bubbles { filter: blur(.6px); }   /* the edges are soft anyway; a hair of blur keeps the gradient from banding */
+.hm-bubble circle { filter: blur(.6px); }   /* only the blobs: a hair of blur keeps the gradient from banding. The labels stay sharp. */
 .hm-bubble { animation: artFloat 9s var(--easing-in-out) infinite; animation-delay: calc(var(--i, 0) * -1.7s); }   /* the bubbles float a little, each out of step */
 @keyframes artFloat { 50% { transform: translateY(-3px); } }
 .hm-bubble circle { opacity: .95; transition: opacity var(--duration-fast) var(--easing-standard), transform var(--duration-base) var(--easing-decelerate); transform-box: fill-box; transform-origin: center; }
@@ -158,6 +158,6 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 :root[data-design='contrast'] .hm-card--art { background-image: none; }
 :root[data-design='contrast'] .hm-card--art::before, :root[data-design='contrast'] .hm-card--art::after, :root[data-design='contrast'] .hm-glow { display: none; }
 :root[data-design='contrast'] .hm-bubble { animation: none; }
-:root[data-design='contrast'] .hm-bubbles { filter: none; }
+:root[data-design='contrast'] .hm-bubble circle { filter: none; }
 :root[data-design='contrast'] .hm-bubble circle { fill: var(--hm-solid) !important; opacity: 1; stroke: var(--outline); stroke-width: 2; }
 :root[data-design='contrast'] .hm-bubble-label { fill: var(--text-primary); paint-order: stroke; stroke: var(--bg-page); stroke-width: 3px; }
