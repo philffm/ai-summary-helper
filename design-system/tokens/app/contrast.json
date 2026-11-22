@@ -91,8 +91,8 @@
         },
         "accent-glow": {
           "$type": "color",
-          "$value": "{brand.accent.contrast}",
-          "$description": "Coloured glow under primary buttons."
+          "$value": "transparent",
+          "$description": "Coloured glow under primary buttons: none in High contrast (nothing blurred or tinted behind an edge)."
         },
         "on-accent": {
           "$type": "color",
@@ -120,6 +120,53 @@
           "$type": "dimension",
           "$value": "3px",
           "$description": "Focus ring thickness (WCAG 2.4.13 asks for ≥ 2px)."
+        }
+      },
+      "elevation": {
+        "shadow-card": {
+          "$type": "shadow",
+          "$value": "none",
+          "$description": "High contrast: no shadow. Edges are drawn as 2px outlines, not as blur."
+        },
+        "shadow-raised": {
+          "$type": "shadow",
+          "$value": "none",
+          "$description": "High contrast: no shadow. Edges are drawn as 2px outlines, not as blur."
+        },
+        "shadow-modal": {
+          "$type": "shadow",
+          "$value": "none",
+          "$description": "High contrast: no shadow. Edges are drawn as 2px outlines, not as blur."
+        },
+        "elevation-sheet": {
+          "$type": "shadow",
+          "$value": "none",
+          "$description": "High contrast: no shadow. Edges are drawn as 2px outlines, not as blur."
+        },
+        "elevation-1": {
+          "$type": "shadow",
+          "$value": "none",
+          "$description": "High contrast: no shadow. Edges are drawn as 2px outlines, not as blur."
+        },
+        "elevation-2": {
+          "$type": "shadow",
+          "$value": "none",
+          "$description": "High contrast: no shadow. Edges are drawn as 2px outlines, not as blur."
+        },
+        "elevation-3": {
+          "$type": "shadow",
+          "$value": "none",
+          "$description": "High contrast: no shadow. Edges are drawn as 2px outlines, not as blur."
+        },
+        "elevation-4": {
+          "$type": "shadow",
+          "$value": "none",
+          "$description": "High contrast: no shadow. Edges are drawn as 2px outlines, not as blur."
+        },
+        "elevation-up": {
+          "$type": "shadow",
+          "$value": "none",
+          "$description": "High contrast: no shadow. Edges are drawn as 2px outlines, not as blur."
         }
       }
     }

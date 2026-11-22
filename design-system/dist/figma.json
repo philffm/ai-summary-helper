@@ -5525,8 +5525,12 @@
        }
       },
       "contrast-dark": {
-       "alias": "Brand",
-       "name": "accent/contrast-dark"
+       "value": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+       }
       },
       "postil-tint": {
        "alias": "Brand",
@@ -5545,12 +5549,20 @@
        "name": "alpha/accent-400-18"
       },
       "graphite-contrast": {
-       "alias": "Brand",
-       "name": "accent/contrast"
+       "value": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+       }
       },
       "graphite-contrast-dark": {
-       "alias": "Brand",
-       "name": "accent/contrast-dark"
+       "value": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+       }
       }
      }
     },

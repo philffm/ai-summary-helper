@@ -1271,13 +1271,23 @@
   /* semantic · accent */
   --accent: #0A4650; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #0A4650; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-  --accent-glow: #0A4650; /* Coloured glow under primary buttons. */
+  --accent-glow: transparent; /* Coloured glow under primary buttons: none in High contrast (nothing blurred or tinted behind an edge). */
   --on-accent: #ffffff; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
   --accent-a05: #E8F6F7; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: #CFECEF; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
   /* semantic · focus */
   --focus-ring: var(--text-primary); /* High-contrast theme: black ring. */
   --focus-ring-width: 3px; /* Focus ring thickness (WCAG 2.4.13 asks for ≥ 2px). */
+  /* semantic · elevation */
+  --shadow-card: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --shadow-raised: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --shadow-modal: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --elevation-sheet: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --elevation-1: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --elevation-2: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --elevation-3: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --elevation-4: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --elevation-up: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -1302,13 +1312,23 @@
     /* semantic · accent */
     --accent: #7CCBD4; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
     --accent-light: #7CCBD4; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-    --accent-glow: #7CCBD4; /* Coloured glow under primary buttons. */
+    --accent-glow: transparent; /* Coloured glow under primary buttons: none in High contrast (nothing blurred or tinted behind an edge). */
     --on-accent: #000000; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
     --accent-a05: #04262C; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
     --accent-a08: #04262C; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
     /* semantic · focus */
     --focus-ring: var(--text-primary); /* High-contrast theme: black ring. */
     --focus-ring-width: 3px; /* Focus ring thickness (WCAG 2.4.13 asks for ≥ 2px). */
+    /* semantic · elevation */
+    --shadow-card: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+    --shadow-raised: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+    --shadow-modal: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+    --elevation-sheet: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+    --elevation-1: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+    --elevation-2: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+    --elevation-3: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+    --elevation-4: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+    --elevation-up: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
     color-scheme: dark;
   }
 }
@@ -1333,13 +1353,23 @@
   /* semantic · accent */
   --accent: #7CCBD4; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #7CCBD4; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-  --accent-glow: #7CCBD4; /* Coloured glow under primary buttons. */
+  --accent-glow: transparent; /* Coloured glow under primary buttons: none in High contrast (nothing blurred or tinted behind an edge). */
   --on-accent: #000000; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
   --accent-a05: #04262C; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: #04262C; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
   /* semantic · focus */
   --focus-ring: var(--text-primary); /* High-contrast theme: black ring. */
   --focus-ring-width: 3px; /* Focus ring thickness (WCAG 2.4.13 asks for ≥ 2px). */
+  /* semantic · elevation */
+  --shadow-card: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --shadow-raised: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --shadow-modal: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --elevation-sheet: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --elevation-1: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --elevation-2: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --elevation-3: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --elevation-4: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
+  --elevation-up: none; /* High contrast: no shadow. Edges are drawn as 2px outlines, not as blur. */
   color-scheme: dark;
 }
 /* High contrast with a colour scheme: the same black-and-white sets, only the accent (and for Graphite the few grey tokens) takes the scheme. Graphite is pure black / white. */
@@ -1349,7 +1379,6 @@
   /* semantic · accent */
   --accent: #0033CC; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #0033CC; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-  --accent-glow: #0033CC; /* Coloured glow under primary buttons. */
   --accent-a05: #eff6ff; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: #dbeafe; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
   color-scheme: light;
@@ -1360,7 +1389,6 @@
   /* semantic · accent */
   --accent: #3F1BA6; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #3F1BA6; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-  --accent-glow: #3F1BA6; /* Coloured glow under primary buttons. */
   --accent-a05: #F3EFFF; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: #E5DCFF; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
   color-scheme: light;
@@ -1372,7 +1400,6 @@
   /* semantic · accent */
   --accent: #000000; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #000000; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-  --accent-glow: #000000; /* Coloured glow under primary buttons. */
   --accent-a05: #F5F5F4; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: #E9E8E6; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
   color-scheme: light;
@@ -1384,7 +1411,6 @@
     /* semantic · accent */
     --accent: #93c5fd; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
     --accent-light: #93c5fd; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-    --accent-glow: #93c5fd; /* Coloured glow under primary buttons. */
     --accent-a05: #001a3d; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
     --accent-a08: #001a3d; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
     color-scheme: dark;
@@ -1397,7 +1423,6 @@
     /* semantic · accent */
     --accent: #B49CFF; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
     --accent-light: #B49CFF; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-    --accent-glow: #B49CFF; /* Coloured glow under primary buttons. */
     --accent-a05: #170647; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
     --accent-a08: #170647; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
     color-scheme: dark;
@@ -1411,7 +1436,6 @@
     /* semantic · accent */
     --accent: #FFFFFF; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
     --accent-light: #FFFFFF; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-    --accent-glow: #FFFFFF; /* Coloured glow under primary buttons. */
     --accent-a05: #121110; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
     --accent-a08: #121110; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
     color-scheme: dark;
@@ -1423,7 +1447,6 @@
   /* semantic · accent */
   --accent: #93c5fd; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #93c5fd; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-  --accent-glow: #93c5fd; /* Coloured glow under primary buttons. */
   --accent-a05: #001a3d; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: #001a3d; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
   color-scheme: dark;
@@ -1434,7 +1457,6 @@
   /* semantic · accent */
   --accent: #B49CFF; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #B49CFF; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-  --accent-glow: #B49CFF; /* Coloured glow under primary buttons. */
   --accent-a05: #170647; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: #170647; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
   color-scheme: dark;
@@ -1446,7 +1468,6 @@
   /* semantic · accent */
   --accent: #FFFFFF; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
   --accent-light: #FFFFFF; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
-  --accent-glow: #FFFFFF; /* Coloured glow under primary buttons. */
   --accent-a05: #121110; /* Accent at 5%: tints for hover, selection and soft borders. Never as text. */
   --accent-a08: #121110; /* Accent at 8%: tints for hover, selection and soft borders. Never as text. */
   color-scheme: dark;
@@ -4654,6 +4675,10 @@ html[data-line='relaxed'] body, html[data-line='relaxed'] .summary-box, html[dat
 html[data-motion='reduce'] *, html[data-motion='reduce'] *::before, html[data-motion='reduce'] *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
 :root[data-design='contrast'] .button-secondary, :root[data-design='contrast'] .tag-chip, :root[data-design='contrast'] .source-card, :root[data-design='contrast'] .paper-card { border: 2px solid var(--outline); box-shadow: none; }
 :root[data-design='contrast'] :focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+/* High contrast: nothing blurred, glowing or translucent. The shadow tokens are "none" in this design (see the generated tokens above); what is left is
+   the backdrop blur of bars and sheets and the breathing glow of the working composer. */
+:root[data-design='contrast'] * { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; text-shadow: none; }
+:root[data-design='contrast'] .controls-bar[data-state="working"] .composer-pill { animation: none; box-shadow: none; }
 /* High contrast: the command palette (⌘K, also inline on the home page) has the same hard edges as the other surfaces, and the highlighted entry is
    a solid accent fill, not a faint tint */
 :root[data-design='contrast'] .cmdk-panel, :root[data-design='contrast'] .hm-box.is-open .cmdk-list, :root[data-design='contrast'] .hm-box.is-open .cmdk-empty { border: 2px solid var(--outline); box-shadow: none; }

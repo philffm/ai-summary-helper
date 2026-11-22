@@ -47,4 +47,13 @@ for (const f of ['styles.css', 'inPage.css']) {
   assert(/--accent: #000000/i.test(light), 'Graphite + High contrast + light: a black accent');
   assert(/data-design='contrast'\]\[data-scheme='aish'\]/.test(css), 'the other schemes colour the High contrast accent');
 }
+// High contrast has no shadows or glows: the tokens are none / transparent (light and dark), the blur is switched off
+{
+  const css = fs.readFileSync(path.resolve(process.env.AISH_SRC, 'styles.css'), 'utf8');
+  for (const sel of ["[data-design='contrast'] {", "[data-design='contrast'][data-theme='dark'] {"]) {
+    const i = css.indexOf(sel), blk = css.slice(i, css.indexOf('\n}', i));
+    assert(i > 0 && /--accent-glow: transparent/.test(blk) && /--shadow-modal: none/.test(blk) && /--elevation-sheet: none/.test(blk), sel + ': no glow, no shadow');
+  }
+  assert(/data-design='contrast'\] \* \{ backdrop-filter: none/.test(css), 'no backdrop blur in High contrast');
+}
 console.log('TEST 280 OK'); process.exit(0);

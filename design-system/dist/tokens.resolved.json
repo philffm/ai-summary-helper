@@ -2316,23 +2316,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -2468,7 +2468,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -2596,7 +2596,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -2804,7 +2804,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#0033CC"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -2988,19 +2988,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(15,23,42,0.08)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -5478,23 +5478,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -5630,7 +5630,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -5758,7 +5758,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -5966,7 +5966,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#93c5fd"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -6150,19 +6150,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(0,0,0,0.35)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(0,0,0,0.45)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -10748,23 +10748,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -10900,7 +10900,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -11028,7 +11028,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -11236,7 +11236,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#0033CC"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -11420,19 +11420,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(15,23,42,0.08)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -11802,23 +11802,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -11954,7 +11954,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -12082,7 +12082,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -12290,7 +12290,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#93c5fd"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -12474,19 +12474,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(0,0,0,0.35)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(0,0,0,0.45)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -19086,23 +19086,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -19238,7 +19238,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -19366,7 +19366,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -19574,7 +19574,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -19758,19 +19758,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(15,23,42,0.08)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -22248,23 +22248,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -22400,7 +22400,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -22528,7 +22528,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -22736,7 +22736,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#FFFFFF"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -22920,19 +22920,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(0,0,0,0.35)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(0,0,0,0.45)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -27518,23 +27518,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -27670,7 +27670,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -27798,7 +27798,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -28006,7 +28006,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -28190,19 +28190,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(15,23,42,0.08)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -28572,23 +28572,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -28724,7 +28724,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -28852,7 +28852,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -29060,7 +29060,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#FFFFFF"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -29244,19 +29244,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(0,0,0,0.35)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(0,0,0,0.45)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -35856,23 +35856,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -36008,7 +36008,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -36136,7 +36136,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -36344,7 +36344,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#0A4650"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -36528,19 +36528,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(15,23,42,0.08)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -39018,23 +39018,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -39170,7 +39170,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -39298,7 +39298,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -39506,7 +39506,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#7CCBD4"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -39690,19 +39690,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(0,0,0,0.35)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(0,0,0,0.45)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -44288,23 +44288,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -44440,7 +44440,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -44568,7 +44568,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -44776,7 +44776,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#0A4650"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -44960,19 +44960,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(15,23,42,0.08)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -45342,23 +45342,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -45494,7 +45494,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -45622,7 +45622,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -45830,7 +45830,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#7CCBD4"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -46014,19 +46014,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(0,0,0,0.35)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(0,0,0,0.45)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -52626,23 +52626,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -52778,7 +52778,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -52906,7 +52906,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -53114,7 +53114,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#14624A"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -53298,19 +53298,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(15,23,42,0.08)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -55788,23 +55788,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -55940,7 +55940,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -56068,7 +56068,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -56276,7 +56276,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#A6E3CB"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -56460,19 +56460,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(0,0,0,0.35)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(0,0,0,0.45)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -61058,23 +61058,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -61210,7 +61210,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -61338,7 +61338,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -61546,7 +61546,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#14624A"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -61730,19 +61730,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(15,23,42,0.08)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -62112,23 +62112,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -62264,7 +62264,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -62392,7 +62392,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -62600,7 +62600,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#A6E3CB"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -62784,19 +62784,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(0,0,0,0.35)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(0,0,0,0.45)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -69396,23 +69396,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -69548,7 +69548,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -69676,7 +69676,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -69884,7 +69884,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#3F1BA6"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -70068,19 +70068,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(15,23,42,0.08)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -72558,23 +72558,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -72710,7 +72710,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -72838,7 +72838,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -73046,7 +73046,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#B49CFF"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -73230,19 +73230,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(0,0,0,0.35)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(0,0,0,0.45)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -77828,23 +77828,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -77980,7 +77980,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -78108,7 +78108,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -78316,7 +78316,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#3F1BA6"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -78500,19 +78500,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(15,23,42,0.08)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
@@ -78882,23 +78882,23 @@
     },
     "--elevation-1": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.1)"
+     "value": "none"
     },
     "--elevation-2": {
      "tier": "semantic",
-     "value": "0 2px 8px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-3": {
      "tier": "semantic",
-     "value": "0 4px 14px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-4": {
      "tier": "semantic",
-     "value": "0 8px 24px rgba(0,0,0,0.2)"
+     "value": "none"
     },
     "--elevation-up": {
      "tier": "semantic",
-     "value": "0 -4px 20px rgba(0,0,0,0.15)"
+     "value": "none"
     },
     "--font-ui": {
      "tier": "semantic",
@@ -79034,7 +79034,7 @@
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--player-fg": {
      "tier": "component",
@@ -79162,7 +79162,7 @@
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--sheet-grab": {
      "tier": "component",
@@ -79370,7 +79370,7 @@
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "#B49CFF"
+     "value": "transparent"
     },
     "--on-accent": {
      "tier": "semantic",
@@ -79554,19 +79554,19 @@
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 4px 16px rgba(0,0,0,0.35)"
+     "value": "none"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(0,0,0,0.45)"
+     "value": "none"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(0,0,0,0.55)"
+     "value": "none"
     },
     "--tone-read-bg": {
      "tier": "semantic",
