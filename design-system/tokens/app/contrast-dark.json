@@ -1,0 +1,127 @@
+{
+  "app": {
+    "component": {},
+    "semantic": {
+      "surface": {
+        "bg-page": {
+          "$type": "color",
+          "$value": "{color.black}",
+          "$description": "Page background of every screen; the base all translucent surfaces are composited over."
+        },
+        "bg-page-gradient": {
+          "$type": "color",
+          "$value": "{color.black}",
+          "$description": "Soft accent glow painted over bg-page at the edges of the window."
+        },
+        "glass-base": {
+          "$type": "color",
+          "$value": "{color.black}",
+          "$description": "Background of a screen that slides over another (settings, detail); nearly opaque."
+        },
+        "glass-card": {
+          "$type": "color",
+          "$value": "{color.black}",
+          "$description": "Card surface (article cards, settings rows, input card); translucent over bg-page."
+        },
+        "glass-input": {
+          "$type": "color",
+          "$value": "{color.black}",
+          "$description": "Field surface: inputs, chips, search fields, icon tiles."
+        },
+        "glass-border": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$description": "Edge of glass cards and the input card."
+        },
+        "glass-border-strong": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$description": "Stronger glass edge for floating panels and toasts."
+        },
+        "glass-inner-glow": {
+          "$type": "shadow",
+          "$value": "transparent",
+          "$description": "1px inner highlight at the top of glass surfaces."
+        },
+        "surface-bar": {
+          "$type": "color",
+          "$value": "{color.black}",
+          "$description": "Background of fixed bars (pane headers, toolbars) above scrolling content."
+        }
+      },
+      "outline": {
+        "outline": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$description": "Default 1px border of cards, fields, bars and dividers. Decorative (about 1.35:1); a field edge that must be found needs outline-strong (ADR 0005)."
+        }
+      },
+      "text": {
+        "text-primary": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$description": "Body text, titles and icons: the strongest text colour (≥ 14:1 on cards)."
+        },
+        "text-secondary": {
+          "$type": "color",
+          "$value": "{color.white}",
+          "$description": "Supporting text: labels, descriptions, inactive controls with text."
+        },
+        "text-muted": {
+          "$type": "color",
+          "$value": "{color.slate.150}",
+          "$description": "Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1)."
+        },
+        "text-link": {
+          "$type": "color",
+          "$value": "{brand.accent.200}",
+          "$description": "Links inside text."
+        }
+      },
+      "accent": {
+        "accent": {
+          "$type": "color",
+          "$value": "{brand.accent.300}",
+          "$description": "Brand action colour: primary buttons, selected states, links on controls, focus ring, progress."
+        },
+        "accent-light": {
+          "$type": "color",
+          "$value": "{brand.accent.300}",
+          "$description": "Second stop of the accent gradient (primary button, nav blob, switch on)."
+        },
+        "accent-glow": {
+          "$type": "color",
+          "$value": "{brand.accent.300}",
+          "$description": "Coloured glow under primary buttons."
+        },
+        "on-accent": {
+          "$type": "color",
+          "$value": "{color.black}",
+          "$description": "Text and icons on an accent fill (primary button, selected pill, active nav item)."
+        },
+        "accent-a05": {
+          "$type": "color",
+          "$value": "{brand.accent.950}",
+          "$description": "Accent at 5%: tints for hover, selection and soft borders. Never as text."
+        },
+        "accent-a08": {
+          "$type": "color",
+          "$value": "{brand.accent.950}",
+          "$description": "Accent at 8%: tints for hover, selection and soft borders. Never as text."
+        }
+      },
+      "focus": {
+        "focus-ring": {
+          "$type": "color",
+          "$value": "{app.semantic.text.text-primary}",
+          "$description": "High-contrast theme: black ring."
+        },
+        "focus-ring-width": {
+          "$type": "dimension",
+          "$value": "3px",
+          "$description": "Focus ring thickness (WCAG 2.4.13 asks for ≥ 2px)."
+        }
+      }
+    }
+  }
+}

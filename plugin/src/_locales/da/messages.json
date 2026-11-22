@@ -8282,5 +8282,11 @@
   },
   "f_choose_widgets_e62d": {
     "message": "Vælg kort"
+  },
+  "f_brightness_324a": {
+    "message": "Lysstyrke"
+  },
+  "f_not_used_in_high_contrast_92ee": {
+    "message": "Bruges ikke i høj kontrast."
   }
 }

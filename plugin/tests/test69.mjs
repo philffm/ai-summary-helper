@@ -4,11 +4,12 @@ const { store, w } = setup({});
 const a = await imp('../src/modules/a11y.js');
 const root = w.document.documentElement;
 a.applyA11y({ theme: 'contrast', textScale: 120, lineSpacing: 'relaxed', readableFont: true, reduceMotion: true }, root);
-assert.equal(root.getAttribute('data-theme'), 'contrast');
+assert.equal(root.getAttribute('data-design'), 'contrast', 'the old High contrast theme is the High contrast design');
+assert(!root.hasAttribute('data-theme'));
 assert.equal(root.style.getPropertyValue('--text-scale'), '1.2');
 assert.equal(root.getAttribute('data-line'), 'relaxed'); assert.equal(root.getAttribute('data-font'), 'readable'); assert.equal(root.getAttribute('data-motion'), 'reduce');
 a.applyA11y({ theme: '', textScale: 100, lineSpacing: 'normal' }, root);
-for (const at of ['data-theme', 'data-line', 'data-font', 'data-motion']) assert(!root.hasAttribute(at), at);
+for (const at of ['data-theme', 'data-design', 'data-line', 'data-font', 'data-motion']) assert(!root.hasAttribute(at), at);
 assert(!root.style.getPropertyValue('--text-scale'));
 assert.equal(a.clampScale(500), 150); assert.equal(a.clampScale(10), 85); assert.equal(a.clampScale('x'), 100);
 // popup.html: controls exist, flags in the UI language list
@@ -115,7 +116,7 @@ assert(sc2.querySelector('.source-doi-add'), '+ DOI button in the card');
 console.log('TEST 69 OK');
 // profile switching: no leftovers (high contrast theme / reduce motion) — logic in settings/general.js
 const src = fs.readFileSync(new URL('../src/modules/settings/general.js', import.meta.url), 'utf8');
-assert(/default: \(\) => \(\{ theme: leaveContrast\(\)/.test(src) && /large: \(\) => \(\{ theme: leaveContrast\(\), textScale: 125, lineSpacing: 'relaxed', reduceMotion: false/.test(src), 'profiles reset theme + motion');
+assert(/default: \(\) => \(\{ design: /.test(src) && /large: \(\) => \(\{ design: [^}]*textScale: 125, lineSpacing: 'relaxed', reduceMotion: false/.test(src), 'profiles reset the design + motion');
 assert(/--range-progress/.test(src), 'slider fill follows value');
 // every locale has every English key (graph/settings labels used to be missing in ar/it/ru/zh_HK)
 {

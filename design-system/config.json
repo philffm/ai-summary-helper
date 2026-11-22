@@ -32,12 +32,12 @@
           "app/dark-forced",
           "app/postil-dark"
         ],
-        "postil-contrast": [
+        "contrast-dark": [
           "app/base",
           "app/light",
-          "app/postil",
-          "app/contrast",
-          "app/postil-contrast"
+          "app/dark",
+          "app/dark-forced",
+          "app/contrast-dark"
         ]
       },
       "defaultBrand": "kaivo"
@@ -93,15 +93,23 @@
           ]
         },
         {
+          "comment": "colour schemes: Settings › Appearance › Color scheme (data-scheme: aish, kaivo, viola). Brand schemes emit only the colours that differ from this build's brand; they come right after the light block so the dark blocks below still win. Design (data-design: postil, contrast) and brightness (data-theme: light, dark) are separate axes.",
           "scheme": "aish",
-          "selector": ":root[data-scheme='blue']",
+          "selector": ":root[data-scheme='aish']",
           "sets": [
             "app/base",
             "app/light"
           ]
         },
         {
-          "comment": "colour schemes: Settings › Appearance › Color scheme (data-scheme). Brand schemes emit only the colours that differ from this build's brand; they come right after the light block so the dark and contrast blocks still win where they apply.",
+          "scheme": "kaivo",
+          "selector": ":root[data-scheme='kaivo']",
+          "sets": [
+            "app/base",
+            "app/light"
+          ]
+        },
+        {
           "scheme": "viola",
           "selector": ":root[data-scheme='viola']",
           "sets": [
@@ -110,8 +118,8 @@
           ]
         },
         {
-          "comment": "Postil: e-reader scheme, off-white paper and graphite ink, flat (light)",
-          "selector": ":root[data-scheme='postil']",
+          "comment": "Design Postil: e-reader look, off-white paper and graphite ink, flat (light)",
+          "selector": ":root[data-design='postil']",
           "sets": [
             "app/postil"
           ],
@@ -121,7 +129,7 @@
         },
         {
           "media": "(prefers-color-scheme: dark)",
-          "selector": ":root:not([data-theme='light']):not([data-theme='contrast'])",
+          "selector": ":root:not([data-theme='light'])",
           "sets": [
             "app/dark"
           ]
@@ -136,7 +144,15 @@
         {
           "scheme": "aish",
           "media": "(prefers-color-scheme: dark)",
-          "selector": ":root[data-scheme='blue']:not([data-theme='light']):not([data-theme='contrast'])",
+          "selector": ":root[data-scheme='aish']:not([data-theme='light'])",
+          "sets": [
+            "app/dark"
+          ]
+        },
+        {
+          "scheme": "kaivo",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-scheme='kaivo']:not([data-theme='light'])",
           "sets": [
             "app/dark"
           ]
@@ -144,14 +160,22 @@
         {
           "scheme": "viola",
           "media": "(prefers-color-scheme: dark)",
-          "selector": ":root[data-scheme='viola']:not([data-theme='light']):not([data-theme='contrast'])",
+          "selector": ":root[data-scheme='viola']:not([data-theme='light'])",
           "sets": [
             "app/dark"
           ]
         },
         {
           "scheme": "aish",
-          "selector": ":root[data-scheme='blue'][data-theme='dark']",
+          "selector": ":root[data-scheme='aish'][data-theme='dark']",
+          "sets": [
+            "app/dark",
+            "app/dark-forced"
+          ]
+        },
+        {
+          "scheme": "kaivo",
+          "selector": ":root[data-scheme='kaivo'][data-theme='dark']",
           "sets": [
             "app/dark",
             "app/dark-forced"
@@ -168,7 +192,7 @@
         {
           "comment": "Postil dark: warm charcoal and soft off-white, like an e-reader night mode",
           "media": "(prefers-color-scheme: dark)",
-          "selector": ":root[data-scheme='postil']:not([data-theme='light']):not([data-theme='contrast'])",
+          "selector": ":root[data-design='postil']:not([data-theme='light'])",
           "sets": [
             "app/postil-dark"
           ],
@@ -177,7 +201,7 @@
           ]
         },
         {
-          "selector": ":root[data-scheme='postil'][data-theme='dark']",
+          "selector": ":root[data-design='postil'][data-theme='dark']",
           "sets": [
             "app/postil-dark"
           ],
@@ -186,7 +210,8 @@
           ]
         },
         {
-          "selector": ":root[data-theme='contrast']",
+          "comment": "Design High contrast: black on white, or white on black in dark. The colour scheme does not apply here (the accent is the one checked for contrast).",
+          "selector": ":root[data-design='contrast']",
           "sets": [
             "app/contrast"
           ],
@@ -195,34 +220,25 @@
           ]
         },
         {
-          "scheme": "aish",
-          "selector": ":root[data-scheme='blue'][data-theme='contrast']",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-design='contrast']:not([data-theme='light'])",
           "sets": [
-            "app/contrast"
+            "app/contrast-dark"
           ],
           "extra": [
-            "color-scheme: light"
+            "color-scheme: dark"
           ]
         },
         {
-          "scheme": "viola",
-          "selector": ":root[data-scheme='viola'][data-theme='contrast']",
+          "selector": ":root[data-design='contrast'][data-theme='dark']",
           "sets": [
-            "app/contrast"
+            "app/contrast-dark"
           ],
           "extra": [
-            "color-scheme: light"
+            "color-scheme: dark"
           ]
         },
         {
-          "comment": "Postil, high contrast: ink-black accent on the contrast base",
-          "selector": ":root[data-scheme='postil'][data-theme='contrast']",
-          "sets": [
-            "app/postil-contrast"
-          ]
-        },
-        {
-          "comment": "reduced motion: system setting",
           "media": "(prefers-reduced-motion: reduce)",
           "selector": ":root",
           "sets": [
@@ -230,7 +246,6 @@
           ]
         },
         {
-          "comment": "reduced motion: Settings › Accessibility",
           "selector": "html[data-motion='reduce']",
           "sets": [
             "app/reduced-motion"
@@ -252,15 +267,23 @@
           ]
         },
         {
+          "comment": "colour schemes: Settings › Appearance › Color scheme (data-scheme: aish, kaivo, viola). Brand schemes emit only the colours that differ from this build's brand; they come right after the light block so the dark blocks below still win. Design (data-design: postil, contrast) and brightness (data-theme: light, dark) are separate axes.",
           "scheme": "aish",
-          "selector": ":host([data-scheme='blue'])",
+          "selector": ":host([data-scheme='aish'])",
           "sets": [
             "app/base",
             "app/light"
           ]
         },
         {
-          "comment": "colour schemes: Settings › Appearance › Color scheme (data-scheme). Brand schemes emit only the colours that differ from this build's brand; they come right after the light block so the dark and contrast blocks still win where they apply.",
+          "scheme": "kaivo",
+          "selector": ":host([data-scheme='kaivo'])",
+          "sets": [
+            "app/base",
+            "app/light"
+          ]
+        },
+        {
           "scheme": "viola",
           "selector": ":host([data-scheme='viola'])",
           "sets": [
@@ -269,8 +292,8 @@
           ]
         },
         {
-          "comment": "Postil: e-reader scheme, off-white paper and graphite ink, flat (light)",
-          "selector": ":host([data-scheme='postil'])",
+          "comment": "Design Postil: e-reader look, off-white paper and graphite ink, flat (light)",
+          "selector": ":host([data-design='postil'])",
           "sets": [
             "app/postil"
           ],
@@ -280,7 +303,7 @@
         },
         {
           "media": "(prefers-color-scheme: dark)",
-          "selector": ":host(:not([data-theme='light']):not([data-theme='contrast']))",
+          "selector": ":host(:not([data-theme='light']))",
           "sets": [
             "app/dark"
           ]
@@ -295,7 +318,15 @@
         {
           "scheme": "aish",
           "media": "(prefers-color-scheme: dark)",
-          "selector": ":host([data-scheme='blue']:not([data-theme='light']):not([data-theme='contrast']))",
+          "selector": ":host([data-scheme='aish']:not([data-theme='light']))",
+          "sets": [
+            "app/dark"
+          ]
+        },
+        {
+          "scheme": "kaivo",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-scheme='kaivo']:not([data-theme='light']))",
           "sets": [
             "app/dark"
           ]
@@ -303,14 +334,22 @@
         {
           "scheme": "viola",
           "media": "(prefers-color-scheme: dark)",
-          "selector": ":host([data-scheme='viola']:not([data-theme='light']):not([data-theme='contrast']))",
+          "selector": ":host([data-scheme='viola']:not([data-theme='light']))",
           "sets": [
             "app/dark"
           ]
         },
         {
           "scheme": "aish",
-          "selector": ":host([data-scheme='blue'][data-theme='dark'])",
+          "selector": ":host([data-scheme='aish'][data-theme='dark'])",
+          "sets": [
+            "app/dark",
+            "app/dark-forced"
+          ]
+        },
+        {
+          "scheme": "kaivo",
+          "selector": ":host([data-scheme='kaivo'][data-theme='dark'])",
           "sets": [
             "app/dark",
             "app/dark-forced"
@@ -327,7 +366,7 @@
         {
           "comment": "Postil dark: warm charcoal and soft off-white, like an e-reader night mode",
           "media": "(prefers-color-scheme: dark)",
-          "selector": ":host([data-scheme='postil']:not([data-theme='light']):not([data-theme='contrast']))",
+          "selector": ":host([data-design='postil']:not([data-theme='light']))",
           "sets": [
             "app/postil-dark"
           ],
@@ -336,7 +375,7 @@
           ]
         },
         {
-          "selector": ":host([data-scheme='postil'][data-theme='dark'])",
+          "selector": ":host([data-design='postil'][data-theme='dark'])",
           "sets": [
             "app/postil-dark"
           ],
@@ -345,14 +384,8 @@
           ]
         },
         {
-          "selector": ":host([data-theme='contrast'])",
-          "sets": [
-            "app/contrast"
-          ]
-        },
-        {
-          "scheme": "aish",
-          "selector": ":host([data-scheme='blue'][data-theme='contrast'])",
+          "comment": "Design High contrast: black on white, or white on black in dark. The colour scheme does not apply here (the accent is the one checked for contrast).",
+          "selector": ":host([data-design='contrast'])",
           "sets": [
             "app/contrast"
           ],
@@ -361,20 +394,22 @@
           ]
         },
         {
-          "scheme": "viola",
-          "selector": ":host([data-scheme='viola'][data-theme='contrast'])",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-design='contrast']:not([data-theme='light']))",
           "sets": [
-            "app/contrast"
+            "app/contrast-dark"
           ],
           "extra": [
-            "color-scheme: light"
+            "color-scheme: dark"
           ]
         },
         {
-          "comment": "Postil, high contrast: ink-black accent on the contrast base",
-          "selector": ":host([data-scheme='postil'][data-theme='contrast'])",
+          "selector": ":host([data-design='contrast'][data-theme='dark'])",
           "sets": [
-            "app/postil-contrast"
+            "app/contrast-dark"
+          ],
+          "extra": [
+            "color-scheme: dark"
           ]
         },
         {

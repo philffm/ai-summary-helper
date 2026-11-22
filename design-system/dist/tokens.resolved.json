@@ -5271,7 +5271,7 @@
      "value": "inset 0 0 0 1px rgba(255,255,255,0.06)"
     }
    },
-   "postil-contrast": {
+   "contrast-dark": {
     "--radius-xs": {
      "tier": "semantic",
      "value": "6px"
@@ -5502,7 +5502,7 @@
     },
     "--font-reading": {
      "tier": "semantic",
-     "value": "'Iowan Old Style', 'Charter', 'Source Serif 4', 'Georgia', serif"
+     "value": "'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif"
     },
     "--surface-busy": {
      "tier": "semantic",
@@ -5514,7 +5514,7 @@
     },
     "--focus-ring": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--focus-ring-width": {
      "tier": "semantic",
@@ -5622,55 +5622,55 @@
     },
     "--player-bg": {
      "tier": "component",
-     "value": "color-mix(in srgb, #F2F1ED 96%, transparent)"
+     "value": "color-mix(in srgb, #141923 96%, transparent)"
     },
     "--player-border": {
      "tier": "component",
-     "value": "#D3D1C9"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "0 -8px 30px rgba(0,0,0,0.55)"
     },
     "--player-fg": {
      "tier": "component",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--player-track": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 18%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 18%, transparent)"
     },
     "--player-fill": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#93c5fd"
     },
     "--player-hover": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 10%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 10%, transparent)"
     },
     "--player-pill": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 10%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 10%, transparent)"
     },
     "--player-pill-hover": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 18%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 18%, transparent)"
     },
     "--player-play-bg": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#93c5fd"
     },
     "--player-play-fg": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--player-err": {
      "tier": "component",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--header-h": {
      "tier": "component",
@@ -5702,15 +5702,15 @@
     },
     "--nav-bg": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--nav-active-text": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--nav-blob-bg": {
      "tier": "component",
-     "value": "linear-gradient(135deg, #1A1917, #1A1917)"
+     "value": "linear-gradient(135deg, #93c5fd, #93c5fd)"
     },
     "--floating-stack-height": {
      "tier": "component",
@@ -5730,83 +5730,83 @@
     },
     "--slider-track": {
      "tier": "component",
-     "value": "#cbd5e1"
+     "value": "#334155"
     },
     "--slider-fill": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#93c5fd"
     },
     "--scrollbar-thumb": {
      "tier": "component",
-     "value": "rgba(100,116,139,0.42)"
+     "value": "rgba(226,232,240,0.28)"
     },
     "--scrollbar-thumb-hover": {
      "tier": "component",
-     "value": "rgba(100,116,139,0.66)"
+     "value": "rgba(226,232,240,0.46)"
     },
     "--sheet-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "#141923"
     },
     "--sheet-border": {
      "tier": "component",
-     "value": "#D3D1C9"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--sheet-scrim": {
      "tier": "component",
-     "value": "rgba(15,23,42,0.45)"
+     "value": "rgba(0,0,0,0.6)"
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "0 -8px 30px rgba(0,0,0,0.55)"
     },
     "--sheet-grab": {
      "tier": "component",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.25)"
     },
     "--note-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "rgba(96,165,250,0.14)"
     },
     "--note-fg": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#ADC6FF"
     },
     "--toast-bg": {
      "tier": "component",
-     "value": "#0f172a"
+     "value": "#e8edf5"
     },
     "--toast-fg": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#0b0e14"
     },
     "--toast-action": {
      "tier": "component",
-     "value": "#93c5fd"
+     "value": "#1d4ed8"
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--chart-0": {
      "tier": "component",
-     "value": "#2a78d6"
+     "value": "#3987e5"
     },
     "--chart-1": {
      "tier": "component",
-     "value": "#eb6834"
+     "value": "#d95926"
     },
     "--chart-2": {
      "tier": "component",
-     "value": "#1baf7a"
+     "value": "#199e70"
     },
     "--chart-3": {
      "tier": "component",
-     "value": "#eda100"
+     "value": "#c98500"
     },
     "--chart-4": {
      "tier": "component",
-     "value": "#e87ba4"
+     "value": "#d55181"
     },
     "--chart-5": {
      "tier": "component",
@@ -5814,83 +5814,83 @@
     },
     "--chart-6": {
      "tier": "component",
-     "value": "#4a3aa7"
+     "value": "#9085e9"
     },
     "--chart-7": {
      "tier": "component",
-     "value": "#e34948"
+     "value": "#e66767"
     },
     "--chart-other": {
      "tier": "component",
-     "value": "#9ca3af"
+     "value": "#6b7280"
     },
     "--chart-gap": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--saved-note-user-bg": {
      "tier": "component",
-     "value": "#fef9c3"
+     "value": "#2f2a15"
     },
     "--saved-note-user-fg": {
      "tier": "component",
-     "value": "#713f12"
+     "value": "#f4e6a8"
     },
     "--saved-note-user-bar": {
      "tier": "component",
-     "value": "#eab308"
+     "value": "#d4a514"
     },
     "--saved-note-ghost-bg": {
      "tier": "component",
-     "value": "#e0f2fe"
+     "value": "#10293a"
     },
     "--saved-note-ghost-fg": {
      "tier": "component",
-     "value": "#0c4a6e"
+     "value": "#c9e7f8"
     },
     "--saved-note-ghost-bar": {
      "tier": "component",
-     "value": "#0284C7"
+     "value": "#38bdf8"
     },
     "--saved-note-note-bg": {
      "tier": "component",
-     "value": "#fce7f3"
+     "value": "#35182d"
     },
     "--saved-note-note-fg": {
      "tier": "component",
-     "value": "#831843"
+     "value": "#f7d6e8"
     },
     "--saved-note-note-bar": {
      "tier": "component",
-     "value": "#db2777"
+     "value": "#f472b6"
     },
     "--saved-note-quote-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.55)"
+     "value": "rgba(0,0,0,0.25)"
     },
     "--saved-note-edge": {
      "tier": "component",
-     "value": "none"
+     "value": "inset 0 0 0 1px rgba(255,255,255,0.06)"
     },
     "--saved-note-danger": {
      "tier": "component",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--row-bg": {
      "tier": "component",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--row-on-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "rgba(96,165,250,0.14)"
     },
     "--field-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "rgba(255,255,255,0.08)"
     },
     "--switch-off": {
      "tier": "component",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.22)"
     },
     "--switch-knob": {
      "tier": "component",
@@ -5898,15 +5898,15 @@
     },
     "--check-border": {
      "tier": "component",
-     "value": "#94a3b8"
+     "value": "#64748b"
     },
     "--check-bg": {
      "tier": "component",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--sel-card-bg": {
      "tier": "component",
-     "value": "color-mix(in srgb, #1A1917 8%, transparent)"
+     "value": "rgba(96,165,250,0.14)"
     },
     "--rsvp-word-size": {
      "tier": "component",
@@ -5918,75 +5918,75 @@
     },
     "--rsvp-pivot": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#93c5fd"
     },
     "--rsvp-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "#141923"
     },
     "--rsvp-context-bg": {
      "tier": "component",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--accent-a05": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "#001a3d"
     },
     "--accent-a08": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "#001a3d"
     },
     "--accent-a10": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 10%, transparent)"
+     "value": "color-mix(in srgb, #93c5fd 10%, transparent)"
     },
     "--accent-a12": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 12%, transparent)"
+     "value": "color-mix(in srgb, #93c5fd 12%, transparent)"
     },
     "--accent-a15": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 15%, transparent)"
+     "value": "color-mix(in srgb, #93c5fd 15%, transparent)"
     },
     "--accent-a25": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 25%, transparent)"
+     "value": "color-mix(in srgb, #93c5fd 25%, transparent)"
     },
     "--accent-a30": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 30%, transparent)"
+     "value": "color-mix(in srgb, #93c5fd 30%, transparent)"
     },
     "--accent": {
      "tier": "semantic",
-     "value": "#1A1917"
+     "value": "#93c5fd"
     },
     "--accent-light": {
      "tier": "semantic",
-     "value": "#1A1917"
+     "value": "#93c5fd"
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "rgba(26,25,23,0)"
+     "value": "#93c5fd"
     },
     "--on-accent": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--accent-soft": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 10%, transparent)"
+     "value": "rgba(96,165,250,0.14)"
     },
     "--accent-soft-strong": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 18%, transparent)"
+     "value": "rgba(96,165,250,0.26)"
     },
     "--accent-subtle": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "rgba(96,165,250,0.14)"
     },
     "--accent-selected": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 8%, transparent)"
+     "value": "rgba(96,165,250,0.14)"
     },
     "--danger-strong": {
      "tier": "semantic",
@@ -6010,75 +6010,75 @@
     },
     "--mood-pos": {
      "tier": "semantic",
-     "value": "hsl(142,55%,42%)"
+     "value": "hsl(142,55%,52%)"
     },
     "--mood-neg": {
      "tier": "semantic",
-     "value": "hsl(0,70%,55%)"
+     "value": "hsl(0,75%,65%)"
     },
     "--mood-warn": {
      "tier": "semantic",
-     "value": "hsl(45,90%,50%)"
+     "value": "hsl(45,90%,58%)"
     },
     "--mood-pos-text": {
      "tier": "semantic",
-     "value": "#15803d"
+     "value": "#86efac"
     },
     "--mood-neg-text": {
      "tier": "semantic",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--mood-warn-text": {
      "tier": "semantic",
-     "value": "#b45309"
+     "value": "#fcd34d"
     },
     "--caution-bg": {
      "tier": "semantic",
-     "value": "#fef3c7"
+     "value": "rgba(251,191,36,0.16)"
     },
     "--caution-fg": {
      "tier": "semantic",
-     "value": "#78350f"
+     "value": "#fcd34d"
     },
     "--caution-border": {
      "tier": "semantic",
-     "value": "#fde68a"
+     "value": "rgba(251,191,36,0.35)"
     },
     "--caution-muted": {
      "tier": "semantic",
-     "value": "#92400e"
+     "value": "#fde68a"
     },
     "--danger-text": {
      "tier": "semantic",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--bg-page": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--bg-page-gradient": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-base": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-card": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-input": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-border": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--glass-border-strong": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--glass-inner-glow": {
      "tier": "semantic",
@@ -6086,135 +6086,135 @@
     },
     "--surface-bar": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--surface-sheet": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "#141923"
     },
     "--scrim": {
      "tier": "semantic",
-     "value": "rgba(15,23,42,0.45)"
+     "value": "rgba(0,0,0,0.6)"
     },
     "--surface-floating": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #F2F1ED 96%, transparent)"
+     "value": "color-mix(in srgb, #141923 96%, transparent)"
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--surface-row": {
      "tier": "semantic",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--surface-field": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "rgba(255,255,255,0.08)"
     },
     "--surface-selected": {
      "tier": "semantic",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.16)"
     },
     "--surface-control": {
      "tier": "semantic",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--text-primary": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--text-secondary": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--text-muted": {
      "tier": "semantic",
-     "value": "#1f2933"
+     "value": "#e8edf5"
     },
     "--text-link": {
      "tier": "semantic",
-     "value": "#1A1917"
+     "value": "#ADC6FF"
     },
     "--outline": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--outline-soft": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.55)"
+     "value": "rgba(255,255,255,0.05)"
     },
     "--outline-strong": {
      "tier": "semantic",
-     "value": "#D3D1C9"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 0 0 rgba(26,25,23,0)"
+     "value": "0 4px 16px rgba(0,0,0,0.35)"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "0 8px 28px rgba(0,0,0,0.45)"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "0 12px 40px rgba(0,0,0,0.55)"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "0 -8px 30px rgba(0,0,0,0.55)"
     },
     "--tone-read-bg": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.1)"
     },
     "--tone-read-fg": {
      "tier": "semantic",
-     "value": "#475569"
+     "value": "#cbd5e1"
     },
     "--tone-sent-bg": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "rgba(96,165,250,0.18)"
     },
     "--tone-sent-fg": {
      "tier": "semantic",
-     "value": "#2E2C28"
+     "value": "#93c5fd"
     },
     "--tone-new-bg": {
      "tier": "semantic",
-     "value": "#dcfce7"
+     "value": "rgba(74,222,128,0.16)"
     },
     "--tone-new-fg": {
      "tier": "semantic",
-     "value": "#166534"
+     "value": "#86efac"
     },
     "--tone-arch-bg": {
      "tier": "semantic",
-     "value": "#fef3c7"
+     "value": "rgba(251,191,36,0.16)"
     },
     "--tone-arch-fg": {
      "tier": "semantic",
-     "value": "#92400e"
+     "value": "#fcd34d"
     },
     "--control-track": {
      "tier": "semantic",
-     "value": "#cbd5e1"
+     "value": "#334155"
     },
     "--control-thumb": {
      "tier": "semantic",
-     "value": "rgba(100,116,139,0.42)"
+     "value": "rgba(226,232,240,0.28)"
     },
     "--control-thumb-hover": {
      "tier": "semantic",
-     "value": "rgba(100,116,139,0.66)"
+     "value": "rgba(226,232,240,0.46)"
     },
     "--control-grip": {
      "tier": "semantic",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.25)"
     },
     "--control-off": {
      "tier": "semantic",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.22)"
     },
     "--control-knob": {
      "tier": "semantic",
@@ -6222,47 +6222,47 @@
     },
     "--control-border": {
      "tier": "semantic",
-     "value": "#94a3b8"
+     "value": "#64748b"
     },
     "--surface-inverse": {
      "tier": "semantic",
-     "value": "#0f172a"
+     "value": "#e8edf5"
     },
     "--text-inverse": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#0b0e14"
     },
     "--link-inverse": {
      "tier": "semantic",
-     "value": "#93c5fd"
+     "value": "#1d4ed8"
     },
     "--overlay-strong": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #000000 18%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 18%, transparent)"
     },
     "--overlay": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #000000 10%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 10%, transparent)"
     },
     "--data-0": {
      "tier": "semantic",
-     "value": "#2a78d6"
+     "value": "#3987e5"
     },
     "--data-1": {
      "tier": "semantic",
-     "value": "#eb6834"
+     "value": "#d95926"
     },
     "--data-2": {
      "tier": "semantic",
-     "value": "#1baf7a"
+     "value": "#199e70"
     },
     "--data-3": {
      "tier": "semantic",
-     "value": "#eda100"
+     "value": "#c98500"
     },
     "--data-4": {
      "tier": "semantic",
-     "value": "#e87ba4"
+     "value": "#d55181"
     },
     "--data-5": {
      "tier": "semantic",
@@ -6270,59 +6270,59 @@
     },
     "--data-6": {
      "tier": "semantic",
-     "value": "#4a3aa7"
+     "value": "#9085e9"
     },
     "--data-7": {
      "tier": "semantic",
-     "value": "#e34948"
+     "value": "#e66767"
     },
     "--data-other": {
      "tier": "semantic",
-     "value": "#9ca3af"
+     "value": "#6b7280"
     },
     "--annotation-user-bg": {
      "tier": "semantic",
-     "value": "#fef9c3"
+     "value": "#2f2a15"
     },
     "--annotation-user-fg": {
      "tier": "semantic",
-     "value": "#713f12"
+     "value": "#f4e6a8"
     },
     "--annotation-user-bar": {
      "tier": "semantic",
-     "value": "#eab308"
+     "value": "#d4a514"
     },
     "--annotation-ai-bg": {
      "tier": "semantic",
-     "value": "#e0f2fe"
+     "value": "#10293a"
     },
     "--annotation-ai-fg": {
      "tier": "semantic",
-     "value": "#0c4a6e"
+     "value": "#c9e7f8"
     },
     "--annotation-ai-bar": {
      "tier": "semantic",
-     "value": "#0284C7"
+     "value": "#38bdf8"
     },
     "--annotation-note-bg": {
      "tier": "semantic",
-     "value": "#fce7f3"
+     "value": "#35182d"
     },
     "--annotation-note-fg": {
      "tier": "semantic",
-     "value": "#831843"
+     "value": "#f7d6e8"
     },
     "--annotation-note-bar": {
      "tier": "semantic",
-     "value": "#db2777"
+     "value": "#f472b6"
     },
     "--annotation-quote-bg": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.55)"
+     "value": "rgba(0,0,0,0.25)"
     },
     "--annotation-edge": {
      "tier": "semantic",
-     "value": "none"
+     "value": "inset 0 0 0 1px rgba(255,255,255,0.06)"
     }
    }
   },
@@ -15717,7 +15717,7 @@
      "value": "inset 0 0 0 1px rgba(255,255,255,0.06)"
     }
    },
-   "postil-contrast": {
+   "contrast-dark": {
     "--radius-xs": {
      "tier": "semantic",
      "value": "6px"
@@ -15948,7 +15948,7 @@
     },
     "--font-reading": {
      "tier": "semantic",
-     "value": "'Iowan Old Style', 'Charter', 'Source Serif 4', 'Georgia', serif"
+     "value": "'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif"
     },
     "--surface-busy": {
      "tier": "semantic",
@@ -15960,7 +15960,7 @@
     },
     "--focus-ring": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--focus-ring-width": {
      "tier": "semantic",
@@ -16068,55 +16068,55 @@
     },
     "--player-bg": {
      "tier": "component",
-     "value": "color-mix(in srgb, #F2F1ED 96%, transparent)"
+     "value": "color-mix(in srgb, #111D20 96%, transparent)"
     },
     "--player-border": {
      "tier": "component",
-     "value": "#D3D1C9"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "0 -8px 30px rgba(0,0,0,0.55)"
     },
     "--player-fg": {
      "tier": "component",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--player-track": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 18%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 18%, transparent)"
     },
     "--player-fill": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#7CCBD4"
     },
     "--player-hover": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 10%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 10%, transparent)"
     },
     "--player-pill": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 10%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 10%, transparent)"
     },
     "--player-pill-hover": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 18%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 18%, transparent)"
     },
     "--player-play-bg": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#7CCBD4"
     },
     "--player-play-fg": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--player-err": {
      "tier": "component",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--header-h": {
      "tier": "component",
@@ -16148,15 +16148,15 @@
     },
     "--nav-bg": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--nav-active-text": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--nav-blob-bg": {
      "tier": "component",
-     "value": "linear-gradient(135deg, #1A1917, #1A1917)"
+     "value": "linear-gradient(135deg, #7CCBD4, #7CCBD4)"
     },
     "--floating-stack-height": {
      "tier": "component",
@@ -16176,83 +16176,83 @@
     },
     "--slider-track": {
      "tier": "component",
-     "value": "#cbd5e1"
+     "value": "#334155"
     },
     "--slider-fill": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#7CCBD4"
     },
     "--scrollbar-thumb": {
      "tier": "component",
-     "value": "rgba(100,116,139,0.42)"
+     "value": "rgba(226,232,240,0.28)"
     },
     "--scrollbar-thumb-hover": {
      "tier": "component",
-     "value": "rgba(100,116,139,0.66)"
+     "value": "rgba(226,232,240,0.46)"
     },
     "--sheet-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "#111D20"
     },
     "--sheet-border": {
      "tier": "component",
-     "value": "#D3D1C9"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--sheet-scrim": {
      "tier": "component",
-     "value": "rgba(15,23,42,0.45)"
+     "value": "rgba(0,0,0,0.6)"
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "0 -8px 30px rgba(0,0,0,0.55)"
     },
     "--sheet-grab": {
      "tier": "component",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.25)"
     },
     "--note-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "rgba(63,166,179,0.14)"
     },
     "--note-fg": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#A8DDE3"
     },
     "--toast-bg": {
      "tier": "component",
-     "value": "#0f172a"
+     "value": "#e8edf5"
     },
     "--toast-fg": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#0b0e14"
     },
     "--toast-action": {
      "tier": "component",
-     "value": "#7CCBD4"
+     "value": "#0B525E"
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--chart-0": {
      "tier": "component",
-     "value": "#2a78d6"
+     "value": "#3987e5"
     },
     "--chart-1": {
      "tier": "component",
-     "value": "#eb6834"
+     "value": "#d95926"
     },
     "--chart-2": {
      "tier": "component",
-     "value": "#1baf7a"
+     "value": "#199e70"
     },
     "--chart-3": {
      "tier": "component",
-     "value": "#eda100"
+     "value": "#c98500"
     },
     "--chart-4": {
      "tier": "component",
-     "value": "#e87ba4"
+     "value": "#d55181"
     },
     "--chart-5": {
      "tier": "component",
@@ -16260,83 +16260,83 @@
     },
     "--chart-6": {
      "tier": "component",
-     "value": "#4a3aa7"
+     "value": "#9085e9"
     },
     "--chart-7": {
      "tier": "component",
-     "value": "#e34948"
+     "value": "#e66767"
     },
     "--chart-other": {
      "tier": "component",
-     "value": "#9ca3af"
+     "value": "#6b7280"
     },
     "--chart-gap": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--saved-note-user-bg": {
      "tier": "component",
-     "value": "#fef9c3"
+     "value": "#2f2a15"
     },
     "--saved-note-user-fg": {
      "tier": "component",
-     "value": "#713f12"
+     "value": "#f4e6a8"
     },
     "--saved-note-user-bar": {
      "tier": "component",
-     "value": "#eab308"
+     "value": "#d4a514"
     },
     "--saved-note-ghost-bg": {
      "tier": "component",
-     "value": "#e0f2fe"
+     "value": "#10293a"
     },
     "--saved-note-ghost-fg": {
      "tier": "component",
-     "value": "#0c4a6e"
+     "value": "#c9e7f8"
     },
     "--saved-note-ghost-bar": {
      "tier": "component",
-     "value": "#0284C7"
+     "value": "#38bdf8"
     },
     "--saved-note-note-bg": {
      "tier": "component",
-     "value": "#fce7f3"
+     "value": "#35182d"
     },
     "--saved-note-note-fg": {
      "tier": "component",
-     "value": "#831843"
+     "value": "#f7d6e8"
     },
     "--saved-note-note-bar": {
      "tier": "component",
-     "value": "#db2777"
+     "value": "#f472b6"
     },
     "--saved-note-quote-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.55)"
+     "value": "rgba(0,0,0,0.25)"
     },
     "--saved-note-edge": {
      "tier": "component",
-     "value": "none"
+     "value": "inset 0 0 0 1px rgba(255,255,255,0.06)"
     },
     "--saved-note-danger": {
      "tier": "component",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--row-bg": {
      "tier": "component",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--row-on-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "rgba(63,166,179,0.14)"
     },
     "--field-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "rgba(255,255,255,0.08)"
     },
     "--switch-off": {
      "tier": "component",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.22)"
     },
     "--switch-knob": {
      "tier": "component",
@@ -16344,15 +16344,15 @@
     },
     "--check-border": {
      "tier": "component",
-     "value": "#94a3b8"
+     "value": "#64748b"
     },
     "--check-bg": {
      "tier": "component",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--sel-card-bg": {
      "tier": "component",
-     "value": "color-mix(in srgb, #1A1917 8%, transparent)"
+     "value": "rgba(63,166,179,0.14)"
     },
     "--rsvp-word-size": {
      "tier": "component",
@@ -16364,75 +16364,75 @@
     },
     "--rsvp-pivot": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#7CCBD4"
     },
     "--rsvp-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "#111D20"
     },
     "--rsvp-context-bg": {
      "tier": "component",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--accent-a05": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "#04262C"
     },
     "--accent-a08": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "#04262C"
     },
     "--accent-a10": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 10%, transparent)"
+     "value": "color-mix(in srgb, #7CCBD4 10%, transparent)"
     },
     "--accent-a12": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 12%, transparent)"
+     "value": "color-mix(in srgb, #7CCBD4 12%, transparent)"
     },
     "--accent-a15": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 15%, transparent)"
+     "value": "color-mix(in srgb, #7CCBD4 15%, transparent)"
     },
     "--accent-a25": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 25%, transparent)"
+     "value": "color-mix(in srgb, #7CCBD4 25%, transparent)"
     },
     "--accent-a30": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 30%, transparent)"
+     "value": "color-mix(in srgb, #7CCBD4 30%, transparent)"
     },
     "--accent": {
      "tier": "semantic",
-     "value": "#1A1917"
+     "value": "#7CCBD4"
     },
     "--accent-light": {
      "tier": "semantic",
-     "value": "#1A1917"
+     "value": "#7CCBD4"
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "rgba(26,25,23,0)"
+     "value": "#7CCBD4"
     },
     "--on-accent": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--accent-soft": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 10%, transparent)"
+     "value": "rgba(63,166,179,0.14)"
     },
     "--accent-soft-strong": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 18%, transparent)"
+     "value": "rgba(63,166,179,0.26)"
     },
     "--accent-subtle": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "rgba(63,166,179,0.14)"
     },
     "--accent-selected": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 8%, transparent)"
+     "value": "rgba(63,166,179,0.14)"
     },
     "--danger-strong": {
      "tier": "semantic",
@@ -16456,75 +16456,75 @@
     },
     "--mood-pos": {
      "tier": "semantic",
-     "value": "hsl(142,55%,42%)"
+     "value": "hsl(142,55%,52%)"
     },
     "--mood-neg": {
      "tier": "semantic",
-     "value": "hsl(0,70%,55%)"
+     "value": "hsl(0,75%,65%)"
     },
     "--mood-warn": {
      "tier": "semantic",
-     "value": "hsl(45,90%,50%)"
+     "value": "hsl(45,90%,58%)"
     },
     "--mood-pos-text": {
      "tier": "semantic",
-     "value": "#15803d"
+     "value": "#86efac"
     },
     "--mood-neg-text": {
      "tier": "semantic",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--mood-warn-text": {
      "tier": "semantic",
-     "value": "#b45309"
+     "value": "#fcd34d"
     },
     "--caution-bg": {
      "tier": "semantic",
-     "value": "#fef3c7"
+     "value": "rgba(251,191,36,0.16)"
     },
     "--caution-fg": {
      "tier": "semantic",
-     "value": "#78350f"
+     "value": "#fcd34d"
     },
     "--caution-border": {
      "tier": "semantic",
-     "value": "#fde68a"
+     "value": "rgba(251,191,36,0.35)"
     },
     "--caution-muted": {
      "tier": "semantic",
-     "value": "#92400e"
+     "value": "#fde68a"
     },
     "--danger-text": {
      "tier": "semantic",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--bg-page": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--bg-page-gradient": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-base": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-card": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-input": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-border": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--glass-border-strong": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--glass-inner-glow": {
      "tier": "semantic",
@@ -16532,135 +16532,135 @@
     },
     "--surface-bar": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--surface-sheet": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "#111D20"
     },
     "--scrim": {
      "tier": "semantic",
-     "value": "rgba(15,23,42,0.45)"
+     "value": "rgba(0,0,0,0.6)"
     },
     "--surface-floating": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #F2F1ED 96%, transparent)"
+     "value": "color-mix(in srgb, #111D20 96%, transparent)"
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--surface-row": {
      "tier": "semantic",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--surface-field": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "rgba(255,255,255,0.08)"
     },
     "--surface-selected": {
      "tier": "semantic",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.16)"
     },
     "--surface-control": {
      "tier": "semantic",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--text-primary": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--text-secondary": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--text-muted": {
      "tier": "semantic",
-     "value": "#1f2933"
+     "value": "#e8edf5"
     },
     "--text-link": {
      "tier": "semantic",
-     "value": "#1A1917"
+     "value": "#A8DDE3"
     },
     "--outline": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--outline-soft": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.55)"
+     "value": "rgba(255,255,255,0.05)"
     },
     "--outline-strong": {
      "tier": "semantic",
-     "value": "#D3D1C9"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 0 0 rgba(26,25,23,0)"
+     "value": "0 4px 16px rgba(0,0,0,0.35)"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "0 8px 28px rgba(0,0,0,0.45)"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "0 12px 40px rgba(0,0,0,0.55)"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "0 -8px 30px rgba(0,0,0,0.55)"
     },
     "--tone-read-bg": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.1)"
     },
     "--tone-read-fg": {
      "tier": "semantic",
-     "value": "#475569"
+     "value": "#cbd5e1"
     },
     "--tone-sent-bg": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "rgba(63,166,179,0.18)"
     },
     "--tone-sent-fg": {
      "tier": "semantic",
-     "value": "#2E2C28"
+     "value": "#7CCBD4"
     },
     "--tone-new-bg": {
      "tier": "semantic",
-     "value": "#dcfce7"
+     "value": "rgba(74,222,128,0.16)"
     },
     "--tone-new-fg": {
      "tier": "semantic",
-     "value": "#166534"
+     "value": "#86efac"
     },
     "--tone-arch-bg": {
      "tier": "semantic",
-     "value": "#fef3c7"
+     "value": "rgba(251,191,36,0.16)"
     },
     "--tone-arch-fg": {
      "tier": "semantic",
-     "value": "#92400e"
+     "value": "#fcd34d"
     },
     "--control-track": {
      "tier": "semantic",
-     "value": "#cbd5e1"
+     "value": "#334155"
     },
     "--control-thumb": {
      "tier": "semantic",
-     "value": "rgba(100,116,139,0.42)"
+     "value": "rgba(226,232,240,0.28)"
     },
     "--control-thumb-hover": {
      "tier": "semantic",
-     "value": "rgba(100,116,139,0.66)"
+     "value": "rgba(226,232,240,0.46)"
     },
     "--control-grip": {
      "tier": "semantic",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.25)"
     },
     "--control-off": {
      "tier": "semantic",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.22)"
     },
     "--control-knob": {
      "tier": "semantic",
@@ -16668,47 +16668,47 @@
     },
     "--control-border": {
      "tier": "semantic",
-     "value": "#94a3b8"
+     "value": "#64748b"
     },
     "--surface-inverse": {
      "tier": "semantic",
-     "value": "#0f172a"
+     "value": "#e8edf5"
     },
     "--text-inverse": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#0b0e14"
     },
     "--link-inverse": {
      "tier": "semantic",
-     "value": "#7CCBD4"
+     "value": "#0B525E"
     },
     "--overlay-strong": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #000000 18%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 18%, transparent)"
     },
     "--overlay": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #000000 10%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 10%, transparent)"
     },
     "--data-0": {
      "tier": "semantic",
-     "value": "#2a78d6"
+     "value": "#3987e5"
     },
     "--data-1": {
      "tier": "semantic",
-     "value": "#eb6834"
+     "value": "#d95926"
     },
     "--data-2": {
      "tier": "semantic",
-     "value": "#1baf7a"
+     "value": "#199e70"
     },
     "--data-3": {
      "tier": "semantic",
-     "value": "#eda100"
+     "value": "#c98500"
     },
     "--data-4": {
      "tier": "semantic",
-     "value": "#e87ba4"
+     "value": "#d55181"
     },
     "--data-5": {
      "tier": "semantic",
@@ -16716,59 +16716,59 @@
     },
     "--data-6": {
      "tier": "semantic",
-     "value": "#4a3aa7"
+     "value": "#9085e9"
     },
     "--data-7": {
      "tier": "semantic",
-     "value": "#e34948"
+     "value": "#e66767"
     },
     "--data-other": {
      "tier": "semantic",
-     "value": "#9ca3af"
+     "value": "#6b7280"
     },
     "--annotation-user-bg": {
      "tier": "semantic",
-     "value": "#fef9c3"
+     "value": "#2f2a15"
     },
     "--annotation-user-fg": {
      "tier": "semantic",
-     "value": "#713f12"
+     "value": "#f4e6a8"
     },
     "--annotation-user-bar": {
      "tier": "semantic",
-     "value": "#eab308"
+     "value": "#d4a514"
     },
     "--annotation-ai-bg": {
      "tier": "semantic",
-     "value": "#e0f2fe"
+     "value": "#10293a"
     },
     "--annotation-ai-fg": {
      "tier": "semantic",
-     "value": "#0c4a6e"
+     "value": "#c9e7f8"
     },
     "--annotation-ai-bar": {
      "tier": "semantic",
-     "value": "#0284C7"
+     "value": "#38bdf8"
     },
     "--annotation-note-bg": {
      "tier": "semantic",
-     "value": "#fce7f3"
+     "value": "#35182d"
     },
     "--annotation-note-fg": {
      "tier": "semantic",
-     "value": "#831843"
+     "value": "#f7d6e8"
     },
     "--annotation-note-bar": {
      "tier": "semantic",
-     "value": "#db2777"
+     "value": "#f472b6"
     },
     "--annotation-quote-bg": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.55)"
+     "value": "rgba(0,0,0,0.25)"
     },
     "--annotation-edge": {
      "tier": "semantic",
-     "value": "none"
+     "value": "inset 0 0 0 1px rgba(255,255,255,0.06)"
     }
    }
   },
@@ -26163,7 +26163,7 @@
      "value": "inset 0 0 0 1px rgba(255,255,255,0.06)"
     }
    },
-   "postil-contrast": {
+   "contrast-dark": {
     "--radius-xs": {
      "tier": "semantic",
      "value": "6px"
@@ -26394,7 +26394,7 @@
     },
     "--font-reading": {
      "tier": "semantic",
-     "value": "'Iowan Old Style', 'Charter', 'Source Serif 4', 'Georgia', serif"
+     "value": "'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif"
     },
     "--surface-busy": {
      "tier": "semantic",
@@ -26406,7 +26406,7 @@
     },
     "--focus-ring": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--focus-ring-width": {
      "tier": "semantic",
@@ -26514,55 +26514,55 @@
     },
     "--player-bg": {
      "tier": "component",
-     "value": "color-mix(in srgb, #F2F1ED 96%, transparent)"
+     "value": "color-mix(in srgb, #14211D 96%, transparent)"
     },
     "--player-border": {
      "tier": "component",
-     "value": "#D3D1C9"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "0 -8px 30px rgba(0,0,0,0.55)"
     },
     "--player-fg": {
      "tier": "component",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--player-track": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 18%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 18%, transparent)"
     },
     "--player-fill": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#A6E3CB"
     },
     "--player-hover": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 10%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 10%, transparent)"
     },
     "--player-pill": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 10%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 10%, transparent)"
     },
     "--player-pill-hover": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 18%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 18%, transparent)"
     },
     "--player-play-bg": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#A6E3CB"
     },
     "--player-play-fg": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--player-err": {
      "tier": "component",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--header-h": {
      "tier": "component",
@@ -26594,15 +26594,15 @@
     },
     "--nav-bg": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--nav-active-text": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--nav-blob-bg": {
      "tier": "component",
-     "value": "linear-gradient(135deg, #1A1917, #1A1917)"
+     "value": "linear-gradient(135deg, #A6E3CB, #A6E3CB)"
     },
     "--floating-stack-height": {
      "tier": "component",
@@ -26622,83 +26622,83 @@
     },
     "--slider-track": {
      "tier": "component",
-     "value": "#cbd5e1"
+     "value": "#334155"
     },
     "--slider-fill": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#A6E3CB"
     },
     "--scrollbar-thumb": {
      "tier": "component",
-     "value": "rgba(100,116,139,0.42)"
+     "value": "rgba(226,232,240,0.28)"
     },
     "--scrollbar-thumb-hover": {
      "tier": "component",
-     "value": "rgba(100,116,139,0.66)"
+     "value": "rgba(226,232,240,0.46)"
     },
     "--sheet-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "#14211D"
     },
     "--sheet-border": {
      "tier": "component",
-     "value": "#D3D1C9"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--sheet-scrim": {
      "tier": "component",
-     "value": "rgba(15,23,42,0.45)"
+     "value": "rgba(0,0,0,0.6)"
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "0 -8px 30px rgba(0,0,0,0.55)"
     },
     "--sheet-grab": {
      "tier": "component",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.25)"
     },
     "--note-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "rgba(92,201,160,0.14)"
     },
     "--note-fg": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#C3EBDB"
     },
     "--toast-bg": {
      "tier": "component",
-     "value": "#0f172a"
+     "value": "#e8edf5"
     },
     "--toast-fg": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#0b0e14"
     },
     "--toast-action": {
      "tier": "component",
-     "value": "#A6E3CB"
+     "value": "#14624A"
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--chart-0": {
      "tier": "component",
-     "value": "#2a78d6"
+     "value": "#3987e5"
     },
     "--chart-1": {
      "tier": "component",
-     "value": "#eb6834"
+     "value": "#d95926"
     },
     "--chart-2": {
      "tier": "component",
-     "value": "#1baf7a"
+     "value": "#199e70"
     },
     "--chart-3": {
      "tier": "component",
-     "value": "#eda100"
+     "value": "#c98500"
     },
     "--chart-4": {
      "tier": "component",
-     "value": "#e87ba4"
+     "value": "#d55181"
     },
     "--chart-5": {
      "tier": "component",
@@ -26706,83 +26706,83 @@
     },
     "--chart-6": {
      "tier": "component",
-     "value": "#4a3aa7"
+     "value": "#9085e9"
     },
     "--chart-7": {
      "tier": "component",
-     "value": "#e34948"
+     "value": "#e66767"
     },
     "--chart-other": {
      "tier": "component",
-     "value": "#9ca3af"
+     "value": "#6b7280"
     },
     "--chart-gap": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--saved-note-user-bg": {
      "tier": "component",
-     "value": "#fef9c3"
+     "value": "#2f2a15"
     },
     "--saved-note-user-fg": {
      "tier": "component",
-     "value": "#713f12"
+     "value": "#f4e6a8"
     },
     "--saved-note-user-bar": {
      "tier": "component",
-     "value": "#eab308"
+     "value": "#d4a514"
     },
     "--saved-note-ghost-bg": {
      "tier": "component",
-     "value": "#e0f2fe"
+     "value": "#10293a"
     },
     "--saved-note-ghost-fg": {
      "tier": "component",
-     "value": "#0c4a6e"
+     "value": "#c9e7f8"
     },
     "--saved-note-ghost-bar": {
      "tier": "component",
-     "value": "#0284C7"
+     "value": "#38bdf8"
     },
     "--saved-note-note-bg": {
      "tier": "component",
-     "value": "#fce7f3"
+     "value": "#35182d"
     },
     "--saved-note-note-fg": {
      "tier": "component",
-     "value": "#831843"
+     "value": "#f7d6e8"
     },
     "--saved-note-note-bar": {
      "tier": "component",
-     "value": "#db2777"
+     "value": "#f472b6"
     },
     "--saved-note-quote-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.55)"
+     "value": "rgba(0,0,0,0.25)"
     },
     "--saved-note-edge": {
      "tier": "component",
-     "value": "none"
+     "value": "inset 0 0 0 1px rgba(255,255,255,0.06)"
     },
     "--saved-note-danger": {
      "tier": "component",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--row-bg": {
      "tier": "component",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--row-on-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "rgba(92,201,160,0.14)"
     },
     "--field-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "rgba(255,255,255,0.08)"
     },
     "--switch-off": {
      "tier": "component",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.22)"
     },
     "--switch-knob": {
      "tier": "component",
@@ -26790,15 +26790,15 @@
     },
     "--check-border": {
      "tier": "component",
-     "value": "#94a3b8"
+     "value": "#64748b"
     },
     "--check-bg": {
      "tier": "component",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--sel-card-bg": {
      "tier": "component",
-     "value": "color-mix(in srgb, #1A1917 8%, transparent)"
+     "value": "rgba(92,201,160,0.14)"
     },
     "--rsvp-word-size": {
      "tier": "component",
@@ -26810,75 +26810,75 @@
     },
     "--rsvp-pivot": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#A6E3CB"
     },
     "--rsvp-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "#14211D"
     },
     "--rsvp-context-bg": {
      "tier": "component",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--accent-a05": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "#0F3D33"
     },
     "--accent-a08": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "#0F3D33"
     },
     "--accent-a10": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 10%, transparent)"
+     "value": "color-mix(in srgb, #A6E3CB 10%, transparent)"
     },
     "--accent-a12": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 12%, transparent)"
+     "value": "color-mix(in srgb, #A6E3CB 12%, transparent)"
     },
     "--accent-a15": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 15%, transparent)"
+     "value": "color-mix(in srgb, #A6E3CB 15%, transparent)"
     },
     "--accent-a25": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 25%, transparent)"
+     "value": "color-mix(in srgb, #A6E3CB 25%, transparent)"
     },
     "--accent-a30": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 30%, transparent)"
+     "value": "color-mix(in srgb, #A6E3CB 30%, transparent)"
     },
     "--accent": {
      "tier": "semantic",
-     "value": "#1A1917"
+     "value": "#A6E3CB"
     },
     "--accent-light": {
      "tier": "semantic",
-     "value": "#1A1917"
+     "value": "#A6E3CB"
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "rgba(26,25,23,0)"
+     "value": "#A6E3CB"
     },
     "--on-accent": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--accent-soft": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 10%, transparent)"
+     "value": "rgba(92,201,160,0.14)"
     },
     "--accent-soft-strong": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 18%, transparent)"
+     "value": "rgba(92,201,160,0.26)"
     },
     "--accent-subtle": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "rgba(92,201,160,0.14)"
     },
     "--accent-selected": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 8%, transparent)"
+     "value": "rgba(92,201,160,0.14)"
     },
     "--danger-strong": {
      "tier": "semantic",
@@ -26902,75 +26902,75 @@
     },
     "--mood-pos": {
      "tier": "semantic",
-     "value": "hsl(142,55%,42%)"
+     "value": "hsl(142,55%,52%)"
     },
     "--mood-neg": {
      "tier": "semantic",
-     "value": "hsl(0,70%,55%)"
+     "value": "hsl(0,75%,65%)"
     },
     "--mood-warn": {
      "tier": "semantic",
-     "value": "hsl(45,90%,50%)"
+     "value": "hsl(45,90%,58%)"
     },
     "--mood-pos-text": {
      "tier": "semantic",
-     "value": "#15803d"
+     "value": "#86efac"
     },
     "--mood-neg-text": {
      "tier": "semantic",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--mood-warn-text": {
      "tier": "semantic",
-     "value": "#b45309"
+     "value": "#fcd34d"
     },
     "--caution-bg": {
      "tier": "semantic",
-     "value": "#fef3c7"
+     "value": "rgba(251,191,36,0.16)"
     },
     "--caution-fg": {
      "tier": "semantic",
-     "value": "#78350f"
+     "value": "#fcd34d"
     },
     "--caution-border": {
      "tier": "semantic",
-     "value": "#fde68a"
+     "value": "rgba(251,191,36,0.35)"
     },
     "--caution-muted": {
      "tier": "semantic",
-     "value": "#92400e"
+     "value": "#fde68a"
     },
     "--danger-text": {
      "tier": "semantic",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--bg-page": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--bg-page-gradient": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-base": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-card": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-input": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-border": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--glass-border-strong": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--glass-inner-glow": {
      "tier": "semantic",
@@ -26978,135 +26978,135 @@
     },
     "--surface-bar": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--surface-sheet": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "#14211D"
     },
     "--scrim": {
      "tier": "semantic",
-     "value": "rgba(15,23,42,0.45)"
+     "value": "rgba(0,0,0,0.6)"
     },
     "--surface-floating": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #F2F1ED 96%, transparent)"
+     "value": "color-mix(in srgb, #14211D 96%, transparent)"
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--surface-row": {
      "tier": "semantic",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--surface-field": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "rgba(255,255,255,0.08)"
     },
     "--surface-selected": {
      "tier": "semantic",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.16)"
     },
     "--surface-control": {
      "tier": "semantic",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--text-primary": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--text-secondary": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--text-muted": {
      "tier": "semantic",
-     "value": "#1f2933"
+     "value": "#e8edf5"
     },
     "--text-link": {
      "tier": "semantic",
-     "value": "#1A1917"
+     "value": "#C3EBDB"
     },
     "--outline": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--outline-soft": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.55)"
+     "value": "rgba(255,255,255,0.05)"
     },
     "--outline-strong": {
      "tier": "semantic",
-     "value": "#D3D1C9"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 0 0 rgba(26,25,23,0)"
+     "value": "0 4px 16px rgba(0,0,0,0.35)"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "0 8px 28px rgba(0,0,0,0.45)"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "0 12px 40px rgba(0,0,0,0.55)"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "0 -8px 30px rgba(0,0,0,0.55)"
     },
     "--tone-read-bg": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.1)"
     },
     "--tone-read-fg": {
      "tier": "semantic",
-     "value": "#475569"
+     "value": "#cbd5e1"
     },
     "--tone-sent-bg": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "rgba(92,201,160,0.18)"
     },
     "--tone-sent-fg": {
      "tier": "semantic",
-     "value": "#2E2C28"
+     "value": "#A6E3CB"
     },
     "--tone-new-bg": {
      "tier": "semantic",
-     "value": "#dcfce7"
+     "value": "rgba(74,222,128,0.16)"
     },
     "--tone-new-fg": {
      "tier": "semantic",
-     "value": "#166534"
+     "value": "#86efac"
     },
     "--tone-arch-bg": {
      "tier": "semantic",
-     "value": "#fef3c7"
+     "value": "rgba(251,191,36,0.16)"
     },
     "--tone-arch-fg": {
      "tier": "semantic",
-     "value": "#92400e"
+     "value": "#fcd34d"
     },
     "--control-track": {
      "tier": "semantic",
-     "value": "#cbd5e1"
+     "value": "#334155"
     },
     "--control-thumb": {
      "tier": "semantic",
-     "value": "rgba(100,116,139,0.42)"
+     "value": "rgba(226,232,240,0.28)"
     },
     "--control-thumb-hover": {
      "tier": "semantic",
-     "value": "rgba(100,116,139,0.66)"
+     "value": "rgba(226,232,240,0.46)"
     },
     "--control-grip": {
      "tier": "semantic",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.25)"
     },
     "--control-off": {
      "tier": "semantic",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.22)"
     },
     "--control-knob": {
      "tier": "semantic",
@@ -27114,47 +27114,47 @@
     },
     "--control-border": {
      "tier": "semantic",
-     "value": "#94a3b8"
+     "value": "#64748b"
     },
     "--surface-inverse": {
      "tier": "semantic",
-     "value": "#0f172a"
+     "value": "#e8edf5"
     },
     "--text-inverse": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#0b0e14"
     },
     "--link-inverse": {
      "tier": "semantic",
-     "value": "#A6E3CB"
+     "value": "#14624A"
     },
     "--overlay-strong": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #000000 18%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 18%, transparent)"
     },
     "--overlay": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #000000 10%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 10%, transparent)"
     },
     "--data-0": {
      "tier": "semantic",
-     "value": "#2a78d6"
+     "value": "#3987e5"
     },
     "--data-1": {
      "tier": "semantic",
-     "value": "#eb6834"
+     "value": "#d95926"
     },
     "--data-2": {
      "tier": "semantic",
-     "value": "#1baf7a"
+     "value": "#199e70"
     },
     "--data-3": {
      "tier": "semantic",
-     "value": "#eda100"
+     "value": "#c98500"
     },
     "--data-4": {
      "tier": "semantic",
-     "value": "#e87ba4"
+     "value": "#d55181"
     },
     "--data-5": {
      "tier": "semantic",
@@ -27162,59 +27162,59 @@
     },
     "--data-6": {
      "tier": "semantic",
-     "value": "#4a3aa7"
+     "value": "#9085e9"
     },
     "--data-7": {
      "tier": "semantic",
-     "value": "#e34948"
+     "value": "#e66767"
     },
     "--data-other": {
      "tier": "semantic",
-     "value": "#9ca3af"
+     "value": "#6b7280"
     },
     "--annotation-user-bg": {
      "tier": "semantic",
-     "value": "#fef9c3"
+     "value": "#2f2a15"
     },
     "--annotation-user-fg": {
      "tier": "semantic",
-     "value": "#713f12"
+     "value": "#f4e6a8"
     },
     "--annotation-user-bar": {
      "tier": "semantic",
-     "value": "#eab308"
+     "value": "#d4a514"
     },
     "--annotation-ai-bg": {
      "tier": "semantic",
-     "value": "#e0f2fe"
+     "value": "#10293a"
     },
     "--annotation-ai-fg": {
      "tier": "semantic",
-     "value": "#0c4a6e"
+     "value": "#c9e7f8"
     },
     "--annotation-ai-bar": {
      "tier": "semantic",
-     "value": "#0284C7"
+     "value": "#38bdf8"
     },
     "--annotation-note-bg": {
      "tier": "semantic",
-     "value": "#fce7f3"
+     "value": "#35182d"
     },
     "--annotation-note-fg": {
      "tier": "semantic",
-     "value": "#831843"
+     "value": "#f7d6e8"
     },
     "--annotation-note-bar": {
      "tier": "semantic",
-     "value": "#db2777"
+     "value": "#f472b6"
     },
     "--annotation-quote-bg": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.55)"
+     "value": "rgba(0,0,0,0.25)"
     },
     "--annotation-edge": {
      "tier": "semantic",
-     "value": "none"
+     "value": "inset 0 0 0 1px rgba(255,255,255,0.06)"
     }
    }
   },
@@ -36609,7 +36609,7 @@
      "value": "inset 0 0 0 1px rgba(255,255,255,0.06)"
     }
    },
-   "postil-contrast": {
+   "contrast-dark": {
     "--radius-xs": {
      "tier": "semantic",
      "value": "6px"
@@ -36840,7 +36840,7 @@
     },
     "--font-reading": {
      "tier": "semantic",
-     "value": "'Iowan Old Style', 'Charter', 'Source Serif 4', 'Georgia', serif"
+     "value": "'Hanken Grotesk', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif"
     },
     "--surface-busy": {
      "tier": "semantic",
@@ -36852,7 +36852,7 @@
     },
     "--focus-ring": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--focus-ring-width": {
      "tier": "semantic",
@@ -36960,55 +36960,55 @@
     },
     "--player-bg": {
      "tier": "component",
-     "value": "color-mix(in srgb, #F2F1ED 96%, transparent)"
+     "value": "color-mix(in srgb, #17132A 96%, transparent)"
     },
     "--player-border": {
      "tier": "component",
-     "value": "#D3D1C9"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--player-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "0 -8px 30px rgba(0,0,0,0.55)"
     },
     "--player-fg": {
      "tier": "component",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--player-track": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 18%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 18%, transparent)"
     },
     "--player-fill": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#B49CFF"
     },
     "--player-hover": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 10%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 10%, transparent)"
     },
     "--player-pill": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 10%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 10%, transparent)"
     },
     "--player-pill-hover": {
      "tier": "component",
-     "value": "color-mix(in srgb, #000000 18%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 18%, transparent)"
     },
     "--player-play-bg": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#B49CFF"
     },
     "--player-play-fg": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--player-cover-bg": {
      "tier": "component",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--player-err": {
      "tier": "component",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--header-h": {
      "tier": "component",
@@ -37040,15 +37040,15 @@
     },
     "--nav-bg": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--nav-active-text": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--nav-blob-bg": {
      "tier": "component",
-     "value": "linear-gradient(135deg, #1A1917, #1A1917)"
+     "value": "linear-gradient(135deg, #B49CFF, #B49CFF)"
     },
     "--floating-stack-height": {
      "tier": "component",
@@ -37068,83 +37068,83 @@
     },
     "--slider-track": {
      "tier": "component",
-     "value": "#cbd5e1"
+     "value": "#334155"
     },
     "--slider-fill": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#B49CFF"
     },
     "--scrollbar-thumb": {
      "tier": "component",
-     "value": "rgba(100,116,139,0.42)"
+     "value": "rgba(226,232,240,0.28)"
     },
     "--scrollbar-thumb-hover": {
      "tier": "component",
-     "value": "rgba(100,116,139,0.66)"
+     "value": "rgba(226,232,240,0.46)"
     },
     "--sheet-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "#17132A"
     },
     "--sheet-border": {
      "tier": "component",
-     "value": "#D3D1C9"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--sheet-scrim": {
      "tier": "component",
-     "value": "rgba(15,23,42,0.45)"
+     "value": "rgba(0,0,0,0.6)"
     },
     "--sheet-shadow": {
      "tier": "component",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "0 -8px 30px rgba(0,0,0,0.55)"
     },
     "--sheet-grab": {
      "tier": "component",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.25)"
     },
     "--note-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "rgba(139,104,255,0.14)"
     },
     "--note-fg": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#CDBDFF"
     },
     "--toast-bg": {
      "tier": "component",
-     "value": "#0f172a"
+     "value": "#e8edf5"
     },
     "--toast-fg": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#0b0e14"
     },
     "--toast-action": {
      "tier": "component",
-     "value": "#B49CFF"
+     "value": "#4F24C9"
     },
     "--track-bg": {
      "tier": "component",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--chart-0": {
      "tier": "component",
-     "value": "#2a78d6"
+     "value": "#3987e5"
     },
     "--chart-1": {
      "tier": "component",
-     "value": "#eb6834"
+     "value": "#d95926"
     },
     "--chart-2": {
      "tier": "component",
-     "value": "#1baf7a"
+     "value": "#199e70"
     },
     "--chart-3": {
      "tier": "component",
-     "value": "#eda100"
+     "value": "#c98500"
     },
     "--chart-4": {
      "tier": "component",
-     "value": "#e87ba4"
+     "value": "#d55181"
     },
     "--chart-5": {
      "tier": "component",
@@ -37152,83 +37152,83 @@
     },
     "--chart-6": {
      "tier": "component",
-     "value": "#4a3aa7"
+     "value": "#9085e9"
     },
     "--chart-7": {
      "tier": "component",
-     "value": "#e34948"
+     "value": "#e66767"
     },
     "--chart-other": {
      "tier": "component",
-     "value": "#9ca3af"
+     "value": "#6b7280"
     },
     "--chart-gap": {
      "tier": "component",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--saved-note-user-bg": {
      "tier": "component",
-     "value": "#fef9c3"
+     "value": "#2f2a15"
     },
     "--saved-note-user-fg": {
      "tier": "component",
-     "value": "#713f12"
+     "value": "#f4e6a8"
     },
     "--saved-note-user-bar": {
      "tier": "component",
-     "value": "#eab308"
+     "value": "#d4a514"
     },
     "--saved-note-ghost-bg": {
      "tier": "component",
-     "value": "#e0f2fe"
+     "value": "#10293a"
     },
     "--saved-note-ghost-fg": {
      "tier": "component",
-     "value": "#0c4a6e"
+     "value": "#c9e7f8"
     },
     "--saved-note-ghost-bar": {
      "tier": "component",
-     "value": "#0284C7"
+     "value": "#38bdf8"
     },
     "--saved-note-note-bg": {
      "tier": "component",
-     "value": "#fce7f3"
+     "value": "#35182d"
     },
     "--saved-note-note-fg": {
      "tier": "component",
-     "value": "#831843"
+     "value": "#f7d6e8"
     },
     "--saved-note-note-bar": {
      "tier": "component",
-     "value": "#db2777"
+     "value": "#f472b6"
     },
     "--saved-note-quote-bg": {
      "tier": "component",
-     "value": "rgba(255,255,255,0.55)"
+     "value": "rgba(0,0,0,0.25)"
     },
     "--saved-note-edge": {
      "tier": "component",
-     "value": "none"
+     "value": "inset 0 0 0 1px rgba(255,255,255,0.06)"
     },
     "--saved-note-danger": {
      "tier": "component",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--row-bg": {
      "tier": "component",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--row-on-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "rgba(139,104,255,0.14)"
     },
     "--field-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "rgba(255,255,255,0.08)"
     },
     "--switch-off": {
      "tier": "component",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.22)"
     },
     "--switch-knob": {
      "tier": "component",
@@ -37236,15 +37236,15 @@
     },
     "--check-border": {
      "tier": "component",
-     "value": "#94a3b8"
+     "value": "#64748b"
     },
     "--check-bg": {
      "tier": "component",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--sel-card-bg": {
      "tier": "component",
-     "value": "color-mix(in srgb, #1A1917 8%, transparent)"
+     "value": "rgba(139,104,255,0.14)"
     },
     "--rsvp-word-size": {
      "tier": "component",
@@ -37256,75 +37256,75 @@
     },
     "--rsvp-pivot": {
      "tier": "component",
-     "value": "#1A1917"
+     "value": "#B49CFF"
     },
     "--rsvp-bg": {
      "tier": "component",
-     "value": "#F2F1ED"
+     "value": "#17132A"
     },
     "--rsvp-context-bg": {
      "tier": "component",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--accent-a05": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "#170647"
     },
     "--accent-a08": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "#170647"
     },
     "--accent-a10": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 10%, transparent)"
+     "value": "color-mix(in srgb, #B49CFF 10%, transparent)"
     },
     "--accent-a12": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 12%, transparent)"
+     "value": "color-mix(in srgb, #B49CFF 12%, transparent)"
     },
     "--accent-a15": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 15%, transparent)"
+     "value": "color-mix(in srgb, #B49CFF 15%, transparent)"
     },
     "--accent-a25": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 25%, transparent)"
+     "value": "color-mix(in srgb, #B49CFF 25%, transparent)"
     },
     "--accent-a30": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 30%, transparent)"
+     "value": "color-mix(in srgb, #B49CFF 30%, transparent)"
     },
     "--accent": {
      "tier": "semantic",
-     "value": "#1A1917"
+     "value": "#B49CFF"
     },
     "--accent-light": {
      "tier": "semantic",
-     "value": "#1A1917"
+     "value": "#B49CFF"
     },
     "--accent-glow": {
      "tier": "semantic",
-     "value": "rgba(26,25,23,0)"
+     "value": "#B49CFF"
     },
     "--on-accent": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--accent-soft": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 10%, transparent)"
+     "value": "rgba(139,104,255,0.14)"
     },
     "--accent-soft-strong": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 18%, transparent)"
+     "value": "rgba(139,104,255,0.26)"
     },
     "--accent-subtle": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "rgba(139,104,255,0.14)"
     },
     "--accent-selected": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #1A1917 8%, transparent)"
+     "value": "rgba(139,104,255,0.14)"
     },
     "--danger-strong": {
      "tier": "semantic",
@@ -37348,75 +37348,75 @@
     },
     "--mood-pos": {
      "tier": "semantic",
-     "value": "hsl(142,55%,42%)"
+     "value": "hsl(142,55%,52%)"
     },
     "--mood-neg": {
      "tier": "semantic",
-     "value": "hsl(0,70%,55%)"
+     "value": "hsl(0,75%,65%)"
     },
     "--mood-warn": {
      "tier": "semantic",
-     "value": "hsl(45,90%,50%)"
+     "value": "hsl(45,90%,58%)"
     },
     "--mood-pos-text": {
      "tier": "semantic",
-     "value": "#15803d"
+     "value": "#86efac"
     },
     "--mood-neg-text": {
      "tier": "semantic",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--mood-warn-text": {
      "tier": "semantic",
-     "value": "#b45309"
+     "value": "#fcd34d"
     },
     "--caution-bg": {
      "tier": "semantic",
-     "value": "#fef3c7"
+     "value": "rgba(251,191,36,0.16)"
     },
     "--caution-fg": {
      "tier": "semantic",
-     "value": "#78350f"
+     "value": "#fcd34d"
     },
     "--caution-border": {
      "tier": "semantic",
-     "value": "#fde68a"
+     "value": "rgba(251,191,36,0.35)"
     },
     "--caution-muted": {
      "tier": "semantic",
-     "value": "#92400e"
+     "value": "#fde68a"
     },
     "--danger-text": {
      "tier": "semantic",
-     "value": "#b91c1c"
+     "value": "#fca5a5"
     },
     "--bg-page": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--bg-page-gradient": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-base": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-card": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-input": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--glass-border": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--glass-border-strong": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--glass-inner-glow": {
      "tier": "semantic",
@@ -37424,135 +37424,135 @@
     },
     "--surface-bar": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#000000"
     },
     "--surface-sheet": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "#17132A"
     },
     "--scrim": {
      "tier": "semantic",
-     "value": "rgba(15,23,42,0.45)"
+     "value": "rgba(0,0,0,0.6)"
     },
     "--surface-floating": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #F2F1ED 96%, transparent)"
+     "value": "color-mix(in srgb, #17132A 96%, transparent)"
     },
     "--surface-track": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--surface-row": {
      "tier": "semantic",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--surface-field": {
      "tier": "semantic",
-     "value": "#F2F1ED"
+     "value": "rgba(255,255,255,0.08)"
     },
     "--surface-selected": {
      "tier": "semantic",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.16)"
     },
     "--surface-control": {
      "tier": "semantic",
-     "value": "#FEFEFC"
+     "value": "rgba(255,255,255,0.06)"
     },
     "--text-primary": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--text-secondary": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--text-muted": {
      "tier": "semantic",
-     "value": "#1f2933"
+     "value": "#e8edf5"
     },
     "--text-link": {
      "tier": "semantic",
-     "value": "#1A1917"
+     "value": "#CDBDFF"
     },
     "--outline": {
      "tier": "semantic",
-     "value": "#000000"
+     "value": "#ffffff"
     },
     "--outline-soft": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.55)"
+     "value": "rgba(255,255,255,0.05)"
     },
     "--outline-strong": {
      "tier": "semantic",
-     "value": "#D3D1C9"
+     "value": "rgba(255,255,255,0.12)"
     },
     "--shadow-card": {
      "tier": "semantic",
-     "value": "0 0 0 rgba(26,25,23,0)"
+     "value": "0 4px 16px rgba(0,0,0,0.35)"
     },
     "--shadow-raised": {
      "tier": "semantic",
-     "value": "0 8px 28px rgba(15,23,42,0.12)"
+     "value": "0 8px 28px rgba(0,0,0,0.45)"
     },
     "--shadow-modal": {
      "tier": "semantic",
-     "value": "0 12px 40px rgba(15,23,42,0.16)"
+     "value": "0 12px 40px rgba(0,0,0,0.55)"
     },
     "--elevation-sheet": {
      "tier": "semantic",
-     "value": "0 -8px 30px rgba(15,23,42,0.2)"
+     "value": "0 -8px 30px rgba(0,0,0,0.55)"
     },
     "--tone-read-bg": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "rgba(255,255,255,0.1)"
     },
     "--tone-read-fg": {
      "tier": "semantic",
-     "value": "#475569"
+     "value": "#cbd5e1"
     },
     "--tone-sent-bg": {
      "tier": "semantic",
-     "value": "#E8E6E0"
+     "value": "rgba(139,104,255,0.18)"
     },
     "--tone-sent-fg": {
      "tier": "semantic",
-     "value": "#2E2C28"
+     "value": "#B49CFF"
     },
     "--tone-new-bg": {
      "tier": "semantic",
-     "value": "#dcfce7"
+     "value": "rgba(74,222,128,0.16)"
     },
     "--tone-new-fg": {
      "tier": "semantic",
-     "value": "#166534"
+     "value": "#86efac"
     },
     "--tone-arch-bg": {
      "tier": "semantic",
-     "value": "#fef3c7"
+     "value": "rgba(251,191,36,0.16)"
     },
     "--tone-arch-fg": {
      "tier": "semantic",
-     "value": "#92400e"
+     "value": "#fcd34d"
     },
     "--control-track": {
      "tier": "semantic",
-     "value": "#cbd5e1"
+     "value": "#334155"
     },
     "--control-thumb": {
      "tier": "semantic",
-     "value": "rgba(100,116,139,0.42)"
+     "value": "rgba(226,232,240,0.28)"
     },
     "--control-thumb-hover": {
      "tier": "semantic",
-     "value": "rgba(100,116,139,0.66)"
+     "value": "rgba(226,232,240,0.46)"
     },
     "--control-grip": {
      "tier": "semantic",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.25)"
     },
     "--control-off": {
      "tier": "semantic",
-     "value": "#cbd5e1"
+     "value": "rgba(255,255,255,0.22)"
     },
     "--control-knob": {
      "tier": "semantic",
@@ -37560,47 +37560,47 @@
     },
     "--control-border": {
      "tier": "semantic",
-     "value": "#94a3b8"
+     "value": "#64748b"
     },
     "--surface-inverse": {
      "tier": "semantic",
-     "value": "#0f172a"
+     "value": "#e8edf5"
     },
     "--text-inverse": {
      "tier": "semantic",
-     "value": "#ffffff"
+     "value": "#0b0e14"
     },
     "--link-inverse": {
      "tier": "semantic",
-     "value": "#B49CFF"
+     "value": "#4F24C9"
     },
     "--overlay-strong": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #000000 18%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 18%, transparent)"
     },
     "--overlay": {
      "tier": "semantic",
-     "value": "color-mix(in srgb, #000000 10%, transparent)"
+     "value": "color-mix(in srgb, #ffffff 10%, transparent)"
     },
     "--data-0": {
      "tier": "semantic",
-     "value": "#2a78d6"
+     "value": "#3987e5"
     },
     "--data-1": {
      "tier": "semantic",
-     "value": "#eb6834"
+     "value": "#d95926"
     },
     "--data-2": {
      "tier": "semantic",
-     "value": "#1baf7a"
+     "value": "#199e70"
     },
     "--data-3": {
      "tier": "semantic",
-     "value": "#eda100"
+     "value": "#c98500"
     },
     "--data-4": {
      "tier": "semantic",
-     "value": "#e87ba4"
+     "value": "#d55181"
     },
     "--data-5": {
      "tier": "semantic",
@@ -37608,59 +37608,59 @@
     },
     "--data-6": {
      "tier": "semantic",
-     "value": "#4a3aa7"
+     "value": "#9085e9"
     },
     "--data-7": {
      "tier": "semantic",
-     "value": "#e34948"
+     "value": "#e66767"
     },
     "--data-other": {
      "tier": "semantic",
-     "value": "#9ca3af"
+     "value": "#6b7280"
     },
     "--annotation-user-bg": {
      "tier": "semantic",
-     "value": "#fef9c3"
+     "value": "#2f2a15"
     },
     "--annotation-user-fg": {
      "tier": "semantic",
-     "value": "#713f12"
+     "value": "#f4e6a8"
     },
     "--annotation-user-bar": {
      "tier": "semantic",
-     "value": "#eab308"
+     "value": "#d4a514"
     },
     "--annotation-ai-bg": {
      "tier": "semantic",
-     "value": "#e0f2fe"
+     "value": "#10293a"
     },
     "--annotation-ai-fg": {
      "tier": "semantic",
-     "value": "#0c4a6e"
+     "value": "#c9e7f8"
     },
     "--annotation-ai-bar": {
      "tier": "semantic",
-     "value": "#0284C7"
+     "value": "#38bdf8"
     },
     "--annotation-note-bg": {
      "tier": "semantic",
-     "value": "#fce7f3"
+     "value": "#35182d"
     },
     "--annotation-note-fg": {
      "tier": "semantic",
-     "value": "#831843"
+     "value": "#f7d6e8"
     },
     "--annotation-note-bar": {
      "tier": "semantic",
-     "value": "#db2777"
+     "value": "#f472b6"
     },
     "--annotation-quote-bg": {
      "tier": "semantic",
-     "value": "rgba(255,255,255,0.55)"
+     "value": "rgba(0,0,0,0.25)"
     },
     "--annotation-edge": {
      "tier": "semantic",
-     "value": "none"
+     "value": "inset 0 0 0 1px rgba(255,255,255,0.06)"
     }
    }
   },

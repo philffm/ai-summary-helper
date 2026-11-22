@@ -479,7 +479,7 @@ import {
     if (!document.body) return;
     if (activeSummaryRequestId) { try { chrome.runtime.sendMessage({ action: 'stopFetch', requestId: activeSummaryRequestId }).catch(() => {}); } catch (_) { /* nothing to stop */ } }
     const [sync, local] = await Promise.all([
-      chrome.storage.sync.get(['selectedLanguage', 'prompt', 'debugEnabled', SPEED_READ_KEY, 'theme', 'reduceMotion']),
+      chrome.storage.sync.get(['selectedLanguage', 'prompt', 'debugEnabled', SPEED_READ_KEY, 'theme', 'design', 'colorScheme', 'reduceMotion']),
       chrome.storage.local.get([SK.summaryLength, SK.summaryLengthMode, SK.summaryLengthBias])
     ]);
     const settings = speedReadNormalize(sync[SPEED_READ_KEY]);
@@ -487,7 +487,7 @@ import {
     const reader = speedReadOpen({
       title: document.title,
       settings,
-      theme: sync.theme,
+      theme: sync.theme, design: sync.design, colorScheme: sync.colorScheme,
       reduceMotion: !!sync.reduceMotion,
       onCancel: () => { if (activeSummaryRequestId) chrome.runtime.sendMessage({ action: 'stopFetch', requestId: activeSummaryRequestId }).catch(() => {}); },
       onRetry: () => runSpeedRead(),

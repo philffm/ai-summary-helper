@@ -8429,5 +8429,11 @@
   },
   "f_choose_widgets_e62d": {
     "message": "Choose widgets"
+  },
+  "f_brightness_324a": {
+    "message": "Brightness"
+  },
+  "f_not_used_in_high_contrast_92ee": {
+    "message": "Not used in High contrast."
   }
 }

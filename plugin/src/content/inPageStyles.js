@@ -5,6 +5,7 @@
 // so nothing flashes unstyled. Names are prefixed `ips` (the content-script bundle shares one scope).
 
 let ipsSheet = null;   // Promise<CSSStyleSheet|null>
+import { appearanceAttrs } from '../modules/appearance.js';
 let ipsPrefs = null;   // Promise<{ theme, reduceMotion }>
 
 function ipsUrl() {
@@ -30,7 +31,7 @@ function ipsLoadPrefs() {
   if (!ipsPrefs) {
     ipsPrefs = (async () => {
       // eslint-disable-next-line no-restricted-syntax -- content script: two read-only display settings, StorageManager is popup-side
-      try { return (await chrome.storage.sync.get(['theme', 'colorScheme', 'reduceMotion'])) || {}; } catch (_) { return {}; }
+      try { return (await chrome.storage.sync.get(['theme', 'design', 'colorScheme', 'reduceMotion'])) || {}; } catch (_) { return {}; }
     })();
   }
   return ipsPrefs;
@@ -45,8 +46,7 @@ export function ipsAttach(host, root) {
       const url = ipsUrl();
       if (url) { const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = url; root.prepend(link); }
     }
-    if (prefs.theme && prefs.theme !== 'system') host.dataset.theme = prefs.theme;
-    if (['blue', 'viola', 'postil'].includes(prefs.colorScheme)) host.dataset.scheme = prefs.colorScheme;
+    { const a = appearanceAttrs(prefs); if (a.theme) host.dataset.theme = a.theme; if (a.design) host.dataset.design = a.design; if (a.scheme) host.dataset.scheme = a.scheme; }
     if (prefs.reduceMotion) host.dataset.motion = 'reduce';
     host.style.visibility = '';
   });

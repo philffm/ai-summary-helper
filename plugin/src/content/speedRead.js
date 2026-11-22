@@ -7,6 +7,7 @@
 import { RSVP_MIN_WPM, RSVP_MAX_WPM, RSVP_STEP_WPM, rsvpClampWpm, rsvpBuild, rsvpChunks, rsvpDelayMs, rsvpPivot, rsvpSecondsLeft, rsvpSentenceStart } from '../modules/rsvp.js';
 import { DECISION_TIMEFRAMES } from '../modules/decisionTime.js';
 import { i18nKey } from '../modules/i18nKey.js';
+import { appearanceAttrs } from '../modules/appearance.js';
 
 const SR_HOST_ID = 'aish-speedread-host';
 const SR_COUNTDOWN_S = 5;
@@ -85,8 +86,7 @@ function srCreate(opts) {
 
     // ── DOM ──
     const host = srEl('div'); host.id = SR_HOST_ID; host.setAttribute('data-aish-ui', '1');
-    if (opts.theme && opts.theme !== 'system') host.dataset.theme = opts.theme;
-    if (['blue', 'viola', 'postil'].includes(opts.colorScheme)) host.dataset.scheme = opts.colorScheme;
+    { const a = appearanceAttrs(opts); if (a.theme) host.dataset.theme = a.theme; if (a.design) host.dataset.design = a.design; if (a.scheme) host.dataset.scheme = a.scheme; }
     if (opts.reduceMotion) host.dataset.motion = 'reduce';
     const root = host.attachShadow({ mode: 'open' });
     const css = document.createElement('link'); css.rel = 'stylesheet';

@@ -7999,5 +7999,11 @@
   },
   "f_choose_widgets_e62d": {
     "message": "اختيار البطاقات"
+  },
+  "f_brightness_324a": {
+    "message": "السطوع"
+  },
+  "f_not_used_in_high_contrast_92ee": {
+    "message": "غير مستخدم في التباين العالي."
   }
 }

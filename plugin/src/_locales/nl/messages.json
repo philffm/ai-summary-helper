@@ -8282,5 +8282,11 @@
   },
   "f_choose_widgets_e62d": {
     "message": "Kaarten kiezen"
+  },
+  "f_brightness_324a": {
+    "message": "Helderheid"
+  },
+  "f_not_used_in_high_contrast_92ee": {
+    "message": "Niet gebruikt bij hoog contrast."
   }
 }

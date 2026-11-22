@@ -1,6 +1,7 @@
 // Display & reading preferences (Settings › Appearance & Language).
 // Everything defaults to "follow the system"; only explicit choices are stored.
-export const SCHEMES = ['blue', 'viola', 'postil'];
+import { SCHEMES, DESIGNS, normalizeAppearance, appearanceAttrs } from './appearance.js';
+export { SCHEMES, DESIGNS, normalizeAppearance, appearanceAttrs };
 export const TEXT_SCALE_MIN = 85, TEXT_SCALE_MAX = 150;
 
 export function clampScale(v) {
@@ -11,11 +12,8 @@ export function clampScale(v) {
 
 /** Applies theme + a11y preferences to <html>. Safe to call repeatedly. */
 export function applyA11y(cfg = {}, root = document.documentElement) {
-    const theme = cfg.theme;
-    if (theme === 'dark' || theme === 'light' || theme === 'contrast') root.setAttribute('data-theme', theme);
-    else root.removeAttribute('data-theme');
-    // Color scheme: a separate axis from the theme (Settings › Appearance). '' / unknown = the build's own brand colours.
-    if (SCHEMES.includes(cfg.colorScheme)) root.setAttribute('data-scheme', cfg.colorScheme); else root.removeAttribute('data-scheme');
+    const a = appearanceAttrs(cfg);
+    for (const [attr, v] of [['data-theme', a.theme], ['data-design', a.design], ['data-scheme', a.scheme]]) { if (v) root.setAttribute(attr, v); else root.removeAttribute(attr); }
     const scale = clampScale(cfg.textScale || 100);
     if (scale === 100) root.style.removeProperty('--text-scale'); else root.style.setProperty('--text-scale', String(scale / 100));
     if (cfg.lineSpacing === 'compact' || cfg.lineSpacing === 'relaxed') root.setAttribute('data-line', cfg.lineSpacing); else root.removeAttribute('data-line');

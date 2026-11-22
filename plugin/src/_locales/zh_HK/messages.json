@@ -7999,5 +7999,11 @@
   },
   "f_choose_widgets_e62d": {
     "message": "選擇卡片"
+  },
+  "f_brightness_324a": {
+    "message": "亮度"
+  },
+  "f_not_used_in_high_contrast_92ee": {
+    "message": "高對比下不適用。"
   }
 }

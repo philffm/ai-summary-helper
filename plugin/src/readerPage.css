@@ -11,7 +11,7 @@
 :root[data-rp-theme='sepia'] { --rp-bg: #f1e7d0; --rp-surface: #f8f1e0; --rp-text: #433422; --rp-muted: #7a6a52; --rp-line: #d9c9a6; --rp-accent: #8a4b08; --rp-link: #8a4b08; --rp-on-accent: #f8f1e0; --rp-mark: #f5d97a; --rp-mark-ghost: #d9e0c4; }
 :root[data-theme='dark'] { --rp-mark: #6b5a00; --rp-mark-ghost: #26364f; }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']):not([data-theme='contrast']):not([data-rp-theme='sepia']) { --rp-mark: #6b5a00; --rp-mark-ghost: #26364f; }
+  :root:not([data-theme='light']):not([data-rp-theme='sepia']) { --rp-mark: #6b5a00; --rp-mark-ghost: #26364f; }
 }
 * { box-sizing: border-box; }
 html { scroll-padding-top: 4.5rem; }

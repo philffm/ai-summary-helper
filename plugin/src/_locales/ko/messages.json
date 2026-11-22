@@ -7981,5 +7981,11 @@
   },
   "f_choose_widgets_e62d": {
     "message": "카드 선택"
+  },
+  "f_brightness_324a": {
+    "message": "밝기"
+  },
+  "f_not_used_in_high_contrast_92ee": {
+    "message": "고대비에서는 사용되지 않습니다."
   }
 }

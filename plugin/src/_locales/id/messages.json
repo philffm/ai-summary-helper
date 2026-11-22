@@ -8282,5 +8282,11 @@
   },
   "f_choose_widgets_e62d": {
     "message": "Pilih kartu"
+  },
+  "f_brightness_324a": {
+    "message": "Kecerahan"
+  },
+  "f_not_used_in_high_contrast_92ee": {
+    "message": "Tidak dipakai pada kontras tinggi."
   }
 }

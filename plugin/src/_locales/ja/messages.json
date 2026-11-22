@@ -7999,5 +7999,11 @@
   },
   "f_choose_widgets_e62d": {
     "message": "カードを選ぶ"
+  },
+  "f_brightness_324a": {
+    "message": "明るさ"
+  },
+  "f_not_used_in_high_contrast_92ee": {
+    "message": "ハイコントラストでは使われません。"
   }
 }

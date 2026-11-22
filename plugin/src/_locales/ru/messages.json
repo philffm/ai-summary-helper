@@ -7999,5 +7999,11 @@
   },
   "f_choose_widgets_e62d": {
     "message": "Выбрать карточки"
+  },
+  "f_brightness_324a": {
+    "message": "Яркость"
+  },
+  "f_not_used_in_high_contrast_92ee": {
+    "message": "Не используется в высоком контрасте."
   }
 }

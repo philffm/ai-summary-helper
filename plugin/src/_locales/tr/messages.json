@@ -8282,5 +8282,11 @@
   },
   "f_choose_widgets_e62d": {
     "message": "Kartları seç"
+  },
+  "f_brightness_324a": {
+    "message": "Parlaklık"
+  },
+  "f_not_used_in_high_contrast_92ee": {
+    "message": "Yüksek karşıtlıkta kullanılmaz."
   }
 }

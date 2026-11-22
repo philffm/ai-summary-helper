@@ -7999,5 +7999,11 @@
   },
   "f_choose_widgets_e62d": {
     "message": "Escolher cartões"
+  },
+  "f_brightness_324a": {
+    "message": "Brilho"
+  },
+  "f_not_used_in_high_contrast_92ee": {
+    "message": "Não usado em alto contraste."
   }
 }

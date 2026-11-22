@@ -21,7 +21,7 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-hint { font-size: var(--fs-xs); color: var(--text-muted); }
 .hm-wrap { container: hmwrap / inline-size; }
 .hm-grid { display: grid; grid-template-columns: repeat(var(--hm-cols, 2), minmax(0, 1fr)); gap: 14px; align-items: start; }
-.hm-grid.has-glance { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto minmax(0, 1fr); grid-auto-flow: dense; }
+.hm-grid.has-glance { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto minmax(0, 1fr); grid-auto-flow: dense; align-items: stretch; }   /* highlights and library are as tall as each other; the two lists below take the rest */
 .hm-grid.has-glance > [data-card="briefing"] { grid-column: 1 / span 2; grid-row: 1 / span 2; }   /* half the width, beside two rows of quarter cards */
 .hm-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 @container hmwrap (max-width: 1100px) { .hm-grid.has-glance { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hm-grid.has-glance > [data-card="briefing"] { grid-column: 1 / -1; grid-row: auto; } }   /* medium: the glance card on its own row, the others two by two */
@@ -58,16 +58,17 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-appbar { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 6px; max-width: 100%; }
 .hm-app { display: inline-flex; align-items: center; gap: 6px; }
 .hm-app .icon { width: 16px; height: 16px; }
-.hm-quote { margin: 0 0 8px; padding: 0; font-size: var(--fs-md); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.hm-quote { margin: 0 0 8px; padding: 0; font-size: var(--fs-md); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .hm-quote-src { display: block; margin-bottom: 10px; }
 
 .hm-brief-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin-bottom: 8px; }
 .hm-brief-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: var(--fs-sm); color: var(--text-muted); }
 .hm-mood { padding: 1px 8px; border: 1px solid var(--outline); border-radius: var(--radius-full); }
-.hm-glance { display: flex; flex-direction: column; gap: 8px; --hm-item-h: 4.4rem; --hm-latest-head: 1.9rem; }
+.hm-grid.has-glance > [data-card="briefing"] { display: flex; flex-direction: column; }
+.hm-glance { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; gap: 8px; --hm-item-h: 4.4rem; --hm-latest-head: 1.9rem; }
 /* The card is as tall as five and two thirds of the latest items: the sixth is cut off on purpose, so it is clear the list scrolls.
    The briefing scrolls in the same height. */
-.hm-brief-body { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 20px; block-size: calc(var(--hm-latest-head) + var(--hm-item-h) * 5.66); min-height: 0; }
+.hm-brief-body { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 20px; min-block-size: calc(var(--hm-latest-head) + var(--hm-item-h) * 5.66); flex: 1 1 auto; min-height: 0; }
 .hm-brief-text { font-size: var(--fs-md); line-height: 1.5; overflow-y: auto; overflow-x: hidden; overflow-wrap: anywhere; min-height: 0; padding-inline-end: 6px; }
 .hm-latest { display: flex; flex-direction: column; min-height: 0; padding-inline-start: 16px; border-inline-start: 1px solid var(--outline); }
 .hm-latest .hm-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; gap: 0; }   /* vertical only: the hover tint of a row reaches 10px past it (negative margin), which must not become a horizontal scroll */
@@ -95,7 +96,7 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 @container hmwrap (max-width: 1000px) { .hm-look-label { display: none; } }
 
 /* Lists that load as they are scrolled: the card is as tall as the row gives it, the list scrolls inside (it never makes the card taller) */
-.hm-card--lazy { position: relative; min-block-size: 11rem; }
+.hm-card--lazy { position: relative; min-block-size: 22rem; }   /* the two reading lists are tall: room for several entries before they scroll */
 .hm-lazy-body { position: absolute; inset: 3rem 14px 12px; overflow-y: auto; overflow-x: hidden; }
 .hm-lazy-body .hm-link { margin-inline: 0; padding-inline: 8px; }
 @container hmwrap (max-width: 1100px) { .hm-card--lazy { min-block-size: 0; } .hm-lazy-body { position: static; max-block-size: 22rem; } }

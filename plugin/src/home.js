@@ -1,7 +1,7 @@
 // Home page: opened from Settings › Appearance or the ⌘K palette ("Home page"). It only reads what the library already holds;
 // every card is a plain list of links, and the user chooses which cards show (remembered on this device).
 import { bootPage } from './modules/pageBoot.js';
-import { applyA11y, SCHEMES, clampScale, TEXT_SCALE_MIN, TEXT_SCALE_MAX } from './modules/a11y.js';
+import { applyA11y, SCHEMES, DESIGNS, normalizeAppearance, clampScale, TEXT_SCALE_MIN, TEXT_SCALE_MAX } from './modules/a11y.js';
 import { T, TN } from './modules/feedI18n.js';
 import StorageManager from './modules/storageManager.js';
 import { SK, hlPageKey } from './modules/storageKeys.js';
@@ -161,8 +161,9 @@ function renderCustom() {
 // Appearance on the home page, the same settings as Settings › Appearance (theme, colour scheme, text size): changed here, saved there
 function wireLook(initial) {
   const btn = $('hmLook'), menu = $('hmLookMenu'); if (!btn || !menu) return;
-  const cfg = { ...initial };
-  const change = async (patch) => { Object.assign(cfg, patch); applyA11y(cfg); try { await StorageManager.set(patch); } catch (_) { /* this page keeps the look */ } paint(); };
+  const cfg = { ...initial, ...normalizeAppearance(initial) };   // older settings are read onto the three axes
+  // all three axes are written together, so an older stored shape (theme "contrast", scheme "postil") cannot lose one when another changes
+  const change = async (patch) => { Object.assign(cfg, patch); applyA11y(cfg); try { await StorageManager.set({ ...patch, theme: cfg.theme, design: cfg.design, colorScheme: cfg.colorScheme }); } catch (_) { /* this page keeps the look */ } paint(); };
   const seg = (label, key, options, current) => {
     const wrap = el('div', 'hm-look-row'); wrap.append(el('span', 'hm-look-label-row', label));
     const g = el('div', 'a11y-seg a11y-seg--hug a11y-seg--sm'); g.setAttribute('role', 'group'); g.setAttribute('aria-label', label);
@@ -170,12 +171,12 @@ function wireLook(initial) {
     wrap.append(g); return wrap;
   };
   function paint() {
-    const theme = ['light', 'dark', 'contrast'].includes(cfg.theme) ? cfg.theme : 'system';
-    const scheme = SCHEMES.includes(cfg.colorScheme) ? cfg.colorScheme : 'default';
+    const n = normalizeAppearance(cfg), scheme = n.colorScheme;
     const scale = clampScale(cfg.textScale || 100);
     menu.replaceChildren(
-      seg(T('Theme'), 'theme', [['system', T('System')], ['light', T('Light')], ['dark', T('Dark')], ['contrast', T('High contrast')]], theme),
-      seg(T('Color scheme'), 'colorScheme', [['default', T('Default')], ['blue', T('Blue')], ['viola', 'Viola'], ['postil', 'Postil']], scheme));
+      seg(T('Brightness'), 'theme', [['system', T('Auto')], ['light', T('Light')], ['dark', T('Dark')]], n.theme),
+      seg(T('Design'), 'design', [['standard', T('Standard')], ['postil', 'Postil'], ['contrast', T('High contrast')]], n.design),
+      seg(T('Color scheme'), 'colorScheme', [['default', T('Default')], ['kaivo', 'Kaivo'], ['aish', 'Aish'], ['viola', 'Viola']], scheme));
     const size = el('div', 'hm-look-row'); size.append(el('span', 'hm-look-label-row', T('Text size')));
     const ctl = el('div', 'hm-look-size');
     const step = (d, label, text) => { const b = el('button', 'button-secondary btn-sm', text); b.type = 'button'; b.setAttribute('aria-label', label); b.disabled = (d < 0 && scale <= TEXT_SCALE_MIN) || (d > 0 && scale >= TEXT_SCALE_MAX); b.addEventListener('click', () => change({ textScale: clampScale(scale + d) })); return b; };

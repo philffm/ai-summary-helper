@@ -8282,5 +8282,11 @@
   },
   "f_choose_widgets_e62d": {
     "message": "Вибрати картки"
+  },
+  "f_brightness_324a": {
+    "message": "Яскравість"
+  },
+  "f_not_used_in_high_contrast_92ee": {
+    "message": "Не використовується у високому контрасті."
   }
 }

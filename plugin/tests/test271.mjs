@@ -92,7 +92,11 @@ assert.equal(saved.theme, 'dark', 'and is saved with the other appearance settin
 [...menu.querySelectorAll('button')].find((b) => b.textContent === 'A+').click(); await tick(40);
 assert.equal(d.documentElement.style.getPropertyValue('--text-scale'), '1.1', 'text size steps by 10 %');
 [...menu.querySelectorAll('button')].find((b) => b.textContent === 'Postil').click(); await tick(40);
-assert.equal(d.documentElement.getAttribute('data-scheme'), 'postil', 'colour scheme');
+assert.equal(d.documentElement.getAttribute('data-design'), 'postil', 'the design is its own switch');
+[...menu.querySelectorAll('button')].find((b) => b.textContent === 'Viola').click(); await tick(40);
+assert.equal(d.documentElement.getAttribute('data-scheme'), 'viola', 'colour scheme');
+const saved3 = await new Promise((r) => chrome.storage.sync.get(['theme', 'design', 'colorScheme'], r));
+assert.deepEqual(saved3, { theme: 'dark', design: 'postil', colorScheme: 'viola' }, 'all three axes are saved together');
 d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(20);
 assert(d.getElementById('hmLookMenu').hidden, 'Esc closes the menu');
 // infinite scroll: a long list shows a page, and the next one when the end is near
