@@ -158,7 +158,7 @@ const builders = {
     const glow = mk('g', { class: 'hm-glow' }, svg), crisp = mk('g', { class: 'hm-bubbles' }, svg);
     bubbles.forEach((b, i) => {
       const colour = `var(--chart-${i % 8})`;
-      const gc = mk('circle', { cx: b.x.toFixed(1), cy: b.y.toFixed(1), r: (b.r * 1.55).toFixed(1) }, glow); gc.style.fill = colour;
+      const gc = mk('circle', { cx: b.x.toFixed(1), cy: b.y.toFixed(1), r: (b.r * 1.9).toFixed(1) }, glow); gc.style.fill = colour;
       const g = mk('g', { class: 'hm-bubble' }, crisp);
       const t = mk('title', {}, g); t.textContent = `${b.label} · ${b.n}`;
       const c = mk('circle', { cx: b.x.toFixed(1), cy: b.y.toFixed(1), r: b.r.toFixed(1) }, g); c.style.fill = colour;

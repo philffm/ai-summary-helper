@@ -138,11 +138,12 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
    has a blurred glow behind it, the card carries a wash of the biggest topics' colours and a halo that reaches over its edge into the page. */
 .hm-grid.has-glance > [data-card="graph"] { grid-column: 3 / span 2; overflow: visible; position: relative; isolation: isolate; }
 .hm-card--art { background-image: radial-gradient(70% 120% at 18% 30%, color-mix(in srgb, var(--art-1, transparent) 16%, transparent), transparent 70%), radial-gradient(60% 110% at 82% 70%, color-mix(in srgb, var(--art-2, transparent) 13%, transparent), transparent 70%); }
-.hm-card--art::before { content: ''; position: absolute; inset: -22px; z-index: -1; border-radius: inherit; pointer-events: none; filter: blur(26px); opacity: .55;
-  background: radial-gradient(50% 70% at 20% 40%, var(--art-1, transparent), transparent 70%), radial-gradient(45% 70% at 55% 60%, var(--art-2, transparent), transparent 70%), radial-gradient(45% 70% at 85% 40%, var(--art-3, transparent), transparent 70%);
+.hm-card--art { z-index: 1; }   /* above its neighbours: the halo falls softly over them, it is the point */
+.hm-card--art::before { content: ''; position: absolute; inset: -110px -90px; z-index: -1; border-radius: 50%; pointer-events: none; filter: blur(46px); opacity: .62;
+  background: radial-gradient(45% 55% at 22% 45%, var(--art-1, transparent), transparent 72%), radial-gradient(42% 55% at 55% 55%, var(--art-2, transparent), transparent 72%), radial-gradient(40% 55% at 84% 45%, var(--art-3, transparent), transparent 72%);
   animation: recapPulse 7s var(--easing-in-out) infinite; }                                                                                    /* breathes slowly (the pulse the recap uses) */
 .hm-topics svg { display: block; width: 100%; height: auto; max-height: 9.5rem; overflow: visible; cursor: pointer; }
-.hm-glow { filter: blur(11px); opacity: .6; pointer-events: none; }
+.hm-glow { filter: blur(17px); opacity: .7; pointer-events: none; }
 .hm-bubble circle { opacity: .9; stroke: var(--bg-page); stroke-width: 1.5; transition: opacity var(--duration-fast) var(--easing-standard), transform var(--duration-base) var(--easing-decelerate); transform-box: fill-box; transform-origin: center; }
 .hm-bubble:hover circle { opacity: 1; transform: scale(1.07); }
 .hm-bubble-label { fill: var(--on-accent); font-size: 10px; font-weight: 600; text-anchor: middle; pointer-events: none; }
