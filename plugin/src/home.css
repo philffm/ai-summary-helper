@@ -21,7 +21,11 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 @container hmwrap (max-width: 900px) { .hm-grid { grid-template-columns: minmax(0, 1fr); } .hm-col { display: contents; } }   /* narrow (also with the app docked beside): one column, the cards in their own order */
 .hm-card { padding: 14px; border: 1px solid var(--outline); border-radius: var(--radius-lg); background: var(--bg-card, var(--glass-base)); box-sizing: border-box; }
-.hm-card h2 { margin: 0 0 10px; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
+.hm-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+.hm-card-link { padding: 0; border: 0; background: transparent; color: var(--text-muted); font: inherit; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .02em; cursor: pointer; white-space: nowrap; }
+.hm-card-link:hover { color: var(--accent); }
+.hm-card-link:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+.hm-card h2 { margin: 0; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
 .hm-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
 .hm-link { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; margin: 0 -10px; border-radius: var(--radius-md); color: var(--text-primary); text-decoration: none; }
 .hm-link:hover { background: var(--accent-soft); }
@@ -61,5 +65,4 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-brief-src summary { cursor: pointer; }
 .hm-brief-src ol { margin: 8px 0 0; padding-inline-start: 22px; display: grid; gap: 4px; }
 .hm-brief-src a { color: var(--text-primary); }
-.hm-brief-actions { margin-top: 12px; }
 .hm-updating { margin: 0 0 8px; font-size: var(--fs-sm); color: var(--text-muted); }

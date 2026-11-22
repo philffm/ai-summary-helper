@@ -26,7 +26,14 @@ function link(href, title, sub, progress) {
   if (progress > 0) { const bar = el('span', 'hm-bar'); const i = el('i'); i.style.width = Math.round(progress * 100) + '%'; bar.append(i); a.append(bar); }
   return a;
 }
-function card(title, body) { const c = el('section', 'hm-card'); c.append(el('h2', '', title), body); return c; }
+// A card's heading links to its section: the app opens beside the page on that screen (dock.open)
+function card(title, body, screen = '') {
+  const c = el('section', 'hm-card'), h = el('div', 'hm-card-head');
+  h.append(el('h2', '', title));
+  if (screen) { const a = el('button', 'hm-card-link'); a.type = 'button'; a.setAttribute('aria-label', T('Open {name}', { name: SECTION()[screen] })); a.title = a.getAttribute('aria-label'); a.append(document.createTextNode(SECTION()[screen]), el('span', '', ' →')); a.addEventListener('click', () => dock && dock.open(screen)); h.append(a); }
+  c.append(h, body); return c;
+}
+const SECTION = () => ({ feeds: T('Feeds'), history: T('History'), notes: T('Notes') });
 function listOf(rows, emptyText) {
   if (!rows.length) return el('p', 'hm-empty', emptyText);
   const ul = el('ul', 'hm-list'); rows.forEach((r) => { const li = el('li'); li.append(r); ul.append(li); }); return ul;
@@ -42,7 +49,7 @@ const MOOD = () => ({ pos: T('Mostly positive'), neu: T('Mixed'), neg: T('Mostly
 function briefingCard(d) {
   const found = latestBriefing(d.recaps);
   const body = el('div');
-  if (!found) { body.append(el('p', 'hm-empty', T('Write a recap in Feeds and it shows up here, with its sources.'))); return card(T('Briefing'), body); }
+  if (!found) { body.append(el('p', 'hm-empty', T('Write a recap in Feeds and it shows up here, with its sources.'))); return card(T('Briefing'), body, 'feeds'); }
   const r = found.recap, byId = new Map(d.feed.map((i) => [i.id, i]));
   const meta = el('div', 'hm-brief-meta');
   if (r.n) meta.append(el('span', '', TN(r.n, '{n} item', '{n} items')));
@@ -67,21 +74,19 @@ function briefingCard(d) {
     const ol = el('ol'); src.forEach(({ n, item }) => { const li = el('li'); li.value = n; const a = el('a', '', item.title || item.link); a.href = item.link; a.target = '_blank'; a.rel = 'noopener noreferrer'; li.append(a); ol.append(li); });
     det.append(ol); body.append(det);
   }
-  const open = el('button', 'button-secondary btn-sm', T('Open in Feeds')); open.type = 'button'; open.addEventListener('click', () => dock && dock.open('feeds'));
-  body.append(el('div', 'hm-brief-actions')); body.lastChild.append(open);
-  return card(T('Today’s briefing'), body);
+  return card(T('Today’s briefing'), body, 'feeds');
 }
 
 const builders = {
   briefing: (d) => briefingCard(d),
-  continue: (d) => card(T('Continue reading'), listOf(continueReading(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url), a.progress)), T('Nothing in progress. Articles you start reading show up here.'))),
-  recent: (d) => card(T('Recently saved'), listOf(recentlySaved(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url))), T('Your saved articles show up here.'))),
+  continue: (d) => card(T('Continue reading'), listOf(continueReading(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url), a.progress)), T('Nothing in progress. Articles you start reading show up here.')), 'history'),
+  recent: (d) => card(T('Recently saved'), listOf(recentlySaved(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url))), T('Your saved articles show up here.')), 'history'),
   feeds: (d) => {
     const body = el('div');
     // the refresh that starts with the page belongs to this card: a small line while it runs
     if (d.updating) { const u = el('p', 'hm-updating', T('Updating feeds…')); u.setAttribute('role', 'status'); body.append(u); }
     body.append(listOf(latestFeed(d.feed, 4).map((i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link))), T('Subscribe to feeds to see new items here.')));
-    return card(T('Latest from your feeds'), body);
+    return card(T('Latest from your feeds'), body, 'feeds');
   },
   quote: (d) => {
     const body = el('div');
@@ -91,12 +96,12 @@ const builders = {
       const more = el('button', 'button-secondary btn-sm', T('Another')); more.type = 'button'; more.addEventListener('click', () => loadQuote());
       body.append(q, a, el('div', 'hm-quote-more')); body.lastChild.append(more);
     } else body.append(el('p', 'hm-empty', T('Highlights you save show up here, one at a time.')));
-    return card(T('From your highlights'), body);
+    return card(T('From your highlights'), body, 'notes');
   },
   stats: (d) => {
     const s = libraryStats(d.index), dl = el('dl', 'hm-stats');
     [[T('Saved'), s.total], [T('Unread'), s.unread], [T('Starred'), s.starred], [T('Finished this week'), s.finishedThisWeek]].forEach(([k, v]) => { const g = el('div'); g.append(el('dt', '', k), el('dd', '', String(v))); dl.append(g); });
-    return card(T('Your library'), dl);
+    return card(T('Your library'), dl, 'history');
   },
 };
 const WEIGHT = { briefing: 5, continue: 3.5, recent: 3.5, feeds: 3.3, quote: 1.8, stats: 2.2 };   // about how tall each card is

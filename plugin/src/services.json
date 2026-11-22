@@ -9,6 +9,15 @@
         "responseStructure": "result.choices?.[0]?.message?.content"
     },
     {
+        "id": "anthropic",
+        "name": "Anthropic (Claude)",
+        "apiKeyDocumentationUrl": "https://platform.claude.com/settings/keys",
+        "endpointUrl": "https://api.anthropic.com/v1/chat/completions",
+        "defaultModel": "claude-sonnet-5-5",
+        "allowCustomEndpoint": false,
+        "responseStructure": "result.choices?.[0]?.message?.content"
+    },
+    {
         "id": "deepseek",
         "name": "DeepSeek",
         "apiKeyDocumentationUrl": "https://platform.deepseek.com/api_keys",

@@ -71,4 +71,10 @@ assert(d.getElementById('hmBox').classList.contains('is-open') && d.getElementBy
 assert(/Continue/.test(d.querySelector('#hmBox .cmdk-list').textContent) && /Fresh from worker/.test(d.querySelector('#hmBox .cmdk-list').textContent), 'continue + new feed items are offered first');
 field.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true })); await tick(30);
 assert(!d.getElementById('hmBox').classList.contains('is-open'), 'Esc closes it again');
+// every card's heading links to its section: the app opens beside the page on that screen
+const links = [...d.querySelectorAll('.hm-card-link')];
+assert(links.length >= 4, 'each card has a link to its section: ' + links.length);
+const feedsLink = [...d.querySelectorAll('.hm-card')].find((c) => /Today’s briefing/.test(c.textContent)).querySelector('.hm-card-link');
+assert(/Feeds/.test(feedsLink.textContent)); feedsLink.click(); await tick(60);
+assert(/popup\.html\?surface=float.*#feeds$/.test(d.querySelector('iframe.app-dock').src), 'it opens the app on Feeds from the side');
 console.log('TEST 271 OK'); process.exit(0);
