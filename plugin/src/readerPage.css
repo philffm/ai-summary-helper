@@ -129,3 +129,5 @@ body { transition: padding-inline-end var(--duration-base) var(--easing-standard
 /* bookmark: the marked block, and the "continue" offer under the title */
 .rp-bookmarked { box-shadow: inset 3px 0 0 var(--rp-accent); padding-inline-start: .6rem; margin-inline-start: -.6rem; border-start-start-radius: .15rem; border-end-start-radius: .15rem; }
 .rp-resume { display: flex; align-items: center; gap: .5rem; margin: 0 0 1.5rem; font-family: var(--rp-ui); }
+.rp-sep { border: 0; border-top: 1px solid var(--rp-line); margin: 2px 0; }
+.rp-item[hidden] { display: none; }

@@ -18,6 +18,9 @@
     "unlimitedStorage",
     "declarativeNetRequestWithHostAccess"
   ],
+  "optional_permissions": [
+    "bookmarks"
+  ],
   "host_permissions": [
     "<all_urls>",
     "file:///*"

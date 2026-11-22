@@ -17,6 +17,7 @@ import { bp } from './modules/breakpoints.js';
 import { createHighlightStore } from './modules/highlightStore.js';
 import { createReaderHighlights, selectionIn, paintAll } from './modules/readerHighlights.js';
 import { blockAtTop, placeOfBlock, blockOfPlace } from './modules/readerBookmark.js';
+import { browserBookmarksPossible, ensureBookmarksAccess, saveBrowserBookmark, hasBrowserBookmark } from './modules/browserBookmark.js';
 
 const PREFS_KEY = 'reader:prefs';
 const SIZES = [15, 17, 19, 21, 24, 28];
@@ -63,7 +64,7 @@ function wireMenus() {
   pairs.forEach(([b, m]) => b.addEventListener('click', (e) => { e.stopPropagation(); const open = m.hidden; closeAll(m); m.hidden = !open; b.setAttribute('aria-expanded', String(open)); }));
   document.addEventListener('click', (e) => { if (!e.target.closest('.rp-menu-wrap')) closeAll(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { const open = pairs.find(([, m]) => !m.hidden); if (open) { closeAll(); open[0].focus(); } } });
-  $('rpMoreMenu').addEventListener('click', (e) => { if (e.target.closest('button')) closeAll(); });
+  [$('rpMoreMenu'), $('rpBookmarkMenu')].forEach((m) => m.addEventListener('click', (e) => { if (e.target.closest('button')) closeAll(); }));
 }
 
 function labelControls() {
@@ -80,7 +81,7 @@ function labelControls() {
   setText($('rpApp'), T('Open app'), T('App'));
   setText($('rpMoreBtn'), T('More'));
   setText($('rpBookmarkBtn'), T('Bookmark'));
-  $('rpBmJump').textContent = T('Jump to bookmark'); $('rpBmMove').textContent = T('Move bookmark here'); $('rpBmRemove').textContent = T('Remove bookmark');
+  $('rpBmJump').textContent = T('Jump to bookmark'); $('rpBmRemove').textContent = T('Remove place bookmark'); $('rpBmBrowser').textContent = T('Save in browser bookmarks');
   setText($('rpDisplayBtn'), T('Text and font'), 'Aa');
   setText($('rpThemeBtn'), T('Appearance'));
 }
@@ -137,6 +138,15 @@ async function loadArticle(id) {
     article.summary = withQuestions(base, turns, { all });
   }
   return article;
+}
+
+// The address carries what a browser bookmark of this page needs: id, the original url (a way out when the article is not in this
+// library) and the bookmarked place (p). Cmd+D / the star in the address bar then keeps the position too.
+const hashParams = () => new URLSearchParams(window.location.hash.slice(1));
+function setHash(patch) {
+  const p = hashParams();
+  for (const [k, v] of Object.entries(patch)) { if (v) p.set(k, v); else p.delete(k); }
+  try { window.history.replaceState(null, '', '#' + p.toString()); } catch (_) { /* a page without history */ }
 }
 
 /** "#id=…&q=<sentence>" (the quiz's "Show in article"): mark the paragraph that holds the sentence and scroll to it. */
@@ -230,6 +240,7 @@ function wireBookmark() {
   };
   const save = async (place) => {
     bm.place = place; paint(); raw.readPlace = place || '';
+    setHash({ p: place ? place.exact.slice(0, 160) : '' });
     try { await StorageManager.setArticleReadPlace(raw.id, place); } catch (e) { toast(String((e && e.message) || e)); }
   };
   const setHere = () => {
@@ -237,12 +248,33 @@ function wireBookmark() {
     if (!place) { toast(T('Scroll to the text first.')); return; }
     save(place); toast(T('Bookmark set'));
   };
-  // no bookmark yet: one click sets it; with one: a menu (jump, move, remove)
-  btn.addEventListener('click', (e) => { if (!bm.place) { e.stopImmediatePropagation(); setHere(); } }, true);
+  // one menu for both kinds: the place in the text (set, jump, remove) and the page in the browser's bookmarks
+  const paintMenu = async () => {
+    $('rpBmMove').textContent = bm.place ? T('Move bookmark here') : T('Bookmark this place');
+    $('rpBmJump').hidden = $('rpBmRemove').hidden = !bm.place;
+    const browser = $('rpBmBrowser');
+    browser.hidden = !browserBookmarksPossible();
+    browser.textContent = (await hasBrowserBookmark(raw.id)) ? T('Update browser bookmark') : T('Save in browser bookmarks');
+    browser.title = bm.place ? T('The bookmark opens at your place') : '';
+  };
+  btn.addEventListener('click', paintMenu);
+  $('rpBmBrowser').addEventListener('click', async () => {
+    if (!(await ensureBookmarksAccess())) { toast(T('The browser did not allow access to bookmarks.')); return; }   // first call in the handler: the prompt needs the click
+    try {
+      const r = await saveBrowserBookmark({ articleId: raw.id, title: document.title, url: window.location.href });
+      toast(r === 'updated' ? T('Browser bookmark updated') : T('Saved in browser bookmarks'));
+    } catch (e) { toast(String((e && e.message) || e)); }
+  });
   $('rpBmJump').addEventListener('click', jump);
   $('rpBmMove').addEventListener('click', setHere);
   $('rpBmRemove').addEventListener('click', () => { save(null); toast(T('Bookmark removed')); });
   paint();
+  // opened from a browser bookmark that carries a place: go there (that is what the click meant)
+  const fromBookmark = hashParams().get('p');
+  if (fromBookmark) {
+    const b = blockOfPlace(content(), { exact: fromBookmark });
+    if (b) { b.scrollIntoView({ block: 'start' }); return; }
+  }
   // coming back: offer the way to where you were (never jump by itself)
   const pr = Number(raw.progress) || 0;
   const target0 = bm.place && target();
@@ -275,7 +307,15 @@ async function render() {
   const page = $('rpPage');
   const id = new URLSearchParams(window.location.hash.slice(1)).get('id');
   const article = id ? await loadArticle(id) : null;
-  if (!article) { page.innerHTML = `<p class="rp-empty">${escapeHtml(T('This article is no longer available.'))}</p>`; return; }
+  if (!article) {
+    page.innerHTML = `<p class="rp-empty">${escapeHtml(T('This article is no longer available.'))}</p>`;
+    const u = hashParams().get('u');   // a bookmark made elsewhere: the original is still reachable
+    if (u && /^https?:\/\//i.test(u)) {
+      const a = document.createElement('a'); a.href = u; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = T('Open the original page');
+      const p = document.createElement('p'); p.className = 'rp-empty'; p.append(a); page.append(p);
+    }
+    return;
+  }
 
   const annotations = await fetchAnnotationsForArticle(article);
   hlList = annotations; hlPage = article.url || '';
@@ -285,6 +325,7 @@ async function render() {
 
   const title = article.title || T('Article');
   document.title = title;
+  if (/^https?:\/\//i.test(article.url || '')) setHash({ u: article.url });
   trackReading(article, contentHtml || summaryHtml);
   let domain = '';
   try { domain = new URL(article.url).hostname.replace(/^www\./, ''); } catch (_) { /* no url */ }

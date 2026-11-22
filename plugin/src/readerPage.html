@@ -133,10 +133,12 @@
       <span class="rp-spacer"></span>
       <div class="rp-menu-wrap">
         <button type="button" id="rpBookmarkBtn" class="rp-tool" aria-haspopup="true" aria-expanded="false" aria-pressed="false" aria-controls="rpBookmarkMenu" title="Bookmark" hidden><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-bookmark"/></svg><span class="rp-label">Bookmark</span></button>
-        <div class="rp-menu rp-menu--more" id="rpBookmarkMenu" hidden>
-          <button type="button" id="rpBmJump" class="rp-item">Jump to bookmark</button>
-          <button type="button" id="rpBmMove" class="rp-item">Move bookmark here</button>
-          <button type="button" id="rpBmRemove" class="rp-item">Remove bookmark</button>
+        <div class="rp-menu rp-menu--more rp-menu--bookmark" id="rpBookmarkMenu" hidden>
+          <button type="button" id="rpBmMove" class="rp-item">Bookmark this place</button>
+          <button type="button" id="rpBmJump" class="rp-item" hidden>Jump to bookmark</button>
+          <button type="button" id="rpBmRemove" class="rp-item" hidden>Remove place bookmark</button>
+          <hr class="rp-sep">
+          <button type="button" id="rpBmBrowser" class="rp-item">Save in browser bookmarks</button>
         </div>
       </div>
       <button type="button" id="rpHighlight" class="rp-tool" disabled hidden title="Highlight"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-highlighter"/></svg><span class="rp-label">Highlight</span></button>
