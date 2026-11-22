@@ -62,7 +62,13 @@ export function latestBriefing(recaps) {
     return best;
 }
 
-export const WIDGETS = ['briefing', 'continue', 'recent', 'quote', 'stats'];
+/** Pages through a long list: next() → the next `size` items, more() → is there anything left. (The home lists load as you scroll.) */
+export function pager(items, size = 12) {
+    let at = 0; const list = Array.isArray(items) ? items : [];
+    return { next() { const out = list.slice(at, at + size); at += out.length; return out; }, more: () => at < list.length, get shown() { return at; }, get total() { return list.length; } };
+}
+
+export const WIDGETS = ['briefing', 'quote', 'stats', 'continue', 'recent'];
 /** The widgets to show, in order, minus the ones the user hid. */
 export const visibleWidgets = (hidden) => WIDGETS.filter((w) => !(hidden || []).includes(w));
 

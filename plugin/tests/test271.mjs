@@ -16,6 +16,8 @@ assert.equal(hw.recentlySaved(index, 2)[0].id, 'c');
 assert(!hw.recentlySaved(index, 10).some((a) => a.id === 'd'), 'archived is not recent');
 assert.deepEqual(hw.libraryStats(index, now), { total: 5, unread: 3, starred: 1, finishedThisWeek: 1 });
 assert.deepEqual(hw.visibleWidgets(['quote', 'stats']), ['briefing', 'continue', 'recent']);
+const pg = hw.pager([1, 2, 3, 4, 5], 2);
+assert.deepEqual(pg.next(), [1, 2]); assert(pg.more()); assert.deepEqual(pg.next(), [3, 4]); assert.deepEqual(pg.next(), [5]); assert(!pg.more() && pg.total === 5 && pg.shown === 5, 'pages through a long list');
 const rec = { '100|all': { overview: 'Old.', at: 1, n: 3 }, '200|all': { overview: 'New one. Second sentence here. Third one now.', themes: [], at: 5, n: 9 }, '300|f1': { overview: 'Other scope', at: 9 }, '400|all': { overview: '', themes: [] } };
 assert.equal(hw.latestBriefing(rec).key, '200|all', 'the newest recap of all feeds');
 assert.equal(hw.latestBriefing({}), null);
@@ -50,7 +52,7 @@ const brief = [...d.querySelectorAll('.hm-card')].find((c) => /Today at a glance
 assert(brief, 'the feed briefing card is there');
 const gridEl = d.getElementById('hmGrid');
 assert(gridEl.classList.contains('has-glance') && !d.querySelector('.hm-col'), 'with the glance card the cards are placed in one four-column grid');
-assert.deepEqual([...gridEl.children].map((c) => c.dataset.card), ['briefing', 'continue', 'recent', 'quote', 'stats'], 'half for the glance card, a quarter each for the other four');
+assert.deepEqual([...gridEl.children].map((c) => c.dataset.card), ['briefing', 'quote', 'stats', 'continue', 'recent'], 'half for the glance card; highlights and library above, the two reading lists below');
 assert(brief.querySelector('.hm-latest') && /Feed news/.test(brief.querySelector('.hm-latest').textContent), 'the latest feed items sit in the glance card');
 assert(brief.querySelector('a.rc-cite') && brief.querySelector('a.rc-cite').href === 'https://f.com/n', 'its source chips open the feed item');
 assert(/1 source/.test(brief.textContent) && /Feed news/.test(brief.querySelector('.hm-brief-src').textContent), 'the sources are listed');
@@ -61,7 +63,7 @@ assert(/Feed news/.test(d.getElementById('hmGrid').textContent), 'feed item show
 assert([...d.querySelectorAll('.hm-link')].some((a) => a.href.includes('readerPage.html#id=')), 'saved articles open in the reading view');
 const box = d.querySelectorAll('#hmCustom input')[1]; box.checked = false; box.dispatchEvent(new w.Event('change', { bubbles: true })); await tick(50);
 assert.equal(d.querySelectorAll('.hm-card').length, 4, 'a card can be hidden');
-assert.deepEqual(store['home:prefs'].hidden, ['continue'], 'and the choice is remembered');
+assert.deepEqual(store['home:prefs'].hidden, ['quote'], 'and the choice is remembered');
 assert(d.querySelector('#hmBox .hm-key'), 'the command that opens the search is shown inside the field');
 const field = d.querySelector('#hmBox .cmdk-input'); assert(field, 'the search field is the command list, inline');
 field.dispatchEvent(new w.Event('focus')); await tick(30);
@@ -93,4 +95,14 @@ assert.equal(d.documentElement.style.getPropertyValue('--text-scale'), '1.1', 't
 assert.equal(d.documentElement.getAttribute('data-scheme'), 'postil', 'colour scheme');
 d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(20);
 assert(d.getElementById('hmLookMenu').hidden, 'Esc closes the menu');
+// infinite scroll: a long list shows a page, and the next one when the end is near
+const { lazyList } = await imp('../src/modules/lazyList.js');
+const sc = d.createElement('div'), ul2 = d.createElement('ul'); sc.append(ul2); d.body.append(sc);
+Object.defineProperty(sc, 'clientHeight', { value: 100 }); Object.defineProperty(sc, 'scrollHeight', { get: () => 40 * ul2.children.length });
+const L = lazyList(sc, ul2, Array.from({ length: 30 }, (_, i) => i), (n) => d.createTextNode('row ' + n), { size: 12, doc: d });
+assert.equal(ul2.children.length, 12, 'the first page at once');
+sc.scrollTop = 0; sc.dispatchEvent(new w.Event('scroll')); assert.equal(ul2.children.length, 12, 'not loaded while the end is far');
+sc.scrollTop = 40 * 12 - 100 - 20; sc.dispatchEvent(new w.Event('scroll')); assert(ul2.children.length > 12, 'the next page when the end is near: ' + ul2.children.length);
+for (let i = 0; i < 5; i++) { sc.scrollTop = 1e6; sc.dispatchEvent(new w.Event('scroll')); }
+assert.equal(ul2.children.length, 30, 'all of it in the end, never more'); assert(!L.pager.more());
 console.log('TEST 271 OK'); process.exit(0);

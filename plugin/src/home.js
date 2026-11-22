@@ -9,6 +9,7 @@ import { bgMessage } from './modules/bgMessage.js';
 import { normalizeHighlights } from './modules/highlightRecords.js';
 import { renderInline, renderAnswer } from './modules/qaView.js';
 import { chipCites, citedSources } from './modules/recapCites.js';
+import { lazyList } from './modules/lazyList.js';
 import { latestBriefing, continueReading, recentlySaved, latestFeed, mergeFeed, pickQuote, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
 import { createAppDock } from './modules/appDock.js';
 import { mountCommandList } from './modules/commandPalette.js';
@@ -35,6 +36,11 @@ function card(title, body, screen = '') {
   c.append(h, body); return c;
 }
 const SECTION = () => ({ feeds: T('Feeds'), history: T('History'), notes: T('Notes'), settings: T('Settings'), 'history/stats': T('Stats') });
+const fillers = [];   // one per lazy list: top up the lists that are taller than their first page
+const fillLists = () => (window.requestAnimationFrame || setTimeout)(() => fillers.forEach((f) => f()));
+
+const lazy = (scroller, ul, items, build) => { const l = lazyList(scroller, ul, items, build); fillers.push(l.fill); return l; };
+
 function listOf(rows, emptyText) {
   if (!rows.length) return el('p', 'hm-empty', emptyText);
   const ul = el('ul', 'hm-list'); rows.forEach((r) => { const li = el('li'); li.append(r); ul.append(li); }); return ul;
@@ -74,16 +80,27 @@ function briefingCard(d) {
   const latest = el('aside', 'hm-latest'); latest.setAttribute('aria-label', T('Latest from your feeds'));
   const lh = el('div', 'hm-latest-head'); lh.append(el('h3', '', T('Latest')));
   if (d.updating) { const u = el('span', 'hm-updating', T('Updating feeds…')); u.setAttribute('role', 'status'); lh.append(u); }
-  latest.append(lh, listOf(latestFeed(d.feed, 12).map((i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link))), T('Subscribe to feeds to see new items here.')));
+  const feedItems = latestFeed(d.feed, 300), lul = el('ul', 'hm-list');
+  latest.append(lh);
+  if (!feedItems.length) latest.append(el('p', 'hm-empty', T('Subscribe to feeds to see new items here.')));
+  else { latest.append(lul); lazy(lul, lul, feedItems, (i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link)), 12); }
   body.append(meta, el('div', 'hm-brief-body'));
   body.lastChild.append(text, latest);
   return card(T('Today at a glance'), body, 'feeds');
 }
 
+// A card whose list fills the height the card has and loads further entries as it is scrolled
+function lazyCard(title, items, build, emptyText, screen) {
+  const body = el('div', 'hm-lazy-body');
+  if (!items.length) body.append(el('p', 'hm-empty', emptyText));
+  else { const ul = el('ul', 'hm-list'); body.append(ul); lazy(body, ul, items, build); }
+  const c = card(title, body, screen); c.classList.add('hm-card--lazy'); return c;
+}
+
 const builders = {
   briefing: (d) => briefingCard(d),
-  continue: (d) => card(T('Continue reading'), listOf(continueReading(d.index, 3).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url), a.progress)), T('Nothing in progress. Articles you start reading show up here.')), 'history'),
-  recent: (d) => card(T('Recently saved'), listOf(recentlySaved(d.index, 3).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url))), T('Your saved articles show up here.')), 'history'),
+  continue: (d) => lazyCard(T('Continue reading'), continueReading(d.index, 400), (a) => link(readerUrl(a), a.title || a.url, hostOf(a.url), a.progress), T('Nothing in progress. Articles you start reading show up here.'), 'history'),
+  recent: (d) => lazyCard(T('Recently saved'), recentlySaved(d.index, 400), (a) => link(readerUrl(a), a.title || a.url, hostOf(a.url)), T('Your saved articles show up here.'), 'history'),
   quote: (d) => {
     const body = el('div');
     if (d.quote) {
@@ -111,7 +128,7 @@ let lastCols = 0;
 window.addEventListener('resize', () => { if (lastCols && !document.getElementById('hmGrid').classList.contains('has-glance') && colCount() !== lastCols) render(); });
 
 function render() {
-  const grid = $('hmGrid'); grid.textContent = '';
+  const grid = $('hmGrid'); grid.textContent = ''; fillers.length = 0;
   // With the glance card: a four-column grid. The glance card takes half (two columns, both rows), the other four cards a quarter each
   // beside it (Continue reading, Recently saved / Notes, Library). Without it the cards share two columns, shortest first.
   // Narrow (CSS): two columns, then one.
@@ -119,7 +136,7 @@ function render() {
   grid.classList.toggle('has-glance', glance);
   if (glance) {
     shown.forEach((w) => { const c = builders[w](data); c.style.order = String(WIDGETS.indexOf(w)); c.dataset.card = w; grid.append(c); });
-    lastCols = 4; return renderCustom();
+    lastCols = 4; fillLists(); return renderCustom();
   }
   const n = colCount() >= 2 ? 2 : 1, cols = Array.from({ length: n }, () => el('div', 'hm-col')), height = Array(n).fill(0);
   grid.style.setProperty('--hm-cols', String(n));
@@ -128,7 +145,7 @@ function render() {
     const i = height.indexOf(Math.min(...height));
     height[i] += 3; cols[i].append(c);
   });
-  grid.append(...cols); lastCols = n;
+  grid.append(...cols); lastCols = n; fillLists();
   renderCustom();
 }
 
