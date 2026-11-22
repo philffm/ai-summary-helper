@@ -11,6 +11,7 @@
 import { T, TN, TU } from './feedI18n.js';
 import { SK, syncLedgerKey } from './storageKeys.js';
 import { iconEl } from './icons.js';
+import { bgMessage } from './bgMessage.js';
 import qrcode from '../lib/qrcode.js';
 import { timeAgo } from './feedUtil.js';
 import { createSyncService, cleanPlace } from './syncService.js';
@@ -167,11 +168,8 @@ function tile(icon, title, hintText, state, { disabled = false, onClick } = {}) 
     if (onClick && !disabled) t.addEventListener('click', onClick);
     return t;
 }
-function sendToWorker(msg) {
-    return new Promise((resolve) => {
-        try { chrome.runtime.sendMessage(msg, (res) => { void chrome.runtime.lastError; resolve(res || { ok: false }); }); } catch (_) { resolve({ ok: false }); }
-    });
-}
+// a sync can take minutes (large folders, slow network): wait for it, but not forever
+const sendToWorker = (msg) => bgMessage(msg, { timeout: 5 * 60 * 1000, fallback: { ok: false } });
 
 // ── status text ──
 async function ledgerCount(id) { const d = await getL({ [syncLedgerKey(id)]: {} }); const l = d[syncLedgerKey(id)]; return l && l.items ? Object.keys(l.items).length : 0; }

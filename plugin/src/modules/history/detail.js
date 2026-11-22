@@ -18,6 +18,7 @@ import { createSendTargets } from '../sendSplit.js';
 import { CITE_STYLES, formatCitation, ensureCsl, copyText, getCiteStyle, loadCiteStyle, setCiteStyle } from '../citation.js';
 import { bp } from '../breakpoints.js';
 import { hist } from './state.js';
+import { bgMessage } from '../bgMessage.js';
 import { lbl, applyStatus, invalidateSearchIndex, recordArticleOpened, wsActive, paintDetailStar, addToCollection, playEnter, renderLocalInsights, shareArticle, exportToMarkdown, exportToPdf, sendToObsidian, copyArticleToClipboard, sendToKindle, dispatchToLocalSend, sendToPhone, includeAllQuestions, exportView } from '../articleManager.js';
 
 const escAttr = escapeHtml;
@@ -582,7 +583,7 @@ export async function showArticleDetail(article) {
                 onCount: (n) => tabs.count('links', n),
                 toast: (msg) => hist.ui && hist.ui.showToast && hist.ui.showToast(msg),
                 getIndex: () => StorageManager.getArticlesIndex(),
-                send: (msg) => new Promise((resolve) => { try { chrome.runtime.sendMessage(msg, (r) => { void chrome.runtime.lastError; resolve(r || null); }); } catch (_) { resolve(null); } }),
+                send: (msg) => bgMessage(msg, { timeout: 60000 }),
             });
         }).catch(() => { /* links are optional here */ });
     }

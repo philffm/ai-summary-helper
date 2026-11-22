@@ -17,7 +17,7 @@ export function initBookmarkletGenerator() {
     if (!generateBtn || !resultContainer || !dragLink) return;
 
     generateBtn.addEventListener('click', async () => {
-        const data = await StorageManager.getAll();
+        const data = await StorageManager.getSettings();
         const token = data[SK.token];
 
         if (!token) {

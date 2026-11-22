@@ -24,11 +24,11 @@ export const isOurs = (text) => /<meta name="aish-viewer"/.test(String(text || '
 /** The templates from the extension package. getUrl = chrome.runtime.getURL. */
 export async function loadViewerTemplates({ getUrl, fetchFn = globalThis.fetch } = {}) {
     const out = {};
-    for (const name of Object.keys(VIEWER_FILES)) {
+    await Promise.all(Object.keys(VIEWER_FILES).map(async (name) => {
         const res = await fetchFn(getUrl('viewer/' + name));
         if (!res.ok) throw new Error('The viewer files are missing from the extension.');
         out[name] = await res.text();
-    }
+    }));
     return out;
 }
 

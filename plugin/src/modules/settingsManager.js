@@ -31,7 +31,7 @@ const ON_DEMAND = {
         tags.initLocalIntelligence();
         danger.initDangerZone();
         backup.initBackupRestore();
-        cleanup.initStorageCleanup(await StorageManager.getAll());
+        cleanup.initStorageCleanup(await StorageManager.getSettings());
     },
     send: async () => (await import('./settings/bookmarklet.js')).initBookmarkletGenerator(),
     reading: async () => (await import('./settings/speedRead.js')).initSpeedReadSettings(),

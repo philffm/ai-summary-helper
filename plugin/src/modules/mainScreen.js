@@ -20,6 +20,7 @@ import { turnEl, renderAnswer } from './qaView.js';
 import { typeText } from './typewriter.js';
 import { sidebarTokenFromHash, acceptSidebarMessage, SIDEBAR_TOKEN_FIELD } from './sidebarChannel.js';
 import { currentLengthSpec } from './summaryLength.js';
+import { bgMessage } from './bgMessage.js';
 
 export function initMainScreen(ui) {
     const fetchSummaryButton = document.getElementById('fetchSummary');
@@ -1266,7 +1267,7 @@ export function initMainScreen(ui) {
     // ── Summary queue ───────────────────────────────────────────────────
     // The background keeps one summary running at a time; asking for another one (on this or another tab, or from
     // Feeds) puts it in line. The note below stays until that job starts or is removed.
-    const bgSend = (m) => new Promise((resolve) => { try { chrome.runtime.sendMessage(m, (r) => { void chrome.runtime.lastError; resolve(r || null); }); } catch (_) { resolve(null); } });
+    const bgSend = (m) => bgMessage(m, { timeout: 15000 });
     const queueNotes = new Map();   // job id -> element
     const showQueuedNote = (id, title, position, scroll = true) => {
         const text = '⏳ ' + T('Queued: {title}', { title: clip(title || T('this page'), 60) }) + (position > 1 ? ' · #' + position : '') + ' — ' + T('starts when the current summary is done');

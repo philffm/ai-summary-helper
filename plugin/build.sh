@@ -98,7 +98,7 @@ ZIPS=0
 for dir in "$DEV_DIR"/*-extension-*; do
   name="$(basename "$dir")"
   zip_file="$PROD_DIR/$name-$NEW_VERSION.zip"
-  (cd "$dir" && zip -qr "$ROOT_DIR/$zip_file" .)
+  (cd "$dir" && zip -qr "$ROOT_DIR/$zip_file" . -x "*.DS_Store")
   echo "✅ $name built: $zip_file"
   ZIPS=$((ZIPS + 1))
 done

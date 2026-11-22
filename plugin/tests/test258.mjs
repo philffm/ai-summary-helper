@@ -20,7 +20,7 @@ for (const p of ['chrome', 'firefox', 'android', 'ios']) for (const m of fs.read
 for (const k of ['ctxSpeedRead', 'ctxSummarizePage', 'notifReopen', 'settingsBack']) required.add(k);
 const used = usedKeys(en, SRC);
 for (const k of required) assert(used.has(k), 'needed key dropped: ' + k + ' ' + JSON.stringify(en[k]));
-for (const l of fs.readdirSync(path.join(tmp, '_locales'))) {
+for (const l of fs.readdirSync(path.join(tmp, '_locales')).filter((n) => !n.startsWith('.'))) {
   const raw = fs.readFileSync(path.join(tmp, '_locales', l, 'messages.json'), 'utf8');
   assert(!raw.includes('\n'), l + ': no indentation');
   const m = JSON.parse(raw);

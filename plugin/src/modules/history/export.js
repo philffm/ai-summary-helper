@@ -325,7 +325,7 @@ export async function copyArticleToClipboard(article) {
  */
 export async function sendToKindle(article) {
     article = await exportView(article);
-    const config = await StorageManager.getAll();
+    const config = await StorageManager.getSettings();
     // Multiple Kindle devices can be configured; always send to the active
     // one (last used, or the first configured if none has been used yet).
     const device = StorageManager.getActiveDevice(config, 'kindle');
@@ -399,7 +399,7 @@ export async function sendToKindle(article) {
 }
 
 export async function dispatchToLocalSend(article) {
-    const config = await StorageManager.getAll();
+    const config = await StorageManager.getSettings();
     // Multiple LocalSend receivers can be configured; always send to the
     // active one (last used, or the first configured if none has been used yet).
     const device = StorageManager.getActiveDevice(config, 'localsend');
@@ -492,7 +492,7 @@ function phoneErrorText(code) {
  */
 export async function deliverKindle(article, device) {
     article = await exportView(article);
-    const config = await StorageManager.getAll();
+    const config = await StorageManager.getSettings();
     const kindleEmail = (device?.addresses?.[0] || '').replace(/^mailto:/i, '');
     if (!kindleEmail) return { ok: false, error: T('No Kindle email set.') };
     try {

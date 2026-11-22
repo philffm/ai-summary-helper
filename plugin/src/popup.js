@@ -95,6 +95,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
     const showScreen = ui.showScreen.bind(ui);
     ui.showScreen = (name) => { if (onDemand[name]) onDemand[name](); return showScreen(name); };
+    // Start loading a tab the moment the pointer is on its button (hover on a mouse, touch-down on a phone, keyboard focus),
+    // not when the click lands: the load then overlaps the ~100 ms a click takes. once() makes repeats free.
+    const warm = (e) => { const b = e.target.closest && e.target.closest('.nav-item[data-screen]'); const n = b && b.dataset.screen; if (n && onDemand[n]) onDemand[n](); };
+    for (const ev of ['pointerover', 'pointerdown', 'focusin']) document.addEventListener(ev, warm, { passive: true });
     document.addEventListener('aish:ws-view', (e) => { const scope = e.detail && e.detail.scope; if (onDemand[scope]) onDemand[scope](); });
     // a feed settings panel opened before the feed module was there: load it, then open the panel again for it
     let feedsReady = false;

@@ -227,24 +227,16 @@ function probeLocalSendInfo(targetIp, port) {
         }, 1100);
 
         // Probe KOReader-compatible HTTP first, then HTTPS; check both v2 and v1 routes.
+        // All four routes at once (they used to run one after the other inside the same 1.1 s budget, so a device that only
+        // answers on https / v1 was rarely reached). Preference order is kept: http before https, v2 before v1.
         const probeInfo = async () => {
-            const protocols = ['http', 'https'];
-            const versions = ['v2', 'v1'];
-
-            for (const protocol of protocols) {
-                for (const version of versions) {
-                    const data = await fetch(`${protocol}://${targetIp}:${port}/api/localsend/${version}/info`, {
-                        method: 'GET',
-                        signal: controller.signal
-                    }).then(res => (res.ok ? res.json() : null)).catch(() => null);
-
-                    if (data) {
-                        return { data, protocol };
-                    }
-                }
-            }
-
-            return null;
+            const routes = [];
+            for (const protocol of ['http', 'https']) for (const version of ['v2', 'v1']) routes.push({ protocol, version });
+            const answers = await Promise.all(routes.map(({ protocol, version }) =>
+                fetch(`${protocol}://${targetIp}:${port}/api/localsend/${version}/info`, { method: 'GET', signal: controller.signal })
+                    .then(res => (res.ok ? res.json() : null)).catch(() => null)));
+            const i = answers.findIndex(Boolean);
+            return i < 0 ? null : { data: answers[i], protocol: routes[i].protocol };
         };
 
         probeInfo()

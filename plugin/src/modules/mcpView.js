@@ -7,6 +7,7 @@
 import { T, TU } from './feedI18n.js';
 import { SK } from './storageKeys.js';
 import { iconEl } from './icons.js';
+import { bgMessage } from './bgMessage.js';
 
 const $ = (id) => document.getElementById(id);
 const local = () => chrome.storage.local;
@@ -56,12 +57,7 @@ async function patchConfig(patch) {
 }
 async function getLog() { const d = await getL({ [SK.mcpLog]: [] }); return Array.isArray(d[SK.mcpLog]) ? d[SK.mcpLog] : []; }
 async function hasSecret() { const d = await getL({ [SK.mcpSecret]: '' }); return !!d[SK.mcpSecret]; }
-function status() {
-    return new Promise((resolve) => {
-        try { chrome.runtime.sendMessage({ action: 'mcpStatus' }, (res) => { void chrome.runtime.lastError; resolve(res || { ok: false }); }); }
-        catch (_) { resolve({ ok: false }); }
-    });
-}
+const status = () => bgMessage({ action: 'mcpStatus' }, { timeout: 8000, fallback: { ok: false } });
 
 // ── tiny DOM helpers ──
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
