@@ -19,7 +19,11 @@ assert.deepEqual(hw.visibleWidgets(['quote', 'stats']), ['briefing', 'continue',
 const pg = hw.pager([1, 2, 3, 4, 5], 2);
 assert.deepEqual(pg.next(), [1, 2]); assert(pg.more()); assert.deepEqual(pg.next(), [3, 4]); assert.deepEqual(pg.next(), [5]); assert(!pg.more() && pg.total === 5 && pg.shown === 5, 'pages through a long list');
 const rec = { '100|all': { overview: 'Old.', at: 1, n: 3 }, '200|all': { overview: 'New one. Second sentence here. Third one now.', themes: [], at: 5, n: 9 }, '300|f1': { overview: 'Other scope', at: 9 }, '400|all': { overview: '', themes: [] } };
-assert.equal(hw.latestBriefing(rec).key, '200|all', 'the newest recap of all feeds');
+assert.equal(hw.latestBriefing(rec).key, '200|all', 'the latest day that has a recap of all feeds');
+const day0 = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d.getTime(); })();
+const mixed = { ['w:' + (day0 - 3 * 864e5) + '|all']: { overview: 'A week roll-up of 636 items.', at: Date.now(), n: 636 }, [(day0 - 864e5) + '|all']: { overview: 'Yesterday.', at: Date.now() - 1000, n: 40 }, [day0 + '|all']: { overview: 'Today.', at: Date.now() - 5e6, n: 52 }, [day0 + '|feed1']: { overview: 'One feed only.', at: Date.now() } };
+assert.equal(hw.latestBriefing(mixed).recap.overview, 'Today.', "today's day recap of all feeds, not a week roll-up or a recap of one feed, even when those are newer");
+delete mixed[day0 + '|all']; assert.equal(hw.latestBriefing(mixed).recap.overview, 'Yesterday.', 'without one for today: the latest day, never the roll-up');
 assert.equal(hw.latestBriefing({}), null);
 const recs = { p1: [{ url: 'https://a.com/x', text: 'short', type: 'user' }, { url: 'https://a.com/x', text: 'A highlight that is long enough to be worth reading again.', type: 'user', timestamp: '2026-01-01' }, { url: 'https://a.com/x', text: 'A ghost highlight that is long enough to be skipped entirely.', type: 'ghost' }], p2: [] };
 const q = await hw.pickQuote([{ k: 'p2', n: 1 }, { k: 'p1', n: 3 }, { k: 'p3', n: 0 }], async (k) => recs[k], () => 0);

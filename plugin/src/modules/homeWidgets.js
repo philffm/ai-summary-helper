@@ -52,13 +52,22 @@ export async function pickQuote(hlIndex, readPage, rand = Math.random, tries = 4
     return null;
 }
 
-/** The newest recap of "all feeds" (keys are "<dayStart>|all"): { key, recap } or null. */
-export function latestBriefing(recaps) {
+/**
+ * The briefing for the home page: the day recap of all feeds ("<dayStart>|all"). Today's when there is one (it is what Feeds shows for
+ * today), else the latest day that has one. Week and month roll-ups ("w:…|all", "m:…|all", hundreds of items, written for another page of
+ * Feeds) are not day briefings and never come here. → { key, day, recap } or null
+ */
+export function latestBriefing(recaps, now = Date.now()) {
+    const d0 = new Date(now); d0.setHours(0, 0, 0, 0); const today = d0.getTime();
     let best = null;
     for (const [key, r] of Object.entries(recaps || {})) {
-        if (!/\|all$/.test(key) || !r || (!r.overview && !(r.themes || []).length)) continue;
-        if (!best || (r.at || 0) > (best.recap.at || 0)) best = { key, recap: r };
+        const m = /^(\d+)\|all$/.exec(key);
+        if (!m || !r || (!r.overview && !(r.themes || []).length)) continue;
+        const day = Number(m[1]);
+        const rank = day === today ? Infinity : day;   // today first, then the most recent day
+        if (!best || rank > best.rank || (rank === best.rank && (r.at || 0) > (best.recap.at || 0))) best = { key, day, recap: r, rank };
     }
+    if (best) delete best.rank;
     return best;
 }
 

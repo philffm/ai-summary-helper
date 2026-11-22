@@ -70,10 +70,12 @@ function briefingCard(d) {
   const meta = el('div', 'hm-brief-meta');
   if (r) {
     if (r.n) meta.append(el('span', '', TN(r.n, '{n} item', '{n} items')));
+    { const t0 = new Date(); t0.setHours(0, 0, 0, 0);   // a briefing of an earlier day says which day it is
+      if (found.day && found.day !== t0.getTime()) meta.append(el('span', '', new Date(found.day).toLocaleDateString(document.documentElement.lang || undefined, { weekday: 'long', day: 'numeric', month: 'short' }))); }
     if (r.at) meta.append(el('span', '', T('Updated {when}', { when: ago(r.at) })));
     // older than an hour: a quiet button next to the time. It opens the app on Feeds, where the briefing is refreshed (the previous recap plus what is new)
     if (r.at && Date.now() - r.at > 3600 * 1000) {
-      const day = Number(found.key.split('|')[0]);
+      const day = found.day;
       const b = el('button', 'hm-refresh'); b.type = 'button'; b.append(iconEl('refresh-cw', 'icon--sm')); b.title = T('Update briefing'); b.setAttribute('aria-label', T('Update briefing'));
       b.addEventListener('click', () => dock && dock.open('feeds/recap/' + day)); meta.append(b);
     }
