@@ -97,7 +97,7 @@ function mountSearch() {
   const keep = search && search.input.value, hadFocus = search && document.activeElement === search.input;
   const setOpen = (on) => { box.classList.toggle('is-open', on); $('hmGrid').classList.toggle('is-dim', on); search.input.setAttribute('aria-expanded', String(on)); };
   const collapse = () => { search.input.value = ''; search.update(); setOpen(false); search.input.blur(); };
-  search = mountCommandList(box, { getCommands: homeCommands, findMore: externalArticleSearch((a) => window.open(readerUrl(a), '_blank')), onRun: collapse, onEscape: collapse, expanded: false });
+  search = mountCommandList(box, { getCommands: homeCommands, findMore: externalArticleSearch((a) => window.open(readerUrl(a), '_blank'), (msg) => { const st = $('hmStatus'); st.textContent = msg; st.hidden = false; }), onRun: collapse, onEscape: collapse, expanded: false });
   const key = document.createElement('kbd'); key.className = 'kbd-key hm-key'; key.setAttribute('aria-hidden', 'true'); key.textContent = /Mac|iPhone|iPad/i.test(navigator.platform || navigator.userAgent || '') ? '⌘K' : 'Ctrl K'; box.append(key);
   search.input.addEventListener('focus', () => setOpen(true));
   box.addEventListener('focusout', (e) => { if (!box.contains(e.relatedTarget) && !search.input.value) setOpen(false); });

@@ -139,7 +139,7 @@ export async function openCommandPalette(ui) {
     const getIndex = async () => (index = index || await StorageManager.getArticlesIndex());
     openPalette({
         getCommands: () => buildCommands(ui, { settingsEntries: nav.settingsEntries, openSettingsPanel: nav.openSettingsPanel }),
-        findMore: withWebSearch(async (q) => articleCommands(await getIndex(), q, (a) => am.openArticleInHistory(a))),
+        findMore: withWebSearch(async (q) => articleCommands(await getIndex(), q, (a) => am.openArticleInHistory(a)), (m) => ui.showToast && ui.showToast(m)),
     });
 }
 

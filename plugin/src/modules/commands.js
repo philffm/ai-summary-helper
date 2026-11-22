@@ -6,8 +6,8 @@ import { isMac, openHelp } from './shortcuts.js';
 import { webSearchCommand, webSearchPossible } from './webSearch.js';
 
 /** Wraps an article search: results first (from two characters), then "Search the web" as the last entry for any query. */
-export function withWebSearch(findArticles) {
-    return async (q) => [...(q.trim().length >= 2 && findArticles ? await findArticles(q) : []), ...(webSearchPossible() && q.trim() ? [webSearchCommand(q)] : [])];
+export function withWebSearch(findArticles, notify) {
+    return async (q) => [...(q.trim().length >= 2 && findArticles ? await findArticles(q) : []), ...(webSearchPossible() && q.trim() ? [webSearchCommand(q, undefined, notify)] : [])];
 }
 
 /** Saved articles matching the query as palette entries (title, address and tags; newest first among equal scores). */

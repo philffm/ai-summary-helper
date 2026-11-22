@@ -455,7 +455,7 @@ function wirePalette() {
     { id: 'rp:app', group: here, title: T('Open app beside the article'), keywords: 'side panel dock', run: press('rpApp') },
     { id: 'rp:listen', group: here, title: T('Listen'), keywords: 'read aloud tts audio', run: press('rpListen') },
   ];
-  const open = () => openExternalPalette({ extra, openArticle: (a) => { location.hash = '#id=' + encodeURIComponent(a.id); location.reload(); } });
+  const open = () => openExternalPalette({ extra, notify: (m) => showToast(m, 6000), openArticle: (a) => { location.hash = '#id=' + encodeURIComponent(a.id); location.reload(); } });
   bindPaletteKey(open);
   $('rpPalette').addEventListener('click', () => { const m = $('rpMoreMenu'); if (m) m.hidden = true; open(); });
 }

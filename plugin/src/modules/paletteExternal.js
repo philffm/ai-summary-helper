@@ -25,14 +25,14 @@ export function externalCommands({ extra = [], home = true } = {}) {
 }
 
 /** Saved articles for the search (loads the index once). */
-export function externalArticleSearch(openArticle) {
+export function externalArticleSearch(openArticle, notify) {
     let index = null;
     const open = openArticle || ((a) => window.open(chrome.runtime.getURL('readerPage.html') + '#id=' + encodeURIComponent(a.id), '_blank'));
-    return withWebSearch(async (q) => articleCommands(index = index || await StorageManager.getArticlesIndex(), q, open));
+    return withWebSearch(async (q) => articleCommands(index = index || await StorageManager.getArticlesIndex(), q, open), notify);
 }
 
-export function openExternalPalette({ extra = [], openArticle, doc = document } = {}) {
-    openPalette({ doc, getCommands: () => externalCommands({ extra }), findMore: externalArticleSearch(openArticle) });
+export function openExternalPalette({ extra = [], openArticle, notify, doc = document } = {}) {
+    openPalette({ doc, getCommands: () => externalCommands({ extra }), findMore: externalArticleSearch(openArticle, notify) });
 }
 export const paletteKeyHint = () => (isMac() ? '⌘K' : 'Ctrl+K');
 

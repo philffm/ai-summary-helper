@@ -80,7 +80,7 @@ export function mountCommandList(container, { getCommands, findMore, onRun, onEs
             shown = shown.concat(more); paint();
         }
     };
-    function run(i) { const c = shown[i]; if (!c) return; if (onRun) onRun(c); Promise.resolve().then(() => c.run()); }
+    function run(i) { const c = shown[i]; if (!c) return; if (onRun) onRun(c); c.run(); }   // synchronously: a permission prompt (web search) needs the click's user gesture
     input.addEventListener('input', update);
     container.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') { if (onEscape) { e.preventDefault(); e.stopPropagation(); onEscape(); } }
