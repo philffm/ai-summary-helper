@@ -126,7 +126,7 @@ export function qaSection(turns, { onPin, onSource, includeAll = false, onInclud
         const lab = document.createElement('label'); lab.className = 'qa-all';
         const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = !!includeAll;
         cb.addEventListener('change', () => { if (onIncludeAll) onIncludeAll(cb.checked); });
-        lab.append(cb, document.createTextNode(' ' + T('Include all questions in exports')));
+        lab.append(cb, document.createTextNode(T('Include all questions in exports')));
         root.appendChild(lab);
     }
     return root;

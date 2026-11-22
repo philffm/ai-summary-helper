@@ -3794,7 +3794,8 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .qa-section { display: flex; flex-direction: column; gap: 10px; }
 .qa-title { color: var(--text-secondary); }
 .qa-more summary { cursor: pointer; font-size: var(--fs-xs); color: var(--text-muted); margin-bottom: 6px; }
-.qa-all { font-size: var(--fs-2xs); color: var(--text-muted); text-align: left; }
+.qa-all { display: flex; align-items: center; gap: 8px; font-size: var(--fs-2xs); color: var(--text-muted); text-align: left; }
+.qa-all input[type="checkbox"] { width: auto; flex: none; margin: 0; padding: 0; }   /* the global input rule makes fields full width with padding */
 .aish-qa h3 { font-size: 1em; }
 
 /* ── Docked composer (working / follow-up): one slim row, settings as a quiet line ── */
