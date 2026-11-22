@@ -154,14 +154,20 @@ const builders = {
     const svg = document.createElementNS(NS, 'svg');
     svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', T('Your topics'));
     const mk = (tag, attrs, parent) => { const n = document.createElementNS(NS, tag); Object.entries(attrs || {}).forEach(([k, v]) => n.setAttribute(k, v)); if (parent) parent.append(n); return n; };
-    // two layers: a blurred, larger copy of every bubble (the glow, which also spills over the edge of the card) and the crisp bubbles on top
+    // Abstract, not a chart: every bubble is a soft blob (a radial gradient that fades to nothing at the edge, no outline), behind it a larger blurred
+    // copy (the glow, which also spills over the edge of the card). High contrast gets solid, outlined circles instead (see home.css).
+    const defs = mk('defs', {}, svg);
+    for (let i = 0; i < Math.min(8, bubbles.length); i++) {
+      const gr = mk('radialGradient', { id: 'hmb' + i, cx: '50%', cy: '50%', r: '50%' }, defs);
+      [['0%', 0.95], ['55%', 0.78], ['100%', 0]].forEach(([o, a]) => { const st = mk('stop', { offset: o, 'stop-opacity': String(a) }, gr); st.style.stopColor = `var(--chart-${i})`; });
+    }
     const glow = mk('g', { class: 'hm-glow' }, svg), crisp = mk('g', { class: 'hm-bubbles' }, svg);
     bubbles.forEach((b, i) => {
-      const colour = `var(--chart-${i % 8})`;
-      const gc = mk('circle', { cx: b.x.toFixed(1), cy: b.y.toFixed(1), r: (b.r * 1.9).toFixed(1) }, glow); gc.style.fill = colour;
+      const k = i % 8, colour = `var(--chart-${k})`;
+      const gc = mk('circle', { cx: b.x.toFixed(1), cy: b.y.toFixed(1), r: (b.r * 2).toFixed(1) }, glow); gc.style.fill = colour;
       const g = mk('g', { class: 'hm-bubble' }, crisp); g.style.setProperty('--i', String(i));
       const t = mk('title', {}, g); t.textContent = `${b.label} · ${b.n}`;
-      const c = mk('circle', { cx: b.x.toFixed(1), cy: b.y.toFixed(1), r: b.r.toFixed(1) }, g); c.style.fill = colour;
+      const c = mk('circle', { cx: b.x.toFixed(1), cy: b.y.toFixed(1), r: (b.r * 1.12).toFixed(1) }, g); c.style.fill = `url(#hmb${k})`; c.style.setProperty('--hm-solid', colour);
       if (i < 4 && b.r > 17) { const tx = mk('text', { x: b.x.toFixed(1), y: (b.y + 3).toFixed(1), class: 'hm-bubble-label' }, g); tx.textContent = b.label.length > 12 ? b.label.slice(0, 11) + '…' : b.label; }
     });
     if (!bubbles.length) body.append(el('p', 'hm-empty', T('Topics show up here once you have saved a few articles.')));
