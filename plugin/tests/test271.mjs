@@ -38,7 +38,7 @@ store[SK.articlesIndex] = index;
 store[SK.hlIndex] = [{ k: 'https://a.com/x', n: 1 }];
 store['hl:page:https://a.com/x'] = [{ url: 'https://a.com/x', text: 'Quote from the user highlights that is long enough.', type: 'user' }];
 store[SK.feedItems] = [{ id: 'f9', title: 'Feed news', link: 'https://f.com/n', published: now, feedTitle: 'Feed F' }];
-store[SK.feedRecaps] = { '1|all': { overview: 'Energy prices moved. [1]', themes: ['Grid fees rise [1]', 'Quiet elsewhere'], mood: 'neu', at: now - 12 * 60000, n: 9, refs: { 1: 'f9' } } };
+store[SK.feedRecaps] = { '1|all': { overview: 'Energy prices moved. [1]', themes: ['Grid fees rise [1]', 'Quiet elsewhere'], mood: 'neu', at: now - 3 * 3600000, n: 9, refs: { 1: 'f9' } } };
 let polls = 0;
 chrome.runtime.sendMessage = (m, cb) => { if (m.action === 'feedPollNow') { polls++; store[SK.feedBackground] = { items: [{ id: 'n1', title: 'Fresh from worker', link: 'https://f.com/fresh', published: Date.now() + 5 }] }; } const r = { ok: true }; if (cb) { cb(r); return; } return Promise.resolve(r); };
 await imp('../src/home.js'); await tick(400);
@@ -111,4 +111,9 @@ sc.scrollTop = 0; sc.dispatchEvent(new w.Event('scroll')); assert.equal(ul2.chil
 sc.scrollTop = 40 * 12 - 100 - 20; sc.dispatchEvent(new w.Event('scroll')); assert(ul2.children.length > 12, 'the next page when the end is near: ' + ul2.children.length);
 for (let i = 0; i < 5; i++) { sc.scrollTop = 1e6; sc.dispatchEvent(new w.Event('scroll')); }
 assert.equal(ul2.children.length, 30, 'all of it in the end, never more'); assert(!L.pager.more());
+// an old briefing (> 1 hour) has a quiet update button that opens Feeds on that day's recap
+const refresh = d.querySelector('.hm-refresh');
+assert(refresh && refresh.getAttribute('aria-label') === 'Update briefing', 'the briefing is 3 hours old: an update button sits next to the time');
+refresh.click(); await tick(60);
+assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it opens the app on Feeds with that day\'s briefing: ' + d.querySelector('iframe.app-dock').src);
 console.log('TEST 271 OK'); process.exit(0);

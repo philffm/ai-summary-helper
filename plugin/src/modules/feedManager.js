@@ -2830,6 +2830,8 @@ export async function onFeedsScreenShown(uiObj) {
 
 export function initFeedManager(uiObj) {
     uiRef = uiObj;
+    // "Update" next to an old briefing on the home page: open that day's recap and refresh it (previous recap + the items that are new since)
+    document.addEventListener('aish:recap-refresh', (e) => { const day = Number(e.detail && e.detail.day); if (Number.isFinite(day) && day > 0) openRecap(day, dayLabel(day), 'all', true); });
     refreshTopicLang();
     els = {
         controls: document.getElementById('feedControls'),

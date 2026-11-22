@@ -1,6 +1,7 @@
 // Home page: opened from Settings › Appearance or the ⌘K palette ("Home page"). It only reads what the library already holds;
 // every card is a plain list of links, and the user chooses which cards show (remembered on this device).
 import { bootPage } from './modules/pageBoot.js';
+import { iconEl } from './modules/icons.js';
 import { applyA11y, SCHEMES, DESIGNS, normalizeAppearance, clampScale, TEXT_SCALE_MIN, TEXT_SCALE_MAX } from './modules/a11y.js';
 import { T, TN } from './modules/feedI18n.js';
 import StorageManager from './modules/storageManager.js';
@@ -70,6 +71,12 @@ function briefingCard(d) {
   if (r) {
     if (r.n) meta.append(el('span', '', TN(r.n, '{n} item', '{n} items')));
     if (r.at) meta.append(el('span', '', T('Updated {when}', { when: ago(r.at) })));
+    // older than an hour: a quiet button next to the time. It opens the app on Feeds, where the briefing is refreshed (the previous recap plus what is new)
+    if (r.at && Date.now() - r.at > 3600 * 1000) {
+      const day = Number(found.key.split('|')[0]);
+      const b = el('button', 'hm-refresh'); b.type = 'button'; b.append(iconEl('refresh-cw', 'icon--sm')); b.title = T('Update briefing'); b.setAttribute('aria-label', T('Update briefing'));
+      b.addEventListener('click', () => dock && dock.open('feeds/recap/' + day)); meta.append(b);
+    }
     meta.append(el('span', 'hm-mood', MOOD()[r.mood] || MOOD().neu));
   }
   const text = el('div', 'hm-brief-text');
@@ -123,7 +130,7 @@ const builders = {
   },
   stats: (d) => {
     const s = libraryStats(d.index), dl = el('dl', 'hm-stats');
-    [[T('Saved'), s.total], [T('Unread'), s.unread], [T('Starred'), s.starred], [T('Finished this week'), s.finishedThisWeek]].forEach(([k, v]) => { const g = el('div'), dd = el('dd', '', String(v)); g.append(el('dt', '', k), dd); dl.append(g); countUp(dd, v); });
+    [[T('Saved articles'), s.total], [T('Unread'), s.unread], [T('Starred'), s.starred], [T('Finished this week'), s.finishedThisWeek]].forEach(([k, v]) => { const g = el('div'), dd = el('dd', '', String(v)); g.append(el('dt', '', k), dd); dl.append(g); countUp(dd, v); });
     return card(T('Your library'), dl, 'history/stats');   // the numbers lead to the analytics report
   },
 };

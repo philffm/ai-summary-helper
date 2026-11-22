@@ -8008,5 +8008,11 @@
   },
   "f_graphite_9dad": {
     "message": "Graphite"
+  },
+  "f_saved_articles_d6af": {
+    "message": "Enregistrés"
+  },
+  "f_update_briefing_ff5c": {
+    "message": "Actualiser le briefing"
   }
 }

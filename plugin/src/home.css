@@ -125,3 +125,9 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 @keyframes barGrow { from { transform: scaleX(0); } }
 .hm-card.skeleton-card { min-block-size: 8rem; }
 @media (prefers-reduced-motion: reduce) { .hm-enter, .lazy-in, .hm-pop, .hm-look-menu, .hm-card[data-working], .hm-updating::before, .hm-bar > i { animation: none; } }
+.hm-refresh { display: inline-grid; place-items: center; width: 24px; height: 24px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--text-muted); cursor: pointer; transition: color var(--duration-fast) var(--easing-standard), background var(--duration-fast) var(--easing-standard); }
+.hm-refresh:hover { color: var(--accent); background: var(--accent-soft); }
+.hm-refresh:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+.hm-refresh:hover .icon { animation: spin .6s var(--easing-in-out); }
+@media (prefers-reduced-motion: reduce) { .hm-refresh:hover .icon { animation: none; } }
+:root[data-design='contrast'] .hm-refresh { color: var(--text-primary); }

@@ -134,6 +134,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         // #notes / #feeds / #history / #settings, or #settings/<panel>/<control>: a link from the reading view or the home page straight to a setting
         const [scr, panel, control] = ((window.location && window.location.hash) || '').slice(1).split('/');
         ui.showScreen(['notes', 'feeds', 'history', 'settings'].includes(scr) ? scr : (currentSurface() === 'float' ? 'history' : "main"));
+        // #feeds/recap/<day>: the Feeds screen with that day's briefing opened and refreshed (the home page's update button)
+        if (scr === 'feeds' && panel === 'recap' && control) setTimeout(async () => { try { await onDemand.feeds(); document.dispatchEvent(new CustomEvent('aish:recap-refresh', { detail: { day: Number(control) } })); } catch (_) { /* Feeds stays as it is */ } }, 0);
         // #history/stats: the History screen with its analytics report open (the home page's library numbers lead there)
         if (scr === 'history' && panel === 'stats') {
             let tries = 0;
