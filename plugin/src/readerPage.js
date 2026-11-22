@@ -13,6 +13,7 @@ import { getReader, speechUnits, detectLang } from './modules/reader.js';
 import { ttsLang } from './modules/languages.js';
 import { createReadTracker } from './modules/readProgress.js';
 import { applyA11y } from './modules/a11y.js';
+import { bp } from './modules/breakpoints.js';
 
 const PREFS_KEY = 'reader:prefs';
 const SIZES = [15, 17, 19, 21, 24, 28];
@@ -254,11 +255,45 @@ async function wireListen() {
   window.addEventListener('pagehide', () => { const m = reader.state.meta; if (m && m.tool === 'reader') reader.stop(); });
 }
 
-// ── The app as a floating panel on this page (the reader is our own page, so popup.html embeds directly) ──
+// ── The app beside the text: popup.html docked on the right, the page makes room, the edge is draggable ──
+// On a window narrower than the "split" breakpoint there is no room for both: the app floats over the text instead.
+const DOCK_MIN = 320, DOCK_DEFAULT = 420;
+const dockMax = () => Math.max(DOCK_MIN, Math.min(760, Math.round(window.innerWidth * 0.6)));
+const clampDock = (w) => Math.min(dockMax(), Math.max(DOCK_MIN, Math.round(Number(w) || DOCK_DEFAULT)));
 function wireApp() {
   const btn = $('rpApp'); if (!btn) return;
-  let frame = null;
-  const close = () => { if (frame) { frame.remove(); frame = null; } btn.setAttribute('aria-pressed', 'false'); };
+  let frame = null, grip = null;
+  const setDock = (w) => { root.style.setProperty('--rp-dock', clampDock(w) + 'px'); if (grip) { grip.setAttribute('aria-valuenow', String(clampDock(w))); grip.setAttribute('aria-valuemin', String(DOCK_MIN)); grip.setAttribute('aria-valuemax', String(dockMax())); } };
+  const saveDock = () => { prefs.dock = clampDock(parseInt(getComputedStyle(root).getPropertyValue('--rp-dock'), 10)); try { chrome.storage.local.set({ [PREFS_KEY]: prefs }); } catch (_) { /* optional */ } };
+  const close = () => {
+    if (frame) { frame.remove(); frame = null; }
+    if (grip) { grip.remove(); grip = null; }
+    root.classList.remove('rp-docked'); btn.setAttribute('aria-pressed', 'false');
+  };
+  function makeGrip() {
+    const g = document.createElement('div');
+    g.className = 'rp-grip'; g.setAttribute('role', 'separator'); g.setAttribute('aria-orientation', 'vertical'); g.tabIndex = 0;
+    g.setAttribute('aria-label', T('Resize the app panel'));
+    g.addEventListener('pointerdown', (e) => {
+      e.preventDefault(); g.setPointerCapture(e.pointerId); root.classList.add('rp-resizing');   // the frame must not swallow the drag
+      const move = (ev) => setDock(window.innerWidth - ev.clientX);
+      const up = () => { g.removeEventListener('pointermove', move); g.removeEventListener('pointerup', up); g.removeEventListener('pointercancel', up); root.classList.remove('rp-resizing'); saveDock(); };
+      g.addEventListener('pointermove', move); g.addEventListener('pointerup', up); g.addEventListener('pointercancel', up);
+    });
+    g.addEventListener('keydown', (e) => {
+      const d = e.key === 'ArrowLeft' ? 24 : e.key === 'ArrowRight' ? -24 : 0; if (!d) return;
+      e.preventDefault(); setDock(parseInt(getComputedStyle(root).getPropertyValue('--rp-dock'), 10) + d); saveDock();
+    });
+    return g;
+  }
+  const layout = () => {   // wide enough: beside the text (with a grip); narrow: over it
+    if (!frame) return;
+    const wide = window.innerWidth >= bp('split');
+    root.classList.toggle('rp-docked', wide);
+    if (wide && !grip) { grip = makeGrip(); document.body.appendChild(grip); setDock(prefs.dock); }
+    if (!wide && grip) { grip.remove(); grip = null; }
+    if (wide) setDock(parseInt(getComputedStyle(root).getPropertyValue('--rp-dock'), 10) || prefs.dock);
+  };
   btn.addEventListener('click', () => {
     if (frame) { close(); return; }
     frame = document.createElement('iframe');
@@ -266,7 +301,9 @@ function wireApp() {
     frame.src = chrome.runtime.getURL('popup.html') + '?surface=float';
     document.body.appendChild(frame);
     btn.setAttribute('aria-pressed', 'true');
+    setDock(prefs.dock); layout();
   });
+  window.addEventListener('resize', layout);
   window.addEventListener('message', (e) => {
     if (frame && e.source === frame.contentWindow && e.origin === location.origin && e.data && e.data.aishFloat === 'close') close();
   });
