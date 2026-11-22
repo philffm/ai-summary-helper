@@ -38,14 +38,14 @@ const input = d.querySelector('.cmdk-input');
 assert(d.querySelectorAll('.cmdk-item').length > 5, 'all commands show first: ' + d.querySelectorAll('.cmdk-item').length + ' / shown');
 input.value = 'grid'; input.dispatchEvent(new w.Event('input')); await tick(50);
 assert(/Grid connection/.test(d.querySelector('.cmdk-list').textContent), 'article results are appended');
-const key = (k) => d.querySelector('.cmdk').dispatchEvent(new w.KeyboardEvent('keydown', { key: k, bubbles: true, cancelable: true }));
+const key = (k) => d.querySelector('.cmdk-input').dispatchEvent(new w.KeyboardEvent('keydown', { key: k, bubbles: true, cancelable: true }));
 key('Enter'); await tick(50);
 assert.deepEqual(opened, ['x2'], 'Enter runs the highlighted entry');
 assert(!paletteOpen() && !d.querySelector('.cmdk'), 'runs and closes');
 
 openPalette({ doc: d, getCommands: () => built });
 input.value = ''; const i2 = d.querySelector('.cmdk-input'); i2.value = 'history'; i2.dispatchEvent(new w.Event('input'));
-key('ArrowDown'); assert.equal(d.querySelector('[aria-selected="true"]').id, 'cmdk-0', 'a single hit stays selected');
+key('ArrowDown'); assert(/-0$/.test(d.querySelector('[aria-selected="true"]').id), 'a single hit stays selected');
 key('Escape'); assert(!paletteOpen(), 'Escape closes');
 openPalette({ doc: d, getCommands: () => built }); closePalette(); assert(!d.querySelector('.cmdk'), 'closePalette');
 console.log('TEST 270 OK'); process.exit(0);

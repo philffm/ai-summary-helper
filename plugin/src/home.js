@@ -6,7 +6,8 @@ import StorageManager from './modules/storageManager.js';
 import { SK } from './modules/storageKeys.js';
 import { bgMessage } from './modules/bgMessage.js';
 import { continueReading, recentlySaved, latestFeed, mergeFeed, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
-import { openExternalPalette, bindPaletteKey, paletteKeyHint } from './modules/paletteExternal.js';
+import { mountCommandList } from './modules/commandPalette.js';
+import { externalCommands, externalArticleSearch } from './modules/paletteExternal.js';
 
 const PREFS_KEY = 'home:prefs';
 const $ = (id) => document.getElementById(id);
@@ -63,12 +64,37 @@ async function init() {
   await bootPage();
   const hour = new Date().getHours();
   $('hmGreeting').textContent = { night: T('Good night'), morning: T('Good morning'), afternoon: T('Good afternoon'), evening: T('Good evening') }[greetingKey(hour)];
-  $('hmKey').textContent = paletteKeyHint();
-  const open = () => openExternalPalette({ openArticle: (a) => window.open(readerUrl(a), '_blank') });
-  $('hmSearch').addEventListener('click', open); bindPaletteKey(open);
+  bindSearchKeys();
   await loadData();
-  render();
+  render(); mountSearch();
   refreshFeeds();
+}
+
+// The search field is the command list inline (commandPalette.js): what to continue, what is new, where to go, and a search of saved articles.
+let search = null;
+function homeCommands() {
+  const cont = continueReading(data.index).map((a) => ({ id: 'c:' + a.id, group: T('Continue'), title: a.title || a.url, sub: Math.round((a.progress || 0) * 100) ? Math.round(a.progress * 100) + '% · ' + hostOf(a.url) : hostOf(a.url), run: () => window.open(readerUrl(a), '_blank') }));
+  const fresh = latestFeed(data.feed, 4).map((i) => ({ id: 'f:' + (i.id || i.link), group: T('New in your feeds'), title: i.title, sub: i.feedTitle || i.source || hostOf(i.link), run: () => window.open(i.link, '_blank') }));
+  return [...cont, ...fresh, ...externalCommands({ home: false })];
+}
+function mountSearch() {
+  const box = $('hmBox'); if (search) search.destroy(); box.textContent = '';
+  const keep = search && search.input.value, hadFocus = search && document.activeElement === search.input;
+  const setOpen = (on) => { box.classList.toggle('is-open', on); $('hmGrid').classList.toggle('is-dim', on); search.input.setAttribute('aria-expanded', String(on)); };
+  const collapse = () => { search.input.value = ''; search.update(); setOpen(false); search.input.blur(); };
+  search = mountCommandList(box, { getCommands: homeCommands, findMore: externalArticleSearch((a) => window.open(readerUrl(a), '_blank')), onRun: collapse, onEscape: collapse, expanded: false });
+  search.input.addEventListener('focus', () => setOpen(true));
+  box.addEventListener('focusout', (e) => { if (!box.contains(e.relatedTarget) && !search.input.value) setOpen(false); });
+  if (keep) { search.input.value = keep; search.update(); }
+  if (hadFocus) { search.focus(); setOpen(true); }
+}
+// ⌘K / Ctrl+K and "/" jump to the field
+function bindSearchKeys() {
+  const mac = /Mac|iPhone|iPad/i.test(navigator.platform || navigator.userAgent || '');
+  document.addEventListener('keydown', (e) => {
+    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '');
+    if (((mac ? e.metaKey : e.ctrlKey) && !e.shiftKey && !e.altKey && (e.key || '').toLowerCase() === 'k') || (e.key === '/' && !typing && !e.metaKey && !e.ctrlKey)) { e.preventDefault(); search && search.focus(); }
+  });
 }
 
 // Library and feed list as stored; the worker's newest finds (feeds:background) count too
@@ -87,7 +113,7 @@ async function refreshFeeds() {
   const status = $('hmStatus'); status.textContent = T('Updating feeds…'); status.hidden = false;
   const before = data.feed.length;
   const r = await bgMessage({ action: 'feedPollNow' }, { timeout: 90000 });
-  if (r && r.ok) { await loadData(); if (data.feed.length !== before) render(); }
+  if (r && r.ok) { await loadData(); if (data.feed.length !== before) { render(); mountSearch(); } }
   status.hidden = true;
 }
 init();

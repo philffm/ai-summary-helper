@@ -73,6 +73,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     initShortcuts(ui);
     const homeBtn = document.getElementById('openHomeButton');
     if (homeBtn) homeBtn.addEventListener('click', () => chrome.tabs.create({ url: chrome.runtime.getURL('home.html') }));
+    const copyHome = document.getElementById('copyHomeAddressButton');
+    if (copyHome) {
+        const addr = chrome.runtime.getURL('home.html');
+        const hint = document.getElementById('homeAddressHint');
+        // where the user pastes it: the browser's own start page setting (the new tab page itself cannot be set without an override)
+        if (hint) hint.textContent = /Firefox/.test(navigator.userAgent)
+            ? T('Paste it in Firefox Settings › Home › Homepage and new windows › Custom URLs.')
+            : T('Paste it in Chrome Settings › On startup › Open a specific page, or under Appearance › Home button.');
+        copyHome.addEventListener('click', async () => {
+            const label = copyHome.textContent;
+            try { await navigator.clipboard.writeText(addr); copyHome.textContent = T('Copied'); }
+            catch (_) {   // clipboard refused: show the address so it can be selected
+                const input = Object.assign(document.createElement('input'), { value: addr, readOnly: true }); input.setAttribute('aria-label', T('Home page address'));
+                copyHome.replaceWith(input); input.select(); return;
+            }
+            setTimeout(() => { copyHome.textContent = label; }, 1800);
+        });
+    }
     initSearchFields();
     initMainScreen(ui);
     initReviewPrompt();
