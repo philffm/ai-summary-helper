@@ -156,4 +156,11 @@ const refresh = d.querySelector('.hm-refresh');
 assert(refresh && refresh.getAttribute('aria-label') === 'Update briefing', 'the briefing is 3 hours old: an update button sits next to the time');
 refresh.click(); await tick(60);
 assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it opens the app on Feeds with that day\'s briefing: ' + d.querySelector('iframe.app-dock').src);
+// layout: a card's column placement for wide pages must come BEFORE the container queries that change it for narrower ones (a later rule wins over them:
+// the topics strip once kept "columns 3-4" on a medium page and broke the grid into uneven implicit columns)
+{
+  const css = fs.readFileSync(new URL('../src/home.css', import.meta.url), 'utf8');
+  const medium = css.indexOf('@container hmwrap (max-width: 1100px)');
+  for (const rule of ['[data-card="graph"] { grid-column: 3 / span 2; }', '[data-card="briefing"] { grid-column: 1 / span 2;']) assert(css.indexOf(rule) > 0 && css.indexOf(rule) < medium, rule + ' comes before the container queries');
+}
 console.log('TEST 271 OK'); process.exit(0);
