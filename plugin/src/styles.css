@@ -5201,7 +5201,7 @@ circle.graph-path { stroke: var(--accent); stroke-width: 3px; }
 .graph-sim-chip { padding: 4px 10px; font: inherit; font-size: var(--fs-xs); color: var(--text-muted); background: var(--glass-base); border: 1px dashed var(--outline); border-radius: 999px; cursor: default; }
 .graph-sim-chip:not(:disabled) { color: var(--accent); border: 1px solid var(--accent); cursor: pointer; }
 /* ── Graph toolbar D (Figma AISH-038): views · Research · Adjust on top, tools on the canvas ── */
-.graph-filterbar { flex: 1 1 auto; }
+.graph-filterbar { flex: 1 1 auto; flex-wrap: nowrap; }   /* Research and Adjust stay on one line: when the bar is narrow the whole filter group moves to the next row, never one of them alone */
 .graph-adjust-wrap { position: relative; margin-left: auto; }
 .graph-adjust-wrap[hidden], .graph-adjust[hidden], .graph-adjust-section[hidden], .graph-color-pop[hidden] { display: none; }
 .graph-adjust-btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; box-sizing: border-box; border: 1px solid var(--outline); border-radius: var(--radius-full); background: var(--glass-base); color: var(--text-primary); font: inherit; font-size: var(--fs-xs); cursor: pointer; }

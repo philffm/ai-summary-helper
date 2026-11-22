@@ -1646,7 +1646,7 @@ function renderResearchChip(container, count, on, onToggle) {
     const chip = document.createElement('button');
     chip.type = 'button'; chip.className = 'graph-research-chip' + (on ? ' on' : '');
     chip.setAttribute('aria-pressed', String(on));
-    chip.textContent = on ? T('🎓 Research') + ' · ' + count : T('🎓 Research');
+    setIconLabel(chip, 'graduation-cap', on ? T('🎓 Research') + ' · ' + count : T('🎓 Research'));   // the icon, not the emoji (an old translation's leading emoji is stripped)
     chip.title = T('Show only research papers') + ' (' + count + ')';
     chip.setAttribute('aria-label', T('Show only research papers') + ', ' + count);
     chip.addEventListener('click', onToggle);
