@@ -111,7 +111,8 @@ body { transition: padding-inline-end var(--duration-base) var(--easing-standard
 .rp-item { display: flex; align-items: center; gap: 8px; width: 100%; padding: 8px 10px; background: transparent; color: var(--rp-text); border: 0; border-radius: var(--radius-sm); font: 500 var(--fs-md) var(--rp-ui); text-align: start; cursor: pointer; }
 .rp-item:hover { background: var(--accent-a08); }
 .rp-item .rp-label { display: inline; }
-.rp-edge { position: fixed; inset-inline-end: 0; top: 50%; transform: translateY(-50%); z-index: 15; display: grid; place-items: center; width: 22px; height: 56px; padding: 0; color: var(--rp-muted); background: var(--rp-surface); border: 1px solid var(--rp-line); border-inline-end: 0; border-radius: var(--radius-md) 0 0 var(--radius-md); opacity: .55; cursor: pointer; transition: opacity var(--duration-fast) var(--easing-standard), width var(--duration-fast) var(--easing-standard), color var(--duration-fast) var(--easing-standard); }
+.rp-edge { position: fixed; inset-inline-end: 0; top: calc(50% - 28px); z-index: 15; display: grid; place-items: center; width: 22px; height: 56px; padding: 0; color: var(--rp-muted); background: var(--rp-surface); border: 1px solid var(--rp-line); border-inline-end: 0; border-radius: var(--radius-md) 0 0 var(--radius-md); opacity: .55; cursor: pointer; transition: opacity var(--duration-fast) var(--easing-standard), width var(--duration-fast) var(--easing-standard), color var(--duration-fast) var(--easing-standard); }
+.rp-edge:active { transform: none; }   /* styles.css scales every pressed button: that must not move this one */
 .rp-edge:hover, .rp-edge:focus-visible { opacity: 1; width: 30px; color: var(--rp-accent); outline: none; }
 .rp-edge[hidden] { display: none; }
 @media print { .rp-edge, .rp-menu { display: none; } }
