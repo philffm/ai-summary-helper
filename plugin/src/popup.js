@@ -134,6 +134,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         // #notes / #feeds / #history / #settings, or #settings/<panel>/<control>: a link from the reading view or the home page straight to a setting
         const [scr, panel, control] = ((window.location && window.location.hash) || '').slice(1).split('/');
         ui.showScreen(['notes', 'feeds', 'history', 'settings'].includes(scr) ? scr : (currentSurface() === 'float' ? 'history' : "main"));
+        // #history/stats: the History screen with its analytics report open (the home page's library numbers lead there)
+        if (scr === 'history' && panel === 'stats') {
+            let tries = 0;
+            const open = () => {
+                const rc = document.getElementById('reportContainer'), btn = document.getElementById('reportToggleBtn');
+                if (rc && rc.style.display === 'block') return;
+                if (btn && tries > 1) btn.click();   // the History module wires the button a moment after start: the first tries only wait
+                if (++tries < 14) setTimeout(open, 250);
+            };
+            setTimeout(open, 250);
+        }
         if (scr === 'settings' && panel) setTimeout(async () => { try { await onDemand.settings(); (await import('./modules/settingsNav.js')).openSettingsPanel(panel, control || undefined); } catch (_) { /* the Settings home stays */ } }, 0);
     }   // beside the reading view / home page there is no page of ours to summarize: the library is the start   // "Open in Notes" from a page opens this tab on the Notes screen
     // "🎓 Time to repeat" (quiz reminder) opens popup.html#quiz=<id> in a tab: the saved quiz with the questions to repeat

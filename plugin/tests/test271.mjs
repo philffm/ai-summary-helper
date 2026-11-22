@@ -75,4 +75,8 @@ assert(links.length >= 4, 'each card has a link to its section: ' + links.length
 const feedsLink = [...d.querySelectorAll('.hm-card')].find((c) => /Today at a glance/.test(c.textContent)).querySelector('.hm-card-link');
 assert(/Feeds/.test(feedsLink.textContent)); feedsLink.click(); await tick(60);
 assert(/popup\.html\?surface=float.*#feeds$/.test(d.querySelector('iframe.app-dock').src), 'it opens the app on Feeds from the side');
+// the library numbers lead to the stats (analytics report), not just to History
+const lib = [...d.querySelectorAll('.hm-card')].find((c) => /Your library/.test(c.textContent)).querySelector('.hm-card-link');
+assert(/Stats/.test(lib.textContent)); lib.click(); await tick(60);
+assert(/#history\/stats$/.test(d.querySelector('iframe.app-dock').src), 'the app switches to History with the report: ' + d.querySelector('iframe.app-dock').src);
 console.log('TEST 271 OK'); process.exit(0);

@@ -33,7 +33,7 @@ function card(title, body, screen = '') {
   if (screen) { const a = el('button', 'hm-card-link'); a.type = 'button'; a.setAttribute('aria-label', T('Open {name}', { name: SECTION()[screen] })); a.title = a.getAttribute('aria-label'); a.append(document.createTextNode(SECTION()[screen]), el('span', '', ' →')); a.addEventListener('click', () => dock && dock.open(screen)); h.append(a); }
   c.append(h, body); return c;
 }
-const SECTION = () => ({ feeds: T('Feeds'), history: T('History'), notes: T('Notes') });
+const SECTION = () => ({ feeds: T('Feeds'), history: T('History'), notes: T('Notes'), 'history/stats': T('Stats') });
 function listOf(rows, emptyText) {
   if (!rows.length) return el('p', 'hm-empty', emptyText);
   const ul = el('ul', 'hm-list'); rows.forEach((r) => { const li = el('li'); li.append(r); ul.append(li); }); return ul;
@@ -96,7 +96,7 @@ const builders = {
   stats: (d) => {
     const s = libraryStats(d.index), dl = el('dl', 'hm-stats');
     [[T('Saved'), s.total], [T('Unread'), s.unread], [T('Starred'), s.starred], [T('Finished this week'), s.finishedThisWeek]].forEach(([k, v]) => { const g = el('div'); g.append(el('dt', '', k), el('dd', '', String(v))); dl.append(g); });
-    return card(T('Your library'), dl, 'history');
+    return card(T('Your library'), dl, 'history/stats');   // the numbers lead to the analytics report
   },
 };
 const LABELS = { briefing: 'Today at a glance', continue: 'Continue reading', recent: 'Recently saved', quote: 'From your highlights', stats: 'Your library' };
