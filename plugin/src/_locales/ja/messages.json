@@ -8047,5 +8047,8 @@
   },
   "f_your_topics_3f9e": {
     "message": "あなたのトピック"
+  },
+  "f_show_articles_about_2379": {
+    "message": "{topic}の記事を表示"
   }
 }

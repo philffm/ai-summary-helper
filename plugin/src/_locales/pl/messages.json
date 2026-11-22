@@ -8330,5 +8330,8 @@
   },
   "f_your_topics_3f9e": {
     "message": "Twoje tematy"
+  },
+  "f_show_articles_about_2379": {
+    "message": "Pokaż artykuły o {topic}"
   }
 }

@@ -8330,5 +8330,8 @@
   },
   "f_your_topics_3f9e": {
     "message": "Ваші теми"
+  },
+  "f_show_articles_about_2379": {
+    "message": "Показати статті на тему «{topic}»"
   }
 }

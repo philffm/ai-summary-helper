@@ -111,6 +111,12 @@ assert(/#quiz=q1$/.test(d.querySelector('iframe.app-dock').src), 'the quiz opens
 // the topics strip: bubbles for the biggest topics; a click opens the graph in the app beside the page
 const topics = d.querySelector('[data-card="graph"]');
 assert(topics && topics.querySelectorAll('circle').length >= 2 && /Energy/.test(topics.textContent), 'bubbles for the topics with at least two articles');
+// a bubble opens History beside the page, searched for that topic
+const bubble = topics.querySelector('.hm-bubble'); bubble.dispatchEvent(new w.MouseEvent('click', { bubbles: true })); await tick(60);
+assert(/#history\/tag\/(Energy|AI)$/.test(d.querySelector('iframe.app-dock').src), 'a click on a topic filters History by that topic: ' + d.querySelector('iframe.app-dock').src);
+assert.equal(bubble.getAttribute('role'), 'button'); assert.equal(bubble.getAttribute('tabindex'), '0');
+const tt2 = hw.topTopics([{ tags: ['Tech', 'x'] }, { tags: ['Tech'] }], { tagId: (t) => t.toLowerCase(), tagLabel: (t) => 'Technik' });
+assert.equal(tt2[0].raw, 'Tech', 'the tag as saved is kept for the search');
 // every card's heading links to its section: the app opens beside the page on that screen
 const links = [...d.querySelectorAll('.hm-card-link')];
 assert(links.length >= 4, 'each card has a link to its section: ' + links.length);

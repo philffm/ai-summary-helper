@@ -8047,5 +8047,8 @@
   },
   "f_your_topics_3f9e": {
     "message": "مواضيعك"
+  },
+  "f_show_articles_about_2379": {
+    "message": "عرض المقالات حول {topic}"
   }
 }

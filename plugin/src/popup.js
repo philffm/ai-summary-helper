@@ -136,6 +136,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         ui.showScreen(['notes', 'feeds', 'history', 'settings'].includes(scr) ? scr : (currentSurface() === 'float' ? 'history' : "main"));
         // #feeds/recap/<day>: the Feeds screen with that day's briefing opened and refreshed (the home page's update button)
         if (scr === 'feeds' && panel === 'recap' && control) setTimeout(async () => { try { await onDemand.feeds(); document.dispatchEvent(new CustomEvent('aish:recap-refresh', { detail: { day: Number(control) } })); } catch (_) { /* Feeds stays as it is */ } }, 0);
+        // #history/tag/<tag>: History searched for that tag (the home page's topic bubbles): the same as typing it in the search box
+        if (scr === 'history' && panel === 'tag' && control) {
+            let tries = 0, done = false;
+            const apply = () => {
+                const input = document.getElementById('searchInput');
+                if (input && tries > 1 && !done) { input.value = decodeURIComponent(control); input.dispatchEvent(new Event('input')); done = true; return; }
+                if (!done && ++tries < 14) setTimeout(apply, 250);
+            };
+            setTimeout(apply, 250);
+        }
         // #history/graph: History with the graph open (the home page's topics card leads there)
         if (scr === 'history' && panel === 'graph') {
             let tries = 0;

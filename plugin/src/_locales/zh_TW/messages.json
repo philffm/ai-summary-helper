@@ -8047,5 +8047,8 @@
   },
   "f_your_topics_3f9e": {
     "message": "你的主題"
+  },
+  "f_show_articles_about_2379": {
+    "message": "顯示關於{topic}的文章"
   }
 }

@@ -8029,5 +8029,8 @@
   },
   "f_your_topics_3f9e": {
     "message": "내 주제"
+  },
+  "f_show_articles_about_2379": {
+    "message": "{topic} 관련 기사 보기"
   }
 }

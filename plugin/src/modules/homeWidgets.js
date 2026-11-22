@@ -123,14 +123,14 @@ export async function pickSnippet({ hlIndex, readPage, noteIndex, readNote }, ra
 }
 
 /**
- * The biggest topics of the library for the Topics card: [{ id, label, n }] by number of articles (language marks and one-article topics left out).
+ * The biggest topics of the library for the Topics card: [{ id, label, raw, n }] by number of articles (raw = the tag as saved, what a search for it matches) (language marks and one-article topics left out).
  * tagId / tagLabel / isLanguage come from the graph code (graphGaps.js), so a topic is the same one as in the graph.
  */
 export function topTopics(articles, { tagId, tagLabel, isLanguage = () => false }, max = 10, minArticles = 2) {
     const by = new Map();
     for (const a of live(articles)) for (const t of new Set(a.tags || [])) {
         if (isLanguage(t)) continue;
-        const id = tagId(t); const e = by.get(id) || { id, label: tagLabel(t), n: 0 }; e.n++; by.set(id, e);
+        const id = tagId(t); const e = by.get(id) || { id, label: tagLabel(t), raw: t, n: 0 }; e.n++; by.set(id, e);
     }
     return [...by.values()].filter((e) => e.n >= minArticles).sort((a, b) => b.n - a.n || a.label.localeCompare(b.label)).slice(0, max);
 }

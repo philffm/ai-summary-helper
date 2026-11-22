@@ -8330,5 +8330,8 @@
   },
   "f_your_topics_3f9e": {
     "message": "Emnene dine"
+  },
+  "f_show_articles_about_2379": {
+    "message": "Vis artikler om {topic}"
   }
 }
