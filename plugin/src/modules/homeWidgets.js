@@ -62,14 +62,7 @@ export function latestBriefing(recaps) {
     return best;
 }
 
-/** The short form: up to `max` lines — the recap's themes, or the first sentences of its overview when it has none. */
-export function briefingHeadlines(recap, max = 3) {
-    const themes = (recap.themes || []).filter(Boolean);
-    if (themes.length) return themes.slice(0, max);
-    return String(recap.overview || '').split(/(?<=[.!?])\s+(?=[A-ZÄÖÜ0-9])/).map((x) => x.trim()).filter(Boolean).slice(0, max);
-}
-
-export const WIDGETS = ['briefing', 'continue', 'recent', 'feeds', 'quote', 'stats'];
+export const WIDGETS = ['briefing', 'continue', 'recent', 'quote', 'stats'];
 /** The widgets to show, in order, minus the ones the user hid. */
 export const visibleWidgets = (hidden) => WIDGETS.filter((w) => !(hidden || []).includes(w));
 

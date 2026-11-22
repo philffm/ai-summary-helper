@@ -1,8 +1,11 @@
 /* home.html — the start page. Tokens only (design-system); layout is a calm grid of cards. */
 html, body { height: auto; overflow: auto; }
 body.home { background: var(--bg-page); color: var(--text-primary); font-family: inherit; }
-.hm-wrap { max-width: 1280px; margin: 0 auto; padding: 24px 20px 48px; box-sizing: border-box; }
-.hm-head { position: relative; display: flex; flex-direction: column; align-items: center; gap: 16px; margin: 2vh 0 24px; text-align: center; }
+.hm-wrap { max-width: 1480px; margin: 0 auto; padding: 16px 20px 40px; box-sizing: border-box; }
+.hm-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px) minmax(0, 1fr); align-items: center; gap: 16px; margin: 0 0 16px; }
+.hm-head .hm-title { justify-self: start; }
+.hm-head .hm-appbar { justify-self: end; }
+@container hmwrap (max-width: 1000px) { .hm-head { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; } .hm-head .hm-title, .hm-head .hm-appbar { justify-self: center; } }   /* narrow: stacked, centred */
 .hm-title { margin: 0; font-size: var(--fs-2xl); font-weight: 600; }
 /* The search is the command list, inline: it opens under the field while you type or arrow through it, the cards step back. */
 .hm-box { position: relative; width: 100%; max-width: 560px; text-align: left; }
@@ -17,9 +20,13 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-grid.is-dim { opacity: .35; }
 .hm-hint { font-size: var(--fs-xs); color: var(--text-muted); }
 .hm-wrap { container: hmwrap / inline-size; }
-.hm-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+.hm-grid { display: grid; grid-template-columns: repeat(var(--hm-cols, 2), minmax(0, 1fr)); gap: 14px; align-items: start; }
+.hm-grid.has-glance { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: stretch; }
+.hm-grid.has-glance > .hm-col:first-child { position: relative; }
+/* the glance card is as tall as the side column and scrolls inside, so everything sits above the fold */
+.hm-grid.has-glance > .hm-col:first-child > .hm-card { position: absolute; inset: 0; display: flex; flex-direction: column; min-height: 0; }
 .hm-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-@container hmwrap (max-width: 900px) { .hm-grid { grid-template-columns: minmax(0, 1fr); } .hm-col { display: contents; } }   /* narrow (also with the app docked beside): one column, the cards in their own order */
+@container hmwrap (max-width: 900px) { .hm-grid, .hm-grid.has-glance { grid-template-columns: minmax(0, 1fr); align-items: start; } .hm-col { display: contents; } .hm-grid.has-glance > .hm-col:first-child > .hm-card { position: static; } .hm-brief-body { grid-template-columns: minmax(0, 1fr); } .hm-brief-text, .hm-latest .hm-list { max-height: none; overflow: visible; } }   /* narrow (also with the app docked beside): one column, the cards in their own order */
 .hm-card { padding: 14px; border: 1px solid var(--outline); border-radius: var(--radius-lg); background: var(--bg-card, var(--glass-base)); box-sizing: border-box; }
 .hm-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
 .hm-card-link { padding: 0; border: 0; background: transparent; color: var(--text-muted); font: inherit; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .02em; cursor: pointer; white-space: nowrap; }
@@ -27,7 +34,7 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-card-link:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .hm-card h2 { margin: 0; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
 .hm-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
-.hm-link { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; margin: 0 -10px; border-radius: var(--radius-md); color: var(--text-primary); text-decoration: none; }
+.hm-link { display: flex; flex-direction: column; gap: 1px; padding: 6px 10px; margin: 0 -10px; border-radius: var(--radius-md); color: var(--text-primary); text-decoration: none; }
 .hm-link:hover { background: var(--accent-soft); }
 .hm-link:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-inset); }
 .hm-link-title { font-size: var(--fs-md); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
@@ -35,34 +42,39 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-bar { height: 3px; margin-top: 4px; border-radius: 2px; background: var(--outline); overflow: hidden; }
 .hm-bar > i { display: block; height: 100%; background: var(--accent); }
 .hm-empty { margin: 0; font-size: var(--fs-sm); color: var(--text-muted); }
-.hm-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 0; }
+.hm-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0; }
 .hm-stats dt { font-size: var(--fs-sm); color: var(--text-muted); }
-.hm-stats dd { margin: 0; font-size: var(--fs-2xl); font-weight: 600; }
+.hm-stats dd { margin: 0; font-size: var(--fs-xl); font-weight: 600; font-variant-numeric: tabular-nums; }
 .hm-goto { display: flex; flex-wrap: wrap; gap: 8px; }
-.hm-custom { margin-top: 28px; font-size: var(--fs-sm); color: var(--text-muted); }
+.hm-custom { margin-top: 18px; font-size: var(--fs-sm); color: var(--text-muted); }
 .hm-custom summary { cursor: pointer; }
 .hm-custom-list { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; }
 .hm-custom-list label { display: inline-flex; align-items: center; gap: 8px; }
 .hm-custom-list input { width: auto; margin: 0; padding: 0; }
-.hm-status { margin: -12px 0 14px; text-align: center; font-size: var(--fs-sm); color: var(--text-muted); }
+.hm-status { margin: -8px 0 10px; text-align: center; font-size: var(--fs-sm); color: var(--text-muted); }
 /* the command that opens the search, inside the field; gone while the list is open */
 .hm-key { position: absolute; top: 50%; right: 14px; transform: translateY(-50%); pointer-events: none; }
 .hm-box.is-open .hm-key { display: none; }
 .hm-box .cmdk-input { padding-right: 76px; }
-.hm-appbar { position: absolute; top: 0; inset-inline-end: 0; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 6px; max-width: 100%; }
+.hm-appbar { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 6px; max-width: 100%; }
 .hm-app { display: inline-flex; align-items: center; gap: 6px; }
 .hm-app .icon { width: 16px; height: 16px; }
-@media (max-width: 720px) { .hm-appbar { position: static; justify-content: center; } }   /* narrow: above the greeting instead of beside it */
-.hm-quote { margin: 0 0 8px; padding: 0; font-size: var(--fs-md); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
+.hm-quote { margin: 0 0 8px; padding: 0; font-size: var(--fs-md); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
 .hm-quote-src { display: block; margin-bottom: 10px; }
 
 .hm-brief-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin-bottom: 8px; }
 .hm-brief-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: var(--fs-sm); color: var(--text-muted); }
 .hm-mood { padding: 1px 8px; border: 1px solid var(--outline); border-radius: var(--radius-full); }
-.hm-brief-text { font-size: var(--fs-md); line-height: 1.5; }
+.hm-glance { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; gap: 8px; }
+.hm-brief-body { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 20px; flex: 1 1 auto; min-height: 0; }
+.hm-brief-text { font-size: var(--fs-md); line-height: 1.5; overflow-y: auto; min-height: 0; padding-inline-end: 6px; }
+.hm-latest { min-height: 0; overflow-y: auto; padding-inline-start: 16px; border-inline-start: 1px solid var(--outline); }
+.hm-latest-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.hm-latest h3 { margin: 0; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
+.hm-latest .hm-link-title { -webkit-line-clamp: 2; }
 .hm-brief-list { margin: 8px 0 0; padding-inline-start: 18px; display: grid; gap: 6px; }
 .hm-brief-src { margin-top: 10px; font-size: var(--fs-sm); color: var(--text-muted); }
 .hm-brief-src summary { cursor: pointer; }
 .hm-brief-src ol { margin: 8px 0 0; padding-inline-start: 22px; display: grid; gap: 4px; }
 .hm-brief-src a { color: var(--text-primary); }
-.hm-updating { margin: 0 0 8px; font-size: var(--fs-sm); color: var(--text-muted); }
+.hm-updating { font-size: var(--fs-xs); color: var(--text-muted); }

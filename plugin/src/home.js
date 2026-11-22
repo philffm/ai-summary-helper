@@ -8,7 +8,7 @@ import { bgMessage } from './modules/bgMessage.js';
 import { normalizeHighlights } from './modules/highlightRecords.js';
 import { renderInline, renderAnswer } from './modules/qaView.js';
 import { chipCites, citedSources } from './modules/recapCites.js';
-import { latestBriefing, briefingHeadlines, continueReading, recentlySaved, latestFeed, mergeFeed, pickQuote, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
+import { latestBriefing, continueReading, recentlySaved, latestFeed, mergeFeed, pickQuote, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
 import { createAppDock } from './modules/appDock.js';
 import { mountCommandList } from './modules/commandPalette.js';
 import { externalCommands, externalArticleSearch } from './modules/paletteExternal.js';
@@ -45,49 +45,44 @@ function ago(ms) {
 }
 const MOOD = () => ({ pos: T('Mostly positive'), neu: T('Mixed'), neg: T('Mostly heavy') });
 
-// The feed briefing, with the numbered sources the model cited as chips (recapCites.js): the same briefing as in Feeds
+// "Today at a glance": the feed briefing (with the numbered sources the model cited as chips, recapCites.js) takes two thirds of the card,
+// the latest feed items the last third. The refresh that starts with the page reports in the latest pane.
 function briefingCard(d) {
-  const found = latestBriefing(d.recaps);
-  const body = el('div');
-  if (!found) { body.append(el('p', 'hm-empty', T('Write a recap in Feeds and it shows up here, with its sources.'))); return card(T('Briefing'), body, 'feeds'); }
-  const r = found.recap, byId = new Map(d.feed.map((i) => [i.id, i]));
+  const found = latestBriefing(d.recaps), byId = new Map(d.feed.map((i) => [i.id, i]));
+  const r = found && found.recap;
+  const body = el('div', 'hm-glance');
   const meta = el('div', 'hm-brief-meta');
-  if (r.n) meta.append(el('span', '', TN(r.n, '{n} item', '{n} items')));
-  if (r.at) meta.append(el('span', '', T('Updated {when}', { when: ago(r.at) })));
-  meta.append(el('span', 'hm-mood', MOOD()[r.mood] || MOOD().neu));
-  const seg = el('div', 'a11y-seg a11y-seg--hug a11y-seg--sm hm-brief-seg'); seg.setAttribute('role', 'group'); seg.setAttribute('aria-label', T('Briefing size'));
-  const mk = (mode, label) => { const b = el('button', '', label); b.type = 'button'; b.setAttribute('aria-pressed', String(d.briefMode === mode)); b.addEventListener('click', () => { d.briefMode = mode; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock, briefMode: mode } }); } catch (_) { /* optional */ } render(); }); return b; };
-  seg.append(mk('full', T('Sections')), mk('short', T('Headlines')));
-  const head = el('div', 'hm-brief-head'); head.append(meta, seg);
+  if (r) {
+    if (r.n) meta.append(el('span', '', TN(r.n, '{n} item', '{n} items')));
+    if (r.at) meta.append(el('span', '', T('Updated {when}', { when: ago(r.at) })));
+    meta.append(el('span', 'hm-mood', MOOD()[r.mood] || MOOD().neu));
+  }
   const text = el('div', 'hm-brief-text');
-  if (d.briefMode === 'short') {
-    const ul = el('ul', 'hm-brief-list'); briefingHeadlines(r, 3).forEach((t) => { const li = el('li'); renderInline(li, t); ul.append(li); }); text.append(ul);
-  } else {
+  if (!r) text.append(el('p', 'hm-empty', T('Write a recap in Feeds and it shows up here, with its sources.')));
+  else {
     if (r.overview) { const ov = el('div', 'md-body'); renderAnswer(ov, r.overview); text.append(ov); }
     if ((r.themes || []).length) { const ul = el('ul', 'hm-brief-list'); r.themes.forEach((t) => { const li = el('li'); renderInline(li, t); ul.append(li); }); text.append(ul); }
+    chipCites(text, r, byId);
+    const src = citedSources(r, byId);
+    if (src.length) {
+      const det = el('details', 'hm-brief-src'); det.append(el('summary', '', TN(src.length, '{n} source', '{n} sources')));
+      const ol = el('ol'); src.forEach(({ n, item }) => { const li = el('li'); li.value = n; const a = el('a', '', item.title || item.link); a.href = item.link; a.target = '_blank'; a.rel = 'noopener noreferrer'; li.append(a); ol.append(li); });
+      det.append(ol); text.append(det);
+    }
   }
-  chipCites(text, r, byId);
-  body.append(head, text);
-  const src = citedSources(r, byId);
-  if (src.length) {
-    const det = el('details', 'hm-brief-src'); det.append(el('summary', '', TN(src.length, '{n} source', '{n} sources')));
-    const ol = el('ol'); src.forEach(({ n, item }) => { const li = el('li'); li.value = n; const a = el('a', '', item.title || item.link); a.href = item.link; a.target = '_blank'; a.rel = 'noopener noreferrer'; li.append(a); ol.append(li); });
-    det.append(ol); body.append(det);
-  }
-  return card(T('Today’s briefing'), body, 'feeds');
+  const latest = el('aside', 'hm-latest'); latest.setAttribute('aria-label', T('Latest from your feeds'));
+  const lh = el('div', 'hm-latest-head'); lh.append(el('h3', '', T('Latest')));
+  if (d.updating) { const u = el('span', 'hm-updating', T('Updating feeds…')); u.setAttribute('role', 'status'); lh.append(u); }
+  latest.append(lh, listOf(latestFeed(d.feed, 8).map((i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link))), T('Subscribe to feeds to see new items here.')));
+  body.append(meta, el('div', 'hm-brief-body'));
+  body.lastChild.append(text, latest);
+  return card(T('Today at a glance'), body, 'feeds');
 }
 
 const builders = {
   briefing: (d) => briefingCard(d),
-  continue: (d) => card(T('Continue reading'), listOf(continueReading(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url), a.progress)), T('Nothing in progress. Articles you start reading show up here.')), 'history'),
-  recent: (d) => card(T('Recently saved'), listOf(recentlySaved(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url))), T('Your saved articles show up here.')), 'history'),
-  feeds: (d) => {
-    const body = el('div');
-    // the refresh that starts with the page belongs to this card: a small line while it runs
-    if (d.updating) { const u = el('p', 'hm-updating', T('Updating feeds…')); u.setAttribute('role', 'status'); body.append(u); }
-    body.append(listOf(latestFeed(d.feed, 4).map((i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link))), T('Subscribe to feeds to see new items here.')));
-    return card(T('Latest from your feeds'), body, 'feeds');
-  },
+  continue: (d) => card(T('Continue reading'), listOf(continueReading(d.index, 3).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url), a.progress)), T('Nothing in progress. Articles you start reading show up here.')), 'history'),
+  recent: (d) => card(T('Recently saved'), listOf(recentlySaved(d.index, 3).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url))), T('Your saved articles show up here.')), 'history'),
   quote: (d) => {
     const body = el('div');
     if (d.quote) {
@@ -104,26 +99,34 @@ const builders = {
     return card(T('Your library'), dl, 'history');
   },
 };
-const WEIGHT = { briefing: 5, continue: 3.5, recent: 3.5, feeds: 3.3, quote: 1.8, stats: 2.2 };   // about how tall each card is
-const LABELS = { briefing: 'Today’s briefing', continue: 'Continue reading', recent: 'Recently saved', feeds: 'Latest from your feeds', quote: 'From your highlights', stats: 'Your library' };
+const LABELS = { briefing: 'Today at a glance', continue: 'Continue reading', recent: 'Recently saved', quote: 'From your highlights', stats: 'Your library' };
 
 const dockPrefs = { dock: undefined };
 let dock = null;
-let hidden = [], data = { index: [], feed: [], quote: null, recaps: {}, briefMode: 'full', updating: false };
+let hidden = [], data = { index: [], feed: [], quote: null, recaps: {}, updating: false };
+// Two columns where the page is wide, one below that (the width of the page itself: with the app docked beside it, it is narrower)
+const colCount = () => { const w = (document.querySelector('.hm-wrap') || {}).clientWidth || 0; return !w || w >= 760 ? 2 : 1; };
+let lastCols = 0;
+window.addEventListener('resize', () => { if (lastCols && !document.getElementById('hmGrid').classList.contains('has-glance') && colCount() !== lastCols) render(); });
+
 function render() {
   const grid = $('hmGrid'); grid.textContent = '';
-  // Two columns, each card going to the shorter one by its rough height (so the page stays balanced when cards are hidden);
-  // in one column (narrow) the cards sit in their normal order again (CSS order, see home.css)
-  const cols = [el('div', 'hm-col'), el('div', 'hm-col')], height = [0, 0];
-  visibleWidgets(hidden).forEach((w) => {
-    const i = height[0] <= height[1] ? 0 : 1, c = builders[w](data);
-    c.style.order = String(WIDGETS.indexOf(w)); height[i] += WEIGHT[w] || 3; cols[i].append(c);
+  // The glance card takes two thirds, the other cards stack in the last third; without it the cards share two columns (shortest first).
+  // Narrow (CSS): one column, the cards in their own order.
+  const shown = visibleWidgets(hidden), glance = shown.includes('briefing');
+  grid.classList.toggle('has-glance', glance);
+  const n = glance ? 2 : (colCount() >= 2 ? 2 : 1), cols = Array.from({ length: n }, () => el('div', 'hm-col')), height = Array(n).fill(0);
+  grid.style.setProperty('--hm-cols', String(n));
+  shown.forEach((w) => {
+    const c = builders[w](data); c.style.order = String(WIDGETS.indexOf(w));
+    const i = glance ? (w === 'briefing' ? 0 : 1) : height.indexOf(Math.min(...height));
+    height[i] += 3; cols[i].append(c);
   });
-  grid.append(...cols);
+  grid.append(...cols); lastCols = n;
   const box = $('hmCustom'); box.textContent = '';
   WIDGETS.forEach((w) => {
     const lab = el('label'); const cb = el('input'); cb.type = 'checkbox'; cb.checked = !hidden.includes(w);
-    cb.addEventListener('change', () => { hidden = cb.checked ? hidden.filter((x) => x !== w) : [...hidden, w]; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock, briefMode: data.briefMode } }); } catch (_) { /* optional */ } render(); });
+    cb.addEventListener('change', () => { hidden = cb.checked ? hidden.filter((x) => x !== w) : [...hidden, w]; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock, briefMode: undefined } }); } catch (_) { /* optional */ } render(); });
     lab.append(cb, document.createTextNode(T(LABELS[w]))); box.append(lab);
   });
 }
@@ -184,7 +187,7 @@ async function loadData() {
     const got = await chrome.storage.local.get({ [PREFS_KEY]: {}, [SK.feedItems]: [], [SK.feedBackground]: {}, [SK.feedRecaps]: {} });
     hidden = Array.isArray(got[PREFS_KEY].hidden) ? got[PREFS_KEY].hidden : [];
     if (got[PREFS_KEY].dock) dockPrefs.dock = got[PREFS_KEY].dock;
-    data.briefMode = got[PREFS_KEY].briefMode === 'short' ? 'short' : 'full'; data.recaps = got[SK.feedRecaps] || {};
+    data.recaps = got[SK.feedRecaps] || {};
     data.feed = mergeFeed(got[SK.feedItems], (got[SK.feedBackground] || {}).items);
     data.index = await StorageManager.getArticlesIndex();
   } catch (_) { /* empty cards explain themselves */ }
