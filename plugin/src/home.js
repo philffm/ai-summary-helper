@@ -150,19 +150,26 @@ const builders = {
   },
   graph: (d) => {
     const bubbles = d.topics || [];
-    const W = 420, H = 130, body = el('div', 'hm-topics');
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    const W = 420, H = 130, NS = 'http://www.w3.org/2000/svg', body = el('div', 'hm-topics');
+    const svg = document.createElementNS(NS, 'svg');
     svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', T('Your topics'));
+    const mk = (tag, attrs, parent) => { const n = document.createElementNS(NS, tag); Object.entries(attrs || {}).forEach(([k, v]) => n.setAttribute(k, v)); if (parent) parent.append(n); return n; };
+    // two layers: a blurred, larger copy of every bubble (the glow, which also spills over the edge of the card) and the crisp bubbles on top
+    const glow = mk('g', { class: 'hm-glow' }, svg), crisp = mk('g', { class: 'hm-bubbles' }, svg);
     bubbles.forEach((b, i) => {
-      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g'); g.setAttribute('class', 'hm-bubble');
-      const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); c.setAttribute('cx', b.x.toFixed(1)); c.setAttribute('cy', b.y.toFixed(1)); c.setAttribute('r', b.r.toFixed(1)); c.style.fill = `var(--chart-${i % 8})`;
-      const t = document.createElementNS('http://www.w3.org/2000/svg', 'title'); t.textContent = `${b.label} · ${b.n}`; g.append(t, c);
-      if (i < 4 && b.r > 17) { const tx = document.createElementNS('http://www.w3.org/2000/svg', 'text'); tx.setAttribute('x', b.x.toFixed(1)); tx.setAttribute('y', (b.y + 3).toFixed(1)); tx.setAttribute('class', 'hm-bubble-label'); tx.textContent = b.label.length > 12 ? b.label.slice(0, 11) + '…' : b.label; g.append(tx); }
-      svg.append(g);
+      const colour = `var(--chart-${i % 8})`;
+      const gc = mk('circle', { cx: b.x.toFixed(1), cy: b.y.toFixed(1), r: (b.r * 1.55).toFixed(1) }, glow); gc.style.fill = colour;
+      const g = mk('g', { class: 'hm-bubble' }, crisp);
+      const t = mk('title', {}, g); t.textContent = `${b.label} · ${b.n}`;
+      const c = mk('circle', { cx: b.x.toFixed(1), cy: b.y.toFixed(1), r: b.r.toFixed(1) }, g); c.style.fill = colour;
+      if (i < 4 && b.r > 17) { const tx = mk('text', { x: b.x.toFixed(1), y: (b.y + 3).toFixed(1), class: 'hm-bubble-label' }, g); tx.textContent = b.label.length > 12 ? b.label.slice(0, 11) + '…' : b.label; }
     });
     if (!bubbles.length) body.append(el('p', 'hm-empty', T('Topics show up here once you have saved a few articles.')));
     else { svg.addEventListener('click', () => dock && dock.open('history/graph')); body.append(svg); }
-    return card(T('Your topics'), body, 'history/graph');
+    const c = card(T('Your topics'), body, 'history/graph'); c.classList.add('hm-card--art');
+    // the card's own colours, from the biggest topics: a soft wash behind the strip and (hm-card--art::before) around it
+    bubbles.slice(0, 3).forEach((b, i) => c.style.setProperty('--art-' + (i + 1), `var(--chart-${i % 8})`));
+    return c;
   },
 
   stats: (d) => {
