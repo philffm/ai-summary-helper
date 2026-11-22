@@ -13,6 +13,15 @@ export function recentlySaved(index, limit = 6) {
     return live(index).sort((a, b) => ts(b.timestamp) - ts(a.timestamp)).slice(0, limit);
 }
 
+/** The list the Feeds screen holds plus what the background poll found since (the popup merges those on open; the home page does it on read). */
+export function mergeFeed(items, background) {
+    const seen = new Set(), out = [];
+    for (const i of [...(Array.isArray(background) ? background : []), ...(Array.isArray(items) ? items : [])]) {
+        const k = i && (i.link || i.id); if (!k || seen.has(k)) continue; seen.add(k); out.push(i);
+    }
+    return out;
+}
+
 /** Newest feed items. */
 export function latestFeed(items, limit = 6) {
     return (Array.isArray(items) ? items : []).filter((i) => i && i.title && i.link).sort((a, b) => (b.published || 0) - (a.published || 0)).slice(0, limit);

@@ -28,3 +28,4 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-custom-list { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; }
 .hm-custom-list label { display: inline-flex; align-items: center; gap: 8px; }
 .hm-custom-list input { width: auto; margin: 0; padding: 0; }
+.hm-status { margin: -16px 0 20px; text-align: center; font-size: var(--fs-sm); color: var(--text-muted); }

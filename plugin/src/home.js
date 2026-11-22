@@ -4,7 +4,8 @@ import { bootPage } from './modules/pageBoot.js';
 import { T } from './modules/feedI18n.js';
 import StorageManager from './modules/storageManager.js';
 import { SK } from './modules/storageKeys.js';
-import { continueReading, recentlySaved, latestFeed, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
+import { bgMessage } from './modules/bgMessage.js';
+import { continueReading, recentlySaved, latestFeed, mergeFeed, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
 import { openExternalPalette, bindPaletteKey, paletteKeyHint } from './modules/paletteExternal.js';
 
 const PREFS_KEY = 'home:prefs';
@@ -65,11 +66,28 @@ async function init() {
   $('hmKey').textContent = paletteKeyHint();
   const open = () => openExternalPalette({ openArticle: (a) => window.open(readerUrl(a), '_blank') });
   $('hmSearch').addEventListener('click', open); bindPaletteKey(open);
+  await loadData();
+  render();
+  refreshFeeds();
+}
+
+// Library and feed list as stored; the worker's newest finds (feeds:background) count too
+async function loadData() {
   try {
-    const got = await chrome.storage.local.get({ [PREFS_KEY]: {}, [SK.feedItems]: [] });
-    hidden = Array.isArray(got[PREFS_KEY].hidden) ? got[PREFS_KEY].hidden : []; data.feed = got[SK.feedItems];
+    const got = await chrome.storage.local.get({ [PREFS_KEY]: {}, [SK.feedItems]: [], [SK.feedBackground]: {} });
+    hidden = Array.isArray(got[PREFS_KEY].hidden) ? got[PREFS_KEY].hidden : [];
+    data.feed = mergeFeed(got[SK.feedItems], (got[SK.feedBackground] || {}).items);
     data.index = await StorageManager.getArticlesIndex();
   } catch (_) { /* empty cards explain themselves */ }
-  render();
+}
+
+// Opening the home page also refreshes the feeds that are due (the worker keeps each feed's own schedule and the user's
+// "background polling" choice), then redraws when something new came in. The page never waits for it.
+async function refreshFeeds() {
+  const status = $('hmStatus'); status.textContent = T('Updating feeds…'); status.hidden = false;
+  const before = data.feed.length;
+  const r = await bgMessage({ action: 'feedPollNow' }, { timeout: 90000 });
+  if (r && r.ok) { await loadData(); if (data.feed.length !== before) render(); }
+  status.hidden = true;
 }
 init();

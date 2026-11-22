@@ -17,6 +17,7 @@ assert(!hw.recentlySaved(index, 10).some((a) => a.id === 'd'), 'archived is not 
 assert.deepEqual(hw.libraryStats(index, now), { total: 5, unread: 3, starred: 1, finishedThisWeek: 1 });
 assert.deepEqual(hw.visibleWidgets(['feeds', 'stats']), ['continue', 'recent', 'goto']);
 assert.equal(hw.latestFeed([{ title: 'x', link: 'u', published: 1 }, { title: 'y', link: 'v', published: 5 }, { title: '', link: 'z' }])[0].title, 'y');
+assert.deepEqual(hw.mergeFeed([{ link: 'a', title: 'old' }, { link: 'b' }], [{ link: 'b' }, { link: 'c' }]).map((i) => i.link), ['b', 'c', 'a'], 'worker finds first, no duplicates');
 assert.equal(hw.greetingKey(7), 'morning'); assert.equal(hw.greetingKey(23), 'evening');
 
 // the page
@@ -26,7 +27,12 @@ const html = fs.readFileSync(new URL('../src/home.html', import.meta.url), 'utf8
 w.document.documentElement.innerHTML = html.replace(/^[\s\S]*?<html[^>]*>/i, '').replace(/<\/html>[\s\S]*$/i, '');
 store[SK.articlesIndex] = index;
 store[SK.feedItems] = [{ title: 'Feed news', link: 'https://f.com/n', published: now, feedTitle: 'Feed F' }];
-await imp('../src/home.js'); await tick(300);
+let polls = 0;
+chrome.runtime.sendMessage = (m, cb) => { if (m.action === 'feedPollNow') { polls++; store[SK.feedBackground] = { items: [{ id: 'n1', title: 'Fresh from worker', link: 'https://f.com/fresh', published: Date.now() + 5 }] }; } const r = { ok: true }; if (cb) { cb(r); return; } return Promise.resolve(r); };
+await imp('../src/home.js'); await tick(400);
+assert.equal(polls, 1, 'opening the page asks the worker to refresh the feeds');
+assert(/Fresh from worker/.test(w.document.getElementById('hmGrid').textContent), 'what the refresh found shows without reloading');
+assert(w.document.getElementById('hmStatus').hidden, 'status line goes away');
 const d = w.document;
 const cards = [...d.querySelectorAll('.hm-card h2')].map((h) => h.textContent);
 assert.equal(cards.length, 5, 'five cards: ' + cards);
