@@ -39,11 +39,19 @@ const SECTION = () => ({ feeds: T('Feeds'), history: T('History'), notes: T('Not
 const fillers = [];   // one per lazy list: top up the lists that are taller than their first page
 const fillLists = () => (window.requestAnimationFrame || setTimeout)(() => fillers.forEach((f) => f()));
 
-const lazy = (scroller, ul, items, build) => { const l = lazyList(scroller, ul, items, build); fillers.push(l.fill); return l; };
+const lazy = (scroller, ul, items, build) => { const l = lazyList(scroller, ul, items, build); fillers.push(l.fill); return l; };   // rows loaded later fade in (.lazy-in)
 
 function listOf(rows, emptyText) {
   if (!rows.length) return el('p', 'hm-empty', emptyText);
   const ul = el('ul', 'hm-list'); rows.forEach((r) => { const li = el('li'); li.append(r); ul.append(li); }); return ul;
+}
+
+// A number that counts up to its value (once, on the first render); nothing moves when motion is reduced
+function countUp(node, to) {
+  if (entered || !(to > 0) || document.documentElement.dataset.motion === 'reduce' || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  const raf = (f) => (window.requestAnimationFrame ? window.requestAnimationFrame(f) : setTimeout(() => f(performance.now()), 16));
+  const t0 = performance.now(), dur = 700, step = (t) => { const k = Math.min(1, (t - t0) / dur); node.textContent = String(Math.round(to * (1 - Math.pow(1 - k, 3)))); if (k < 1) raf(step); };
+  node.textContent = '0'; raf(step);
 }
 
 function ago(ms) {
@@ -86,7 +94,8 @@ function briefingCard(d) {
   else { latest.append(lul); lazy(lul, lul, feedItems, (i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link)), 12); }
   body.append(meta, el('div', 'hm-brief-body'));
   body.lastChild.append(text, latest);
-  return card(T('Today at a glance'), body, 'feeds');
+  const c = card(T('Today at a glance'), body, 'feeds'); if (d.updating) c.dataset.working = '1';   // the card breathes while the feeds refresh
+  return c;
 }
 
 // A card whose list fills the height the card has and loads further entries as it is scrolled
@@ -106,14 +115,15 @@ const builders = {
     if (d.quote) {
       const q = el('blockquote', 'hm-quote', d.quote.text);
       const a = el('a', 'hm-link-sub hm-quote-src', hostOf(d.quote.url) || d.quote.url); a.href = d.quote.url; a.target = '_blank'; a.rel = 'noopener';
-      const more = el('button', 'button-secondary btn-sm', T('Another')); more.type = 'button'; more.addEventListener('click', () => loadQuote());
+      if (d.quoteFresh) { q.classList.add('hm-pop'); d.quoteFresh = false; }
+      const more = el('button', 'button-secondary btn-sm', T('Another')); more.type = 'button'; more.addEventListener('click', () => { data.quoteFresh = true; loadQuote(); });
       body.append(q, a, el('div', 'hm-quote-more')); body.lastChild.append(more);
     } else body.append(el('p', 'hm-empty', T('Highlights you save show up here, one at a time.')));
     return card(T('From your highlights'), body, 'notes');
   },
   stats: (d) => {
     const s = libraryStats(d.index), dl = el('dl', 'hm-stats');
-    [[T('Saved'), s.total], [T('Unread'), s.unread], [T('Starred'), s.starred], [T('Finished this week'), s.finishedThisWeek]].forEach(([k, v]) => { const g = el('div'); g.append(el('dt', '', k), el('dd', '', String(v))); dl.append(g); });
+    [[T('Saved'), s.total], [T('Unread'), s.unread], [T('Starred'), s.starred], [T('Finished this week'), s.finishedThisWeek]].forEach(([k, v]) => { const g = el('div'), dd = el('dd', '', String(v)); g.append(el('dt', '', k), dd); dl.append(g); countUp(dd, v); });
     return card(T('Your library'), dl, 'history/stats');   // the numbers lead to the analytics report
   },
 };
@@ -127,25 +137,27 @@ const colCount = () => { const w = (document.querySelector('.hm-wrap') || {}).cl
 let lastCols = 0;
 window.addEventListener('resize', () => { if (lastCols && !document.getElementById('hmGrid').classList.contains('has-glance') && colCount() !== lastCols) render(); });
 
+const enter = (c, i) => { if (!entered) { c.classList.add('hm-enter'); c.style.setProperty('--i', String(i)); } };
+let entered = false;   // the cards fly in once, on the first real render (later renders are updates: no replay)
 function render() {
-  const grid = $('hmGrid'); grid.textContent = ''; fillers.length = 0;
+  const grid = $('hmGrid'); grid.textContent = ''; grid.removeAttribute('aria-busy'); fillers.length = 0;
   // With the glance card: a four-column grid. The glance card takes half (two columns, both rows), the other four cards a quarter each
   // beside it (Continue reading, Recently saved / Notes, Library). Without it the cards share two columns, shortest first.
   // Narrow (CSS): two columns, then one.
   const shown = visibleWidgets(hidden), glance = shown.includes('briefing');
   grid.classList.toggle('has-glance', glance);
   if (glance) {
-    shown.forEach((w) => { const c = builders[w](data); c.style.order = String(WIDGETS.indexOf(w)); c.dataset.card = w; grid.append(c); });
-    lastCols = 4; fillLists(); return renderCustom();
+    shown.forEach((w, i) => { const c = builders[w](data); c.style.order = String(WIDGETS.indexOf(w)); c.dataset.card = w; enter(c, i); grid.append(c); });
+    lastCols = 4; fillLists(); entered = true; return renderCustom();
   }
   const n = colCount() >= 2 ? 2 : 1, cols = Array.from({ length: n }, () => el('div', 'hm-col')), height = Array(n).fill(0);
   grid.style.setProperty('--hm-cols', String(n));
   shown.forEach((w) => {
-    const c = builders[w](data); c.style.order = String(WIDGETS.indexOf(w)); c.dataset.card = w;
+    const c = builders[w](data); c.style.order = String(WIDGETS.indexOf(w)); c.dataset.card = w; enter(c, shown.indexOf(w));
     const i = height.indexOf(Math.min(...height));
     height[i] += 3; cols[i].append(c);
   });
-  grid.append(...cols); lastCols = n; fillLists();
+  grid.append(...cols); lastCols = n; fillLists(); entered = true;
   renderCustom();
 }
 
@@ -194,7 +206,18 @@ function wireLook(initial) {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hidden) { setOpen(false); btn.focus(); } });
 }
 
+// The first paint: placeholder cards in the final layout (the shimmering lines of skeleton.js), replaced by the real ones
+function paintSkeleton() {
+  const grid = $('hmGrid'); grid.classList.add('has-glance'); grid.setAttribute('aria-busy', 'true');
+  WIDGETS.forEach((w) => {
+    const c = el('section', 'hm-card skeleton-card'); c.dataset.card = w; c.setAttribute('aria-hidden', 'true');
+    ['skeleton-line skeleton-title', 'skeleton-line', 'skeleton-line', 'skeleton-line skeleton-short'].forEach((cl) => c.append(el('div', cl)));
+    grid.append(c);
+  });
+}
+
 async function init() {
+  paintSkeleton();
   const { appearance } = await bootPage();
   // the words that are written into home.html itself, in the user's language
   document.querySelectorAll('.hm-appbar [data-screen]').forEach((b) => { b.textContent = SECTION()[b.dataset.screen] || b.textContent; });

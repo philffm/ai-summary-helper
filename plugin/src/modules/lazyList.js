@@ -4,10 +4,10 @@ import { pager as makePager } from './homeWidgets.js';
 
 export function lazyList(scroller, ul, items, build, { size = 12, margin = 160, doc = document } = {}) {
   const pg = makePager(items, size);
-  const more = () => { pg.next().forEach((it) => { const li = doc.createElement('li'); li.append(build(it)); ul.append(li); }); };
-  more();
+  const more = (later) => { pg.next().forEach((it) => { const li = doc.createElement('li'); if (later) li.className = 'lazy-in'; li.append(build(it)); ul.append(li); }); };
+  more(false);
   const near = () => scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - margin;
   scroller.addEventListener('scroll', () => { let guard = 0; while (pg.more() && near() && guard++ < 50) more(); }, { passive: true });
-  const fill = () => { let guard = 0; while (pg.more() && scroller.clientHeight && scroller.scrollHeight <= scroller.clientHeight && guard++ < 50) more(); };
+  const fill = () => { let guard = 0; while (pg.more() && scroller.clientHeight && scroller.scrollHeight <= scroller.clientHeight && guard++ < 50) more(false); };
   return { pager: pg, fill };
 }

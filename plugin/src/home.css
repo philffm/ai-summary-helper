@@ -108,3 +108,20 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 :root[data-design='contrast'] .hm-link:hover .hm-link-sub { color: var(--on-accent); }
 :root[data-design='contrast'] .hm-latest { border-inline-start-width: 2px; }
 :root[data-design='contrast'] .hm-card-link, :root[data-design='contrast'] .hm-brief-meta, :root[data-design='contrast'] .hm-link-sub, :root[data-design='contrast'] .hm-card h2 { color: var(--text-primary); }
+
+/* ── Small movements. Everything reuses an animation that is already in styles.css (flyIn, listIn, detailIn, chipPanelIn, spin, pillGlow, the skeleton
+   lines); only the progress bar has a keyframe of its own. All of it stops when motion is reduced. ── */
+.hm-enter { animation: flyIn var(--duration-slow) var(--easing-decelerate) both; animation-delay: calc(var(--i, 0) * 55ms); }          /* the cards fly in one after the other */
+.lazy-in { animation: listIn var(--duration-fast) var(--easing-decelerate); }                                                       /* rows that scrolling loads fade in */
+.hm-pop { animation: detailIn var(--duration-base) var(--easing-decelerate); }                                                       /* a new highlight settles in */
+.hm-look-menu:not([hidden]) { animation: chipPanelIn var(--duration-base) var(--easing-standard); }                                 /* the appearance menu drops in */
+.hm-card[data-working] { animation: pillGlow 2.6s var(--easing-in-out) infinite; }                                                   /* the card breathes while the feeds refresh */
+.hm-updating::before { content: ''; display: inline-block; width: 9px; height: 9px; margin-inline-end: 6px; border: 2px solid currentColor; border-inline-end-color: transparent; border-radius: 50%; animation: spin .8s linear infinite; vertical-align: -1px; }
+.hm-card { transition: border-color var(--duration-fast) var(--easing-standard); }
+.hm-card:hover { border-color: var(--outline-strong); }
+.hm-link { transition: background var(--duration-fast) var(--easing-standard); }
+.hm-link:active { transform: scale(.99); }
+.hm-bar > i { transform-origin: left center; animation: barGrow var(--duration-slower) var(--easing-decelerate) both; }
+@keyframes barGrow { from { transform: scaleX(0); } }
+.hm-card.skeleton-card { min-block-size: 8rem; }
+@media (prefers-reduced-motion: reduce) { .hm-enter, .lazy-in, .hm-pop, .hm-look-menu, .hm-card[data-working], .hm-updating::before, .hm-bar > i { animation: none; } }
