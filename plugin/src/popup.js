@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         onDemand.feeds().then(() => { if (!feedsReady) { feedsReady = true; document.dispatchEvent(new CustomEvent('aish:settings-panel', { detail: e.detail })); } });
     });
 
-    ui.showScreen(['notes', 'feeds', 'history', 'settings'].includes(((window.location && window.location.hash) || '').slice(1)) ? window.location.hash.slice(1) : "main");   // "Open in Notes" from a page opens this tab on the Notes screen
+    ui.showScreen(['notes', 'feeds', 'history', 'settings'].includes(((window.location && window.location.hash) || '').slice(1)) ? window.location.hash.slice(1) : (currentSurface() === 'float' ? 'history' : "main"));   // beside the reading view / home page there is no page of ours to summarize: the library is the start   // "Open in Notes" from a page opens this tab on the Notes screen
     // "🎓 Time to repeat" (quiz reminder) opens popup.html#quiz=<id> in a tab: the saved quiz with the questions to repeat
     const quizId = ((window.location && window.location.hash) || '').match(/^#quiz=([\w-]{4,64})$/);
     if (quizId) import('./modules/quiz/quizView.js').then(m => m.openSavedQuiz(quizId[1])).catch(() => {});

@@ -13,7 +13,10 @@ export async function ensureSearchAccess() {
   if (hasApi()) return { ok: true };   // the API only exists once the permission is granted; checking it asynchronously first would cost Firefox's user-gesture window
   let granted = false;
   try { granted = !!(await api.permissions.request({ permissions: ['search'] })); }
-  catch (e) { return { ok: false, why: String((e && e.message) || e) }; }   // e.g. "must be called during a user gesture", "not in optional_permissions"
+  catch (e) {   // e.g. "must be called during a user gesture", or the manifest does not list it (an unpacked extension keeps its old manifest until it is reloaded)
+    const why = String((e && e.message) || e);
+    return { ok: false, why: /specified in the manifest/i.test(why) ? why + ' — reload the extension (chrome://extensions, the reload arrow); the manifest is only re-read then.' : why };
+  }
   if (!granted) return { ok: false, why: 'permission declined' };
   return hasApi() ? { ok: true } : { ok: false, why: 'search API missing after the permission was granted (reload the extension)' };
 }

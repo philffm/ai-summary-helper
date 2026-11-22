@@ -19,6 +19,9 @@ granted = false; chrome.permissions.request = async () => false;
 assert.deepEqual(await searchWeb('x'), { ok: false, why: 'permission declined' }, 'declined permission: nothing opens, with the reason'); assert.equal(queries.length, 2);
 chrome.permissions.request = async () => { throw new Error('This function must be called during a user gesture'); };
 assert.match((await searchWeb('x')).why, /user gesture/, "the browser's own reason is passed on");
+chrome.permissions.request = async () => { throw new Error('Only permissions specified in the manifest may be requested.'); };
+assert.match((await searchWeb('x')).why, /reload the extension/, 'a stale manifest is explained');
+chrome.permissions.request = async () => { throw new Error('This function must be called during a user gesture'); };
 const said = []; const cmd = webSearchCommand('abc', searchWeb, (m) => said.push(m)); await cmd.run();
 assert(said.length === 1 && /did not start.*user gesture/.test(said[0]), 'the user is told why nothing happened: ' + said);
 
