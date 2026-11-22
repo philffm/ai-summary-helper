@@ -38,6 +38,9 @@ Paste each text into the matching field. Checked against `plugin/platforms/chrom
 **alarms**
 > Wakes the service worker at the times the user set: reminders for saved articles, the optional background refresh of subscribed RSS feeds (every 15 minutes to 6 hours) and the phone-inbox check. No alarms run for tracking or advertising.
 
+**bookmarks (optional permission)**
+> Used only when the user chooses "Save in browser bookmarks" in the reading view. It is an optional permission: the browser asks at that moment, never at install. The extension then adds or updates one bookmark for the article being read, in its own folder named "AI Summary Helper"; that bookmark opens the article in the reading view, at the place the user bookmarked. It only looks for and changes its own folder by name. It does not read, list or send the user's other bookmarks, and nothing leaves the device.
+
 ## Host permissions
 
 **`<all_urls>`**
