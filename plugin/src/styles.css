@@ -2387,7 +2387,7 @@ circle.graph-time-dim, text.graph-time-dim { opacity: 0.08; }
 .auth-form .auth-hint { margin: 0; text-align: center; font-size: var(--fs-2xs); color: var(--text-muted); }
 .auth-form .auth-link-row { display: flex; justify-content: center; gap: 16px; }
 .auth-form .auth-link-row .btn-link { width: auto; }
-.account-id { display: flex; align-items: center; gap: 12px; }
+.account-id { display: flex; align-items: flex-start; gap: 12px; }
 .account-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: var(--fs-lg); flex: none; }
 .account-who { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
 .account-email { font-weight: 600; color: var(--text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }

@@ -8279,5 +8279,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} ristiriitainen kopio Syncthingistä: {names}. Laajennus ei lue sitä; poista se Syncthingissä, kun olet katsonut sen."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Valitse kortit"
   }
 }

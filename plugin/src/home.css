@@ -66,10 +66,10 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 /* The card is as tall as five and two thirds of the latest items: the sixth is cut off on purpose, so it is clear the list scrolls.
    The briefing scrolls in the same height. */
 .hm-brief-body { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 20px; block-size: calc(var(--hm-latest-head) + var(--hm-item-h) * 5.66); min-height: 0; }
-.hm-brief-text { font-size: var(--fs-md); line-height: 1.5; overflow-y: auto; min-height: 0; padding-inline-end: 6px; }
+.hm-brief-text { font-size: var(--fs-md); line-height: 1.5; overflow-y: auto; overflow-x: hidden; overflow-wrap: anywhere; min-height: 0; padding-inline-end: 6px; }
 .hm-latest { display: flex; flex-direction: column; min-height: 0; padding-inline-start: 16px; border-inline-start: 1px solid var(--outline); }
-.hm-latest .hm-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; gap: 0; }
-.hm-latest .hm-link { block-size: var(--hm-item-h); box-sizing: border-box; justify-content: center; overflow: hidden; flex: none; }
+.hm-latest .hm-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; gap: 0; }   /* vertical only: the hover tint of a row reaches 10px past it (negative margin), which must not become a horizontal scroll */
+.hm-latest .hm-link { margin-inline: 0; padding-inline: 8px; block-size: var(--hm-item-h); box-sizing: border-box; justify-content: center; overflow: hidden; flex: none; }
 .hm-latest-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; block-size: var(--hm-latest-head); flex: none; }
 .hm-latest h3 { margin: 0; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
 .hm-latest .hm-link-title { -webkit-line-clamp: 2; }
@@ -79,3 +79,15 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-brief-src ol { margin: 8px 0 0; padding-inline-start: 22px; display: grid; gap: 4px; }
 .hm-brief-src a { color: var(--text-primary); }
 .hm-updating { font-size: var(--fs-xs); color: var(--text-muted); }
+
+/* Appearance: a small menu under its button (theme, colour scheme, text size) */
+.hm-look-wrap { position: relative; }
+.hm-look-wrap .button-secondary { display: inline-flex; align-items: center; gap: 6px; }
+.hm-look-menu { position: absolute; top: calc(100% + 6px); inset-inline-end: 0; z-index: var(--z-popover); display: grid; gap: 12px; min-width: 18rem; padding: 14px; background: var(--surface-sheet); border: 1px solid var(--outline-strong); border-radius: var(--radius-lg); box-shadow: var(--elevation-sheet); }
+.hm-look-menu[hidden] { display: none; }
+.hm-look-row { display: grid; gap: 6px; }
+.hm-look-label-row { font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
+.hm-look-menu .a11y-seg { display: flex; flex-wrap: wrap; }
+.hm-look-size { display: flex; align-items: center; gap: 12px; }
+.hm-look-value { min-width: 3.5rem; text-align: center; font-variant-numeric: tabular-nums; }
+@container hmwrap (max-width: 1000px) { .hm-look-label { display: none; } }

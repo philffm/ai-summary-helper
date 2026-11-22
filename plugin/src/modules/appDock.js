@@ -32,7 +32,7 @@ export function createAppDock({ button, getWidth = () => DOCK_DEFAULT, saveWidth
 
   function close() {
     const f = frame; frame = null;
-    if (f) { f.classList.remove('dock-in'); setTimeout(() => { f.remove(); if (!frame) root.classList.remove('dock-docked'); }, 320); }   // slides out first (the CSS transition is shorter)
+    if (f) { f.classList.remove('dock-in'); setTimeout(() => { f.remove(); if (!frame) root.classList.remove('dock-docked'); }, 450); }   // slides out first (the CSS transition, duration-slower, is shorter)
     if (grip) { grip.remove(); grip = null; }
     root.classList.remove('dock-open');
     setState(false);

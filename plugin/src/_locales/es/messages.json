@@ -7996,5 +7996,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} copia en conflicto de Syncthing: {names}. La extensión no la lee; bórrala en Syncthing cuando la hayas revisado."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Elegir tarjetas"
   }
 }

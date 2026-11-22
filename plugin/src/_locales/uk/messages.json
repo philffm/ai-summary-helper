@@ -8279,5 +8279,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} копія з конфліктом від Syncthing: {names}. Розширення її не читає; видаліть її в Syncthing, коли переглянете."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Вибрати картки"
   }
 }

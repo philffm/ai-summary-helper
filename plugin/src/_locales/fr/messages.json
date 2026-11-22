@@ -7996,5 +7996,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} copie en conflit de Syncthing : {names}. L’extension ne la lit pas ; supprimez-la dans Syncthing après l’avoir consultée."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Choisir les cartes"
   }
 }

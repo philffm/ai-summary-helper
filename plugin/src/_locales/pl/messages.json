@@ -8279,5 +8279,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} kopia konfliktowa z Syncthing: {names}. Rozszerzenie jej nie czyta; usuń ją w Syncthing po obejrzeniu."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Wybierz karty"
   }
 }

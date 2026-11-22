@@ -8279,5 +8279,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "สำเนาที่ขัดแย้งจาก Syncthing {n} รายการ: {names} ส่วนขยายไม่อ่านไฟล์นี้ ให้ลบใน Syncthing หลังจากดูแล้ว"
+  },
+  "f_choose_widgets_e62d": {
+    "message": "เลือกการ์ด"
   }
 }

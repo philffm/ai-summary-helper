@@ -7996,5 +7996,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "Syncthing से टकराव वाली {n} प्रति: {names}। एक्सटेंशन इसे नहीं पढ़ता; देखने के बाद इसे Syncthing में हटा दें।"
+  },
+  "f_choose_widgets_e62d": {
+    "message": "कार्ड चुनें"
   }
 }

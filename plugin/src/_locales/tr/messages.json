@@ -8279,5 +8279,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "Syncthing’den {n} çakışan kopya: {names}. Uzantı onu okumaz; baktıktan sonra Syncthing’de sil."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Kartları seç"
   }
 }

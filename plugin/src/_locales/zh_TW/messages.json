@@ -7996,5 +7996,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "來自 Syncthing 的衝突副本有 {n} 個：{names}。擴充功能不會讀取它；查看後請在 Syncthing 中刪除。"
+  },
+  "f_choose_widgets_e62d": {
+    "message": "選擇卡片"
   }
 }

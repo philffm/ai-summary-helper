@@ -8279,5 +8279,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} salinan berkonflik dari Syncthing: {names}. Ekstensi tidak membacanya; hapus di Syncthing setelah Anda melihatnya."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Pilih kartu"
   }
 }

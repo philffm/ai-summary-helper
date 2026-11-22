@@ -20,7 +20,7 @@ assert(d.querySelector('.app-dock-grip'), 'a grip to resize');
 d.querySelector('.app-dock-grip').dispatchEvent(new w.KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true, cancelable: true }));
 assert.equal(saved.at(-1), 524, 'keyboard resize is saved (500 + 24)');
 assert.equal(clampDock(10), 320, 'never narrower than the minimum');
-d.getElementById('b').click(); await tick(400);
+d.getElementById('b').click(); await tick(600);
 assert(!d.querySelector('iframe.app-dock') && !root.classList.contains('dock-open'), 'closes again');
 assert.equal(d.querySelector('#b .dock-label').textContent, 'Open app');
 dock.open('notes'); assert(/#notes$/.test(d.querySelector('iframe.app-dock').src), 'open(screen) starts on that screen'); dock.close();

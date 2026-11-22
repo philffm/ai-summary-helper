@@ -7996,5 +7996,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} copia in conflitto da Syncthing: {names}. L’estensione non la legge; eliminala in Syncthing dopo averla controllata."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Scegli le schede"
   }
 }

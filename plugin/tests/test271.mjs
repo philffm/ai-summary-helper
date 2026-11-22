@@ -79,4 +79,18 @@ assert(/popup\.html\?surface=float.*#feeds$/.test(d.querySelector('iframe.app-do
 const lib = [...d.querySelectorAll('.hm-card')].find((c) => /Your library/.test(c.textContent)).querySelector('.hm-card-link');
 assert(/Stats/.test(lib.textContent)); lib.click(); await tick(60);
 assert(/#history\/stats$/.test(d.querySelector('iframe.app-dock').src), 'the app switches to History with the report: ' + d.querySelector('iframe.app-dock').src);
+// Appearance on the home page: theme, colour scheme and text size, saved to the same settings as Settings › Appearance
+d.getElementById('hmLook').click(); await tick(20);
+const menu = d.getElementById('hmLookMenu');
+assert(!menu.hidden && d.getElementById('hmLook').getAttribute('aria-expanded') === 'true', 'the appearance menu opens');
+[...menu.querySelectorAll('button')].find((b) => b.textContent === 'Dark').click(); await tick(40);
+assert.equal(d.documentElement.getAttribute('data-theme'), 'dark', 'the theme applies at once');
+const saved = await new Promise((r) => chrome.storage.sync.get(['theme', 'textScale', 'colorScheme'], r));
+assert.equal(saved.theme, 'dark', 'and is saved with the other appearance settings');
+[...menu.querySelectorAll('button')].find((b) => b.textContent === 'A+').click(); await tick(40);
+assert.equal(d.documentElement.style.getPropertyValue('--text-scale'), '1.1', 'text size steps by 10 %');
+[...menu.querySelectorAll('button')].find((b) => b.textContent === 'Postil').click(); await tick(40);
+assert.equal(d.documentElement.getAttribute('data-scheme'), 'postil', 'colour scheme');
+d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(20);
+assert(d.getElementById('hmLookMenu').hidden, 'Esc closes the menu');
 console.log('TEST 271 OK'); process.exit(0);

@@ -8279,5 +8279,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} konfliktkopia från Syncthing: {names}. Tillägget läser den inte; ta bort den i Syncthing när du har tittat på den."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Välj kort"
   }
 }

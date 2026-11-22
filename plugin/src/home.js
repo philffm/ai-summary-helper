@@ -1,6 +1,7 @@
 // Home page: opened from Settings › Appearance or the ⌘K palette ("Home page"). It only reads what the library already holds;
 // every card is a plain list of links, and the user chooses which cards show (remembered on this device).
 import { bootPage } from './modules/pageBoot.js';
+import { applyA11y, SCHEMES, clampScale, TEXT_SCALE_MIN, TEXT_SCALE_MAX } from './modules/a11y.js';
 import { T, TN } from './modules/feedI18n.js';
 import StorageManager from './modules/storageManager.js';
 import { SK, hlPageKey } from './modules/storageKeys.js';
@@ -33,7 +34,7 @@ function card(title, body, screen = '') {
   if (screen) { const a = el('button', 'hm-card-link'); a.type = 'button'; a.setAttribute('aria-label', T('Open {name}', { name: SECTION()[screen] })); a.title = a.getAttribute('aria-label'); a.append(document.createTextNode(SECTION()[screen]), el('span', '', ' →')); a.addEventListener('click', () => dock && dock.open(screen)); h.append(a); }
   c.append(h, body); return c;
 }
-const SECTION = () => ({ feeds: T('Feeds'), history: T('History'), notes: T('Notes'), 'history/stats': T('Stats') });
+const SECTION = () => ({ feeds: T('Feeds'), history: T('History'), notes: T('Notes'), settings: T('Settings'), 'history/stats': T('Stats') });
 function listOf(rows, emptyText) {
   if (!rows.length) return el('p', 'hm-empty', emptyText);
   const ul = el('ul', 'hm-list'); rows.forEach((r) => { const li = el('li'); li.append(r); ul.append(li); }); return ul;
@@ -131,8 +132,44 @@ function render() {
   });
 }
 
+// Appearance on the home page, the same settings as Settings › Appearance (theme, colour scheme, text size): changed here, saved there
+function wireLook(initial) {
+  const btn = $('hmLook'), menu = $('hmLookMenu'); if (!btn || !menu) return;
+  const cfg = { ...initial };
+  const change = async (patch) => { Object.assign(cfg, patch); applyA11y(cfg); try { await StorageManager.set(patch); } catch (_) { /* this page keeps the look */ } paint(); };
+  const seg = (label, key, options, current) => {
+    const wrap = el('div', 'hm-look-row'); wrap.append(el('span', 'hm-look-label-row', label));
+    const g = el('div', 'a11y-seg a11y-seg--hug a11y-seg--sm'); g.setAttribute('role', 'group'); g.setAttribute('aria-label', label);
+    options.forEach(([value, text]) => { const b = el('button', '', text); b.type = 'button'; b.setAttribute('aria-pressed', String(current === value)); b.addEventListener('click', () => change({ [key]: value })); g.append(b); });
+    wrap.append(g); return wrap;
+  };
+  function paint() {
+    const theme = ['light', 'dark', 'contrast'].includes(cfg.theme) ? cfg.theme : 'system';
+    const scheme = SCHEMES.includes(cfg.colorScheme) ? cfg.colorScheme : 'default';
+    const scale = clampScale(cfg.textScale || 100);
+    menu.replaceChildren(
+      seg(T('Theme'), 'theme', [['system', T('System')], ['light', T('Light')], ['dark', T('Dark')], ['contrast', T('High contrast')]], theme),
+      seg(T('Color scheme'), 'colorScheme', [['default', T('Default')], ['blue', T('Blue')], ['viola', 'Viola'], ['postil', 'Postil']], scheme));
+    const size = el('div', 'hm-look-row'); size.append(el('span', 'hm-look-label-row', T('Text size')));
+    const ctl = el('div', 'hm-look-size');
+    const step = (d, label, text) => { const b = el('button', 'button-secondary btn-sm', text); b.type = 'button'; b.setAttribute('aria-label', label); b.disabled = (d < 0 && scale <= TEXT_SCALE_MIN) || (d > 0 && scale >= TEXT_SCALE_MAX); b.addEventListener('click', () => change({ textScale: clampScale(scale + d) })); return b; };
+    ctl.append(step(-10, T('Smaller text'), 'A−'), el('span', 'hm-look-value', scale + ' %'), step(10, T('Larger text'), 'A+'));
+    size.append(ctl); menu.append(size);
+  }
+  const setOpen = (on) => { menu.hidden = !on; btn.setAttribute('aria-expanded', String(on)); if (on) paint(); };
+  btn.addEventListener('click', () => setOpen(menu.hidden));
+  document.addEventListener('click', (e) => { if (!menu.hidden && !menu.contains(e.target) && !btn.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hidden) { setOpen(false); btn.focus(); } });
+}
+
 async function init() {
-  await bootPage();
+  const { appearance } = await bootPage();
+  // the words that are written into home.html itself, in the user's language
+  document.querySelectorAll('.hm-appbar [data-screen]').forEach((b) => { b.textContent = SECTION()[b.dataset.screen] || b.textContent; });
+  { const l = document.querySelector('.hm-look-label'); if (l) l.textContent = T('Appearance'); const lk = $('hmLook'); if (lk) lk.title = T('Appearance'); const m = $('hmLookMenu'); if (m) m.setAttribute('aria-label', T('Appearance'));
+    const ap = document.querySelector('#hmApp .dock-label'); if (ap) ap.textContent = T('Open app'); const sm = document.querySelector('.hm-custom summary'); if (sm) sm.textContent = T('Choose widgets');
+    document.title = T('Home page'); const nav = document.querySelector('.hm-appbar'); if (nav) nav.setAttribute('aria-label', T('App')); }
+  wireLook(appearance);
   const hour = new Date().getHours();
   $('hmGreeting').textContent = { night: T('Good night'), morning: T('Good morning'), afternoon: T('Good afternoon'), evening: T('Good evening') }[greetingKey(hour)];
   bindSearchKeys();

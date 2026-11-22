@@ -7996,5 +7996,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "Syncthingの競合コピーが{n}件あります：{names}。拡張機能はこれを読みません。確認したらSyncthingで削除してください。"
+  },
+  "f_choose_widgets_e62d": {
+    "message": "カードを選ぶ"
   }
 }

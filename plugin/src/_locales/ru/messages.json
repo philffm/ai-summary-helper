@@ -7996,5 +7996,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} копия с конфликтом от Syncthing: {names}. Расширение её не читает; удалите её в Syncthing, когда посмотрите."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Выбрать карточки"
   }
 }

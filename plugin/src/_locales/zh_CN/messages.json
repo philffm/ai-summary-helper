@@ -7996,5 +7996,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "来自 Syncthing 的冲突副本有 {n} 个：{names}。扩展程序不会读取它；查看后请在 Syncthing 中删除。"
+  },
+  "f_choose_widgets_e62d": {
+    "message": "选择卡片"
   }
 }

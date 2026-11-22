@@ -7996,5 +7996,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} نسخة متعارضة من Syncthing: {names}. لا تقرؤها الإضافة؛ احذفها في Syncthing بعد أن تطّلع عليها."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "اختيار البطاقات"
   }
 }

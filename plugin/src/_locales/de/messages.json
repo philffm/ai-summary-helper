@@ -8077,5 +8077,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} Konfliktkopie von Syncthing: {names}. Die Erweiterung liest sie nicht; lösche sie in Syncthing, sobald du sie angesehen hast."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Karten auswählen"
   }
 }

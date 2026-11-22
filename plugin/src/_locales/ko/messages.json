@@ -7978,5 +7978,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "Syncthing의 충돌 사본 {n}개: {names}. 확장 프로그램은 이를 읽지 않습니다. 확인한 뒤 Syncthing에서 삭제하세요."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "카드 선택"
   }
 }

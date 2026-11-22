@@ -8426,5 +8426,8 @@
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} conflicting copy from Syncthing: {names}. The extension does not read it; delete it in Syncthing once you have looked.",
     "description": "Placeholders: {n} {names} (keep as is)"
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Choose widgets"
   }
 }

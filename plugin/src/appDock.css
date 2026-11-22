@@ -1,9 +1,11 @@
 /* appDock.css — the extension's app beside a page (reading view, home page): modules/appDock.js.
    dock-open = the app is shown; dock-docked = wide enough to sit in a column beside the page (otherwise it floats over it). */
-body { transition: padding-inline-end var(--duration-base) var(--easing-standard); }
+/* the page glides aside while the app slides in: both use the same duration and curve, so they move as one */
+body { transition: padding-inline-end var(--duration-slower) var(--easing-decelerate); }
 :root.dock-docked.dock-open body { padding-inline-end: var(--dock-w, 420px); }
-.app-dock { position: fixed; top: 12px; right: 12px; width: min(420px, calc(100vw - 24px)); height: calc(100dvh - 24px); border: 0; border-radius: var(--radius-lg); z-index: 40; background: var(--bg-page); box-shadow: var(--elevation-sheet); color-scheme: light dark; transform: translateX(calc(100% + 24px)); transition: transform var(--duration-base) var(--easing-standard); }
-.app-dock.dock-in { transform: none; }
+.app-dock { position: fixed; top: 12px; right: 12px; width: min(420px, calc(100vw - 24px)); height: calc(100dvh - 24px); border: 0; border-radius: var(--radius-lg); z-index: 40; background: var(--surface-sheet); box-shadow: var(--elevation-sheet); color-scheme: light dark; opacity: 0; transform: translateX(calc(100% + 24px)); transition: transform var(--duration-slower) var(--easing-decelerate), opacity var(--duration-slow) var(--easing-standard); }
+.app-dock.dock-in { transform: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .app-dock { transform: none; } }   /* a fade only: nothing travels */
 :root.dock-docked .app-dock { inset: 0 0 0 auto; width: var(--dock-w, 420px); height: 100dvh; border-radius: 0; box-shadow: none; border-inline-start: 1px solid var(--outline); }
 :root.dock-resizing body, :root.dock-resizing .app-dock { transition: none; }
 .app-dock-grip { position: fixed; inset-block: 0; inset-inline-end: calc(var(--dock-w, 420px) - 5px); width: 10px; z-index: 41; cursor: col-resize; touch-action: none; }
@@ -13,8 +15,9 @@ body { transition: padding-inline-end var(--duration-base) var(--easing-standard
 :root.dock-resizing, :root.dock-resizing * { user-select: none; cursor: col-resize; }
 :root.dock-resizing .app-dock { pointer-events: none; }
 /* the edge tab: a slim handle on the right edge says the app lives there and can be pulled in */
-.app-dock-edge { position: fixed; inset-inline-end: 0; top: calc(50% - 28px); z-index: 15; display: grid; place-items: center; width: 22px; height: 56px; padding: 0; color: var(--text-muted); background: var(--surface-sheet); border: 1px solid var(--outline); border-inline-end: 0; border-radius: var(--radius-md) 0 0 var(--radius-md); opacity: .55; cursor: pointer; transition: opacity var(--duration-fast) var(--easing-standard), width var(--duration-fast) var(--easing-standard), color var(--duration-fast) var(--easing-standard); }
+.app-dock-edge { animation: dockEdgeIn var(--duration-slow) var(--easing-decelerate) both; position: fixed; inset-inline-end: 0; top: calc(50% - 28px); z-index: 15; display: grid; place-items: center; width: 22px; height: 56px; padding: 0; color: var(--text-muted); background: var(--surface-sheet); border: 1px solid var(--outline); border-inline-end: 0; border-radius: var(--radius-md) 0 0 var(--radius-md); opacity: .55; cursor: pointer; transition: opacity var(--duration-fast) var(--easing-standard), width var(--duration-fast) var(--easing-standard), color var(--duration-fast) var(--easing-standard); }
 .app-dock-edge:active { transform: none; }   /* styles.css scales every pressed button: that must not move this one */
 .app-dock-edge:hover, .app-dock-edge:focus-visible { opacity: 1; width: 30px; color: var(--accent); outline: none; }
 .app-dock-edge[hidden] { display: none; }
 @media print { .app-dock, .app-dock-grip, .app-dock-edge { display: none; } }
+@keyframes dockEdgeIn { from { opacity: 0; transform: translateX(8px); } to { opacity: .55; transform: none; } }

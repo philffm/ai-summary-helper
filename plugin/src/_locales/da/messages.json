@@ -8279,5 +8279,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} konfliktkopi fra Syncthing: {names}. Udvidelsen læser den ikke; slet den i Syncthing, når du har set på den."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Vælg kort"
   }
 }

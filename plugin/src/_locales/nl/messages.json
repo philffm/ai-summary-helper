@@ -8279,5 +8279,8 @@
   },
   "f_conflicting_copy_from_syncth_ea75": {
     "message": "{n} conflictkopie van Syncthing: {names}. De extensie leest hem niet; verwijder hem in Syncthing als je hem hebt bekeken."
+  },
+  "f_choose_widgets_e62d": {
+    "message": "Kaarten kiezen"
   }
 }
