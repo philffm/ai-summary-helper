@@ -14,6 +14,8 @@ import { ttsLang } from './modules/languages.js';
 import { createReadTracker } from './modules/readProgress.js';
 import { applyA11y } from './modules/a11y.js';
 import { bp } from './modules/breakpoints.js';
+import { createHighlightStore } from './modules/highlightStore.js';
+import { createReaderHighlights, selectionIn } from './modules/readerHighlights.js';
 
 const PREFS_KEY = 'reader:prefs';
 const SIZES = [15, 17, 19, 21, 24, 28];
@@ -129,6 +131,57 @@ function revealQuoteFromHash() {
   return true;
 }
 
+// ── Highlights: select text in the full text to add one, click a highlight to remove it ──
+let hlList = [], hlPage = '', hl = null;
+function wireHighlights() {
+  if (hl || !hlPage || !/^https?:/i.test(hlPage)) return;
+  hl = createReaderHighlights({ store: createHighlightStore({ storage: chrome.storage.local }), annotations: hlList, page: hlPage,
+    tell: (m) => { try { const r = chrome.runtime.sendMessage(m); if (r && r.catch) r.catch(() => {}); } catch (_) { /* the worker restarts on the next event */ } } });
+  const content = () => document.querySelector('.rp-content');
+  const btn = $('rpHighlight');
+  const pop = document.createElement('div');
+  pop.className = 'rp-pop'; pop.setAttribute('role', 'toolbar'); pop.hidden = true;
+  const act = document.createElement('button'); act.type = 'button'; act.className = 'button-primary btn-sm';
+  pop.appendChild(act); document.body.appendChild(pop);
+  let pending = null;   // { kind: 'add', range } | { kind: 'remove', n }
+  const hide = () => { pop.hidden = true; pending = null; };
+  const rectOf = (r) => (typeof r.getBoundingClientRect === 'function' ? r.getBoundingClientRect() : { left: 0, top: 0, width: 0, bottom: 0 });
+  const place = (rect) => {
+    pop.hidden = false;
+    const w = pop.offsetWidth || 120;
+    pop.style.left = Math.max(8, Math.min(window.innerWidth - w - 8, rect.left + rect.width / 2 - w / 2)) + 'px';
+    pop.style.top = Math.max(8, rect.top - pop.offsetHeight - 8 < 8 ? rect.bottom + 8 : rect.top - pop.offsetHeight - 8) + 'px';
+  };
+  const done = async (fn) => { try { await fn(); } catch (e) { toast(String((e && e.message) || e)); } hide(); window.getSelection().removeAllRanges(); updateSel(); };
+  const doAdd = (range) => done(() => hl.add(content(), range));
+  const doRemove = (n) => done(() => hl.remove(document, n));
+  const updateSel = () => {
+    const root = content(), range = root && selectionIn(root);
+    if (btn) { btn.disabled = !range; btn.hidden = false; }
+    if (range) { pending = { kind: 'add', range: range.cloneRange() }; act.textContent = T('Highlight'); place(rectOf(range)); }
+    else if (pending && pending.kind === 'add') hide();
+  };
+  let timer = 0;
+  document.addEventListener('selectionchange', () => { clearTimeout(timer); timer = setTimeout(updateSel, 120); });
+  document.addEventListener('click', (e) => {
+    if (pop.contains(e.target)) return;
+    const mk = e.target.closest && e.target.closest('.rp-page mark[data-hl-n]');
+    if (mk && window.getSelection().isCollapsed) {
+      const n = Number(mk.dataset.hlN), ghost = mk.dataset.hlType === 'ghost';
+      pending = { kind: 'remove', n }; act.textContent = ghost ? T('Dismiss highlight') : T('Remove highlight'); place(rectOf(mk));
+    } else if (pending && pending.kind === 'remove') hide();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !pop.hidden) { hide(); } });
+  window.addEventListener('scroll', () => { if (!pop.hidden) { if (pending && pending.kind === 'add') updateSel(); else hide(); } }, { passive: true });
+  pop.addEventListener('mousedown', (e) => e.preventDefault());   // keeps the selection
+  act.addEventListener('click', () => { if (!pending) return; pending.kind === 'add' ? doAdd(pending.range) : doRemove(pending.n); });
+  if (btn) {
+    btn.textContent = T('Highlight'); btn.disabled = true;
+    btn.addEventListener('mousedown', (e) => e.preventDefault());
+    btn.addEventListener('click', () => { const r = content() && selectionIn(content()); if (r) doAdd(r.cloneRange()); });
+  }
+}
+
 // How far this article was read: the deepest scroll position, kept on the article (and synced like its other reading status).
 let reading = null;
 function trackReading(article, html) {
@@ -150,10 +203,11 @@ async function render() {
   if (!article) { page.innerHTML = `<p class="rp-empty">${escapeHtml(T('This article is no longer available.'))}</p>`; return; }
 
   const annotations = await fetchAnnotationsForArticle(article);
+  hlList = annotations; hlPage = article.url || '';
   const placed = new Set();
   const contentRaw = article.content || article.html || article.text || '';
-  const contentHtml = markHighlights(clean(contentRaw), annotations, placed);
-  const summaryHtml = markHighlights(clean(article.summary), annotations, placed);
+  const contentHtml = markHighlights(clean(contentRaw), annotations, placed, { ids: true });
+  const summaryHtml = markHighlights(clean(article.summary), annotations, placed, { ids: true });
 
   const title = article.title || T('Article');
   document.title = title;
@@ -324,6 +378,7 @@ async function init() {
   labelControls(); wireControls(); applyPrefs();
   await render();
   revealQuoteFromHash();
+  wireHighlights();
   await wireSend();
   wireListen();
   wireApp();

@@ -37,7 +37,7 @@ const MARK_STYLE = {
  * differences and works across inline tags; quotes that cannot be found are simply left unmarked
  * (they still appear in the Highlights list).
  */
-export function markHighlights(html, annotations, placed = new Set()) {
+export function markHighlights(html, annotations, placed = new Set(), { ids = false } = {}) {
     if (!html || !Array.isArray(annotations) || annotations.length === 0) return html || '';
     const doc = new DOMParser().parseFromString(`<div id="aish-root">${html}</div>`, 'text/html');
     const root = doc.getElementById('aish-root');
@@ -53,7 +53,7 @@ export function markHighlights(html, annotations, placed = new Set()) {
         walk(root);
         return out;
     };
-    for (const a of annotations) {
+    for (const [ai, a] of annotations.entries()) {
         if (a && placed.has(a)) continue;                 // already marked in another section of this document
         const t = String((a && a.text) || '').replace(/\s+/g, ' ').trim();
         if (t.length < 5) continue;
@@ -91,6 +91,7 @@ export function markHighlights(html, annotations, placed = new Set()) {
             if (from > 0) frag.append(doc.createTextNode(val.slice(0, from)));
             const mk = doc.createElement('mark');
             mk.setAttribute('style', style);
+            if (ids) { mk.setAttribute('data-hl-n', String(ai)); if (a.id) mk.setAttribute('data-hl-id', a.id); mk.setAttribute('data-hl-type', a.type === 'ghost' ? 'ghost' : 'user'); }   // the reader page edits them
             mk.textContent = val.slice(from, to);
             frag.append(mk);
             if (to < val.length) frag.append(doc.createTextNode(val.slice(to)));

@@ -51,7 +51,7 @@ a:focus-visible, summary:focus-visible { outline: var(--focus-ring-width) solid 
 .rp-page table { border-collapse: collapse; display: block; overflow-x: auto; }
 .rp-page td, .rp-page th { border: 1px solid var(--rp-line); padding: .35rem .6rem; }
 .rp-page mark { background: var(--rp-mark) !important; color: inherit !important; border-radius: .15em; padding: 0 .1em; }
-.rp-page mark[style*='e2ecff'], .rp-page mark[style*='dbeafe'] { background: var(--rp-mark-ghost) !important; }
+.rp-page mark[style*='e2ecff'], .rp-page mark[style*='dbeafe'], .rp-page mark[style*='cfe3ff'] { background: var(--rp-mark-ghost) !important; }
 :root[data-rp-view='summary'] .rp-content, :root[data-rp-view='content'] .rp-summary { display: none; }
 .rp-empty { color: var(--rp-muted); font-style: italic; }
 .rp-toast { position: fixed; inset: auto 1rem 1rem 1rem; max-width: 28rem; margin-inline: auto; z-index: 30; background: var(--rp-text); color: var(--rp-bg); padding: .65rem 1rem; border-radius: .6rem; font: 600 .85rem/1.4 var(--rp-ui); text-align: center; box-shadow: 0 6px 24px rgba(0,0,0,.25); }
@@ -72,10 +72,16 @@ a:focus-visible, summary:focus-visible { outline: var(--focus-ring-width) solid 
 .rp-bar button:disabled { cursor: progress; }
 @media (max-width: 600px) { .rp-bar-in { gap: .4rem; } .rp-page { padding-top: 1.5rem; } }
 @media print {
-  .rp-bar, .rp-progress, .rp-toc, .rp-toast, .rp-float, .rp-grip { display: none; }
+  .rp-bar, .rp-progress, .rp-toc, .rp-toast, .rp-float, .rp-grip, .rp-pop { display: none; }
   body { background: #fff; color: #000; padding-inline-end: 0 !important; } .rp-page { max-width: none; padding: 0; }
   :root { --rp-surface: #fff; --rp-text: #000; --rp-accent: #000; --rp-mark: #ffe96b; }
 }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 /* the sentence the quiz pointed at ("Show in article", #q=…) */
 .rp-quote-hit { background: var(--rp-mark); box-shadow: 0 0 0 .4rem var(--rp-mark); border-radius: .2rem; outline: none; }
+
+/* highlights: the popover next to a selection or a highlight, and the highlights the reader can click */
+.rp-pop { position: fixed; z-index: 45; box-shadow: var(--shadow-modal); border-radius: var(--radius-md); }
+.rp-pop[hidden] { display: none; }
+.rp-page mark[data-hl-n] { cursor: pointer; }
+.rp-page mark[data-hl-type='ghost'] { background: var(--rp-mark-ghost) !important; }
