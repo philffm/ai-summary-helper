@@ -69,7 +69,7 @@ function briefingCard(d) {
   }
   const open = el('button', 'button-secondary btn-sm', T('Open in Feeds')); open.type = 'button'; open.addEventListener('click', () => dock && dock.open('feeds'));
   body.append(el('div', 'hm-brief-actions')); body.lastChild.append(open);
-  const c = card(T('Today’s briefing'), body); c.classList.add('hm-card--wide'); return c;
+  return card(T('Today’s briefing'), body);
 }
 
 const builders = {
@@ -99,6 +99,7 @@ const builders = {
     return card(T('Your library'), dl);
   },
 };
+const WEIGHT = { briefing: 5, continue: 3.5, recent: 3.5, feeds: 3.3, quote: 1.8, stats: 2.2 };   // about how tall each card is
 const LABELS = { briefing: 'Today’s briefing', continue: 'Continue reading', recent: 'Recently saved', feeds: 'Latest from your feeds', quote: 'From your highlights', stats: 'Your library' };
 
 const dockPrefs = { dock: undefined };
@@ -106,7 +107,14 @@ let dock = null;
 let hidden = [], data = { index: [], feed: [], quote: null, recaps: {}, briefMode: 'full', updating: false };
 function render() {
   const grid = $('hmGrid'); grid.textContent = '';
-  visibleWidgets(hidden).forEach((w) => grid.append(builders[w](data)));
+  // Two columns, each card going to the shorter one by its rough height (so the page stays balanced when cards are hidden);
+  // in one column (narrow) the cards sit in their normal order again (CSS order, see home.css)
+  const cols = [el('div', 'hm-col'), el('div', 'hm-col')], height = [0, 0];
+  visibleWidgets(hidden).forEach((w) => {
+    const i = height[0] <= height[1] ? 0 : 1, c = builders[w](data);
+    c.style.order = String(WIDGETS.indexOf(w)); height[i] += WEIGHT[w] || 3; cols[i].append(c);
+  });
+  grid.append(...cols);
   const box = $('hmCustom'); box.textContent = '';
   WIDGETS.forEach((w) => {
     const lab = el('label'); const cb = el('input'); cb.type = 'checkbox'; cb.checked = !hidden.includes(w);

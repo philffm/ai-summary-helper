@@ -16,7 +16,10 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-grid { transition: opacity var(--duration-base) var(--easing-standard); }
 .hm-grid.is-dim { opacity: .35; }
 .hm-hint { font-size: var(--fs-xs); color: var(--text-muted); }
-.hm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; align-items: start; }
+.hm-wrap { container: hmwrap / inline-size; }
+.hm-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+.hm-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+@container hmwrap (max-width: 900px) { .hm-grid { grid-template-columns: minmax(0, 1fr); } .hm-col { display: contents; } }   /* narrow (also with the app docked beside): one column, the cards in their own order */
 .hm-card { padding: 14px; border: 1px solid var(--outline); border-radius: var(--radius-lg); background: var(--bg-card, var(--glass-base)); box-sizing: border-box; }
 .hm-card h2 { margin: 0 0 10px; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
 .hm-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
@@ -49,8 +52,6 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-quote { margin: 0 0 8px; padding: 0; font-size: var(--fs-md); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
 .hm-quote-src { display: block; margin-bottom: 10px; }
 
-.hm-card--wide { grid-column: span 2; }
-@media (max-width: 720px) { .hm-card--wide { grid-column: auto; } }
 .hm-brief-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin-bottom: 8px; }
 .hm-brief-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: var(--fs-sm); color: var(--text-muted); }
 .hm-mood { padding: 1px 8px; border: 1px solid var(--outline); border-radius: var(--radius-full); }
