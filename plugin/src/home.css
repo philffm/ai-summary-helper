@@ -1,8 +1,8 @@
 /* home.html — the start page. Tokens only (design-system); layout is a calm grid of cards. */
 html, body { height: auto; overflow: auto; }
 body.home { background: var(--bg-page); color: var(--text-primary); font-family: inherit; }
-.hm-wrap { max-width: 1040px; margin: 0 auto; padding: 40px 20px 64px; box-sizing: border-box; }
-.hm-head { display: flex; flex-direction: column; align-items: center; gap: 16px; margin: 8vh 0 40px; text-align: center; }
+.hm-wrap { max-width: 1280px; margin: 0 auto; padding: 24px 20px 48px; box-sizing: border-box; }
+.hm-head { display: flex; flex-direction: column; align-items: center; gap: 16px; margin: 2vh 0 24px; text-align: center; }
 .hm-title { margin: 0; font-size: var(--fs-2xl); font-weight: 600; }
 /* The search is the command list, inline: it opens under the field while you type or arrow through it, the cards step back. */
 .hm-box { position: relative; width: 100%; max-width: 560px; text-align: left; }
@@ -16,8 +16,8 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-grid { transition: opacity var(--duration-base) var(--easing-standard); }
 .hm-grid.is-dim { opacity: .35; }
 .hm-hint { font-size: var(--fs-xs); color: var(--text-muted); }
-.hm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; align-items: start; }
-.hm-card { padding: 16px; border: 1px solid var(--outline); border-radius: var(--radius-lg); background: var(--bg-card, var(--glass-base)); box-sizing: border-box; }
+.hm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; align-items: start; }
+.hm-card { padding: 14px; border: 1px solid var(--outline); border-radius: var(--radius-lg); background: var(--bg-card, var(--glass-base)); box-sizing: border-box; }
 .hm-card h2 { margin: 0 0 10px; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
 .hm-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
 .hm-link { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; margin: 0 -10px; border-radius: var(--radius-md); color: var(--text-primary); text-decoration: none; }
@@ -37,4 +37,8 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-custom-list { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; }
 .hm-custom-list label { display: inline-flex; align-items: center; gap: 8px; }
 .hm-custom-list input { width: auto; margin: 0; padding: 0; }
-.hm-status { margin: -16px 0 20px; text-align: center; font-size: var(--fs-sm); color: var(--text-muted); }
+.hm-status { margin: -12px 0 14px; text-align: center; font-size: var(--fs-sm); color: var(--text-muted); }
+/* the command that opens the search, inside the field; gone while the list is open */
+.hm-key { position: absolute; top: 50%; right: 14px; transform: translateY(-50%); pointer-events: none; }
+.hm-box.is-open .hm-key { display: none; }
+.hm-box .cmdk-input { padding-right: 76px; }

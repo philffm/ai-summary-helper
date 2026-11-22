@@ -42,6 +42,7 @@ assert(d.querySelector('.hm-link').href.includes('readerPage.html#id='), 'links 
 const box = d.querySelector('#hmCustom input'); box.checked = false; box.dispatchEvent(new w.Event('change', { bubbles: true })); await tick(50);
 assert.equal(d.querySelectorAll('.hm-card').length, 4, 'a card can be hidden');
 assert.deepEqual(store['home:prefs'], { hidden: ['continue'] }, 'and the choice is remembered');
+assert(d.querySelector('#hmBox .hm-key'), 'the command that opens the search is shown inside the field');
 const field = d.querySelector('#hmBox .cmdk-input'); assert(field, 'the search field is the command list, inline');
 field.dispatchEvent(new w.Event('focus')); await tick(30);
 assert(d.getElementById('hmBox').classList.contains('is-open') && d.getElementById('hmGrid').classList.contains('is-dim'), 'focus opens the list and dims the cards');

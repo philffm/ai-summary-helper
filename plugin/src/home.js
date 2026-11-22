@@ -30,9 +30,9 @@ function listOf(rows, emptyText) {
 }
 
 const builders = {
-  continue: (d) => card(T('Continue reading'), listOf(continueReading(d.index).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url), a.progress)), T('Nothing in progress. Articles you start reading show up here.'))),
-  recent: (d) => card(T('Recently saved'), listOf(recentlySaved(d.index).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url))), T('Your saved articles show up here.'))),
-  feeds: (d) => card(T('Latest from your feeds'), listOf(latestFeed(d.feed).map((i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link))), T('Subscribe to feeds to see new items here.'))),
+  continue: (d) => card(T('Continue reading'), listOf(continueReading(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url), a.progress)), T('Nothing in progress. Articles you start reading show up here.'))),
+  recent: (d) => card(T('Recently saved'), listOf(recentlySaved(d.index, 4).map((a) => link(readerUrl(a), a.title || a.url, hostOf(a.url))), T('Your saved articles show up here.'))),
+  feeds: (d) => card(T('Latest from your feeds'), listOf(latestFeed(d.feed, 4).map((i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link))), T('Subscribe to feeds to see new items here.'))),
   stats: (d) => {
     const s = libraryStats(d.index), dl = el('dl', 'hm-stats');
     [[T('Saved'), s.total], [T('Unread'), s.unread], [T('Starred'), s.starred], [T('Finished this week'), s.finishedThisWeek]].forEach(([k, v]) => { const g = el('div'); g.append(el('dt', '', k), el('dd', '', String(v))); dl.append(g); });
@@ -83,6 +83,7 @@ function mountSearch() {
   const setOpen = (on) => { box.classList.toggle('is-open', on); $('hmGrid').classList.toggle('is-dim', on); search.input.setAttribute('aria-expanded', String(on)); };
   const collapse = () => { search.input.value = ''; search.update(); setOpen(false); search.input.blur(); };
   search = mountCommandList(box, { getCommands: homeCommands, findMore: externalArticleSearch((a) => window.open(readerUrl(a), '_blank')), onRun: collapse, onEscape: collapse, expanded: false });
+  const key = document.createElement('kbd'); key.className = 'kbd-key hm-key'; key.setAttribute('aria-hidden', 'true'); key.textContent = /Mac|iPhone|iPad/i.test(navigator.platform || navigator.userAgent || '') ? '⌘K' : 'Ctrl K'; box.append(key);
   search.input.addEventListener('focus', () => setOpen(true));
   box.addEventListener('focusout', (e) => { if (!box.contains(e.relatedTarget) && !search.input.value) setOpen(false); });
   if (keep) { search.input.value = keep; search.update(); }
