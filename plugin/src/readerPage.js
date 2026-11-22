@@ -1,7 +1,7 @@
 // Read mode page: opened in its own tab from an article's "Read" button (reader.html#id=<article id>).
 // Shows the summary (with pinned questions) and the saved text with highlights, in a calm layout: text size, font,
 // theme and width are the reader's choice and are remembered. Stored page HTML is untrusted — cleaned before display.
-import { applyTranslations } from './modules/i18n.js';
+import { bootPage } from './modules/pageBoot.js';
 import { T } from './modules/feedI18n.js';
 import { escapeHtml, cleanUntrustedHtml, countWords } from './modules/textUtils.js';
 import { withQuestions } from './modules/conversation.js';
@@ -12,11 +12,11 @@ import { createSendTargets, loadSendPrefs } from './modules/sendSplit.js';
 import { getReader, speechUnits, detectLang } from './modules/reader.js';
 import { ttsLang } from './modules/languages.js';
 import { createReadTracker } from './modules/readProgress.js';
-import { applyA11y } from './modules/a11y.js';
 import { bp } from './modules/breakpoints.js';
 import { createHighlightStore } from './modules/highlightStore.js';
 import { createReaderHighlights, selectionIn, paintAll } from './modules/readerHighlights.js';
 import { blockAtTop, placeOfBlock, blockOfPlace } from './modules/readerBookmark.js';
+import { openExternalPalette, bindPaletteKey } from './modules/paletteExternal.js';
 import { browserBookmarksPossible, ensureBookmarksAccess, saveBrowserBookmark, hasBrowserBookmark } from './modules/browserBookmark.js';
 
 const PREFS_KEY = 'reader:prefs';
@@ -77,6 +77,7 @@ function labelControls() {
   const vw = { both: T('Both'), summary: T('Summary'), content: T('Full text') };
   document.querySelectorAll('[data-view]').forEach(b => { b.textContent = vw[b.dataset.view]; });
   setText($('rpPrint'), T('Print'));
+  setText($('rpPalette'), T('Commands and search'));
   setText($('rpListen'), T('Read aloud'));
   setText($('rpApp'), T('Open app'), T('App'));
   setText($('rpMoreBtn'), T('More'));
@@ -500,19 +501,30 @@ function wireApp() {
   });
 }
 
+// ⌘K / Ctrl+K: this page's own commands first (they press the toolbar's buttons, so they are always in step with it), then the app's
+function wirePalette() {
+  const press = (id) => () => { const b = $(id); if (b && !b.disabled) b.click(); };
+  const here = T('This article');
+  const extra = [
+    { id: 'rp:bm', group: here, title: T('Bookmark this place'), keywords: 'bookmark save position resume', run: press('rpBmMove') },
+    { id: 'rp:hl', group: here, title: T('Highlight selection'), keywords: 'mark highlight', run: press('rpHighlight') },
+    { id: 'rp:send', group: here, title: T('Send'), keywords: 'kindle localsend share deliver', run: press('rpSendMain') },
+    { id: 'rp:print', group: here, title: T('Print'), keywords: 'pdf', run: press('rpPrint') },
+    { id: 'rp:app', group: here, title: T('Open app beside the article'), keywords: 'side panel dock', run: press('rpApp') },
+    { id: 'rp:listen', group: here, title: T('Listen'), keywords: 'read aloud tts audio', run: press('rpListen') },
+  ];
+  const open = () => openExternalPalette({ extra, openArticle: (a) => { location.hash = '#id=' + encodeURIComponent(a.id); location.reload(); } });
+  bindPaletteKey(open);
+  $('rpPalette').addEventListener('click', () => { const m = $('rpMoreMenu'); if (m) m.hidden = true; open(); });
+}
+
 async function init() {
   let cfg = {};
-  let lang = 'en';
   try { cfg = await chrome.storage.local.get(PREFS_KEY); } catch (_) { /* defaults */ }
-  try { lang = (await chrome.storage.sync.get('uiLanguage')).uiLanguage || 'en'; } catch (_) { /* English */ }
   prefs = { ...DEFAULTS, ...(cfg[PREFS_KEY] || {}) };
-  try {   // brand colours, colour scheme, text size, icon style: the same appearance settings as the popup
-    const a = await StorageManager.get(['theme', 'textScale', 'lineSpacing', 'readableFont', 'reduceMotion', 'iconStyle', 'colorScheme']);
-    appTheme = a.theme === 'dark' || a.theme === 'light' || a.theme === 'contrast' ? a.theme : '';
-    applyA11y({ ...a, theme: appTheme });
-  } catch (_) { /* tokens' own defaults */ }
-  try { await applyTranslations(lang); } catch (_) { /* English */ }
+  ({ appTheme } = await bootPage());
   labelControls(); wireControls(); wireMenus(); applyPrefs();
+  wirePalette();
   await render();
   revealQuoteFromHash();
   wireHighlights();

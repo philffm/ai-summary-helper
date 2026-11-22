@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body class="home">
+  <main class="hm-wrap">
+    <header class="hm-head">
+      <h1 id="hmGreeting" class="hm-title">Home</h1>
+      <button type="button" id="hmSearch" class="hm-search" aria-label="Search and commands">
+        <span class="hm-search-text">Search your articles or run a command…</span><kbd class="kbd-key" id="hmKey">⌘K</kbd>
+      </button>
+    </header>
+    <div id="hmGrid" class="hm-grid"></div>
+    <details class="hm-custom">
+      <summary>Choose widgets</summary>
+      <div id="hmCustom" class="hm-custom-list"></div>
+    </details>
+  </main>
+  <script type="module" src="home.js"></script>
+</body>
+</html>

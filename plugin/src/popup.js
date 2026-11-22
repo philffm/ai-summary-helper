@@ -71,6 +71,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.initPodcastManager(ui);
     }
     initShortcuts(ui);
+    const homeBtn = document.getElementById('openHomeButton');
+    if (homeBtn) homeBtn.addEventListener('click', () => chrome.tabs.create({ url: chrome.runtime.getURL('home.html') }));
     initSearchFields();
     initMainScreen(ui);
     initReviewPrompt();
@@ -108,7 +110,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         onDemand.feeds().then(() => { if (!feedsReady) { feedsReady = true; document.dispatchEvent(new CustomEvent('aish:settings-panel', { detail: e.detail })); } });
     });
 
-    ui.showScreen((window.location && window.location.hash) === '#notes' ? 'notes' : "main");   // "Open in Notes" from a page opens this tab on the Notes screen
+    ui.showScreen(['notes', 'feeds', 'history', 'settings'].includes(((window.location && window.location.hash) || '').slice(1)) ? window.location.hash.slice(1) : "main");   // "Open in Notes" from a page opens this tab on the Notes screen
     // "🎓 Time to repeat" (quiz reminder) opens popup.html#quiz=<id> in a tab: the saved quiz with the questions to repeat
     const quizId = ((window.location && window.location.hash) || '').match(/^#quiz=([\w-]{4,64})$/);
     if (quizId) import('./modules/quiz/quizView.js').then(m => m.openSavedQuiz(quizId[1])).catch(() => {});

@@ -32,6 +32,7 @@ export function buildCommands(ui, deps = {}) {
     list.push(
         { id: 'do:new', group: act, title: T('New summary'), keywords: 'summarize page', keys: [mod, 'N'], run: () => { ui.showScreen('main'); document.dispatchEvent(new CustomEvent('aish:new-summary')); } },
         { id: 'do:sync', group: act, title: T('Sync now'), keywords: 'backup publish', run: () => bgMessage({ action: 'syncNow' }, { timeout: 5 * 60 * 1000 }) },
+        { id: 'do:home', group: act, title: T('Home page'), keywords: 'start dashboard widgets overview', run: () => chrome.tabs.create({ url: chrome.runtime.getURL('home.html') }) },
         { id: 'do:keys', group: act, title: T('Keyboard shortcuts'), keywords: 'help keys', keys: ['?'], run: () => openHelp() },
     );
     const set = T('Settings');

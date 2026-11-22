@@ -10,6 +10,7 @@ import { bp } from './breakpoints.js';
 // Search index: one entry per control. `target` is the element id to scroll to
 // and flash after jumping to its panel; `kw` are extra match words.
 const INDEX = [
+    ['appearance', N_('Home page'), 'openHomeButton', 'start page new tab dashboard widgets overview'],
     ['account', N_('Account sync · sign in / log out'), 'otpEmail', 'login log in email magic code logout log out account'],
     ['account', N_('Pro license key'), 'licenseKey', 'activate plan upgrade pass pro subscription'],
     ['models', N_('Connection path'), 'modeCloud', 'cloud byphil own key bring your own'],
