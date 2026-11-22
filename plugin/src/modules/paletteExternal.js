@@ -5,6 +5,7 @@ import { openPalette } from './commandPalette.js';
 import { articleCommands, withWebSearch } from './commands.js';
 import { isMac } from './shortcuts.js';
 import StorageManager from './storageManager.js';
+import { settingsEntries } from './settingsIndex.js';
 
 const appUrl = (hash = '') => chrome.runtime.getURL('popup.html') + hash;
 
@@ -12,7 +13,9 @@ const appUrl = (hash = '') => chrome.runtime.getURL('popup.html') + hash;
 export function externalCommands({ extra = [], home = true, openScreen = null } = {}) {
     const open = (url) => (chrome.tabs ? chrome.tabs.create({ url }) : window.open(url, '_blank'));
     const go = (name) => () => (openScreen ? openScreen(name) : open(appUrl('#' + name)));   // the home page shows the app beside itself, other pages in a tab
-    const nav = T('Go to');
+    const nav = T('Go to'), set = T('Settings');
+    // every setting the app has, as in the popup's palette: the app opens on that panel (hash settings/<panel>/<control>)
+    const settings = settingsEntries().map((e) => ({ id: 'set:' + e.panel + ':' + (e.target || ''), group: set, title: e.title, keywords: e.kw, run: go('settings/' + e.panel + '/' + (e.target || '')) }));
     return [
         ...extra,
         ...(home ? [{ id: 'home', group: nav, title: T('Home page'), keywords: 'start dashboard widgets', run: () => open(chrome.runtime.getURL('home.html')) }] : []),
@@ -21,6 +24,7 @@ export function externalCommands({ extra = [], home = true, openScreen = null } 
         { id: 'go:history', group: nav, title: T('History'), keywords: 'library articles saved', run: go('history') },
         { id: 'go:notes', group: nav, title: T('Notes'), keywords: 'highlights annotations', run: go('notes') },
         { id: 'go:settings', group: nav, title: T('Settings'), keywords: 'preferences options', run: go('settings') },
+        ...settings,
     ];
 }
 

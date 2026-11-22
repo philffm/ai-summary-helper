@@ -3,6 +3,7 @@
 // (it is the start screen), and at least two tabs stay visible. The screen slide follows the dock order.
 import { T } from './feedI18n.js';
 import { makeReorderable, reorderGrip } from './reorder.js';
+import { currentSurface } from './panelDock.js';
 
 export const DOCK_PREF = 'dockTabs';
 export const DOCK_TABS = ['feeds', 'main', 'history', 'notes'];
@@ -23,12 +24,16 @@ const navItem = (id) => document.querySelector(`#bottomNav .nav-item[data-screen
 const tabName = (id) => { const n = navItem(id); const l = n && n.querySelector('.nav-label'); return (l && l.textContent.trim()) || id; };
 
 /** Puts the nav buttons in order, hides the hidden ones, and tells the screen slider the new order. */
-export function applyDock(d) {
+export function applyDock(d, surface = currentSurface()) {
     current = normalizeDock(d);
+    // Beside the reading view / home page (surface=float) there is no page of ours to summarize: Summarize is left out of this
+    // session only (not saved), and the tab count and the screen slider follow what is shown, so the indicator sits on the right tab.
+    const away = surface === 'float' ? [...new Set([...current.hidden, LOCKED])] : current.hidden;
+    const shown = current.order.filter(x => !away.includes(x));
     const nav = document.getElementById('bottomNav');
-    if (nav) current.order.forEach(id => { const b = navItem(id); if (b) { b.hidden = current.hidden.includes(id); nav.append(b); } });
-    if (nav) nav.dataset.tabs = String(visibleTabs(current).length);
-    if (uiRef && typeof uiRef.setScreenOrder === 'function') uiRef.setScreenOrder([...visibleTabs(current), ...current.hidden, 'settings']);
+    if (nav) current.order.forEach(id => { const b = navItem(id); if (b) { b.hidden = away.includes(id); nav.append(b); } });
+    if (nav) nav.dataset.tabs = String(shown.length);
+    if (uiRef && typeof uiRef.setScreenOrder === 'function') uiRef.setScreenOrder([...shown, ...away, 'settings']);
     paintEditor();
 }
 

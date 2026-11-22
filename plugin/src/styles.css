@@ -3789,7 +3789,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .chat-src--open { white-space: normal; }
 .graph-cite { display: inline; margin: 0 1px; padding: 1px 7px; vertical-align: baseline; line-height: 1.6; color: var(--accent); border-color: var(--accent); }
 .graph-cite:hover, .graph-cite:focus-visible { background: var(--accent); color: var(--on-accent); }
-.chat-pin { margin-left: auto; }
+.chat-pin { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; }
 .chat-pin[aria-pressed="true"] { background: var(--accent-a12); border-color: var(--accent-a30); color: var(--accent); }
 .qa-section { display: flex; flex-direction: column; gap: 10px; }
 .qa-title { color: var(--text-secondary); }
@@ -5612,9 +5612,6 @@ details.links-group > summary.links-cap { cursor: pointer; list-style-position: 
 .ask-form { display: flex; gap: 8px; align-items: center; }
 .ask-form input { flex: 1 1 auto; min-width: 0; margin: 0; }
 .ask-status { margin: 0 0 8px; font-size: var(--fs-sm); color: var(--danger-text); }
-
-/* The app shown beside the reading view or the home page (surface=float) has no page to summarize: the Summary tab is not offered */
-body[data-surface="float"] .nav-item[data-screen="main"] { display: none; }
 .ask-chip { display: inline-flex; align-items: center; gap: 6px; }
 .ask-chip--instant { border-color: var(--accent); }
 .ask-chip--instant .icon { color: var(--accent); }

@@ -1,6 +1,7 @@
 // qaView.js — DOM for follow-up turns, shared by the Summarize feed and the History detail.
 import { T, TN } from './feedI18n.js';
 import { pinnedCount, cleanAnswer } from './conversation.js';
+import { setIconLabel } from './icons.js';
 
 /** One Q&A turn: question bubble, answer bubble with 📌 pin toggle and ¶ source chips. */
 /** Safe renderer for cleaned answer text: headings, paragraphs, lists, **bold** / *italic* / `code` and pipe tables (DOM nodes only, no innerHTML). */
@@ -93,7 +94,7 @@ export function turnEl(turn, { onPin, onSource } = {}) {
     pin.type = 'button'; pin.className = 'chat-pin';
     const paint = () => {
         pin.setAttribute('aria-pressed', String(!!turn.pinned));
-        pin.textContent = turn.pinned ? T('📌 In article') : T('📍 Add to article');
+        setIconLabel(pin, turn.pinned ? 'pin' : 'plus', turn.pinned ? T('📌 In article') : T('📍 Add to article'), 'icon--sm');   // icons, not emoji (an old translation's leading emoji is stripped)
         pin.title = turn.pinned ? T('Shown in the article and included in exports') : T('Only in the conversation log');
     };
     paint();

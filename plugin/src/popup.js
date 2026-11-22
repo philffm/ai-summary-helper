@@ -128,7 +128,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         onDemand.feeds().then(() => { if (!feedsReady) { feedsReady = true; document.dispatchEvent(new CustomEvent('aish:settings-panel', { detail: e.detail })); } });
     });
 
-    ui.showScreen(['notes', 'feeds', 'history', 'settings'].includes(((window.location && window.location.hash) || '').slice(1)) ? window.location.hash.slice(1) : (currentSurface() === 'float' ? 'history' : "main"));   // beside the reading view / home page there is no page of ours to summarize: the library is the start   // "Open in Notes" from a page opens this tab on the Notes screen
+    {
+        // #notes / #feeds / #history / #settings, or #settings/<panel>/<control>: a link from the reading view or the home page straight to a setting
+        const [scr, panel, control] = ((window.location && window.location.hash) || '').slice(1).split('/');
+        ui.showScreen(['notes', 'feeds', 'history', 'settings'].includes(scr) ? scr : (currentSurface() === 'float' ? 'history' : "main"));
+        if (scr === 'settings' && panel) setTimeout(async () => { try { await onDemand.settings(); (await import('./modules/settingsNav.js')).openSettingsPanel(panel, control || undefined); } catch (_) { /* the Settings home stays */ } }, 0);
+    }   // beside the reading view / home page there is no page of ours to summarize: the library is the start   // "Open in Notes" from a page opens this tab on the Notes screen
     // "🎓 Time to repeat" (quiz reminder) opens popup.html#quiz=<id> in a tab: the saved quiz with the questions to repeat
     const quizId = ((window.location && window.location.hash) || '').match(/^#quiz=([\w-]{4,64})$/);
     if (quizId) import('./modules/quiz/quizView.js').then(m => m.openSavedQuiz(quizId[1])).catch(() => {});
