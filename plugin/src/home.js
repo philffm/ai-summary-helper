@@ -112,18 +112,27 @@ window.addEventListener('resize', () => { if (lastCols && !document.getElementBy
 
 function render() {
   const grid = $('hmGrid'); grid.textContent = '';
-  // The glance card takes two thirds, the other cards stack in the last third; without it the cards share two columns (shortest first).
-  // Narrow (CSS): one column, the cards in their own order.
+  // With the glance card: a four-column grid. The glance card takes half (two columns, both rows), the other four cards a quarter each
+  // beside it (Continue reading, Recently saved / Notes, Library). Without it the cards share two columns, shortest first.
+  // Narrow (CSS): two columns, then one.
   const shown = visibleWidgets(hidden), glance = shown.includes('briefing');
   grid.classList.toggle('has-glance', glance);
-  const n = glance ? 2 : (colCount() >= 2 ? 2 : 1), cols = Array.from({ length: n }, () => el('div', 'hm-col')), height = Array(n).fill(0);
+  if (glance) {
+    shown.forEach((w) => { const c = builders[w](data); c.style.order = String(WIDGETS.indexOf(w)); c.dataset.card = w; grid.append(c); });
+    lastCols = 4; return renderCustom();
+  }
+  const n = colCount() >= 2 ? 2 : 1, cols = Array.from({ length: n }, () => el('div', 'hm-col')), height = Array(n).fill(0);
   grid.style.setProperty('--hm-cols', String(n));
   shown.forEach((w) => {
-    const c = builders[w](data); c.style.order = String(WIDGETS.indexOf(w));
-    const i = glance ? (w === 'briefing' ? 0 : 1) : height.indexOf(Math.min(...height));
+    const c = builders[w](data); c.style.order = String(WIDGETS.indexOf(w)); c.dataset.card = w;
+    const i = height.indexOf(Math.min(...height));
     height[i] += 3; cols[i].append(c);
   });
   grid.append(...cols); lastCols = n;
+  renderCustom();
+}
+
+function renderCustom() {
   const box = $('hmCustom'); box.textContent = '';
   WIDGETS.forEach((w) => {
     const lab = el('label'); const cb = el('input'); cb.type = 'checkbox'; cb.checked = !hidden.includes(w);
