@@ -8,7 +8,7 @@ const DOCK_MIN = 320, DOCK_DEFAULT = 420;
 const dockMax = () => Math.max(DOCK_MIN, Math.min(760, Math.round(window.innerWidth * 0.6)));
 export const clampDock = (w) => Math.min(dockMax(), Math.max(DOCK_MIN, Math.round(Number(w) || DOCK_DEFAULT)));
 
-export function createAppDock({ button, getWidth = () => DOCK_DEFAULT, saveWidth = () => {}, labels = null, root = document.documentElement, doc = document }) {
+export function createAppDock({ button, getWidth = () => DOCK_DEFAULT, saveWidth = () => {}, labels = null, startScreen = '', root = document.documentElement, doc = document }) {
   let frame = null, grip = null;
   const width = () => parseInt(root.style.getPropertyValue('--dock-w'), 10);   // we set it inline ourselves
   const setWidth = (w) => {
@@ -68,7 +68,7 @@ export function createAppDock({ button, getWidth = () => DOCK_DEFAULT, saveWidth
     if (frame) { if (screen) frame.src = urlFor(screen); return; }
     frame = doc.createElement('iframe');
     frame.className = 'app-dock'; frame.title = T('Open app');
-    frame.src = urlFor(screen);
+    frame.src = urlFor(screen || startScreen);
     doc.body.appendChild(frame);
     setState(true);
     edge.hidden = true;

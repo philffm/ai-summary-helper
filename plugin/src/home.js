@@ -71,7 +71,7 @@ async function init() {
   const hour = new Date().getHours();
   $('hmGreeting').textContent = { night: T('Good night'), morning: T('Good morning'), afternoon: T('Good afternoon'), evening: T('Good evening') }[greetingKey(hour)];
   bindSearchKeys();
-  dock = createAppDock({ button: $('hmApp'), labels: { open: T('Open app'), close: T('Close app') }, getWidth: () => dockPrefs.dock, saveWidth: (w) => { dockPrefs.dock = w; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: w } }); } catch (_) { /* optional */ } } });
+  dock = createAppDock({ button: $('hmApp'), startScreen: 'history', labels: { open: T('Open app'), close: T('Close app') }, getWidth: () => dockPrefs.dock, saveWidth: (w) => { dockPrefs.dock = w; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: w } }); } catch (_) { /* optional */ } } });
   document.querySelectorAll('.hm-appbar [data-screen]').forEach((b) => b.addEventListener('click', () => dock.open(b.dataset.screen)));
   await loadData();
   render(); mountSearch();

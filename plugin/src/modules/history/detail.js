@@ -537,6 +537,7 @@ export async function showArticleDetail(article) {
         </div>
         <div class="a11y-seg detail-tabs" role="tablist" aria-label="${escAttr(T('Article sections'))}">
           <button type="button" role="tab" id="detailTabSummary" data-tab="summary" aria-controls="detailPanelSummary">${escapeHtml(T('Summary'))}</button>
+          <button type="button" role="tab" id="detailTabAsk" data-tab="ask" aria-controls="detailPanelAsk"${article.id && detailDoc.body.textContent.trim() ? '' : ' hidden'}>${escapeHtml(T('Ask'))}</button>
           <button type="button" role="tab" id="detailTabLinks" data-tab="links" aria-controls="detailPanelLinks" hidden>${escapeHtml(T('Links'))}<span class="detail-tab-n"></span></button>
           <button type="button" role="tab" id="detailTabNotes" data-tab="notes" aria-controls="detailPanelNotes"${article.id ? '' : ' hidden'}>${escapeHtml(T('Notes'))}<span class="detail-tab-n"></span></button>
           <button type="button" role="tab" id="detailTabArticle" data-tab="article" aria-controls="detailPanelArticle"${detailDoc.body.textContent.trim() ? '' : ' hidden'}>${escapeHtml(T('Article'))}</button>
@@ -550,6 +551,7 @@ export async function showArticleDetail(article) {
           <div id="sourceCheckMount" class="detail-source"></div>
           <div id="localInsights" class="detail-insights"></div>
         </div>
+        <section class="detail-panel" role="tabpanel" id="detailPanelAsk" aria-labelledby="detailTabAsk" hidden><div id="askMount" class="detail-ask"></div></section>
         <section class="detail-panel" role="tabpanel" id="detailPanelLinks" aria-labelledby="detailTabLinks" hidden><div id="articleLinksMount" class="detail-links" hidden></div></section>
         <section class="detail-panel" role="tabpanel" id="detailPanelNotes" aria-labelledby="detailTabNotes" hidden><div id="articleNotesMount" class="detail-notes"></div></section>
         <div class="detail-panel detail-original" role="tabpanel" id="detailPanelArticle" aria-labelledby="detailTabArticle" hidden>
@@ -568,6 +570,18 @@ export async function showArticleDetail(article) {
     mountTitleEdit(article, articleDetailContent.querySelector('.detail-title'));
     renderPaperRow(article, articleDetailContent.querySelector('.paper-row'));
     renderDetailQa(article, articleDetailContent.querySelector('#qaMount'));
+    { // the Ask tab: built the first time it is shown (nothing is loaded for readers who never ask)
+      let asked = null;
+      const mountAsk = async () => {
+        if (asked || !article.id) return;
+        const { createArticleAsk } = await import('../articleAsk.js');
+        if (!Array.isArray(article.conversation)) article.conversation = [];
+        asked = createArticleAsk({ mount: articleDetailContent.querySelector('#askMount'), article, content: rawContentSource, summary: article.summary || '', turns: article.conversation,
+          save: (turns) => StorageManager.saveConversation(article.id, turns), onChange: () => renderDetailQa(article, articleDetailContent.querySelector('#qaMount')) });
+      };
+      articleDetailContent.addEventListener('aish:detail-tab', (e) => { if (e.detail && e.detail.tab === 'ask') mountAsk().then(() => asked && asked.focus()); });
+      if (tabs.current === 'ask') mountAsk();
+    }
     mountSourceCheck(article, articleDetailContent.querySelector('#sourceCheckMount'));
     import('../notesView.js').then((m) => { const host = articleDetailContent.querySelector('#articleNotesMount'); if (host && article.id) m.mountArticleNotes(host, article, { onCount: (n) => tabs.count('notes', n) }); }).catch(() => { /* notes are optional here */ });
     // Links in this article (AISH-041 B): sources first; summarize them in background tabs, then open / collect / quiz

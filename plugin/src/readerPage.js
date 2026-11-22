@@ -79,6 +79,8 @@ function labelControls() {
   document.querySelectorAll('[data-view]').forEach(b => { b.textContent = vw[b.dataset.view]; });
   setText($('rpPrint'), T('Print'));
   setText($('rpPalette'), T('Commands and search'));
+  setText($('rpAskItem'), T('Ask about this article'));
+  $('rpAskItem').addEventListener('click', () => { const m = $('rpMoreMenu'); if (m) m.hidden = true; toggleAsk(); });
   setText($('rpListen'), T('Read aloud'));
   setText($('rpApp'), T('Open app'), T('App'));
   setText($('rpMoreBtn'), T('More'));
@@ -443,6 +445,26 @@ function wireApp() {
   createAppDock({ button: $('rpApp'), labels: { open: T('App'), openFull: T('Open app'), close: T('Close'), closeFull: T('Close app') }, getWidth: () => prefs.dock, saveWidth: (w) => { prefs.dock = w; try { chrome.storage.local.set({ [PREFS_KEY]: prefs }); } catch (_) { /* optional */ } } });
 }
 
+// Ask about this article: a panel with the same question box as the article view's Ask tab (modules/articleAsk.js)
+let askPanel = null;
+async function toggleAsk() {
+  if (askPanel) { askPanel.destroy(); askPanel.el.remove(); askPanel = null; return; }
+  if (!raw || !raw.id) return;
+  const { createArticleAsk } = await import('./modules/articleAsk.js');
+  const el = document.createElement('section'); el.className = 'rp-ask'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-label', T('Ask about this article'));
+  const head = document.createElement('div'); head.className = 'rp-ask-head';
+  const h = document.createElement('strong'); h.textContent = T('Ask about this article');
+  const x = document.createElement('button'); x.type = 'button'; x.className = 'rp-tool'; x.setAttribute('aria-label', T('Close')); x.textContent = '✕'; x.addEventListener('click', toggleAsk);
+  head.append(h, x);
+  const body = document.createElement('div'); body.className = 'rp-ask-body';
+  el.append(head, body); document.body.append(el);
+  const turns = await StorageManager.getConversation(raw.id);
+  const ctl = createArticleAsk({ mount: body, article: { id: raw.id, title: raw.title }, content: raw.content || raw.html || raw.text || '', summary: raw.summaryBase !== undefined ? raw.summaryBase : (raw.summary || ''),
+    turns, save: (t) => StorageManager.saveConversation(raw.id, t), onChange: async () => { const y = window.scrollY; await render(); window.scrollTo(0, y); } });   // the pinned answers belong to the summary: redraw it, but stay where the reader is
+  el.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.stopPropagation(); toggleAsk(); } });
+  askPanel = { el, destroy: ctl.destroy }; ctl.focus();
+}
+
 // ⌘K / Ctrl+K: this page's own commands first (they press the toolbar's buttons, so they are always in step with it), then the app's
 function wirePalette() {
   const press = (id) => () => { const b = $(id); if (b && !b.disabled) b.click(); };
@@ -451,6 +473,7 @@ function wirePalette() {
     { id: 'rp:bm', group: here, title: T('Bookmark this place'), keywords: 'bookmark save position resume', run: press('rpBmMove') },
     { id: 'rp:hl', group: here, title: T('Highlight selection'), keywords: 'mark highlight', run: press('rpHighlight') },
     { id: 'rp:send', group: here, title: T('Send'), keywords: 'kindle localsend share deliver', run: press('rpSendMain') },
+    { id: 'rp:ask', group: here, title: T('Ask about this article'), keywords: 'question chat answer', run: toggleAsk },
     { id: 'rp:print', group: here, title: T('Print'), keywords: 'pdf', run: press('rpPrint') },
     { id: 'rp:app', group: here, title: T('Open app beside the article'), keywords: 'side panel dock', run: press('rpApp') },
     { id: 'rp:listen', group: here, title: T('Listen'), keywords: 'read aloud tts audio', run: press('rpListen') },
