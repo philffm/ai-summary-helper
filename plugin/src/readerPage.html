@@ -4,38 +4,39 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Read</title>
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="readerPage.css">
 </head>
 <body>
   <div class="rp-progress" id="rpProgress" role="progressbar" aria-hidden="true"><span></span></div>
   <header class="rp-bar" id="rpBar">
     <div class="rp-bar-in">
-      <div class="rp-group" role="group" id="rpSizeGroup">
+      <div class="a11y-seg a11y-seg--hug a11y-seg--sm" role="group" id="rpSizeGroup">
         <button type="button" id="rpSmaller" aria-label="Smaller text">A−</button>
         <button type="button" id="rpLarger" aria-label="Larger text">A+</button>
       </div>
-      <div class="rp-group" role="group" id="rpFontGroup">
+      <div class="a11y-seg a11y-seg--hug a11y-seg--sm" role="group" id="rpFontGroup">
         <button type="button" data-font="serif" class="rp-serif">Aa</button>
         <button type="button" data-font="sans" class="rp-sans">Aa</button>
       </div>
-      <div class="rp-group" role="group" id="rpThemeGroup">
+      <div class="a11y-seg a11y-seg--hug a11y-seg--sm" role="group" id="rpThemeGroup">
         <button type="button" data-theme="auto">Auto</button>
         <button type="button" data-theme="light">Light</button>
         <button type="button" data-theme="sepia">Sepia</button>
         <button type="button" data-theme="dark">Dark</button>
       </div>
-      <div class="rp-group" role="group" id="rpViewGroup">
+      <div class="a11y-seg a11y-seg--hug a11y-seg--sm" role="group" id="rpViewGroup">
         <button type="button" data-view="both">Both</button>
         <button type="button" data-view="summary">Summary</button>
         <button type="button" data-view="content">Full text</button>
       </div>
-      <div class="rp-group" role="group" id="rpSendGroup" hidden>
-        <button type="button" id="rpShare">Share</button>
-        <button type="button" id="rpSend" hidden>Send</button>
+      <div class="rp-actions" role="group" id="rpSendGroup" hidden>
+        <button type="button" id="rpShare" class="button-secondary btn-sm">Share</button>
+        <button type="button" id="rpSend" class="button-secondary btn-sm" hidden>Send</button>
       </div>
-      <button type="button" id="rpApp" class="rp-plain">Open app</button>
-      <button type="button" id="rpListen" class="rp-plain" hidden>Read aloud</button>
-      <button type="button" id="rpPrint" class="rp-plain">Print</button>
+      <button type="button" id="rpApp" class="button-primary btn-sm">Open app</button>
+      <button type="button" id="rpListen" class="button-secondary btn-sm" hidden>Read aloud</button>
+      <button type="button" id="rpPrint" class="button-secondary btn-sm">Print</button>
     </div>
   </header>
   <main class="rp-page" id="rpPage">

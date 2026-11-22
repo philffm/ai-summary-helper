@@ -12,6 +12,7 @@ import { stripEmoji } from './modules/icons.js';
 import { getReader, speechUnits, detectLang } from './modules/reader.js';
 import { ttsLang } from './modules/languages.js';
 import { createReadTracker } from './modules/readProgress.js';
+import { applyA11y } from './modules/a11y.js';
 
 const PREFS_KEY = 'reader:prefs';
 const SIZES = [15, 17, 19, 21, 24, 28];
@@ -19,6 +20,7 @@ const DEFAULTS = { size: 2, font: 'serif', theme: 'auto', view: 'both' };
 const root = document.documentElement;
 const $ = (id) => document.getElementById(id);
 let prefs = { ...DEFAULTS };
+let appTheme = '';       // the app's own theme setting (Settings › Appearance): what "Auto" follows
 let raw = null;          // the stored article as it is (the display copy carries the pinned questions)
 
 const clean = (html) => {
@@ -31,6 +33,9 @@ function applyPrefs() {
   prefs.size = Math.min(SIZES.length - 1, Math.max(0, Number(prefs.size) || 0));
   root.style.setProperty('--rp-size', SIZES[prefs.size] + 'px');
   root.style.setProperty('--rp-width', prefs.size >= 4 ? '46rem' : '40rem');
+  // the plugin's tokens switch on data-theme: Light/Sepia are light, Dark is dark, Auto leaves it to the app setting / the system
+  const tk = prefs.theme === 'dark' ? 'dark' : (prefs.theme === 'light' || prefs.theme === 'sepia') ? 'light' : appTheme;
+  if (tk) root.setAttribute('data-theme', tk); else root.removeAttribute('data-theme');
   root.dataset.rpFont = prefs.font; root.dataset.rpTheme = prefs.theme; root.dataset.rpView = prefs.view;
   document.querySelectorAll('[data-font]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.font === prefs.font)));
   document.querySelectorAll('[data-theme]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === prefs.theme)));
@@ -273,6 +278,11 @@ async function init() {
   try { cfg = await chrome.storage.local.get(PREFS_KEY); } catch (_) { /* defaults */ }
   try { lang = (await chrome.storage.sync.get('uiLanguage')).uiLanguage || 'en'; } catch (_) { /* English */ }
   prefs = { ...DEFAULTS, ...(cfg[PREFS_KEY] || {}) };
+  try {   // brand colours, colour scheme, text size, icon style: the same appearance settings as the popup
+    const a = await StorageManager.get(['theme', 'textScale', 'lineSpacing', 'readableFont', 'reduceMotion', 'iconStyle', 'colorScheme']);
+    appTheme = a.theme === 'dark' || a.theme === 'light' || a.theme === 'contrast' ? a.theme : '';
+    applyA11y({ ...a, theme: appTheme });
+  } catch (_) { /* tokens' own defaults */ }
   try { await applyTranslations(lang); } catch (_) { /* English */ }
   labelControls(); wireControls(); applyPrefs();
   await render();
