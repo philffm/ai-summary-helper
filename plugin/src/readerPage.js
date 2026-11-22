@@ -16,6 +16,7 @@ import { applyA11y } from './modules/a11y.js';
 import { bp } from './modules/breakpoints.js';
 import { createHighlightStore } from './modules/highlightStore.js';
 import { createReaderHighlights, selectionIn } from './modules/readerHighlights.js';
+import { blockAtTop, placeOfBlock, blockOfPlace } from './modules/readerBookmark.js';
 
 const PREFS_KEY = 'reader:prefs';
 const SIZES = [15, 17, 19, 21, 24, 28];
@@ -57,7 +58,7 @@ const setIcon = (btn, name) => { const u = btn && btn.querySelector('use'); if (
 
 // Menus (text & theme, more): one open at a time; Escape or a click elsewhere closes
 function wireMenus() {
-  const pairs = [['rpDisplayBtn', 'rpDisplayMenu'], ['rpThemeBtn', 'rpThemeMenu'], ['rpMoreBtn', 'rpMoreMenu']].map(([b, m]) => [$(b), $(m)]);
+  const pairs = [['rpDisplayBtn', 'rpDisplayMenu'], ['rpThemeBtn', 'rpThemeMenu'], ['rpBookmarkBtn', 'rpBookmarkMenu'], ['rpMoreBtn', 'rpMoreMenu']].map(([b, m]) => [$(b), $(m)]);
   const closeAll = (except) => pairs.forEach(([b, m]) => { if (m !== except) { m.hidden = true; b.setAttribute('aria-expanded', 'false'); } });
   pairs.forEach(([b, m]) => b.addEventListener('click', (e) => { e.stopPropagation(); const open = m.hidden; closeAll(m); m.hidden = !open; b.setAttribute('aria-expanded', String(open)); }));
   document.addEventListener('click', (e) => { if (!e.target.closest('.rp-menu-wrap')) closeAll(); });
@@ -78,6 +79,8 @@ function labelControls() {
   setText($('rpListen'), T('Read aloud'));
   setText($('rpApp'), T('Open app'), T('App'));
   setText($('rpMoreBtn'), T('More'));
+  setText($('rpBookmarkBtn'), T('Bookmark'));
+  $('rpBmJump').textContent = T('Jump to bookmark'); $('rpBmMove').textContent = T('Move bookmark here'); $('rpBmRemove').textContent = T('Remove bookmark');
   setText($('rpDisplayBtn'), T('Text and font'), 'Aa');
   setText($('rpThemeBtn'), T('Appearance'));
 }
@@ -200,6 +203,57 @@ function wireHighlights() {
     setText(btn, T('Highlight')); btn.disabled = true;
     btn.addEventListener('mousedown', (e) => e.preventDefault());
     btn.addEventListener('click', () => { const r = content() && selectionIn(content()); if (r) doAdd(r.cloneRange()); });
+  }
+}
+
+// ── Bookmark: mark the place you stopped at (the block at the top of the window); the next visit offers to jump back ──
+let bm = null;
+function wireBookmark() {
+  if (bm || !raw || !raw.id) return;
+  const content = () => document.querySelector('.rp-content');
+  const btn = $('rpBookmarkBtn'), menu = $('rpBookmarkMenu');
+  if (!content() || !btn) return;   // no full text: nothing to put a bookmark in
+  btn.hidden = false;
+  bm = { place: raw.readPlace && raw.readPlace.exact ? raw.readPlace : null, banner: null };
+  const barBottom = () => { const b = $('rpBar'); return b && b.getBoundingClientRect ? b.getBoundingClientRect().bottom : 0; };
+  const blockNow = () => {   // the block the selection starts in, else the one at the top of the window
+    const sel = window.getSelection && window.getSelection(), root = content();
+    if (sel && sel.rangeCount && !sel.isCollapsed && root.contains(sel.anchorNode)) { const el = sel.getRangeAt(0).startContainer; const p = el.nodeType === 3 ? el.parentElement : el; const b = p && p.closest('p,li,blockquote,h2,h3,h4,pre,figcaption,td'); if (b && root.contains(b)) return b; }
+    return blockAtTop(root, barBottom());
+  };
+  const target = () => blockOfPlace(content(), bm.place);
+  const jump = () => { const b = target(); if (b) b.scrollIntoView({ block: 'start', behavior: 'smooth' }); else toast(T('The bookmarked place is no longer in the text.')); };
+  const paint = () => {
+    document.querySelectorAll('.rp-bookmarked').forEach((e) => e.classList.remove('rp-bookmarked'));
+    const b = bm.place && target(); if (b) b.classList.add('rp-bookmarked');
+    btn.setAttribute('aria-pressed', String(!!bm.place));
+  };
+  const save = async (place) => {
+    bm.place = place; paint(); raw.readPlace = place || '';
+    try { await StorageManager.setArticleReadPlace(raw.id, place); } catch (e) { toast(String((e && e.message) || e)); }
+  };
+  const setHere = () => {
+    const b = blockNow(), place = b && placeOfBlock(content(), b);
+    if (!place) { toast(T('Scroll to the text first.')); return; }
+    save(place); toast(T('Bookmark set'));
+  };
+  // no bookmark yet: one click sets it; with one: a menu (jump, move, remove)
+  btn.addEventListener('click', (e) => { if (!bm.place) { e.stopImmediatePropagation(); setHere(); } }, true);
+  $('rpBmJump').addEventListener('click', jump);
+  $('rpBmMove').addEventListener('click', setHere);
+  $('rpBmRemove').addEventListener('click', () => { save(null); toast(T('Bookmark removed')); });
+  paint();
+  // coming back: offer the way to where you were (never jump by itself)
+  const pr = Number(raw.progress) || 0;
+  const target0 = bm.place && target();
+  if (target0 || (pr > 0.03 && pr < 0.9)) {
+    const bar = document.createElement('p'); bar.className = 'rp-resume';
+    const go = document.createElement('button'); go.type = 'button'; go.className = 'button-secondary btn-sm';
+    go.textContent = target0 ? T('Continue at your bookmark') : T('Continue at {n} %', { n: Math.round(pr * 100) });
+    go.addEventListener('click', () => { if (target0) jump(); else window.scrollTo({ top: Math.max(0, pr * document.documentElement.scrollHeight - window.innerHeight), behavior: 'smooth' }); bar.remove(); });
+    const x = document.createElement('button'); x.type = 'button'; x.className = 'rp-tool'; x.textContent = '×'; x.setAttribute('aria-label', T('Dismiss')); x.addEventListener('click', () => bar.remove());
+    bar.append(go, x);
+    const meta = document.querySelector('.rp-meta'); if (meta) meta.after(bar);
   }
 }
 
@@ -421,6 +475,7 @@ async function init() {
   await render();
   revealQuoteFromHash();
   wireHighlights();
+  wireBookmark();
   await wireSend();
   wireListen();
   wireApp();

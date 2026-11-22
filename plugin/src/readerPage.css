@@ -124,3 +124,7 @@ body { transition: padding-inline-end var(--duration-base) var(--easing-standard
 .rp-split > .rp-tool + .rp-tool { border-inline-start: 1px solid var(--rp-line); padding: 0 6px; }
 .rp-split .rp-label { display: inline; }
 .rp-toast-action { margin-inline-start: 12px; padding: 0; background: transparent; border: 0; color: inherit; font: inherit; font-weight: 700; text-decoration: underline; cursor: pointer; }
+
+/* bookmark: the marked block, and the "continue" offer under the title */
+.rp-bookmarked { box-shadow: inset 3px 0 0 var(--rp-accent); padding-inline-start: .6rem; margin-inline-start: -.6rem; border-start-start-radius: .15rem; border-end-start-radius: .15rem; }
+.rp-resume { display: flex; align-items: center; gap: .5rem; margin: 0 0 1.5rem; font-family: var(--rp-ui); }

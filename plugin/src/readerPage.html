@@ -131,6 +131,14 @@
         <button type="button" data-view="content">Full text</button>
       </div>
       <span class="rp-spacer"></span>
+      <div class="rp-menu-wrap">
+        <button type="button" id="rpBookmarkBtn" class="rp-tool" aria-haspopup="true" aria-expanded="false" aria-pressed="false" aria-controls="rpBookmarkMenu" title="Bookmark" hidden><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-bookmark"/></svg><span class="rp-label">Bookmark</span></button>
+        <div class="rp-menu rp-menu--more" id="rpBookmarkMenu" hidden>
+          <button type="button" id="rpBmJump" class="rp-item">Jump to bookmark</button>
+          <button type="button" id="rpBmMove" class="rp-item">Move bookmark here</button>
+          <button type="button" id="rpBmRemove" class="rp-item">Remove bookmark</button>
+        </div>
+      </div>
       <button type="button" id="rpHighlight" class="rp-tool" disabled hidden title="Highlight"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-highlighter"/></svg><span class="rp-label">Highlight</span></button>
       <button type="button" id="rpListen" class="rp-tool" hidden title="Read aloud"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-headphones"/></svg><span class="rp-label">Read aloud</span></button>
       <div class="rp-split" id="rpSend" hidden>

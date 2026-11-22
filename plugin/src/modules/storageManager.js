@@ -606,6 +606,19 @@ class StorageManager {
         return changed;
     }
 
+    /** The reader's bookmark of an article ({ exact, prefix, suffix, at }, or null to remove it). Index field: syncs like the others. */
+    static async setArticleReadPlace(id, place) {
+        if (!id) return false;
+        const { [SK.articlesIndex]: articlesIndex = [] } = await this.getLocal({ [SK.articlesIndex]: [] });
+        const e = articlesIndex.find(a => a.id === id);
+        if (!e) return false;
+        if (place && place.exact) e.readPlace = { exact: String(place.exact).slice(0, 400), prefix: String(place.prefix || '').slice(0, 80), suffix: String(place.suffix || '').slice(0, 80), at: place.at || new Date().toISOString() };
+        else if (e.readPlace) e.readPlace = '';   // '' rather than a missing field: sync carries a cleared value, not an absence
+        else return false;
+        await this.setLocal({ [SK.articlesIndex]: articlesIndex });
+        return true;
+    }
+
     /**
      * Toggle the favorite (star) flag on an article. Index-only field, so no
      * content record is touched. Returns the new state, or null if not found.
