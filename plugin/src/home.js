@@ -73,7 +73,7 @@ function briefingCard(d) {
   const latest = el('aside', 'hm-latest'); latest.setAttribute('aria-label', T('Latest from your feeds'));
   const lh = el('div', 'hm-latest-head'); lh.append(el('h3', '', T('Latest')));
   if (d.updating) { const u = el('span', 'hm-updating', T('Updating feeds…')); u.setAttribute('role', 'status'); lh.append(u); }
-  latest.append(lh, listOf(latestFeed(d.feed, 8).map((i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link))), T('Subscribe to feeds to see new items here.')));
+  latest.append(lh, listOf(latestFeed(d.feed, 12).map((i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link))), T('Subscribe to feeds to see new items here.')));
   body.append(meta, el('div', 'hm-brief-body'));
   body.lastChild.append(text, latest);
   return card(T('Today at a glance'), body, 'feeds');

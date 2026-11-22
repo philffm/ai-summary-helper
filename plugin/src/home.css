@@ -21,12 +21,9 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-hint { font-size: var(--fs-xs); color: var(--text-muted); }
 .hm-wrap { container: hmwrap / inline-size; }
 .hm-grid { display: grid; grid-template-columns: repeat(var(--hm-cols, 2), minmax(0, 1fr)); gap: 14px; align-items: start; }
-.hm-grid.has-glance { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: stretch; }
-.hm-grid.has-glance > .hm-col:first-child { position: relative; }
-/* the glance card is as tall as the side column and scrolls inside, so everything sits above the fold */
-.hm-grid.has-glance > .hm-col:first-child > .hm-card { position: absolute; inset: 0; display: flex; flex-direction: column; min-height: 0; }
+.hm-grid.has-glance { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
 .hm-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-@container hmwrap (max-width: 900px) { .hm-grid, .hm-grid.has-glance { grid-template-columns: minmax(0, 1fr); align-items: start; } .hm-col { display: contents; } .hm-grid.has-glance > .hm-col:first-child > .hm-card { position: static; } .hm-brief-body { grid-template-columns: minmax(0, 1fr); } .hm-brief-text, .hm-latest .hm-list { max-height: none; overflow: visible; } }   /* narrow (also with the app docked beside): one column, the cards in their own order */
+@container hmwrap (max-width: 900px) { .hm-grid, .hm-grid.has-glance { grid-template-columns: minmax(0, 1fr); align-items: start; } .hm-col { display: contents; } .hm-brief-body { grid-template-columns: minmax(0, 1fr); block-size: auto; } .hm-brief-text, .hm-latest .hm-list { overflow: visible; } }   /* narrow (also with the app docked beside): one column, the cards in their own order */
 .hm-card { padding: 14px; border: 1px solid var(--outline); border-radius: var(--radius-lg); background: var(--bg-card, var(--glass-base)); box-sizing: border-box; }
 .hm-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
 .hm-card-link { padding: 0; border: 0; background: transparent; color: var(--text-muted); font: inherit; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .02em; cursor: pointer; white-space: nowrap; }
@@ -65,11 +62,15 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-brief-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin-bottom: 8px; }
 .hm-brief-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: var(--fs-sm); color: var(--text-muted); }
 .hm-mood { padding: 1px 8px; border: 1px solid var(--outline); border-radius: var(--radius-full); }
-.hm-glance { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; gap: 8px; }
-.hm-brief-body { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 20px; flex: 1 1 auto; min-height: 0; }
+.hm-glance { display: flex; flex-direction: column; gap: 8px; --hm-item-h: 4.4rem; --hm-latest-head: 1.9rem; }
+/* The card is as tall as five and two thirds of the latest items: the sixth is cut off on purpose, so it is clear the list scrolls.
+   The briefing scrolls in the same height. */
+.hm-brief-body { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 20px; block-size: calc(var(--hm-latest-head) + var(--hm-item-h) * 5.66); min-height: 0; }
 .hm-brief-text { font-size: var(--fs-md); line-height: 1.5; overflow-y: auto; min-height: 0; padding-inline-end: 6px; }
-.hm-latest { min-height: 0; overflow-y: auto; padding-inline-start: 16px; border-inline-start: 1px solid var(--outline); }
-.hm-latest-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.hm-latest { display: flex; flex-direction: column; min-height: 0; padding-inline-start: 16px; border-inline-start: 1px solid var(--outline); }
+.hm-latest .hm-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; gap: 0; }
+.hm-latest .hm-link { block-size: var(--hm-item-h); box-sizing: border-box; justify-content: center; overflow: hidden; flex: none; }
+.hm-latest-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; block-size: var(--hm-latest-head); flex: none; }
 .hm-latest h3 { margin: 0; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
 .hm-latest .hm-link-title { -webkit-line-clamp: 2; }
 .hm-brief-list { margin: 8px 0 0; padding-inline-start: 18px; display: grid; gap: 6px; }
