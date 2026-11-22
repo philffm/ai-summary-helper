@@ -115,3 +115,4 @@ body { transition: padding-inline-end var(--duration-base) var(--easing-standard
 .rp-edge:hover, .rp-edge:focus-visible { opacity: 1; width: 30px; color: var(--rp-accent); outline: none; }
 .rp-edge[hidden] { display: none; }
 @media print { .rp-edge, .rp-menu { display: none; } }
+.rp-menu--theme { min-width: 17rem; }

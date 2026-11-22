@@ -21,13 +21,14 @@
 <symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" /><path d="m21.854 2.147-10.94 10.939" /></symbol>
 <symbol id="i-share-2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" x2="15.42" y1="13.51" y2="17.49" /><line x1="15.41" x2="8.59" y1="6.51" y2="10.49" /></symbol>
 <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></symbol>
+<symbol id="i-sun-moon" viewBox="0 0 24 24"><path d="M12 8a2.83 2.83 0 0 0 4 4 4 4 0 1 1-4-4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.9 4.9 1.4 1.4" /><path d="m17.7 17.7 1.4 1.4" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.3 17.7-1.4 1.4" /><path d="m19.1 4.9-1.4 1.4" /></symbol>
 </svg>
 <!-- icons:end -->
   <div class="rp-progress" id="rpProgress" role="progressbar" aria-hidden="true"><span></span></div>
   <header class="rp-bar" id="rpBar">
     <div class="rp-bar-in">
       <div class="rp-menu-wrap">
-        <button type="button" id="rpDisplayBtn" class="rp-tool" aria-haspopup="true" aria-expanded="false" aria-controls="rpDisplayMenu" title="Text and theme"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-a-large-small"/></svg><span class="rp-label">Aa</span></button>
+        <button type="button" id="rpDisplayBtn" class="rp-tool" aria-haspopup="true" aria-expanded="false" aria-controls="rpDisplayMenu" title="Text and font"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-a-large-small"/></svg><span class="rp-label">Aa</span></button>
         <div class="rp-menu rp-menu--display" id="rpDisplayMenu" hidden>
           <div class="a11y-seg a11y-seg--sm" role="group" id="rpSizeGroup">
             <button type="button" id="rpSmaller" aria-label="Smaller text">A−</button>
@@ -37,6 +38,11 @@
             <button type="button" data-font="serif" class="rp-serif">Aa</button>
             <button type="button" data-font="sans" class="rp-sans">Aa</button>
           </div>
+        </div>
+      </div>
+      <div class="rp-menu-wrap">
+        <button type="button" id="rpThemeBtn" class="rp-tool" aria-haspopup="true" aria-expanded="false" aria-controls="rpThemeMenu" title="Appearance"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-sun-moon"/></svg><span class="rp-label">Appearance</span></button>
+        <div class="rp-menu rp-menu--theme" id="rpThemeMenu" hidden>
           <div class="a11y-seg a11y-seg--sm" role="group" id="rpThemeGroup">
             <button type="button" data-theme="auto">Auto</button>
             <button type="button" data-theme="light">Light</button>

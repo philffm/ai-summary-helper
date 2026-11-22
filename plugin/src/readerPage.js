@@ -57,7 +57,7 @@ const setIcon = (btn, name) => { const u = btn && btn.querySelector('use'); if (
 
 // Menus (text & theme, more): one open at a time; Escape or a click elsewhere closes
 function wireMenus() {
-  const pairs = [['rpDisplayBtn', 'rpDisplayMenu'], ['rpMoreBtn', 'rpMoreMenu']].map(([b, m]) => [$(b), $(m)]);
+  const pairs = [['rpDisplayBtn', 'rpDisplayMenu'], ['rpThemeBtn', 'rpThemeMenu'], ['rpMoreBtn', 'rpMoreMenu']].map(([b, m]) => [$(b), $(m)]);
   const closeAll = (except) => pairs.forEach(([b, m]) => { if (m !== except) { m.hidden = true; b.setAttribute('aria-expanded', 'false'); } });
   pairs.forEach(([b, m]) => b.addEventListener('click', (e) => { e.stopPropagation(); const open = m.hidden; closeAll(m); m.hidden = !open; b.setAttribute('aria-expanded', String(open)); }));
   document.addEventListener('click', (e) => { if (!e.target.closest('.rp-menu-wrap')) closeAll(); });
@@ -78,7 +78,8 @@ function labelControls() {
   setText($('rpListen'), T('Read aloud'));
   setText($('rpApp'), T('Open app'), T('App'));
   setText($('rpMoreBtn'), T('More'));
-  setText($('rpDisplayBtn'), T('Text and theme'), 'Aa');
+  setText($('rpDisplayBtn'), T('Text and font'), 'Aa');
+  setText($('rpThemeBtn'), T('Appearance'));
 }
 
 function wireControls() {

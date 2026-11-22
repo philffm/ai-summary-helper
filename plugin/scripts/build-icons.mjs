@@ -14,10 +14,10 @@ export const ICONS = [
   'play', 'plus', 'radio', 'refresh-cw', 'route', 'ruler', 'save', 'search', 'send', 'server', 'settings', 'share-2', 'sliders-horizontal',
   'smartphone', 'smile', 'sparkles', 'square-check-big', 'star', 'sticky-note', 'tag', 'trash-2', 'undo-2', 'upload', 'user',
   'volume-2', 'volume-x', 'x', 'zap',
-  'a-large-small', 'highlighter', 'panel-right-close', 'panel-right-open', 'printer',
+  'a-large-small', 'highlighter', 'panel-right-close', 'panel-right-open', 'printer', 'sun-moon',
 ];
 // the read mode page (readerPage.html) carries only what its toolbar uses
-export const READER_ICONS = ['a-large-small', 'ellipsis', 'headphones', 'highlighter', 'panel-right-close', 'panel-right-open', 'pause', 'printer', 'send', 'share-2', 'x'];
+export const READER_ICONS = ['a-large-small', 'ellipsis', 'headphones', 'highlighter', 'panel-right-close', 'panel-right-open', 'pause', 'printer', 'send', 'share-2', 'sun-moon', 'x'];
 
 const src = process.argv[2];
 if (!src) { console.error('usage: node scripts/build-icons.mjs <lucide-static/icons dir>'); process.exit(1); }
