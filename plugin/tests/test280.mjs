@@ -12,6 +12,7 @@ assert.deepEqual(n({ theme: 'contrast', design: 'standard' }), { theme: 'system'
 assert.deepEqual(n({ theme: 'light', design: 'postil', colorScheme: 'viola' }), { theme: 'light', design: 'postil', colorScheme: 'viola' });
 assert.deepEqual(n({ theme: 'x', design: 'y', colorScheme: 'z' }), { theme: 'system', design: 'standard', colorScheme: 'default' }, 'unknown values fall back');
 assert.deepEqual(A.appearanceAttrs({ theme: 'dark', design: 'contrast', colorScheme: 'kaivo' }), { theme: 'dark', design: 'contrast', scheme: 'kaivo' });
+assert.equal(n({ colorScheme: 'graphite' }).colorScheme, 'graphite', 'Graphite is a colour scheme');
 assert.deepEqual(A.appearanceAttrs({}), { theme: '', design: '', scheme: '' }, 'no attributes for the defaults');
 
 const root = w.document.documentElement;
@@ -28,7 +29,7 @@ for (const f of ['styles.css', 'inPage.css']) {
   assert(/\[data-design='contrast'\]:not\(\[data-theme='light'\]\)/.test(css), f + ': High contrast follows a dark system');
   assert(!/data-theme='contrast'\]/.test(css) && !/data-scheme='(blue|postil)'/.test(css), f + ': nothing keyed on the old values');
   // Postil with a colour scheme: tinted blocks, each light one before the Postil dark blocks and each dark one after them (so the dark ones win)
-  for (const sc of ['kaivo', 'aish', 'viola']) {
+  for (const sc of ['kaivo', 'aish', 'viola', 'graphite']) {
     const light = css.indexOf(`[data-design='postil'][data-scheme='${sc}'] {`) >= 0 ? css.indexOf(`[data-design='postil'][data-scheme='${sc}'] {`) : css.indexOf(`[data-design='postil'][data-scheme='${sc}']) {`);
     const postilDark = css.indexOf("[data-design='postil'][data-theme='dark']");
     const tintDark = css.indexOf(`[data-design='postil'][data-scheme='${sc}'][data-theme='dark']`);

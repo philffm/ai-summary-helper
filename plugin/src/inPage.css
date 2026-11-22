@@ -352,6 +352,24 @@
   /* semantic · inverse */
   --link-inverse: #B49CFF; /* Action or link on surface-inverse (toast Undo). */
 }
+:host([data-scheme='graphite']) {
+  /* semantic · accent */
+  --accent: #46443F; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #68655F; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-subtle: #F5F5F4; /* Faint accent tint behind accent-coloured text (chips, badges). */
+  /* semantic · surface */
+  --bg-page: #F7F7F6; /* Page background of every screen; the base all translucent surfaces are composited over. */
+  --bg-page-gradient: radial-gradient(at 0% 0%, hsla(30,4%,95%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(30,4%,91%,1) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --glass-base: rgba(238,238,237,0.92); /* Background of a screen that slides over another (settings, detail); nearly opaque. */
+  --surface-sheet: #EEEEED; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  /* semantic · text */
+  --text-link: #35332F; /* Links inside text. */
+  /* semantic · status */
+  --tone-sent-bg: #E9E8E6; /* Status “Sent” badge background. */
+  --tone-sent-fg: #35332F; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  /* semantic · inverse */
+  --link-inverse: #B9B6B0; /* Action or link on surface-inverse (toast Undo). */
+}
 /* Design Postil: e-reader look, off-white paper and graphite ink, flat (light) */
 :host([data-design='postil']) {
   /* semantic · accent */
@@ -470,6 +488,31 @@
   /* semantic · status */
   --tone-read-bg: #E7E2EB; /* Postil with a colour scheme, light: read badge on paper. */
   --tone-sent-bg: #E7E2EB; /* Postil with a colour scheme, light: sent badge on paper. */
+}
+:host([data-design='postil'][data-scheme='graphite']) {
+  /* semantic · accent */
+  --accent: #1F1D1A; /* Postil with a colour scheme, light: the colour scheme's own accent. */
+  --accent-light: #1F1D1A; /* Postil with a colour scheme, light: same as accent, so primary buttons are flat (no gradient). */
+  --accent-subtle: #EFEEEB; /* Postil with a colour scheme, light: subtle accent surface. */
+  /* semantic · surface */
+  --bg-page: #F6F5F2; /* Postil with a colour scheme, light: off-white e-paper page. */
+  --bg-page-gradient: #F6F5F2; /* Postil with a colour scheme, light: flat paper, no glow. */
+  --glass-base: rgba(246,245,242,0.97); /* Postil with a colour scheme, light: sliding screens are paper too. */
+  --glass-card: #FBFBF9; /* Postil with a colour scheme, light: cards are an opaque lighter sheet. */
+  --surface-bar: #FBFBF9; /* Postil with a colour scheme, light: bottom dock. */
+  --surface-sheet: #EFEEEB; /* Postil with a colour scheme, light: sheets. */
+  --surface-track: #E8E7E2; /* Postil with a colour scheme, light: tracks. */
+  --surface-row: #FBFBF9; /* Postil with a colour scheme, light: rows. */
+  --surface-field: #EFEEEB; /* Postil with a colour scheme, light: fields. */
+  --surface-selected: #FBFBF9; /* Postil with a colour scheme, light: selected segment. */
+  --surface-control: #FBFBF9; /* Postil with a colour scheme, light: controls. */
+  /* semantic · text */
+  --text-link: #1F1D1A; /* Postil with a colour scheme, light: links in graphite. */
+  /* semantic · outline */
+  --outline-strong: #DBDAD4; /* Postil with a colour scheme, light: stronger edge. */
+  /* semantic · status */
+  --tone-read-bg: #E8E7E2; /* Postil with a colour scheme, light: read badge on paper. */
+  --tone-sent-bg: #E8E7E2; /* Postil with a colour scheme, light: sent badge on paper. */
 }
 @media (prefers-color-scheme: dark) {
   :host(:not([data-theme='light'])) {
@@ -713,6 +756,29 @@
     --link-inverse: #4F24C9; /* Action or link on surface-inverse (toast Undo). */
   }
 }
+@media (prefers-color-scheme: dark) {
+  :host([data-scheme='graphite']:not([data-theme='light'])) {
+    /* semantic · surface */
+    --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(213,211,207,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+    --surface-sheet: #1B1A19; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+    /* semantic · text */
+    --text-link: #B9B6B0; /* Links inside text. */
+    /* semantic · accent */
+    --accent: #8C8982; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+    --accent-light: #68655F; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+    --accent-glow: rgba(140,137,130,0.18); /* Coloured glow under primary buttons. */
+    --on-accent: #121110; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+    --accent-soft: rgba(140,137,130,0.14); /* Light accent tint for selected or hovered rows. */
+    --accent-soft-strong: rgba(140,137,130,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+    --accent-subtle: rgba(140,137,130,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+    --accent-selected: rgba(140,137,130,0.14); /* Accent tint of a selected card or row. */
+    /* semantic · status */
+    --tone-sent-bg: rgba(140,137,130,0.18); /* Status “Sent” badge background. */
+    --tone-sent-fg: #B9B6B0; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+    /* semantic · inverse */
+    --link-inverse: #35332F; /* Action or link on surface-inverse (toast Undo). */
+  }
+}
 :host([data-scheme='aish'][data-theme='dark']) {
   /* semantic · surface */
   --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(173,198,255,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
@@ -754,6 +820,27 @@
   --tone-sent-fg: #B49CFF; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
   /* semantic · inverse */
   --link-inverse: #4F24C9; /* Action or link on surface-inverse (toast Undo). */
+}
+:host([data-scheme='graphite'][data-theme='dark']) {
+  /* semantic · surface */
+  --bg-page-gradient: radial-gradient(at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(213,211,207,0.05) 0, transparent 50%); /* Soft accent glow painted over bg-page at the edges of the window. */
+  --surface-sheet: #1B1A19; /* Bottom sheets and dialogs: opaque so text behind does not show through. */
+  /* semantic · text */
+  --text-link: #B9B6B0; /* Links inside text. */
+  /* semantic · accent */
+  --accent: #8C8982; /* Brand action colour: primary buttons, selected states, links on controls, focus ring, progress. */
+  --accent-light: #68655F; /* Second stop of the accent gradient (primary button, nav blob, switch on). */
+  --accent-glow: rgba(140,137,130,0.18); /* Coloured glow under primary buttons. */
+  --on-accent: #121110; /* Text and icons on an accent fill (primary button, selected pill, active nav item). */
+  --accent-soft: rgba(140,137,130,0.14); /* Light accent tint for selected or hovered rows. */
+  --accent-soft-strong: rgba(140,137,130,0.26); /* Stronger accent tint for pressed or highlighted rows. */
+  --accent-subtle: rgba(140,137,130,0.14); /* Faint accent tint behind accent-coloured text (chips, badges). */
+  --accent-selected: rgba(140,137,130,0.14); /* Accent tint of a selected card or row. */
+  /* semantic · status */
+  --tone-sent-bg: rgba(140,137,130,0.18); /* Status “Sent” badge background. */
+  --tone-sent-fg: #B9B6B0; /* Status “Sent” badge text (≥ 5.4:1 on its background). */
+  /* semantic · inverse */
+  --link-inverse: #35332F; /* Action or link on surface-inverse (toast Undo). */
 }
 /* Postil dark: warm charcoal and soft off-white, like an e-reader night mode */
 @media (prefers-color-scheme: dark) {
@@ -947,6 +1034,39 @@
     --tone-sent-fg: #CDBDFF; /* Postil with a colour scheme, dark: sent badge text. */
   }
 }
+@media (prefers-color-scheme: dark) {
+  :host([data-design='postil'][data-scheme='graphite']:not([data-theme='light'])) {
+    /* semantic · accent */
+    --accent: #D5D3CF; /* Postil with a colour scheme, dark: soft off-white accent, the same in every brand. */
+    --accent-light: #D5D3CF; /* Postil with a colour scheme, dark: same as accent, so primary buttons are flat. */
+    --on-accent: #1A1918; /* Postil with a colour scheme, dark: text on the off-white accent. */
+    --accent-soft: rgba(213,211,207,0.1); /* Postil with a colour scheme, dark: soft accent wash. */
+    --accent-soft-strong: rgba(213,211,207,0.18); /* Postil with a colour scheme, dark: stronger accent wash. */
+    --accent-subtle: rgba(213,211,207,0.1); /* Postil with a colour scheme, dark: subtle accent surface. */
+    --accent-selected: rgba(213,211,207,0.12); /* Postil with a colour scheme, dark: selected row wash. */
+    /* semantic · surface */
+    --bg-page: #1A1918; /* Postil with a colour scheme, dark: charcoal page. */
+    --bg-page-gradient: #1A1918; /* Postil with a colour scheme, dark: flat charcoal, no glow. */
+    --glass-base: rgba(26,25,24,0.97); /* Postil with a colour scheme, dark: sliding screens are charcoal too. */
+    --glass-card: #21201E; /* Postil with a colour scheme, dark: cards are an opaque lighter sheet. */
+    --glass-input: #282625; /* Postil with a colour scheme, dark: input wells. */
+    --surface-bar: #21201E; /* Postil with a colour scheme, dark: bottom dock. */
+    --surface-sheet: #282625; /* Postil with a colour scheme, dark: sheets. */
+    --surface-track: #302E2C; /* Postil with a colour scheme, dark: tracks. */
+    --surface-row: #21201E; /* Postil with a colour scheme, dark: rows. */
+    --surface-field: #282625; /* Postil with a colour scheme, dark: fields. */
+    --surface-selected: #302E2C; /* Postil with a colour scheme, dark: selected segment. */
+    --surface-control: #302E2C; /* Postil with a colour scheme, dark: controls. */
+    /* semantic · text */
+    --text-link: #D5D3CF; /* Postil with a colour scheme, dark: links in off-white. */
+    /* semantic · outline */
+    --outline-strong: #3F3D38; /* Postil with a colour scheme, dark: stronger edge. */
+    /* semantic · status */
+    --tone-read-bg: #302E2C; /* Postil with a colour scheme, dark: read badge on charcoal. */
+    --tone-sent-bg: #302E2C; /* Postil with a colour scheme, dark: sent badge on charcoal. */
+    --tone-sent-fg: #D5D3CF; /* Postil with a colour scheme, dark: sent badge text. */
+  }
+}
 :host([data-design='postil'][data-scheme='kaivo'][data-theme='dark']) {
   /* semantic · accent */
   --accent: #A8DDE3; /* Postil with a colour scheme, dark: soft off-white accent, the same in every brand. */
@@ -1039,6 +1159,37 @@
   --tone-read-bg: #312C3A; /* Postil with a colour scheme, dark: read badge on charcoal. */
   --tone-sent-bg: #312C3A; /* Postil with a colour scheme, dark: sent badge on charcoal. */
   --tone-sent-fg: #CDBDFF; /* Postil with a colour scheme, dark: sent badge text. */
+}
+:host([data-design='postil'][data-scheme='graphite'][data-theme='dark']) {
+  /* semantic · accent */
+  --accent: #D5D3CF; /* Postil with a colour scheme, dark: soft off-white accent, the same in every brand. */
+  --accent-light: #D5D3CF; /* Postil with a colour scheme, dark: same as accent, so primary buttons are flat. */
+  --on-accent: #1A1918; /* Postil with a colour scheme, dark: text on the off-white accent. */
+  --accent-soft: rgba(213,211,207,0.1); /* Postil with a colour scheme, dark: soft accent wash. */
+  --accent-soft-strong: rgba(213,211,207,0.18); /* Postil with a colour scheme, dark: stronger accent wash. */
+  --accent-subtle: rgba(213,211,207,0.1); /* Postil with a colour scheme, dark: subtle accent surface. */
+  --accent-selected: rgba(213,211,207,0.12); /* Postil with a colour scheme, dark: selected row wash. */
+  /* semantic · surface */
+  --bg-page: #1A1918; /* Postil with a colour scheme, dark: charcoal page. */
+  --bg-page-gradient: #1A1918; /* Postil with a colour scheme, dark: flat charcoal, no glow. */
+  --glass-base: rgba(26,25,24,0.97); /* Postil with a colour scheme, dark: sliding screens are charcoal too. */
+  --glass-card: #21201E; /* Postil with a colour scheme, dark: cards are an opaque lighter sheet. */
+  --glass-input: #282625; /* Postil with a colour scheme, dark: input wells. */
+  --surface-bar: #21201E; /* Postil with a colour scheme, dark: bottom dock. */
+  --surface-sheet: #282625; /* Postil with a colour scheme, dark: sheets. */
+  --surface-track: #302E2C; /* Postil with a colour scheme, dark: tracks. */
+  --surface-row: #21201E; /* Postil with a colour scheme, dark: rows. */
+  --surface-field: #282625; /* Postil with a colour scheme, dark: fields. */
+  --surface-selected: #302E2C; /* Postil with a colour scheme, dark: selected segment. */
+  --surface-control: #302E2C; /* Postil with a colour scheme, dark: controls. */
+  /* semantic · text */
+  --text-link: #D5D3CF; /* Postil with a colour scheme, dark: links in off-white. */
+  /* semantic · outline */
+  --outline-strong: #3F3D38; /* Postil with a colour scheme, dark: stronger edge. */
+  /* semantic · status */
+  --tone-read-bg: #302E2C; /* Postil with a colour scheme, dark: read badge on charcoal. */
+  --tone-sent-bg: #302E2C; /* Postil with a colour scheme, dark: sent badge on charcoal. */
+  --tone-sent-fg: #D5D3CF; /* Postil with a colour scheme, dark: sent badge text. */
 }
 /* Design High contrast: black on white, or white on black in dark. The colour scheme does not apply here (the accent is the one checked for contrast). */
 :host([data-design='contrast']) {

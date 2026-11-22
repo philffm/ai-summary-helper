@@ -176,7 +176,7 @@ function wireLook(initial) {
     menu.replaceChildren(
       seg(T('Brightness'), 'theme', [['system', T('Auto')], ['light', T('Light')], ['dark', T('Dark')]], n.theme),
       seg(T('Design'), 'design', [['standard', T('Standard')], ['postil', 'Postil'], ['contrast', T('High contrast')]], n.design),
-      seg(T('Color scheme'), 'colorScheme', [['default', T('Default')], ['kaivo', 'Kaivo'], ['aish', 'Aish'], ['viola', 'Viola']], scheme));
+      seg(T('Color scheme'), 'colorScheme', [['default', T('Default')], ['kaivo', 'Kaivo'], ['aish', 'Aish'], ['viola', 'Viola'], ['graphite', T('Graphite')]], scheme));
     const size = el('div', 'hm-look-row'); size.append(el('span', 'hm-look-label-row', T('Text size')));
     const ctl = el('div', 'hm-look-size');
     const step = (d, label, text) => { const b = el('button', 'button-secondary btn-sm', text); b.type = 'button'; b.setAttribute('aria-label', label); b.disabled = (d < 0 && scale <= TEXT_SCALE_MIN) || (d > 0 && scale >= TEXT_SCALE_MAX); b.addEventListener('click', () => change({ textScale: clampScale(scale + d) })); return b; };

@@ -70,7 +70,7 @@ export function initGeneralSettings(storageData) {
     };
     // the words of the three switches (written in popup.html in English)
     { const words = { themeLabel: T('Brightness'), designLabel: T('Design'), schemeLabel: T('Color scheme') }; Object.entries(words).forEach(([id, t]) => { const e = $id(id); if (e) e.textContent = t; });
-      const lab = { themeSeg: { system: T('Auto'), light: T('Light'), dark: T('Dark') }, designSeg: { standard: T('Standard'), contrast: T('High contrast') }, schemeSeg: { default: T('Default') } };
+      const lab = { themeSeg: { system: T('Auto'), light: T('Light'), dark: T('Dark') }, designSeg: { standard: T('Standard'), contrast: T('High contrast') }, schemeSeg: { default: T('Default'), graphite: T('Graphite') } };
       Object.entries(lab).forEach(([id, m]) => document.querySelectorAll('#' + id + ' [data-value]').forEach((b) => { if (m[b.dataset.value]) b.textContent = m[b.dataset.value]; })); }
     seg('themeSeg', (v) => setA11y({ theme: v === 'light' || v === 'dark' ? v : 'system' }));
     seg('designSeg', (v) => setA11y({ design: DESIGNS.includes(v) ? v : 'standard' }));

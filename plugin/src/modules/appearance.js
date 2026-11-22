@@ -3,8 +3,8 @@
 // Appearance has three independent axes (Settings › Appearance):
 //   brightness   theme   'system' | 'light' | 'dark'                  → html[data-theme]  (system = no attribute: the browser decides)
 //   design       design  'standard' | 'postil' | 'contrast'           → html[data-design] (standard = no attribute)
-//   colour       colorScheme 'default' | 'kaivo' | 'aish' | 'viola'    → html[data-scheme] (default = this build's own brand colours)
-export const SCHEMES = ['kaivo', 'aish', 'viola'];
+//   colour       colorScheme 'default' | 'kaivo' | 'aish' | 'viola' | 'graphite'    → html[data-scheme] (default = this build's own brand colours)
+export const SCHEMES = ['kaivo', 'aish', 'viola', 'graphite'];
 export const DESIGNS = ['standard', 'postil', 'contrast'];
 
 /**

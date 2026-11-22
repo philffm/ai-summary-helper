@@ -132,6 +132,14 @@
           ]
         },
         {
+          "scheme": "graphite",
+          "selector": ":root[data-scheme='graphite']",
+          "sets": [
+            "app/base",
+            "app/light"
+          ]
+        },
+        {
           "comment": "Design Postil: e-reader look, off-white paper and graphite ink, flat (light)",
           "selector": ":root[data-design='postil']",
           "sets": [
@@ -161,6 +169,13 @@
           "comment": "Postil tinted with a colour scheme: the same paper and ink, a few percent of the brand colour in the surfaces and the brand accent (tools/postil-tints.mjs).",
           "tint": "viola",
           "selector": ":root[data-design='postil'][data-scheme='viola']",
+          "sets": [
+            "app/postil-tint"
+          ]
+        },
+        {
+          "tint": "graphite",
+          "selector": ":root[data-design='postil'][data-scheme='graphite']",
           "sets": [
             "app/postil-tint"
           ]
@@ -204,6 +219,14 @@
           ]
         },
         {
+          "scheme": "graphite",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-scheme='graphite']:not([data-theme='light'])",
+          "sets": [
+            "app/dark"
+          ]
+        },
+        {
           "scheme": "aish",
           "selector": ":root[data-scheme='aish'][data-theme='dark']",
           "sets": [
@@ -222,6 +245,14 @@
         {
           "scheme": "viola",
           "selector": ":root[data-scheme='viola'][data-theme='dark']",
+          "sets": [
+            "app/dark",
+            "app/dark-forced"
+          ]
+        },
+        {
+          "scheme": "graphite",
+          "selector": ":root[data-scheme='graphite'][data-theme='dark']",
           "sets": [
             "app/dark",
             "app/dark-forced"
@@ -272,6 +303,14 @@
           ]
         },
         {
+          "tint": "graphite",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":root[data-design='postil'][data-scheme='graphite']:not([data-theme='light'])",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
           "tint": "kaivo",
           "selector": ":root[data-design='postil'][data-scheme='kaivo'][data-theme='dark']",
           "sets": [
@@ -288,6 +327,13 @@
         {
           "tint": "viola",
           "selector": ":root[data-design='postil'][data-scheme='viola'][data-theme='dark']",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
+          "tint": "graphite",
+          "selector": ":root[data-design='postil'][data-scheme='graphite'][data-theme='dark']",
           "sets": [
             "app/postil-tint-dark"
           ]
@@ -375,6 +421,14 @@
           ]
         },
         {
+          "scheme": "graphite",
+          "selector": ":host([data-scheme='graphite'])",
+          "sets": [
+            "app/base",
+            "app/light"
+          ]
+        },
+        {
           "comment": "Design Postil: e-reader look, off-white paper and graphite ink, flat (light)",
           "selector": ":host([data-design='postil'])",
           "sets": [
@@ -404,6 +458,13 @@
           "comment": "Postil tinted with a colour scheme: the same paper and ink, a few percent of the brand colour in the surfaces and the brand accent (tools/postil-tints.mjs).",
           "tint": "viola",
           "selector": ":host([data-design='postil'][data-scheme='viola'])",
+          "sets": [
+            "app/postil-tint"
+          ]
+        },
+        {
+          "tint": "graphite",
+          "selector": ":host([data-design='postil'][data-scheme='graphite'])",
           "sets": [
             "app/postil-tint"
           ]
@@ -447,6 +508,14 @@
           ]
         },
         {
+          "scheme": "graphite",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-scheme='graphite']:not([data-theme='light']))",
+          "sets": [
+            "app/dark"
+          ]
+        },
+        {
           "scheme": "aish",
           "selector": ":host([data-scheme='aish'][data-theme='dark'])",
           "sets": [
@@ -465,6 +534,14 @@
         {
           "scheme": "viola",
           "selector": ":host([data-scheme='viola'][data-theme='dark'])",
+          "sets": [
+            "app/dark",
+            "app/dark-forced"
+          ]
+        },
+        {
+          "scheme": "graphite",
+          "selector": ":host([data-scheme='graphite'][data-theme='dark'])",
           "sets": [
             "app/dark",
             "app/dark-forced"
@@ -515,6 +592,14 @@
           ]
         },
         {
+          "tint": "graphite",
+          "media": "(prefers-color-scheme: dark)",
+          "selector": ":host([data-design='postil'][data-scheme='graphite']:not([data-theme='light']))",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
           "tint": "kaivo",
           "selector": ":host([data-design='postil'][data-scheme='kaivo'][data-theme='dark'])",
           "sets": [
@@ -531,6 +616,13 @@
         {
           "tint": "viola",
           "selector": ":host([data-design='postil'][data-scheme='viola'][data-theme='dark'])",
+          "sets": [
+            "app/postil-tint-dark"
+          ]
+        },
+        {
+          "tint": "graphite",
+          "selector": ":host([data-design='postil'][data-scheme='graphite'][data-theme='dark'])",
           "sets": [
             "app/postil-tint-dark"
           ]
