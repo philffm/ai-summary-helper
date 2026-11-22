@@ -19,7 +19,7 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-grid { transition: opacity var(--duration-base) var(--easing-standard); }
 .hm-grid.is-dim { opacity: .35; }
 .hm-hint { font-size: var(--fs-xs); color: var(--text-muted); }
-.hm-wrap { container: hmwrap / inline-size; }
+.hm-wrap { container: hmwrap / inline-size; overflow: clip; }   /* the light of the topics card ends at the edge of the page: it must not make the page wider or taller */
 .hm-grid { display: grid; grid-template-columns: repeat(var(--hm-cols, 2), minmax(0, 1fr)); gap: 14px; align-items: start; }
 .hm-grid.has-glance { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: var(--hm-tracks, auto minmax(0, 1fr)); grid-auto-flow: dense; align-items: stretch; block-size: max(28rem, calc(100dvh - 7rem)); }   /* highlights and library are as tall as each other; the two lists below take the rest. The whole grid is capped at the window (above the fold): what does not fit scrolls inside its card. */
 .hm-grid.has-glance > [data-card] { min-block-size: 0; overflow: hidden; }
@@ -138,15 +138,16 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 /* the topics strip: bubbles sized by the number of articles, in the chart colours of the design (they follow the theme). Artsy: every bubble
    has a blurred glow behind it, the card carries a wash of the biggest topics' colours and a halo that reaches over its edge into the page. */
 .hm-grid.has-glance > [data-card="graph"] { overflow: visible; position: relative; isolation: isolate; }
-.hm-card--art { background-image: radial-gradient(70% 120% at 18% 30%, color-mix(in srgb, var(--art-1, transparent) 16%, transparent), transparent 70%), radial-gradient(60% 110% at 82% 70%, color-mix(in srgb, var(--art-2, transparent) 13%, transparent), transparent 70%); }
+.hm-card--art { background-image: radial-gradient(50% 100% at 12% 40%, color-mix(in srgb, var(--art-1, transparent) 11%, transparent), transparent 75%); }
 .hm-card--art { z-index: 1; }   /* above its neighbours: the light falls softly over them, it is the point */
 /* two halos of different colours, much wider than the card, faint, each drifting on its own slow loop */
-.hm-card--art::before, .hm-card--art::after { content: ''; position: absolute; z-index: -1; border-radius: 50%; pointer-events: none; filter: blur(70px); opacity: .3; will-change: transform; }
-.hm-card--art::before { inset: -260px -240px; background: radial-gradient(42% 52% at 26% 46%, var(--art-1, transparent), transparent 74%), radial-gradient(40% 50% at 78% 54%, var(--art-3, transparent), transparent 74%); animation: artDrift 19s var(--easing-in-out) infinite alternate; }
-.hm-card--art::after { inset: -200px -300px; background: radial-gradient(44% 52% at 60% 40%, var(--art-2, transparent), transparent 74%), radial-gradient(36% 46% at 16% 62%, var(--art-3, transparent), transparent 74%); animation: artDrift 27s var(--easing-in-out) -9s infinite alternate-reverse; }
+.hm-card--art::before, .hm-card--art::after { content: ''; position: absolute; z-index: -1; border-radius: 50%; pointer-events: none; filter: blur(64px) saturate(1.5); opacity: .34; will-change: transform; }
+/* each colour sits in its own place and they hardly overlap (overlapping hues mix to a muddy grey, which shows on a light page) */
+.hm-card--art::before { inset: -240px -220px; background: radial-gradient(24% 46% at 15% 50%, var(--art-1, transparent), transparent 100%), radial-gradient(24% 46% at 85% 50%, var(--art-3, transparent), transparent 100%); animation: artDrift 19s var(--easing-in-out) infinite alternate; }
+.hm-card--art::after { inset: -200px -280px; background: radial-gradient(26% 44% at 50% 45%, var(--art-2, transparent), transparent 100%); animation: artDrift 27s var(--easing-in-out) -9s infinite alternate-reverse; }
 @keyframes artDrift { from { transform: translate(-5%, -4%) scale(1) rotate(-3deg); } to { transform: translate(6%, 5%) scale(1.1) rotate(4deg); } }
 .hm-topics svg { display: block; width: 100%; height: auto; max-height: 9.5rem; overflow: visible; cursor: pointer; }
-.hm-glow { filter: blur(26px); opacity: .38; pointer-events: none; }
+.hm-glow { filter: blur(26px) saturate(1.4); opacity: .4; pointer-events: none; }
 .hm-bubble circle { filter: blur(.6px); }   /* only the blobs: a hair of blur keeps the gradient from banding. The labels stay sharp. */
 .hm-bubble { animation: artFloat 9s var(--easing-in-out) infinite; animation-delay: calc(var(--i, 0) * -1.7s); }   /* the bubbles float a little, each out of step */
 @keyframes artFloat { 50% { transform: translateY(-3px); } }
