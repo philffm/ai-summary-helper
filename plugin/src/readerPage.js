@@ -38,7 +38,7 @@ function applyPrefs() {
   if (tk) root.setAttribute('data-theme', tk); else root.removeAttribute('data-theme');
   root.dataset.rpFont = prefs.font; root.dataset.rpTheme = prefs.theme; root.dataset.rpView = prefs.view;
   document.querySelectorAll('[data-font]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.font === prefs.font)));
-  document.querySelectorAll('[data-theme]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === prefs.theme)));
+  document.querySelectorAll('button[data-theme]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === prefs.theme)));
   document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === prefs.view)));
   $('rpSmaller').disabled = prefs.size === 0; $('rpLarger').disabled = prefs.size === SIZES.length - 1;
 }
@@ -50,7 +50,7 @@ function labelControls() {
   const names = { serif: T('Serif font'), sans: T('Sans-serif font') };
   document.querySelectorAll('[data-font]').forEach(b => b.setAttribute('aria-label', names[b.dataset.font]));
   const th = { auto: T('Auto'), light: T('Light'), sepia: T('Sepia'), dark: T('Dark') };
-  document.querySelectorAll('[data-theme]').forEach(b => { b.textContent = th[b.dataset.theme]; });
+  document.querySelectorAll('button[data-theme]').forEach(b => { b.textContent = th[b.dataset.theme]; });
   const vw = { both: T('Both'), summary: T('Summary'), content: T('Full text') };
   document.querySelectorAll('[data-view]').forEach(b => { b.textContent = vw[b.dataset.view]; });
   $('rpPrint').textContent = T('Print');
@@ -63,7 +63,7 @@ function wireControls() {
   $('rpLarger').addEventListener('click', () => setPref({ size: prefs.size + 1 }));
   $('rpPrint').addEventListener('click', () => window.print());
   document.querySelectorAll('[data-font]').forEach(b => b.addEventListener('click', () => setPref({ font: b.dataset.font })));
-  document.querySelectorAll('[data-theme]').forEach(b => b.addEventListener('click', () => setPref({ theme: b.dataset.theme })));
+  document.querySelectorAll('button[data-theme]').forEach(b => b.addEventListener('click', () => setPref({ theme: b.dataset.theme })));
   document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => setPref({ view: b.dataset.view })));
   document.addEventListener('keydown', (e) => {
     if (e.ctrlKey || e.metaKey || e.altKey || /input|textarea|select/i.test(e.target.tagName)) return;
