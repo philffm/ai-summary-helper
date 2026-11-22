@@ -12,7 +12,7 @@ for (const id of ['themeSeg', 'uiLangSelect', 'iconSeg', 'nativeSidePanelToggle'
 assert(/<button[^>]*class="settings-row"[^>]*data-panel="accessibility"/.test(html), 'home row');
 assert(/data-sub="accessibility"/.test(html));
 assert(/data-back/.test(acc), 'back button');
-const nav = fs.readFileSync(path.join(SRC, 'modules/settingsNav.js'), 'utf8');
+const nav = fs.readFileSync(path.join(SRC, 'modules/settingsIndex.js'), 'utf8');
 assert(/\['accessibility', N_\('Text size'\), 'textScaleRange'/.test(nav) && /accessibility: N_\('Accessibility'\)/.test(nav), 'search index + title');
 for (const m of nav.matchAll(/\['accessibility', N_\('[^']+'\), '([A-Za-z0-9]+)'/g)) assert(html.includes(`id="${m[1]}"`), 'search target exists: ' + m[1]);
 console.log('TEST 121 OK'); process.exit(0);
