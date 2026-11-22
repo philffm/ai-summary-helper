@@ -6,6 +6,7 @@ import { attachSearchClear } from './searchField.js';
 //   /             same, when you are not typing somewhere
 //   Esc           (Detail view) back to the list · (Settings panel) back to Settings
 //   j / ↓  k / ↑  next / previous card in Feeds and History (Enter opens)
+//   ⌘K / Ctrl+K   command palette (commandPalette.js / commands.js)
 //   ?             shortcut help sheet (searchable)
 // ⌘N / Ctrl+N (new summary) and ⌘/Ctrl+Enter (summarize / send) live in mainScreen.js; arrow keys for tab bars in tabbar.js.
 
@@ -75,7 +76,8 @@ export function shortcutGroups() {
         [T('Search'), [[T('Focus search'), [mod, 'F']], [T('Focus search'), ['/']]]],
         [T('Lists'), [[T('Next / previous card'), ['j', 'k']], [T('Next / previous card'), ['↓', '↑']], [T('Open'), ['Enter']], [T('Back'), ['Esc']], [T('Open contents (long texts)'), ['T']]]],
         [T('Read aloud'), [[T('Mute / unmute reading'), ['M']]]],
-        [T('Summarize'), [[T('Summarize / send'), [mod, '↵']], [T('New summary'), [mod, 'N']], [T('Switch tab'), ['←', '→']], [T('Keyboard shortcuts'), ['?']]]]
+        [T('Summarize'), [[T('Summarize / send'), [mod, '↵']], [T('New summary'), [mod, 'N']], [T('Switch tab'), ['←', '→']], [T('Keyboard shortcuts'), ['?']]]],
+        [T('Command palette'), [[T('Commands, settings and article search'), [mod, 'K']]]]
     ];
 }
 
@@ -127,7 +129,21 @@ export function openHelp(doc = document) {
 export const modalOpen = (doc = document) => [...doc.querySelectorAll('[aria-modal="true"], .confirm-layer')].some(el => !el.closest('[hidden]'));
 const isTyping = (t) => !!t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
 
-export function initShortcuts() {
+/** ⌘K / Ctrl+K: the command palette (screens, actions, settings, articles). Loaded on first use. */
+export async function openCommandPalette(ui) {
+    const [{ openPalette }, { buildCommands, articleCommands }, nav, smod, am] = await Promise.all([
+        import('./commandPalette.js'), import('./commands.js'), import('./settingsNav.js'), import('./storageManager.js'), import('./articleManager.js'),
+    ]);
+    const StorageManager = smod.default;
+    let index = null;
+    const getIndex = async () => (index = index || await StorageManager.getArticlesIndex());
+    openPalette({
+        getCommands: () => buildCommands(ui, { settingsEntries: nav.settingsEntries, openSettingsPanel: nav.openSettingsPanel }),
+        findMore: async (q) => articleCommands(await getIndex(), q, (a) => am.openArticleInHistory(a)),
+    });
+}
+
+export function initShortcuts(ui) {
     applySearchHints();
     setTimeout(applySearchHints, 400);                                   // after the first i18n pass
     document.addEventListener('aish:translationsApplied', () => applySearchHints());
@@ -152,6 +168,7 @@ export function initShortcuts() {
     document.addEventListener('focusout', (e) => { if (!e.relatedTarget) hideHint(); });
     document.addEventListener('keydown', (event) => {
         const key = (event.key || '').toLowerCase();
+        if (modPressed(event) && !event.shiftKey && !event.altKey && key === 'k') { event.preventDefault(); if (!modalOpen() || document.querySelector('.cmdk')) openCommandPalette(ui); return; }
         if (modPressed(event) && !event.shiftKey && !event.altKey && key === 'f') {
             const screen = document.body.dataset.screen;
             if (SEARCH_BY_SCREEN[screen]) { event.preventDefault(); focusSearch(); }

@@ -70,6 +70,14 @@ const PANEL_TITLES = {
     send: N_('Send & Share'), appearance: N_('Appearance & Language'), accessibility: N_('Accessibility'), library: N_('Library & Data'), sync: N_('Sync & backup'), mcp: N_('AI apps (MCP)'), about: N_('About & Tools')
 };
 
+/** For the command palette: every panel and every searchable control as { panel, title, target, kw }. */
+export function settingsEntries() {
+    return [
+        ...Object.entries(PANEL_TITLES).map(([panel, title]) => ({ panel, title: T(title), target: undefined, kw: '' })),
+        ...INDEX.map(([panel, title, target, kw]) => ({ panel, title: T(title), target, kw })),
+    ];
+}
+
 let screenEl = null;
 let currentPanel = 'account';
 

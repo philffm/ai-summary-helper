@@ -3388,6 +3388,22 @@ body.has-player .feed-undo { bottom: calc(var(--bottom-nav-space) + 190px); }
 @keyframes sheetDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
 @keyframes sheetScrimIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes sheetScrimOut { from { opacity: 1; } to { opacity: 0; } }
+
+/* ── Command palette (⌘K): modules/commandPalette.js ─────────────────────────────── */
+.cmdk { position: fixed; inset: 0; z-index: var(--z-modal); display: flex; align-items: flex-start; justify-content: center; padding: 12vh 12px 12px; box-sizing: border-box; }
+.cmdk-scrim { position: absolute; inset: 0; background: var(--sheet-scrim); animation: sheetScrimIn var(--duration-base) var(--easing-decelerate); }
+.cmdk-panel { position: relative; width: 100%; max-width: 560px; max-height: 70vh; display: flex; flex-direction: column; overflow: hidden; border-radius: var(--radius-lg); background: var(--sheet-bg); border: 1px solid var(--sheet-border); box-shadow: var(--sheet-shadow); color: var(--text-primary); }
+.cmdk-input { width: 100%; box-sizing: border-box; padding: 14px 16px; border: 0; border-bottom: 1px solid var(--outline); background: transparent; color: inherit; font: inherit; font-size: var(--fs-md); }
+.cmdk-input:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-inset); }
+.cmdk-list { list-style: none; margin: 0; padding: 4px 6px 8px; overflow-y: auto; }
+.cmdk-group { padding: 10px 10px 4px; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
+.cmdk-item { display: flex; align-items: baseline; gap: 10px; padding: 8px 10px; border-radius: var(--radius-md); cursor: pointer; font-size: var(--fs-md); }
+.cmdk-item[aria-selected="true"] { background: var(--accent-soft); }
+.cmdk-title { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cmdk-sub { flex: 0 1 auto; font-size: var(--fs-sm); color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cmdk-keys { display: inline-flex; gap: 4px; flex: none; }
+.cmdk-empty { padding: 18px 16px; color: var(--text-muted); font-size: var(--fs-sm); }
+@media (prefers-reduced-motion: reduce) { .cmdk-scrim { animation: none; } }
 @media (prefers-reduced-motion: reduce) { .sendsheet-scrim, .sendsheet-panel, .sendsheet.is-closing .sendsheet-scrim, .sendsheet.is-closing .sendsheet-panel { animation: none; } }
 .sendsheet-grab { width: 36px; height: 4px; border-radius: 2px; background: var(--sheet-grab); margin: 0 auto 12px; }
 .sendsheet-body { display: flex; flex-direction: column; gap: 12px; }

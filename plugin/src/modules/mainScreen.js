@@ -591,6 +591,7 @@ export function initMainScreen(ui) {
         refreshFetchExtras();
         additionalQuestionsInput.focus();
     };
+    document.addEventListener('aish:new-summary', () => { if (conversation) startNew(); });
     document.addEventListener('keydown', (e) => {
         if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 'n' && conversation) {
             e.preventDefault();

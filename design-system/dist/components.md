@@ -581,3 +581,22 @@ Replaces window.confirm app-wide (AISH-032 · A4): what is deleted, what stays (
   - Say what stays, not only what goes
 - Don't:
   - Use window.confirm or alert for decisions
+
+## Command palette
+
+Status: beta · not in Figma yet
+
+⌘K / Ctrl+K: one box to jump to a screen, run an action, open any settings panel or control, or find a saved article.
+
+- CSS: `.cmdk`, `.cmdk-panel`, `.cmdk-input`, `.cmdk-item`
+- Source: `plugin/src/modules/commandPalette.js`, `plugin/src/modules/commands.js`
+- Properties: Placeholder (text)
+- Tokens: `--accent-soft`, `--focus-ring`, `--focus-ring-inset`, `--focus-ring-width`, `--fs-md`, `--outline`, `--radius-lg`, `--radius-md`, `--sheet-bg`, `--sheet-border`, `--sheet-shadow`, `--text-primary`, `--z-modal`
+- Accessibility:
+  - Dialog with a combobox input and a listbox; aria-activedescendant follows the highlighted row
+  - Arrow keys move, Enter runs, Escape closes; focus is trapped and returns to the opener
+  - Selected row uses --accent-soft plus the text colour (not colour alone: the row is also the only one with aria-selected)
+- Do:
+  - Name commands as verbs or places: “Sync now”, “Go to History”
+- Don't:
+  - Put destructive actions in the palette without a confirm step

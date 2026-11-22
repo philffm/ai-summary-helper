@@ -1793,6 +1793,55 @@
         "--tone-new-bg",
         "--tone-new-fg"
       ]
+    },
+    {
+      "name": "Command palette",
+      "status": "beta",
+      "purpose": "⌘K / Ctrl+K: one box to jump to a screen, run an action, open any settings panel or control, or find a saved article.",
+      "selectors": [
+        ".cmdk",
+        ".cmdk-panel",
+        ".cmdk-input",
+        ".cmdk-item"
+      ],
+      "source": [
+        "plugin/src/modules/commandPalette.js",
+        "plugin/src/modules/commands.js"
+      ],
+      "variants": {},
+      "props": {
+        "Placeholder": {
+          "type": "TEXT",
+          "default": "Type a command or search your articles…"
+        }
+      },
+      "tokens": [
+        "--accent-soft",
+        "--focus-ring",
+        "--focus-ring-inset",
+        "--focus-ring-width",
+        "--fs-md",
+        "--outline",
+        "--radius-lg",
+        "--radius-md",
+        "--sheet-bg",
+        "--sheet-border",
+        "--sheet-shadow",
+        "--text-primary",
+        "--z-modal"
+      ],
+      "a11y": [
+        "Dialog with a combobox input and a listbox; aria-activedescendant follows the highlighted row",
+        "Arrow keys move, Enter runs, Escape closes; focus is trapped and returns to the opener",
+        "Selected row uses --accent-soft plus the text colour (not colour alone: the row is also the only one with aria-selected)"
+      ],
+      "do": [
+        "Name commands as verbs or places: “Sync now”, “Go to History”"
+      ],
+      "dont": [
+        "Put destructive actions in the palette without a confirm step"
+      ],
+      "figmaPending": true
     }
   ]
 }
