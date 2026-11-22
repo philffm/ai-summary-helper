@@ -8252,5 +8252,32 @@
   },
   "f__5a1d": {
     "message": "📖 {n} %"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "Periksa salinan yang berkonflik"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "Folder tidak dapat diperiksa: {why}"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "Tidak ada salinan yang berkonflik."
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "Bagikan folder ini di Syncthing pada setiap perangkat. Tambahkan *.crswap ke .stignore-nya: Chrome membuat berkas .crswap sementara saat menyimpan, dan berkas itu tidak perlu disinkronkan."
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "Syncthing menjaga folder tetap sinkron di antara perangkat Anda. Pilih folder itu."
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "iCloud Drive, Dropbox, atau drive USB menjaganya tetap sinkron."
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "{n} salinan berkonflik dari Syncthing, misalnya {names}. Ekstensi tidak membacanya; hapus di Syncthing setelah Anda melihatnya."
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "{n} salinan berkonflik dari Syncthing: {names}. Ekstensi tidak membacanya; hapus di Syncthing setelah Anda melihatnya."
   }
 }

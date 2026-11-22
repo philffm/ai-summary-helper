@@ -7951,5 +7951,32 @@
   },
   "f__5a1d": {
     "message": "📖 {n} %"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "충돌 사본 확인"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "폴더를 확인할 수 없습니다: {why}"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "충돌 사본이 없습니다."
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "각 기기의 Syncthing에서 이 폴더를 공유하세요. .stignore에 *.crswap을 추가하세요. Chrome은 저장하는 동안 임시 .crswap 파일을 만들며, 이 파일은 동기화하면 안 됩니다."
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "Syncthing은 기기 간에 폴더를 같은 상태로 유지합니다. 그 폴더를 선택하세요."
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "iCloud Drive, Dropbox 또는 USB 드라이브가 동기 상태를 유지합니다."
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "Syncthing의 충돌 사본 {n}개(예: {names}). 확장 프로그램은 이를 읽지 않습니다. 확인한 뒤 Syncthing에서 삭제하세요."
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "Syncthing의 충돌 사본 {n}개: {names}. 확장 프로그램은 이를 읽지 않습니다. 확인한 뒤 Syncthing에서 삭제하세요."
   }
 }

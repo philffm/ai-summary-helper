@@ -23,6 +23,8 @@ function guarded(store) {
     return out;
 }
 
+export const SYNC_CONFLICT = /\.sync-conflict-\d{8}-\d{6}/;
+
 /** @param {{ handle: FileSystemDirectoryHandle, root?: string }} cfg */
 export function createFolderStore(cfg) {
     const rootSegs = segs(cfg.root);
@@ -68,6 +70,19 @@ export function createFolderStore(cfg) {
         async remove(path) {
             try { const { h, name } = await parent(path, false); await h.removeEntry(name); return true; }
             catch (e) { if (NOT_FOUND(e)) return false; throw e; }
+        },
+        /** Copies Syncthing keeps when two devices changed a file at once ("name.sync-conflict-20260101-120000-ABCDEFG.ext"): paths, at most `cap`. */
+        async conflicts(cap = 50) {
+            const out = [];
+            const walk = async (h, base, depth) => {
+                for await (const [name, entry] of h.entries()) {
+                    if (out.length >= cap) return;
+                    if (entry.kind === 'directory') { if (depth < 5 && name !== '.stversions') await walk(entry, base ? base + '/' + name : name, depth + 1); }
+                    else if (SYNC_CONFLICT.test(name)) out.push(base ? base + '/' + name : name);
+                }
+            };
+            try { await walk(await root(false), '', 0); } catch (e) { if (!NOT_FOUND(e)) throw e; }
+            return out;
         },
         async list(prefix = '') {
             let h;

@@ -7969,5 +7969,32 @@
   },
   "f__5a1d": {
     "message": "📖 {n}٪"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "التحقق من النسخ المتعارضة"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "تعذّر فحص المجلد: {why}"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "لا توجد نسخ متعارضة."
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "شارك هذا المجلد في Syncthing على كل جهاز. أضف *.crswap إلى ملف .stignore الخاص به: ينشئ Chrome ملف .crswap مؤقتًا أثناء الحفظ، ولا ينبغي مزامنته."
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "يُبقي Syncthing مجلدًا متزامنًا بين أجهزتك. اختر ذلك المجلد."
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "يُبقيه iCloud Drive أو Dropbox أو قرص USB متزامنًا."
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "{n} نسخ متعارضة من Syncthing، مثل {names}. لا تقرؤها الإضافة؛ احذفها في Syncthing بعد أن تطّلع عليها."
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "{n} نسخة متعارضة من Syncthing: {names}. لا تقرؤها الإضافة؛ احذفها في Syncthing بعد أن تطّلع عليها."
   }
 }

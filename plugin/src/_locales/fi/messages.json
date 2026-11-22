@@ -8252,5 +8252,32 @@
   },
   "f__5a1d": {
     "message": "📖 {n} %"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "Tarkista ristiriitaiset kopiot"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "Kansiota ei voitu tarkistaa: {why}"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "Ei ristiriitaisia kopioita."
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "Jaa tämä kansio Syncthingissä jokaisella laitteella. Lisää *.crswap sen .stignore-tiedostoon: Chrome luo tallennettaessa väliaikaisen .crswap-tiedoston, jota ei pidä synkronoida."
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "Syncthing pitää kansion synkronoituna laitteidesi välillä. Valitse kyseinen kansio."
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "iCloud Drive, Dropbox tai USB-asema pitää sen synkronoituna."
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "{n} ristiriitaista kopiota Syncthingistä, esimerkiksi {names}. Laajennus ei lue niitä; poista ne Syncthingissä, kun olet katsonut ne."
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "{n} ristiriitainen kopio Syncthingistä: {names}. Laajennus ei lue sitä; poista se Syncthingissä, kun olet katsonut sen."
   }
 }

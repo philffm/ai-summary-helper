@@ -7969,5 +7969,32 @@
   },
   "f__5a1d": {
     "message": "📖 {n} %"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "टकराव वाली प्रतियाँ जाँचें"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "फ़ोल्डर की जाँच नहीं हो सकी: {why}"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "टकराव वाली कोई प्रति नहीं।"
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "इस फ़ोल्डर को हर डिवाइस पर Syncthing में साझा करें। इसकी .stignore में *.crswap जोड़ें: सहेजते समय Chrome एक अस्थायी .crswap फ़ाइल बनाता है, जिसे सिंक नहीं होना चाहिए।"
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "Syncthing आपके डिवाइसों के बीच एक फ़ोल्डर को एक जैसा रखता है। वही फ़ोल्डर चुनें।"
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "iCloud Drive, Dropbox या USB ड्राइव उसे सिंक में रखते हैं।"
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "Syncthing से टकराव वाली {n} प्रतियाँ, जैसे {names}। एक्सटेंशन इन्हें नहीं पढ़ता; देखने के बाद इन्हें Syncthing में हटा दें।"
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "Syncthing से टकराव वाली {n} प्रति: {names}। एक्सटेंशन इसे नहीं पढ़ता; देखने के बाद इसे Syncthing में हटा दें।"
   }
 }

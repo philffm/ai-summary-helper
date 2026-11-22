@@ -8252,5 +8252,32 @@
   },
   "f__5a1d": {
     "message": "📖 {n} %"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "Перевірити копії з конфліктом"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "Не вдалося перевірити папку: {why}"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "Копій із конфліктом немає."
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "Надайте доступ до цієї папки в Syncthing на кожному пристрої. Додайте *.crswap до її .stignore: під час збереження Chrome створює тимчасовий файл .crswap, і його не слід синхронізувати."
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "Syncthing синхронізує папку між вашими пристроями. Виберіть цю папку."
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "iCloud Drive, Dropbox або USB-накопичувач синхронізують її."
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "{n} копій із конфліктом від Syncthing, наприклад {names}. Розширення їх не читає; видаліть їх у Syncthing, коли перегляньте."
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "{n} копія з конфліктом від Syncthing: {names}. Розширення її не читає; видаліть її в Syncthing, коли переглянете."
   }
 }

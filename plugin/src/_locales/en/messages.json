@@ -8396,5 +8396,35 @@
   "f__5a1d": {
     "message": "📖 {n}%",
     "description": "Placeholders: {n} (keep as is)"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "Check for conflicting copies"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "Could not check the folder: {why}",
+    "description": "Placeholders: {why} (keep as is)"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "No conflicting copies."
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "Share this folder in Syncthing on each device. Add *.crswap to its .stignore: Chrome writes a temporary .crswap file while it saves, and that file should not be synced."
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "Syncthing keeps a folder in step between your devices. Choose that folder."
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "iCloud Drive, Dropbox or a USB drive keep it in step."
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "{n} conflicting copies from Syncthing, for example {names}. The extension does not read them; delete them in Syncthing once you have looked.",
+    "description": "Placeholders: {n} {names} (keep as is)"
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "{n} conflicting copy from Syncthing: {names}. The extension does not read it; delete it in Syncthing once you have looked.",
+    "description": "Placeholders: {n} {names} (keep as is)"
   }
 }

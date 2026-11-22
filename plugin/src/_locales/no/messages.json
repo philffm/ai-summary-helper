@@ -8252,5 +8252,32 @@
   },
   "f__5a1d": {
     "message": "📖 {n} %"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "Se etter konfliktkopier"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "Kunne ikke kontrollere mappen: {why}"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "Ingen konfliktkopier."
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "Del denne mappen i Syncthing på hver enhet. Legg til *.crswap i .stignore: Chrome lager en midlertidig .crswap-fil under lagring, og den skal ikke synkroniseres."
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "Syncthing holder en mappe synkronisert mellom enhetene dine. Velg den mappen."
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "iCloud Drive, Dropbox eller en USB-stasjon holder den synkronisert."
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "{n} konfliktkopier fra Syncthing, for eksempel {names}. Utvidelsen leser dem ikke; slett dem i Syncthing når du har sett på dem."
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "{n} konfliktkopi fra Syncthing: {names}. Utvidelsen leser den ikke; slett den i Syncthing når du har sett på den."
   }
 }

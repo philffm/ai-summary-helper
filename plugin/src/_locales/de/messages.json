@@ -8050,5 +8050,32 @@
   },
   "f__5a1d": {
     "message": "📖 {n} %"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "Auf Konfliktkopien prüfen"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "Der Ordner konnte nicht geprüft werden: {why}"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "Keine Konfliktkopien."
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "Gib diesen Ordner in Syncthing auf jedem Gerät frei. Trage *.crswap in seine .stignore ein: Chrome legt beim Speichern kurz eine .crswap-Datei an, und die soll nicht synchronisiert werden."
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "Syncthing hält einen Ordner zwischen deinen Geräten gleich. Wähle diesen Ordner."
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "iCloud Drive, Dropbox oder ein USB-Laufwerk halten ihn gleich."
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "{n} Konfliktkopien von Syncthing, zum Beispiel {names}. Die Erweiterung liest sie nicht; lösche sie in Syncthing, sobald du sie angesehen hast."
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "{n} Konfliktkopie von Syncthing: {names}. Die Erweiterung liest sie nicht; lösche sie in Syncthing, sobald du sie angesehen hast."
   }
 }

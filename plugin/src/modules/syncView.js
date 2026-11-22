@@ -17,7 +17,7 @@ import { timeAgo } from './feedUtil.js';
 import { createSyncService, cleanPlace } from './syncService.js';
 import { createStampStore } from './syncStampStore.js';
 import { makeStore } from './syncStores.js';
-import { folderSupported } from './syncFolder.js';
+import { folderSupported, createFolderStore } from './syncFolder.js';
 import { suggest, strengthOf, inOnePiece } from './syncPassphrase.js';
 import { createHandleVault, queryFolderAccess } from './syncFolderHandles.js';
 
@@ -30,6 +30,7 @@ const svc = createSyncService({ storage: chrome.storage.local, makeStore, stampS
 let view = 'list';            // 'list' | 'add' | 'form' | 'recovery'
 let recovery = null;          // { name, words }: shown once after an encrypted place was created with the suggested words
 let existingFlag = null;      // the server folder already holds an encrypted place (null = not looked yet)
+let conflictMsg = '';        // the answer of "Check for conflicting copies" (Syncthing folders)
 let folderName = '';          // the folder picked for a new folder server
 let editId = '';              // '' = a new place
 let draft = null;             // the place being edited: { name, root, scope, filter, include, connectionId }
@@ -349,18 +350,33 @@ function addScreen() {
     out.push(listRow('server', T('Nextcloud / WebDAV'), T('Nextcloud, ownCloud, Synology, most NAS boxes'), () => openForm('')));
     out.push(listRow('cloud', T('S3-compatible'), T('AWS, Cloudflare R2, Backblaze, MinIO, Wasabi'), () => openForm('', { service: 's3' })));
     out.push(folderSupported()
-        ? listRow('folders', T('A folder on this computer'), T('Syncthing, iCloud Drive, Dropbox or a USB drive keep it in step.'), chooseFolder)
+        ? listRow('folders', T('Syncthing'), T('Syncthing keeps a folder in step between your devices. Choose that folder.'), () => chooseFolder('syncthing'))
+        : listRow('folders', T('Syncthing'), T('Works in Chrome and Edge on a computer.'), null, { disabled: true, tag: T('Not here') }));
+    out.push(folderSupported()
+        ? listRow('folders', T('A folder on this computer'), T('iCloud Drive, Dropbox or a USB drive keep it in step.'), () => chooseFolder())
         : listRow('folders', T('A folder on this computer'), T('Works in Chrome and Edge on a computer.'), null, { disabled: true, tag: T('Not here') }));
     return out;
 }
 
+/** Syncthing keeps a copy ("….sync-conflict-…") when two devices change a file at the same moment: count them, the extension does not read them. */
+async function checkConflicts() {
+    const connId = draft.folderId || draft.connectionId; conflictMsg = '';
+    try {
+        await ensureFolderAccess(connId);
+        const handle = await createHandleVault().load(connId);
+        const found = handle ? await createFolderStore({ handle, root: draft.root }).conflicts() : [];
+        conflictMsg = found.length ? TN(found.length, '{n} conflicting copy from Syncthing: {names}. The extension does not read it; delete it in Syncthing once you have looked.', '{n} conflicting copies from Syncthing, for example {names}. The extension does not read them; delete them in Syncthing once you have looked.', { names: found.slice(0, 2).join(', ') }) : T('No conflicting copies.');
+    } catch (e) { conflictMsg = T('Could not check the folder: {why}', { why: String((e && e.message) || e) }); }
+    render();
+}
+
 /** The browser's folder picker (needs this click), then the form for a new place in that folder. */
-async function chooseFolder() {
+async function chooseFolder(flavor = '') {
     let handle;
     try { handle = await globalThis.showDirectoryPicker({ mode: 'readwrite', id: 'aish-sync' }); } catch (_) { return; }   // cancelled
     const id = 'cn_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
     try { await createHandleVault().save(id, handle); } catch (e) { formError = T('The browser could not remember this folder.'); }
-    openForm('', { folderId: id, folderName: handle.name });
+    openForm('', { folderId: id, folderName: handle.name, flavor });
 }
 
 /** Shown once, right after an encrypted place was created with the suggested words: the words are the one key, so they must be saved. */
@@ -390,13 +406,13 @@ async function ensureFolderAccess(connId) {
 }
 
 function openForm(id, folder, { fix = '' } = {}) {
-    editId = id; view = 'form'; testMsg = null; formError = ''; fieldErr = null; ask = ''; draftSecret = ''; editServer = false; serverDraft = blankServer(folder && folder.service); existingFlag = null; folderName = (folder && folder.folderName) || '';
+    editId = id; view = 'form'; conflictMsg = ''; testMsg = null; formError = ''; fieldErr = null; ask = ''; draftSecret = ''; editServer = false; serverDraft = blankServer(folder && folder.service); existingFlag = null; folderName = (folder && folder.folderName) || '';
     openFolds.clear();
     Promise.all([getL({ [SK.syncPlaces]: [] }), svc.connectionsNow()]).then(([d, conns]) => {
         const p = id ? (d[SK.syncPlaces] || []).find((x) => x.id === id) : null;
         draft = p ? JSON.parse(JSON.stringify(p)) : blankDraft(folder ? '' : (conns.filter((c) => c.service !== 'folder').pop() || {}).id || '');
         if (!p && goal) { draft.mode = goal.mode; draft.direction = goal.direction; if (goal.mode === 'readable') draft.root = 'public'; else if (goal.direction === 'push') draft.root = 'backup'; }
-        if (folder && folder.folderId) { draft.folderId = folder.folderId; draft.root = 'aish-sync'; serverDraft = { name: folder.folderName, url: '', username: '', service: 'folder' }; }
+        if (folder && folder.folderId) { draft.folderId = folder.folderId; draft.root = 'aish-sync'; serverDraft = { name: folder.folderName, url: '', username: '', service: 'folder', ...(folder.flavor ? { flavor: folder.flavor } : {}) }; }
         const c = conns.find((x) => x.id === draft.connectionId);
         if (c) serverDraft = serverOf(c);
         if (fix && p) {   // "Fix" from the list: open the server section, with the server's fields when the login or the address is the problem
@@ -596,7 +612,12 @@ function formScreen(place, st, count, connections = [], places = []) {
     if (isFolder) {
         out.push(hint(T('Folder: {name}', { name: connNow ? connNow.name : folderName || serverDraft.name })));
         out.push(hint(T('Files go into a subfolder of it. Whatever keeps that folder in step (Syncthing, iCloud Drive, Dropbox, a USB drive) carries them to your other devices.')));
-        if (!connNow) out.push(button(T('Choose another folder'), 'mcp-link-button', chooseFolder));
+        if ((connNow && connNow.flavor === 'syncthing') || serverDraft.flavor === 'syncthing') {
+            out.push(hint(T('Share this folder in Syncthing on each device. Add *.crswap to its .stignore: Chrome writes a temporary .crswap file while it saves, and that file should not be synced.')));
+            out.push(button(T('Check for conflicting copies'), 'mcp-link-button', checkConflicts));
+            if (conflictMsg) out.push(el('p', 'setting-note', conflictMsg));
+        }
+        if (!connNow) out.push(button(T('Choose another folder'), 'mcp-link-button', () => chooseFolder(serverDraft.flavor || '')));
         else if (!editing || true) out.push(button(T('Allow access again'), 'mcp-link-button', async () => { const h = await createHandleVault().load(connNow.id); const ok = await createHandleVault().allow(h).catch(() => false); testMsg = { ok, text: ok ? T('Access is allowed.') : T('The browser did not allow access.') }; render(); }));
     } else if (connections.some((c) => c.service !== 'folder')) {
         const pick = el('div', 'mcp-apps'); pick.setAttribute('role', 'radiogroup'); pick.setAttribute('aria-label', T('Server'));
@@ -791,7 +812,7 @@ function formScreen(place, st, count, connections = [], places = []) {
     const actions = el('div', 'mcp-actions');
     const request = () => ({
         connectionId: draft.connectionId,
-        connection: draft.connectionId ? undefined : (draft.folderId ? { id: draft.folderId, service: 'folder', name: serverDraft.name || folderName } : { ...serverDraft }),
+        connection: draft.connectionId ? undefined : (draft.folderId ? { id: draft.folderId, service: 'folder', name: serverDraft.name || folderName, ...(serverDraft.flavor ? { flavor: serverDraft.flavor } : {}) } : { ...serverDraft }),
         place: { ...draft, direction: encrypted ? draft.direction : 'publish', },
         secret: { password: draftSecret },
     });

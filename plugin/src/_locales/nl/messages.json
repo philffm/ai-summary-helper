@@ -8252,5 +8252,32 @@
   },
   "f__5a1d": {
     "message": "📖 {n} %"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "Controleren op conflictkopieën"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "De map kon niet worden gecontroleerd: {why}"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "Geen conflictkopieën."
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "Deel deze map in Syncthing op elk apparaat. Voeg *.crswap toe aan de .stignore: Chrome maakt tijdens het opslaan even een .crswap-bestand aan, en dat hoort niet gesynchroniseerd te worden."
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "Syncthing houdt een map gelijk tussen je apparaten. Kies die map."
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "iCloud Drive, Dropbox of een USB-schijf houden hem gelijk."
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "{n} conflictkopieën van Syncthing, bijvoorbeeld {names}. De extensie leest ze niet; verwijder ze in Syncthing als je ze hebt bekeken."
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "{n} conflictkopie van Syncthing: {names}. De extensie leest hem niet; verwijder hem in Syncthing als je hem hebt bekeken."
   }
 }

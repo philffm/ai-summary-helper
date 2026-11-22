@@ -7969,5 +7969,32 @@
   },
   "f__5a1d": {
     "message": "📖 {n} %"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "競合コピーを確認"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "フォルダを確認できませんでした：{why}"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "競合コピーはありません。"
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "このフォルダを各デバイスのSyncthingで共有してください。.stignoreに *.crswap を追加します。Chromeは保存中に一時的な .crswap ファイルを作るため、同期しないようにします。"
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "Syncthingはデバイス間でフォルダの内容をそろえます。そのフォルダを選んでください。"
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "iCloud Drive、Dropbox、USBドライブで同期状態を保ちます。"
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "Syncthingの競合コピーが{n}件あります（例：{names}）。拡張機能はこれらを読みません。確認したらSyncthingで削除してください。"
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "Syncthingの競合コピーが{n}件あります：{names}。拡張機能はこれを読みません。確認したらSyncthingで削除してください。"
   }
 }

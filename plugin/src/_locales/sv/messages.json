@@ -8252,5 +8252,32 @@
   },
   "f__5a1d": {
     "message": "📖 {n} %"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "Sök efter konfliktkopior"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "Det gick inte att kontrollera mappen: {why}"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "Inga konfliktkopior."
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "Dela den här mappen i Syncthing på varje enhet. Lägg till *.crswap i dess .stignore: Chrome skapar en tillfällig .crswap-fil när något sparas, och den ska inte synkas."
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "Syncthing håller en mapp i synk mellan dina enheter. Välj den mappen."
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "iCloud Drive, Dropbox eller ett USB-minne håller den i synk."
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "{n} konfliktkopior från Syncthing, till exempel {names}. Tillägget läser dem inte; ta bort dem i Syncthing när du har tittat på dem."
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "{n} konfliktkopia från Syncthing: {names}. Tillägget läser den inte; ta bort den i Syncthing när du har tittat på den."
   }
 }

@@ -7969,5 +7969,32 @@
   },
   "f__5a1d": {
     "message": "📖 {n} %"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "检查冲突副本"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "无法检查该文件夹：{why}"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "没有冲突副本。"
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "请在每台设备的 Syncthing 中共享这个文件夹。把 *.crswap 加入它的 .stignore：Chrome 保存时会临时生成 .crswap 文件，不应被同步。"
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "Syncthing 让一个文件夹在你的设备之间保持一致。请选择该文件夹。"
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "iCloud Drive、Dropbox 或 U 盘可让它保持同步。"
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "来自 Syncthing 的冲突副本有 {n} 个，例如 {names}。扩展程序不会读取它们；查看后请在 Syncthing 中删除。"
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "来自 Syncthing 的冲突副本有 {n} 个：{names}。扩展程序不会读取它；查看后请在 Syncthing 中删除。"
   }
 }

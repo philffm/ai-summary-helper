@@ -8252,5 +8252,32 @@
   },
   "f__5a1d": {
     "message": "📖 {n} %"
+  },
+  "f_check_for_conflicting_copies_9e2f": {
+    "message": "ตรวจสอบสำเนาที่ขัดแย้งกัน"
+  },
+  "f_could_not_check_the_folder_f206": {
+    "message": "ตรวจสอบโฟลเดอร์ไม่ได้: {why}"
+  },
+  "f_no_conflicting_copies_d5d9": {
+    "message": "ไม่มีสำเนาที่ขัดแย้งกัน"
+  },
+  "f_share_this_folder_in_syncthi_8c34": {
+    "message": "แชร์โฟลเดอร์นี้ใน Syncthing บนทุกอุปกรณ์ เพิ่ม *.crswap ใน .stignore ของโฟลเดอร์: Chrome สร้างไฟล์ .crswap ชั่วคราวระหว่างบันทึก และไม่ควรซิงก์ไฟล์นั้น"
+  },
+  "f_syncthing_be4a": {
+    "message": "Syncthing"
+  },
+  "f_syncthing_keeps_a_folder_in__a36c": {
+    "message": "Syncthing ทำให้โฟลเดอร์ตรงกันระหว่างอุปกรณ์ของคุณ เลือกโฟลเดอร์นั้น"
+  },
+  "f_icloud_drive_dropbox_or_a_us_6e80": {
+    "message": "iCloud Drive, Dropbox หรือไดรฟ์ USB ทำให้โฟลเดอร์ตรงกัน"
+  },
+  "f_conflicting_copies_from_sync_f964": {
+    "message": "สำเนาที่ขัดแย้งจาก Syncthing {n} รายการ เช่น {names} ส่วนขยายไม่อ่านไฟล์เหล่านี้ ให้ลบใน Syncthing หลังจากดูแล้ว"
+  },
+  "f_conflicting_copy_from_syncth_ea75": {
+    "message": "สำเนาที่ขัดแย้งจาก Syncthing {n} รายการ: {names} ส่วนขยายไม่อ่านไฟล์นี้ ให้ลบใน Syncthing หลังจากดูแล้ว"
   }
 }

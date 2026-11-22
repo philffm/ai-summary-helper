@@ -30,7 +30,7 @@ const clip = (v, n) => String(v == null ? '' : v).trim().slice(0, n);
 export function cleanConnection(input, { id } = {}) {
     const p = input || {};
     if (!SERVICES.includes(p.service || 'webdav')) throw new Error('This kind of place is not available yet.');
-    if (p.service === 'folder') return { id: id || p.id || rid('cn_'), name: clip(p.name, 60) || 'Folder', service: 'folder' };   // the folder itself is kept by the browser (syncFolderHandles.js)
+    if (p.service === 'folder') return { id: id || p.id || rid('cn_'), name: clip(p.name, 60) || 'Folder', service: 'folder', ...(p.flavor === 'syncthing' ? { flavor: 'syncthing' } : {}) };   // the folder itself is kept by the browser (syncFolderHandles.js)
     let url;
     try { url = new URL(clip(p.url, 2048)); } catch (_) { throw new Error('Enter the full address, starting with https://'); }
     if (url.protocol !== 'https:' && !(url.protocol === 'http:' && p.allowInsecureLan)) throw new Error('The address must start with https://');
