@@ -44,8 +44,9 @@ click(byText('button', 'Sync my devices')); await wait();
 assert.match(text(), /Where should your library live/);
 assert.ok(document.querySelector('#settingsPanel-sync .settings-panel-head').hidden, 'one header per screen: the add screen brings its own');
 let rows = [...root().querySelectorAll('.settings-row')];
-assert.equal(rows.length, 3);
-assert.ok(!rows[0].disabled && !rows[1].disabled && rows[2].disabled, 'WebDAV and S3 are available; the folder needs a browser that can pick one');
+assert.equal(rows.length, 4);
+assert.ok(!rows[0].disabled && !rows[1].disabled && rows[2].disabled && rows[3].disabled, 'WebDAV and S3 are available; Syncthing and the folder need a browser that can pick one');
+assert.match(rows[2].textContent, /Syncthing/);
 assert.match(rows[1].textContent, /S3-compatible/);
 // the S3 row opens a form with bucket, region and access key (not a folder form)
 click(rows[1]); await wait(100);
