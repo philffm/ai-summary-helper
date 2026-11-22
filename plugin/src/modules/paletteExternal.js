@@ -9,9 +9,9 @@ import StorageManager from './storageManager.js';
 const appUrl = (hash = '') => chrome.runtime.getURL('popup.html') + hash;
 
 /** The app's places as palette entries for pages that are not the popup (they open the app in a tab). `extra` = the page's own entries, shown first. */
-export function externalCommands({ extra = [], home = true } = {}) {
+export function externalCommands({ extra = [], home = true, openScreen = null } = {}) {
     const open = (url) => (chrome.tabs ? chrome.tabs.create({ url }) : window.open(url, '_blank'));
-    const go = (name) => () => open(appUrl('#' + name));
+    const go = (name) => () => (openScreen ? openScreen(name) : open(appUrl('#' + name)));   // the home page shows the app beside itself, other pages in a tab
     const nav = T('Go to');
     return [
         ...extra,

@@ -42,7 +42,9 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-key { position: absolute; top: 50%; right: 14px; transform: translateY(-50%); pointer-events: none; }
 .hm-box.is-open .hm-key { display: none; }
 .hm-box .cmdk-input { padding-right: 76px; }
-.hm-app { position: absolute; top: 0; inset-inline-end: 0; display: inline-flex; align-items: center; gap: 6px; }
+.hm-appbar { position: absolute; top: 0; inset-inline-end: 0; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 6px; max-width: 100%; }
+.hm-app { display: inline-flex; align-items: center; gap: 6px; }
 .hm-app .icon { width: 16px; height: 16px; }
+@media (max-width: 720px) { .hm-appbar { position: static; justify-content: center; } }   /* narrow: above the greeting instead of beside it */
 .hm-quote { margin: 0 0 8px; padding: 0; font-size: var(--fs-md); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
 .hm-quote-src { display: block; margin-bottom: 10px; }

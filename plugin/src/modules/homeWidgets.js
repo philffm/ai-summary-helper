@@ -52,7 +52,7 @@ export async function pickQuote(hlIndex, readPage, rand = Math.random, tries = 4
     return null;
 }
 
-export const WIDGETS = ['continue', 'recent', 'feeds', 'quote', 'stats', 'goto'];
+export const WIDGETS = ['continue', 'recent', 'feeds', 'quote', 'stats'];
 /** The widgets to show, in order, minus the ones the user hid. */
 export const visibleWidgets = (hidden) => WIDGETS.filter((w) => !(hidden || []).includes(w));
 

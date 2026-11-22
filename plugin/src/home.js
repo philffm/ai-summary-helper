@@ -15,7 +15,6 @@ const PREFS_KEY = 'home:prefs';
 const $ = (id) => document.getElementById(id);
 const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; };
 const readerUrl = (a) => chrome.runtime.getURL('readerPage.html') + '#id=' + encodeURIComponent(a.id);
-const appUrl = (name) => chrome.runtime.getURL('popup.html') + '#' + name;
 const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (_) { return ''; } };
 
 function link(href, title, sub, progress) {
@@ -50,17 +49,11 @@ const builders = {
     [[T('Saved'), s.total], [T('Unread'), s.unread], [T('Starred'), s.starred], [T('Finished this week'), s.finishedThisWeek]].forEach(([k, v]) => { const g = el('div'); g.append(el('dt', '', k), el('dd', '', String(v))); dl.append(g); });
     return card(T('Your library'), dl);
   },
-  goto: () => {
-    const row = el('div', 'hm-goto');
-    [['main', T('Summary')], ['feeds', T('Feeds')], ['history', T('History')], ['notes', T('Notes')], ['settings', T('Settings')]].forEach(([n, label]) => {
-      const a = el('a', 'button-secondary btn-sm', label); a.href = appUrl(n); a.target = '_blank'; a.rel = 'noopener'; row.append(a);
-    });
-    return card(T('Open the app'), row);
-  },
 };
-const LABELS = { continue: 'Continue reading', recent: 'Recently saved', feeds: 'Latest from your feeds', quote: 'From your highlights', stats: 'Your library', goto: 'Open the app' };
+const LABELS = { continue: 'Continue reading', recent: 'Recently saved', feeds: 'Latest from your feeds', quote: 'From your highlights', stats: 'Your library' };
 
 const dockPrefs = { dock: undefined };
+let dock = null;
 let hidden = [], data = { index: [], feed: [], quote: null };
 function render() {
   const grid = $('hmGrid'); grid.textContent = '';
@@ -78,7 +71,8 @@ async function init() {
   const hour = new Date().getHours();
   $('hmGreeting').textContent = { night: T('Good night'), morning: T('Good morning'), afternoon: T('Good afternoon'), evening: T('Good evening') }[greetingKey(hour)];
   bindSearchKeys();
-  createAppDock({ button: $('hmApp'), getWidth: () => dockPrefs.dock, saveWidth: (w) => { dockPrefs.dock = w; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: w } }); } catch (_) { /* optional */ } } });
+  dock = createAppDock({ button: $('hmApp'), labels: { open: T('Open app'), close: T('Close app') }, getWidth: () => dockPrefs.dock, saveWidth: (w) => { dockPrefs.dock = w; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: w } }); } catch (_) { /* optional */ } } });
+  document.querySelectorAll('.hm-appbar [data-screen]').forEach((b) => b.addEventListener('click', () => dock.open(b.dataset.screen)));
   await loadData();
   render(); mountSearch();
   loadQuote();
@@ -90,7 +84,7 @@ let search = null;
 function homeCommands() {
   const cont = continueReading(data.index).map((a) => ({ id: 'c:' + a.id, group: T('Continue'), title: a.title || a.url, sub: Math.round((a.progress || 0) * 100) ? Math.round(a.progress * 100) + '% · ' + hostOf(a.url) : hostOf(a.url), run: () => window.open(readerUrl(a), '_blank') }));
   const fresh = latestFeed(data.feed, 4).map((i) => ({ id: 'f:' + (i.id || i.link), group: T('New in your feeds'), title: i.title, sub: i.feedTitle || i.source || hostOf(i.link), run: () => window.open(i.link, '_blank') }));
-  return [...cont, ...fresh, ...externalCommands({ home: false })];
+  return [...cont, ...fresh, ...externalCommands({ home: false, openScreen: (n) => dock.open(n) })];
 }
 function mountSearch() {
   const box = $('hmBox'); if (search) search.destroy(); box.textContent = '';

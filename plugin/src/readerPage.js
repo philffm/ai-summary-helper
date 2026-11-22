@@ -440,7 +440,7 @@ async function wireListen() {
 // ── The app beside the text: popup.html docked on the right, the page makes room, the edge is draggable ──
 // On a window narrower than the "split" breakpoint there is no room for both: the app floats over the text instead.
 function wireApp() {
-  createAppDock({ button: $('rpApp'), getWidth: () => prefs.dock, saveWidth: (w) => { prefs.dock = w; try { chrome.storage.local.set({ [PREFS_KEY]: prefs }); } catch (_) { /* optional */ } } });
+  createAppDock({ button: $('rpApp'), labels: { open: T('App'), openFull: T('Open app'), close: T('Close'), closeFull: T('Close app') }, getWidth: () => prefs.dock, saveWidth: (w) => { prefs.dock = w; try { chrome.storage.local.set({ [PREFS_KEY]: prefs }); } catch (_) { /* optional */ } } });
 }
 
 // ⌘K / Ctrl+K: this page's own commands first (they press the toolbar's buttons, so they are always in step with it), then the app's

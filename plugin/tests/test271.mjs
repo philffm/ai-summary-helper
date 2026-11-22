@@ -15,7 +15,7 @@ assert.deepEqual(hw.continueReading(index).map((a) => a.id), ['e', 'a'], 'starte
 assert.equal(hw.recentlySaved(index, 2)[0].id, 'c');
 assert(!hw.recentlySaved(index, 10).some((a) => a.id === 'd'), 'archived is not recent');
 assert.deepEqual(hw.libraryStats(index, now), { total: 5, unread: 3, starred: 1, finishedThisWeek: 1 });
-assert.deepEqual(hw.visibleWidgets(['feeds', 'stats']), ['continue', 'recent', 'quote', 'goto']);
+assert.deepEqual(hw.visibleWidgets(['feeds', 'stats']), ['continue', 'recent', 'quote']);
 const recs = { p1: [{ url: 'https://a.com/x', text: 'short', type: 'user' }, { url: 'https://a.com/x', text: 'A highlight that is long enough to be worth reading again.', type: 'user', timestamp: '2026-01-01' }, { url: 'https://a.com/x', text: 'A ghost highlight that is long enough to be skipped entirely.', type: 'ghost' }], p2: [] };
 const q = await hw.pickQuote([{ k: 'p2', n: 1 }, { k: 'p1', n: 3 }, { k: 'p3', n: 0 }], async (k) => recs[k], () => 0);
 assert.equal(q.text, 'A highlight that is long enough to be worth reading again.', 'skips pages without usable highlights, ghosts and short ones');
@@ -41,13 +41,13 @@ assert(/Fresh from worker/.test(w.document.getElementById('hmGrid').textContent)
 assert(w.document.getElementById('hmStatus').hidden, 'status line goes away');
 const d = w.document;
 const cards = [...d.querySelectorAll('.hm-card h2')].map((h) => h.textContent);
-assert.equal(cards.length, 6, 'six cards: ' + cards);
+assert.equal(cards.length, 5, 'five cards: ' + cards);
 assert(/Quote from the user highlights/.test(d.getElementById('hmGrid').textContent), 'a saved highlight is shown as the quote');
 assert(/Half read/.test(d.querySelector('.hm-card').textContent), 'continue reading lists the started article');
 assert(/Feed news/.test(d.getElementById('hmGrid').textContent), 'feed item shown');
 assert(d.querySelector('.hm-link').href.includes('readerPage.html#id='), 'links open the reading view');
 const box = d.querySelector('#hmCustom input'); box.checked = false; box.dispatchEvent(new w.Event('change', { bubbles: true })); await tick(50);
-assert.equal(d.querySelectorAll('.hm-card').length, 5, 'a card can be hidden');
+assert.equal(d.querySelectorAll('.hm-card').length, 4, 'a card can be hidden');
 assert.deepEqual(store['home:prefs'], { hidden: ['continue'] }, 'and the choice is remembered');
 assert(d.querySelector('#hmBox .hm-key'), 'the command that opens the search is shown inside the field');
 const field = d.querySelector('#hmBox .cmdk-input'); assert(field, 'the search field is the command list, inline');
