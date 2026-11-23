@@ -8,7 +8,7 @@ const DOCK_MIN = 320, DOCK_DEFAULT = 420;
 const dockMax = () => Math.max(DOCK_MIN, Math.min(760, Math.round(window.innerWidth * 0.6)));
 export const clampDock = (w) => Math.min(dockMax(), Math.max(DOCK_MIN, Math.round(Number(w) || DOCK_DEFAULT)));
 
-export function createAppDock({ button, getWidth = () => DOCK_DEFAULT, saveWidth = () => {}, labels = null, startScreen = '', root = document.documentElement, doc = document }) {
+export function createAppDock({ button, getWidth = () => DOCK_DEFAULT, saveWidth = () => {}, labels = null, startScreen = '', onChange = () => {}, root = document.documentElement, doc = document }) {
   let frame = null, grip = null;
   const width = () => parseInt(root.style.getPropertyValue('--dock-w'), 10);   // we set it inline ourselves
   const setWidth = (w) => {
@@ -16,7 +16,9 @@ export function createAppDock({ button, getWidth = () => DOCK_DEFAULT, saveWidth
     if (grip) { grip.setAttribute('aria-valuenow', String(clampDock(w))); grip.setAttribute('aria-valuemin', String(DOCK_MIN)); grip.setAttribute('aria-valuemax', String(dockMax())); }
   };
   // the button says what a press does: "Open app" / "Close app" (labels = { open, close }; the text sits in .dock-label or .rp-label)
+  let screenNow = '';
   const setState = (isOpen) => {
+    onChange(isOpen, isOpen ? screenNow : '');
     if (!button) return;
     button.setAttribute('aria-pressed', String(isOpen)); setIcon(isOpen ? 'panel-right-close' : 'panel-right-open');
     if (!labels) return;
@@ -65,10 +67,11 @@ export function createAppDock({ button, getWidth = () => DOCK_DEFAULT, saveWidth
   const urlFor = (screen) => chrome.runtime.getURL('popup.html') + '?surface=float' + (screen ? '&t=' + Date.now() + '#' + screen : '');
   /** Shows the app, optionally on one screen ('feeds', 'history', 'notes', 'settings'). Already open: switches the screen. */
   function open(screen) {
-    if (frame) { if (screen) frame.src = urlFor(screen); return; }
+    if (screen) screenNow = screen;
+    if (frame) { if (screen) { frame.src = urlFor(screen); onChange(true, screen); } return; }
     frame = doc.createElement('iframe');
     frame.className = 'app-dock'; frame.title = T('Open app');
-    frame.src = urlFor(screen || startScreen);
+    screenNow = screen || startScreen; frame.src = urlFor(screenNow);
     doc.body.appendChild(frame);
     setState(true);
     edge.hidden = true;
@@ -77,9 +80,9 @@ export function createAppDock({ button, getWidth = () => DOCK_DEFAULT, saveWidth
     const raf = (doc.defaultView && doc.defaultView.requestAnimationFrame && doc.defaultView.requestAnimationFrame.bind(doc.defaultView)) || ((f) => setTimeout(f, 16));
     raf(() => raf(() => { if (frame) frame.classList.add('dock-in'); }));   // after the first paint, so it slides
   }
-  function toggle() { if (frame) close(); else open(); }
-  if (button) button.addEventListener('click', toggle);
-  edge.addEventListener('click', toggle);
+  function toggle(screen) { if (frame && (!screen || screen === screenNow)) close(); else open(screen); }   // with a screen: the same one closes, another one switches
+  if (button) button.addEventListener('click', () => toggle());
+  edge.addEventListener('click', () => toggle());
   window.addEventListener('resize', layout);
   window.addEventListener('message', (e) => {
     if (frame && e.source === frame.contentWindow && e.origin === location.origin && e.data && e.data.aishFloat === 'close') close();

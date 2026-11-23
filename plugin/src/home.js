@@ -285,16 +285,16 @@ async function init() {
   paintSkeleton();
   const { appearance } = await bootPage();
   // the words that are written into home.html itself, in the user's language
-  document.querySelectorAll('.hm-appbar [data-screen]').forEach((b) => { b.textContent = SECTION()[b.dataset.screen] || b.textContent; });
+  document.querySelectorAll('[data-screen]').forEach((b) => { const n = SECTION()[b.dataset.screen]; if (n) { b.setAttribute('aria-label', n); b.title = n; } });
   { const l = document.querySelector('.hm-look-label'); if (l) l.textContent = T('Appearance'); const lk = $('hmLook'); if (lk) lk.title = T('Appearance'); const m = $('hmLookMenu'); if (m) m.setAttribute('aria-label', T('Appearance'));
-    const ap = document.querySelector('#hmApp .dock-label'); if (ap) ap.textContent = T('Open app'); const sm = document.querySelector('.hm-custom summary'); if (sm) sm.textContent = T('Choose widgets');
-    document.title = T('Home page'); const nav = document.querySelector('.hm-appbar'); if (nav) nav.setAttribute('aria-label', T('App')); }
+    const sm = document.querySelector('.hm-custom summary'); if (sm) sm.textContent = T('Choose widgets');
+    document.title = T('Home page'); document.querySelectorAll('.hm-appbar, .hm-rail').forEach((nav) => nav.setAttribute('aria-label', T('App'))); }
   wireLook(appearance);
   const hour = new Date().getHours();
   $('hmGreeting').textContent = { night: T('Good night'), morning: T('Good morning'), afternoon: T('Good afternoon'), evening: T('Good evening') }[greetingKey(hour)];
   bindSearchKeys();
-  dock = createAppDock({ button: $('hmApp'), startScreen: 'history', labels: { open: T('Open app'), close: T('Close app') }, getWidth: () => dockPrefs.dock, saveWidth: (w) => { dockPrefs.dock = w; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: w } }); } catch (_) { /* optional */ } } });
-  document.querySelectorAll('.hm-appbar [data-screen]').forEach((b) => b.addEventListener('click', () => dock.open(b.dataset.screen)));
+  dock = createAppDock({ startScreen: 'history', onChange: (isOpen, screen) => document.querySelectorAll('[data-screen]').forEach((b) => b.setAttribute('aria-pressed', String(isOpen && b.dataset.screen === screen))), getWidth: () => dockPrefs.dock, saveWidth: (w) => { dockPrefs.dock = w; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: w } }); } catch (_) { /* optional */ } } });
+  document.querySelectorAll('[data-screen]').forEach((b) => b.addEventListener('click', () => dock.toggle(b.dataset.screen)));   // the rail and Settings: the same screen again closes the app
   await loadData();
   render(); mountSearch();
   loadQuote();

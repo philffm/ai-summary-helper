@@ -104,12 +104,8 @@
       <h1 id="hmGreeting" class="hm-title">Home</h1>
       <div id="hmBox" class="hm-box"></div>
       <nav class="hm-appbar" aria-label="App">
-        <div class="hm-look-wrap"><button type="button" id="hmLook" class="button-secondary btn-sm" aria-haspopup="true" aria-expanded="false" aria-controls="hmLookMenu" title="Appearance"><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16"><use href="#i-sun-moon"/></svg><span class="hm-look-label">Appearance</span></button><div id="hmLookMenu" class="hm-look-menu" role="group" aria-label="Appearance" hidden></div></div>
-        <button type="button" class="button-secondary btn-sm" data-screen="feeds">Feeds</button>
-        <button type="button" class="button-secondary btn-sm" data-screen="history">History</button>
-        <button type="button" class="button-secondary btn-sm" data-screen="notes">Notes</button>
-        <button type="button" class="button-secondary btn-sm" data-screen="settings">Settings</button>
-        <button type="button" id="hmApp" class="button-primary btn-sm hm-app" aria-pressed="false" title="Open app"><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16"><use href="#i-panel-right-open"/></svg><span class="dock-label">Open app</span></button>
+        <div class="hm-look-wrap"><button type="button" id="hmLook" class="button-secondary btn-sm hm-icon-btn" aria-haspopup="true" aria-expanded="false" aria-controls="hmLookMenu" title="Appearance"><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16"><use href="#i-sun-moon"/></svg></button><div id="hmLookMenu" class="hm-look-menu" role="group" aria-label="Appearance" hidden></div></div>
+        <button type="button" class="button-secondary btn-sm hm-icon-btn" data-screen="settings" aria-label="Settings" title="Settings"><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16"><use href="#i-settings"/></svg></button>
       </nav>
     </header>
     <p id="hmStatus" class="hm-status" role="status" aria-live="polite" hidden></p>
@@ -119,6 +115,11 @@
       <div id="hmCustom" class="hm-custom-list"></div>
     </details>
   </main>
+  <nav class="hm-rail" aria-label="App">
+    <button type="button" class="hm-rail-btn" data-screen="feeds" aria-pressed="false" aria-label="Feeds" title="Feeds"><svg class="icon" aria-hidden="true" focusable="false" width="20" height="20"><use href="#i-newspaper"/></svg></button>
+    <button type="button" class="hm-rail-btn" data-screen="history" aria-pressed="false" aria-label="History" title="History"><svg class="icon" aria-hidden="true" focusable="false" width="20" height="20"><use href="#i-clock"/></svg></button>
+    <button type="button" class="hm-rail-btn" data-screen="notes" aria-pressed="false" aria-label="Notes" title="Notes"><svg class="icon" aria-hidden="true" focusable="false" width="20" height="20"><use href="#i-sticky-note"/></svg></button>
+  </nav>
   <script type="module" src="home.js"></script>
 </body>
 </html>

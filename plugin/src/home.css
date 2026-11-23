@@ -58,8 +58,12 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-box.is-open .hm-key { display: none; }
 .hm-box .cmdk-input { padding-right: 76px; }
 .hm-appbar { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 6px; max-width: 100%; }
-.hm-app { display: inline-flex; align-items: center; gap: 6px; }
-.hm-app .icon { width: 16px; height: 16px; }
+/* icon-only buttons in the header (Appearance, Settings) */
+.hm-icon-btn { display: inline-grid; place-items: center; width: 36px; height: 36px; padding: 0; }
+.hm-icon-btn .icon { width: 18px; height: 18px; }
+.hm-icon-btn[aria-pressed='true'] { background: var(--accent-soft); color: var(--accent); }
+/* (the icon rail's rules live in styles.css: Icon rail component) */
+.hm-wrap { padding-inline-end: 68px; }     /* room for the rail */
 .hm-quote { margin: 0 0 8px; padding: 0; font-size: var(--fs-md); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .hm-quote-src { display: block; margin-bottom: 10px; }
 

@@ -167,6 +167,17 @@ const refresh = d.querySelector('.hm-refresh');
 assert(refresh && refresh.getAttribute('aria-label') === 'Update briefing', 'the briefing is 3 hours old: an update button sits next to the time');
 refresh.click(); await tick(60);
 assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it opens the app on Feeds with that day\'s briefing: ' + d.querySelector('iframe.app-dock').src);
+// the rail (Feeds, History, Notes) on the edge pops the app open on that screen; the same one again closes it; Settings is in the header
+{
+  const rail = [...d.querySelectorAll('.hm-rail .hm-rail-btn')]; assert.deepEqual(rail.map((b) => b.dataset.screen), ['feeds', 'history', 'notes']);
+  assert(d.querySelector('.hm-appbar [data-screen="settings"]') && !d.querySelector('.hm-appbar [data-screen="feeds"]'), 'Settings sits in the header; the three screens in the rail');
+  const feedsBtn = rail[0]; feedsBtn.click(); await tick(60);
+  assert(/#feeds$/.test(d.querySelector('iframe.app-dock').src) && feedsBtn.getAttribute('aria-pressed') === 'true', 'a rail button opens its screen and shows as pressed');
+  rail[2].click(); await tick(60);
+  assert(/#notes$/.test(d.querySelector('iframe.app-dock').src) && rail[2].getAttribute('aria-pressed') === 'true' && feedsBtn.getAttribute('aria-pressed') === 'false', 'another one switches the screen');
+  rail[2].click(); await tick(600);
+  assert(!d.querySelector('iframe.app-dock') && rail.every((b) => b.getAttribute('aria-pressed') === 'false'), 'the same one again closes the app');
+}
 // layout: a card's column placement for wide pages must come BEFORE the container queries that change it for narrower ones (a later rule wins over them:
 // the topics strip once kept "columns 3-4" on a medium page and broke the grid into uneven implicit columns)
 {

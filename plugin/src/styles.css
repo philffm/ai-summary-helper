@@ -6299,3 +6299,17 @@ details.links-group > summary.links-cap { cursor: pointer; list-style-position: 
 .feed-recap-sources summary { cursor: pointer; }
 .feed-recap-sources ol { margin: 8px 0 0; padding-inline-start: 22px; display: grid; gap: 4px; }
 .feed-recap-sources a { color: var(--text-primary); }
+
+/* the rail: Feeds, History, Notes as icon buttons on the right edge; it pops the app open from the side and moves along with it */
+.hm-rail { position: fixed; inset-inline-end: 8px; top: 50%; transform: translateY(-50%); z-index: 30; display: grid; gap: 4px; padding: 6px; background: var(--surface-sheet); border: 1px solid var(--outline); border-radius: var(--radius-lg); box-shadow: var(--elevation-2); transition: inset-inline-end var(--duration-slower) var(--easing-decelerate); }
+.hm-rail-btn { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: var(--radius-md); background: transparent; color: var(--text-muted); cursor: pointer; transition: background var(--duration-fast) var(--easing-standard), color var(--duration-fast) var(--easing-standard); }
+.hm-rail-btn:hover { background: var(--surface-row); color: var(--text-primary); }
+.hm-rail-btn[aria-pressed='true'] { background: var(--accent-soft); color: var(--accent); }
+.hm-rail-btn:focus-visible, .hm-icon-btn:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+:root.dock-docked.dock-open .hm-rail { inset-inline-end: calc(var(--dock-w, 420px) + 8px); }
+:root.dock-open:not(.dock-docked) .hm-rail { display: none; }   /* the app floats over the page: its own close button */
+:root.dock-resizing .hm-rail { transition: none; }
+.home .app-dock-edge { display: none; }   /* the rail takes its place */
+:root[data-design='contrast'] .hm-rail { border-width: 2px; box-shadow: none; }
+:root[data-design='contrast'] .hm-rail-btn[aria-pressed='true'] { background: var(--text-primary); color: var(--bg-page); }
+@media print { .hm-rail { display: none; } }

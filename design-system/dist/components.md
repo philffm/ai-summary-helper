@@ -619,3 +619,24 @@ The segmented control with a round colour swatch per option instead of a word: t
   - Use for choices that are colours
 - Don't:
   - Use for anything that has no swatch to show
+
+## Icon rail
+
+Status: beta · not in Figma yet
+
+A slim vertical bar of icon buttons on the right edge of the home page (Feeds, History, Notes). A button pops the app open beside the page on that screen; the same button again closes it. The rail moves along with the app column.
+
+- CSS: `.hm-rail`, `.hm-rail-btn`
+- Source: `plugin/src/home.html`, `plugin/src/home.css`, `plugin/src/home.js`, `plugin/src/modules/appDock.js`
+- Properties: Pressed (boolean)
+- Tokens: `--accent`, `--accent-soft`, `--bg-page`, `--duration-fast`, `--duration-slower`, `--easing-decelerate`, `--easing-standard`, `--elevation-2`, `--focus-ring`, `--focus-ring-offset`, `--focus-ring-width`, `--outline`, `--radius-lg`, `--radius-md`, `--surface-row`, `--surface-sheet`, `--text-muted`, `--text-primary`
+- Accessibility:
+  - A nav landmark named "App"; every button has the screen's name as aria-label and tooltip (icons are not the only cue)
+  - aria-pressed marks the screen that is open; pressing it again closes the app
+  - Visible focus ring; High contrast: 2px border, inverted pressed state, no shadow
+- Do:
+  - Keep to the few top-level screens; each button names its screen in aria-label and title
+  - Let the rail travel with the app column (same duration and curve as the page)
+- Don't:
+  - Do not add actions to it (it only opens screens)
+  - Do not show it while the app floats over the page: the app's own close button takes over

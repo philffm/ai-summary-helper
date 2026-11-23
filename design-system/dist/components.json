@@ -1882,6 +1882,62 @@
         "Use for anything that has no swatch to show"
       ],
       "figmaPending": true
+    },
+    {
+      "name": "Icon rail",
+      "status": "beta",
+      "purpose": "A slim vertical bar of icon buttons on the right edge of the home page (Feeds, History, Notes). A button pops the app open beside the page on that screen; the same button again closes it. The rail moves along with the app column.",
+      "selectors": [
+        ".hm-rail",
+        ".hm-rail-btn"
+      ],
+      "source": [
+        "plugin/src/home.html",
+        "plugin/src/home.css",
+        "plugin/src/home.js",
+        "plugin/src/modules/appDock.js"
+      ],
+      "variants": {},
+      "props": {
+        "Pressed": {
+          "type": "BOOLEAN",
+          "default": false
+        }
+      },
+      "tokens": [
+        "--accent",
+        "--accent-soft",
+        "--bg-page",
+        "--duration-fast",
+        "--duration-slower",
+        "--easing-decelerate",
+        "--easing-standard",
+        "--elevation-2",
+        "--focus-ring",
+        "--focus-ring-offset",
+        "--focus-ring-width",
+        "--outline",
+        "--radius-lg",
+        "--radius-md",
+        "--surface-row",
+        "--surface-sheet",
+        "--text-muted",
+        "--text-primary"
+      ],
+      "a11y": [
+        "A nav landmark named \"App\"; every button has the screen's name as aria-label and tooltip (icons are not the only cue)",
+        "aria-pressed marks the screen that is open; pressing it again closes the app",
+        "Visible focus ring; High contrast: 2px border, inverted pressed state, no shadow"
+      ],
+      "figmaPending": true,
+      "do": [
+        "Keep to the few top-level screens; each button names its screen in aria-label and title",
+        "Let the rail travel with the app column (same duration and curve as the page)"
+      ],
+      "dont": [
+        "Do not add actions to it (it only opens screens)",
+        "Do not show it while the app floats over the page: the app's own close button takes over"
+      ]
     }
   ]
 }
