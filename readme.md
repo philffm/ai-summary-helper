@@ -1,16 +1,16 @@
 <p align="center">
-  <img src="assets/press/aish-hero-en.png" alt="Kaivo: any page, summed up in your language" width="100%">
+  <img src="assets/press/kaivo-banner-en.png" alt="Kaivo: go to the source, take it with you" width="100%">
 </p>
 
 <p align="center">
-  <a href="https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Chrome_Web_Store-Add_to_Chrome-4C8DFF?logo=googlechrome&logoColor=white&style=for-the-badge"></a>
-  <a href="https://ai-summary-helper.byphil.eu/bookmarklet.html"><img alt="Bookmarklet" src="https://img.shields.io/badge/Bookmarklet-no_install-E4A83E?logo=bookmarkdotorg&logoColor=white&style=for-the-badge"></a>
-  <a href="https://ai-summary-helper.byphil.eu/"><img alt="Website" src="https://img.shields.io/badge/Website-ai--summary--helper.byphil.eu-1D1E24?style=for-the-badge"></a>
+  <a href="https://chromewebstore.google.com/detail/hldbejcjaedipeegjcinmhejdndchkmb"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Chrome_Web_Store-Add_to_Chrome-0F6675?logo=googlechrome&logoColor=white&style=for-the-badge"></a>
+  <a href="https://kaivo.byphil.eu/bookmarklet.html"><img alt="Bookmarklet" src="https://img.shields.io/badge/Bookmarklet-no_install-E4A83E?logo=bookmarkdotorg&logoColor=white&style=for-the-badge"></a>
+  <a href="https://kaivo.byphil.eu/"><img alt="Website" src="https://img.shields.io/badge/Website-kaivo.byphil.eu-0F6675?style=for-the-badge"></a>
 </p>
 
 <p align="center">
   <a href="LICENSE"><img alt="License: AGPL-3.0 or commercial" src="https://img.shields.io/badge/license-AGPL--3.0%20%2B%20commercial-blue"></a>
-  <a href="https://github.com/philffm/kaivo/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/philffm/kaivo?label=version&color=4C8DFF"></a>
+  <a href="https://github.com/philffm/kaivo/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/philffm/kaivo?label=version&color=0F6675"></a>
   <img alt="Manifest V3" src="https://img.shields.io/badge/Manifest-V3-555">
   <img alt="Vanilla JS, no framework" src="https://img.shields.io/badge/vanilla-ES_modules-F0C36B">
   <img alt="Privacy: your key, your data" src="https://img.shields.io/badge/privacy-your_key%2C_your_data-2EA043">
@@ -20,7 +20,7 @@
 
 > You are on the hunt for interesting articles around the web, open 100 tabs and end up… not reading them. Sounds familiar?
 
-**Kaivo** (Kaivo) turns that pile into a reading habit. It gives you a short overview of any article, PDF or YouTube video in your own language, in the browser's side panel. Bring your own key for OpenAI, Google Gemini, Mistral AI or DeepSeek, or run an open model locally with Ollama: no account needed, and the page text goes only to the provider you chose, or nowhere at all. Follow your favorite sites in a built-in RSS reader, ask follow-up questions, and keep everything in a searchable archive. Then send a digest to your Kindle or another device, so you read what you picked on purpose.
+**Kaivo** (formerly *AI Summary Helper*, same extension, same data) turns that pile into a reading habit. It gives you a short overview of any article, PDF or YouTube video in your own language, in the browser's side panel. Bring your own key for OpenAI, Google Gemini, Mistral AI or DeepSeek, or run an open model locally with Ollama: no account needed, and the page text goes only to the provider you chose, or nowhere at all. Follow your favorite sites in a built-in RSS reader, ask follow-up questions, and keep everything in a searchable archive. Then send a digest to your Kindle or another device, so you read what you picked on purpose.
 
 ## At a glance
 
@@ -29,34 +29,30 @@
 - **Answers you can check.** Follow-up answers point to the passage they come from; quotes that are not in the article are discarded.
 - **Your language.** Summaries in 41 languages, interface in 14.
 - **Shortcut.** `Ctrl+Shift+E` (`⌘+Shift+E` on Mac).
-- **New in 2.2.** A split view for large screens and a research mode for scientific papers (see below).
+- **New in 2.2.** A calm start page and a ⌘K command palette, briefings with sources, a research mode for scientific papers, a split view for large screens, three appearance axes with colour schemes (see below).
 
 ## Screenshots
 
 <p align="center">
-  <img src="assets/press/aish-inpage-detail-en.png" alt="Summary in the side panel next to the article" width="49%">
-  <img src="assets/press/aish-inpage-ask-en.png" alt="Follow-up answer with a source marker and highlighted sentences" width="49%">
+  <img src="assets/press/kaivo-summary-en.png" alt="A summary with sources in the side panel" width="49%">
+  <img src="assets/press/kaivo-home-en.png" alt="The start page: today's briefing, highlights, your library, what to continue and your topics" width="49%">
 </p>
 <p align="center">
-  <img src="assets/press/aish-panel-main-en.png" alt="Side panel with recent summaries" width="24%">
-  <img src="assets/press/aish-panel-history-en.png" alt="History with inbox, read and collections tabs" width="24%">
-  <img src="assets/press/aish-panel-feeds-en.png" alt="RSS reader with suggested sources" width="24%">
-</p>
-<p align="center">
-  <img src="assets/press/aish-split-wide-en.png" alt="Split view: list, knowledge graph and analytics side by side" width="49%">
-  <img src="assets/press/aish-research-dark-en.png" alt="Research mode with a collection, in dark mode" width="49%">
+  <img src="assets/press/kaivo-feeds-en.png" alt="The RSS reader, with a briefing of the day" width="32%">
+  <img src="assets/press/kaivo-graph-en.png" alt="The knowledge graph links your articles by topic" width="32%">
+  <img src="assets/press/kaivo-look-en.png" alt="Brightness, look and colour scheme" width="32%">
 </p>
 
-Images for press and reviews live in [`assets/press/`](assets/press/).
+The images (and the same set in 8 more languages) live in [`assets/press/`](assets/press/) and in the store listing.
 
 ## Pick how you want to use it
 
 |  | 🧩 **Browser extension** | 🔖 **Bookmarklet** |
 | --- | --- | --- |
-| Install | [Chrome Web Store](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb), Firefox & Safari builds below | Nothing: drag one link to your bookmarks bar |
+| Install | [Chrome Web Store](https://chromewebstore.google.com/detail/hldbejcjaedipeegjcinmhejdndchkmb), Firefox & Safari builds below | Nothing: drag one link to your bookmarks bar |
 | Works on | Chrome, Edge, Firefox, Safari, Android | **Any browser and OS, even iOS** |
 | Best for | Daily reading: history, search, RSS, highlights | Quick use on devices where extensions can't run |
-| Get it | [**Add to Chrome**](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb) | [**Create your bookmarklet**](https://ai-summary-helper.byphil.eu/bookmarklet.html) |
+| Get it | [**Add to Chrome**](https://chromewebstore.google.com/detail/hldbejcjaedipeegjcinmhejdndchkmb) | [**Create your bookmarklet**](https://kaivo.byphil.eu/bookmarklet.html) |
 
 ## What you get
 
@@ -64,6 +60,9 @@ Images for press and reviews live in [`assets/press/`](assets/press/).
 - **Conversational summaries.** Ask follow-up questions; answers cite the page and jump to the exact passage. Pin the good ones into the summary.
 - **Research mode (2.2).** Recognises scientific papers, extracts design, sample and funding, and builds citations from the DOI registry. Group papers in collections.
 - **Split view (2.2).** On large screens, the list, knowledge graph and analytics sit side by side.
+- **A calm start page (optional).** Continue reading, today's briefing with its sources, a highlight or note, your library at a glance, your topics as soft bubbles (a click opens History searched for that topic). Off by default; switch it on in Settings › Appearance and set it as your start page. The apps of the extension (Feeds, History, Notes, Settings) open beside the page from an icon rail.
+- **⌘K command palette.** Commands, settings and a search of your library in one box, on the start page and in the reader.
+- **Your look.** Brightness (auto, light, dark), look (standard, Postil, high contrast) and a colour scheme (Kaivo, Aish, Viola, Graphite) as three separate choices.
 - **Read aloud.** Listen while the answer is written.
 - **Built-in RSS reader.** Follow sites, filter by source, tag, date or mood, import OPML, get an optional AI recap of the day.
 - **Highlights and ghost highlights.** Mark text yourself or let the AI mark the key passages. Start a summary straight from the on-page highlights panel.
@@ -73,6 +72,7 @@ Images for press and reviews live in [`assets/press/`](assets/press/).
 - **Library sync, backup and publishing.** Keep your library in step across your devices, back it up, or publish part of it, on **your own** storage: a Nextcloud/WebDAV server, an S3-compatible bucket (AWS, Cloudflare R2, Backblaze B2, MinIO) or a folder on your computer. Encrypted places are encrypted in your browser (one passphrase) and sync both ways; readable places publish plain files and an optional viewer page with search, a timeline, a tag graph and an immersive 3D "Sky" of your saves. Nothing leaves your device until you add a place. See [Library sync](#library-sync).
 - **Your language.** 41 summary languages (including Traditional and Simplified Chinese) and an interface in 14 languages.
 - **Export.** Markdown and Obsidian export alongside Send to Kindle and LocalSend.
+- **On your phone and your e-reader.** The Android companion (APK in the [latest release](https://github.com/philffm/kaivo/releases/latest)) shares links, reads your feeds and the articles you send. The [KOReader plugin](koreader/README.md) puts your library on an e-reader as one EPUB per article, with your highlights and notes in step.
 
 > **How sending works.** *Send to Kindle* goes through the byPhil backend, because Amazon only accepts documents by email from approved senders: add `kindle@byphil.eu` to your approved senders in your Amazon account. The free tier includes 3 Kindle sends; unlimited Kindle sends require the [Support Pass](https://byphil.eu/#pass). *LocalSend* (and the system share sheet, e.g. AirDrop) is direct: the file goes from your browser to the device you pick, works with any device running a LocalSend-compatible app, and never touches our server. See the [privacy policy](privacy.md).
 
@@ -125,7 +125,7 @@ Load `plugin/dev/aish-extension-chrome/` via `chrome://extensions` → **Develop
 
 ### Chrome / Edge / Opera / Brave
 
-Install from the [Chrome Web Store](https://chromewebstore.google.com/detail/ai-summary-helper-summari/hldbejcjaedipeegjcinmhejdndchkmb), or build it yourself: run `npm run build`, open `chrome://extensions`, enable **Developer mode**, click **Load unpacked** and pick `plugin/dev/aish-extension-chrome/`.
+Install from the [Chrome Web Store](https://chromewebstore.google.com/detail/hldbejcjaedipeegjcinmhejdndchkmb), or build it yourself: run `npm run build`, open `chrome://extensions`, enable **Developer mode**, click **Load unpacked** and pick `plugin/dev/aish-extension-chrome/`.
 
 ### Firefox Extension
 
@@ -172,7 +172,7 @@ Checklist (what is known to differ on Safari / iOS):
 
 ### Bookmarklet Generator
 
-The bookmarklet generator lives on its own page: [ai-summary-helper.byphil.eu/bookmarklet.html](https://ai-summary-helper.byphil.eu/bookmarklet.html) (the landing page only teases it). It supports both **byPhil Cloud** (email magic-code login, no API key) and **bring-your-own-key** providers (OpenAI, DeepSeek, Mistral, Gemini, Ollama). The generated bookmarklet always inserts the summary on the page and can optionally share it via the system share sheet, Send to Kindle (byPhil Cloud proxy), or Send to LocalSend (direct P2P). It also checks `bookmarklet-version.json` on each run and warns when it is outdated.
+The bookmarklet generator lives on its own page: [kaivo.byphil.eu/bookmarklet.html](https://kaivo.byphil.eu/bookmarklet.html) (the landing page only teases it). It supports both **byPhil Cloud** (email magic-code login, no API key) and **bring-your-own-key** providers (OpenAI, DeepSeek, Mistral, Gemini, Ollama). The generated bookmarklet always inserts the summary on the page and can optionally share it via the system share sheet, Send to Kindle (byPhil Cloud proxy), or Send to LocalSend (direct P2P). It also checks `bookmarklet-version.json` on each run and warns when it is outdated.
 
 The generator's source lives in `site-src/pages/bookmarklet.html` (markup) and `docs/assets/main.js` (the `/* ── Bookmarklet generator */` component). The HTML pages are assembled from `site-src/` into `docs/` by `npm run site:build`, and GitHub Pages serves `docs/`. Do not edit the generated `docs/*.html` or `docs/lang/` by hand; the `translate.yml` workflow rebuilds them on every push to `main` that touches `site-src/`.
 
@@ -323,7 +323,7 @@ ai-summary-helper/
 │   ├── index.html                # Landing page (generated; hero switch teases the bookmarklet)
 │   ├── bookmarklet.html          # Bookmarklet generator page (generated)
 │   ├── sitemap.xml               # SEO sitemap
-│   ├── CNAME                     # Custom domain (ai-summary-helper.byphil.eu)
+│   ├── CNAME                     # Custom domain (kaivo.byphil.eu)
 │   ├── assets/                   # Site JS/CSS + icons (main.js, styles.css, icon.svg, createBookmarklet.svg)
 │   ├── bookmarklet-version.json  # Version manifest the bookmarklet checks for updates
 │   ├── blog/                     # Marketing blog (static HTML)
