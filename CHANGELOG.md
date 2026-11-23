@@ -5,6 +5,19 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.56 (2026-11-23)
+
+### All changes
+
+#### Changed
+
+- test(e2e): the site handshake test uses kaivo.byphil.eu
+- i18n: update translations for changed content
+
+#### Developer experience
+
+- chore: version base 2.2.55 (the store has 2.2.55; the next release builds 2.2.56)
+
 ## 2.2.47 (2026-11-23)
 
 ### All changes
