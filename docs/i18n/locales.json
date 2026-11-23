@@ -31,6 +31,7 @@
   "exempt": [
     "bookmarklet.html",
     "goodbye.html",
+    "thanks.html",
     "education/index.html",
     "pocket-alternative/index.html"
   ],
