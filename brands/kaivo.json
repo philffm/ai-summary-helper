@@ -1,0 +1,51 @@
+{
+  "id": "kaivo",
+  "slug": "kaivo",
+  "name": "Kaivo",
+  "short": "Kaivo",
+  "tagline": "Go to the source. Take it with you.",
+  "siteHost": "kaivo.byphil.eu",
+  "provisional": [
+    "name: decided 17 Nov 2026 (Kaivo, Finnish 'well'); TMview Is/Similar in cl. 9/41/42 and native check (Finnish, Japanese) still open",
+    "icons: mark F (book on water) from AISH-043/045, unchanged from Fonti; needs a designer pass at 16-20 px"
+  ],
+  "colors": {
+    "#2563eb": "#0F6675",
+    "#3b82f6": "#1C7F8E",
+    "#1d4ed8": "#0B525E",
+    "#60a5fa": "#3FA6B3",
+    "#93c5fd": "#7CCBD4",
+    "#eff6ff": "#E8F6F7",
+    "#dbeafe": "#CFECEF",
+    "#f1f1f1": "#EEF3F4",
+    "#141923": "#111D20",
+    "rgba(96,165,250": "rgba(63,166,179"
+  },
+  "manifest": {
+    "firefox": {
+      "browser_specific_settings": {
+        "gecko": {
+          "id": "ai-summary-helper@byphil.eu"
+        }
+      }
+    }
+  },
+  "needsNewArtwork": [
+    "assets/*.png, og-share.jpeg, extension.png, site screenshots and videos (raster artwork)",
+    "mobile/android is not covered by the brand flag yet"
+  ],
+  "assets": {
+    "extension": {
+      "icons/icon.svg": "icons/icon.svg",
+      "icons/icon16.png": "icons/icon16.png",
+      "icons/icon48.png": "icons/icon48.png",
+      "icons/icon128.png": "icons/icon128.png"
+    },
+    "site": {
+      "assets/icon.svg": "icons/icon.svg"
+    }
+  },
+  "notes": [
+    "manifest.firefox gecko id stays ai-summary-helper@byphil.eu on purpose: the existing AMO listing and its users keep getting updates. Same for the Chrome item, iOS bundle id and Android applicationId."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "id": "aish",
+  "slug": "aish",
+  "name": "AI Summary Helper",
+  "short": "AISH",
+  "siteHost": "ai-summary-helper.byphil.eu",
+  "_about": "The default brand. It is the identity the source tree is written in, so applying it is a no-op. Every other brand (brands/<id>.json) is expressed as a delta against these values: `name` replaces this name, `short` replaces this short name, `siteHost` replaces this host, and so on. See brands/README.md."
+}
