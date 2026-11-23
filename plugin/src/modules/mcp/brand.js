@@ -1,5 +1,5 @@
 // modules/mcp/brand.js
-// The brand guide AI apps get through aish-mcp (`hello.brand`): short server instructions, plus the full guide served as the
+// The brand guide AI apps get through kaivo-mcp (`hello.brand`): short server instructions, plus the full guide served as the
 // aish://brand resource and the on_brand prompt. Written in the default brand's name, colours and host, so the white-label
 // build (brands/index.mjs) rewrites it like any other source file: a Koru build hands out the Koru guide.
 

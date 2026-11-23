@@ -8351,5 +8351,11 @@
   },
   "f_look_0bb6": {
     "message": "สไตล์"
+  },
+  "f_for_an_e_reader_with_koreade_f036": {
+    "message": "สำหรับเครื่องอ่านที่มี KOReader: คัดลอก kaivo-library.txt ไปยังโฟลเดอร์หลัก แล้วเลือก Tools → AISH library → Connect with a code ไฟล์นี้มีข้อมูลเข้าสู่ระบบของคุณ: ลบออกจากคอมพิวเตอร์นี้ภายหลัง"
+  },
+  "f_pair_kaivo_mcp_3b54": {
+    "message": "จับคู่ kaivo-mcp"
   }
 }

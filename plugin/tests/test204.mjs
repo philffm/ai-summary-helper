@@ -61,7 +61,7 @@ const doc = globalThis.document || w.document, origCreate = doc.createElement.bi
 doc.createElement = (tag, ...r) => { const e = origCreate(tag, ...r); if (String(tag).toLowerCase() === 'a') e.click = () => { fileName = e.download; }; return e; };
 click(byText('button', 'Save code as file (KOReader)'));
 doc.createElement = origCreate; Object.assign(globalThis.URL, { createObjectURL: realURL.c, revokeObjectURL: realURL.r });
-assert.equal(fileName, 'aish-library.txt'); assert.match(await blob.text(), /^aish-library:\/\/v1\?k=webdav&.*&w=/, 'the code with the words');
+assert.equal(fileName, 'kaivo-library.txt'); assert.match(await blob.text(), /^aish-library:\/\/v1\?k=webdav&.*&w=/, 'the code with the words');
 assert.match(text(), /home folder, then Tools → AISH library → Connect with a code/);
 click(byText('button', 'Not now')); await until(() => root().querySelector('.settings-row'));
 assert.equal(store[SK.syncPlaces].length, 1); assert.equal(store[SK.syncPlaces][0].mode, 'encrypted');

@@ -131,7 +131,7 @@
             <figcaption>Video: hỏi ứng dụng AI về nội dung bạn đã đọc, kèm trích dẫn, danh sách cần đọc và bản tổng kết năm.</figcaption>
           <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:27</p><ul><li>Your AI app has never read what you read.</li><li>Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights.</li><li>Ask what is due, let it save the best from your feeds, or ask for your year, wrapped.</li><li>Nothing goes through our server, and you choose what they may read.</li></ul></div></div>
         </figure>
-        <p>Tính năng này tắt theo mặc định. Hoàn toàn không liên quan đến máy chủ của chúng tôi: tiện ích mở rộng và ứng dụng giao tiếp với nhau qua một chương trình hỗ trợ nhỏ trên máy tính của bạn, <code>aish-mcp</code>, chương trình này không lưu trữ bài viết và không chuyển tiếp bất kỳ dữ liệu nào đi nơi khác.</p>
+        <p>Tính năng này tắt theo mặc định. Hoàn toàn không liên quan đến máy chủ của chúng tôi: tiện ích mở rộng và ứng dụng giao tiếp với nhau qua một chương trình hỗ trợ nhỏ trên máy tính của bạn, <code>kaivo-mcp</code>, chương trình này không lưu trữ bài viết và không chuyển tiếp bất kỳ dữ liệu nào đi nơi khác.</p>
 
         <h2>Những điều bạn có thể hỏi</h2>
         <ul>
@@ -149,7 +149,7 @@
         <p>Bạn cần cài đặt AI Summary Helper trên Chrome, Edge hoặc Brave, <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 20 trở lên và một ứng dụng MCP.</p>
         <ol>
           <li><strong>Bật tính năng.</strong> Trong AI Summary Helper, mở Cài đặt → Ứng dụng AI (MCP) và bật <em>Cho phép các ứng dụng AI trên máy tính này sử dụng thư viện của tôi</em>.</li>
-          <li><strong>Lấy mã ghép nối của bạn.</strong> Trong terminal, chạy <code>npx -y aish-mcp pair</code>. Lệnh này sẽ hiển thị mã ghép nối và lưu vào thư mục người dùng của bạn. Dán mã này vào bảng cài đặt và chọn Kết nối.</li>
+          <li><strong>Lấy mã ghép nối của bạn.</strong> Trong terminal, chạy <code>npx -y kaivo-mcp pair</code>. Lệnh này sẽ hiển thị mã ghép nối và lưu vào thư mục người dùng của bạn. Dán mã này vào bảng cài đặt và chọn Kết nối.</li>
           <li><strong>Thêm AI Summary Helper vào ứng dụng của bạn.</strong> Sử dụng đoạn mã tương ứng với ứng dụng của bạn bên dưới, sau đó thoát hoàn toàn ứng dụng và mở lại.</li>
           <li><strong>Kiểm tra kết nối.</strong> Bảng cài đặt sẽ hiển thị <em>Đã kết nối</em> sau khi ứng dụng của bạn đang chạy. Hãy hỏi ứng dụng điều gì đó về thư viện của bạn: mọi lệnh gọi thực hiện sẽ xuất hiện trong mục Hoạt động gần đây trên bảng cài đặt.</li>
         </ol>
@@ -158,7 +158,7 @@
         <p>Settings → Developer → Edit Config, sau đó thêm:</p>
 <pre><code>{
   "mcpServers": {
-    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
         <p>Nếu Claude Desktop không tìm thấy <code>npx</code>, hãy sử dụng đường dẫn đầy đủ do <code>which npx</code> hiển thị trong terminal (ví dụ: <code>/opt/homebrew/bin/npx</code>).</p>
@@ -170,12 +170,12 @@
         <p>Trong <code>.vscode/mcp.json</code>:</p>
 <pre><code>{
   "servers": {
-    "aish": { "type": "stdio", "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "type": "stdio", "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
 
         <h3>LM Studio và các ứng dụng khác</h3>
-        <p>Các ứng dụng có cài đặt <code>mcpServers</code> (chẳng hạn như <code>mcp.json</code>của LM Studio, Jan và hầu hết các ứng dụng khác) sử dụng cấu hình tương tự như Claude Desktop. Các ứng dụng chỉ kết nối qua HTTP có thể sử dụng <code>npx -y aish-mcp --http</code> tại <code>http://127.0.0.1:47616/</code>, cùng tiêu đề <code>Authorization: Bearer &lt;your pairing code&gt;</code>. Đối với mô hình cục bộ, hãy chọn mô hình có hỗ trợ gọi công cụ (tool calling), chẳng hạn như Qwen 3 hoặc Llama 3.1 trở lên.</p>
+        <p>Các ứng dụng có cài đặt <code>mcpServers</code> (chẳng hạn như <code>mcp.json</code>của LM Studio, Jan và hầu hết các ứng dụng khác) sử dụng cấu hình tương tự như Claude Desktop. Các ứng dụng chỉ kết nối qua HTTP có thể sử dụng <code>npx -y kaivo-mcp --http</code> tại <code>http://127.0.0.1:47616/</code>, cùng tiêu đề <code>Authorization: Bearer &lt;your pairing code&gt;</code>. Đối với mô hình cục bộ, hãy chọn mô hình có hỗ trợ gọi công cụ (tool calling), chẳng hạn như Qwen 3 hoặc Llama 3.1 trở lên.</p>
 
         <h2>Những điều ứng dụng của bạn có thể làm</h2>
         <table>
@@ -200,7 +200,7 @@
           <li><strong>Các bài viết bạn gắn thẻ <code>private</code> sẽ không bao giờ xuất hiện</strong>, trong bất kỳ kết quả, số liệu thống kê hay bộ sưu tập nào. Bạn có thể chọn một thẻ khác trong bảng cài đặt.</li>
           <li><strong>Chỉ máy tính của bạn mới có thể kết nối.</strong> Chương trình hỗ trợ chỉ lắng nghe trên cổng 127.0.0.1, do đó không thiết bị nào khác trong mạng có thể truy cập. Các trang web bạn truy cập cũng không thể sử dụng: chương trình chỉ chấp nhận địa chỉ tiện ích mở rộng của chính AI Summary Helper và mỗi kết nối đều phải có mã ghép nối của bạn.</li>
           <li><strong>Bạn có thể xem từng lệnh gọi.</strong> Bảng cài đặt liệt kê 50 lệnh gọi gần nhất kèm tên công cụ và thời gian, tuyệt đối không lưu nội dung.</li>
-          <li><strong>Bạn có thể ngắt kết nối bất cứ lúc nào.</strong> Tắt tính năng hoặc chọn Ngắt kết nối. Chạy lệnh <code>npx -y aish-mcp reset</code> để hủy hiệu lực của mã ghép nối cũ.</li>
+          <li><strong>Bạn có thể ngắt kết nối bất cứ lúc nào.</strong> Tắt tính năng hoặc chọn Ngắt kết nối. Chạy lệnh <code>npx -y kaivo-mcp reset</code> để hủy hiệu lực của mã ghép nối cũ.</li>
           <li><strong>Các trang đã lưu là văn bản từ web.</strong> Ứng dụng được hướng dẫn xử lý các nội dung đó như thông tin tham khảo chứ không phải chỉ thị, tuy nhiên một trang đã lưu vẫn có thể cố tình đánh lừa AI. Hãy tắt quyền Lưu liên kết trừ khi bạn thực sự cần dùng.</li>
         </ul>
 
@@ -208,11 +208,11 @@
         <table>
           <thead><tr><th>Hiện tượng</th><th>Cách xử lý</th></tr></thead>
           <tbody>
-            <tr><td>Bảng cài đặt báo <em>Chưa kết nối</em></td><td>Ứng dụng AI chưa chạy hoặc chưa được thiết lập. Hãy mở ứng dụng hoặc chạy <code>npx -y aish-mcp</code> trong terminal để kiểm tra kết nối.</td></tr>
+            <tr><td>Bảng cài đặt báo <em>Chưa kết nối</em></td><td>Ứng dụng AI chưa chạy hoặc chưa được thiết lập. Hãy mở ứng dụng hoặc chạy <code>npx -y kaivo-mcp</code> trong terminal để kiểm tra kết nối.</td></tr>
             <tr><td>Ứng dụng không hiển thị công cụ của AI Summary Helper hoặc thiếu công cụ mới sau khi cập nhật</td><td>Thoát hoàn toàn ứng dụng và mở lại. Một số ứng dụng chỉ đọc danh sách công cụ khi khởi động.</td></tr>
             <tr><td>“AISH is not running”</td><td>Trình duyệt đang đóng hoặc tính năng đã bị tắt. Hãy mở trình duyệt và kiểm tra bảng cài đặt.</td></tr>
             <tr><td>“Scope … is not enabled”</td><td>Ứng dụng đã yêu cầu quyền bạn chưa cho phép. Hãy bật quyền đó trong bảng cài đặt nếu bạn muốn sử dụng.</td></tr>
-            <tr><td>Bảng cài đặt không thể kết nối sau khi dán mã</td><td>Chạy lệnh <code>npx -y aish-mcp pair</code> và dán lại mã vừa tạo. Mã sẽ thay đổi sau khi <code>reset</code>.</td></tr>
+            <tr><td>Bảng cài đặt không thể kết nối sau khi dán mã</td><td>Chạy lệnh <code>npx -y kaivo-mcp pair</code> và dán lại mã vừa tạo. Mã sẽ thay đổi sau khi <code>reset</code>.</td></tr>
           </tbody>
         </table>
         <p>Chạy nhiều ứng dụng AI cùng lúc hoàn toàn bình thường: các ứng dụng sẽ dùng chung một kết nối.</p>

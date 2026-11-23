@@ -1,4 +1,6 @@
-# aish-mcp
+# kaivo-mcp
+
+> Formerly `aish-mcp`. Same relay, same protocol; the pairing carries over (the config folder `aish-mcp` is copied to `kaivo-mcp` once). Change `aish-mcp` to `kaivo-mcp` in your app's MCP config.
 
 Lets any MCP-capable app on **this computer** — Claude Desktop, LM Studio, Cursor, VS Code,
 Jan, a local agent — read (and, if you allow it, add to) your [AI Summary
@@ -14,24 +16,24 @@ turn off (or revoke) at any time from **Kaivo → Settings → AI apps (MCP)**.
 LLM app (Claude Desktop, LM Studio, Cursor …)
    │ stdio  (or Streamable HTTP on 127.0.0.1 with --http)
    ▼
-aish-mcp  (this package) ── stores no library data, holds no logic, only forwards
+kaivo-mcp  (this package) ── stores no library data, holds no logic, only forwards
    ▲
    │ ws://127.0.0.1:47615 · opened BY the browser extension · Origin + token checked
    │
-AI Summary Helper extension  ── tool definitions, search, storage reads, consent, activity log
+Kaivo extension  ── tool definitions, search, storage reads, consent, activity log
 ```
 
 ## Setup
 
 1. Open Kaivo → Settings → **AI apps (MCP)** and turn it on.
-2. In a terminal: `npx aish-mcp pair` — this prints a pairing code and stores a token in
-   `~/.config/aish-mcp/config.json` (Windows: `%APPDATA%\aish-mcp`).
+2. In a terminal: `npx kaivo-mcp pair` — this prints a pairing code and stores a token in
+   `~/.config/kaivo-mcp/config.json` (Windows: `%APPDATA%\kaivo-mcp`).
 3. Paste the code into the Kaivo settings page. It should say "Connected" within a couple of
    seconds once a relay is actually running (step 4).
-4. Add `aish-mcp` to your app's MCP config (see below) and restart that app.
+4. Add `kaivo-mcp` to your app's MCP config (see below) and restart that app.
 
 Everything is **off by default**: with the setting off, the extension never opens a socket, and
-`aish-mcp` without a connected extension answers every tool call with a clear
+`kaivo-mcp` without a connected extension answers every tool call with a clear
 "Kaivo is not running" error instead of hanging or crashing.
 
 ## Config snippets
@@ -44,7 +46,7 @@ Everything is **off by default**: with the setting off, the extension never open
 ```json
 {
   "mcpServers": {
-    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }
 ```
@@ -54,7 +56,7 @@ Everything is **off by default**: with the setting off, the extension never open
 ```json
 {
   "mcpServers": {
-    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }
 ```
@@ -64,32 +66,32 @@ Everything is **off by default**: with the setting off, the extension never open
 ```json
 {
   "servers": {
-    "aish": { "command": "npx", "args": ["-y", "aish-mcp"], "type": "stdio" }
+    "kaivo": { "command": "npx", "args": ["-y", "kaivo-mcp"], "type": "stdio" }
   }
 }
 ```
 
-**LM Studio** and other apps that only speak HTTP: run `aish-mcp --http` (default
+**LM Studio** and other apps that only speak HTTP: run `kaivo-mcp --http` (default
 `http://127.0.0.1:47616/`) and point the app at that URL with header
 `Authorization: Bearer <your pairing token>`.
 
 **Jan** / anything else with generic "custom MCP server" support: command `npx`, args
-`["-y", "aish-mcp"]`, same as Claude Desktop/Cursor above.
+`["-y", "kaivo-mcp"]`, same as Claude Desktop/Cursor above.
 
 ## CLI
 
 ```
-aish-mcp              run the stdio relay (what your MCP app launches)
-aish-mcp --http       also expose a Streamable HTTP endpoint on 127.0.0.1
-aish-mcp --port <n>   relay port the extension connects to (default 47615)
-aish-mcp pair         print the pairing code again
-aish-mcp reset        generate a new pairing token (old one stops working immediately)
-aish-mcp status       show config dir, pairing state, and whether something is on the relay port
+kaivo-mcp              run the stdio relay (what your MCP app launches)
+kaivo-mcp --http       also expose a Streamable HTTP endpoint on 127.0.0.1
+kaivo-mcp --port <n>   relay port the extension connects to (default 47615)
+kaivo-mcp pair         print the pairing code again
+kaivo-mcp reset        generate a new pairing token (old one stops working immediately)
+kaivo-mcp status       show config dir, pairing state, and whether something is on the relay port
 ```
 
 ## Several apps (or copies) at once
 
-Apps often start more than one copy of `aish-mcp` (Claude Desktop starts one for chat and more for
+Apps often start more than one copy of `kaivo-mcp` (Claude Desktop starts one for chat and more for
 its other surfaces), and you can connect several apps at the same time. The first copy owns the
 relay port; every later copy joins it and forwards its calls through it. If the first copy exits,
 another one takes the port over within about a second, and the extension reconnects to it.
@@ -162,7 +164,7 @@ The same prompts are in Kaivo → Settings → AI apps (MCP), where you can tap 
 
 ## Troubleshooting
 
-- **Kaivo panel says "Not connected":** no relay is running. Start your AI app, or run `aish-mcp` in a terminal.
+- **Kaivo panel says "Not connected":** no relay is running. Start your AI app, or run `kaivo-mcp` in a terminal.
 - **The app lists no Kaivo tools, or misses new ones after an extension update:** quit the app completely and reopen it. Some apps (Claude Desktop among them) only read the tool list at start.
 - **"Kaivo is not running":** the browser is closed or the feature is off.
 - **"Scope … is not enabled":** turn that permission on in the Kaivo panel; no reconnect needed.
@@ -183,7 +185,7 @@ The same prompts are in Kaivo → Settings → AI apps (MCP), where you can tap 
 
 ```
 cd mcp && npm install
-node bin/cli.js pair        # same as aish-mcp pair
+node bin/cli.js pair        # same as kaivo-mcp pair
 node bin/cli.js             # stdio relay
 ```
 

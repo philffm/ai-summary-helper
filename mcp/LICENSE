@@ -2,7 +2,7 @@ MIT License
 
 Copyright (c) 2026 Phil Wornath
 
-This license covers the aish-mcp relay in this folder (mcp/) only. The AI Summary
+This license covers the kaivo-mcp relay in this folder (mcp/) only. The AI Summary
 Helper extension in the rest of this repository is licensed under AGPL-3.0-only or a
 commercial license (see ../LICENSE and ../COMMERCIAL-LICENSE.md).
 

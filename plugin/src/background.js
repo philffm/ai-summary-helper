@@ -101,7 +101,7 @@ const SK = {
     collIndex: 'coll:index',
     // configuration with secrets (API keys, endpoints) — never synced
     servicesConfig: 'config:services',
-    // AI apps on this computer (MCP relay, aish-mcp) — off by default (claude/prd-local-mcp.md)
+    // AI apps on this computer (MCP relay, kaivo-mcp) — off by default (claude/prd-local-mcp.md)
     mcpConfig: 'mcp:config',      // { enabled, port, scopes, excludeTag }
     mcpSecret: 'mcp:secret',      // pairing token — never backed up
     mcpLog: 'mcp:log',            // last 50 call records — never backed up
@@ -447,7 +447,7 @@ const hlMsgs = hlStore ? SYNC.createHighlightMessages({ store: hlStore, markDele
 const notesMsgs = SYNC ? SYNC.createNotesMessages({ store: SYNC.createNotesStore({ storage: chrome.storage.local }) }) : null;
 
 // ── Local MCP (AI apps on this computer) — off by default (modules/mcp/, claude/prd-local-mcp.md). ──
-// The extension connects OUTWARD to the aish-mcp relay; it never listens for inbound connections itself.
+// The extension connects OUTWARD to the kaivo-mcp relay; it never listens for inbound connections itself.
 const DEFAULT_MCP_SCOPES = { library: true, fulltext: false, feeds: false, write: false };
 async function getMcpConfig() {
     const { [SK.mcpConfig]: cfg } = await localGet({ [SK.mcpConfig]: {} });

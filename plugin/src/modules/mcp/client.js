@@ -1,5 +1,5 @@
 // modules/mcp/client.js
-// The extension side of the aish-mcp bridge (PRD §4.3). Opens a WebSocket
+// The extension side of the kaivo-mcp bridge (PRD §4.3). Opens a WebSocket
 // OUTWARD to the local relay (ws://127.0.0.1:<port>), sends one `hello` with
 // the tool definitions and the pairing token, then answers `call` messages
 // by running the matching handler in tools.js.

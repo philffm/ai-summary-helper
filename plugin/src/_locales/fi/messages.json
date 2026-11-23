@@ -8351,5 +8351,11 @@
   },
   "f_look_0bb6": {
     "message": "Tyyli"
+  },
+  "f_for_an_e_reader_with_koreade_f036": {
+    "message": "E-lukulaitteelle, jossa on KOReader: kopioi kaivo-library.txt sen kotikansioon ja valitse sitten Tools → AISH library → Connect with a code. Tiedostossa on kirjautumistietosi: poista se tältä tietokoneelta sen jälkeen."
+  },
+  "f_pair_kaivo_mcp_3b54": {
+    "message": "Yhdistä kaivo-mcp"
   }
 }

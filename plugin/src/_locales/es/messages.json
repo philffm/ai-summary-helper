@@ -8068,5 +8068,11 @@
   },
   "f_look_0bb6": {
     "message": "Estilo"
+  },
+  "f_for_an_e_reader_with_koreade_f036": {
+    "message": "Para un lector electrónico con KOReader: copia kaivo-library.txt en su carpeta de inicio y luego Tools → AISH library → Connect with a code. El archivo contiene tus datos de acceso: bórralo de este ordenador después."
+  },
+  "f_pair_kaivo_mcp_3b54": {
+    "message": "Vincular kaivo-mcp"
   }
 }

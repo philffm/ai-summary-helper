@@ -8050,5 +8050,11 @@
   },
   "f_look_0bb6": {
     "message": "스타일"
+  },
+  "f_for_an_e_reader_with_koreade_f036": {
+    "message": "KOReader가 있는 전자책 리더: kaivo-library.txt를 홈 폴더에 복사한 뒤 Tools → AISH library → Connect with a code을(를) 선택하세요. 파일에 로그인 정보가 있으니 이후 이 컴퓨터에서 삭제하세요."
+  },
+  "f_pair_kaivo_mcp_3b54": {
+    "message": "kaivo-mcp 페어링"
   }
 }

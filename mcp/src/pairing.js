@@ -5,9 +5,22 @@ import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
 
+function baseDir() {
+    if (process.platform === 'win32') return process.env.APPDATA || path.join(os.homedir(), 'AppData', 'Roaming');
+    return path.join(os.homedir(), '.config');
+}
+
 export function configDir() {
-    if (process.platform === 'win32') return path.join(process.env.APPDATA || path.join(os.homedir(), 'AppData', 'Roaming'), 'aish-mcp');
-    return path.join(os.homedir(), '.config', 'aish-mcp');
+    const dir = path.join(baseDir(), 'kaivo-mcp'), old = path.join(baseDir(), 'aish-mcp');
+    // before the rename (aish-mcp) the pairing lived in the old folder: it is copied once, so the extension stays paired
+    try {
+        if (!fs.existsSync(path.join(dir, 'config.json')) && fs.existsSync(path.join(old, 'config.json'))) {
+            fs.mkdirSync(dir, { recursive: true, mode: 0o700 });
+            fs.copyFileSync(path.join(old, 'config.json'), path.join(dir, 'config.json'));
+            fs.chmodSync(path.join(dir, 'config.json'), 0o600);
+        }
+    } catch (_) { /* a fresh pairing then */ }
+    return dir;
 }
 
 function configPath() { return path.join(configDir(), 'config.json'); }
@@ -34,7 +47,7 @@ export function ensureToken() {
     return next;
 }
 
-/** A fresh token, replacing any old one (`aish-mcp reset`). */
+/** A fresh token, replacing any old one (`kaivo-mcp reset`). */
 export function resetToken() {
     const cfg = readConfig();
     const next = { token: newToken(), created: new Date().toISOString() };

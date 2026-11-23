@@ -8351,5 +8351,11 @@
   },
   "f_look_0bb6": {
     "message": "Stijl"
+  },
+  "f_for_an_e_reader_with_koreade_f036": {
+    "message": "Voor een e-reader met KOReader: kopieer kaivo-library.txt naar de thuismap en kies dan Tools → AISH library → Connect with a code. Het bestand bevat je inloggegevens: verwijder het daarna van deze computer."
+  },
+  "f_pair_kaivo_mcp_3b54": {
+    "message": "kaivo-mcp koppelen"
   }
 }

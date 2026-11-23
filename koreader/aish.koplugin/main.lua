@@ -50,7 +50,8 @@ local function isOurName(name)
     return false
 end
 local TOP_TAGS = 10
-local CODE_FILE = "aish-library.txt"
+local CODE_FILE = "kaivo-library.txt"
+local OLD_CODE_FILE = "aish-library.txt"   -- what an extension from before the rename saves
 
 local fs = {
     mkdirp = function(p) util.makePath(p) end,
@@ -377,6 +378,7 @@ function AISH:connectWithCode(touchmenu)
     for __, dir in ipairs({ home, DataStorage:getDataDir(), self:outDir() }) do
         local path = dir and (dir .. "/" .. CODE_FILE)
         local text = path and fs.read(path)
+        if not text and dir then path = dir .. "/" .. OLD_CODE_FILE; text = fs.read(path) end
         if text and text:find("aish%-library://") then
             os.remove(path)
             logger.info("Kaivo: read the connection code from", path, "and removed the file")

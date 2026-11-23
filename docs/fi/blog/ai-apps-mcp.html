@@ -131,7 +131,7 @@
             <figcaption>Video: kysy tekoälysovellukseltasi lukemisistasi – lainauksineen, erääntyvine artikkeleineen ja vuosikoosteineen.</figcaption>
           <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:27</p><ul><li>Your AI app has never read what you read.</li><li>Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights.</li><li>Ask what is due, let it save the best from your feeds, or ask for your year, wrapped.</li><li>Nothing goes through our server, and you choose what they may read.</li></ul></div></div>
         </figure>
-        <p>Ominaisuus on oletuksena pois päältä. Palvelimemme ei osallistu tähän mitenkään: selainlaajennus ja sovellus viestivät keskenään tietokoneellasi toimivan pienen apuohjelman kautta, <code>aish-mcp</code>, joka ei tallenna artikkeleita eikä välitä mitään minnekään muualle.</p>
+        <p>Ominaisuus on oletuksena pois päältä. Palvelimemme ei osallistu tähän mitenkään: selainlaajennus ja sovellus viestivät keskenään tietokoneellasi toimivan pienen apuohjelman kautta, <code>kaivo-mcp</code>, joka ei tallenna artikkeleita eikä välitä mitään minnekään muualle.</p>
 
         <h2>Mitä voit kysyä</h2>
         <ul>
@@ -149,7 +149,7 @@
         <p>Tarvitset AI Summary Helperin Chromessa, Edgessä tai Bravessa, <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 20 tai uudemman sekä MCP-sovelluksen.</p>
         <ol>
           <li><strong>Ota käyttöön.</strong> Avaa AI Summary Helperissä Asetukset → Tekoälysovellukset (MCP) ja ota käyttöön <em>Salli tämän tietokoneen tekoälysovellusten käyttää kirjastoani</em>.</li>
-          <li><strong>Hanki pariliitoskoodi.</strong> Suorita terminaalissa <code>npx -y aish-mcp pair</code>. Se tulostaa pariliitoskoodin ja tallentaa sen käyttäjäkansioosi. Liitä koodi asetusnäkymään ja valitse Yhdistä.</li>
+          <li><strong>Hanki pariliitoskoodi.</strong> Suorita terminaalissa <code>npx -y kaivo-mcp pair</code>. Se tulostaa pariliitoskoodin ja tallentaa sen käyttäjäkansioosi. Liitä koodi asetusnäkymään ja valitse Yhdistä.</li>
           <li><strong>Lisää AI Summary Helper sovellukseesi.</strong> Käytä alta sovellukseesi sopivaa koodinpätkää, sulje sitten sovellus kokonaan ja avaa se uudelleen.</li>
           <li><strong>Tarkista yhteys.</strong> Asetusnäkymässä lukee <em>Yhdistetty</em> kun sovelluksesi on käynnissä. Kysy sovellukseltasi jotain kirjastostasi: jokainen sen tekemä kutsu näkyy asetusnäkymän kohdassa Viimeaikainen toiminta.</li>
         </ol>
@@ -158,7 +158,7 @@
         <p>Settings → Developer → Edit Config, ja lisää sitten:</p>
 <pre><code>{
   "mcpServers": {
-    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
         <p>Jos Claude Desktop ei löydä komentoa <code>npx</code>, käytä sen koko polkua, jonka <code>which npx</code> tulostaa terminaalissa (esimerkiksi <code>/opt/homebrew/bin/npx</code>).</p>
@@ -170,12 +170,12 @@
         <p>Tiedostoon <code>.vscode/mcp.json</code>:</p>
 <pre><code>{
   "servers": {
-    "aish": { "type": "stdio", "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "type": "stdio", "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
 
         <h3>LM Studio ja muut sovellukset</h3>
-        <p>Sovellukset, joissa on <code>mcpServers</code> -asetus (LM Studion <code>mcp.json</code>, Jan ja useimmat muut), käyttävät samaa määritystä kuin Claude Desktop. Sovellukset, jotka muodostavat yhteyden vain HTTP:n kautta, voivat käyttää komentoa <code>npx -y aish-mcp --http</code> osoitteessa <code>http://127.0.0.1:47616/</code>, otsakkeella <code>Authorization: Bearer &lt;pariliitoskoodisi&gt;</code>. Valitse paikalliseksi malliksi sellainen, joka tukee työkalukutsuja (tool calling), kuten Qwen 3 tai Llama 3.1 ja uudemmat.</p>
+        <p>Sovellukset, joissa on <code>mcpServers</code> -asetus (LM Studion <code>mcp.json</code>, Jan ja useimmat muut), käyttävät samaa määritystä kuin Claude Desktop. Sovellukset, jotka muodostavat yhteyden vain HTTP:n kautta, voivat käyttää komentoa <code>npx -y kaivo-mcp --http</code> osoitteessa <code>http://127.0.0.1:47616/</code>, otsakkeella <code>Authorization: Bearer &lt;pariliitoskoodisi&gt;</code>. Valitse paikalliseksi malliksi sellainen, joka tukee työkalukutsuja (tool calling), kuten Qwen 3 tai Llama 3.1 ja uudemmat.</p>
 
         <h2>Mitä sovelluksesi voi tehdä</h2>
         <table>
@@ -200,7 +200,7 @@
           <li><strong>Artikkelit, joihin lisäät tunnisteen <code>private</code> , eivät koskaan näy</strong>, missään hakutuloksessa, määrässä tai kokoelmassa. Voit valita toisen tunnisteen asetusnäkymässä.</li>
           <li><strong>Vain oma tietokoneesi voi muodostaa yhteyden.</strong> Apuohjelma kuuntelee vain osoitetta 127.0.0.1, joten mikään muu verkossasi oleva laite ei pääse siihen käsiksi. Vierailusi verkkosivustotkaan eivät voi käyttää sitä: se hyväksyy vain AI Summary Helperin oman laajennusosoitteen, ja jokaisessa yhteydessä on oltava pariliitoskoodisi.</li>
           <li><strong>Näet jokaisen kutsun.</strong> Asetusnäkymä listaa viimeisimmät 50 kutsua työkalun nimen ja ajan kera, ei koskaan sisältöä.</li>
-          <li><strong>Voit katkaista yhteyden milloin tahansa.</strong> Kytke ominaisuus pois päältä tai valitse Katkaise yhteys. Suorita <code>npx -y aish-mcp reset</code> mitätöidäksesi vanhan pariliitoskoodin.</li>
+          <li><strong>Voit katkaista yhteyden milloin tahansa.</strong> Kytke ominaisuus pois päältä tai valitse Katkaise yhteys. Suorita <code>npx -y kaivo-mcp reset</code> mitätöidäksesi vanhan pariliitoskoodin.</li>
           <li><strong>Tallennetut sivut ovat tekstiä verkosta.</strong> Sovellustasi ohjeistetaan käsittelemään niitä tietona, ei ohjeina, mutta tallennettu sivu voi silti yrittää johtaa tekoälyä harhaan. Pidä Tallenna linkkejä -käyttöoikeus pois päältä, ellet käytä sitä.</li>
         </ul>
 
@@ -208,11 +208,11 @@
         <table>
           <thead><tr><th>Näet</th><th>Mitä tehdä</th></tr></thead>
           <tbody>
-            <tr><td>Näkymässä lukee <em>Ei yhdistetty</em></td><td>Tekoälysovelluksesi ei ole käynnissä tai sitä ei ole vielä määritetty. Avaa se tai suorita <code>npx -y aish-mcp</code> terminaalissa testataksesi yhteyttä.</td></tr>
+            <tr><td>Näkymässä lukee <em>Ei yhdistetty</em></td><td>Tekoälysovelluksesi ei ole käynnissä tai sitä ei ole vielä määritetty. Avaa se tai suorita <code>npx -y kaivo-mcp</code> terminaalissa testataksesi yhteyttä.</td></tr>
             <tr><td>Sovelluksesi ei näytä AI Summary Helper -työkaluja tai uudet puuttuvat päivityksen jälkeen</td><td>Sulje sovellus kokonaan ja avaa se uudelleen. Jotkin sovellukset lukevat työkaluluettelon vain käynnistyessään.</td></tr>
             <tr><td>”AISH is not running”</td><td>Selaimesi on suljettu tai ominaisuus on kytketty pois päältä. Avaa selain ja tarkista asetusnäkymä.</td></tr>
             <tr><td>”Scope … is not enabled”</td><td>Sovelluksesi pyysi jotain, mitä et ole sallinut. Ota se käyttöön asetusnäkymässä, jos haluat sallia sen.</td></tr>
-            <tr><td>Yhteys ei muodostu koodin liittämisen jälkeen</td><td>Suorita <code>npx -y aish-mcp pair</code> ja liitä sen tulostama koodi uudelleen. Se vaihtuu komennolla <code>reset</code>.</td></tr>
+            <tr><td>Yhteys ei muodostu koodin liittämisen jälkeen</td><td>Suorita <code>npx -y kaivo-mcp pair</code> ja liitä sen tulostama koodi uudelleen. Se vaihtuu komennolla <code>reset</code>.</td></tr>
           </tbody>
         </table>
         <p>Useamman tekoälysovelluksen samanaikainen käyttö onnistuu vaivattomasti: ne jakavat saman yhteyden.</p>

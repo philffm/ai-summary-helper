@@ -131,7 +131,7 @@
             <figcaption>Video: fai domande alla tua app IA sulle tue letture, con citazioni, scadenze e un riassunto dell'anno.</figcaption>
           <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:27</p><ul><li>Your AI app has never read what you read.</li><li>Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights.</li><li>Ask what is due, let it save the best from your feeds, or ask for your year, wrapped.</li><li>Nothing goes through our server, and you choose what they may read.</li></ul></div></div>
         </figure>
-        <p>È disattivato per impostazione predefinita. Nessun dato passa dai nostri server: l'estensione e l'app comunicano tra loro tramite un piccolo programma helper sul tuo computer, <code>aish-mcp</code>, che non memorizza articoli né inoltra nulla altrove.</p>
+        <p>È disattivato per impostazione predefinita. Nessun dato passa dai nostri server: l'estensione e l'app comunicano tra loro tramite un piccolo programma helper sul tuo computer, <code>kaivo-mcp</code>, che non memorizza articoli né inoltra nulla altrove.</p>
 
         <h2>Cosa puoi chiedere</h2>
         <ul>
@@ -149,7 +149,7 @@
         <p>Ti servono AI Summary Helper su Chrome, Edge o Brave, <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 20 o superiore e un'app MCP.</p>
         <ol>
           <li><strong>Attivalo.</strong> In AI Summary Helper, apri Impostazioni → App IA (MCP) e attiva <em>Consenti alle app IA su questo computer di usare la mia libreria</em>.</li>
-          <li><strong>Ottieni il codice di abbinamento.</strong> In un terminale, esegui <code>npx -y aish-mcp pair</code>. Verrà mostrato un codice di abbinamento salvato nella tua cartella utente. Incolla il codice nel pannello delle impostazioni e seleziona Connetti.</li>
+          <li><strong>Ottieni il codice di abbinamento.</strong> In un terminale, esegui <code>npx -y kaivo-mcp pair</code>. Verrà mostrato un codice di abbinamento salvato nella tua cartella utente. Incolla il codice nel pannello delle impostazioni e seleziona Connetti.</li>
           <li><strong>Aggiungi AI Summary Helper alla tua app.</strong> Usa lo snippet corrispondente alla tua app qui sotto, poi chiudi completamente l'app e riaprila.</li>
           <li><strong>Verifica la connessione.</strong> Il pannello delle impostazioni mostra <em>Connesso</em> non appena l'app è in esecuzione. Fai una domanda alla tua app sulla tua libreria: ogni chiamata effettuata comparirà sotto Attività recente nel pannello.</li>
         </ol>
@@ -158,7 +158,7 @@
         <p>Settings → Developer → Edit Config, quindi aggiungi:</p>
 <pre><code>{
   "mcpServers": {
-    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
         <p>Se Claude Desktop non riesce a trovare <code>npx</code>, usa il percorso completo, che <code>which npx</code> mostra nel terminale (ad esempio <code>/opt/homebrew/bin/npx</code>).</p>
@@ -170,12 +170,12 @@
         <p>In <code>.vscode/mcp.json</code>:</p>
 <pre><code>{
   "servers": {
-    "aish": { "type": "stdio", "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "type": "stdio", "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
 
         <h3>LM Studio e altre app</h3>
-        <p>Le app con un'impostazione <code>mcpServers</code> (come <code>mcp.json</code>di LM Studio, Jan e quasi tutte le altre) accettano la stessa voce di Claude Desktop. Le app che si connettono solo via HTTP possono usare <code>npx -y aish-mcp --http</code> su <code>http://127.0.0.1:47616/</code>, con l'header <code>Authorization: Bearer &lt;il tuo codice di abbinamento&gt;</code>. Per un modello locale, scegline uno che supporti il tool calling, come Qwen 3 o Llama 3.1 e successivi.</p>
+        <p>Le app con un'impostazione <code>mcpServers</code> (come <code>mcp.json</code>di LM Studio, Jan e quasi tutte le altre) accettano la stessa voce di Claude Desktop. Le app che si connettono solo via HTTP possono usare <code>npx -y kaivo-mcp --http</code> su <code>http://127.0.0.1:47616/</code>, con l'header <code>Authorization: Bearer &lt;il tuo codice di abbinamento&gt;</code>. Per un modello locale, scegline uno che supporti il tool calling, come Qwen 3 o Llama 3.1 e successivi.</p>
 
         <h2>Cosa può fare la tua app</h2>
         <table>
@@ -200,7 +200,7 @@
           <li><strong>Gli articoli con il tag <code>private</code> non compaiono mai</strong>, in nessun risultato, conteggio o raccolta. Puoi scegliere un tag diverso nel pannello delle impostazioni.</li>
           <li><strong>Solo il tuo computer può connettersi.</strong> L'helper resta in ascolto solo su 127.0.0.1, quindi nessun altro dispositivo sulla tua rete può raggiungerlo. Nemmeno i siti web che visiti possono usarlo: accetta solo l'indirizzo dell'estensione AI Summary Helper e ogni connessione deve includere il tuo codice di abbinamento.</li>
           <li><strong>Puoi monitorare ogni chiamata.</strong> Il pannello delle impostazioni elenca le ultime 50 chiamate indicando il nome dello strumento e l'ora, mai il contenuto.</li>
-          <li><strong>Puoi interrompere il collegamento in qualsiasi momento.</strong> Disattiva la funzionalità o seleziona Disconnetti. Esegui <code>npx -y aish-mcp reset</code> per revocare la validità del vecchio codice di abbinamento.</li>
+          <li><strong>Puoi interrompere il collegamento in qualsiasi momento.</strong> Disattiva la funzionalità o seleziona Disconnetti. Esegui <code>npx -y kaivo-mcp reset</code> per revocare la validità del vecchio codice di abbinamento.</li>
           <li><strong>Le pagine salvate sono testo proveniente dal web.</strong> L'app riceve l'istruzione di considerarli come informazioni e non come comandi, ma una pagina salvata potrebbe comunque tentare di ingannare l'IA. Mantieni disattivato il permesso Salva link se non lo utilizzi.</li>
         </ul>
 
@@ -208,11 +208,11 @@
         <table>
           <thead><tr><th>Cosa vedi</th><th>Cosa fare</th></tr></thead>
           <tbody>
-            <tr><td>Il pannello mostra <em>Non connesso</em></td><td>La tua app IA non è in esecuzione o non è ancora configurata. Aprila oppure esegui <code>npx -y aish-mcp</code> in un terminale per testare la connessione.</td></tr>
+            <tr><td>Il pannello mostra <em>Non connesso</em></td><td>La tua app IA non è in esecuzione o non è ancora configurata. Aprila oppure esegui <code>npx -y kaivo-mcp</code> in un terminale per testare la connessione.</td></tr>
             <tr><td>La tua app non mostra gli strumenti di AI Summary Helper, oppure mancano quelli nuovi dopo un aggiornamento</td><td>Chiudi completamente l'app e riaprila. Alcune app leggono l'elenco degli strumenti solo all'avvio.</td></tr>
             <tr><td>«AISH is not running»</td><td>Il browser è chiuso o la funzionalità è disattivata. Apri il browser e controlla il pannello delle impostazioni.</td></tr>
             <tr><td>«Scope … is not enabled»</td><td>La tua app ha richiesto un elemento non autorizzato. Abilitalo nel pannello delle impostazioni se desideri usarlo.</td></tr>
-            <tr><td>Il pannello non si connette dopo aver incollato il codice</td><td>Esegui <code>npx -y aish-mcp pair</code> e incolla di nuovo il codice mostrato. Il codice cambia dopo un <code>reset</code>.</td></tr>
+            <tr><td>Il pannello non si connette dopo aver incollato il codice</td><td>Esegui <code>npx -y kaivo-mcp pair</code> e incolla di nuovo il codice mostrato. Il codice cambia dopo un <code>reset</code>.</td></tr>
           </tbody>
         </table>
         <p>Puoi eseguire più app IA contemporaneamente senza problemi: condividono una sola connessione.</p>

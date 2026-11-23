@@ -8068,5 +8068,11 @@
   },
   "f_look_0bb6": {
     "message": "スタイル"
+  },
+  "f_for_an_e_reader_with_koreade_f036": {
+    "message": "KOReader 搭載の電子書籍リーダーの場合：kaivo-library.txt をホームフォルダにコピーし、Tools → AISH library → Connect with a code を選びます。ファイルにはログイン情報が含まれるため、後でこのコンピューターから削除してください。"
+  },
+  "f_pair_kaivo_mcp_3b54": {
+    "message": "kaivo-mcp をペアリング"
   }
 }

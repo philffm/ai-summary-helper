@@ -8351,5 +8351,11 @@
   },
   "f_look_0bb6": {
     "message": "Gaya"
+  },
+  "f_for_an_e_reader_with_koreade_f036": {
+    "message": "Untuk e-reader dengan KOReader: salin kaivo-library.txt ke folder beranda-nya, lalu Tools → AISH library → Connect with a code. File ini berisi data login Anda: hapus dari komputer ini setelahnya."
+  },
+  "f_pair_kaivo_mcp_3b54": {
+    "message": "Pasangkan kaivo-mcp"
   }
 }

@@ -8351,5 +8351,11 @@
   },
   "f_look_0bb6": {
     "message": "Stil"
+  },
+  "f_for_an_e_reader_with_koreade_f036": {
+    "message": "För en läsplatta med KOReader: kopiera kaivo-library.txt till dess hemmapp och välj sedan Tools → AISH library → Connect with a code. Filen innehåller din inloggning: radera den från den här datorn efteråt."
+  },
+  "f_pair_kaivo_mcp_3b54": {
+    "message": "Parkoppla kaivo-mcp"
   }
 }

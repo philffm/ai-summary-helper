@@ -525,7 +525,7 @@ Summaries go only to the AI provider you configure (or fully local with Ollama).
 
 2024 Phil Wornath. Versions after 2.2.38: [AGPL-3.0](LICENSE), or a [commercial license](COMMERCIAL-LICENSE.md) for uses the AGPL does not allow. Versions up to 2.2.38: [MIT](LICENSE-MIT).
 
-The MCP relay in [`mcp/`](mcp) (`aish-mcp` on npm) is [MIT](mcp/LICENSE), so any app can bundle the connector; it is useless without the extension, which stays AGPL.
+The MCP relay in [`mcp/`](mcp) (`kaivo-mcp` on npm) is [MIT](mcp/LICENSE), so any app can bundle the connector; it is useless without the extension, which stays AGPL.
 
 ## Third-Party Libraries
 

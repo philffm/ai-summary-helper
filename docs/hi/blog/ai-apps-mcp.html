@@ -131,7 +131,7 @@
             <figcaption>Video: अपने AI app से अपनी रीडिंग के बारे में पूछें, quotes, क्या due है और yearly wrapped के साथ।</figcaption>
           <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:27</p><ul><li>Your AI app has never read what you read.</li><li>Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights.</li><li>Ask what is due, let it save the best from your feeds, or ask for your year, wrapped.</li><li>Nothing goes through our server, and you choose what they may read.</li></ul></div></div>
         </figure>
-        <p>यह डिफ़ॉल्ट रूप से बंद रहता है। इसमें हमारे सर्वर का कोई रोल नहीं है: extension और app आपके कंप्यूटर पर मौजूद एक छोटे helper program के ज़रिए एक-दूसरे से बात करते हैं, <code>aish-mcp</code>, जो कोई article स्टोर नहीं करता और कहीं भी कुछ फ़ॉरवर्ड नहीं करता।</p>
+        <p>यह डिफ़ॉल्ट रूप से बंद रहता है। इसमें हमारे सर्वर का कोई रोल नहीं है: extension और app आपके कंप्यूटर पर मौजूद एक छोटे helper program के ज़रिए एक-दूसरे से बात करते हैं, <code>kaivo-mcp</code>, जो कोई article स्टोर नहीं करता और कहीं भी कुछ फ़ॉरवर्ड नहीं करता।</p>
 
         <h2>आप क्या पूछ सकते हैं</h2>
         <ul>
@@ -149,7 +149,7 @@
         <p>आपको Chrome, Edge या Brave में AI Summary Helper की ज़रूरत होगी, <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 20 या नया वर्शन, और एक MCP app।</p>
         <ol>
           <li><strong>इसे चालू करें।</strong> AI Summary Helper में, Settings → AI apps (MCP) खोलें और इसे ऑन करें <em>Let AI apps on this computer use my library</em>पर।</li>
-          <li><strong>अपना pairing code प्राप्त करें।</strong> टर्मिनल में रन करें <code>npx -y aish-mcp pair</code>। यह एक pairing code प्रिंट करता है और इसे आपके user folder में स्टोर करता है। कोड को settings panel में पेस्ट करें और Connect चुनें।</li>
+          <li><strong>अपना pairing code प्राप्त करें।</strong> टर्मिनल में रन करें <code>npx -y kaivo-mcp pair</code>। यह एक pairing code प्रिंट करता है और इसे आपके user folder में स्टोर करता है। कोड को settings panel में पेस्ट करें और Connect चुनें।</li>
           <li><strong>अपने app में AI Summary Helper जोड़ें।</strong> नीचे अपने app के लिए snippet का इस्तेमाल करें, फिर app को पूरी तरह से quit करें और दोबारा खोलें।</li>
           <li><strong>कनेक्शन चेक करें।</strong> जब आपका app रन हो रहा होगा, तो settings panel दिखाएगा <em>Connected</em> । अपने app से अपनी library के बारे में कुछ पूछें: इसके द्वारा की जाने वाली हर कॉल panel में Recent activity के तहत दिखाई देती है।</li>
         </ol>
@@ -158,7 +158,7 @@
         <p>Settings → Developer → Edit Config, फिर जोड़ें:</p>
 <pre><code>{
   "mcpServers": {
-    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
         <p>अगर Claude Desktop को नहीं मिलता <code>npx</code>, तो इसके full path का इस्तेमाल करें, जिसे <code>which npx</code> टर्मिनल में प्रिंट करता है (उदाहरण के लिए <code>/opt/homebrew/bin/npx</code>)।</p>
@@ -170,12 +170,12 @@
         <p>में <code>.vscode/mcp.json</code>:</p>
 <pre><code>{
   "servers": {
-    "aish": { "type": "stdio", "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "type": "stdio", "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
 
         <h3>LM Studio और अन्य apps</h3>
-        <p>जिन apps में <code>mcpServers</code> सेटिंग होती है (LM Studio का <code>mcp.json</code>, Jan, और बाकी ज़्यादातर) उनमें Claude Desktop जैसी ही एंट्री होती है। केवल HTTP पर कनेक्ट होने वाले apps इस्तेमाल कर सकते हैं <code>npx -y aish-mcp --http</code> पर <code>http://127.0.0.1:47616/</code>, हेडर के साथ <code>Authorization: Bearer &lt;your pairing code&gt;</code>। Local model के लिए, ऐसा मॉडल चुनें जो tool calling सपोर्ट करता हो, जैसे Qwen 3 या Llama 3.1 और नए।</p>
+        <p>जिन apps में <code>mcpServers</code> सेटिंग होती है (LM Studio का <code>mcp.json</code>, Jan, और बाकी ज़्यादातर) उनमें Claude Desktop जैसी ही एंट्री होती है। केवल HTTP पर कनेक्ट होने वाले apps इस्तेमाल कर सकते हैं <code>npx -y kaivo-mcp --http</code> पर <code>http://127.0.0.1:47616/</code>, हेडर के साथ <code>Authorization: Bearer &lt;your pairing code&gt;</code>। Local model के लिए, ऐसा मॉडल चुनें जो tool calling सपोर्ट करता हो, जैसे Qwen 3 या Llama 3.1 और नए।</p>
 
         <h2>आपका app क्या कर सकता है</h2>
         <table>
@@ -200,7 +200,7 @@
           <li><strong>जिन आर्टिकल्स को आप टैग करते हैं <code>private</code> कभी नहीं दिखते</strong>, किसी भी रिजल्ट, काउंट या collection में नहीं दिखते। आप settings panel में दूसरा टैग चुन सकते हैं।</li>
           <li><strong>केवल आपका कंप्यूटर ही कनेक्ट हो सकता है।</strong> Helper सिर्फ़ 127.0.0.1 पर सुनता है, इसलिए आपके नेटवर्क पर कोई अन्य डिवाइस इस तक नहीं पहुँच सकता। आपके द्वारा विज़िट की जाने वाली वेबसाइटें भी इसका उपयोग नहीं कर सकतीं: यह केवल AI Summary Helper के अपने extension address को स्वीकार करता है, और प्रत्येक कनेक्शन में आपका pairing code होना ज़रूरी है।</li>
           <li><strong>आप हर कॉल देख सकते हैं।</strong> Settings panel टूल के नाम और समय के साथ अंतिम 50 कॉल्स की लिस्ट दिखाता है, कॉन्टेंट कभी नहीं।</li>
-          <li><strong>आप इसे कभी भी डिस्कनेक्ट कर सकते हैं।</strong> फ़ीचर को स्विच ऑफ करें या Disconnect चुनें। पुराने pairing code को काम करने से रोकने के लिए रन करें <code>npx -y aish-mcp reset</code> ।</li>
+          <li><strong>आप इसे कभी भी डिस्कनेक्ट कर सकते हैं।</strong> फ़ीचर को स्विच ऑफ करें या Disconnect चुनें। पुराने pairing code को काम करने से रोकने के लिए रन करें <code>npx -y kaivo-mcp reset</code> ।</li>
           <li><strong>सेव किए गए पेज वेब से लिया गया टेक्स्ट हैं।</strong> आपके app को निर्देश दिया जाता है कि वह इन्हें जानकारी के रूप में ले, निर्देशों के रूप में नहीं, लेकिन फिर भी सेव किया गया कोई पेज AI को गुमराह करने की कोशिश कर सकता है। जब तक ज़रूरत न हो, Save links की परमिशन बंद रखें।</li>
         </ul>
 
@@ -208,11 +208,11 @@
         <table>
           <thead><tr><th>क्या दिख रहा है</th><th>क्या करें</th></tr></thead>
           <tbody>
-            <tr><td>Panel कहता है <em>Not connected</em></td><td>आपका AI app रन नहीं हो रहा है, या अभी तक सेटअप नहीं हुआ है। इसे खोलें, या कनेक्शन टेस्ट करने के लिए टर्मिनल में रन करें <code>npx -y aish-mcp</code> ।</td></tr>
+            <tr><td>Panel कहता है <em>Not connected</em></td><td>आपका AI app रन नहीं हो रहा है, या अभी तक सेटअप नहीं हुआ है। इसे खोलें, या कनेक्शन टेस्ट करने के लिए टर्मिनल में रन करें <code>npx -y kaivo-mcp</code> ।</td></tr>
             <tr><td>आपका app AI Summary Helper के कोई टूल्स नहीं दिखाता, या अपडेट के बाद नए टूल्स मिस करता है</td><td>App को पूरी तरह से quit करें और दोबारा खोलें। कुछ apps केवल स्टार्ट होते समय ही टूल लिस्ट पढ़ते हैं।</td></tr>
             <tr><td>“AISH is not running”</td><td>आपका ब्राउज़र बंद है, या फ़ीचर ऑफ़ है। ब्राउज़र खोलें और settings panel चेक करें।</td></tr>
             <tr><td>“Scope … is not enabled”</td><td>आपके app ने कुछ ऐसा मांगा जिसकी आपने अनुमति नहीं दी है। अगर आप चाहें तो settings panel में इसे ऑन करें।</td></tr>
-            <tr><td>कोड पेस्ट करने के बाद भी panel कभी कनेक्ट नहीं होता</td><td>रन करें <code>npx -y aish-mcp pair</code> और जो कोड प्रिंट हो उसे फिर से पेस्ट करें। यह इसके बाद बदल जाता है <code>reset</code>पर।</td></tr>
+            <tr><td>कोड पेस्ट करने के बाद भी panel कभी कनेक्ट नहीं होता</td><td>रन करें <code>npx -y kaivo-mcp pair</code> और जो कोड प्रिंट हो उसे फिर से पेस्ट करें। यह इसके बाद बदल जाता है <code>reset</code>पर।</td></tr>
           </tbody>
         </table>
         <p>एक साथ कई AI apps रन करना बिल्कुल ठीक है: वे एक ही कनेक्शन शेयर करते हैं।</p>

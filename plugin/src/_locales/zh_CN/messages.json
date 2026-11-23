@@ -8068,5 +8068,11 @@
   },
   "f_look_0bb6": {
     "message": "风格"
+  },
+  "f_for_an_e_reader_with_koreade_f036": {
+    "message": "用于装有 KOReader 的电子阅读器：将 kaivo-library.txt 复制到其主文件夹，然后选择 Tools → AISH library → Connect with a code。该文件包含你的登录信息：之后请从这台电脑上删除。"
+  },
+  "f_pair_kaivo_mcp_3b54": {
+    "message": "配对 kaivo-mcp"
   }
 }

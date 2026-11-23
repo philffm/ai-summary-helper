@@ -1,4 +1,4 @@
-// mcp/src/follower.js — a copy of aish-mcp that found the port already owned by another copy.
+// mcp/src/follower.js — a copy of kaivo-mcp that found the port already owned by another copy.
 // It joins that copy as a peer and forwards its calls through it (see relayServer.js).
 import WebSocket from 'ws';
 import { PROTOCOL_VERSION, NOT_RUNNING } from './relayServer.js';

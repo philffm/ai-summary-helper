@@ -67,13 +67,13 @@ const serverOf = (c) => ({ name: c.name, url: c.url || '', username: c.username 
 // ── tiny DOM helpers ──
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
 function button(label, cls, onClick) { const b = el('button', cls, label); b.type = 'button'; b.addEventListener('click', onClick); return b; }
-/** An e-reader cannot scan the code: KOReader's AISH plugin reads it from a file named aish-library.txt in its home folder. */
+/** An e-reader cannot scan the code: KOReader's AISH plugin reads it from a file named kaivo-library.txt in its home folder. */
 function readerCodeRow(code) {
     const save = button(T('Save code as file (KOReader)'), 'button-secondary btn-sm', () => {
-        const a = el('a'); a.href = URL.createObjectURL(new Blob([code + '\n'], { type: 'text/plain' })); a.download = 'aish-library.txt';
+        const a = el('a'); a.href = URL.createObjectURL(new Blob([code + '\n'], { type: 'text/plain' })); a.download = 'kaivo-library.txt';
         document.body.append(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
     });
-    return [save, hint(T('For an e-reader with KOReader: copy aish-library.txt into its home folder, then Tools → AISH library → Connect with a code. The file holds your login: delete it from this computer afterwards.'))];
+    return [save, hint(T('For an e-reader with KOReader: copy kaivo-library.txt into its home folder, then Tools → AISH library → Connect with a code. The file holds your login: delete it from this computer afterwards.'))];
 }
 function chip(label, cls = '') { return el('span', 'mcp-chip ' + cls, label); }
 function hint(text) { return el('p', 'mcp-row-hint', text); }

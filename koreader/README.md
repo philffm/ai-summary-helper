@@ -64,7 +64,7 @@ nothing is typed on the reader. Then it asks once for the passphrase of the libr
 Other ways:
 
 - **Connect with a code**: in the extension, **Settings → Sync & backup →** your *encrypted* place **→ Show code for the
-  phone → Save code as file (KOReader)**. Copy `aish-library.txt` into KOReader's home folder (over USB) and choose
+  phone → Save code as file (KOReader)**. Copy `kaivo-library.txt` (`aish-library.txt` from an older extension works too) into KOReader's home folder (over USB) and choose
   *Connect with a code*; the file is deleted after reading (it holds your login), delete it from the computer too.
   On KOReader for Android the code can also be pasted.
 - **Connect manually**: WebDAV address (Nextcloud: `https://host/remote.php/dav/files/<user>/`), user, app password, folder.

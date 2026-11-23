@@ -1,6 +1,6 @@
 // modules/mcpView.js — Settings → "AI apps (MCP)" (see claude/prd-local-mcp.md §4.5; design: Figma "AI apps (MCP) · 3 variants").
 // Two states once the feature is on:
-//   not connected → guided setup: 1 turned on · 2 pair aish-mcp · 3 add AISH to your app, plus "Waiting for your app…"
+//   not connected → guided setup: 1 turned on · 2 pair kaivo-mcp · 3 add AISH to your app, plus "Waiting for your app…"
 //   connected     → status card (calls today, last call, tools) with Replace code and Disconnect
 // Below both: what apps may do (library always on, three switches, exclude tag) and the recent activity.
 // The background worker (modules/mcp/client.js) owns the socket; this file only reads/writes settings and polls status.
@@ -16,14 +16,14 @@ const setL = (obj) => new Promise((r) => local().set(obj, r));
 const removeL = (keys) => new Promise((r) => local().remove(keys, r));
 
 const GUIDE_URL = 'https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html';
-const PAIR_COMMAND = 'npx -y aish-mcp pair';
+const PAIR_COMMAND = 'npx -y kaivo-mcp pair';
 const DEFAULT_SCOPES = { library: true, fulltext: false, feeds: false, write: false };
-const SERVER = { command: 'npx', args: ['-y', 'aish-mcp'] };
+const SERVER = { command: 'npx', args: ['-y', 'kaivo-mcp'] };
 const APPS = () => ([
-    { id: 'claude', name: 'Claude Desktop', config: { mcpServers: { aish: SERVER } }, hint: T('In Claude Desktop: Settings → Developer → Edit Config. Paste this, then quit Claude Desktop and open it again.') },
-    { id: 'lmstudio', name: 'LM Studio', config: { mcpServers: { aish: SERVER } }, hint: T('Add this to LM Studio\'s mcp.json, then restart LM Studio.') },
-    { id: 'cursor', name: 'Cursor', config: { mcpServers: { aish: SERVER } }, hint: T('Add this to ~/.cursor/mcp.json, then restart Cursor.') },
-    { id: 'vscode', name: 'VS Code', config: { servers: { aish: { type: 'stdio', ...SERVER } } }, hint: T('Add this to .vscode/mcp.json in your project.') },
+    { id: 'claude', name: 'Claude Desktop', config: { mcpServers: { kaivo: SERVER } }, hint: T('In Claude Desktop: Settings → Developer → Edit Config. Paste this, then quit Claude Desktop and open it again.') },
+    { id: 'lmstudio', name: 'LM Studio', config: { mcpServers: { kaivo: SERVER } }, hint: T('Add this to LM Studio\'s mcp.json, then restart LM Studio.') },
+    { id: 'cursor', name: 'Cursor', config: { mcpServers: { kaivo: SERVER } }, hint: T('Add this to ~/.cursor/mcp.json, then restart Cursor.') },
+    { id: 'vscode', name: 'VS Code', config: { servers: { kaivo: { type: 'stdio', ...SERVER } } }, hint: T('Add this to .vscode/mcp.json in your project.') },
 ]);
 const SCOPES = () => ([
     ['fulltext', 'file-text', T('Full article text'), T('Whole saved text')],
@@ -175,7 +175,7 @@ function setupSteps(paired) {
     s1.append(el('p', 'mcp-row-hint', T('Your library stays private until you pair an app.')));
     out.push(s1);
 
-    const s2 = step(2, T('Pair aish-mcp'), paired ? 'done' : 'now', paired);
+    const s2 = step(2, T('Pair kaivo-mcp'), paired ? 'done' : 'now', paired);
     if (paired && !replacing) {
         const line = el('div', 'mcp-inline');
         line.append(el('span', 'mcp-row-hint', T('Pairing code saved.')), button(T('Replace code'), 'mcp-link-button', () => { replacing = true; render(); setTimeout(() => $('mcpPairingInput')?.focus(), 0); }));

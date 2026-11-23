@@ -131,7 +131,7 @@
             <figcaption>Video: tanyakan aplikasi AI Anda tentang bacaan Anda, lengkap dengan kutipan, tenggat baca, dan rangkuman tahunan.</figcaption>
           <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:27</p><ul><li>Your AI app has never read what you read.</li><li>Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights.</li><li>Ask what is due, let it save the best from your feeds, or ask for your year, wrapped.</li><li>Nothing goes through our server, and you choose what they may read.</li></ul></div></div>
         </figure>
-        <p>Fitur ini dinonaktifkan secara default. Tidak ada yang melibatkan server kami: ekstensi dan aplikasi saling berkomunikasi melalui program helper kecil di komputer Anda, <code>aish-mcp</code>, yang tidak menyimpan artikel apa pun dan tidak meneruskan data ke tempat lain.</p>
+        <p>Fitur ini dinonaktifkan secara default. Tidak ada yang melibatkan server kami: ekstensi dan aplikasi saling berkomunikasi melalui program helper kecil di komputer Anda, <code>kaivo-mcp</code>, yang tidak menyimpan artikel apa pun dan tidak meneruskan data ke tempat lain.</p>
 
         <h2>Pertanyaan yang bisa Anda ajukan</h2>
         <ul>
@@ -149,7 +149,7 @@
         <p>Anda memerlukan AI Summary Helper di Chrome, Edge, atau Brave, <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 20 atau yang lebih baru, dan sebuah aplikasi MCP.</p>
         <ol>
           <li><strong>Aktifkan fiturnya.</strong> Di AI Summary Helper, buka Pengaturan → Aplikasi AI (MCP) dan aktifkan <em>Izinkan aplikasi AI di komputer ini menggunakan library saya</em>.</li>
-          <li><strong>Dapatkan kode penyandingan Anda.</strong> Di terminal, jalankan <code>npx -y aish-mcp pair</code>. Perintah ini akan menampilkan kode penyandingan (pairing code) dan menyimpannya di folder pengguna Anda. Tempel kode tersebut ke panel pengaturan dan pilih Sambungkan.</li>
+          <li><strong>Dapatkan kode penyandingan Anda.</strong> Di terminal, jalankan <code>npx -y kaivo-mcp pair</code>. Perintah ini akan menampilkan kode penyandingan (pairing code) dan menyimpannya di folder pengguna Anda. Tempel kode tersebut ke panel pengaturan dan pilih Sambungkan.</li>
           <li><strong>Tambahkan AI Summary Helper ke aplikasi Anda.</strong> Gunakan cuplikan kode untuk aplikasi Anda di bawah ini, lalu tutup aplikasi sepenuhnya dan buka kembali.</li>
           <li><strong>Periksa koneksi.</strong> Panel pengaturan akan menampilkan status <em>Tersambung</em> setelah aplikasi Anda berjalan. Tanyakan sesuatu ke aplikasi AI Anda tentang library Anda: setiap panggilan yang dilakukan akan muncul di bagian Aktivitas terbaru pada panel.</li>
         </ol>
@@ -158,7 +158,7 @@
         <p>Settings → Developer → Edit Config, lalu tambahkan:</p>
 <pre><code>{
   "mcpServers": {
-    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
         <p>Jika Claude Desktop tidak dapat menemukan <code>npx</code>, gunakan path lengkapnya, yang dapat dilihat dengan <code>which npx</code> di terminal (misalnya <code>/opt/homebrew/bin/npx</code>).</p>
@@ -170,12 +170,12 @@
         <p>Di <code>.vscode/mcp.json</code>:</p>
 <pre><code>{
   "servers": {
-    "aish": { "type": "stdio", "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "type": "stdio", "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
 
         <h3>LM Studio dan aplikasi lainnya</h3>
-        <p>Aplikasi dengan pengaturan <code>mcpServers</code> (milik LM Studio berupa <code>mcp.json</code>, Jan, dan sebagian besar lainnya) menggunakan entri yang sama seperti Claude Desktop. Aplikasi yang hanya terhubung melalui HTTP dapat menggunakan <code>npx -y aish-mcp --http</code> di <code>http://127.0.0.1:47616/</code>, dengan header <code>Authorization: Bearer &lt;your pairing code&gt;</code>. Untuk model lokal, pilih model yang mendukung tool calling, seperti Qwen 3 atau Llama 3.1 dan yang lebih baru.</p>
+        <p>Aplikasi dengan pengaturan <code>mcpServers</code> (milik LM Studio berupa <code>mcp.json</code>, Jan, dan sebagian besar lainnya) menggunakan entri yang sama seperti Claude Desktop. Aplikasi yang hanya terhubung melalui HTTP dapat menggunakan <code>npx -y kaivo-mcp --http</code> di <code>http://127.0.0.1:47616/</code>, dengan header <code>Authorization: Bearer &lt;your pairing code&gt;</code>. Untuk model lokal, pilih model yang mendukung tool calling, seperti Qwen 3 atau Llama 3.1 dan yang lebih baru.</p>
 
         <h2>Kemampuan yang didukung aplikasi Anda</h2>
         <table>
@@ -200,7 +200,7 @@
           <li><strong>Artikel yang Anda beri tag <code>private</code> tidak akan pernah muncul</strong>, di hasil, hitungan, maupun koleksi apa pun. Anda dapat memilih tag yang berbeda di panel pengaturan.</li>
           <li><strong>Hanya komputer Anda yang dapat terhubung.</strong> Program helper hanya mendengarkan di 127.0.0.1, sehingga tidak ada perangkat lain di jaringan Anda yang dapat mengaksesnya. Situs web yang Anda kunjungi juga tidak dapat menggunakannya: program ini hanya menerima alamat ekstensi AI Summary Helper sendiri, dan setiap koneksi wajib menyertakan kode penyandingan Anda.</li>
           <li><strong>Anda dapat memantau setiap panggilan.</strong> Panel pengaturan mencantumkan 50 panggilan terakhir beserta nama tool dan waktunya, tanpa pernah menampilkan kontennya.</li>
-          <li><strong>Anda dapat memutus koneksi kapan saja.</strong> Nonaktifkan fitur ini atau pilih Putuskan sambungan. Jalankan <code>npx -y aish-mcp reset</code> agar kode penyandingan lama tidak dapat digunakan lagi.</li>
+          <li><strong>Anda dapat memutus koneksi kapan saja.</strong> Nonaktifkan fitur ini atau pilih Putuskan sambungan. Jalankan <code>npx -y kaivo-mcp reset</code> agar kode penyandingan lama tidak dapat digunakan lagi.</li>
           <li><strong>Halaman tersimpan adalah teks dari web.</strong> Aplikasi Anda diinstruksikan untuk memperlakukannya sebagai informasi, bukan sebagai instruksi, tetapi halaman yang disimpan tetap berpotensi mengecoh AI. Biarkan izin Simpan tautan dinonaktifkan kecuali Anda memang memerlukannya.</li>
         </ul>
 
@@ -208,11 +208,11 @@
         <table>
           <thead><tr><th>Pesan yang muncul</th><th>Solusi</th></tr></thead>
           <tbody>
-            <tr><td>Panel menampilkan status <em>Tidak tersambung</em></td><td>Aplikasi AI Anda belum berjalan atau belum dikonfigurasi. Buka aplikasi tersebut, atau jalankan <code>npx -y aish-mcp</code> di terminal untuk menguji koneksi.</td></tr>
+            <tr><td>Panel menampilkan status <em>Tidak tersambung</em></td><td>Aplikasi AI Anda belum berjalan atau belum dikonfigurasi. Buka aplikasi tersebut, atau jalankan <code>npx -y kaivo-mcp</code> di terminal untuk menguji koneksi.</td></tr>
             <tr><td>Aplikasi Anda tidak menampilkan tool AI Summary Helper, atau tool baru tidak muncul setelah pembaruan</td><td>Tutup aplikasi sepenuhnya dan buka kembali. Sebagian aplikasi hanya membaca daftar tool saat pertama kali dimulai.</td></tr>
             <tr><td>“AISH is not running”</td><td>Browser Anda tertutup, atau fitur ini dinonaktifkan. Buka browser dan periksa panel pengaturan.</td></tr>
             <tr><td>“Scope … is not enabled”</td><td>Aplikasi Anda meminta akses ke hal yang belum diizinkan. Aktifkan izin tersebut di panel pengaturan jika Anda menginginkannya.</td></tr>
-            <tr><td>Panel tidak kunjung tersambung setelah Anda menempelkan kode</td><td>Jalankan <code>npx -y aish-mcp pair</code> dan tempel kembali kode yang ditampilkan. Kode akan berubah setelah <code>reset</code>.</td></tr>
+            <tr><td>Panel tidak kunjung tersambung setelah Anda menempelkan kode</td><td>Jalankan <code>npx -y kaivo-mcp pair</code> dan tempel kembali kode yang ditampilkan. Kode akan berubah setelah <code>reset</code>.</td></tr>
           </tbody>
         </table>
         <p>Menjalankan beberapa aplikasi AI sekaligus tidak masalah: semuanya berbagi satu koneksi yang sama.</p>

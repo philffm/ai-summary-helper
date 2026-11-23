@@ -8068,5 +8068,11 @@
   },
   "f_look_0bb6": {
     "message": "Стиль"
+  },
+  "f_for_an_e_reader_with_koreade_f036": {
+    "message": "Для электронной книги с KOReader: скопируйте kaivo-library.txt в её домашнюю папку, затем Tools → AISH library → Connect with a code. Файл содержит ваши данные для входа: потом удалите его с этого компьютера."
+  },
+  "f_pair_kaivo_mcp_3b54": {
+    "message": "Подключите kaivo-mcp"
   }
 }

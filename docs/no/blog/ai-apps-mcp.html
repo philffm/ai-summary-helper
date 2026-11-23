@@ -131,7 +131,7 @@
             <figcaption>Video: spør AI-appen din om det du har lest, med sitater, hva som forfaller og et årsresymé.</figcaption>
           <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:27</p><ul><li>Your AI app has never read what you read.</li><li>Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights.</li><li>Ask what is due, let it save the best from your feeds, or ask for your year, wrapped.</li><li>Nothing goes through our server, and you choose what they may read.</li></ul></div></div>
         </figure>
-        <p>Funksjonen er slått av som standard. Ingenting involverer serveren vår: utvidelsen og appen snakker sammen via et lite hjelpeprogram på datamaskinen din, <code>aish-mcp</code>, som verken lagrer artikler eller videresender noe noe annet sted.</p>
+        <p>Funksjonen er slått av som standard. Ingenting involverer serveren vår: utvidelsen og appen snakker sammen via et lite hjelpeprogram på datamaskinen din, <code>kaivo-mcp</code>, som verken lagrer artikler eller videresender noe noe annet sted.</p>
 
         <h2>Hva du kan spørre om</h2>
         <ul>
@@ -149,7 +149,7 @@
         <p>Du trenger AI Summary Helper i Chrome, Edge eller Brave, <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 20 eller nyere, og en MCP-app.</p>
         <ol>
           <li><strong>Slå det på.</strong> I AI Summary Helper åpner du Innstillinger → AI-apper (MCP) og slår på <em>La AI-apper på denne datamaskinen bruke biblioteket mitt</em>.</li>
-          <li><strong>Hent parkoblingskoden din.</strong> I en terminal kjører du <code>npx -y aish-mcp pair</code>. Den viser en parkoblingskode og lagrer den i brukermappen din. Lim koden inn i innstillingspanelet og velg Koble til.</li>
+          <li><strong>Hent parkoblingskoden din.</strong> I en terminal kjører du <code>npx -y kaivo-mcp pair</code>. Den viser en parkoblingskode og lagrer den i brukermappen din. Lim koden inn i innstillingspanelet og velg Koble til.</li>
           <li><strong>Legg til AI Summary Helper i appen din.</strong> Bruk kodesnutten for appen din nedenfor, avslutt appen helt og åpne den på nytt.</li>
           <li><strong>Sjekk tilkoblingen.</strong> Innstillingspanelet viser <em>Tilkoblet</em> så snart appen din kjører. Still appen din et spørsmål om biblioteket: hvert kall den gjør vises under Nylig aktivitet i panelet.</li>
         </ol>
@@ -158,7 +158,7 @@
         <p>Innstillinger → Developer → Edit Config, og legg til:</p>
 <pre><code>{
   "mcpServers": {
-    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
         <p>Hvis Claude Desktop ikke finner <code>npx</code>, bruker du hele filbanen, som <code>which npx</code> viser i en terminal (for eksempel <code>/opt/homebrew/bin/npx</code>).</p>
@@ -170,12 +170,12 @@
         <p>I <code>.vscode/mcp.json</code>:</p>
 <pre><code>{
   "servers": {
-    "aish": { "type": "stdio", "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "type": "stdio", "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
 
         <h3>LM Studio og andre apper</h3>
-        <p>Apper med en <code>mcpServers</code> -innstilling (LM Studios <code>mcp.json</code>, Jan og de fleste andre) bruker samme oppføring som Claude Desktop. Apper som bare kobler til over HTTP, kan bruke <code>npx -y aish-mcp --http</code> på <code>http://127.0.0.1:47616/</code>, med headeren <code>Authorization: Bearer &lt;your pairing code&gt;</code>. For en lokal modell bør du velge en som støtter funksjonskall (tool calling), som for eksempel Qwen 3 eller Llama 3.1 og nyere.</p>
+        <p>Apper med en <code>mcpServers</code> -innstilling (LM Studios <code>mcp.json</code>, Jan og de fleste andre) bruker samme oppføring som Claude Desktop. Apper som bare kobler til over HTTP, kan bruke <code>npx -y kaivo-mcp --http</code> på <code>http://127.0.0.1:47616/</code>, med headeren <code>Authorization: Bearer &lt;your pairing code&gt;</code>. For en lokal modell bør du velge en som støtter funksjonskall (tool calling), som for eksempel Qwen 3 eller Llama 3.1 og nyere.</p>
 
         <h2>Hva appen din kan gjøre</h2>
         <table>
@@ -200,7 +200,7 @@
           <li><strong>Artikler du merker med <code>private</code> vises aldri</strong>, i resultater, tellinger eller samlinger. Du kan velge en annen tagg i innstillingspanelet.</li>
           <li><strong>Bare datamaskinen din kan koble til.</strong> Hjelpeprogrammet lytter kun på 127.0.0.1, så ingenting annet på nettverket ditt kan nå det. Nettsider du besøker kan heller ikke bruke det: det godtar bare AI Summary Helpers egen utvidelsesadresse, og hver tilkobling må inneholde parkoblingskoden din.</li>
           <li><strong>Du kan se hvert eneste kall.</strong> Innstillingspanelet lister opp de siste 50 kallene med verktøynavn og tidspunkt – aldri innholdet.</li>
-          <li><strong>Du kan bryte forbindelsen når som helst.</strong> Slå av funksjonen eller velg Koble fra. Kjør <code>npx -y aish-mcp reset</code> for å ugyldiggjøre den gamle parkoblingskoden.</li>
+          <li><strong>Du kan bryte forbindelsen når som helst.</strong> Slå av funksjonen eller velg Koble fra. Kjør <code>npx -y kaivo-mcp reset</code> for å ugyldiggjøre den gamle parkoblingskoden.</li>
           <li><strong>Lagrede sider er tekst fra nettet.</strong> Appen din blir instruert om å behandle dem som informasjon, ikke som instruksjoner, men en lagret side kan likevel forsøke å villede en AI. La tillatelsen for «Lagre lenker» være slått av med mindre du trenger den.</li>
         </ul>
 
@@ -208,11 +208,11 @@
         <table>
           <thead><tr><th>Du ser</th><th>Dette gjør du</th></tr></thead>
           <tbody>
-            <tr><td>Panelet viser <em>Ikke tilkoblet</em></td><td>AI-appen din kjører ikke, eller er ikke satt opp ennå. Åpne den, eller kjør <code>npx -y aish-mcp</code> i en terminal for å teste tilkoblingen.</td></tr>
+            <tr><td>Panelet viser <em>Ikke tilkoblet</em></td><td>AI-appen din kjører ikke, eller er ikke satt opp ennå. Åpne den, eller kjør <code>npx -y kaivo-mcp</code> i en terminal for å teste tilkoblingen.</td></tr>
             <tr><td>Appen din viser ingen AI Summary Helper-verktøy, eller mangler nye etter en oppdatering</td><td>Avslutt appen helt og åpne den på nytt. Enkelte apper leser bare verktøylisten ved oppstart.</td></tr>
             <tr><td>«AISH is not running»</td><td>Nettleseren din er lukket, eller funksjonen er slått av. Åpne nettleseren og sjekk innstillingspanelet.</td></tr>
             <tr><td>«Scope … is not enabled»</td><td>Appen din ba om noe du ikke har gitt tillatelse til. Slå det på i innstillingspanelet hvis du vil tillate det.</td></tr>
-            <tr><td>Panelet kobler seg aldri til etter at du har limt inn koden</td><td>Kjør <code>npx -y aish-mcp pair</code> og lim inn koden den viser på nytt. Den endres etter <code>reset</code>.</td></tr>
+            <tr><td>Panelet kobler seg aldri til etter at du har limt inn koden</td><td>Kjør <code>npx -y kaivo-mcp pair</code> og lim inn koden den viser på nytt. Den endres etter <code>reset</code>.</td></tr>
           </tbody>
         </table>
         <p>Det går helt fint å kjøre flere AI-apper samtidig: de deler én tilkobling.</p>

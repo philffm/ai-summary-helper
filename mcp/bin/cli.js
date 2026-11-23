@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// aish-mcp — local relay between your AISH library (in the browser extension) and any
+// kaivo-mcp — local relay between your Kaivo library (in the browser extension) and any
 // MCP-capable app on this computer. See ../README.md for setup, and
 // claude/prd-local-mcp.md in the ai-summary-helper repo for the design.
 import { ensureToken, resetToken, currentToken, configDir } from '../src/pairing.js';
@@ -23,17 +23,17 @@ const HTTP_PORT = Number(value('--http-port', RELAY_PORT + 1));
 
 function printPairingCode(token) {
     console.error('');
-    console.error('  AISH pairing code (paste into AISH → Settings → AI apps):');
+    console.error('  Kaivo pairing code (paste into Kaivo → Settings → AI apps):');
     console.error('');
     console.error(`    ${token}`);
     console.error('');
-    console.error(`  Stored in ${configDir()}. Run "aish-mcp reset" to generate a new one.`);
+    console.error(`  Stored in ${configDir()}. Run "kaivo-mcp reset" to generate a new one.`);
     console.error('');
 }
 
 async function runServer() {
     const { token } = ensureToken();
-    const log = (line) => console.error(`[aish-mcp] ${line}`);
+    const log = (line) => console.error(`[kaivo-mcp] ${line}`);
     let server = null;
     const hub = createHub({ getToken: currentToken, port: RELAY_PORT, log, onDefsChanged: () => { if (server) announceListsChanged(server); } });
     server = createMcpServer(hub);
@@ -71,7 +71,7 @@ async function main() {
         }
         case 'reset': {
             const { token } = resetToken();
-            console.error('[aish-mcp] new pairing token generated.');
+            console.error('[kaivo-mcp] new pairing token generated.');
             printPairingCode(token);
             return;
         }
@@ -79,7 +79,7 @@ async function main() {
             const has = !!currentToken();
             const up = await portInUse(RELAY_PORT);
             console.log(`config dir : ${configDir()}`);
-            console.log(`pairing    : ${has ? 'set' : 'not set (run "aish-mcp pair")'}`);
+            console.log(`pairing    : ${has ? 'set' : 'not set (run "kaivo-mcp pair")'}`);
             console.log(`relay port : ${RELAY_PORT} (${up ? 'something is listening' : 'not running'})`);
             return;
         }
@@ -87,9 +87,9 @@ async function main() {
             return runServer();
         default:
             console.error(`Unknown command: ${cmd}`);
-            console.error('Usage: aish-mcp [--http] [--port <n>] | aish-mcp pair | aish-mcp reset | aish-mcp status');
+            console.error('Usage: kaivo-mcp [--http] [--port <n>] | kaivo-mcp pair | kaivo-mcp reset | kaivo-mcp status');
             process.exit(1);
     }
 }
 
-main().catch((e) => { console.error('[aish-mcp] fatal:', e && e.stack || e); process.exit(1); });
+main().catch((e) => { console.error('[kaivo-mcp] fatal:', e && e.stack || e); process.exit(1); });

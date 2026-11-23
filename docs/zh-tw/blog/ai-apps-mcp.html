@@ -131,7 +131,7 @@
             <figcaption>影片：向 AI 應用詢問閱讀內容，包含引用、待讀提醒與年度回顧。</figcaption>
           <div data-seo-video="" class="vtext"><p class="vtext-h">Transcript · 0:27</p><ul><li>Your AI app has never read what you read.</li><li>Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights.</li><li>Ask what is due, let it save the best from your feeds, or ask for your year, wrapped.</li><li>Nothing goes through our server, and you choose what they may read.</li></ul></div></div>
         </figure>
-        <p>此功能預設為關閉。整個過程完全不涉及我們的伺服器：擴充功能與應用程式是透過你電腦上的輕量小程式相互通訊， <code>aish-mcp</code>，該程式不會儲存任何文章，也不會將任何資料轉發到其他地方。</p>
+        <p>此功能預設為關閉。整個過程完全不涉及我們的伺服器：擴充功能與應用程式是透過你電腦上的輕量小程式相互通訊， <code>kaivo-mcp</code>，該程式不會儲存任何文章，也不會將任何資料轉發到其他地方。</p>
 
         <h2>你可以詢問的內容</h2>
         <ul>
@@ -149,7 +149,7 @@
         <p>你需要安裝在 Chrome、Edge 或 Brave 上的 AI Summary Helper， <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 20 或更高版本，以及一個 MCP 應用程式。</p>
         <ol>
           <li><strong>開啟功能。</strong> 在 AI Summary Helper 中，開啟「設定」→「AI 應用 (MCP)」並開啟 <em>允許此電腦上的 AI 應用使用我的資料庫</em>。</li>
-          <li><strong>取得配對碼。</strong> 在終端機中執行 <code>npx -y aish-mcp pair</code>。它會顯示一組配對碼並儲存在你的使用者資料夾中。請將配對碼貼上至設定面板，然後點選「連線」。</li>
+          <li><strong>取得配對碼。</strong> 在終端機中執行 <code>npx -y kaivo-mcp pair</code>。它會顯示一組配對碼並儲存在你的使用者資料夾中。請將配對碼貼上至設定面板，然後點選「連線」。</li>
           <li><strong>將 AI Summary Helper 新增至你的應用程式。</strong> 使用下方對應你應用的設定片段，接著將應用程式完全關閉後重新開啟。</li>
           <li><strong>確認連線狀態。</strong> 當你的應用程式啟動後，設定面板會顯示 <em>已連線</em> 。向你的應用詢問與資料庫相關的問題：每次呼叫都會顯示在面板的「近期活動」中。</li>
         </ol>
@@ -158,7 +158,7 @@
         <p>Settings → Developer → Edit Config，然後新增：</p>
 <pre><code>{
   "mcpServers": {
-    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
         <p>如果 Claude Desktop 找不到 <code>npx</code>，請使用其完整路徑，可透過在終端機中執行 <code>which npx</code> 來查詢（例如 <code>/opt/homebrew/bin/npx</code>）。</p>
@@ -170,12 +170,12 @@
         <p>在 <code>.vscode/mcp.json</code> 中：</p>
 <pre><code>{
   "servers": {
-    "aish": { "type": "stdio", "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "type": "stdio", "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
 
         <h3>LM Studio 與其他應用程式</h3>
-        <p>具備 <code>mcpServers</code> 設定的應用程式（例如 LM Studio 的 <code>mcp.json</code>、Jan 以及大多數其他應用程式）採用與 Claude Desktop 相同的配置。僅支援 HTTP 連線的應用程式可以使用 <code>npx -y aish-mcp --http</code> ，監聽於 <code>http://127.0.0.1:47616/</code>，並附帶標頭 <code>Authorization: Bearer &lt;your pairing code&gt;</code>。若使用本地模型，請選擇支援工具調用 (Tool Calling) 的模型，例如 Qwen 3 或 Llama 3.1 及更新版本。</p>
+        <p>具備 <code>mcpServers</code> 設定的應用程式（例如 LM Studio 的 <code>mcp.json</code>、Jan 以及大多數其他應用程式）採用與 Claude Desktop 相同的配置。僅支援 HTTP 連線的應用程式可以使用 <code>npx -y kaivo-mcp --http</code> ，監聽於 <code>http://127.0.0.1:47616/</code>，並附帶標頭 <code>Authorization: Bearer &lt;your pairing code&gt;</code>。若使用本地模型，請選擇支援工具調用 (Tool Calling) 的模型，例如 Qwen 3 或 Llama 3.1 及更新版本。</p>
 
         <h2>你的應用程式可以執行的操作</h2>
         <table>
@@ -200,7 +200,7 @@
           <li><strong>被你標記為 <code>private</code> 的文章絕不會出現</strong>在任何搜尋結果、統計數據或收藏夾中。你可以在設定面板中指定其他標籤。</li>
           <li><strong>僅限你的電腦連線。</strong> 輔助程式僅監聽 127.0.0.1，因此區域網路中的其他裝置皆無法存取。你瀏覽的網站也無法使用它：它僅接受 AI Summary Helper 擴充功能本身的位址，且每次連線都必須攜帶配對碼。</li>
           <li><strong>所有呼叫紀錄一目了然。</strong> 設定面板會列出最近 50 次呼叫的工具名稱與時間，絕不會記錄內容。</li>
-          <li><strong>你可以隨時切斷連線。</strong> 關閉此功能或點選「中斷連線」。執行 <code>npx -y aish-mcp reset</code> 可使舊的配對碼立即失效。</li>
+          <li><strong>你可以隨時切斷連線。</strong> 關閉此功能或點選「中斷連線」。執行 <code>npx -y kaivo-mcp reset</code> 可使舊的配對碼立即失效。</li>
           <li><strong>儲存的頁面屬於來自網路的純文字。</strong> 雖然系統已指示應用將其視為資料而非指令，但儲存的網頁內容仍可能嘗試誤導 AI。除非有需要，否則建議保持「儲存連結」權限關閉。</li>
         </ul>
 
@@ -208,11 +208,11 @@
         <table>
           <thead><tr><th>遇到的情況</th><th>解決方法</th></tr></thead>
           <tbody>
-            <tr><td>面板顯示 <em>未連線</em></td><td>你的 AI 應用尚未執行或尚未完成設定。請開啟應用，或在終端機中執行 <code>npx -y aish-mcp</code> 以測試連線。</td></tr>
+            <tr><td>面板顯示 <em>未連線</em></td><td>你的 AI 應用尚未執行或尚未完成設定。請開啟應用，或在終端機中執行 <code>npx -y kaivo-mcp</code> 以測試連線。</td></tr>
             <tr><td>你的應用程式中沒有顯示 AI Summary Helper 工具，或更新後缺少新工具</td><td>將應用程式完全關閉後重新開啟。部分應用僅在啟動時讀取工具清單。</td></tr>
             <tr><td>「AISH is not running」</td><td>你的瀏覽器已關閉，或該功能已停用。請開啟瀏覽器並確認設定面板。</td></tr>
             <tr><td>「Scope … is not enabled」</td><td>你的應用請求了尚未允許的權限。若有需要，請在設定面板中將其開啟。</td></tr>
-            <tr><td>貼上配對碼後，面板始終無法連線</td><td>執行 <code>npx -y aish-mcp pair</code> 並重新貼上所顯示的配對碼。配對碼會在執行 <code>reset 後變更。</code>。</td></tr>
+            <tr><td>貼上配對碼後，面板始終無法連線</td><td>執行 <code>npx -y kaivo-mcp pair</code> 並重新貼上所顯示的配對碼。配對碼會在執行 <code>reset 後變更。</code>。</td></tr>
           </tbody>
         </table>
         <p>同時執行多個 AI 應用程式完全沒有問題：它們會共用同一個連線。</p>

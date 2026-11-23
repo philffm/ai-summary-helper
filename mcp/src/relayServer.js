@@ -4,7 +4,7 @@
 // connections, so the extension's background worker opens this socket. The relay stores no
 // library data and logs nothing of what it forwards (PRD §4.4) — just timestamp/tool/ok/duration.
 //
-// One port, one owner. MCP apps often start several copies of aish-mcp (Claude Desktop starts
+// One port, one owner. MCP apps often start several copies of kaivo-mcp (Claude Desktop starts
 // one per chat surface), so the first copy owns the port and the others join it as PEERS
 // (follower.js) and forward their calls through it, instead of failing with EADDRINUSE.
 import { WebSocketServer } from 'ws';
@@ -18,7 +18,7 @@ const EXTENSION_ORIGINS = [/^chrome-extension:\/\//, /^moz-extension:\/\//];
 
 /**
  * @param {object} opts
- *  - getToken: () => string|null  current pairing token (re-read live so `aish-mcp reset` takes effect without a restart)
+ *  - getToken: () => string|null  current pairing token (re-read live so `kaivo-mcp reset` takes effect without a restart)
  *  - port: number
  *  - log: (line) => void
  *  - onDefs: (defs) => void       called when the extension declares (new) tools/resources/prompts
@@ -27,7 +27,7 @@ export function createRelay({ getToken, port = 47615, log = () => {}, onDefs = (
     let wss = null;
     let conn = null;                 // the one connected extension socket
     let defs = null;                 // { tools, resources, prompts, brand } from the extension's last hello
-    const peers = new Set();         // other aish-mcp copies sharing this relay
+    const peers = new Set();         // other kaivo-mcp copies sharing this relay
     const pending = new Map();       // call id -> { resolve, reject, timer, tool, started, ws }
     const rateGuard = createRateGuard();
     let nextId = 1;
@@ -119,7 +119,7 @@ export function createRelay({ getToken, port = 47615, log = () => {}, onDefs = (
                 port,
                 maxPayload: MAX_MESSAGE_BYTES,
                 // S2: a browser page always sends its Origin, so only the extension's own origin (or a local process
-                // with no Origin at all, i.e. another aish-mcp) may even upgrade. The token is checked on the first message.
+                // with no Origin at all, i.e. another kaivo-mcp) may even upgrade. The token is checked on the first message.
                 verifyClient: (info, cb) => {
                     const o = info.origin;
                     cb(!o || EXTENSION_ORIGINS.some((re) => re.test(o)));

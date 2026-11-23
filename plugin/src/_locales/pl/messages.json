@@ -8351,5 +8351,11 @@
   },
   "f_look_0bb6": {
     "message": "Styl"
+  },
+  "f_for_an_e_reader_with_koreade_f036": {
+    "message": "Dla czytnika z KOReader: skopiuj kaivo-library.txt do jego folderu domowego, a potem Tools → AISH library → Connect with a code. Plik zawiera dane logowania: usuń go potem z tego komputera."
+  },
+  "f_pair_kaivo_mcp_3b54": {
+    "message": "Sparuj kaivo-mcp"
   }
 }

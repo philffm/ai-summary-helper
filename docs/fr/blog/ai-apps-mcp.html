@@ -131,7 +131,7 @@
             <figcaption>Vidéo : interrogez votre application d'IA sur vos lectures, avec citations, échéances et rétrospective annuelle.</figcaption>
           <div data-seo-video="" class="vtext"><p class="vtext-h">Transcription · 0:28</p><ul><li>Votre appli d’IA n’a jamais lu ce que vous lisez.</li><li>Claude Desktop, LM Studio ou Cursor peuvent désormais chercher dans votre bibliothèque et citer vos surlignages.</li><li>Demandez ce qui est à lire, faites enregistrer le meilleur de vos flux, ou réclamez le bilan de votre année.</li><li>Rien ne passe par notre serveur, et vous choisissez ce qu’elles peuvent lire.</li></ul></div></div>
         </figure>
-        <p>Cette fonctionnalité est désactivée par défaut. Aucun de vos contenus ne transite par nos serveurs : l'extension et l'application communiquent via un petit programme d'assistance sur votre ordinateur, <code>aish-mcp</code>, qui ne stocke aucun article et ne transfère rien ailleurs.</p>
+        <p>Cette fonctionnalité est désactivée par défaut. Aucun de vos contenus ne transite par nos serveurs : l'extension et l'application communiquent via un petit programme d'assistance sur votre ordinateur, <code>kaivo-mcp</code>, qui ne stocke aucun article et ne transfère rien ailleurs.</p>
 
         <h2>Ce que vous pouvez demander</h2>
         <ul>
@@ -149,7 +149,7 @@
         <p>Vous avez besoin d'AI Summary Helper dans Chrome, Edge ou Brave, <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 20 ou plus récent, et d'une application MCP.</p>
         <ol>
           <li><strong>Activez l'option.</strong> Dans AI Summary Helper, ouvrez Paramètres → Applications IA (MCP) et activez <em>Autoriser les applications IA sur cet ordinateur à utiliser ma bibliothèque</em>.</li>
-          <li><strong>Obtenez votre code d'association.</strong> Dans un terminal, exécutez <code>npx -y aish-mcp pair</code>. La commande affiche un code d'association et l'enregistre dans votre dossier utilisateur. Collez ce code dans le panneau des paramètres et sélectionnez Se connecter.</li>
+          <li><strong>Obtenez votre code d'association.</strong> Dans un terminal, exécutez <code>npx -y kaivo-mcp pair</code>. La commande affiche un code d'association et l'enregistre dans votre dossier utilisateur. Collez ce code dans le panneau des paramètres et sélectionnez Se connecter.</li>
           <li><strong>Ajoutez AI Summary Helper à votre application.</strong> Utilisez l'extrait correspondant à votre application ci-dessous, puis fermez complètement l'application et rouvrez-la.</li>
           <li><strong>Vérifiez la connexion.</strong> Le panneau des paramètres affiche <em>Connecté</em> dès que votre application est lancée. Posez une question à votre application sur votre bibliothèque : chaque requête effectuée apparaît sous Activité récente dans le panneau.</li>
         </ol>
@@ -158,7 +158,7 @@
         <p>Settings → Developer → Edit Config, puis ajoutez :</p>
 <pre><code>{
   "mcpServers": {
-    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
         <p>Si Claude Desktop ne trouve pas <code>npx</code>, utilisez son chemin complet, que <code>which npx</code> affiche dans un terminal (par exemple <code>/opt/homebrew/bin/npx</code>).</p>
@@ -170,12 +170,12 @@
         <p>Dans <code>.vscode/mcp.json</code> :</p>
 <pre><code>{
   "servers": {
-    "aish": { "type": "stdio", "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "type": "stdio", "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
 
         <h3>LM Studio et autres applications</h3>
-        <p>Les applications avec un paramètre <code>mcpServers</code> (le fichier <code>mcp.json</code>de LM Studio, Jan et la plupart des autres) utilisent la même configuration que Claude Desktop. Les applications qui se connectent uniquement via HTTP peuvent utiliser <code>npx -y aish-mcp --http</code> sur <code>http://127.0.0.1:47616/</code>, avec l'en-tête <code>Authorization: Bearer &lt;votre code d'association&gt;</code>. Pour un modèle local, choisissez-en un qui prend en charge l'appel d'outils (tool calling), comme Qwen 3 ou Llama 3.1 et versions ultérieures.</p>
+        <p>Les applications avec un paramètre <code>mcpServers</code> (le fichier <code>mcp.json</code>de LM Studio, Jan et la plupart des autres) utilisent la même configuration que Claude Desktop. Les applications qui se connectent uniquement via HTTP peuvent utiliser <code>npx -y kaivo-mcp --http</code> sur <code>http://127.0.0.1:47616/</code>, avec l'en-tête <code>Authorization: Bearer &lt;votre code d'association&gt;</code>. Pour un modèle local, choisissez-en un qui prend en charge l'appel d'outils (tool calling), comme Qwen 3 ou Llama 3.1 et versions ultérieures.</p>
 
         <h2>Ce que votre application peut faire</h2>
         <table>
@@ -200,7 +200,7 @@
           <li><strong>Les articles tagués <code>private</code> n'apparaissent jamais</strong>, dans aucun résultat, calcul statistique ou collection. Vous pouvez choisir un autre tag dans le panneau des paramètres.</li>
           <li><strong>Seul votre ordinateur peut se connecter.</strong> Le programme d'assistance écoute uniquement sur 127.0.0.1, de sorte qu'aucun autre appareil sur votre réseau ne peut y accéder. Les sites Web que vous visitez ne peuvent pas non plus l'utiliser : il n'accepte que l'adresse propre de l'extension AI Summary Helper, et chaque connexion doit comporter votre code d'association.</li>
           <li><strong>Vous pouvez voir chaque appel.</strong> Le panneau des paramètres liste les 50 derniers appels avec le nom de l'outil et l'heure, sans jamais afficher le contenu.</li>
-          <li><strong>Vous pouvez couper l'accès à tout moment.</strong> Désactivez la fonctionnalité ou sélectionnez Se déconnecter. Exécutez <code>npx -y aish-mcp reset</code> pour révoquer l'ancien code d'association.</li>
+          <li><strong>Vous pouvez couper l'accès à tout moment.</strong> Désactivez la fonctionnalité ou sélectionnez Se déconnecter. Exécutez <code>npx -y kaivo-mcp reset</code> pour révoquer l'ancien code d'association.</li>
           <li><strong>Les pages enregistrées sont du texte issu du Web.</strong> Votre application est configurée pour les traiter comme de l'information et non comme des instructions, mais une page enregistrée pourrait tout de même tenter d'induire une IA en erreur. Gardez l'autorisation Enregistrer des liens désactivée si vous ne l'utilisez pas.</li>
         </ul>
 
@@ -208,11 +208,11 @@
         <table>
           <thead><tr><th>Ce qui s'affiche</th><th>Que faire</th></tr></thead>
           <tbody>
-            <tr><td>Le panneau indique <em>Non connecté</em></td><td>Votre application d'IA n'est pas lancée ou n'est pas encore configurée. Ouvrez-la ou exécutez <code>npx -y aish-mcp</code> dans un terminal pour tester la connexion.</td></tr>
+            <tr><td>Le panneau indique <em>Non connecté</em></td><td>Votre application d'IA n'est pas lancée ou n'est pas encore configurée. Ouvrez-la ou exécutez <code>npx -y kaivo-mcp</code> dans un terminal pour tester la connexion.</td></tr>
             <tr><td>Votre application n'affiche aucun outil AI Summary Helper ou n'affiche pas les nouveaux après une mise à jour</td><td>Fermez complètement l'application et rouvrez-la. Certaines applications ne chargent la liste des outils qu'au démarrage.</td></tr>
             <tr><td>« AISH is not running »</td><td>Votre navigateur est fermé ou la fonctionnalité est désactivée. Ouvrez le navigateur et vérifiez le panneau des paramètres.</td></tr>
             <tr><td>« Scope … is not enabled »</td><td>Votre application a demandé un accès non autorisé. Activez-le dans le panneau des paramètres si vous souhaitez le lui accorder.</td></tr>
-            <tr><td>Le panneau ne se connecte pas après avoir collé le code</td><td>Exécutez <code>npx -y aish-mcp pair</code> et collez à nouveau le code affiché. Il change après un <code>reset</code>.</td></tr>
+            <tr><td>Le panneau ne se connecte pas après avoir collé le code</td><td>Exécutez <code>npx -y kaivo-mcp pair</code> et collez à nouveau le code affiché. Il change après un <code>reset</code>.</td></tr>
           </tbody>
         </table>
         <p>Vous pouvez tout à fait utiliser plusieurs applications d'IA en même temps : elles partagent la même connexion.</p>

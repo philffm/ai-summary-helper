@@ -19,13 +19,13 @@ function errorResult(message) {
 }
 
 // Used until an extension has sent its own brand (the cached one is read on start, so this is only the very first run).
-const FALLBACK_INSTRUCTIONS = 'When you create something visual or shareable from the user\'s AI Summary Helper library, read the aish://brand resource and style it in that brand, unless the user asks for a different style.';
+const FALLBACK_INSTRUCTIONS = 'When you create something visual or shareable from the user\'s Kaivo library, read the aish://brand resource and style it in that brand, unless the user asks for a different style.';
 
 export function createMcpServer(relay) {
     // `instructions` go out once, when the app connects: the brand cached from the extension's last hello (hub.js), so a
     // white-label build's own guide is in place even before the browser is running.
     const brand = relay.brand && relay.brand();
-    const server = new Server({ name: 'aish-mcp', version: '0.1.0' }, { capabilities: { tools: { listChanged: true }, resources: { listChanged: true }, prompts: { listChanged: true } }, instructions: (brand && brand.instructions) || FALLBACK_INSTRUCTIONS });
+    const server = new Server({ name: 'kaivo-mcp', version: '0.2.0' }, { capabilities: { tools: { listChanged: true }, resources: { listChanged: true }, prompts: { listChanged: true } }, instructions: (brand && brand.instructions) || FALLBACK_INSTRUCTIONS });
     const brandGuide = () => { const b = relay.brand && relay.brand(); return b && b.guide; };
 
     server.setRequestHandler(ListToolsRequestSchema, async () => {

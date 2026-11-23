@@ -59,7 +59,7 @@
             <figcaption>Video: ask your AI app about your reading, with quotes, what is due and a yearly wrapped.</figcaption>
           </div>
         </figure>
-        <p>It is off by default. Nothing about it involves our server: the extension and the app talk to each other through a small helper program on your computer, <code>aish-mcp</code>, which stores no articles and forwards nothing anywhere else.</p>
+        <p>It is off by default. Nothing about it involves our server: the extension and the app talk to each other through a small helper program on your computer, <code>kaivo-mcp</code>, which stores no articles and forwards nothing anywhere else.</p>
 
         <h2>What you can ask</h2>
         <ul>
@@ -77,7 +77,7 @@
         <p>You need AI Summary Helper in Chrome, Edge or Brave, <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> 20 or newer, and an MCP app.</p>
         <ol>
           <li><strong>Turn it on.</strong> In AI Summary Helper, open Settings → AI apps (MCP) and switch on <em>Let AI apps on this computer use my library</em>.</li>
-          <li><strong>Get your pairing code.</strong> In a terminal, run <code>npx -y aish-mcp pair</code>. It prints a pairing code and stores it in your user folder. Paste the code into the settings panel and select Connect.</li>
+          <li><strong>Get your pairing code.</strong> In a terminal, run <code>npx -y kaivo-mcp pair</code>. It prints a pairing code and stores it in your user folder. Paste the code into the settings panel and select Connect.</li>
           <li><strong>Add AI Summary Helper to your app.</strong> Use the snippet for your app below, then quit the app completely and open it again.</li>
           <li><strong>Check the connection.</strong> The settings panel shows <em>Connected</em> once your app is running. Ask your app something about your library: every call it makes appears under Recent activity in the panel.</li>
         </ol>
@@ -86,7 +86,7 @@
         <p>Settings → Developer → Edit Config, then add:</p>
 <pre><code>{
   "mcpServers": {
-    "aish": { "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
         <p>If Claude Desktop cannot find <code>npx</code>, use its full path, which <code>which npx</code> prints in a terminal (for example <code>/opt/homebrew/bin/npx</code>).</p>
@@ -98,12 +98,12 @@
         <p>In <code>.vscode/mcp.json</code>:</p>
 <pre><code>{
   "servers": {
-    "aish": { "type": "stdio", "command": "npx", "args": ["-y", "aish-mcp"] }
+    "kaivo": { "type": "stdio", "command": "npx", "args": ["-y", "kaivo-mcp"] }
   }
 }</code></pre>
 
         <h3>LM Studio and other apps</h3>
-        <p>Apps with an <code>mcpServers</code> setting (LM Studio's <code>mcp.json</code>, Jan, and most others) take the same entry as Claude Desktop. Apps that only connect over HTTP can use <code>npx -y aish-mcp --http</code> at <code>http://127.0.0.1:47616/</code>, with the header <code>Authorization: Bearer &lt;your pairing code&gt;</code>. For a local model, pick one that supports tool calling, such as Qwen 3 or Llama 3.1 and newer.</p>
+        <p>Apps with an <code>mcpServers</code> setting (LM Studio's <code>mcp.json</code>, Jan, and most others) take the same entry as Claude Desktop. Apps that only connect over HTTP can use <code>npx -y kaivo-mcp --http</code> at <code>http://127.0.0.1:47616/</code>, with the header <code>Authorization: Bearer &lt;your pairing code&gt;</code>. For a local model, pick one that supports tool calling, such as Qwen 3 or Llama 3.1 and newer.</p>
 
         <h2>What your app can do</h2>
         <table>
@@ -128,7 +128,7 @@
           <li><strong>Articles you tag <code>private</code> never appear</strong>, in any result, count or collection. You can choose a different tag in the settings panel.</li>
           <li><strong>Only your computer can connect.</strong> The helper listens on 127.0.0.1 only, so nothing else on your network can reach it. Websites you visit cannot use it either: it accepts only AI Summary Helper's own extension address, and every connection must carry your pairing code.</li>
           <li><strong>You can see every call.</strong> The settings panel lists the last 50 calls with the tool name and time, never the content.</li>
-          <li><strong>You can cut it off at any time.</strong> Switch the feature off or select Disconnect. Run <code>npx -y aish-mcp reset</code> to make the old pairing code stop working.</li>
+          <li><strong>You can cut it off at any time.</strong> Switch the feature off or select Disconnect. Run <code>npx -y kaivo-mcp reset</code> to make the old pairing code stop working.</li>
           <li><strong>Saved pages are text from the web.</strong> Your app is told to treat them as information, not as instructions, but a saved page could still try to mislead an AI. Keep the Save links permission off unless you use it.</li>
         </ul>
 
@@ -136,11 +136,11 @@
         <table>
           <thead><tr><th>You see</th><th>What to do</th></tr></thead>
           <tbody>
-            <tr><td>The panel says <em>Not connected</em></td><td>Your AI app isn't running, or isn't set up yet. Open it, or run <code>npx -y aish-mcp</code> in a terminal to test the connection.</td></tr>
+            <tr><td>The panel says <em>Not connected</em></td><td>Your AI app isn't running, or isn't set up yet. Open it, or run <code>npx -y kaivo-mcp</code> in a terminal to test the connection.</td></tr>
             <tr><td>Your app shows no AI Summary Helper tools, or misses new ones after an update</td><td>Quit the app completely and open it again. Some apps only read the tool list when they start.</td></tr>
             <tr><td>“AISH is not running”</td><td>Your browser is closed, or the feature is switched off. Open the browser and check the settings panel.</td></tr>
             <tr><td>“Scope … is not enabled”</td><td>Your app asked for something you haven't allowed. Turn it on in the settings panel if you want it.</td></tr>
-            <tr><td>The panel never connects after you pasted the code</td><td>Run <code>npx -y aish-mcp pair</code> and paste the code it prints again. It changes after <code>reset</code>.</td></tr>
+            <tr><td>The panel never connects after you pasted the code</td><td>Run <code>npx -y kaivo-mcp pair</code> and paste the code it prints again. It changes after <code>reset</code>.</td></tr>
           </tbody>
         </table>
         <p>Running several AI apps at once is fine: they share one connection.</p>

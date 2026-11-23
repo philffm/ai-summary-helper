@@ -26,7 +26,7 @@ export function createHub({ getToken, port = 47615, log = () => {}, onDefsChange
         try {
             await relay.start();
             backend = relay;
-            log(`listening for the AISH extension on ws://127.0.0.1:${port}`);
+            log(`listening for the Kaivo extension on ws://127.0.0.1:${port}`);
             return;
         } catch (e) {
             if (e.code !== 'EADDRINUSE') throw e;
@@ -38,9 +38,9 @@ export function createHub({ getToken, port = 47615, log = () => {}, onDefsChange
         try {
             await follower.start();
             backend = follower;
-            log(`another aish-mcp owns port ${port}; sharing its connection`);
+            log(`another kaivo-mcp owns port ${port}; sharing its connection`);
         } catch (e) {
-            log(`could not join the aish-mcp on port ${port}: ${e.message}`);
+            log(`could not join the kaivo-mcp on port ${port}: ${e.message}`);
             retry();
         }
     }
