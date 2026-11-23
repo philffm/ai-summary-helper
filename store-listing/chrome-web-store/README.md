@@ -16,6 +16,8 @@ Store texts per market, SEO- and GEO-optimized (Oct 2026, based on 2.2.37 plus l
 | zh_HK | AI Summary Helper – 以 AI 摘要網頁及 PDF (34) | 73 | 7170 |
 | fi | AI Summary Helper – Tiivistä verkkosivut ja PDF:t (BYOK, Ollama) (64) | 130 | 15927 |
 | ar | AI Summary Helper – تلخيص صفحات الويب وملفات PDF (BYOK، Ollama) (63) | 130 | 13898 |
+| ru | AI Summary Helper – ИИ-пересказ веб-страниц и PDF (BYOK, Ollama) (64) | 131 | 15674 |
+| uk | AI Summary Helper – Підсумки сторінок і PDF (BYOK, Ollama) (58) | 128 | 15557 |
 
 - **Title and summary** ship with the package: `extensionName` and `extensionDescription` in `plugin/src/_locales/<lang>/messages.json` (set for en, de, ja, fr, es, pt_BR, pt_PT, ko, zh_TW, zh_HK; zh_CN and the other UI locales still carry the older English name).
 - **zh_TW and zh_HK** are written separately (Taiwan vs. Hong Kong vocabulary), not character-converted. **pt_BR** is Brazilian Portuguese; pt_PT has its own title and summary.
