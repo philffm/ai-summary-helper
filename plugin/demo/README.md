@@ -1,6 +1,6 @@
 # Live demo — URL parameters
 
-The live demo at `https://ai-summary-helper.byphil.eu/demo/` runs the **real extension UI**
+The live demo at `https://kaivo.byphil.eu/demo/` runs the **real extension UI**
 (`plugin/src/popup.html`) inside an iframe, with a mock `chrome` API that replays recorded
 content. Everything is deterministic and offline: no network, no API key, no model call.
 
@@ -27,7 +27,7 @@ pipelines, and embedding. Every parameter is optional and composable.
 | `panel` | see below | — | Open a settings panel (implies `screen=settings`) |
 | `scenario` | `youtube`, `pdf`, `paper`, `research`, `mood`, `instant`, `ghost`, `mcp`, `export` | — | What the extension "sees" and what is already saved (see below). English content only. |
 
-Base URL: `https://ai-summary-helper.byphil.eu/demo/`
+Base URL: `https://kaivo.byphil.eu/demo/`
 
 ---
 
@@ -110,7 +110,7 @@ The demo is designed to be iframed. For a borderless product view:
 
 ```html
 <iframe
-  src="https://ai-summary-helper.byphil.eu/demo/?chrome=0&tour=0&theme=dark"
+  src="https://kaivo.byphil.eu/demo/?chrome=0&tour=0&theme=dark"
   title="AI Summary Helper"
   style="width:420px;height:760px;border:0;background:transparent"
   loading="lazy"></iframe>
