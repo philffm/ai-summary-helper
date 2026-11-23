@@ -162,6 +162,10 @@ export function rewriteAvailablePageLinks($, pageRootPath, code, inventory, loca
         const sourceTarget = sourceTargets.find((target) => localePages[target]);
         const localizedTarget = sourceTarget && localePages[sourceTarget];
         if (!localizedTarget) {
+            // Already a link to a page of this locale (rewriteLocalizedLinks ran first and made 'education/' → 'bildung/'): it is not an English
+            // path any more. Without this it was pointed at "the English page at the site root" and became ../bildung/ (a missing page).
+            const own = pagePath(p.endsWith('/') ? localeTarget.replace(/\/?$/, '/') : localeTarget);
+            if (!localeTarget.startsWith('../') && Object.values(localePages).includes(own)) return;
             // A page this locale does not have (bookmarklet.html, pocket-alternative/): the link was written for the English page, so
             // it points at the English page at the site root, not at a missing copy inside the locale folder.
             if (!localeTarget.startsWith('../') && !englishTarget.startsWith('../')) {

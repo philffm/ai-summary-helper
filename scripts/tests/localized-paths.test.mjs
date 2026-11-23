@@ -47,6 +47,12 @@ test('rewrites links to pages present in the locale inventory', () => {
         assert.equal($('a').eq(4).attr('href'), './');
         assert.equal(localizedPath('blog/ai-apps-mcp.html', 'de'), 'blog/ki-apps-mcp.html');
 
+        // the translate step runs rewriteLocalizedLinks first ('education/' → 'bildung/'), and rewriteAvailablePageLinks afterwards must leave
+        // that link alone: it once turned it into the English-root form ../bildung/ from /de/ (a missing page, the sitemap check failed)
+        const own = cheerio.load('<a href="bildung/">Bildung</a>');
+        rewriteAvailablePageLinks(own, 'de/index.html', 'de', inventory, 'de');
+        assert.equal(own('a').attr('href'), 'bildung/', 'a link to the locale\'s own page stays as it is');
+
         // links written for the English page to a page this locale does not have go to the English page at the root
         const missing = cheerio.load('<a href="bookmarklet.html#try">Try</a><a href="pocket-alternative/">Pocket</a><a href="../bookmarklet.html">Already right</a>');
         rewriteAvailablePageLinks(missing, 'de/index.html', 'de', inventory, 'de');
