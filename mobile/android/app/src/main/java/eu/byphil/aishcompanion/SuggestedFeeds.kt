@@ -14,7 +14,7 @@ data class SuggestedFeed(val name: String, val url: String, val tags: List<Strin
  * Order of use: refreshed copy, else the shipped one. A broken download never replaces a good list.
  */
 object SuggestedFeeds {
-    const val SOURCE_URL = "https://raw.githubusercontent.com/philffm/ai-summary-helper/main/shared/suggested-feeds.json"
+    const val SOURCE_URL = "https://raw.githubusercontent.com/philffm/kaivo/main/shared/suggested-feeds.json"
     private const val FILE = "suggested-feeds.json"
     private const val MAX_BYTES = 100_000
 

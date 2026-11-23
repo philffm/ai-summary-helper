@@ -157,7 +157,7 @@ La tua app di IA non ha mai letto ciò che leggi tu. Attiva le app di IA nelle I
 • Il contenuto delle pagine va solo al provider IA che hai scelto, o a nessuno con un modello sul dispositivo.
 • Le app di IA leggono la libreria solo se lo attivi, solo sul tuo computer e solo ciò che consenti.
 • Nessun SDK di tracciamento o di analisi, nessuna pubblicità, nessuna vendita di dati.
-• Open source: il codice è pubblico su GitHub (philffm/ai-summary-helper), verificabile da tutti.
+• Open source: il codice è pubblico su GitHub (philffm/kaivo), verificabile da tutti.
 • Realizzato nell'UE da byphil.
 
 ━━━━━━━━━━━━━━━━━━━━

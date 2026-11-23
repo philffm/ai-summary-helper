@@ -145,7 +145,7 @@ Seu app de IA nunca leu o que você leu. Ative os apps de IA nas Configurações
 • O conteúdo da página vai apenas para o provedor de IA que você escolheu, ou para ninguém com um modelo no dispositivo.
 • Os apps de IA só leem sua biblioteca se você ativar, só no seu computador e só o que você permitir.
 • Sem SDK de rastreamento ou de analytics, sem anúncios, sem venda de dados.
-• Código aberto: o código completo é público no GitHub (philffm/ai-summary-helper) para qualquer pessoa auditar.
+• Código aberto: o código completo é público no GitHub (philffm/kaivo) para qualquer pessoa auditar.
 • Feito na União Europeia pela byphil.
 
 ━━━━━━━━━━━━━━━━━━━━

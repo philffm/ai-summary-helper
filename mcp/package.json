@@ -30,11 +30,11 @@
   "homepage": "https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/philffm/ai-summary-helper.git",
+    "url": "git+https://github.com/philffm/kaivo.git",
     "directory": "mcp"
   },
   "bugs": {
-    "url": "https://github.com/philffm/ai-summary-helper/issues"
+    "url": "https://github.com/philffm/kaivo/issues"
   },
   "author": "Phil Wornath"
 }

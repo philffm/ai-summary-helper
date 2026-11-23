@@ -58,7 +58,7 @@ No manifest permission. When the user picks a folder as a sync or backup place, 
 
 ## Remote code
 
-> No. The extension does not load or run remotely hosted code; all scripts are in the package. Its source is public on GitHub (philffm/ai-summary-helper).
+> No. The extension does not load or run remotely hosted code; all scripts are in the package. Its source is public on GitHub (philffm/kaivo).
 
 ## Data usage disclosures (checklist)
 

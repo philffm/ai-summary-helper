@@ -157,7 +157,7 @@ Twoja aplikacja AI nie czytała tego, co Ty. Włącz Aplikacje AI w Ustawieniach
 • Treść stron jest wysyłana wyłącznie do wybranego dostawcy AI, a przy modelu na urządzeniu do nikogo.
 • Aplikacje AI czytają bibliotekę tylko po włączeniu, tylko na Twoim komputerze i tylko to, na co pozwolisz.
 • Bez SDK śledzących i analitycznych, reklam i sprzedaży danych.
-• Otwarty kod: pełny kod jest publiczny na GitHubie (philffm/ai-summary-helper) i każdy może go sprawdzić.
+• Otwarty kod: pełny kod jest publiczny na GitHubie (philffm/kaivo) i każdy może go sprawdzić.
 • Stworzone w UE przez byphil.
 
 ━━━━━━━━━━━━━━━━━━━━

@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License: AGPL-3.0 or commercial" src="https://img.shields.io/badge/license-AGPL--3.0%20%2B%20commercial-blue"></a>
-  <a href="https://github.com/philffm/ai-summary-helper/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/philffm/ai-summary-helper?label=version&color=4C8DFF"></a>
+  <a href="https://github.com/philffm/kaivo/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/philffm/kaivo?label=version&color=4C8DFF"></a>
   <img alt="Manifest V3" src="https://img.shields.io/badge/Manifest-V3-555">
   <img alt="Vanilla JS, no framework" src="https://img.shields.io/badge/vanilla-ES_modules-F0C36B">
   <img alt="Privacy: your key, your data" src="https://img.shields.io/badge/privacy-your_key%2C_your_data-2EA043">
@@ -108,7 +108,7 @@ Images for press and reviews live in [`assets/press/`](assets/press/).
 ## Quick start for contributors
 
 ```bash
-git clone https://github.com/philffm/ai-summary-helper.git
+git clone https://github.com/philffm/kaivo.git
 cd ai-summary-helper
 npm ci
 npm run build          # syncs plugin/src → plugin/dev/aish-extension-<platform>

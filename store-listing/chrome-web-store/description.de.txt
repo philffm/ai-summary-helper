@@ -147,7 +147,7 @@ Ihre KI-App hat nie gelesen, was Sie lesen. Schalten Sie in den Einstellungen di
 • KI-Apps können Ihre Bibliothek nur lesen, wenn Sie es einschalten, nur auf Ihrem Rechner und nur, was Sie erlauben.
 • Kein Tracking- oder Analyse-SDK, keine Werbung, kein Datenverkauf.
 • Datenschutzfreundlich nach DSGVO-Grundsätzen: Sie entscheiden, wohin Daten gehen; mit Mistral steht ein Anbieter aus der EU zur Wahl, mit KI auf Ihrem Rechner gar keiner.
-• Open Source: Der komplette Code ist öffentlich auf GitHub (philffm/ai-summary-helper) und für alle prüfbar.
+• Open Source: Der komplette Code ist öffentlich auf GitHub (philffm/kaivo) und für alle prüfbar.
 • Entwickelt in der EU von byphil.
 
 ━━━━━━━━━━━━━━━━━━━━

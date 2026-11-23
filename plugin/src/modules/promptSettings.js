@@ -121,7 +121,7 @@ function articlesHtml() {
         .concat([`<option value="custom"${sel === 'custom' ? ' selected' : ''}>${esc(T('Custom'))}</option>`]);
     const L = ART_LABELS();
     let h = `<p class="ps-hint">${esc(T('Used whenever you summarize a page or article.'))}</p>
-      <label class="ps-label" for="promptSelect">${esc(T('Preset'))} <a href="https://github.com/philffm/ai-summary-helper/blob/main/src/prompts.json" target="_blank" rel="noopener">${esc(T('(View all & contribute)'))}</a></label>
+      <label class="ps-label" for="promptSelect">${esc(T('Preset'))} <a href="https://github.com/philffm/kaivo/blob/main/src/prompts.json" target="_blank" rel="noopener">${esc(T('(View all & contribute)'))}</a></label>
       <select id="promptSelect" class="ps-select">${opts.join('')}</select>`;
     if (a.type === 'builder') {
         const b = a.builder;

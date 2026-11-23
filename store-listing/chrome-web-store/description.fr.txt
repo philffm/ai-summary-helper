@@ -153,7 +153,7 @@ Votre appli IA n'a jamais lu ce que vous lisez. Activez les applis IA dans les r
 • Les applis IA ne lisent votre bibliothèque que si vous l'activez, uniquement sur votre ordinateur, et seulement ce que vous autorisez.
 • Aucun SDK de suivi ou d'analyse, aucune publicité, aucune revente de données.
 • Dans l'esprit du RGPD : vous décidez où vont vos données ; vous pouvez choisir un fournisseur européen, ou aucun avec un modèle sur votre ordinateur.
-• Open source : tout le code est public sur GitHub (philffm/ai-summary-helper).
+• Open source : tout le code est public sur GitHub (philffm/kaivo).
 • Conçu dans l'UE par byphil.
 
 ━━━━━━━━━━━━━━━━━━━━

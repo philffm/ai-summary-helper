@@ -56,7 +56,7 @@
     {
         "id": "custom",
         "name": "OpenAI-compatible server",
-        "apiKeyDocumentationUrl": "https://github.com/philffm/ai-summary-helper#compatible-tools",
+        "apiKeyDocumentationUrl": "https://github.com/philffm/kaivo#compatible-tools",
         "endpointUrl": "",
         "endpointPlaceholder": "http://localhost:1234/v1",
         "defaultModel": "",

@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-inpage-ask-en.webp">
 <meta name="twitter:card" content="summary_large_image">
 <script src="../assets/analytics.js" defer=""></script>
-</head>
+<link rel="canonical" href="https://ai-summary-helper.byphil.eu/education/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="en_US"><meta name="twitter:title" content="Source checking with AI for teaching and libraries"><meta name="twitter:description" content="Evidence for every answer, a source check, your choice of model, also local. Free pilot."><meta name="twitter:image" content="https://ai-summary-helper.byphil.eu/assets/shots/aish-inpage-ask-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://ai-summary-helper.byphil.eu/education/#page","url":"https://ai-summary-helper.byphil.eu/education/","name":"Source checking with AI for teaching and libraries","description":"Evidence for every answer, a source check, your choice of model, also local. Open source. Free pilot for educators and universities.","inLanguage":"en","isPartOf":{"@id":"https://ai-summary-helper.byphil.eu/#website"},"about":{"@id":"https://ai-summary-helper.byphil.eu/#app"},"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"FAQPage","@id":"https://ai-summary-helper.byphil.eu/education/#faq","inLanguage":"en","mainEntity":[{"@type":"Question","name":"Do learners need an account?","acceptedAnswer":{"@type":"Answer","text":"No. The extension works without an account. You only need an account if you want to use byphil Cloud."}},{"@type":"Question","name":"What leaves the browser?","acceptedAnswer":{"@type":"Answer","text":"Only the text someone has summarized, and only to the AI provider the institution chose. With a local model everything stays on the device. The library is in the browser."}},{"@type":"Question","name":"Does it work with no cloud at all?","acceptedAnswer":{"@type":"Answer","text":"Yes, with a local model through Ollama. The computer needs enough power for the chosen model."}},{"@type":"Question","name":"Does it meet the requirements of my school or university?","acceptedAnswer":{"@type":"Answer","text":"Your data protection officers have to assess that. That is why we state openly where data flows (see above), and the source code is public. We do not claim any approval by an authority."}},{"@type":"Question","name":"What does it cost?","acceptedAnswer":{"@type":"Answer","text":"The extension is free, and so is the pilot. With your own key or a local model there are no costs with us. Costs at the AI provider follow its prices."}},{"@type":"Question","name":"Is it open source?","acceptedAnswer":{"@type":"Answer","text":"Yes. The source code is public on GitHub."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://ai-summary-helper.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Teach source checking,with an AI you control.","item":"https://ai-summary-helper.byphil.eu/education/"}]}]}</script></head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
 
@@ -70,7 +70,7 @@
           <a href="../blog/bring-your-own-key.html" class="mm-sub">Your key. Your model. Your data.</a>
           <a href="../blog/verify-ai-summary.html" class="mm-sub">Check a summary against its source</a>
           <a href="../blog/highlighting-vs-asking.html" class="mm-sub">Ask about your highlights</a>
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
+        <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener"><span class="mm-n">05</span>GitHub</a>
       </nav>
       <div class="mm-lang">
         <button type="button" class="lang-card" id="langCard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span class="lang-card-cur">English</span><small>24 languages</small><b aria-hidden="true">→</b></button>
@@ -101,7 +101,7 @@
           <a href="../index.html#phone">Android · Beta</a>
           <a href="https://byphil.eu/#account">My account</a>
         </div>
-        
+
         <button type="button" class="theme-toggle-mobile" id="themeToggleMobile">
           <span id="themeToggleMobileLabel">Switch to light mode</span>
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
@@ -204,7 +204,7 @@
                 <div class="cx-shot-text">
                   <strong class="cx-title">Check, don’t just believe</strong>
                   <span class="cx-text">For every answer, the passage it rests on. Four lateral-reading questions per source, as hints. A model chosen by the institution, in the house if wanted. The tool makes no judgement for you, it makes checking concrete.</span>
-                  <small class="cx-src"><a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Source code on GitHub</a> · <a href="../blog/verify-ai-summary.html">How to check an AI summary against its source</a></small>
+                  <small class="cx-src"><a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">Source code on GitHub</a> · <a href="../blog/verify-ai-summary.html">How to check an AI summary against its source</a></small>
                 </div>
                 <img src="../assets/shots/aish-inpage-ask-en.webp" width="1440" height="900" loading="lazy" alt="Answer to a follow-up with a source reference and highlighted passages in the article">
               </div>
@@ -373,7 +373,7 @@
         <div><dt>Local with Ollama</dt><dd>The model runs on your computer. No text leaves the device.</dd></div>
         <div><dt>byphil Cloud (optional)</dt><dd>A hosted option without your own key. The request goes through our service and from there through OpenRouter (a US company) to the model. With the setting “Prefer EU servers”, only models with an endpoint in Europe are used. That limits where the model runs; the path through OpenRouter remains.</dd></div>
         <div><dt>Library</dt><dd>Saved articles, highlights and notes are in the browser of the device. There is no account and no copy on a server.</dd></div>
-        <div><dt>Source code</dt><dd>Public on <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">GitHub</a>. Data protection officers can read what the extension does.</dd></div>
+        <div><dt>Source code</dt><dd>Public on <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">GitHub</a>. Data protection officers can read what the extension does.</dd></div>
         <div><dt>As of</dt><dd>1 November 2026</dd></div>
       </dl>
     </div>
@@ -524,7 +524,7 @@
     <div class="footer-inner">
       <div class="wordmark"><img src="../assets/icon.svg" alt="">AI Summary Helper</div>
       <div class="foot-links">
-        <a href="https://github.com/philffm/ai-summary-helper/" target="_blank" rel="noopener">Source on GitHub</a>
+        <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">Source on GitHub</a>
         <a href="../bookmarklet.html">Bookmarklet (no install)</a>
         <a href="../education/">For education</a>
         <a href="../privacy.html">Privacy</a>

@@ -2,7 +2,7 @@
 
 Lets any MCP-capable app on **this computer** — Claude Desktop, LM Studio, Cursor, VS Code,
 Jan, a local agent — read (and, if you allow it, add to) your [AI Summary
-Helper](https://github.com/philffm/ai-summary-helper) library: your saved articles, summaries,
+Helper](https://github.com/philffm/kaivo) library: your saved articles, summaries,
 highlights, Q&A, collections, feeds and saved-for-later items.
 
 Nothing leaves your computer except what the app you connect sends to its own model. This relay

@@ -157,7 +157,7 @@ Your AI app has never read what you read. Turn on AI apps in Settings and Claude
 • Page content is sent only to the AI provider you chose, or to nobody at all with an on-device model.
 • AI apps can read your library only if you switch it on, only on your computer, and only what you allow.
 • No tracking or analytics SDK, no ads, no selling of data.
-• Open source: the complete code is public on GitHub (philffm/ai-summary-helper) for anyone to audit.
+• Open source: the complete code is public on GitHub (philffm/kaivo) for anyone to audit.
 • Made in the EU by byphil.
 
 ━━━━━━━━━━━━━━━━━━━━

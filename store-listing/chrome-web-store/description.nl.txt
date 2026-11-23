@@ -157,7 +157,7 @@ Je AI-app heeft nooit gelezen wat jij leest. Zet AI-apps aan in Instellingen en 
 • Pagina-inhoud gaat alleen naar de AI-aanbieder die je koos, of naar niemand met een model op je apparaat.
 • AI-apps kunnen je bibliotheek alleen lezen als je dat aanzet, alleen op je computer, en alleen wat jij toestaat.
 • Geen tracking- of analyse-SDK, geen advertenties, geen verkoop van gegevens.
-• Open source: de volledige code is openbaar op GitHub (philffm/ai-summary-helper), voor iedereen om te controleren.
+• Open source: de volledige code is openbaar op GitHub (philffm/kaivo), voor iedereen om te controleren.
 • Gemaakt in de EU door byphil.
 
 ━━━━━━━━━━━━━━━━━━━━

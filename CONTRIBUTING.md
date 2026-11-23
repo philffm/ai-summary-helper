@@ -5,7 +5,7 @@ Thanks for helping. The extension is vanilla ES modules (no framework, no bundle
 ## Setup
 
 ```bash
-git clone https://github.com/philffm/ai-summary-helper.git
+git clone https://github.com/philffm/kaivo.git
 cd ai-summary-helper
 npm ci
 npm run build        # plugin/src → plugin/dev/aish-extension-chrome (also build:firefox, build:android, build:ios)

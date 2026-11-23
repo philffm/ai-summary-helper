@@ -11,10 +11,10 @@ const LINKS = {
     donate: 'https://link.philwornath.com/?source=aish#donate',
     feedback: 'https://app.formbricks.com/s/cm3kn4nmg00032dmy85vlbjzp',
     contact: 'https://philwornath.com/?ref=aish#contact',
-    github: 'https://github.com/philffm/ai-summary-helper',
-    changelog: 'https://github.com/philffm/ai-summary-helper/blob/main/CHANGELOG.md',
+    github: 'https://github.com/philffm/kaivo',
+    changelog: 'https://github.com/philffm/kaivo/blob/main/CHANGELOG.md',
     privacy: 'https://ai-summary-helper.byphil.eu/privacy.html',
-    security: 'https://github.com/philffm/ai-summary-helper/blob/main/SECURITY.md',
+    security: 'https://github.com/philffm/kaivo/blob/main/SECURITY.md',
 };
 // Highlights of the current release. Keep it to three short lines a reader cares about.
 const WHATS_NEW = () => ([
