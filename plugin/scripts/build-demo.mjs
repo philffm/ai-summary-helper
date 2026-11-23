@@ -44,6 +44,14 @@ const tag = '<script src="audioEngine.js"></script>';
 if (!html.includes(tag)) throw new Error('popup.html no longer has the audioEngine script tag: update build-demo.mjs');
 fs.writeFileSync(path.join(APP, 'popup.html'), html.replace(tag, '<script src="demo-content.js"></script><script src="demo-i18n.js"></script>' + LANG_TAGS + '<script src="demo-library-i18n.js"></script><script src="demo-scenarios-i18n.js"></script><script src="demo-scenarios.js"></script><script src="demo-shim.js"></script>' + tag));
 
+// The home page too (app/home.html), with the same fake chrome: store screenshots and videos of the start page use it.
+{
+  const home = fs.readFileSync(path.join(SRC, 'home.html'), 'utf8');
+  const htag = '<script type="module" src="home.js"></script>';
+  if (!home.includes(htag)) throw new Error('home.html no longer has the home.js script tag: update build-demo.mjs');
+  fs.writeFileSync(path.join(APP, 'home.html'), home.replace(htag, '<script src="demo-content.js"></script><script src="demo-i18n.js"></script>' + LANG_TAGS + '<script src="demo-library-i18n.js"></script><script src="demo-scenarios-i18n.js"></script><script src="demo-scenarios.js"></script><script src="demo-shim.js"></script>' + htag));
+}
+
 fs.writeFileSync(path.join(OUT, 'index.html'), fs.readFileSync(path.join(DEMO, 'index.html'), 'utf8').replace('<!--LANG-->', LANG_FILES.map((f) => `<script src="app/lang/${f}"></script>`).join('')));
 // The URL-parameter contract for automation (video tools, screenshot pipelines, embedding).
 fs.copyFileSync(path.join(DEMO, 'README.md'), path.join(OUT, 'README.md'));

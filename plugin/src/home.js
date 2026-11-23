@@ -12,6 +12,7 @@ import { renderInline, renderAnswer } from './modules/qaView.js';
 import { chipCites, citedSources } from './modules/recapCites.js';
 import { lazyList } from './modules/lazyList.js';
 import { findGaps, tagIdOf, tagLabelOf } from './modules/graphGaps.js';
+import { loadLexicon } from './modules/topicLexicon.js';
 import { isLanguageTag } from './modules/topicConcepts.js';
 import { pickSnippet, topTopics, packBubbles, dueQuizzes, latestBriefing, continueReading, recentlySaved, latestFeed, mergeFeed, pickQuote, libraryStats, visibleWidgets, WIDGETS, greetingKey } from './modules/homeWidgets.js';
 import { createAppDock } from './modules/appDock.js';
@@ -352,6 +353,7 @@ async function loadData() {
     data.recaps = got[SK.feedRecaps] || {};
     data.feed = mergeFeed(got[SK.feedItems], (got[SK.feedBackground] || {}).items);
     data.index = await StorageManager.getArticlesIndex();
+    await loadLexicon();   // the learned topic names: the bubbles and the gaps say "Reading" / "読書", not the raw tag
     data.gaps = findGaps(data.index, { cap: 6 });
     data.topics = packBubbles(topTopics(data.index, { tagId: tagIdOf, tagLabel: tagLabelOf, isLanguage: isLanguageTag }, 12), 420, 130);
     try {   // the saved quizzes (a handful of small records): the due ones become a card

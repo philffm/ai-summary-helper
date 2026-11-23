@@ -70,7 +70,7 @@
       const T = D.libraryText || { keyPoints: 'Key points', tail: 'Context, evidence and what to read next.' };
       const summary = a.summary || ('<h3>' + T.keyPoints + '</h3><ul><li>' + a.title + '</li><li>' + T.tail + '</li></ul>');
       idx.push({ id, title: a.title, url: 'https://' + a.host + '/' + slug(a.title), timestamp: ts, tags: a.tags, modelId: 'demo', summaryLength: 200, summary,
-        contentWordCount: a.words, summaryWordCount: 60, archived: false, lastOpened: ts, moodScore: a.mood, ...(a.idx || {}) });
+        contentWordCount: a.words, summaryWordCount: 60, archived: false, lastOpened: ts, moodScore: a.mood, ...(i === 1 || i === 4 ? { progress: i === 1 ? 0.62 : 0.35 } : {}), ...(a.idx || {}) });   // two articles in progress: the home page's "Continue reading"
       recs['articles:rec:' + id] = { content: '<p>' + a.title + '</p>', summary, description: '', ...(a.rec || {}) };
     });
     idx.sort((x, y) => x.timestamp < y.timestamp ? -1 : 1);
@@ -88,6 +88,13 @@
     const subs = F.subs.map(s => ({ id: hash('https://' + s.host + '/feed.xml'), url: 'https://' + s.host + '/feed.xml', title: s.title, siteUrl: 'https://' + s.host + '/', tags: s.tags, addedAt: now - 30 * 864e5, lastFetched: now, error: '' }));
     const items = F.items.map((it, i) => { const sub = subs[it.feed]; return { id: hash(sub.id + it.title), feedId: sub.id, title: it.title, link: 'https://' + F.subs[it.feed].host + '/p/' + i, published: now - it.hoursAgo * 36e5, snippet: it.snippet, audio: '', dur: 0, img: '', ai: typeof it.sent === 'number', ...(typeof it.sent === 'number' ? { sent: it.sent, cat: it.cat } : {}), read: i > 12 }; }).sort((a, b) => b.published - a.published);
     local.set({ 'feeds:subs': subs, 'feeds:items': items });
+    // The home page (app/home.html): today's briefing (the recorded feed recap), and one saved highlight
+    if (D.feedRecap) {
+      const day = new Date(); day.setHours(0, 0, 0, 0);
+      local.set({ 'feeds:recaps': { [day.getTime() + '|all']: { overview: D.feedRecap.overview, themes: D.feedRecap.themes, mood: D.feedRecap.mood, at: now - 12 * 60000, n: items.length, refs: {} } } });
+      const url = 'https://example.com/the-quiet-comeback-of-the-long-read';
+      local.set({ 'hl:index': [{ k: url, n: 1 }], ['hl:page:' + url]: [{ url, text: D.feedRecap.themes[0], type: 'user' }] });
+    }
     // A scenario's mood history is keyed by 'f<n>' (the n-th subscription): swap in the real feed ids.
     if (D.moodSeed) { const m = {}; Object.keys(D.moodSeed).forEach((d) => { m[d] = {}; Object.keys(D.moodSeed[d]).forEach((k) => { const sub = subs[Number(k.slice(1))]; if (sub) m[d][sub.id] = D.moodSeed[d][k]; }); }); local.set({ 'feeds:mood': m }); }
   })();
