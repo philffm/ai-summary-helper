@@ -13,7 +13,7 @@ const LINKS = {
     contact: 'https://philwornath.com/?ref=aish#contact',
     github: 'https://github.com/philffm/kaivo',
     changelog: 'https://github.com/philffm/kaivo/blob/main/CHANGELOG.md',
-    privacy: 'https://ai-summary-helper.byphil.eu/privacy.html',
+    privacy: 'https://kaivo.byphil.eu/privacy.html',
     security: 'https://github.com/philffm/kaivo/blob/main/SECURITY.md',
 };
 // Highlights of the current release. Keep it to three short lines a reader cares about.

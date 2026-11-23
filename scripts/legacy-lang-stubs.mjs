@@ -8,7 +8,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const BASE = 'https://ai-summary-helper.byphil.eu';
+const BASE = 'https://kaivo.byphil.eu';
 const out = path.resolve(process.argv[2] || '_site');
 const docs = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'docs');
 const locales = Object.values(JSON.parse(fs.readFileSync(path.join(docs, 'i18n', 'locales.json'), 'utf8')).locales);

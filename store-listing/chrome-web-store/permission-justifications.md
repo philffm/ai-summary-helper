@@ -62,7 +62,7 @@ No manifest permission. When the user picks a folder as a sync or backup place, 
 
 ## Data usage disclosures (checklist)
 
-Answer to match the privacy policy at https://ai-summary-helper.byphil.eu/privacy.html:
+Answer to match the privacy policy at https://kaivo.byphil.eu/privacy.html:
 
 - Collected: website content (text of pages the user summarizes, sent to the AI provider they chose, or to byphil Cloud if they use it) and, only with the optional byphil sign-in, the user's email address.
 - Not collected: health, financial, location, personal communications, authentication information beyond the optional sign-in.

@@ -290,7 +290,7 @@ function arrayBufferToBase64(buffer) {
 // ── Uninstall feedback + review timing ───────────────────────────────────────
 // Chrome opens this page after the extension is removed. Only the version and the days of use are
 // appended — no ids, no content. Re-set on every worker start so "days" stays current.
-const GOODBYE_URL = 'https://ai-summary-helper.byphil.eu/goodbye.html';
+const GOODBYE_URL = 'https://kaivo.byphil.eu/goodbye.html';
 async function refreshUninstallUrl() {
     try {
         const { [SK.installedAt]: installedAt } = await localGet(SK.installedAt);
@@ -1294,7 +1294,7 @@ function targetMessage(start, sendResponse) {
 }
 
 // Our website (keep in sync with loader.js): the only page that may ask to open AISH.
-const OWN_SITE = 'ai-summary-helper.byphil.eu';
+const OWN_SITE = 'kaivo.byphil.eu';
 function isOwnSite(url) {
     try { const u = new URL(String(url || '')); return u.protocol === 'https:' && u.hostname === OWN_SITE; } catch (_) { return false; }
 }

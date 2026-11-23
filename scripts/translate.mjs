@@ -297,7 +297,7 @@ function addHreflangTags($, config, currentLocaleCode, relPath) {
     $('link[rel="alternate"][hreflang]').remove();
 
     const entry = (hreflang, href) => `<link rel="alternate" hreflang="${hreflang}" href="${href}">`;
-    const base = 'https://ai-summary-helper.byphil.eu';
+    const base = 'https://kaivo.byphil.eu';
 
     head.append(entry('x-default', `${base}/${relPath}`));
     head.append(entry('en', `${base}/${relPath}`));
@@ -398,7 +398,7 @@ ${transcreationBrief}`;
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${apiKey}`,
-                'HTTP-Referer': 'https://ai-summary-helper.byphil.eu',
+                'HTTP-Referer': 'https://kaivo.byphil.eu',
                 'X-Title': 'AI Summary Helper i18n pipeline'
             },
             body: JSON.stringify({

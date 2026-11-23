@@ -13,7 +13,7 @@ import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import * as cheerio from 'cheerio';
 
-const BASE = 'https://ai-summary-helper.byphil.eu';
+const BASE = 'https://kaivo.byphil.eu';
 // Locale folders (docs/de/, docs/fr/ …) come from the translation config, so renaming them needs no change here.
 const LOCALES = Object.values(JSON.parse(fs.readFileSync(path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'docs', 'i18n', 'locales.json'), 'utf8')).locales);
 const LOCALE_DIRS = LOCALES.map((l) => l.dir);

@@ -10,7 +10,7 @@ import { localizedPath } from './lib/localized-paths.mjs';
 
 const DOCS = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'docs');
 const FILE = path.join(DOCS, 'sitemap.xml');
-const BASE = 'https://ai-summary-helper.byphil.eu/';
+const BASE = 'https://kaivo.byphil.eu/';
 const I18N = JSON.parse(fs.readFileSync(path.join(DOCS, 'i18n', 'locales.json'), 'utf8'));
 const errors = [];
 

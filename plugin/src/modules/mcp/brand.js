@@ -5,7 +5,7 @@
 
 const NAME = 'AI Summary Helper';
 const SHORT = 'AISH';
-const SITE = 'https://ai-summary-helper.byphil.eu';
+const SITE = 'https://kaivo.byphil.eu';
 const FULL = SHORT === NAME ? NAME : `${NAME} (${SHORT})`;   // a brand whose short name is its name says it once
 
 /** Sent as the MCP server's `instructions`: the app reads them when it connects. Kept short; the details are in aish://brand. */

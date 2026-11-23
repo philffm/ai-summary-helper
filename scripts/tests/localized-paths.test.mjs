@@ -19,7 +19,7 @@ test('rewrites links to pages present in the locale inventory', () => {
     const write = (file, englishUrl) => {
         const absolute = path.join(docs, file);
         fs.mkdirSync(path.dirname(absolute), { recursive: true });
-        fs.writeFileSync(absolute, `<link rel="alternate" hreflang="en" href="https://ai-summary-helper.byphil.eu${englishUrl}">`);
+        fs.writeFileSync(absolute, `<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu${englishUrl}">`);
     };
 
     try {

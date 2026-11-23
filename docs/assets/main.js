@@ -570,7 +570,7 @@ function setBilling(period) {
   // template changes so saved bookmarklets can detect they're outdated.
   var BM_VERSION = '1.0.0';
   // Where the bookmarklet checks for a newer version (served from this site).
-  var BM_VERSION_URL = 'https://ai-summary-helper.byphil.eu/bookmarklet-version.json';
+  var BM_VERSION_URL = 'https://kaivo.byphil.eu/bookmarklet-version.json';
 
   function buildBookmarklet() {
     var prompt = els.prompt.value.trim();
@@ -654,7 +654,7 @@ function setBilling(period) {
       'document.head.appendChild(style);',
       'var msg=document.createElement("div");msg.id="ai-summary-message";msg.textContent="Summarizing…";document.body.prepend(msg);',
       '// Optional update check (best-effort, never blocks summarization).',
-      'try{fetch(BM_VERSION_URL).then(function(r){return r.json();}).then(function(v){if(v&&v.version&&v.version!==BM_VERSION){msg.textContent="⚠️ Bookmarklet outdated (v"+BM_VERSION+", latest v"+v.version+"). Regenerate it at ai-summary-helper.byphil.eu/#bookmarklet";setTimeout(function(){msg.textContent="Summarizing…";},4000);}}).catch(function(){});}catch(e){}',
+      'try{fetch(BM_VERSION_URL).then(function(r){return r.json();}).then(function(v){if(v&&v.version&&v.version!==BM_VERSION){msg.textContent="⚠️ Bookmarklet outdated (v"+BM_VERSION+", latest v"+v.version+"). Regenerate it at kaivo.byphil.eu/#bookmarklet";setTimeout(function(){msg.textContent="Summarizing…";},4000);}}).catch(function(){});}catch(e){}',
       'var startFetch=function(){',
       '// Create the summary container up front so we can stream into it as text arrives.',
       'var title=document.title||"AI Summary";',
@@ -1168,7 +1168,7 @@ function setBilling(period) {
   var ua = navigator.userAgent || '';
   var handheld = /Android|iPhone|iPod|iPad|Mobi/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
   if (!handheld) return;
-  var URL_ = 'https://ai-summary-helper.byphil.eu/', TITLE = 'AI Summary Helper', TEXT = 'Add AI Summary Helper to your browser on your computer:';
+  var URL_ = 'https://kaivo.byphil.eu/', TITLE = 'AI Summary Helper', TEXT = 'Add AI Summary Helper to your browser on your computer:';
   document.documentElement.classList.add('is-handheld');
   document.querySelectorAll('[data-desktop-cta]').forEach(function (e) { e.hidden = true; });
   document.querySelectorAll('[data-send], [data-send-note]').forEach(function (e) { e.hidden = false; });

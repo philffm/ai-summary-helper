@@ -7,7 +7,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import * as cheerio from 'cheerio';
 
-const SITE = 'https://ai-summary-helper.byphil.eu';
+const SITE = 'https://kaivo.byphil.eu';
 const SITE_ORIGIN = new URL(SITE).origin;
 let MAP = {};
 try { MAP = JSON.parse(readFileSync(path.join(process.cwd(), 'docs', 'i18n', 'slugs.json'), 'utf8')); } catch { MAP = {}; }

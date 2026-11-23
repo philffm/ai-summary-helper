@@ -9,7 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const DOCS = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', process.env.SITE_DIR || 'docs');   // SITE_DIR: the branded copy (docs-kaivo) that is actually published
-const HOST = process.env.SITE_HOST || 'ai-summary-helper.byphil.eu';
+const HOST = process.env.SITE_HOST || 'kaivo.byphil.eu';
 const KEY = '74c386394ab84165be6a819f1e91dc5f';   // must match docs/<KEY>.txt
 const args = process.argv.slice(2);
 const flag = (name) => args.includes(name);

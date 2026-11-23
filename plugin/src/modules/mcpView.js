@@ -15,7 +15,7 @@ const getL = (keys) => new Promise((r) => local().get(keys, r));
 const setL = (obj) => new Promise((r) => local().set(obj, r));
 const removeL = (keys) => new Promise((r) => local().remove(keys, r));
 
-const GUIDE_URL = 'https://ai-summary-helper.byphil.eu/blog/ai-apps-mcp.html';
+const GUIDE_URL = 'https://kaivo.byphil.eu/blog/ai-apps-mcp.html';
 const PAIR_COMMAND = 'npx -y kaivo-mcp pair';
 const DEFAULT_SCOPES = { library: true, fulltext: false, feeds: false, write: false };
 const SERVER = { command: 'npx', args: ['-y', 'kaivo-mcp'] };

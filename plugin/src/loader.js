@@ -235,7 +235,7 @@
 
   // Our own website (keep in sync with OWN_SITE in background.js): mark the page so its store buttons read "Open AISH",
   // and open AISH when one is clicked. Nothing is set or listened to on any other site.
-  if (location.protocol === 'https:' && location.hostname === 'ai-summary-helper.byphil.eu') {
+  if (location.protocol === 'https:' && location.hostname === 'kaivo.byphil.eu') {
     document.documentElement.setAttribute('data-aish', 'installed');
     // …/#open-aish as an address (a link in a mail or a doc) opens AISH once, then the hash is removed again.
     const openFromSite = () => { try { const p = api.runtime.sendMessage({ action: 'aish:openFromSite' }); if (p && typeof p.catch === 'function') p.catch(() => {}); } catch (_) { /* context gone */ } };

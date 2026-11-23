@@ -8,7 +8,7 @@ import { T } from './feedI18n.js';
 // the old name is built in two pieces on purpose: the brand build replaces the whole name in every file, and this sentence has to keep it
 export const OLD_NAME = 'AI Summary' + ' Helper';
 export const NEW_NAME = 'Kaivo';
-export const VIDEO_URL = 'https://ai-summary-helper.byphil.eu/assets/video/kaivo-rename-en.mp4';   // the site host is swapped by the brand build
+export const VIDEO_URL = 'https://kaivo.byphil.eu/assets/video/kaivo-rename-en.mp4';   // the site host is swapped by the brand build
 
 /** Pure: show it only while the update has flagged it and it has not been dismissed. */
 export const shouldShow = (state) => !!(state && state.pending && !state.done);

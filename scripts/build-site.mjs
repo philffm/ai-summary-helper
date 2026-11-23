@@ -31,7 +31,7 @@ const PAGES_DIR = path.join(SITE_SRC, 'pages');
 const PARTIALS_DIR = path.join(SITE_SRC, 'partials');
 const OUT_DIR = path.join(ROOT, 'docs');
 const LOCALES_PATH = path.join(OUT_DIR, 'i18n', 'locales.json');
-const SITE_BASE = 'https://ai-summary-helper.byphil.eu';
+const SITE_BASE = 'https://kaivo.byphil.eu';
 
 // One place for the product name (the rename is undecided): pages written with {{product}} pick it up from site-src/site.json.
 const PRODUCT = JSON.parse(await readFile(path.join(SITE_SRC, 'site.json'), 'utf8')).product;
