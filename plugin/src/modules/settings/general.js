@@ -66,7 +66,7 @@ export function initGeneralSettings(storageData) {
         bindSegKeys(el);   // arrow keys, Home, End (modules/segmented.js)
     };
     // the words of the three switches (written in popup.html in English)
-    { const words = { themeLabel: T('Brightness'), designLabel: T('Design'), schemeLabel: T('Color scheme') }; Object.entries(words).forEach(([id, t]) => { const e = $id(id); if (e) e.textContent = t; });
+    { const words = { themeLabel: T('Brightness'), designLabel: T('Look'), schemeLabel: T('Color scheme') }; Object.entries(words).forEach(([id, t]) => { const e = $id(id); if (e) e.textContent = t; });
       const lab = { themeSeg: { system: T('Auto'), light: T('Light'), dark: T('Dark') }, designSeg: { standard: T('Standard'), contrast: T('High contrast') } };
       Object.entries(lab).forEach(([id, m]) => document.querySelectorAll('#' + id + ' [data-value]').forEach((b) => { if (m[b.dataset.value]) b.textContent = m[b.dataset.value]; })); }
     // the colour dots have no words: the name is the accessible name and the tooltip

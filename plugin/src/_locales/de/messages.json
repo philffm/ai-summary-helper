@@ -8146,5 +8146,8 @@
   },
   "f_is_now_d196": {
     "message": "{old} heißt jetzt {new}"
+  },
+  "f_look_0bb6": {
+    "message": "Look"
   }
 }

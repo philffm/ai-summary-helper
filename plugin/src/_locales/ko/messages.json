@@ -8047,5 +8047,8 @@
   },
   "f_is_now_d196": {
     "message": "{old}의 새 이름은 {new}입니다"
+  },
+  "f_look_0bb6": {
+    "message": "스타일"
   }
 }

@@ -1,3 +1,4 @@
+import { previewText } from './previewText.js';
 import { modelIcon } from './modelBadge.js';
 import { icon, iconEl, setIconLabel, setLabel, labelHtml } from './icons.js';
 import { SK } from './storageKeys.js';
@@ -45,8 +46,7 @@ export function initMainScreen(ui) {
         const summaryHtml = (article.summary || '').replace(/<img[^>]*>/gi, '');
         // Plain text preview: strip all HTML tags and truncate to 100 chars
         // inert parse (no loads, no handlers), so entities and half tags from a restored or synced summary end up as text, then escaped
-        const textOnly = (new DOMParser().parseFromString(summaryHtml, 'text/html').body.textContent || '').replace(/\s+/g, ' ').trim();
-        const preview = escapeHtml(textOnly.length > 100 ? textOnly.slice(0, 100) + '…' : textOnly);
+        const preview = escapeHtml(previewText(summaryHtml));
         const date = article.timestamp ? new Date(article.timestamp).toLocaleDateString() : '';
 
         // Tags in the UI language, like History shows them (known and learned topics are translated, one chip per topic)

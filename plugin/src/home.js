@@ -258,7 +258,7 @@ function wireLook(initial) {
     const scale = clampScale(cfg.textScale || 100);
     menu.replaceChildren(
       seg(T('Brightness'), 'theme', [['system', T('Auto')], ['light', T('Light')], ['dark', T('Dark')]], n.theme),
-      seg(T('Design'), 'design', [['standard', T('Standard')], ['postil', 'Postil'], ['contrast', T('High contrast')]], n.design),
+      seg(T('Look'), 'design', [['standard', T('Standard')], ['postil', 'Postil'], ['contrast', T('High contrast')]], n.design),
       seg(T('Color scheme'), 'colorScheme', [['default', T('Default')], ['kaivo', 'Kaivo'], ['aish', 'Aish'], ['viola', 'Viola'], ['graphite', T('Graphite')]], scheme, true));
     const size = el('div', 'hm-look-row'); size.append(el('span', 'hm-look-label-row', T('Text size')));
     const ctl = el('div', 'hm-look-size');

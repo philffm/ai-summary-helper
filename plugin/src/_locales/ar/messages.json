@@ -8065,5 +8065,8 @@
   },
   "f_is_now_d196": {
     "message": "أصبح اسم {old} الآن {new}"
+  },
+  "f_look_0bb6": {
+    "message": "النمط"
   }
 }

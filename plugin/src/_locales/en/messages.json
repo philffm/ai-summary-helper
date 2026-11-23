@@ -8505,5 +8505,8 @@
   "f_is_now_d196": {
     "message": "{old} is now {new}",
     "description": "Placeholders: {old} {new} (keep as is)"
+  },
+  "f_look_0bb6": {
+    "message": "Look"
   }
 }
