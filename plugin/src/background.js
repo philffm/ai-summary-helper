@@ -92,6 +92,7 @@ const SK = {
     activityView: 'ui:activityView',
     workspace: 'ui:workspace',
     reviewPrompt: 'ui:reviewPrompt',
+    renameNotice: 'ui:renameNotice',       // { pending } set by an update from before the rename to Kaivo, { done } once seen (or on a fresh install)
     exportAllQuestions: 'ui:exportAllQuestions',
     lastCollection: 'ui:lastCollection',   // id of the collection a page was last added to (pre-selected in the "Add to collection" sheet)
     collStats: 'ui:collStats',             // local counters for the collections feature ({event: count}); no content, never leaves the device
@@ -298,10 +299,21 @@ async function refreshUninstallUrl() {
     } catch (e) { /* not supported on this platform */ }
 }
 refreshUninstallUrl();
-chrome.runtime.onInstalled.addListener(async () => {
+// The rename notice (modules/renameNotice.js): an update of an existing install is told once that the extension has a new name;
+// a fresh install already knows it. Once the key exists nothing changes it, so later updates stay quiet.
+function renameNoticeFor(reason, existing) {
+    if (existing && (existing.pending || existing.done)) return null;
+    return reason === 'update' ? { pending: true } : { done: true };
+}
+chrome.runtime.onInstalled.addListener(async (details) => {
     try {
         const { installedAt } = await chrome.storage.local.get('installedAt');
         if (!installedAt) await chrome.storage.local.set({ [SK.installedAt]: Date.now() });
+    } catch (e) { /* ignore */ }
+    try {
+        const cur = (await chrome.storage.local.get(SK.renameNotice))[SK.renameNotice];
+        const next = renameNoticeFor(details && details.reason, cur);
+        if (next) await chrome.storage.local.set({ [SK.renameNotice]: next });
     } catch (e) { /* ignore */ }
     refreshUninstallUrl();
 });

@@ -8053,5 +8053,17 @@
   },
   "f_update_feeds_now_c99d": {
     "message": "Atualizar os feeds agora"
+  },
+  "f_got_it_1c6a": {
+    "message": "Percebi"
+  },
+  "f_same_extension_same_data_a_n_b054": {
+    "message": "A mesma extensão, os mesmos dados, um novo nome. As suas definições, artigos e notas ficam como estão."
+  },
+  "f_watch_the_video_b1d8": {
+    "message": "Ver o vídeo"
+  },
+  "f_is_now_d196": {
+    "message": "{old} chama-se agora {new}"
   }
 }

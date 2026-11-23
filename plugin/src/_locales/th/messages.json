@@ -8336,5 +8336,17 @@
   },
   "f_update_feeds_now_c99d": {
     "message": "อัปเดตฟีดตอนนี้"
+  },
+  "f_got_it_1c6a": {
+    "message": "เข้าใจแล้ว"
+  },
+  "f_same_extension_same_data_a_n_b054": {
+    "message": "ส่วนขยายเดิม ข้อมูลเดิม แค่ชื่อใหม่ การตั้งค่า บทความ และบันทึกของคุณยังเหมือนเดิม"
+  },
+  "f_watch_the_video_b1d8": {
+    "message": "ดูวิดีโอ"
+  },
+  "f_is_now_d196": {
+    "message": "{old} ตอนนี้ชื่อ {new}"
   }
 }

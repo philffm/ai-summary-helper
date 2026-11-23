@@ -8053,5 +8053,17 @@
   },
   "f_update_feeds_now_c99d": {
     "message": "立即更新订阅源"
+  },
+  "f_got_it_1c6a": {
+    "message": "知道了"
+  },
+  "f_same_extension_same_data_a_n_b054": {
+    "message": "同一个扩展，同样的数据，换了新名称。您的设置、文章和笔记保持不变。"
+  },
+  "f_watch_the_video_b1d8": {
+    "message": "观看视频"
+  },
+  "f_is_now_d196": {
+    "message": "{old}现已更名为{new}"
   }
 }

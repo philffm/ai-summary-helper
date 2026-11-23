@@ -83,6 +83,7 @@ export const SK = {
     activityView: 'ui:activityView',
     workspace: 'ui:workspace',
     reviewPrompt: 'ui:reviewPrompt',
+    renameNotice: 'ui:renameNotice',       // { pending } set by an update from before the rename to Kaivo, { done } once seen (or on a fresh install)
     exportAllQuestions: 'ui:exportAllQuestions',
     lastCollection: 'ui:lastCollection',   // id of the collection a page was last added to (pre-selected in the "Add to collection" sheet)
     collStats: 'ui:collStats',             // local counters for the collections feature ({event: count}); no content, never leaves the device

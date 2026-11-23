@@ -8336,5 +8336,17 @@
   },
   "f_update_feeds_now_c99d": {
     "message": "Oppdater feeder nå"
+  },
+  "f_got_it_1c6a": {
+    "message": "Forstått"
+  },
+  "f_same_extension_same_data_a_n_b054": {
+    "message": "Samme utvidelse, samme data, nytt navn. Innstillingene, artiklene og notatene dine er uendret."
+  },
+  "f_watch_the_video_b1d8": {
+    "message": "Se videoen"
+  },
+  "f_is_now_d196": {
+    "message": "{old} heter nå {new}"
   }
 }

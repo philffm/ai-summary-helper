@@ -17,6 +17,7 @@ import { pickSnippet, topTopics, packBubbles, dueQuizzes, latestBriefing, contin
 import { createAppDock } from './modules/appDock.js';
 import { mountCommandList } from './modules/commandPalette.js';
 import { externalCommands, externalArticleSearch } from './modules/paletteExternal.js';
+import { initRenameNotice } from './modules/renameNotice.js';
 
 const PREFS_KEY = 'home:prefs';
 const $ = (id) => document.getElementById(id);
@@ -284,6 +285,7 @@ function paintSkeleton() {
 async function init() {
   paintSkeleton();
   const { appearance } = await bootPage();
+  initRenameNotice();
   // the words that are written into home.html itself, in the user's language
   document.querySelectorAll('[data-screen]').forEach((b) => { const n = SECTION()[b.dataset.screen]; if (n) { b.setAttribute('aria-label', n); b.title = n; } });
   { const l = document.querySelector('.hm-look-label'); if (l) l.textContent = T('Appearance'); const lk = $('hmLook'); if (lk) lk.title = T('Appearance'); const m = $('hmLookMenu'); if (m) m.setAttribute('aria-label', T('Appearance'));

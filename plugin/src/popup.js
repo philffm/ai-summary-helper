@@ -22,6 +22,7 @@ import { initSearchFields } from './modules/searchField.js';
 import { currentSurface, sidePanelAvailable, attachToSidePanel, detachToPopup } from './modules/panelDock.js';
 import { initMainScreen } from './modules/mainScreen.js';
 import { initReviewPrompt } from './modules/reviewPrompt.js';
+import { initRenameNotice } from './modules/renameNotice.js';
 import { initSettingsNav, openSettingsPanel } from './modules/settingsNav.js';
 import { initAccordion } from './modules/accordion.js';
 import { initBackToTop } from './modules/backToTop.js';
@@ -94,6 +95,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     initSearchFields();
     initMainScreen(ui);
     initReviewPrompt();
+    initRenameNotice();
     initMoodSetting();
     initWorkspace();
     initAccordion(ui);
