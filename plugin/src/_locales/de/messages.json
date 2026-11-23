@@ -8131,5 +8131,8 @@
   },
   "f_show_articles_about_2379": {
     "message": "Artikel zu {topic} anzeigen"
+  },
+  "f_update_feeds_now_c99d": {
+    "message": "Feeds jetzt aktualisieren"
   }
 }

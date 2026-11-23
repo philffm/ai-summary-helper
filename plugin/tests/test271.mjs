@@ -76,6 +76,11 @@ assert.equal(polls, 1, 'opening the page asks the worker to refresh the feeds');
 assert(/Fresh from worker/.test(w.document.getElementById('hmGrid').textContent), 'what the refresh found shows without reloading');
 assert(w.document.getElementById('hmStatus').hidden && !w.document.querySelector('.hm-updating'), 'the "Updating feeds…" line (inside the feeds card) is gone when the refresh is done');
 const d = w.document;
+// the update button next to "Latest" pulls every feed now (force), whatever its schedule; so does the briefing's update button
+const sent = []; const origSend = chrome.runtime.sendMessage; chrome.runtime.sendMessage = (m, cb) => { sent.push(m); return origSend(m, cb); };
+d.querySelector('.hm-latest .hm-refresh').click(); await tick(200);
+assert(sent.some((m) => m.action === 'feedPollNow' && m.force === true), 'the button forces a pull of every feed');
+chrome.runtime.sendMessage = origSend;
 const cards = [...d.querySelectorAll('.hm-card h2')].map((h) => h.textContent);
 assert.equal(cards.length, 8, 'the glance card (with the latest feed items), highlights, library, two reading lists, the topics strip, and the quiz and gap cards that have something to say: ' + cards);
 const brief = [...d.querySelectorAll('.hm-card')].find((c) => /Today at a glance/.test(c.textContent));

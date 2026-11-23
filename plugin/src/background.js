@@ -995,7 +995,7 @@ const MESSAGE_HANDLERS = {
     // ── feeds (RSS reader) ──
     feedPollConfig: { from: 'ext', run(msg, sender, sendResponse) { applyFeedPollConfig().then(() => sendResponse({ ok: true })); return true; } },
     // the home page asks for a refresh when it opens: only the feeds that are due by their own schedule are fetched, and nothing when background polling is off
-    feedPollNow: { from: 'ext', run(msg, sender, sendResponse) { pollFeeds().then(() => sendResponse({ ok: true }), () => sendResponse({ ok: false })); return true; } },
+    feedPollNow: { from: 'ext', run(msg, sender, sendResponse) { pollFeeds({ force: !!msg.force }).then(() => sendResponse({ ok: true }), () => sendResponse({ ok: false })); return true; } },
     feedBadgeClear: { from: 'ext', run(msg, sender, sendResponse) { clearFeedBadge().then(() => sendResponse({ ok: true })); return true; } },
     audioEnsure: { from: 'ext', run(msg, sender, sendResponse) {
         // Chrome: audio must live in an offscreen document. Others: the background page hosts it.

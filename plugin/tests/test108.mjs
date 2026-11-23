@@ -124,6 +124,12 @@ try {
             assert.equal(plain.store['feeds:background'].items.length, 5);
             assert.equal(plain.store['feeds:pending'], 2, 'two new items for the badge');
             assert(!plain.store['feeds:background'].ratings || !Object.keys(plain.store['feeds:background'].ratings).length, 'nothing rated without Ollama');
+            // a pull the user asked for (home page button) fetches a feed that is not due yet, and even with background polling switched off
+            n = 6; plain.store['feeds:subs'][0].nextFetchAt = Date.now() + 3600000; plain.store['feeds:settings'].backgroundPoll = false;
+            await plain.run.pollFeeds();
+            assert.equal(plain.store['feeds:background'].items.length, 5, 'not due and polling off: nothing is fetched on its own');
+            await plain.run.pollFeeds({ force: true });
+            assert.equal(plain.store['feeds:background'].items.length, 6, 'forced: fetched now');
         } finally { globalThis.fetch = prevFetch; }
     }
 

@@ -8333,5 +8333,8 @@
   },
   "f_show_articles_about_2379": {
     "message": "{topic} hakkındaki makaleleri göster"
+  },
+  "f_update_feeds_now_c99d": {
+    "message": "Akışları şimdi güncelle"
   }
 }

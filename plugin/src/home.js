@@ -79,7 +79,7 @@ function briefingCard(d) {
     if (r.at && Date.now() - r.at > 3600 * 1000) {
       const day = found.day;
       const b = el('button', 'hm-refresh'); b.type = 'button'; b.append(iconEl('refresh-cw', 'icon--sm')); b.title = T('Update briefing'); b.setAttribute('aria-label', T('Update briefing'));
-      b.addEventListener('click', () => dock && dock.open('feeds/recap/' + day)); meta.append(b);
+      b.addEventListener('click', async () => { b.disabled = true; await refreshFeeds(true); if (dock) dock.open('feeds/recap/' + day); }); meta.append(b);   // really fetch the feeds first (every one, whatever its schedule), then the app writes the new briefing
     }
     meta.append(el('span', 'hm-mood', MOOD()[r.mood] || MOOD().neu));
   }
@@ -99,6 +99,7 @@ function briefingCard(d) {
   const latest = el('aside', 'hm-latest'); latest.setAttribute('aria-label', T('Latest from your feeds'));
   const lh = el('div', 'hm-latest-head'); lh.append(el('h3', '', T('Latest')));
   if (d.updating) { const u = el('span', 'hm-updating', T('Updating feeds…')); u.setAttribute('role', 'status'); lh.append(u); }
+  else { const rb = el('button', 'hm-refresh'); rb.type = 'button'; rb.append(iconEl('refresh-cw', 'icon--sm')); rb.title = T('Update feeds now'); rb.setAttribute('aria-label', T('Update feeds now')); rb.addEventListener('click', () => refreshFeeds(true)); lh.append(rb); }
   const feedItems = latestFeed(d.feed, 300), lul = el('ul', 'hm-list');
   latest.append(lh);
   if (!feedItems.length) latest.append(el('p', 'hm-empty', T('Subscribe to feeds to see new items here.')));
@@ -360,10 +361,11 @@ async function loadData() {
 
 // Opening the home page also refreshes the feeds that are due (the worker keeps each feed's own schedule and the user's
 // "background polling" choice), then redraws when something new came in. The page never waits for it.
-async function refreshFeeds() {
+async function refreshFeeds(force = false) {
+  if (data.updating) return;
   const before = data.feed.length;
   data.updating = true; render();
-  const r = await bgMessage({ action: 'feedPollNow' }, { timeout: 90000 });
+  const r = await bgMessage({ action: 'feedPollNow', force }, { timeout: 90000 });
   if (r && r.ok) await loadData();
   data.updating = false; render();
   if (data.feed.length !== before) mountSearch();   // the list in the search has the new items too

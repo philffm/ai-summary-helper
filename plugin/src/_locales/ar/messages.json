@@ -8050,5 +8050,8 @@
   },
   "f_show_articles_about_2379": {
     "message": "عرض المقالات حول {topic}"
+  },
+  "f_update_feeds_now_c99d": {
+    "message": "تحديث الخلاصات الآن"
   }
 }

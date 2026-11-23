@@ -130,7 +130,7 @@ function withFeedAiTimeout(signal) {
     };
 }
 
-async function pollFeeds() {
+async function pollFeeds({ force = false } = {}) {   // force: the user asked for it (home page button): every feed is fetched now, whatever its schedule or the background-polling choice
     if (feedPollRunning || !FEED_WORKER) return;
     feedPollRunning = true;
     try {
@@ -143,7 +143,7 @@ async function pollFeeds() {
         await pruneBackgroundFeedData(d.feedSettings);
         d.background = (await localGet(SK.feedBackground))[SK.feedBackground] || d.background;
         const configured = d.feedSettings.autoProcess && await backgroundOllamaConfigured();
-        if (d.feedSettings.backgroundPoll === false && !configured) return;
+        if (d.feedSettings.backgroundPoll === false && !configured && !force) return;
         const state = { items: [], ratings: {}, recaps: {}, ...(d.background || {}) };
         state.items = Array.isArray(state.items) ? state.items : [];
         state.ratings = state.ratings || {}; state.recaps = state.recaps || {};
@@ -155,7 +155,9 @@ async function pollFeeds() {
         const now = Date.now();
         const minimumInterval = Math.max(15, Number(d.feedSettings.refreshMinutes) || 30) * 60000;
         const dueSubs = d.feedSubs.filter(sub => {
-            if (sub.muted || (Number(sub.nextFetchAt) || 0) > now) return false;
+            if (sub.muted) return false;
+            if (force) return true;
+            if ((Number(sub.nextFetchAt) || 0) > now) return false;
             const interval = d.feedSettings.smartRefreshOrder === false ? minimumInterval
                 : FEED_WORKER.estimateFeedInterval(existing, sub.id, minimumInterval, now);
             return !sub.lastFetched || now - sub.lastFetched >= interval;

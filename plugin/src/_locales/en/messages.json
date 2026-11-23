@@ -8489,5 +8489,8 @@
   "f_show_articles_about_2379": {
     "message": "Show articles about {topic}",
     "description": "Placeholders: {topic} (keep as is)"
+  },
+  "f_update_feeds_now_c99d": {
+    "message": "Update feeds now"
   }
 }

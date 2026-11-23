@@ -8050,5 +8050,8 @@
   },
   "f_show_articles_about_2379": {
     "message": "顯示關於{topic}的文章"
+  },
+  "f_update_feeds_now_c99d": {
+    "message": "立即更新訂閱源"
   }
 }
