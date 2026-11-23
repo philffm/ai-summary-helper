@@ -1,0 +1,211 @@
+AI Summary Helper on ilmainen, avoimen lähdekoodin Chrome-laajennus, joka tiivistää minkä tahansa verkkosivun, PDF:n tai YouTube-videon omalla kielelläsi: omalla tekoälyavaimellasi tai täysin paikallisella mallilla Ollaman kautta. Se muuttaa lukemasi yksityiseksi, haettavaksi kirjastoksi, jossa on korostukset, jatkokysymykset, tietämyskaavio, lukutilastot, RSS-lukija ja Lähetä Kindleen. Kirjastoasi voi käyttää myös tekoälysovelluksista kuten Claude Desktop ja Cursor. Omaa avainta tai paikallista mallia varten ei tarvita tiliä, ja artikkelisi pysyvät laitteellasi.
+
+━━━━━━━━━━━━━━━━━━━━
+✨ MITÄ SE TEKEE MINUUTISSA
+━━━━━━━━━━━━━━━━━━━━
+• Paina Ctrl+Shift+E (Macissa ⌘+Shift+E) tai napsauta hiiren kakkospainikkeella → "Tiivistä tämä sivu".
+• Tulos virtaa sivupaneeliin, ponnahdusikkunaan tai sivun sisäiseen sivupalkkiin, millä tahansa 41 kielestä.
+• Tärkeimmät lauseet syttyvät sivulla "haamukorostuksina", joten pääset suoraan todisteeseen.
+• Kysy jatkokysymyksiä; vastaukset lainaavat kohdan, josta ne ovat peräisin.
+• Kaikki tallentuu Historiaan: hae siitä, merkitse tähdellä, katso miten aiheet liittyvät toisiinsa, vie se.
+
+━━━━━━━━━━━━━━━━━━━━
+🔑 OMA TEKOÄLY, OMA VALINTA
+━━━━━━━━━━━━━━━━━━━━
+Valitse malli, joka sopii budjettiisi ja yksityisyydentarpeeseesi:
+
+• Oma API-avain (BYOK): OpenAI, Google Gemini, Mistral AI tai DeepSeek. Maksat palveluntarjoajalle pyynnöistä, yleensä muutaman sentin kuukaudessa kiinteän tilauksen sijaan.
+• Täysin paikallinen Ollamalla: aja avoin malli omalla koneellasi tai verkkosi itse ylläpitämällä palvelimella. Ei API-avainta, ei pyyntökohtaisia kuluja, eikä sivun sisältö lähde koneeltasi.
+• byphil Cloud (valinnainen): ei avainta eikä asennusta. Kirjaudu sähköpostilla ja kertakäyttökoodilla ja saat pienen ilmaisen päiväkiintiön; Tukipassi (lahjoitus hankkeelle) avaa rajoittamattoman käytön ja paljon lisää malleja.
+
+Oma avaimesi ja laitteella toimiva malli eivät vaadi tiliä lainkaan. Koko lähdekoodi on julkinen GitHubissa, joten voit tarkistaa tarkalleen, mitä laajennus lähettää ja minne.
+
+━━━━━━━━━━━━━━━━━━━━
+📄 VERKKOSIVUT, PDF:T JA VIDEOT
+━━━━━━━━━━━━━━━━━━━━
+• Verkkosivut ja uutisartikkelit: artikkelin teksti poimitaan siististi ilman valikkoja, mainoksia tai evästebannereita.
+• PDF:t: tutkimusartikkelit, raportit ja käyttöohjeet selaimessasi, myös tietokoneesi tiedostot.
+• YouTube-videot: tiivistelmät videon tekstityksistä, jotta voit päättää, onko 40 minuutin esitys aikasi arvoinen.
+• Pituus: "Auto" mukautuu artikkelin pituuteen, tai aseta kiinteä pituus 20–2 000 sanaa, lyhyellä, tavallisella tai pitkällä painotuksella.
+• Kehotteet: valmiit pohjat kuten Tekninen syväsukellus, Historiallinen tausta, Kulttuurinen näkökulma ja Tulevaisuuden ennusteet sekä ohjattu "tee omasi" -työkalu, joka muuttaa roolisi ja kiinnostuksesi omaksi kehotteeksesi.
+• Tiivistä ja sulje välilehti: saat avainkohdat, valitset milloin palaat, ja välilehti sulkeutuu itse.
+
+━━━━━━━━━━━━━━━━━━━━
+🌍 TIIVISTÄ OMALLA KIELELLÄSI
+━━━━━━━━━━━━━━━━━━━━
+Lue englanninkielinen artikkeli ja saat avainkohdat suomeksi, saksaksi tai japaniksi, tai toisin päin. AI Summary Helper kirjoittaa 41 kielellä, mm. englanniksi, saksaksi, ranskaksi, espanjaksi, italiaksi, portugaliksi, hollanniksi, puolaksi, ruotsiksi, tanskaksi, ukrainaksi, venäjäksi, turkiksi, arabiaksi, hindiksi, japaniksi, koreaksi, kiinaksi (yksinkertaistettu ja perinteinen), thaiksi, indonesiaksi ja vietnamiksi. Käyttöliittymä on saatavilla 24 kielellä.
+
+━━━━━━━━━━━━━━━━━━━━
+💬 KYSY SIVULTA MITÄ TAHANSA
+━━━━━━━━━━━━━━━━━━━━
+• Jatkokysymykset lukemastasi artikkelista keskustelussa, joka muistaa edellisen.
+• Vastauksissa on lähdemerkit, jotka osoittavat tarkan kohdan artikkelissa.
+• Kolme ehdotettua kysymystä jokaisen yleiskatsauksen jälkeen, ja ensin lyhyt vastaus ja "Syvennä", kun haluat enemmän.
+• Kiinnitä parhaat vastaukset; ne tallentuvat artikkelin mukana ja viedään sen mukana.
+
+━━━━━━━━━━━━━━━━━━━━
+🖊️ KOROSTUKSET, JOTKA PYSYVÄT
+━━━━━━━━━━━━━━━━━━━━
+• Tekoälyn haamukorostukset: tärkeimmät lauseet merkitään vaaleansinisellä suoraan sivulle.
+• Omat korostuksesi keltaisella hiiren kakkospainikkeen valikosta; ne palaavat, kun palaat sivulle.
+• Korostukset kulkevat artikkelin mukana Markdown-, Word-, lukulaite- ja Obsidian-vienteihin.
+
+━━━━━━━━━━━━━━━━━━━━
+🎧 LUE OMALLA TAVALLASI
+━━━━━━━━━━━━━━━━━━━━
+• Kuuntele: anna lukea mikä tahansa artikkeli tai yleiskatsaus ääneen selaimen äänillä haluamallasi nopeudella.
+• Heti kuuluviin: kuule jokainen lause samalla hetkellä, kun tekoäly kirjoittaa sen, ilman käsiä.
+• Pikalukeminen (RSVP): lue tekoälyn vastaus sana kerrallaan sen virratessa, hitaasti, keskinopeasti tai nopeasti.
+
+━━━━━━━━━━━━━━━━━━━━
+🔖 TALLENNA MYÖHEMMÄKSI, ILMAN 100 AVOINTA VÄLILEHTEÄ
+━━━━━━━━━━━━━━━━━━━━
+Sulje välilehti, säilytä ajatus. Tallenna artikkeli muistiinpanolla ja ajalla, jolloin palaat siihen: Huomenna, Viikonloppuna, Tällä viikolla tai Tutkimusistunto. Chrome-ilmoitus tuo sinut takaisin muistiinpanosi kanssa täsmälleen silloin kuin pyysit.
+
+━━━━━━━━━━━━━━━━━━━━
+🗂️ LUKUKIRJASTOSI
+━━━━━━━━━━━━━━━━━━━━
+Jokainen tiivistelmä säilyy Historiassasi tällä laitteella, jaoteltuna kansioihin Saapuneet, Luetut, Lähetetyt, Tutkimus, Kokoelmat ja Arkisto.
+
+• Haku: välitön koko tekstin haku kaikista tallennetuista artikkeleista laitteellasi.
+• Samankaltaiset artikkelit: näet, mikä muu kirjastossasi liittyy lukemaasi artikkeliin.
+• Kokoelmat: ryhmittele artikkelit yhden kysymyksen alle ja käy ne läpi lähdetarkistuslomakkeella.
+• Suosikit, tunnisteet, muistiinpanot ja ajastetut muistutukset.
+
+━━━━━━━━━━━━━━━━━━━━
+🕸️ TIETÄMYSKAAVIO
+━━━━━━━━━━━━━━━━━━━━
+Näe, miten kaikki lukemasi liittyy toisiinsa. Tietämyskaavio ryhmittelee artikkelisi aiheklustereihin, yhdistää artikkelit, joilla on yhteisiä tunnisteita tai sisältöä, ja näyttää lukulistan aiheista, joita et ole avannut 30 päivään. Kirjoita lyhyt tiivistelmä mistä tahansa klusterista ja vie se Markdownina.
+
+━━━━━━━━━━━━━━━━━━━━
+📊 LUKUTILASTOT
+━━━━━━━━━━━━━━━━━━━━
+• Säästetty aika: kuinka kauan kokonaiset artikkelit olisivat vieneet verrattuna lyhyisiin versioihin.
+• Artikkelit, luetut sanat, päiväsarja ja paras sarja.
+• Aktiivisuuskaavio viimeiseltä 30 päivältä tai 12 viikolta.
+• Suosituimmat luokat ja sanapilvi lukemastasi.
+• Mieliala ajan yli: lukemiesi uutisten sävy päivittäin, viikoittain tai kuukausittain, ja mikä sitä liikutti.
+
+Kaikki tilastot lasketaan laitteellasi. Mitään ei lähetetä seurantapalveluun.
+
+━━━━━━━━━━━━━━━━━━━━
+🖥️ LEVEÄ TILA JA JAETTU NÄKYMÄ (UUTTA VERSIOSSA 2.2)
+━━━━━━━━━━━━━━━━━━━━
+Avaa AI Summary Helper omaan välilehteensä tai vedä sivupaneeli leveämmäksi, niin Historia ja Syötteet vaihtuvat jaettuun näkymään: luettelo ja tietämyskaavio rinnakkain 720 pikselistä alkaen, luettelo, kaavio ja tilastot kolmena ruutuna 1 100 pikselistä alkaen. Valitse otsikosta 1, 2 tai 3 ruutua ja päätä, mitä kukin näyttää.
+
+━━━━━━━━━━━━━━━━━━━━
+📰 RSS-LUKIJA TEKOÄLYYHTEENVEDOILLA
+━━━━━━━━━━━━━━━━━━━━
+• Seuraa blogeja, sanomalehtiä ja podcasteja RSS:llä tai Atomilla; tuo ja vie tilauksesi OPML:nä.
+• Päivittäiset yhteenvedot, jotka kokoontuvat viikko- ja kuukausiyleiskatsauksiksi, kirjoittaa valitsemasi tekoäly. Vain otsikot ja katkelmat lähetetään, ja vain kun pyydät.
+• Paikallisella mallilla uudet kohteet voidaan arvioida ja tiivistää taustalla 15 minuutin – 6 tunnin välein.
+• Sisäänrakennettu podcast-soitin, joka jatkaa soittoa ponnahdusikkunan sulkeuduttua, nopeudella 0,75×–2×.
+• Merkitse kohde tähdellä saadaksesi sen avainkohdat ja tallentaaksesi sen Historiaasi.
+
+━━━━━━━━━━━━━━━━━━━━
+🎓 TUTKIMUSTILA JA VIITTEET
+━━━━━━━━━━━━━━━━━━━━
+• Tunnistaa tieteelliset artikkelit PubMedissä, Springerissä, Wileyssä, JSTORissa ja muiden kustantajien sivuilla.
+• Oikeat viitteet DOI:sta muodoissa APA 7, MLA 9, Chicago (author-date), BibTeX ja RIS. Viitetiedot tulevat doi.org:sta, eivät koskaan tekoälyltä, ja vain DOI lähtee laitteeltasi.
+• Lataa references.bib tai .ris Zoteroa, Mendeleyta tai LaTeXia varten.
+• Lähdetarkistus mille tahansa sivulle: tyyppi, tekijä, päivämäärä ja kustantaja sekä neljä lateraalilukukysymystä lähteen arviointiin ennen kuin luotat siihen. Vihjeitä, ei arvosanoja.
+• Tutkimus-välilehti suodattimilla katsauksille, kokeille ja esipainoksille.
+
+━━━━━━━━━━━━━━━━━━━━
+📤 LÄHETÄ, VIE JA JAA
+━━━━━━━━━━━━━━━━━━━━
+• Lähetä Kindleen: yleiskatsaukset ja muotoillut artikkelit korostuksineen suoraan lukulaitteellesi EPUB:na (teksti tai kuvilla) tai HTML:nä. Vaatii ilmaisen byphil-kirjautumisen; 3 lähetystä on ilmaista, Tukipassilla rajattomasti.
+• LocalSend: lähetä artikkeleita kotisi Wi-Fi-verkossa puhelimiin, tabletteihin tai KOReader-lukulaitteisiin ilman pilveä välissä.
+• Lähetä puhelimeen: yhdistä puhelimesi QR-koodilla. Puhelimessa jakamasi linkit saapuvat päästä päähän salattuina Historiaasi, ja voit työntää kokonaisia artikkeleita takaisin puhelimeen.
+• Vie Markdownina (yksi artikkeli tai koko kirjasto ZIP:nä etuasialla), Wordina (DOCX), OpenDocumentina (ODT) tai PDF:nä, tai lähetä suoraan Obsidianiin.
+• Jaa järjestelmän jakovalikon kautta, missä se on saatavilla.
+• Varmuuskopioi ja palauta koko kirjastosi ja asetuksesi; API-avaimet ja kirjautumiset jätetään varmuuskopioista pois, ellet itse valitse niitä mukaan. Muistiinpanot ja kommentit: valitse teksti ja korosta se, kommentoi sitä tai tallenna muistiinpano lainauksineen.
+
+━━━━━━━━━━━━━━━━━━━━
+☁️ KIRJASTOSI OMALLA TALLENNUSTILALLA (UUTTA)
+━━━━━━━━━━━━━━━━━━━━
+Pidä kirjastosi kaikilla tietokoneillasi, varmuuskopioi se tai julkaise osa siitä luovuttamatta sitä kenellekään. Asetukset → Synkronointi ja varmuuskopio -kohdassa lisäät paikan: Nextcloud tai muu WebDAV-palvelin, S3-yhteensopiva säilö tai kansio tietokoneellasi.
+
+• Salattu: kaikki salataan selaimessasi salalauseellasi ennen kuin se lähtee laitteelta, joten palvelin näkee vain sekavia tiedostoja. Ilman salalausetta kukaan ei voi lukea niitä, emme mekään.
+• Kaksisuuntainen synkronointi laitteidesi välillä, yhdistetään kenttä kerrallaan. Kahdesti tallennettu sama sivu on yksi artikkeli, ja toisen laitteen runsas poistomäärä odottaa hyväksyntääsi.
+• Pelkät varmuuskopiopaikat ja palautus yhdellä napsautuksella.
+• Julkaise lista omalle sivustollesi: valitse artikkelit tunnisteen mukaan ja saat tavallisia tiedostoja sekä katselusivun, jossa on haku, aikajana, tunnistekaavio ja 3D-kartta tallentamastasi. Muistiinpanot ja kokotekstit pysyvät pois, ellet kytke niitä päälle.
+• Pois päältä, kunnes lisäät paikan. Emme pyöritä synkronointipalvelinta emmekä näe mitään.
+
+━━━━━━━━━━━━━━━━━━━━
+🔌 KIRJASTOSI TEKOÄLYSOVELLUKSISSASI (UUTTA)
+━━━━━━━━━━━━━━━━━━━━
+Tekoälysovelluksesi ei ole koskaan lukenut sitä, mitä sinä luet. Kytke Asetuksissa tekoälysovellukset päälle, niin Claude Desktop, Cursor, LM Studio ja muut MCP-sovellukset koneellasi voivat käyttää kirjastoasi.
+
+• Hae tallennetuista artikkeleista, lainaa korostuksiasi, katso mikä erääntyy ja selaa kokoelmiasi ja syötteitäsi.
+• Pyydä viikkokatsaus, tiivistelmä yhdestä kokoelmasta tai lukuvuotesi raporttina, jokainen väite linkitettynä lähteeseensä.
+• Oletuksena pois päältä. Päätät itse, mitä sovellus saa lukea: kirjasto, artikkelien kokoteksti, syötteet ja saako se tallentaa linkkejä.
+• Tunnisteella "private" merkityt artikkelit eivät koskaan näy, ja toimintaloki näyttää jokaisen kutsun.
+• Toimii koneellasi; mikään ei kulje palvelimiemme kautta.
+
+━━━━━━━━━━━━━━━━━━━━
+🔒 YKSITYISYYS SUUNNITTELUSSA
+━━━━━━━━━━━━━━━━━━━━
+• Artikkelisi, korostuksesi, syötteesi ja tilastosi tallentuvat selaimeesi, laitteellesi. Synkronointi, varmuuskopiot ja julkaisu menevät vain palvelimelle tai kansioon, jonka itse lisäät.
+• Sivun sisältö lähetetään vain valitsemallesi tekoälypalveluntarjoajalle, tai laitteella toimivalla mallilla ei kenellekään.
+• Tekoälysovellukset voivat lukea kirjastoasi vain, jos kytket sen päälle, vain koneellasi ja vain sen, minkä sallit.
+• Ei seurantaa eikä analytiikka-SDK:ta, ei mainoksia, ei tietojen myyntiä.
+• Avoin lähdekoodi: koko koodi on julkinen GitHubissa (philffm/kaivo) kenen tahansa tarkastettavaksi.
+• Tehty EU:ssa, byphil.
+
+━━━━━━━━━━━━━━━━━━━━
+♿ SAAVUTETTAVA JA MUKAVA
+━━━━━━━━━━━━━━━━━━━━
+• Vaalea, tumma ja korkean kontrastin teema, tai seuraa järjestelmääsi.
+• Tekstikoko 85–150 prosenttia ja kolme riviväliä.
+• Valinnainen Atkinson Hyperlegible -kirjasin parempaan luettavuuteen.
+• Kunnioittaa vähennettyä liikettä; pikanäppäimet kauttaaltaan (paina ? nähdäksesi ne kaikki).
+• Esiasetukset: Oletus, Suuri, Kontrasti ja Rauhallinen.
+
+━━━━━━━━━━━━━━━━━━━━
+⌨️ MISSÄ VOIT KÄYTTÄÄ SITÄ
+━━━━━━━━━━━━━━━━━━━━
+• Chromen sivupaneeli, ponnahdusikkuna, sivun sisäinen sivupalkki, oma välilehti tai erillinen ikkuna.
+• Näppäimistö: Ctrl+Shift+E tiivistää nykyisen sivun, Ctrl+Shift+Y avaa laajennuksen (Macissa ⌘). Sovelluksen sisällä: Ctrl+F tai / hakuun, j ja k korttien välillä siirtymiseen, Esc takaisin.
+• Hiiren kakkospainikkeen valikko: Tiivistä tämä sivu, Tiivistä ja sulje välilehti, Korosta valinta, Poista kaikki korostukset.
+• Muut selaimet ja puhelimet: kirjanmerkkiohjelma tuo tiivistelmät mihin tahansa selaimeen, myös iOS:ään ja Androidiin (vaatii byphil Cloudin).
+
+━━━━━━━━━━━━━━━━━━━━
+❓ USEIN KYSYTTYÄ
+━━━━━━━━━━━━━━━━━━━━
+Onko AI Summary Helper ilmainen?
+Kyllä. Laajennus on ilmainen ja avoimen lähdekoodin. Omalla API-avaimella maksat palveluntarjoajallesi suoraan, yleensä muutaman sentin kuukaudessa. Laitteella toimiva malli ei maksa mitään. byphil Cloudiin sisältyy pieni ilmainen päiväkiintiö; Tukipassi, joka on lahjoitus hankkeelle, poistaa rajat.
+
+Voinko tiivistää verkkosivuja paikallisella tekoälymallilla?
+Kyllä. Asenna Ollama, lataa avoin malli ja valitse paikallinen vaihtoehto käyttöönotossa. Kaikki, myös jatkokysymykset ja syötteiden yhteenvedot, toimii silloin koneellasi, myös verkkosi itse ylläpitämällä Ollama-palvelimella.
+
+Mitkä tekoälypalveluntarjoajat toimivat omalla API-avaimellani?
+OpenAI, Google Gemini, Mistral AI ja DeepSeek sekä paikalliset ja itse ylläpidetyt mallit.
+
+Toimiiko se PDF:ien ja YouTuben kanssa?
+Kyllä. Chromessa avatut PDF:t, myös koneesi tiedostot, ja tekstitetyt YouTube-videot toimivat kuten mikä tahansa muu sivu.
+
+Voiko se tiivistää englanninkielisen artikkelin toisella kielellä?
+Kyllä. Valitse mikä tahansa 41 tiivistelmäkielestä; lähde voi olla eri kielellä.
+
+Miten lähetän verkkoartikkeleita Kindleeni?
+Kirjaudu byphiliin, lisää kindle@byphil.eu hyväksytyksi lähettäjäksi Amazon-tilillesi, syötä laitteesi sähköpostiosoite kohdassa Asetukset → Lähetys ja valitse se Lähetä-kohdasta. Kolme lähetystä on ilmaista; Tukipassi tekee siitä rajattoman.
+
+Voinko käyttää kirjastoani Claude Desktopissa tai Cursorissa?
+Kyllä. Kytke tekoälysovellukset päälle kohdassa Asetukset → Tekoälysovellukset, yhdistä kerran, ja sovellus voi hakea kirjastostasi, lainata korostuksiasi ja viitata lähteisiin. Se on oletuksena pois päältä, toimii koneellasi ja kunnioittaa sallimaasi.
+
+Ovatko tietoni yksityisiä?
+Kirjastosi pysyy selaimessasi. Sivun teksti menee vain valitsemallesi tekoälypalveluntarjoajalle, tai ei minnekään laitteella toimivalla mallilla. Laajennuksessa ei ole seuranta-SDK:ta, ja koodi on avoin tarkastettavaksi.
+
+Miten tämä eroaa muista tekoälytiivistäjälaajennuksista?
+Useimmat tekoälylukutyökalut sitovat sinut yhteen palveluntarjoajaan, vaativat tilin ja ohjaavat kaiken palvelimiensa kautta kuukausitilauksella. Tässä laajennuksessa tuot oman avaimesi tai ajat kaiken paikallisesti, kumpikaan ei vaadi tiliä, ja lukemastasi tulee haettava kirjasto, jossa on tietämyskaavio, tilastot, RSS ja lukulaitteeseen vienti.
+
+━━━━━━━━━━━━━━━━━━━━
+🚀 ALOITA
+━━━━━━━━━━━━━━━━━━━━
+1. Lisää AI Summary Helper Chromeen ja kiinnitä se työkalupalkkiin.
+2. Valitse lyhyessä käyttöönotossa byphil Cloud, oma API-avain tai laitteella toimiva malli.
+3. Avaa mikä tahansa artikkeli, PDF tai video ja paina Ctrl+Shift+E (Macissa ⌘+Shift+E).
+4. Lue, kuuntele, kysy jatkokysymyksiä ja löydä se myöhemmin Historiasta.
+
+Palaute ja ominaisuustoiveet ovat tervetulleita GitHubissa. Tekijä byphil.
