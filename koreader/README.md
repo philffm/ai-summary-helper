@@ -1,42 +1,44 @@
-# AISH library for KOReader
+# Kaivo library for KOReader
 
-`aish.koplugin` keeps your **encrypted AISH library** on an e-reader running [KOReader](https://koreader.rocks):
-the AI summaries, the full articles, your highlights and notes. It reads the same encrypted sync place the AISH browser
+> **Renamed:** this plugin was called "AISH library". Its id stays `aish.koplugin` (so your settings, login and library carry over). An existing `AISH` folder in KOReader's home folder stays in use (new installs use `Kaivo`); the old collection names (`AISH · Inbox`, `AISH: <name>`, `AISH #<tag>`) are replaced by the new ones at the next sync.
+
+`aish.koplugin` keeps your **encrypted Kaivo library** on an e-reader running [KOReader](https://koreader.rocks):
+the AI summaries, the full articles, your highlights and notes. It reads the same encrypted sync place the Kaivo browser
 extension writes to your own Nextcloud/WebDAV folder, and decrypts it on the reader. Nothing goes anywhere else.
 
 Highlights and notes go **both ways**: what you mark on the reader appears in the extension, and the other way round.
 
 ## What you get
 
-- a folder `AISH` in KOReader's home folder, **one EPUB per article** with real **book information**: the source as
-  author and publisher, the date saved, the language, the **AISH tags as keywords**, the **AI summary as description**,
-  the first **AISH collection as series** (numbered by date), a **cover made for each article** (always the title, with
+- a folder `Kaivo` in KOReader's home folder, **one EPUB per article** with real **book information**: the source as
+  author and publisher, the date saved, the language, the **Kaivo tags as keywords**, the **AI summary as description**,
+  the first **Kaivo collection as series** (numbered by date), a **cover made for each article** (always the title, with
   the site and date, and the article's best picture when it has one: icons, logos, avatars and tiny images are never
   used; otherwise the start of the summary), and a
   **table of contents**: **Summary** · the article's own headings · **Key points** (the AI highlights) · **Notes** (your
   notes on the article). Images the extension saved with the article are inside the file (at most 3 MB each, 12 MB per
   article). EPUB is compressed: a text-only article takes a fraction of the HTML's size. Plain HTML files instead:
   *Articles as EPUB* off;
-- **newest first**: each file carries the date it was saved in AISH, so with *Settings → File browser → Sort by: date
-  modified* the AISH folder lists your latest saves on top;
-- **the AISH tabs as collections**, newest first: `AISH · Inbox` (not read yet), `AISH · Read`, `AISH · Archive`;
-  your AISH collections as `AISH: <name>`, and the **10 most used tags** as `AISH #<tag>`;
-- **highlights as KOReader highlights**: when you open an article, your AISH highlights appear as KOReader highlights
+- **newest first**: each file carries the date it was saved in Kaivo, so with *Settings → File browser → Sort by: date
+  modified* the Kaivo folder lists your latest saves on top;
+- **the Kaivo tabs as collections**, newest first: `Kaivo · Inbox` (not read yet), `Kaivo · Read`, `Kaivo · Archive`;
+  your Kaivo collections as `Kaivo: <name>`, and the **10 most used tags** as `Kaivo #<tag>`;
+- **highlights as KOReader highlights**: when you open an article, your Kaivo highlights appear as KOReader highlights
   (AI highlights underlined) with their comment as the note;
-- **back to AISH**: a highlight you make on the reader becomes an AISH highlight (with the words around it, as the
+- **back to Kaivo**: a highlight you make on the reader becomes a Kaivo highlight (with the words around it, as the
   extension saves them); its note becomes the comment. Editing a note edits the comment, removing a highlight deletes it
   (an AI highlight is dismissed). Opening an article marks it read; marking it **finished** in KOReader archives it in
-  AISH. These go out when you close the article (when Wi-Fi is on) or at the next sync;
-- **gestures** (Settings → Taps and gestures): *AISH: sync library*, *AISH: open newest unread*, *AISH: show Inbox*;
+  Kaivo. These go out when you close the article (when Wi-Fi is on) or at the next sync;
+- **gestures** (Settings → Taps and gestures): *Kaivo: sync library*, *Kaivo: open newest unread*, *Kaivo: show Inbox*;
 - **automatic sync** when Wi-Fi comes on or the reader wakes up, at most every 30 minutes (not while an article is open);
-- an article deleted in AISH is removed from the reader at the next sync (with its KOReader sidecar and images);
+- an article deleted in Kaivo is removed from the reader at the next sync (with its KOReader sidecar and images);
   renaming an article keeps its file, so your reading position stays;
 - each sync downloads only the files that changed (ETags); a file that cannot be read is skipped and tried again later.
 
-*Download everything again* removes the AISH articles from the reader and loads the library anew (highlights and notes
+*Download everything again* removes the Kaivo articles from the reader and loads the library anew (highlights and notes
 made on the reader are sent first and come back; reading positions start over).
 
-Automatic sync, finished → archive, the tag collections and sending on close can be turned off in *Tools → AISH library*.
+Automatic sync, finished → archive, the tag collections and sending on close can be turned off in *Tools → Kaivo library*.
 
 How the two sides agree: every record carries per-field time stamps, and the reader merges exactly like the extension
 (newer field wins, a deletion marker beats older edits; same hashes and rules, checked against the extension's test vector).
@@ -50,13 +52,13 @@ Feed stubs (feed items not summarized yet) are left out.
 
 1. Copy the folder `aish.koplugin` into KOReader's `plugins` folder
    (Kobo: `.adds/koreader/plugins/`, Kindle: `koreader/plugins/`, Android: `koreader/plugins/` on the storage).
-2. Restart KOReader. The menu is **Tools (🛠) → AISH library**.
+2. Restart KOReader. The menu is **Tools (🛠) → Kaivo library**.
 
 ## Connect
 
-**With Nextcloud (recommended): Tools → AISH library → Connect with Nextcloud (QR code).** Enter the address of your
-Nextcloud and the folder of the AISH place. The reader shows a QR code: scan it with your phone, log in there and allow
-access. The reader gets **its own login** ("AISH KOReader" in Nextcloud → Settings → Security → Devices & sessions);
+**With Nextcloud (recommended): Tools → Kaivo library → Connect with Nextcloud (QR code).** Enter the address of your
+Nextcloud and the folder of the Kaivo place. The reader shows a QR code: scan it with your phone, log in there and allow
+access. The reader gets **its own login** ("Kaivo KOReader" in Nextcloud → Settings → Security → Devices & sessions);
 nothing is typed on the reader. Then it asks once for the passphrase of the library.
 
 Other ways:
@@ -67,12 +69,12 @@ Other ways:
   On KOReader for Android the code can also be pasted.
 - **Connect manually**: WebDAV address (Nextcloud: `https://host/remote.php/dav/files/<user>/`), user, app password, folder.
 
-**Sync now** in the menu, or put **AISH: sync library** on a gesture (Settings → Taps and gestures).
+**Sync now** in the menu, or put **Kaivo: sync library** on a gesture (Settings → Taps and gestures).
 
 ## If the reader is lost
 
-1. In Nextcloud: **Settings → Security → Devices & sessions → AISH KOReader → Wipe device**. The reader's login stops
-   working at once. The next time the reader is online, the plugin asks Nextcloud, deletes the AISH articles, the
+1. In Nextcloud: **Settings → Security → Devices & sessions → Kaivo KOReader → Wipe device**. The reader's login stops
+   working at once. The next time the reader is online, the plugin asks Nextcloud, deletes the Kaivo articles, the
    library data, the login and the key, and tells Nextcloud it is done
    ([Nextcloud remote wipe](https://docs.nextcloud.com/server/stable/developer_manual/client_apis/RemoteWipe/index.html)).
    This needs the login made with *Connect with Nextcloud*; a login from a code or typed by hand can only be revoked.
@@ -80,7 +82,7 @@ Other ways:
    (new key) and connect your devices again.
 
 **Give the reader as little as possible:** a Nextcloud login reaches the whole account (files, calendar, contacts).
-Make a Nextcloud user just for the reader (e.g. `phil-reader`), share only the AISH folder with it (with edit rights),
+Make a Nextcloud user just for the reader (e.g. `phil-reader`), share only the Kaivo folder with it (with edit rights),
 and log the reader in as that user. A lost reader then exposes only that folder, and its content is encrypted.
 
 **PIN (optional): Protect login and key with a PIN.** The login and the library key are sealed with a PIN of at least 6
@@ -112,9 +114,9 @@ Needs `luajit`, `lua-socket`, `node` and `pip install wsgidav cheroot`. CI runs 
 
 Layout: `main.lua` (KOReader menu, dialogs, collections) · `aishlib/crypto.lua` · `aishlib/webdav.lua` ·
 `aishlib/library.lua` (pull, push, files) · `aishlib/stamps.lua` (hashes, merge) · `aishlib/annots.lua` (KOReader
-highlights ↔ AISH) · `aishlib/render.lua` · `aishlib/marks.lua` · `aishlib/code.lua` · `aishlib/json.lua`.
+highlights ↔ Kaivo) · `aishlib/render.lua` · `aishlib/marks.lua` · `aishlib/code.lua` · `aishlib/json.lua`.
 
 ## Not yet
 
 S3 places, images the extension did not save (remote ones), reading progress (KOReader's percentage has no place in
-AISH yet).
+Kaivo yet).

@@ -61,7 +61,7 @@ class LibrarySync(
     fun connect(config: Config, passphrase: String) {
         val store = storeFactory(config)
         store.ping()
-        val meta = readMeta(store) ?: throw IllegalStateException("There is no AISH library in that folder yet. Set up sync in the browser first, then join it here.")
+        val meta = readMeta(store) ?: throw IllegalStateException("There is no Kaivo library in that folder yet. Set up sync in the browser first, then join it here.")
         val opened = SyncCrypto.openMeta(meta, SyncPassphrase.canonical(passphrase))
         kv.put(CFG, config.toJson()); kv.put(MASTER, Base64.getEncoder().encodeToString(opened.master))
         kv.put(WORDS, if (SyncPassphrase.isSuggestedWords(passphrase)) SyncPassphrase.canonical(passphrase) else null)

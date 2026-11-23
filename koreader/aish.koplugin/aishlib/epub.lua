@@ -1,9 +1,9 @@
 --[[--
-One AISH article as an EPUB 3 file (with an EPUB 2 table of contents for older readers), so KOReader shows real book
+One Kaivo article as an EPUB 3 file (with an EPUB 2 table of contents for older readers), so KOReader shows real book
 information in its lists, the cover view and "Book information":
 
   title · author (the byline, else the site) · publisher (the site) · date saved · language · source (the URL)
-  description = the AI summary as text · keywords = the AISH tags · series = the first AISH collection
+  description = the AI summary as text · keywords = the Kaivo tags · series = the first Kaivo collection
   cover = made for the article (o.cover, drawn by KOReader on the reader): always the title, the site and date, and the
           article's best image when it has one (never an icon or logo) · table of contents = Summary · headings · Key points · Notes
 

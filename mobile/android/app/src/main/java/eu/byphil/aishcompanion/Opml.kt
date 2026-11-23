@@ -49,7 +49,7 @@ object Opml {
     fun export(feeds: List<Feed>): String {
         fun esc(s: String) = s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;")
         fun line(f: Feed, indent: String) = "$indent<outline type=\"rss\" text=\"${esc(f.name)}\" title=\"${esc(f.name)}\" xmlUrl=\"${esc(f.url)}\"/>\n"
-        val sb = StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<opml version=\"2.0\">\n  <head><title>AI Summary Helper feeds</title></head>\n  <body>\n")
+        val sb = StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<opml version=\"2.0\">\n  <head><title>Kaivo feeds</title></head>\n  <body>\n")
         feeds.filter { it.tags.isEmpty() }.forEach { sb.append(line(it, "    ")) }
         feeds.flatMap { it.tags }.distinct().sorted().forEach { tag ->
             sb.append("    <outline text=\"${esc(tag)}\" title=\"${esc(tag)}\">\n")

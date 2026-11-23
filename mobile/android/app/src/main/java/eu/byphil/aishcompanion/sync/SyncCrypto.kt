@@ -70,7 +70,7 @@ object SyncCrypto {
 
     /** Opens an existing place (its meta.json) with its passphrase. Throws WrongKey("Wrong passphrase."). */
     fun openMeta(meta: JSONObject, passphrase: String): Opened {
-        if (meta.optString("mode") != "encrypted" || !meta.has("salt") || !meta.has("check")) throw WrongKey("This place is not an encrypted AISH sync place.")
+        if (meta.optString("mode") != "encrypted" || !meta.has("salt") || !meta.has("check")) throw WrongKey("This place is not an encrypted Kaivo sync place.")
         val master = deriveMaster(passphrase, Base64.getDecoder().decode(meta.getString("salt")), meta.optInt("iterations", KDF_ITERATIONS))
         val keys = subKeys(master)
         val ok = try { JSONObject.quote(CHECK_TEXT) == decrypt(keys, Base64.getDecoder().decode(meta.getString("check"))) } catch (_: Exception) { false }

@@ -383,7 +383,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
             if (article.summary.isNotBlank()) item {
                 AishCard(Modifier.fillMaxWidth(), tone = CardTone.Summary) {
                     Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Text(if (article.local) "Summary · made on this phone" else "AISH summary", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
+                        Text(if (article.local) "Summary · made on this phone" else "Kaivo summary", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
                         PlainText(article.summary)
                     }
                 }

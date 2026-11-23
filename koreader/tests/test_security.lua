@@ -28,7 +28,7 @@ end }
 local nc = N.new(http)
 answers = { { 200, '{"poll":{"token":"T0","endpoint":"https://c.example/login/v2/poll"},"login":"https://c.example/login/v2/flow/abc"}' } }
 local s = nc.startLogin("https://c.example")
-assert(s.login == "https://c.example/login/v2/flow/abc" and s.token == "T0" and calls[1].url == "https://c.example/index.php/login/v2" and calls[1].ua == "AISH KOReader")
+assert(s.login == "https://c.example/login/v2/flow/abc" and s.token == "T0" and calls[1].url == "https://c.example/index.php/login/v2" and calls[1].ua == "Kaivo KOReader")
 answers = { { 404, "" }, { 200, '{"server":"https://c.example","loginName":"phil-reader","appPassword":"AP"}' } }
 assert(nc.poll(s.endpoint, s.token) == false, "waiting")
 local r = nc.poll(s.endpoint, s.token)

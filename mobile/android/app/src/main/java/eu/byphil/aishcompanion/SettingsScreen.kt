@@ -86,7 +86,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
 
     fun accept(text: String?) {
         val parsed = text?.let { Pairing.parse(it) }
-        if (parsed == null) { error = "That is not an AISH pairing code."; return }
+        if (parsed == null) { error = "That is not a Kaivo pairing code."; return }
         model.applyPairing(parsed); error = null; pasted = ""; showPaste = false
         if (parsed.canSync) scope.launch { model.syncFeeds() }
     }
@@ -136,7 +136,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
                         Steps("Set up once", listOf(
                             "In the browser extension open Settings → Phone inbox and tap Pair a phone.",
                             "Tap Scan pairing code below and scan the QR code on your screen.",
-                            "Then share links to AISH, read feeds, and read articles you send from the browser.",
+                            "Then share links to Kaivo, read feeds, and read articles you send from the browser.",
                         ))
                         Button(onClick = { onScan { accept(it) } }, Modifier.fillMaxWidth()) { Text("Scan pairing code") }
                         if (showPaste) {
@@ -165,7 +165,7 @@ fun SettingsScreen(model: AppModel, onScan: ((String?) -> Unit) -> Unit, startPa
                             }
                         }
                         Steps("How to use", listOf(
-                            "In any app tap Share and choose AISH: the link goes to your browser, end-to-end encrypted.",
+                            "In any app tap Share and choose Kaivo: the link goes to your browser, end-to-end encrypted.",
                             "In the browser open History → From phone and tap Summarize.",
                             "To read on the go, choose ⋯ → Send to phone on an article in the extension.",
                             "In Feeds, open an item and tap To browser to send it to the extension.",
@@ -247,8 +247,8 @@ private fun Header() {
             Image(painterResource(R.drawable.ic_launcher_background), contentDescription = null, modifier = Modifier.fillMaxSize())
             Image(painterResource(R.drawable.ic_launcher_foreground), contentDescription = null, modifier = Modifier.fillMaxSize())
         }
-        Text("AI Summary Helper", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.SemiBold)
-        Text("Your feeds, your reading list and your links, in step with AI Summary Helper in the browser.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = TextAlign.Center)
+        Text("Kaivo", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.SemiBold)
+        Text("Your feeds, your reading list and your links, in step with Kaivo in the browser.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = TextAlign.Center)
     }
 }
 

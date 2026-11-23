@@ -97,7 +97,7 @@ fun NotesScreen(model: AppModel) {
         Text(sub, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(horizontal = 16.dp))
         status?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp)) }
         LazyColumn(Modifier.weight(1f).fillMaxWidth(), contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            if (notes.isEmpty()) item { Text("No notes yet. Write one below, or share text from any app to AISH.", color = MaterialTheme.colorScheme.onSurfaceVariant) }
+            if (notes.isEmpty()) item { Text("No notes yet. Write one below, or share text from any app to Kaivo.", color = MaterialTheme.colorScheme.onSurfaceVariant) }
             items(notes, key = { it.id }) { n ->
                 NoteCard(n, editing = editing == n.id, editText = editText, confirmDelete = deleting == n.id,
                     onEditText = { editText = it },

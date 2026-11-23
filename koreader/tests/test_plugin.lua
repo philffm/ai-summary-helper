@@ -91,7 +91,7 @@ local AISH = require("main")
 local menu = {}
 local plugin = setmetatable({ ui = { menu = { registerToMainMenu = function(_, p) p:addToMainMenu(menu) end } } }, { __index = AISH })
 plugin:init()
-local sleepFile = home .. "/AISH/Why we sleep what the new studies show [ka1].epub"
+local sleepFile = home .. "/Kaivo/Why we sleep what the new studies show [ka1].epub"
 local function unzipText(file, member)
     local h = io.popen("unzip -p '" .. file .. "' '" .. member .. "' 2>/dev/null"); local t = h:read("*a"); h:close(); return t
 end
@@ -157,7 +157,7 @@ if phase == "plugin3" then
     fresh:syncNow(); press("Unlock", "000000")
     assert(shown[#shown].text == "Wrong PIN." and fresh:isLocked())
     fresh:syncNow(); press("Unlock", "123456")
-    assert(shown[#shown].text and shown[#shown].text:find("AISH library: 2 articles", 1, true), "synced after the PIN: " .. tostring(shown[#shown].text))
+    assert(shown[#shown].text and shown[#shown].text:find("Kaivo library: 2 articles", 1, true), "synced after the PIN: " .. tostring(shown[#shown].text))
     -- the reader's own Nextcloud login by QR code (the PIN stays on: the new login is sealed too)
     shown = {}
     fresh:connectWithNextcloud()
@@ -168,13 +168,13 @@ if phase == "plugin3" then
     assert(c.flow and c.username == "phil" and c.url == os.getenv("AISH_URL") .. "remote.php/dav/files/phil/" and not c.password, "connected with its own login: " .. tostring(c.url))
     assert(settingsStore[settingsFile].sealed and AISH._shared.secrets.password == "app pass/ü", "the new login sealed with the PIN")
     press("Unlock", "orbit lemon tunnel paper river cloud")   -- the library key was for the old connection: the passphrase once
-    assert(shown[#shown].text:find("AISH library: 2 articles", 1, true), "synced through the new login: " .. tostring(shown[#shown].text))
+    assert(shown[#shown].text:find("Kaivo library: 2 articles", 1, true), "synced through the new login: " .. tostring(shown[#shown].text))
     -- lost: "Wipe device" in Nextcloud. The server refuses the login; the reader asks, deletes everything, confirms
     AISH._shared.secrets.password = "revoked"
     shown = {}
     fresh:syncNow()
     assert(fakeCalls[#fakeCalls - 1] == "wipe? revoked" and fakeCalls[#fakeCalls] == "wiped revoked", table.concat(fakeCalls, ", "))
-    assert(#fsu.ls(home .. "/AISH") == 0, "articles deleted")
+    assert(#fsu.ls(home .. "/Kaivo") == 0, "articles deleted")
     st = settingsStore[settingsFile]
     assert(not st.connection and not st.sealed and not st.master and not AISH._shared.secrets, "login, key and seal deleted")
     assert(not fsu.exists(work .. "/data/aish/index.json"), "library data deleted")
@@ -188,7 +188,7 @@ if phase == "plugin2" then
     sidecars[sleepFile].summary = { status = "complete" }; saveSidecars()
     shown = {}
     plugin:syncNow()
-    assert(shown[#shown].text:find("AISH library: 2 articles", 1, true), shown[#shown].text)
+    assert(shown[#shown].text:find("Kaivo library: 2 articles", 1, true), shown[#shown].text)
     local items = sidecars[sleepFile].annotations
     local ko, h3
     for _, it in ipairs(items) do
@@ -198,7 +198,7 @@ if phase == "plugin2" then
     assert(ko and ko.note == "Edited in the browser.", "comment edited in the browser → note in the closed book: " .. tostring(ko and ko.note))
     assert(not h3, "highlight deleted in the browser → gone from the book")
     local RCo = require("readcollection")
-    local arch = {}; for f in pairs(RCo.coll["AISH · Archive"] or {}) do arch[#arch + 1] = f end
+    local arch = {}; for f in pairs(RCo.coll["Kaivo · Archive"] or {}) do arch[#arch + 1] = f end
     assert(#arch == 1 and arch[1]:find("Why we sleep", 1, true), "finished in KOReader → archived in AISH")
     -- a new layout (render version) reaches the articles already on the reader
     local L = require("aishlib.library")
@@ -221,7 +221,7 @@ if phase == "plugin2" then
     end
     shown = {}
     plugin:downloadAgain(); press("Download again")
-    assert(shown[#shown].text:find("AISH library: 2 articles on this reader.\n%d+ downloaded, 2 files written"), "downloaded again: " .. tostring(shown[#shown].text))
+    assert(shown[#shown].text:find("Kaivo library: 2 articles on this reader.\n%d+ downloaded, 2 files written"), "downloaded again: " .. tostring(shown[#shown].text))
     local lib = plugin:library()
     local hls = lib.highlightsOf("k-a1")
     local found = false
@@ -245,17 +245,17 @@ fsu.write(home .. "/aish-library.txt", "Here is my code:\naish-library://v1?k=we
 plugin:connectWithCode()
 assert(not fsu.exists(home .. "/aish-library.txt"), "the code file (it holds the login) is removed after reading")
 local last = shown[#shown]
-assert(last.kind == "info" and last.text:find("AISH library: 2 articles", 1, true), "sync result: " .. tostring(last.text))
-local files = fsu.ls(home .. "/AISH")
-assert(#files == 2, "2 files in the AISH folder of the home folder: " .. table.concat(files, ", "))
-local exam = RC.coll["AISH: Exam prep"]
+assert(last.kind == "info" and last.text:find("Kaivo library: 2 articles", 1, true), "sync result: " .. tostring(last.text))
+local files = fsu.ls(home .. "/Kaivo")
+assert(#files == 2, "2 files in the Kaivo folder of the home folder: " .. table.concat(files, ", "))
+local exam = RC.coll["Kaivo: Exam prep"]
 local n = 0; for _ in pairs(exam or {}) do n = n + 1 end
-assert(n == 1 and RC.writes == 1, "KOReader collection AISH: Exam prep with its file")
+assert(n == 1 and RC.writes == 1, "KOReader collection Kaivo: Exam prep with its file")
 -- the AISH tabs as collections, newest first; the top tags; file dates = saved dates; images as files
 local function ordered(name) local out = {}; for _, it in ipairs(RC:getOrderedCollection(name)) do out[#out + 1] = it.file:match("[^/]+$") end return table.concat(out, " | ") end
-assert(ordered("AISH · Inbox") == "Only a summary here (renamed) [ka3].epub | Why we sleep what the new studies show [ka1].epub", "Inbox newest first: " .. ordered("AISH · Inbox"))
-assert(ordered("AISH · Read") == "" and ordered("AISH · Archive") == "", "nothing read or archived yet")
-assert(ordered("AISH #science") == "Why we sleep what the new studies show [ka1].epub", "tag collection")
+assert(ordered("Kaivo · Inbox") == "Only a summary here (renamed) [ka3].epub | Why we sleep what the new studies show [ka1].epub", "Inbox newest first: " .. ordered("Kaivo · Inbox"))
+assert(ordered("Kaivo · Read") == "" and ordered("Kaivo · Archive") == "", "nothing read or archived yet")
+assert(ordered("Kaivo #science") == "Why we sleep what the new studies show [ka1].epub", "tag collection")
 assert(fsu.mtime(sleepFile) == require("aishlib.library").isoToEpoch("2026-11-02T08:00:00.000Z"), "the file's date is the day it was saved")
 -- the EPUB: text with the image inside, book information, table of contents
 local xhtml, opf, nav = unzipText(sleepFile, "OEBPS/article.xhtml"), unzipText(sleepFile, "OEBPS/content.opf"), unzipText(sleepFile, "OEBPS/nav.xhtml")
@@ -265,7 +265,7 @@ assert(opf:find("<dc:title>Why we sleep: what the new studies show</dc:title>", 
 assert(opf:find("<dc:subject>science</dc:subject>", 1, true) and opf:find("<dc:date>2026-11-02</dc:date>", 1, true), "tags, date saved")
 assert(opf:find("<dc:description>• Sleep consolidates memory.</dc:description>", 1, true), "summary as description")
 assert(opf:find('<meta name="calibre:series" content="Exam prep"/>', 1, true), "AISH collection as series")
-assert(nav:find(">Summary</a>", 1, true) and not fsu.exists(home .. "/AISH/.images"), "table of contents; no loose image files")
+assert(nav:find(">Summary</a>", 1, true) and not fsu.exists(home .. "/Kaivo/.images"), "table of contents; no loose image files")
 -- gesture: the newest unread article opens
 plugin:onAishOpenNewest()
 assert(opened[#opened] and opened[#opened]:find("Only a summary here", 1, true), "newest unread opened")
@@ -311,7 +311,7 @@ shown = {}
 closeBook(ui)   -- online: sent right away, quietly
 for _, w in ipairs(shown) do assert(w.kind ~= "info" or not w.text:find("failed"), "no error: " .. tostring(w.text)) end
 assert(settingsStore[work .. "/settings/aish.lua"].last_sync.pending == 0, "everything sent")
-assert(ordered("AISH · Read") == "Why we sleep what the new studies show [ka1].epub" and ordered("AISH · Inbox") == "Only a summary here (renamed) [ka3].epub", "opened → Read: " .. ordered("AISH · Read"))
+assert(ordered("Kaivo · Read") == "Why we sleep what the new studies show [ka1].epub" and ordered("Kaivo · Inbox") == "Only a summary here (renamed) [ka3].epub", "opened → Read: " .. ordered("Kaivo · Read"))
 -- Wi-Fi comes on: a sync when one is due, not before
 local before = settingsStore[work .. "/settings/aish.lua"].last_sync.time
 plugin:onNetworkConnected()
@@ -325,7 +325,7 @@ for _, w in ipairs(shown) do assert(w.kind ~= "info", "quietly: " .. tostring(w.
 s.limit = 1
 shown = {}
 plugin:syncNow()
-assert(not fsu.exists(sleepFile) and ordered("AISH · Inbox") == "Only a summary here (renamed) [ka3].epub", "limit 1: " .. ordered("AISH · Read"))
+assert(not fsu.exists(sleepFile) and ordered("Kaivo · Inbox") == "Only a summary here (renamed) [ka3].epub", "limit 1: " .. ordered("Kaivo · Read"))
 assert(shown[#shown].text:find("1 removed", 1, true) and shown[#shown].text:find("1 older or archived", 1, true), shown[#shown].text)
 s.limit = nil
 shown = {}

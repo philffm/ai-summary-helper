@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/press/aish-hero-en.png" alt="AI Summary Helper: any page, summed up in your language" width="100%">
+  <img src="assets/press/aish-hero-en.png" alt="Kaivo: any page, summed up in your language" width="100%">
 </p>
 
 <p align="center">
@@ -20,7 +20,7 @@
 
 > You are on the hunt for interesting articles around the web, open 100 tabs and end up… not reading them. Sounds familiar?
 
-**AI Summary Helper** (AISH) turns that pile into a reading habit. It gives you a short overview of any article, PDF or YouTube video in your own language, in the browser's side panel. Bring your own key for OpenAI, Google Gemini, Mistral AI or DeepSeek, or run an open model locally with Ollama: no account needed, and the page text goes only to the provider you chose, or nowhere at all. Follow your favorite sites in a built-in RSS reader, ask follow-up questions, and keep everything in a searchable archive. Then send a digest to your Kindle or another device, so you read what you picked on purpose.
+**Kaivo** (Kaivo) turns that pile into a reading habit. It gives you a short overview of any article, PDF or YouTube video in your own language, in the browser's side panel. Bring your own key for OpenAI, Google Gemini, Mistral AI or DeepSeek, or run an open model locally with Ollama: no account needed, and the page text goes only to the provider you chose, or nowhere at all. Follow your favorite sites in a built-in RSS reader, ask follow-up questions, and keep everything in a searchable archive. Then send a digest to your Kindle or another device, so you read what you picked on purpose.
 
 ## At a glance
 
@@ -76,7 +76,7 @@ Images for press and reviews live in [`assets/press/`](assets/press/).
 
 > **How sending works.** *Send to Kindle* goes through the byPhil backend, because Amazon only accepts documents by email from approved senders: add `kindle@byphil.eu` to your approved senders in your Amazon account. The free tier includes 3 Kindle sends; unlimited Kindle sends require the [Support Pass](https://byphil.eu/#pass). *LocalSend* (and the system share sheet, e.g. AirDrop) is direct: the file goes from your browser to the device you pick, works with any device running a LocalSend-compatible app, and never touches our server. See the [privacy policy](privacy.md).
 
-<a href="https://www.producthunt.com/posts/ai-summary-helper?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-ai&#0045;summary&#0045;helper" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=461601&theme=dark" alt="AI Summary Helper on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+<a href="https://www.producthunt.com/posts/ai-summary-helper?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-ai&#0045;summary&#0045;helper" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=461601&theme=dark" alt="Kaivo on Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
 <details>
 <summary><b>Bookmarklet in action</b></summary>
@@ -178,7 +178,7 @@ The generator's source lives in `site-src/pages/bookmarklet.html` (markup) and `
 
 ## Architecture
 
-AISH is a Manifest V3 extension with four runtime parts that talk to each other only through `chrome.runtime` messages and `chrome.storage`. There is no server of our own in the loop when you bring your own key or use Ollama: the background worker calls the provider directly.
+Kaivo is a Manifest V3 extension with four runtime parts that talk to each other only through `chrome.runtime` messages and `chrome.storage`. There is no server of our own in the loop when you bring your own key or use Ollama: the background worker calls the provider directly.
 
 ```mermaid
 flowchart LR
@@ -306,15 +306,15 @@ ai-summary-helper/
 │   ├── build.sh                  # Release build: version bump + zip into prod/
 │   │
 │   ├── dev/                      # Generated unpacked builds (git-ignored)
-│   │   ├── aish-extension-chrome/
-│   │   ├── aish-extension-android/
-│   │   ├── aish-extension-ios/
-│   │   └── aish-extension-firefox/
+│   │   ├── kaivo-extension-chrome/
+│   │   ├── kaivo-extension-android/
+│   │   ├── kaivo-extension-ios/
+│   │   └── kaivo-extension-firefox/
 │   │
 │   └── prod/                     # Generated release zips (git-ignored)
-│       ├── aish-extension-chrome-<ver>.zip
-│       ├── aish-extension-android-<ver>.zip
-│       └── aish-extension-firefox-<ver>.zip
+│       ├── kaivo-extension-chrome-<ver>.zip
+│       ├── kaivo-extension-android-<ver>.zip
+│       └── kaivo-extension-firefox-<ver>.zip
 │
 ├── site-src/                     # Website source: pages/ (English templates) + partials/ (nav, footer)
 │   └── pages/privacy.html        # Single source of truth for the privacy policy (see scripts/privacy-md.mjs)
@@ -547,7 +547,7 @@ This extension vendors the following open-source libraries under
 
 # Compatible Tools
 <!-- table with tools, name, description, url -->
-Tools that are compatible with AI Summary Helper.
+Tools that are compatible with Kaivo.
 Feel free to add your own tool to the list.
 
 Name | Description | URL

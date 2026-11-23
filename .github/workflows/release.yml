@@ -75,7 +75,7 @@ jobs:
         run: |
           chmod +x plugin/build.sh
           cd plugin
-          ./build.sh
+          ./build.sh --kaivo   # the default build (AISH) plus the Kaivo one: the release ships the Kaivo zips
 
       # The bump is re-applied onto the newest main rather than rebased: it only sets the version in files whose
       # version line nobody else edits, so there is nothing to resolve and nothing to overwrite. If main moves
@@ -148,6 +148,13 @@ jobs:
           # Save it as an environment variable (e.g., v2.0.26) for the next step
           echo "TAG_NAME=v$VERSION" >> $GITHUB_ENV
 
+      # The KOReader plugin as one zip: the folder aish.koplugin (the plugin's id stays, so existing installs keep their settings and library)
+      - name: Package the KOReader plugin
+        run: |
+          cd koreader
+          zip -r -q ../kaivo-koreader-plugin.zip aish.koplugin -x '*.DS_Store'
+          unzip -l ../kaivo-koreader-plugin.zip | tail -1
+
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
@@ -155,9 +162,10 @@ jobs:
           body_path: ${{ env.NOTES_FILE }}   # commit-based notes from scripts/changelog.mjs
           generate_release_notes: ${{ inputs.keep_version != true }}       # GitHub's list of pull requests and new contributors is appended below (not when only re-uploading files)
           files: |
-            plugin/prod/aish-extension-chrome-*.zip
-            plugin/prod/aish-extension-android-*.zip
-            plugin/prod/aish-extension-firefox-*.zip
+            plugin/prod/kaivo-extension-chrome-*.zip
+            plugin/prod/kaivo-extension-android-*.zip
+            plugin/prod/kaivo-extension-firefox-*.zip
+            kaivo-koreader-plugin.zip
             aish-companion.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

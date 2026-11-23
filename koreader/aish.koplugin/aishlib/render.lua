@@ -1,5 +1,5 @@
 --[[--
-One AISH article as an HTML file for KOReader: title, source, the AI summary, the article's full text with your highlights
+One Kaivo article as an HTML file for KOReader: title, source, the AI summary, the article's full text with your highlights
 (AI highlights underlined), notes on highlights as footnotes (a tap shows them in a popup), and your notes on the article.
 
 @module aishlib.render

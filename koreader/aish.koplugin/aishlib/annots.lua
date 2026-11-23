@@ -1,14 +1,14 @@
 --[[--
-KOReader's highlights ↔ AISH highlights, for one article.
+KOReader's highlights ↔ Kaivo highlights, for one article.
 
 KOReader keeps highlights in its own list (`annotations` in the book's sidecar: pos0/pos1, text, note, drawer, …). The
-plugin keeps them in step with AISH:
+plugin keeps them in step with Kaivo:
 
-  AISH → KOReader  a highlight saved in the browser appears as a KOReader highlight (AI highlights underlined) with its
+  Kaivo → KOReader  a highlight saved in the browser appears as a KOReader highlight (AI highlights underlined) with its
                    comment as the note. Placing one needs the open book (to find the text), so this happens on opening.
-  KOReader → AISH  a highlight made on the reader becomes an AISH highlight (with the words before and after it, as the
+  KOReader → Kaivo  a highlight made on the reader becomes a Kaivo highlight (with the words before and after it, as the
                    extension saves them); its note becomes the comment. Editing the note edits the comment.
-  deletions        a highlight removed on the reader is deleted in AISH (an AI one is dismissed); one deleted in AISH
+  deletions        a highlight removed on the reader is deleted in Kaivo (an AI one is dismissed); one deleted in Kaivo
                    disappears from the reader.
 
 Who changed a note is told by the last synced state (`base`): when only one side differs from it, that side wins; when
@@ -27,13 +27,13 @@ local function noteOf(s) if blank(s) then return nil end return tostring(s) end
 --[[--
 o = {
   items     KOReader's annotations of the book (a list; changed in place),
-  hls       the article's live AISH highlights { id, text, type, quote, dismissed },
+  hls       the article's live Kaivo highlights { id, text, type, quote, dismissed },
   comments  hl id → { id, text } (the comment on it),
-  gone      hl id → true for highlights deleted or dismissed in AISH (only these leave the reader; an unknown id does not),
+  gone      hl id → true for highlights deleted or dismissed in Kaivo (only these leave the reader; an unknown id does not),
   base      hl id → { note } (changed in place: what both sides hold after this),
   find      function(hl) → item fields { pos0, pos1, page, text, chapter? } or nil; nil when the book is not open,
   newItem   function(hl, placed, note) → the KOReader item to add (the caller knows drawer and colour),
-  newHighlight function(item) → AISH values for a highlight made on the reader (url, text, quote, …), with .id,
+  newHighlight function(item) → Kaivo values for a highlight made on the reader (url, text, quote, …), with .id,
   add / remove  optional: function(item) and function(index) to change `items` (KOReader's own addItem keeps its order)
 }
 → actions { added = n, removed = n, notesHere = n, unplaced = n,
@@ -49,13 +49,13 @@ function M.reconcile(o)
     local byId = {}
     for _, it in ipairs(items) do if it.aish_id then byId[it.aish_id] = it end end
 
-    -- 1) KOReader items linked to AISH: deleted / dismissed in AISH → off the reader; notes in step
+    -- 1) KOReader items linked to Kaivo: deleted / dismissed in Kaivo → off the reader; notes in step
     for i = #items, 1, -1 do
         local it = items[i]
         local id = it.aish_id
         if id and it.drawer then
             local h = live[id]
-            if not h and o.gone[id] then   -- deleted or dismissed in AISH
+            if not h and o.gone[id] then   -- deleted or dismissed in Kaivo
                 remove(i); base[id] = nil; act.removed = act.removed + 1
             elseif not h then              -- unknown here (never sent, or this reader was connected anew): sent again with its id
                 local values = o.newHighlight(it)
@@ -69,7 +69,7 @@ function M.reconcile(o)
             else
                 local b = base[id] and base[id].note
                 local here, there = noteOf(it.note), noteOf(o.comments[id] and o.comments[id].text)
-                if here ~= b then   -- changed on the reader (it wins over a change in AISH too)
+                if here ~= b then   -- changed on the reader (it wins over a change in Kaivo too)
                     if here ~= there then act.comment[#act.comment + 1] = { hlId = id, text = here, quote = norm(h.text) } end
                     base[id] = { note = here }
                 elseif there ~= b then
@@ -80,7 +80,7 @@ function M.reconcile(o)
         end
     end
 
-    -- 1b) a reader highlight without a link that has the text of an unlinked AISH one is that one (a link lost when the book
+    -- 1b) a reader highlight without a link that has the text of an unlinked Kaivo one is that one (a link lost when the book
     --     was closed before its settings were saved, or the same passage highlighted in both places): linked, not doubled
     local unlinked = {}
     for _, h in ipairs(o.hls) do if not h.dismissed and not byId[h.id] then unlinked[norm(h.text)] = unlinked[norm(h.text)] or h end end
@@ -97,7 +97,7 @@ function M.reconcile(o)
         end
     end
 
-    -- 2) AISH highlights without a KOReader item: removed on the reader, or new here
+    -- 2) Kaivo highlights without a KOReader item: removed on the reader, or new here
     for _, h in ipairs(o.hls) do
         if not h.dismissed and not byId[h.id] then
             if base[h.id] then   -- it was on the reader at the last sync: removed there
@@ -118,7 +118,7 @@ function M.reconcile(o)
         end
     end
 
-    -- 3) highlights made on the reader → AISH
+    -- 3) highlights made on the reader → Kaivo
     for _, it in ipairs(items) do
         if it.drawer and not it.aish_id and not blank(it.text) then
             local values = o.newHighlight(it)
@@ -134,7 +134,7 @@ function M.reconcile(o)
     return act
 end
 
---- Applies the AISH side of `act` to the library (records go out at the next push). `base` becomes the article's links.
+--- Applies the Kaivo side of `act` to the library (records go out at the next push). `base` becomes the article's links.
 function M.apply(lib, articleId, act, base)
     for _, c in ipairs(act.create) do lib.edit("hl:" .. c.id, c.values) end
     for _, c in ipairs(act.comment) do
@@ -155,7 +155,7 @@ function M.apply(lib, articleId, act, base)
     lib.setLinks(articleId, base)   -- saved by the caller (lib.flush) after the batch
 end
 
---- AISH values for a highlight made on the reader.
+--- Kaivo values for a highlight made on the reader.
 function M.highlightValues(lib, articleId, item)
     local json = require("aishlib.json")
     local text = norm(item.text)

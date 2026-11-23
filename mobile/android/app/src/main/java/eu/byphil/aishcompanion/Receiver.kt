@@ -95,7 +95,7 @@ class ReceiveWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ct
         return when (out.error) {
             null -> Result.success()
             "unreachable", "rate-limited" -> Result.retry()
-            "pairing-invalid" -> { Store(applicationContext).lastError = "Articles from your browser can no longer be received. Pair again in AISH."; Result.failure() }
+            "pairing-invalid" -> { Store(applicationContext).lastError = "Articles from your browser can no longer be received. Pair again in Kaivo."; Result.failure() }
             else -> Result.failure()
         }
     }

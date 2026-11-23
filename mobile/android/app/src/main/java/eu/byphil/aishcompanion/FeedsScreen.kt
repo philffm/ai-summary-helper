@@ -162,7 +162,7 @@ fun FeedsScreen(
     val doRead = { val keys = picked; picked = emptySet(); scope.launch { model.markReadMany(keys, !allRead) }; Unit }
     val doShare = {
         val withLink = chosen.filter { it.stored.item.link.isNotEmpty() }
-        if (withLink.isNotEmpty()) shareText(context, "Links from AISH", withLink.joinToString("\n\n") { it.stored.item.title + "\n" + it.stored.item.link })
+        if (withLink.isNotEmpty()) shareText(context, "Links from Kaivo", withLink.joinToString("\n\n") { it.stored.item.title + "\n" + it.stored.item.link })
     }
     val doSend = {
         val links = chosen.map { it.stored.item.link }.filter { it.isNotEmpty() }.distinct()

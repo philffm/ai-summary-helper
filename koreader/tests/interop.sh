@@ -25,7 +25,7 @@ for f in "$work/dav/My Library/r/"*; do [ -e "$work/place/snap2/r/$(basename "$f
 AISH_CHANGED=$changed AISH_PHASE=2 luajit "$here/test_interop.lua"
 AISH_PHASE=plugin luajit "$here/test_plugin.lua"
 # the EPUB the plugin wrote: a valid ZIP with well-formed XML, and epubcheck when it is installed (pip install epubcheck)
-python3 - "$work/device-plugin/home/AISH" <<'PY'
+python3 - "$work/device-plugin/home/Kaivo" <<'PY'
 import sys, os, zipfile, xml.etree.ElementTree as ET
 d = sys.argv[1]
 for f in sorted(os.listdir(d)):

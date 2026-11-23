@@ -81,7 +81,7 @@ fun OnboardingCard(model: AppModel, onOpenSettings: (String) -> Unit, onAddByAdd
         }
 
         SettingsCaption("Optional")
-        OnboardingLink(Icons.Filled.Link, "Connect your browser", "Sync feeds and send articles with the AISH extension, end-to-end encrypted.") { onOpenSettings("link") }
+        OnboardingLink(Icons.Filled.Link, "Connect your browser", "Sync feeds and send articles with the Kaivo extension, end-to-end encrypted.") { onOpenSettings("link") }
         OnboardingLink(Icons.Filled.Person, "Sign in for Pro", "Your plan and the cloud AI, with an email code.") { onOpenSettings("account") }
         OnboardingLink(Icons.Filled.AutoAwesome, "Download the on-device AI", "Summaries, recaps and the morning briefing, written on this phone.") { onOpenSettings("ai") }
 

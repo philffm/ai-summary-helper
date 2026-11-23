@@ -222,7 +222,7 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
             primary = if (saved && !busy && summaryUrl == shown) BarAction(Icons.Filled.Check, "Summary saved. Open it in the reading list", done = true) { onOpenReading(PageSummary.localId(summaryUrl)) }
                 else BarAction(Icons.Filled.AutoAwesome, if (busy) "Summarizing" else "Summarize on this phone", enabled = !busy, busy = busy, progress = sumFrac) { summarize() },
             secondary = listOfNotNull(
-                if (canSend) BarAction(Icons.AutoMirrored.Filled.Send, if (sent) "Sent to the browser" else "Send to the AISH browser extension") { SendWorker.enqueue(context, shown); sent = true } else null,
+                if (canSend) BarAction(Icons.AutoMirrored.Filled.Send, if (sent) "Sent to the browser" else "Send to the Kaivo browser extension") { SendWorker.enqueue(context, shown); sent = true } else null,
                 BarAction(if (speak) Icons.Filled.VolumeUp else Icons.Filled.VolumeOff, if (speak) "Reading summaries aloud: on" else "Reading summaries aloud: off") { speak = !speak; Store(context).speakSummary = speak; if (!speak) tts?.stop() },
                 BarAction(Icons.Filled.OpenInBrowser, "Open in browser") { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(shown))) },
                 if (canGoBack) BarAction(Icons.AutoMirrored.Filled.ArrowBack, "Back") { web?.goBack() } else null,

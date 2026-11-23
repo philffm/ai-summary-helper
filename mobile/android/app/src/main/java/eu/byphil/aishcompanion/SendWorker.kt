@@ -40,7 +40,7 @@ class SendWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, 
             when {
                 code == 202 -> { store.lastError = null; Result.success() }
                 code == 429 || code >= 500 -> Result.retry()
-                code == 401 || code == 403 || code == 404 -> { store.lastError = "The pairing is no longer valid. Pair again in AISH."; Result.failure() }
+                code == 401 || code == 403 || code == 404 -> { store.lastError = "The pairing is no longer valid. Pair again in Kaivo."; Result.failure() }
                 else -> { store.lastError = "The server refused the link (HTTP $code)."; Result.failure() }
             }
         } catch (_: IOException) {

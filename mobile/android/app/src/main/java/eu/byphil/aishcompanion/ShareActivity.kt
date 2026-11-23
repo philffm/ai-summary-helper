@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 /**
- * Receives "Share → AISH". A link opens a small sheet with the things to do with it: send it to the browser extension, summarize it on this phone
+ * Receives "Share → Kaivo". A link opens a small sheet with the things to do with it: send it to the browser extension, summarize it on this phone
  * (opens the page in the app and starts the on-device summary), remind yourself, or keep it as a note. Text without a link can be kept as a note.
  */
 class ShareActivity : ComponentActivity() {
@@ -76,7 +76,7 @@ private fun ShareSheet(link: String?, text: String, canSend: Boolean, onNote: ()
     val permission = androidx.activity.compose.rememberLauncherForActivityResult(androidx.activity.result.contract.ActivityResultContracts.RequestPermission()) { }
     ModalBottomSheet(onDismissRequest = onDismiss) {
         Column(Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 24.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Text("AI Summary Helper", style = MaterialTheme.typography.titleMedium)
+            Text("Kaivo", style = MaterialTheme.typography.titleMedium)
             Text(link ?: text, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 3, overflow = TextOverflow.Ellipsis)
             if (link == null) { Button(onClick = onNote, modifier = Modifier.fillMaxWidth()) { Text("Save as a note") }; return@Column }
             Button(onClick = onSummarize, modifier = Modifier.fillMaxWidth()) { Icon(Icons.Filled.AutoAwesome, null, Modifier.size(18.dp)); Text("  Summarize on this phone") }

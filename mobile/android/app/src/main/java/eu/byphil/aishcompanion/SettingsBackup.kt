@@ -24,7 +24,7 @@ object SettingsBackup {
     /** Backup JSON text → the values to write. Anything unknown or of an odd type is skipped; throws when it is not a backup at all. */
     fun parse(text: String): Map<String, Any> {
         val o = JSONObject(text)
-        require(o.optString("format") == FORMAT) { "This is not an AISH settings file." }
+        require(o.optString("format") == FORMAT) { "This is not a Kaivo settings file." }
         val v = o.getJSONObject("values")
         val out = LinkedHashMap<String, Any>()
         for (k in v.keys()) {

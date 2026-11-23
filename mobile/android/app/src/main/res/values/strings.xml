@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">AISH</string>
-    <string name="share_label">AISH</string>
-    <string name="toast_sent">Sent to AISH</string>
-    <string name="toast_queued">Will send to AISH when you are online</string>
+    <string name="app_name">Kaivo</string>
+    <string name="share_label">Kaivo</string>
+    <string name="toast_sent">Sent to Kaivo</string>
+    <string name="toast_queued">Will send to Kaivo when you are online</string>
     <string name="toast_no_link">No web link found to share</string>
-    <string name="toast_not_paired">Open AISH and pair it first</string>
+    <string name="toast_not_paired">Open Kaivo and pair it first</string>
     <string name="widget_title">TODAY IN YOUR FEEDS</string>
     <string name="widget_description">The day recap from your feeds</string>
-    <string name="widget_empty">No recap yet. Open AISH and tap Recap in Feeds to write one.</string>
+    <string name="widget_empty">No recap yet. Open Kaivo and tap Recap in Feeds to write one.</string>
 </resources>

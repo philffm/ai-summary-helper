@@ -8,7 +8,7 @@ highlights, Q&A, collections, feeds and saved-for-later items.
 Nothing leaves your computer except what the app you connect sends to its own model. This relay
 holds no library data and logs nothing of what it forwards — just a timestamp, the tool name, and
 whether it succeeded. Everything else lives in the extension, which you turn on explicitly and can
-turn off (or revoke) at any time from **AISH → Settings → AI apps (MCP)**.
+turn off (or revoke) at any time from **Kaivo → Settings → AI apps (MCP)**.
 
 ```
 LLM app (Claude Desktop, LM Studio, Cursor …)
@@ -23,16 +23,16 @@ AI Summary Helper extension  ── tool definitions, search, storage reads, con
 
 ## Setup
 
-1. Open AISH → Settings → **AI apps (MCP)** and turn it on.
+1. Open Kaivo → Settings → **AI apps (MCP)** and turn it on.
 2. In a terminal: `npx aish-mcp pair` — this prints a pairing code and stores a token in
    `~/.config/aish-mcp/config.json` (Windows: `%APPDATA%\aish-mcp`).
-3. Paste the code into the AISH settings page. It should say "Connected" within a couple of
+3. Paste the code into the Kaivo settings page. It should say "Connected" within a couple of
    seconds once a relay is actually running (step 4).
 4. Add `aish-mcp` to your app's MCP config (see below) and restart that app.
 
 Everything is **off by default**: with the setting off, the extension never opens a socket, and
 `aish-mcp` without a connected extension answers every tool call with a clear
-"AISH is not running" error instead of hanging or crashing.
+"Kaivo is not running" error instead of hanging or crashing.
 
 ## Config snippets
 
@@ -96,11 +96,11 @@ another one takes the port over within about a second, and the extension reconne
 
 The relay keeps the last tool definitions (names, descriptions, input schemas — never library
 content) in `tool-definitions.json` next to the pairing token, so an app that starts before your
-browser still sees the AISH tools. When the browser connects later, the app is told the list changed.
+browser still sees the Kaivo tools. When the browser connects later, the app is told the list changed.
 
 ## What it can and can't do
 
-| Tool | What it does | Permission in AISH |
+| Tool | What it does | Permission in Kaivo |
 |---|---|---|
 | `search_library` | Search saved articles (optionally by tag, date, collection) | Your library |
 | `related_articles` | The saved articles most like one article (same topic), with the tags they share | Your library |
@@ -112,7 +112,7 @@ browser still sees the AISH tools. When the browser connects later, the app is t
 | `library_stats` | Counts only: saves over time, top tags/sites/models, mood, highlights | Your library |
 | `list_feed_items` | Items from feed subscriptions | Feeds |
 | `get_brand` | The brand guide (no library data) | Always on |
-| `save_url` | Save a link to the AISH inbox (http/https, 30 per hour, marked "added by AI app") | Save links |
+| `save_url` | Save a link to the Kaivo inbox (http/https, 30 per hour, marked "added by AI app") | Save links |
 
 It cannot edit or delete anything, or do anything while the browser is closed. Articles with the
 exclude tag (`private` by default) never appear in any result or count. The tool definitions live
@@ -122,7 +122,7 @@ only forwards them.
 ## On-brand output
 
 Whatever an app makes from your library (an artifact, page, deck, doc or chart) is styled in the
-AISH brand by default: the server's `instructions` tell the app to read the **`aish://brand`**
+Kaivo brand by default: the server's `instructions` tell the app to read the **`aish://brand`**
 resource (colours, type, shapes, tone, a CSS starter), and the **`on_brand`** prompt applies it on
 request. Some routes (for example a desktop bridge) pass on tools only, so the tool descriptions
 also tell the app to call **`get_brand`** first. Ask for another style and the app follows you instead; answers in chat and work that
@@ -158,25 +158,25 @@ Once an app is connected, these work well. Swap the topics for your own.
 
 **On a schedule:** an agent can run `list_due` and `list_feed_items` each morning and write you a brief.
 
-The same prompts are in AISH → Settings → AI apps (MCP), where you can tap one to copy it.
+The same prompts are in Kaivo → Settings → AI apps (MCP), where you can tap one to copy it.
 
 ## Troubleshooting
 
-- **AISH panel says "Not connected":** no relay is running. Start your AI app, or run `aish-mcp` in a terminal.
-- **The app lists no AISH tools, or misses new ones after an extension update:** quit the app completely and reopen it. Some apps (Claude Desktop among them) only read the tool list at start.
-- **"AISH is not running":** the browser is closed or the feature is off.
-- **"Scope … is not enabled":** turn that permission on in the AISH panel; no reconnect needed.
+- **Kaivo panel says "Not connected":** no relay is running. Start your AI app, or run `aish-mcp` in a terminal.
+- **The app lists no Kaivo tools, or misses new ones after an extension update:** quit the app completely and reopen it. Some apps (Claude Desktop among them) only read the tool list at start.
+- **"Kaivo is not running":** the browser is closed or the feature is off.
+- **"Scope … is not enabled":** turn that permission on in the Kaivo panel; no reconnect needed.
 - **Logs:** the relay logs one line per call (time, tool, ok/error, duration) to stderr; in Claude Desktop see `~/Library/Logs/Claude/mcp-server-aish.log`.
 
 ## Security notes
 
 - The relay binds to `127.0.0.1` only, never `0.0.0.0` — nothing on your network can reach it.
 - A browser tab trying `ws://127.0.0.1:47615` directly is rejected: only a request whose `Origin`
-  is the AISH extension's own `chrome-extension://…` (or `moz-extension://…`) origin is accepted,
+  is the Kaivo extension's own `chrome-extension://…` (or `moz-extension://…`) origin is accepted,
   and the first message on that connection still has to carry the right pairing token.
 - The HTTP mode additionally requires a `Host: 127.0.0.1`/`localhost` header and a bearer token,
   and sends no CORS headers — a web page cannot drive it either.
-- Every scope you haven't explicitly turned on in AISH is refused in the extension, not here —
+- Every scope you haven't explicitly turned on in Kaivo is refused in the extension, not here —
   this relay is treated as untrusted plumbing even by its own author.
 
 ## Development
@@ -192,4 +192,4 @@ tests: `npm test -- 178` in the repo root.
 
 ## License
 
-MIT, see [LICENSE](LICENSE). This covers the relay only; the AI Summary Helper extension is AGPL-3.0 or commercial (see the repository root).
+MIT, see [LICENSE](LICENSE). This covers the relay only; the Kaivo extension is AGPL-3.0 or commercial (see the repository root).

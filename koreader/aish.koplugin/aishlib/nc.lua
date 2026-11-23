@@ -17,7 +17,7 @@ local json = require("aishlib.json")
 local ltn12 = require("ltn12")
 
 local M = {}
-M.USER_AGENT = "AISH KOReader"
+M.USER_AGENT = "Kaivo KOReader"
 
 local function form(t)
     local parts = {}

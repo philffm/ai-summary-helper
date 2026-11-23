@@ -1,5 +1,5 @@
 --[[--
-Sync of one encrypted AISH place with a folder of HTML files on the reader.
+Sync of one encrypted Kaivo place with a folder of HTML files on the reader.
 
   pull()        every record file whose ETag changed is downloaded, decrypted and checked, and kept on this device
                 (one JSON file per record; a lean index lists them). A record changed here and not sent yet is merged
@@ -140,7 +140,7 @@ function M.new(o)
             e.fu = type(rec.values.feedUrl) == "string" and rec.values.feedUrl ~= "" and rec.values.feedUrl or nil
             e.rs, e.sk = articleLean(rec.values)
             e.ti = type(rec.values.title) == "string" and rec.values.title or nil
-            -- the AISH tabs and tags, for the KOReader collections
+            -- the Kaivo tabs and tags, for the KOReader collections
             local v = rec.values
             e.ts = type(v.timestamp) == "string" and v.timestamp or nil
             e.ra = json.val(v.readAt) and true or nil
@@ -388,7 +388,7 @@ function M.new(o)
         local res = { written = {}, removed = {}, collections = {}, skipped = 0, articles = 0, left = 0, tabs = { inbox = {}, read = {}, archive = {} }, tags = {} }
         local used = {}
         for _, st in pairs(self.state) do used[st.file] = true end
-        -- the series of an EPUB: its first AISH collection (by name), numbered by the date the articles were saved
+        -- the series of an EPUB: its first Kaivo collection (by name), numbered by the date the articles were saved
         local seriesOf, members = {}, {}
         for aid, names in pairs(collsOf) do
             local e = self.index["article:" .. aid]
@@ -426,7 +426,7 @@ function M.new(o)
                         used[st.file] = nil; self.state[id] = nil
                     end
                 elseif skip then
-                    if e.deleted and st then   -- deleted in AISH: remove what this plugin made
+                    if e.deleted and st then   -- deleted in Kaivo: remove what this plugin made
                         if fs.exists(st.file) then removeFile(st.file) end
                         local safe = tostring(id):gsub("[^%w%-_]", "_")
                         for k = 1, (st.imgs or 0) do for _, ext in ipairs({ "jpg", "png", "gif", "webp", "svg" }) do fs.remove(self.outDir .. "/" .. M.IMAGE_DIR .. "/" .. safe .. "-" .. k .. "." .. ext) end end
@@ -515,12 +515,12 @@ function M.new(o)
                             st = { imgs = nImgs }
                         end
                     end
-                    -- the file's date is the day it was saved in AISH: "sort by date modified" lists the newest first
+                    -- the file's date is the day it was saved in Kaivo: "sort by date modified" lists the newest first
                     local mt = M.isoToEpoch(e.ts)
                     if mt and fs.touch and (not self.state[id] or self.state[id].mt ~= mt or res.written[#res.written] == file) then fs.touch(file, mt) end
                     used[file] = true
                     self.state[id] = { file = file, sig = sig, imgs = st and st.imgs or 0, mt = mt }
-                    -- the AISH tabs and tags
+                    -- the Kaivo tabs and tags
                     local item = { file = file, ts = e.ts or "" }
                     local tab = e.ar and "archive" or (e.ra and "read" or "inbox")
                     table.insert(res.tabs[tab], item)
@@ -578,7 +578,7 @@ function M.new(o)
         end
         return out, comments
     end
-    --- hl id → true for highlights deleted (tombstone) or dismissed in AISH.
+    --- hl id → true for highlights deleted (tombstone) or dismissed in Kaivo.
     function self.goneHighlights()
         local gone = {}
         for key, e in pairs(self.index) do

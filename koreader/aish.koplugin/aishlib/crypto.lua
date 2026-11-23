@@ -1,5 +1,5 @@
 --[[--
-Keys and decryption for encrypted AISH sync places, the same scheme as the extension (plugin/src/modules/syncCrypto.js):
+Keys and decryption for encrypted Kaivo sync places, the same scheme as the extension (plugin/src/modules/syncCrypto.js):
 
     passphrase --PBKDF2-SHA256(salt, iterations)--> 32-byte master key
     master --HKDF-SHA256(info)--> encKey (AES-256-GCM) and nameKey (HMAC-SHA256, for opaque file names)
@@ -249,7 +249,7 @@ end
 --- meta.json (decoded table) + passphrase → keys, master. nil, reason when it is not an encrypted place or the passphrase is wrong.
 function M.openMeta(meta, passphrase)
     if type(meta) ~= "table" or meta.mode ~= "encrypted" or not meta.check or not meta.salt then
-        return nil, "This is not an encrypted AISH sync place."
+        return nil, "This is not an encrypted Kaivo sync place."
     end
     if meta.kdf and meta.kdf ~= "pbkdf2-sha256" then return nil, "This place uses a key derivation this plugin does not know." end
     local master = M.deriveMaster(passphrase, M.fromB64(meta.salt), tonumber(meta.iterations) or M.KDF_ITERATIONS)

@@ -1,16 +1,16 @@
 --[[--
-AISH library for KOReader.
+Kaivo library for KOReader.
 
-Connects to the encrypted sync place of the AISH browser extension (a folder on your Nextcloud/WebDAV server), decrypts it
-on the reader and keeps a folder of HTML files: per article the AI summary, the full text and your notes. AISH collections
-become KOReader collections ("AISH: <name>").
+Connects to the encrypted sync place of the Kaivo browser extension (a folder on your Nextcloud/WebDAV server), decrypts it
+on the reader and keeps a folder of HTML files: per article the AI summary, the full text and your notes. Kaivo collections
+become KOReader collections ("Kaivo: <name>").
 
-Highlights are KOReader's own: AISH highlights appear as KOReader highlights when an article is opened (AI ones underlined,
-comments as notes), and highlights and notes made on the reader go back to AISH, like deleting one and opening an article
-(it counts as read). Changes made on the reader are sent at the next sync, and when an AISH article is closed while online.
+Highlights are KOReader's own: Kaivo highlights appear as KOReader highlights when an article is opened (AI ones underlined,
+comments as notes), and highlights and notes made on the reader go back to Kaivo, like deleting one and opening an article
+(it counts as read). Changes made on the reader are sent at the next sync, and when a Kaivo article is closed while online.
 
 Security: "Connect with Nextcloud" logs the reader in with its own token (Login Flow v2: a QR code opened on the phone).
-"Wipe device" in Nextcloud then removes the AISH library from the reader the next time it is online; the token can be
+"Wipe device" in Nextcloud then removes the Kaivo library from the reader the next time it is online; the token can be
 revoked there at once. An optional PIN seals the login and the library key in KOReader's settings (aishlib/vault.lua).
 
 The passphrase is not kept: the key made from it is (like the extension's background worker does), so later syncs do not
@@ -38,9 +38,17 @@ local util = require("util")
 local _ = require("gettext")
 local T = ffiUtil.template
 
-local COLL_PREFIX = "AISH: "    -- your AISH collections
-local TAB_PREFIX = "AISH · "     -- the AISH tabs: Inbox, Read, Archive
-local TAG_PREFIX = "AISH #"      -- the most used tags
+local COLL_PREFIX = "Kaivo: "    -- your Kaivo collections
+local TAB_PREFIX = "Kaivo · "     -- the Kaivo tabs: Inbox, Read, Archive
+local TAG_PREFIX = "Kaivo #"      -- the most used tags
+-- the names before the rename (AISH): still ours, so a sync removes them and the new names take their place
+local LEGACY_PREFIXES = { "AISH: ", "AISH · ", "AISH #" }
+local function isOurName(name)
+    for __, p in ipairs({ COLL_PREFIX, TAB_PREFIX, TAG_PREFIX, LEGACY_PREFIXES[1], LEGACY_PREFIXES[2], LEGACY_PREFIXES[3] }) do
+        if name:sub(1, #p) == p then return true end
+    end
+    return false
+end
 local TOP_TAGS = 10
 local CODE_FILE = "aish-library.txt"
 
@@ -79,16 +87,16 @@ function AISH:init()
 end
 
 function AISH:onDispatcherRegisterActions()
-    Dispatcher:registerAction("aish_sync", { category = "none", event = "AishSync", title = _("AISH: sync library"), general = true })
-    Dispatcher:registerAction("aish_newest", { category = "none", event = "AishOpenNewest", title = _("AISH: open newest unread"), general = true })
-    Dispatcher:registerAction("aish_inbox", { category = "none", event = "AishShowInbox", title = _("AISH: show Inbox"), general = true })
+    Dispatcher:registerAction("aish_sync", { category = "none", event = "AishSync", title = _("Kaivo: sync library"), general = true })
+    Dispatcher:registerAction("aish_newest", { category = "none", event = "AishOpenNewest", title = _("Kaivo: open newest unread"), general = true })
+    Dispatcher:registerAction("aish_inbox", { category = "none", event = "AishShowInbox", title = _("Kaivo: show Inbox"), general = true })
 end
 
 -- ── settings ────────────────────────────────────────────────────────────────
 function AISH:conn() return self.settings:readSetting("connection") end
 function AISH:isConnected() local c = self:conn(); return c and c.url and c.url ~= "" end
 --- A path as KOReader names the open book: real path, no doubled or trailing slashes (a home folder set as
---- "/mnt/onboard/" made "/mnt/onboard//AISH/…", and the open article was never recognised).
+--- "/mnt/onboard/" made "/mnt/onboard//Kaivo/…", and the open article was never recognised).
 local function normPath(p)
     if not p then return p end
     local dir, name = p:match("^(.*)/([^/]*)$")
@@ -103,7 +111,11 @@ function AISH:outDir()
     local d = self.settings:readSetting("folder")
     if not (d and d ~= "") then
         local home = G_reader_settings:readSetting("home_dir") or require("apps/filemanager/filemanagerutil").getDefaultDir()
-        d = (home or DataStorage:getDataDir()) .. "/AISH"
+        local base = home or DataStorage:getDataDir()
+        d = base .. "/Kaivo"
+        -- before the rename the folder was called AISH: an existing one stays in use (its files are known by their paths)
+        local old = base .. "/AISH"
+        if lfs.attributes(old, "mode") == "directory" and lfs.attributes(d, "mode") ~= "directory" then d = old end
     end
     return (d:gsub("//+", "/"):gsub("(.)/$", "%1"))
 end
@@ -162,7 +174,7 @@ end
 -- ── menu ────────────────────────────────────────────────────────────────────
 function AISH:addToMainMenu(menu_items)
     menu_items.aish_library = {
-        text = _("AISH library"),
+        text = _("Kaivo library"),
         sorting_hint = "tools",
         sub_item_table = {
             {
@@ -181,7 +193,7 @@ function AISH:addToMainMenu(menu_items)
                 callback = function() self:onAishShowInbox() end,
             },
             {
-                text = _("Go to AISH folder"),
+                text = _("Go to Kaivo folder"),
                 enabled_func = function() return lfs.attributes(self:outDir(), "mode") == "directory" end,
                 callback = function() self:goToFolder() end,
             },
@@ -201,15 +213,15 @@ function AISH:addToMainMenu(menu_items)
                 text = _("Connect with Nextcloud (QR code)"),
                 help_text = _([[The reader gets its own Nextcloud login: scan the code with your phone, log in there and allow access. Nothing to type on the reader.
 
-If the reader is lost: Nextcloud → Settings → Security → Devices & sessions → "AISH KOReader" → Wipe device. The login stops working at once, and the next time the reader is online the plugin deletes the AISH library, its login and key from it.
+If the reader is lost: Nextcloud → Settings → Security → Devices & sessions → "Kaivo KOReader" → Wipe device. The login stops working at once, and the next time the reader is online the plugin deletes the Kaivo library, its login and key from it.
 
-Tip: give the reader a Nextcloud user of its own that only has the AISH folder shared with it.]]),
+Tip: give the reader a Nextcloud user of its own that only has the Kaivo folder shared with it.]]),
                 keep_menu_open = true,
                 callback = function(touchmenu) self:connectWithNextcloud(touchmenu) end,
             },
             {
                 text = _("Connect with a code"),
-                help_text = T(_([[In the AISH extension: Settings → Sync & backup → your encrypted place → "Show code for the phone" → "Save code as file (KOReader)".
+                help_text = T(_([[In the Kaivo extension: Settings → Sync & backup → your encrypted place → "Show code for the phone" → "Save code as file (KOReader)".
 
 Copy the file %1 into KOReader's home folder (over USB), or paste the code (aish-library://…) here. The file is deleted after it was read: it holds your login.]]), CODE_FILE),
                 keep_menu_open = true,
@@ -226,7 +238,7 @@ Copy the file %1 into KOReader's home folder (over USB), or paste the code (aish
                 callback = function(touchmenu)
                     require("ui/downloadmgr"):new{
                         onConfirm = function(path)
-                            self.settings:saveSetting("folder", path .. "/AISH"); self:save()
+                            self.settings:saveSetting("folder", path .. "/Kaivo"); self:save()
                             if touchmenu then touchmenu:updateItems() end
                         end,
                     }:chooseDir()
@@ -249,7 +261,7 @@ It keeps a lost reader's settings from giving away your login. A short PIN can s
                 sub_item_table = {
                     {
                         text = _("EPUB: book information and cover"),
-                        help_text = _([[Each article is a small book: the source as author, the date saved, the tags, the summary as description, the AISH collection as series, a cover with the title, and a table of contents. KOReader shows it in its lists, the cover view and Book information.
+                        help_text = _([[Each article is a small book: the source as author, the date saved, the tags, the summary as description, the Kaivo collection as series, a cover with the title, and a table of contents. KOReader shows it in its lists, the cover view and Book information.
 
 Writing takes longer, mostly for the covers: the first time, a library of a few hundred articles can take minutes. After that only new or changed articles are written.]]),
                         checked_func = function() return (self.settings:readSetting("format") or "epub") == "epub" end,
@@ -270,7 +282,7 @@ Writing takes longer, mostly for the covers: the first time, a library of a few 
                     local n = tonumber(self.settings:readSetting("limit"))
                     return T(_("Articles on this reader: %1"), n and tostring(n) or _("all"))
                 end,
-                help_text = _("Only the newest articles (by the date saved in AISH) are put on the reader. Older ones are removed from it after their highlights and notes went out; they stay in AISH and come back when you raise the limit."),
+                help_text = _("Only the newest articles (by the date saved in Kaivo) are put on the reader. Older ones are removed from it after their highlights and notes went out; they stay in Kaivo and come back when you raise the limit."),
                 sub_item_table_func = function()
                     local items = {}
                     for __, n in ipairs({ 25, 50, 100, 0 }) do
@@ -284,7 +296,7 @@ Writing takes longer, mostly for the covers: the first time, a library of a few 
                     items[#items].separator = true
                     items[#items + 1] = {
                         text = _("Include archive"),
-                        help_text = _("Off: articles archived in AISH are not put on the reader (and are removed from it)."),
+                        help_text = _("Off: articles archived in Kaivo are not put on the reader (and are removed from it)."),
                         checked_func = function() return self.settings:nilOrTrue("include_archive") end,
                         callback = function() self.settings:flipNilOrTrue("include_archive"); self:setLimit() end,
                     }
@@ -307,8 +319,8 @@ Writing takes longer, mostly for the covers: the first time, a library of a few 
                 callback = function() self.settings:flipNilOrTrue("auto_sync"); self:save() end,
             },
             {
-                text = _("Finished articles go to the AISH archive"),
-                help_text = _("When you mark an AISH article as finished in KOReader (or reach its end with that setting), it is archived in AISH."),
+                text = _("Finished articles go to the Kaivo archive"),
+                help_text = _("When you mark a Kaivo article as finished in KOReader (or reach its end with that setting), it is archived in Kaivo."),
                 checked_func = function() return self.settings:nilOrTrue("finished_archive") end,
                 callback = function() self.settings:flipNilOrTrue("finished_archive"); self:save() end,
             },
@@ -319,13 +331,13 @@ Writing takes longer, mostly for the covers: the first time, a library of a few 
             },
             {
                 text = _("Send changes when closing an article"),
-                help_text = _("Highlights, notes and read marks made on the reader go to AISH as soon as you close the article, when Wi-Fi is on. Otherwise they go at the next sync."),
+                help_text = _("Highlights, notes and read marks made on the reader go to Kaivo as soon as you close the article, when Wi-Fi is on. Otherwise they go at the next sync."),
                 checked_func = function() return self.settings:nilOrTrue("send_on_close") end,
                 callback = function() self.settings:flipNilOrTrue("send_on_close"); self:save() end,
             },
             {
                 text = _("Download everything again"),
-                help_text = _("Removes the AISH articles from this reader and downloads the whole library again, with the newest layout. Highlights and notes made on the reader are sent to AISH first and come back; reading positions start over."),
+                help_text = _("Removes the Kaivo articles from this reader and downloads the whole library again, with the newest layout. Highlights and notes made on the reader are sent to Kaivo first and come back; reading positions start over."),
                 enabled_func = function() return self:isConnected() end,
                 keep_menu_open = true,
                 callback = function() self:downloadAgain() end,
@@ -351,7 +363,7 @@ end
 function AISH:applyCode(text, touchmenu)
     local Code = require("aishlib.code")
     local c = Code.parse(text)
-    if not c then notify(_("This is not an AISH library code. It starts with aish-library://")); return end
+    if not c then notify(_("This is not a Kaivo library code. It starts with aish-library://")); return end
     if c.kind ~= "webdav" then notify(_("This reader can only use a Nextcloud/WebDAV place for now, not S3.")); return end
     self:saveConnection({ url = c.url, username = c.username, root = c.root }, { password = c.password })
     if touchmenu then touchmenu:updateItems() end
@@ -367,14 +379,14 @@ function AISH:connectWithCode(touchmenu)
         local text = path and fs.read(path)
         if text and text:find("aish%-library://") then
             os.remove(path)
-            logger.info("AISH: read the connection code from", path, "and removed the file")
+            logger.info("Kaivo: read the connection code from", path, "and removed the file")
             self:applyCode(text:match("aish%-library://%S+"), touchmenu)
             return
         end
     end
     local dialog
     dialog = InputDialog:new{
-        title = _("AISH library code"),
+        title = _("Kaivo library code"),
         description = T(_("Paste the code from the extension, or put it in a file named %1 in your home folder."), CODE_FILE),
         input_hint = "aish-library://v1?…",
         buttons = { {
@@ -394,12 +406,12 @@ function AISH:connectManually(touchmenu)
     local c = self:conn() or {}
     local dialog
     dialog = MultiInputDialog:new{
-        title = _("AISH library on Nextcloud/WebDAV"),
+        title = _("Kaivo library on Nextcloud/WebDAV"),
         fields = {
             { text = c.url or "", hint = _("WebDAV address, e.g. https://cloud.example.com/remote.php/dav/files/you/") },
             { text = c.username or "", hint = _("User") },
             { text = self:secret("password") or "", text_type = "password", hint = _("App password") },
-            { text = c.root or "aish-sync", hint = _("Folder of the AISH place") },
+            { text = c.root or "aish-sync", hint = _("Folder of the Kaivo place") },
         },
         buttons = { {
             { text = _("Cancel"), id = "close", callback = function() self.fresh = nil; UIManager:close(dialog) end },
@@ -419,7 +431,7 @@ end
 
 function AISH:disconnect(touchmenu)
     UIManager:show(ConfirmBox:new{
-        text = _("Forget the login and the key of the AISH library on this reader?\n\nThe downloaded articles stay in the AISH folder; delete it in the file browser if you no longer want them."),
+        text = _("Forget the login and the key of the Kaivo library on this reader?\n\nThe downloaded articles stay in the Kaivo folder; delete it in the file browser if you no longer want them."),
         ok_text = _("Disconnect"),
         ok_callback = function()
             local c, pw = self:conn(), self:secret("password")
@@ -444,7 +456,7 @@ function AISH:connectWithNextcloud(touchmenu)
         title = _("Connect with Nextcloud"),
         fields = {
             { text = c.server or N.serverOf(c.url) or "", hint = _("Address of your Nextcloud, e.g. cloud.example.com") },
-            { text = c.root or "aish-sync", hint = _("Folder of the AISH place") },
+            { text = c.root or "aish-sync", hint = _("Folder of the Kaivo place") },
         },
         buttons = { {
             { text = _("Cancel"), id = "close", callback = function() self.fresh = nil; UIManager:close(dialog) end },
@@ -502,7 +514,7 @@ function AISH:askPin(onOk, title)
     local Vault = require("aishlib.vault")
     local dialog
     dialog = InputDialog:new{
-        title = title or _("PIN of the AISH library"),
+        title = title or _("PIN of the Kaivo library"),
         text_type = "password", input_type = "number",
         buttons = { {
             { text = _("Cancel"), id = "close", callback = function() self.fresh = nil; UIManager:close(dialog) end },
@@ -592,7 +604,7 @@ function AISH:checkWipe()
     self:wipeAll()
     pcall(nc.wipeDone, server, pw)
     self:endProgress()
-    UIManager:show(InfoMessage:new{ text = _("This reader was removed in your Nextcloud (Wipe device). The AISH library, its login and key were deleted from it.") })
+    UIManager:show(InfoMessage:new{ text = _("This reader was removed in your Nextcloud (Wipe device). The Kaivo library, its login and key were deleted from it.") })
     return true
 end
 
@@ -605,7 +617,7 @@ function AISH:wipeAll()
         local RC = require("readcollection")
         local gone = {}
         for name in pairs(RC.coll) do
-            if name:sub(1, #COLL_PREFIX) == COLL_PREFIX or name:sub(1, #TAB_PREFIX) == TAB_PREFIX or name:sub(1, #TAG_PREFIX) == TAG_PREFIX then gone[#gone + 1] = name end
+            if isOurName(name) then gone[#gone + 1] = name end
         end
         for __, name in ipairs(gone) do RC:removeCollection(name) end
     end)
@@ -620,10 +632,10 @@ function AISH:onAishSync() self:syncNow(); return true end
 
 function AISH:downloadAgain()
     if self.ui and self.ui.document and self.open_article then
-        notify(_("Close the AISH article first."), 3); return
+        notify(_("Close the Kaivo article first."), 3); return
     end
     UIManager:show(ConfirmBox:new{
-        text = _("Remove the AISH articles from this reader and download the whole library again?\n\nHighlights and notes made on the reader are sent to AISH first and come back. Reading positions start over."),
+        text = _("Remove the Kaivo articles from this reader and download the whole library again?\n\nHighlights and notes made on the reader are sent to Kaivo first and come back. Reading positions start over."),
         ok_text = _("Download again"),
         ok_callback = function() self.fresh = true; self:syncNow() end,
     })
@@ -647,14 +659,14 @@ function AISH:newestUnread()
 end
 function AISH:onAishOpenNewest()
     local f = self:newestUnread()
-    if not f then notify(_("Nothing unread in the AISH Inbox."), 3); return true end
+    if not f then notify(_("Nothing unread in the Kaivo Inbox."), 3); return true end
     if self.ui.document then self.ui:switchDocument(f)
     else require("apps/reader/readerui"):showReader(f) end
     return true
 end
 function AISH:onAishShowInbox()
     local name = TAB_PREFIX .. _("Inbox")
-    if not require("readcollection").coll[name] then notify(_("Sync the AISH library first."), 3); return true end
+    if not require("readcollection").coll[name] then notify(_("Sync the Kaivo library first."), 3); return true end
     if self.ui.collections then self.ui.collections:onShowColl(name) end
     return true
 end
@@ -674,7 +686,7 @@ function AISH:onNetworkConnected() UIManager:scheduleIn(3, function() self:autoS
 function AISH:onResume() UIManager:scheduleIn(5, function() self:autoSync() end) end
 
 function AISH:syncNow(words)
-    if not self:isConnected() then notify(_("Connect the AISH library first (Tools → AISH library).")); return end
+    if not self:isConnected() then notify(_("Connect the Kaivo library first (Tools → Kaivo library).")); return end
     if shared.syncing then return end
     if self:isLocked() then
         if self.quiet then self.quiet = false; return end   -- a background sync never asks
@@ -697,7 +709,7 @@ end
 function AISH:fail(text)
     self.fresh = nil   -- a "download everything again" that did not get through is not done later by surprise
     self:endProgress()
-    if self.quiet then logger.warn("AISH: quiet sync failed:", text); self.quiet = false; return end
+    if self.quiet then logger.warn("Kaivo: quiet sync failed:", text); self.quiet = false; return end
     UIManager:show(InfoMessage:new{ text = text, icon = "notice-warning" })
 end
 
@@ -707,7 +719,7 @@ function AISH:library(store)
         limit = self.settings:readSetting("limit"), archive = self.settings:nilOrTrue("include_archive"),
         cover = function(info) return self:makeCover(info) end,
         sidecarCover = function(file, bytes) self:setSidecarCover(file, bytes) end,
-        labels = { summary = _("Summary"), notes = _("Notes"), noText = _("The full text of this article was not saved in AISH.") },
+        labels = { summary = _("Summary"), notes = _("Notes"), noText = _("The full text of this article was not saved in Kaivo.") },
     })
 end
 
@@ -751,7 +763,7 @@ end
 function AISH:askPassphrase(onOk)
     local dialog
     dialog = InputDialog:new{
-        title = _("Passphrase of the AISH library"),
+        title = _("Passphrase of the Kaivo library"),
         description = _("The words (or your own passphrase) you chose when you made the encrypted place in the extension. It is not saved; the key made from it is."),
         text_type = "password",
         buttons = { {
@@ -770,22 +782,22 @@ end
 
 function AISH:sync(words)
     shared.syncing = true
-    self:progress(_("Connecting to the AISH library…"))
+    self:progress(_("Connecting to the Kaivo library…"))
     UIManager:nextTick(function()
         local ok, err = pcall(function()
             local json = require("aishlib.json")
             local store = self:makeStore()
             local raw, gerr, status = store.get("meta.json")
             if (status == 401 or status == 403) and self:checkWipe() then return end
-            if raw == false then return self:fail(_("No AISH library in this folder. Check the folder name of the place.")) end
+            if raw == false then return self:fail(_("No Kaivo library in this folder. Check the folder name of the place.")) end
             if not raw then return self:fail(T(_("Could not reach the library:\n%1"), gerr or "?")) end
             local meta = json.decode(raw)
             if type(meta) ~= "table" or meta.mode ~= "encrypted" then
-                return self:fail(_("This folder holds a readable (not encrypted) AISH place. This plugin opens encrypted places."))
+                return self:fail(_("This folder holds a readable (not encrypted) Kaivo place. This plugin opens encrypted places."))
             end
             self:withKeys(meta, words, function(keys) self:pullAndWrite(store, meta, keys) end)
         end)
-        if not ok then logger.err("AISH: sync failed", err); self:fail(T(_("Sync failed:\n%1"), tostring(err))) end
+        if not ok then logger.err("Kaivo: sync failed", err); self:fail(T(_("Sync failed:\n%1"), tostring(err))) end
     end)
 end
 
@@ -797,7 +809,7 @@ function AISH:setLimit(n)
 end
 
 --- EPUB or HTML. Nothing is downloaded again: the articles are on the reader already and are written in the other format
---- (KOReader's reading positions start over; highlights come back from AISH).
+--- (KOReader's reading positions start over; highlights come back from Kaivo).
 function AISH:setFormat(fmt)
     if (self.settings:readSetting("format") or "epub") == fmt then return end
     self.settings:saveSetting("format", fmt); self:save()
@@ -834,7 +846,7 @@ function AISH:pullAndWrite(store, meta, keys)
             end)
             lap("write (" .. #m.written .. " files, " .. self.covers_drawn .. " covers drawn in " .. math.floor(self.cover_time) .. " s)")
         end
-        -- highlights and notes of every article in KOReader ↔ AISH, then what changed here goes out
+        -- highlights and notes of every article in KOReader ↔ Kaivo, then what changed here goes out
         self:progress(_("Highlights and notes…"))
         local hl = self:reconcileAll(lib)
         lib.flush()
@@ -844,7 +856,7 @@ function AISH:pullAndWrite(store, meta, keys)
             self:progress(_("Sending changes…"))
             sent = lib.push(keys)
         end
-        if self.fresh then   -- "Download everything again": what the reader changed is in AISH now; then start over
+        if self.fresh then   -- "Download everything again": what the reader changed is in Kaivo now; then start over
             self.fresh = nil
             if lib.pendingCount() > 0 then
                 return self:fail(T(_("%1 changes made on this reader could not be sent, so nothing was deleted. Try again when the reader is online."), lib.pendingCount()))
@@ -863,7 +875,7 @@ function AISH:pullAndWrite(store, meta, keys)
         self:updateCollections(m2, lib.files())
         lap("collections")
         if #m.written > 0 then self:pruneCovers() end
-        logger.info("AISH: sync took", table.concat(times, ", "))
+        logger.info("Kaivo: sync took", table.concat(times, ", "))
         self.settings:saveSetting("last_sync", { time = os.time(), articles = m2.articles, pending = lib.pendingCount() })
         self.settings:saveSetting("pending", lib.pendingCount()); self:save()
         self:endProgress()
@@ -871,32 +883,32 @@ function AISH:pullAndWrite(store, meta, keys)
         if FileManager.instance then FileManager.instance:onRefresh() end
         if self.quiet then
             self.quiet = false
-            if #sent.failed > 0 then logger.warn("AISH: not sent", #sent.failed) end
+            if #sent.failed > 0 then logger.warn("Kaivo: not sent", #sent.failed) end
             return
         end
-        local text = T(_("AISH library: %1 articles on this reader.\n%2 downloaded, %3 files written, %4 removed."), m2.articles, res.fetched, #m.written, #m.removed)
+        local text = T(_("Kaivo library: %1 articles on this reader.\n%2 downloaded, %3 files written, %4 removed."), m2.articles, res.fetched, #m.written, #m.removed)
         if m2.left > 0 then text = text .. "\n" .. T(_("%1 older or archived articles are left out (Articles on this reader)."), m2.left) end
         if sent.pushed > 0 or hl.added > 0 then
             text = text .. "\n" .. T(_("Highlights and notes: %1 sent, %2 placed in articles."), sent.pushed, hl.added)
         end
         if #res.failed > 0 then
             text = text .. "\n\n" .. T(_("%1 files could not be read and were skipped (they are tried again next time)."), #res.failed)
-            for __, f in ipairs(res.failed) do logger.warn("AISH: skipped", f.name, f.reason) end
+            for __, f in ipairs(res.failed) do logger.warn("Kaivo: skipped", f.name, f.reason) end
         end
         if #sent.failed > 0 then
             text = text .. "\n\n" .. T(_("%1 changes could not be sent yet. They are sent at the next sync."), #sent.failed)
-            for __, f in ipairs(sent.failed) do logger.warn("AISH: not sent", f.key, f.reason) end
+            for __, f in ipairs(sent.failed) do logger.warn("Kaivo: not sent", f.key, f.reason) end
         end
         notify(text, (#res.failed + #sent.failed) > 0 and nil or 4)
     end)
-    if not ok then logger.err("AISH: sync failed", err); self.quiet = false; self:fail(T(_("Sync failed:\n%1"), tostring(err))) end
+    if not ok then logger.err("Kaivo: sync failed", err); self.quiet = false; self:fail(T(_("Sync failed:\n%1"), tostring(err))) end
 end
 
 -- ── covers ──────────────────────────────────────────────────────────────────
 --[[--
 One layout for every article's cover, drawn with KOReader's own fonts (600 × 800, grey levels for e-ink):
   a black band with the site and the date · the title, large · the article's best image, or the start of the summary
-  · a thin rule and "AISH" at the foot. The title is always there; KOReader fits it by shrinking the font.
+  · a thin rule and "Kaivo" at the foot. The title is always there; KOReader fits it by shrinking the font.
 ]]
 local COVER_VERSION = "2"   -- the layout; a change draws every cover again
 
@@ -1009,8 +1021,8 @@ function AISH:drawCover(info, dir, path)
     end
     -- the foot
     bb:paintRect(M, H - 64, W - 2 * M, 2, Blitbuffer.COLOR_BLACK)
-    -- the foot: the article's tags on the left (up to four, cut with "…" when long), AISH on the right
-    local brand = TextWidget:new{ text = "AISH", face = Font:getFace("cfont", 18), bold = true }
+    -- the foot: the article's tags on the left (up to four, cut with "…" when long), Kaivo on the right
+    local brand = TextWidget:new{ text = "Kaivo", face = Font:getFace("cfont", 18), bold = true }
     local bs = brand:getSize()
     brand:paintTo(bb, W - M - bs.w, H - 52); brand:free()
     local tags = {}
@@ -1044,7 +1056,7 @@ local function koDate(iso)
     return os.date("%Y-%m-%d %H:%M:%S")
 end
 
---- Finds an AISH highlight in the open book: the whole quote (its saved context picks the place where it occurs more
+--- Finds a Kaivo highlight in the open book: the whole quote (its saved context picks the place where it occurs more
 --- than once), or for a long one its first and last words.
 function AISH:findInDocument(ui, h)
     local doc = ui.document
@@ -1143,7 +1155,7 @@ function AISH:reconcileArticle(lib, id, ui)
         self.seen[id] = sig
     end
     Annots.apply(lib, id, act, base)
-    -- finished in KOReader → archived in AISH (once per finish: un-archiving in AISH is not undone here)
+    -- finished in KOReader → archived in Kaivo (once per finish: un-archiving in Kaivo is not undone here)
     local summary
     if ui then summary = ui.doc_settings and ui.doc_settings:readSetting("summary")
     else
@@ -1163,7 +1175,7 @@ function AISH:reconcileArticle(lib, id, ui)
     return act
 end
 
---- How far the article was read on this reader → AISH (`progress`: the deepest point, only ever more; `finishedAt` from 90 % or when
+--- How far the article was read on this reader → Kaivo (`progress`: the deepest point, only ever more; `finishedAt` from 90 % or when
 --- KOReader marks the book finished, which also makes it read). The open book is measured from its page, a closed one from its sidecar.
 local FINISHED_AT = 0.9
 function AISH:recordProgress(lib, id, ui, done)
@@ -1192,7 +1204,7 @@ function AISH:recordProgress(lib, id, ui, done)
     if next(changes) then lib.edit("article:" .. id, changes) end
 end
 
---- Every AISH article: the open one through the reader, the others through their sidecars (only books opened before).
+--- Every Kaivo article: the open one through the reader, the others through their sidecars (only books opened before).
 function AISH:reconcileAll(lib)
     local total = { added = 0 }
     self.gone = lib.goneHighlights()
@@ -1200,7 +1212,7 @@ function AISH:reconcileAll(lib)
     local openFile = normPath(self.ui and self.ui.document and self.ui.document.file)
     for id, st in pairs(lib.state) do
         local ok, act = pcall(self.reconcileArticle, self, lib, id, (openFile and st.file:gsub("//+", "/") == openFile) and self.ui or nil)
-        if not ok then logger.warn("AISH: highlights of", st.file, act)
+        if not ok then logger.warn("Kaivo: highlights of", st.file, act)
         elseif act then total.added = total.added + act.added end
     end
     self.gone = nil
@@ -1209,7 +1221,7 @@ function AISH:reconcileAll(lib)
     return total
 end
 
---- Opening an AISH article: its highlights in step, and it counts as read in AISH.
+--- Opening a Kaivo article: its highlights in step, and it counts as read in Kaivo.
 function AISH:onReaderReady()
     local file = normPath(self.ui and self.ui.document and self.ui.document.file)
     if not file or not self:isConnected() then return end
@@ -1233,11 +1245,11 @@ function AISH:onReaderReady()
             lib.flush()
         end)
         self.reconciling = false
-        if not ok then logger.warn("AISH: on open", err) end
+        if not ok then logger.warn("Kaivo: on open", err) end
     end)
 end
 
---- A highlight or note made, changed or removed in an open AISH article: linked to AISH right away, so the link is saved
+--- A highlight or note made, changed or removed in an open Kaivo article: linked to Kaivo right away, so the link is saved
 --- with the book's own settings (our own changes raise this event too: ignored).
 function AISH:onAnnotationsModified()
     if not self.open_article or self.reconciling then return end
@@ -1249,7 +1261,7 @@ function AISH:onAnnotationsModified()
         self.reconciling = true
         local ok, err = pcall(function() local lib = self:library(); self:reconcileArticle(lib, self.open_article, self.ui); lib.flush() end)
         self.reconciling = false
-        if not ok then logger.warn("AISH: highlights", err) end
+        if not ok then logger.warn("Kaivo: highlights", err) end
     end)
 end
 
@@ -1278,10 +1290,10 @@ function AISH:onCloseDocument()
         end
     end)
     self.reconciling = false
-    if not ok then logger.warn("AISH: on close", err) end
+    if not ok then logger.warn("Kaivo: on close", err) end
 end
 
---- An article deleted in AISH: the file, KOReader's sidecar for it, and its place in history and collections.
+--- An article deleted in Kaivo: the file, KOReader's sidecar for it, and its place in history and collections.
 function AISH:removeArticle(path)
     os.remove(path)
     pcall(function() DocSettings.updateLocation(path) end)
@@ -1289,12 +1301,12 @@ function AISH:removeArticle(path)
     pcall(function() require("readcollection"):removeItem(path) end)
 end
 
---- AISH collections → KOReader collections "AISH: <name>", for the files this plugin made (others are never touched).
+--- Kaivo collections → KOReader collections "Kaivo: <name>", for the files this plugin made (others are never touched).
 --[[--
 KOReader collections for the files this plugin made (other files are never touched), each newest first:
-  "AISH · Inbox" / "AISH · Read" / "AISH · Archive"   the AISH tabs (not read yet / read / archived)
-  "AISH: <name>"                                         your AISH collections
-  "AISH #<tag>"                                          the 10 most used tags
+  "Kaivo · Inbox" / "Kaivo · Read" / "Kaivo · Archive"   the Kaivo tabs (not read yet / read / archived)
+  "Kaivo: <name>"                                         your Kaivo collections
+  "Kaivo #<tag>"                                          the 10 most used tags
 ]]
 function AISH:updateCollections(m, ourFiles)
     local ok, err = pcall(function()
@@ -1324,7 +1336,7 @@ function AISH:updateCollections(m, ourFiles)
                 for __, it in ipairs(m.tags[tagNames[i].name]) do table.insert(want[cn], it.file) end
             end
         end
-        local function ourColl(cn) return cn:sub(1, #COLL_PREFIX) == COLL_PREFIX or cn:sub(1, #TAB_PREFIX) == TAB_PREFIX or cn:sub(1, #TAG_PREFIX) == TAG_PREFIX end
+        local function ourColl(cn) return isOurName(cn) end
         local ours = {}
         for __, f in ipairs(ourFiles) do ours[real(f)] = true end
         local touched = {}
@@ -1346,7 +1358,7 @@ function AISH:updateCollections(m, ourFiles)
         end
         local gone = {}
         for cn in pairs(RC.coll) do
-            if ourColl(cn) and not want[cn] then   -- an AISH collection or tag that is no longer there
+            if ourColl(cn) and not want[cn] then   -- a Kaivo collection or tag that is no longer there
                 local foreign = false
                 for f in pairs(RC.coll[cn]) do if not ours[f] then foreign = true end end
                 if not foreign then gone[#gone + 1] = cn end
@@ -1356,7 +1368,7 @@ function AISH:updateCollections(m, ourFiles)
         if next(touched) then RC:write(touched) end
         self.inbox = want[TAB_PREFIX .. _("Inbox")]
     end)
-    if not ok then logger.warn("AISH: collections not updated", err) end
+    if not ok then logger.warn("Kaivo: collections not updated", err) end
 end
 
 return AISH
