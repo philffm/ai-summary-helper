@@ -60,7 +60,15 @@ jobs:
       - name: Install site validation dependencies
         run: npm ci --no-audit --no-fund
       - name: Build the live demo (fails if the mock lacks a popup action)
-        run: node plugin/scripts/build-demo.mjs --check
+        run: |
+          # the demo of the latest release tag must satisfy its own contract; a tag older than a popup action (e.g. quizRemind) does not:
+          # then the demo is built from the commit being deployed
+          if ! node plugin/scripts/build-demo.mjs --check; then
+            echo "::warning::the demo of the release tag fails its contract; building it from this commit instead"
+            rm -rf plugin/src plugin/demo plugin/scripts/build-demo.mjs
+            git checkout "$GITHUB_SHA" -- plugin/src plugin/demo plugin/scripts/build-demo.mjs
+            node plugin/scripts/build-demo.mjs --check
+          fi
       # The site is published as Kaivo: docs/ (generated, committed) + the brand (brands/kaivo.json) -> docs-kaivo/. The demo gets the brand too
       # (an older release tag without --kaivo support just keeps its own name until the next release).
       - name: Apply the Kaivo brand to the demo and the site
