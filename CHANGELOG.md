@@ -5,6 +5,192 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.47 (2026-11-23)
+
+### All changes
+
+#### Changed
+
+- docs(demo): the demo README names kaivo.byphil.eu
+- feat(mcp): the relay is kaivo-mcp (npm package, command, server name, config folder; the pairing of aish-mcp is copied once); the extension, the site and the KOReader plugin use it (kaivo-library.txt, the old file name still works)
+- docs(readme): Kaivo banner and screenshots (start page, feeds, graph, look), the new name and site, new features, Android and KOReader; Kaivo press images in assets/press
+- feat(home): the home page is in the demo build too (app/home.html with the fake chrome, a briefing, a highlight, two articles in progress); the topic bubbles use the learned topic names; the light is clipped at the window, not at the column
+- feat: a one-time note for people who update from before the rename (popup and home page): the extension is now Kaivo, with a link to the video; fresh installs and later updates do not see it
+- ci(pages): when the demo of the release tag fails its contract (older than a popup action), the demo is built from the deployed commit
+- feat(site): the site is published as Kaivo: the brand layer (brands/, build-site-brand, its test) is committed; the Pages workflow builds docs-kaivo and the demo with it
+- chore(docs): the translated pages link to philffm/kaivo too
+- feat(home): Settings and Appearance are icon buttons at the top right; Feeds, History and Notes are an icon rail on the right edge that pops the app open from the side (the same one again closes it)
+- feat(home): updating the feeds from the home page really pulls them (every feed, whatever its schedule or the background-polling choice); a button next to Latest; the briefing's update button pulls first
+- style(home): the topics light no longer mixes to a muddy grey on light pages (colours sit apart, more saturated); it is clipped at the page edge
+- feat(home): a click on a topic bubble opens History beside the page, searched for that topic (keyboard too)
+- style(home): the topic bubbles are soft, borderless blobs (a radial gradient fading at the edge), the glow behind them is wider and fainter; High contrast keeps solid outlined circles
+- style(home): the topics light is fainter, reaches far over the page and drifts slowly; the bubbles float out of step
+- style(home): the topics glow reaches much further (bigger halo, softer, larger glow behind the bubbles)
+- style(home): the topics strip glows: a blurred glow behind every bubble, a colour wash and a halo that reaches over the card edge, a slow breathing; none of it in High contrast or with reduced motion
+- feat(home): the highlight card alternates between a highlight and a note; a topics strip (bubbles by article count) that opens the graph beside the page; texts in all 24 locales
+- feat(home): quiz (time to repeat) and gaps (started, never deepened) cards that appear only when there is something to say; findGaps moved to graphGaps.js; texts in all 24 locales
+- feat(home): a quiet update button next to a briefing older than an hour (opens Feeds on that day's recap and refreshes it); the library label 'Saved articles' no longer shares its translation with the time saved
+- feat(home): small movements from the animations that exist (cards fly in, skeleton placeholders, fading rows, breathing glance card while feeds refresh, spinner, count-up, drop-in menu)
+- feat(appearance): the colour schemes are colour dots (accessible name and tooltip = the scheme's name) in Settings and in the home page menu
+- style: High contrast for the command palette (hard edges, solid highlighted entry) and the home cards and menu
+- feat(appearance): Graphite colour scheme (neutral, no hue), also as a tint for Postil; all 24 locales
+- style(home): the card grid is capped at the window height; lists scroll inside their cards
+- feat(appearance): Postil with a light tint of Kaivo, Aish or Viola (design Postil + colour scheme), light and dark; generated per brand and checked for AA
+- feat(appearance): three axes - brightness (Auto/Light/Dark), design (Standard/Postil/High contrast) and colour scheme (Default/Kaivo/Aish/Viola); High contrast dark; old settings are read onto the new shape. Home: highlights and library equally tall, the reading lists taller
+- feat(home): infinite scroll in Latest, Continue reading and Recently saved; highlights and library on top right, the two reading lists below
+- style(home): glance card 50%, Continue reading / Recently saved / Notes / Library 25% each (four-column grid, two columns when medium, one when narrow)
+- feat(home): appearance menu (theme, colour scheme, text size); the app slides in with the page gliding aside; latest list scrolls vertically only; account row aligns to the top
+- feat(sync): Syncthing as its own place (a folder Syncthing keeps in step): .stignore tip for Chrome's .crswap files, a check for sync-conflict copies; texts in all 24 locales
+- i18n: the 103 new strings (home page, palette, ask, web search, bookmarks, reader) in all 24 locales; the extractor also reads the new files
+- feat(home): the library numbers lead to the stats (History with the analytics report open)
+- style(home): the glance card is five and two thirds latest items tall; briefing and list scroll inside
+- feat(home): Today at a glance = briefing (2/3) + latest feed items (1/3) in one card, fitted above the fold; no Headlines switch
+- feat: Anthropic (Claude) as a provider through its OpenAI-style endpoint; each home card links to its section and opens it beside the page
+- style(home): two balanced columns, cards go to the shorter one; one column when narrow (container query)
+- feat: OpenRouter as a bring-your-own-key provider; the feed refresh on the home page reports inside the feeds card
+- feat: source citations in feed briefings (stable numbers in refs), chips in Feeds, and the briefing card on the home page
+- perf(graph): orphan reconnection through posting lists (no scan over every article), a Building note, the search index built after it, d3 and the graph module preloaded when idle
+- feat(ask): suggestions with a ready answer (bolt) are answered at once, the others go to the model; Dig deeper on instant answers
+- feat: no Summary tab in the app beside the reading view / home page; web search explains a stale manifest
+- feat: Ask tab in the article view and an ask panel in the reading view (shared articleAsk.js); home: no Summary button, the app starts on History
+- feat(home): app screens next to Open app, shown in the side dock; the button says Close app while open
+- feat: web search through the browser's default engine (optional search permission), shared app dock for reader and home, container-query toolbar, random highlight on home
+- style(home): all cards above the fold, the shortcut shown in the search field
+- feat(home): search is the command list inline (A+C); settings: copy the home page address
+- feat(home): refresh due feeds when the page opens; fix(palette): field no longer cut at the corners
+- style(home): centered greeting and search
+- feat: home page (own tab, opt-in via Settings › Appearance / ⌘K) and the palette in the reading view; shared pageBoot
+- feat: command palette (⌘K / Ctrl+K): screens, actions, settings panels and controls, article search
+- docs(store): justification for the optional bookmarks permission
+- feat(reader): the bookmark menu covers the place in the text and the browser's bookmarks
+- feat(reader): saved highlights are placed by text + context (anchor.js), like on the website
+- feat(reader): a reading bookmark
+- perf(history): opening an article no longer reads the whole storage
+- feat(reader): Send is the extension's split button (last used target | menu with every target, Share, Copy link) with the undo window
+- feat(reader): appearance (Auto/Light/Sepia/Dark) is its own control with a sun-moon icon
+- feat(reader): calmer toolbar and an app panel that announces itself
+- feat(reader): add and remove highlights in the read mode
+- feat(reader): Open app docks the app beside the text; the edge resizes it (mouse and arrow keys), width is remembered
+- feat(reader): the reading page uses the plugin's tokens, segmented control and buttons
+- feat(reading): reading progress from the reader's scroll depth; Finished / percentage chip on the cards
+- feat(sync): progress merges by the larger value (extension, Android, shared test vector)
+- feat(koreader): HTML articles get their cover as KOReader's custom cover; reading progress goes to AISH
+- feat(ui): one segmented control, icons instead of emoji on chips and buttons, graph toolbar, card footer, Notes keycap
+- feat(brand): Kaivo brand, colour schemes (Default, Blue, Viola, Postil), WCAG gate at build time
+- perf(settings): Models screens no longer read the whole library; roster and local detection show the last answer at once
+- KOReader: articles on this reader (25/50/100/unlimited), include archive
+- KOReader: send on close works, format switch, images checkbox
+  - One settings object, login and unlock state for every plugin instance (file browser and reader): the reader no longer misses a PIN unlock or overwrites the browser's settings
+  - Paths normalised (a home folder with a trailing slash made the open article unknown, so closing it sent nothing)
+  - Close: the browser's instance sends after the book is closed; offline, the changes go out when Wi-Fi comes on, without waiting 30 minutes
+  - Format: EPUB or HTML as a choice; switching rewrites, never downloads again
+  - Include images: on/off for both formats
+  - Sync result shows what was downloaded vs. written; pull keeps its progress every 25 files
+- perf(koreader): faster covers (JPEG, cache) and no double work on "Download everything again"
+  - Covers are written as JPEG through TurboJPEG instead of KOReader's PNG writer (lodepng), which is slow on an e-reader; PNG stays as a fallback for builds without the JPEG writer. EPUB takes either (cover.jpg / cover.png).
+  - Cover cache in <data>/aish-covers, keyed by what the cover shows (layout version, title, site, author, date, summary, tags, image): a re-download or a rewrite for another reason takes covers from it; unused files are removed after a run that wrote files. It is outside the library data, so "Download everything again" keeps it.
+  - "Download everything again" no longer rewrites every file before deleting them (the first pass only brings the reader's changes to AISH).
+  - Timings of each step go to KOReader's log ("AISH: sync took download … s, write (n files, m covers drawn in … s), highlights …, collections …").
+  - Tests: JPEG cover in the EPUB; plugin: covers drawn once per article, a second download takes all from the cache.
+- feat(koreader): the article's tags at the foot of the cover
+- feat(koreader): a made cover for every article instead of the first image
+  - aishlib/imgsize.lua: width/height from PNG, JPEG, GIF, WebP headers; pickCover: at least 240x160 px and 6 KB, ratio 0.4-3.5, no logo/icon/avatar/favicon/emoji/badge/sprite/pixel by its description; the largest wins.
+  - epub.lua: cover via o.cover(info) -> PNG; no renderer or a failing one -> no cover-image at all (KOReader then draws its own title cover), never the first image.
+  - Render version 4: EPUBs are rewritten once with the new cover.
+  - Tests: test_cover (sizes, choice, made cover / none / failing renderer).
+- ci(koreader): epubcheck for the plugin's EPUBs
+- feat(koreader): articles as EPUB with book information, cover and table of contents
+  - aishlib/zip.lua: small ZIP writer (stored / raw deflate, CRC-32 from zlib via FFI).
+  - aishlib/epub.lua: EPUB 3 (+ EPUB 2 NCX): dc:title, creator (byline or site), publisher (site), date saved, language, source (URL), description (the AI summary as text), subjects (the AISH tags), series (first AISH collection, calibre:series + belongs-to-collection, numbered by save date), cover-image (the first saved image), nav/NCX from the headings (Summary · article headings · Key points · Notes). Browser-serialised HTML becomes well-formed XHTML (void tags closed, named entities numeric, stray & escaped). Images go inside the file.
+  - EPUB is the default ("Articles as EPUB" in the menu; off = HTML as before). Switching rewrites each article once. The file signature includes tags and series for EPUB. HTML keeps the alternative ToC; EPUB brings its own.
+  - quoteContext reads the article text from the record (works for both formats).
+  - 600 articles: 2.2 s to write (x86), 2.4 MB instead of ~30 MB of HTML in the benchmark.
+  - Tests: test_epub (XHTML, CRC, mimetype first, metadata, nav); interop: the plugin's EPUBs pass epubcheck (when installed) or at least ZIP + XML checks; plugin test checks image inside, cover, title/site/tags/date, description, series, table of contents, and that highlights still go both ways in EPUB.
+- feat(koreader): newest first, AISH tabs and tags as collections, gestures, auto-sync, images, chapters
+  - File dates = the day the article was saved in AISH (lfs.touch): "Sort by date modified" lists the newest first.
+  - Collections, newest first (manual order kept up to date): "AISH · Inbox" / "AISH · Read" / "AISH · Archive" (the AISH tabs), "AISH: <name>" (your collections), "AISH #<tag>" (the 10 most used tags; toggle). Built after the highlight pass, so a read mark or a finish from this sync is already in them. Collections that disappear are removed (only when they hold nothing but this plugin's files).
+  - Finished in KOReader (book status complete) -> archived in AISH (toggle; once per finish).
+  - Gestures / menu: "AISH: open newest unread", "AISH: show Inbox".
+  - Automatic sync on Wi-Fi connect / resume when the last sync is 30+ minutes old (toggle; not while reading, not while locked by the PIN), quietly.
+  - Images the extension saved in the article (base64) become files in AISH/.images (3 MB each, 12 MB per article; native base64 decode), removed with the article.
+  - Chapters: Summary / the article's headings / Key points (the AI highlights) / Notes; the alternative ToC is turned on for AISH articles. The sections are always present and keep their order, so a summary that appears later does not move KOReader's highlights in the text.
+  - Fix: loop variables named "_" shadowed gettext in main.lua (collections would have failed in KOReader).
+  - Index entries hold timestamp, read/archived, tags; older entries are filled in from their record once.
+  - Tests: render (chapters, images, stable sections), plugin: Inbox order, tag collection, file dates, image file, open newest, alternative ToC, opened -> Read, auto-sync due/not due and quiet, finished -> Archive.
+- perf(koreader): "Writing articles" ~30x faster on a large library
+  - first sync, writing the files: 23 s -> 1.0 s. The HTML cleaner ran ~70 pattern passes over every article; it is one pass over the tags now (35 ms -> 0.3 ms per article), and the highlight-marking pass no longer runs when there are no marks to draw;
+  - a sync with nothing new: 0.36 s -> 0.04 s. The index keeps what a file is drawn from (a digest, url, title, skip), so unchanged articles are not read and decoded at all;
+  - highlights of every article: 0.3 s -> 0.003 s (url from the index);
+  - saving: edits no longer rewrite the whole index each time; the highlight pass over all books saved it once per article (hundreds of full rewrites) - now once per batch (lib.flush). Books whose sidecar and AISH highlights did not change since the last sync are skipped.
+  - progress: "Writing articles: n of m…", then "Highlights and notes…".
+- feat(koreader): own Nextcloud login by QR code, remote wipe, PIN seal
+  - aishlib/nc.lua: Nextcloud Login Flow v2 (the reader shows a QR code, the phone logs in and allows access, the reader polls for its own app password "AISH KOReader"), remote wipe check/success after a 401/403, revoke on Disconnect.
+  - "Wipe device" in Nextcloud: the next time the reader is online and is refused, it asks Nextcloud, deletes the AISH articles (with sidecars and collections), library data, login, key and seal, and confirms the wipe.
+  - aishlib/vault.lua + menu "Protect login and key with a PIN": app password and library key sealed with PBKDF2-SHA256 (600k) -> AES-256-GCM; asked once per KOReader start when syncing; background sends skip while locked; a new login while unlocked stays sealed, while locked turns the protection off (said so).
+  - README: connect by QR, what to do when the reader is lost, a Nextcloud user of its own for the reader, PIN limits.
+  - Tests: test_security (vault, Nextcloud calls with canned answers), plugin3 in interop.sh: PIN on -> restart -> wrong/right PIN -> sync; QR login (wsgidav also at /remote.php/dav/files/phil) -> sealed -> passphrase -> sync; login refused + wipe requested -> everything deleted, wipe confirmed.
+- feat(koreader): stage 2 - highlights and notes both ways, read marks
+  - aishlib/stamps.lua: hashValue (cyrb53 over UTF-16 of the canonical JSON), compareRev, mergeRecord, field edits, tombstones - checked against hashValues and mergeCases of sync-vector.json;
+  - aishlib/json.lua: own JSON that keeps [] and {} apart, JS escapes and number format, lone surrogates as WTF-8;
+  - crypto: gzip, AES-GCM encrypt, RAND_bytes (KOReader's LibreSSL/zlib);
+  - webdav: PUT with If-Match / If-None-Match: *; GET returns the ETag;
+  - library: device id + clock, edit/delete, pull merges with unsent changes, push with conditional writes; a 412 merges with the server copy and retries once; an unreadable server copy is never overwritten.
+  - on opening an AISH article its AISH highlights become KOReader highlights (AI ones underlined, comment as note), found with KOReader's search (context picks the occurrence; long quotes by first/last words);
+  - highlights made on the reader become AISH highlights (quote with prefix/suffix, source "koreader"), notes become comments, note edits go both ways (last synced state decides; both changed: the reader wins), removing a highlight deletes it (AI: dismissed), deleted in AISH -> removed from the book; closed books through their sidecar;
+  - a lost link is re-linked by text, an unknown id is sent again - never treated as a deletion;
+  - opening an article sets readAt; changes go out when closing it while online (menu toggle) or at the next sync.
+  - The article text no longer carries <mark>s: KOReader's own highlights keep their place when AISH changes.
+- feat(koreader): AISH library plugin for KOReader, stage 1 (read-only)
+  - connects with the extension's library code (aish-library://v1, from a file aish-library.txt in the home folder - deleted after reading - or pasted) or manually (WebDAV address, user, app password, folder);
+  - decrypts on the reader with KOReader's LibreSSL + zlib via LuaJIT FFI (PBKDF2-SHA256 600k -> HKDF -> AES-256-GCM), verified against plugin/tests/fixtures/sync-vector.json; keeps the derived key, never the passphrase;
+  - pulls only changed record files (ETags), checks each record (format, key, name = HMAC of its key), skips and retries unreadable files, never treats a missing file as a deletion; never writes to the server;
+  - writes one HTML file per article into <home>/AISH: summary, cleaned full text, your highlights (grey) and AI highlights (underlined) placed by their text quote, comments as footnotes, article notes; deleted articles are removed with their sidecar; a renamed article keeps its file;
+  - AISH collections -> KOReader collections "AISH: <name>"; menu Tools -> AISH library; gesture action.
+
+#### Fixed
+
+- fix(i18n): translate.mjs no longer turns the link to a locale's own page (bildung/) into ../bildung/ (the sitemap check failed after every translate run, which re-broke the German pages)
+- fix(i18n): thanks.html has its own German page and is exempt from the translation check (the translate workflow failed on it since the Support Pass thank-you page)
+- fix: the card preview on the Summarize screen no longer glues heading and text ('Key pointsWhy …'); the appearance axis is labelled 'Look' (its 'Design' collided with the research study design in every language: 研究デザイン)
+- fix(site): German pages linked Bildung and the home page with one ../ too many (the sitemap check, and so every deploy since 16 Nov, failed); repaired with scripts/relink-slugs.mjs de
+- fix(home): the labels in the topic bubbles are sharp again (only the blobs are softened)
+- fix(home): the topics strip kept its wide-page column on medium pages and broke the grid into uneven columns; the latest list scrolls on narrow pages
+- fix(high contrast): the outline colour is a solid line there, so tracks, bars and toggles use the track colour as their fill; the time-saved row is an outlined block with solid text
+- fix(high contrast): no shadows, glows or backdrop blur (the shadow tokens are none); the home cards no longer change on hover
+- fix(home): the briefing is today's day recap of all feeds (what Feeds shows), never a week or month roll-up; an earlier day names its day
+- fix(appearance): a colour scheme applies in High contrast too (its accent; Graphite is pure black/white); the colour dots keep their own colours when a scheme is chosen
+- fix(graphite): the neutrals (backgrounds, text, borders) lose their blue tint too, not only the accent
+- fix(graph): Research and Adjust stay on one line; the Research chip uses the graduation-cap icon instead of the emoji
+- fix: Close is the rightmost header button when the app is shown inline or beside a page
+- fix: tab indicator beside our own pages (tab count and slider follow the shown tabs); icons instead of emoji on the pin button; settings in the palette on home and reading view
+- fix(web search): ask for the permission first thing in the click, run entries synchronously, and say why when nothing starts
+- fix: the 'include all questions' checkbox sits in line with its label
+- fix(reader): the edge tab no longer jumps down when pressed (styles.css scales pressed buttons and overrode its translateY)
+- fix(reader): theme buttons are selected as buttons; data-theme on <html> no longer matches them
+- fix(ui): paper chips on the summary card, DOI suggestion and send progress use icons
+- fix(ui): date line and decision chips use icons when the icon style is on
+- fix(sync): a folder handle that never answers no longer blocks Sync & backup
+- fix(koreader): cover band on one line; cover title without the publication's name
+  - Band: the site (without "www.") on the left, the date on the right, one line each (TextWidget); a long site name is cut with "…", never wrapped. Both centred in the band's height.
+  - Cover title: a trailing " | Circulation", " – Nature", " - The Guardian" (the publication) is left out when a real title remains (20+ characters, the tail 40 or fewer, not a sentence). The book information keeps the full title.
+  - Render version 5: covers are drawn again at the next sync.
+  - Tests: coverTitle (pipe, hyphen, en/em dash, short titles and colons untouched).
+- fix(koreader): new layouts reach articles already on the reader; "Download everything again"
+  - Bug: the render version was part of the digest kept in each article's index entry, so a new version (the made covers, EPUB changes) never changed the signature of articles already on the reader and they were not rewritten. The version is now added when the files are written; existing files are rewritten once.
+  - Menu "Download everything again": first a normal sync (the reader's highlights, notes and read marks go to AISH); only when nothing is left unsent are the articles (with sidecars and images), the records and the AISH collections removed and the library loaded anew. If something could not be sent, nothing is deleted. Not while an AISH article is open; a cancelled or failed run is not done later by surprise.
+  - Tests: a new render version rewrites every file; download again sends a new reader highlight first, then starts over, and the highlight is back.
+- fix(demo): quizRemind is a quiet action in the demo shim (demo:check failed the PR job)
+
+#### Developer experience
+
+- chore: the site address is kaivo.byphil.eu everywhere in the sources (docs, site-src, scripts, extension, apps); the old brand definition keeps its own host
+- chore: the KOReader plugin, the Android companion and the READMEs say Kaivo; the release ships the Kaivo zips and the KOReader plugin as a zip (technical ids stay: aish.koplugin, aish-library://, the app package; an existing AISH folder and the old collection names are taken over)
+- chore: the repository is philffm/kaivo now (links in the app, sources of the site, store texts, MCP, Android); the site is rebuilt
+- test: the add-a-place list has the Syncthing row
+- test: the settings index tests read settingsIndex.js
+- refactor: one escapeHtml/escapeXml/escapeText in escape.js instead of eight copies
+- refactor: one bgMessage wrapper with timeout, getSettings instead of getAll, parallel probes, warm tabs on hover; build/test ignore .DS_Store
+
 ## 2.2.46 (2026-11-16)
 
 ### All changes
