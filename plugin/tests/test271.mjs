@@ -178,6 +178,12 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
   rail[2].click(); await tick(600);
   assert(!d.querySelector('iframe.app-dock') && rail.every((b) => b.getAttribute('aria-pressed') === 'false'), 'the same one again closes the app');
 }
+// the library numbers sit above their labels (labels wrap differently, the numbers stay in one line)
+{
+  const css = fs.readFileSync(new URL('../src/home.css', import.meta.url), 'utf8');
+  assert(/\.hm-stats dd \{ order: 0;/.test(css) && /\.hm-stats dt \{ order: 1;/.test(css), 'the value is shown before its label');
+  const g = d.querySelector('.hm-stats > div'); assert(g.firstChild.tagName === 'DT' && g.lastChild.tagName === 'DD', 'label then value in the markup');
+}
 // layout: a card's column placement for wide pages must come BEFORE the container queries that change it for narrower ones (a later rule wins over them:
 // the topics strip once kept "columns 3-4" on a medium page and broke the grid into uneven implicit columns)
 {

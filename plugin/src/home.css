@@ -45,8 +45,10 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
 .hm-bar > i { display: block; height: 100%; background: var(--accent); }
 .hm-empty { margin: 0; font-size: var(--fs-sm); color: var(--text-muted); }
 .hm-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0; }
-.hm-stats dt { font-size: var(--fs-sm); color: var(--text-muted); }
-.hm-stats dd { margin: 0; font-size: var(--fs-xl); font-weight: 600; font-variant-numeric: tabular-nums; }
+/* the number above its label: labels differ a lot in length (and wrap), so the numbers would not line up under them. The markup keeps label, then value. */
+.hm-stats > div { display: flex; flex-direction: column; gap: 2px; }
+.hm-stats dt { order: 1; font-size: var(--fs-sm); color: var(--text-muted); }
+.hm-stats dd { order: 0; margin: 0; font-size: var(--fs-xl); font-weight: 600; font-variant-numeric: tabular-nums; }
 .hm-goto { display: flex; flex-wrap: wrap; gap: 8px; }
 .hm-custom { margin-top: 18px; font-size: var(--fs-sm); color: var(--text-muted); }
 .hm-custom summary { cursor: pointer; }
