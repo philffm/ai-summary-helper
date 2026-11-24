@@ -5775,7 +5775,7 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .notes-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
 .notes-tags .mcp-chip { cursor: pointer; }
 .notes-body { display: flex; flex-direction: column; gap: 8px; flex: 1 0 auto; }   /* auto basis: with a definite pane height, flex:1 gave the multi-column grid a fixed height and it spilled into extra columns sideways */
-.notes-grid { column-width: 250px; column-gap: 10px; }
+.notes-grid { column-width: clamp(150px, 31vw, 250px); column-gap: 10px; }   /* two columns in the popup and the side panel (400-500px), three or four on a wide page: the Grid choice looks like a grid at every size */
 .notes-grid .st { margin-bottom: 10px; }
 .notes-empty { color: var(--text-muted); text-align: center; padding: 28px 8px; }
 .st { border-radius: 12px; padding: 10px 12px; border-left: 4px solid; box-shadow: var(--saved-note-edge); display: flex; flex-direction: column; gap: 6px; break-inside: avoid; }

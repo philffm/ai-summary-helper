@@ -97,5 +97,10 @@ assert.equal(root().querySelectorAll('.st').length, 2, 'gone from the view at on
 await flushUndo(); await wait(100);
 assert.ok(!(noteRecKey(nid) in store)); assert.equal(root().querySelectorAll('.st').length, 2);
 
+// the Grid choice is a grid at every width: two columns in the popup and the side panel, more on a wide page
+{
+  const fs = await import('fs'); const css = fs.readFileSync(new URL('../src/styles.css', import.meta.url), 'utf8');
+  assert(/\.notes-grid \{ column-width: clamp\(150px, 31vw, 250px\)/.test(css), 'the notes grid narrows its columns with the window');
+}
 console.log('TEST 194 OK');
 process.exit(0);
