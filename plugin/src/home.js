@@ -224,7 +224,7 @@ window.addEventListener('resize', () => { if (lastCols && !document.getElementBy
 
 // The entrance: each card rises in its turn. A render that happens while it is still going (the quote, the refresh line: a few milliseconds after
 // the first one) rebuilds the cards, so they continue where the animation was (a negative delay) instead of showing up at once.
-let enterAt = 0; const ENTER_BASE = 120, ENTER_STEP = 120, ENTER_MS = 500;
+let enterAt = 0; const ENTER_BASE = 30, ENTER_STEP = 55, ENTER_MS = 300;
 const enter = (c, i) => {
   const now = performance.now(); if (!enterAt) enterAt = now;
   const delay = ENTER_BASE + i * ENTER_STEP - (now - enterAt);
@@ -348,7 +348,8 @@ function wireLook(initial) {
       seg(T('Brightness'), 'theme', [['system', T('Auto')], ['light', T('Light')], ['dark', T('Dark')]], n.theme),
       seg(T('Look'), 'design', [['standard', T('Standard')], ['postil', 'Postil'], ['contrast', T('High contrast')]], n.design),
       seg(T('Color scheme'), 'colorScheme', [['default', T('Default')], ['kaivo', 'Kaivo'], ['aish', 'Aish'], ['viola', 'Viola'], ['graphite', T('Graphite')]], scheme, true),
-      seg(T('Font'), 'fontStyle', [['serif', T('Serif')], ['sans', T('Sans-serif')]], cfg.fontStyle === 'sans' ? 'sans' : 'serif'));
+      seg(T('Font'), 'fontStyle', [['serif', T('Serif')], ['sans', T('Sans-serif')]], cfg.fontStyle === 'sans' ? 'sans' : 'serif'),
+      seg(T('Animations'), 'reduceMotion', [[false, T('On')], [true, T('Off')]], !!cfg.reduceMotion));   // the same setting as Settings › Accessibility › Reduce motion
     const size = el('div', 'hm-look-row'); size.append(el('span', 'hm-look-label-row', T('Text size')));
     const ctl = el('div', 'hm-look-size');
     const step = (d, label, text) => { const b = el('button', 'button-secondary btn-sm', text); b.type = 'button'; b.setAttribute('aria-label', label); b.disabled = (d < 0 && scale <= TEXT_SCALE_MIN) || (d > 0 && scale >= TEXT_SCALE_MAX); b.addEventListener('click', () => change({ textScale: clampScale(scale + d) })); return b; };

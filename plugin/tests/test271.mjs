@@ -219,7 +219,7 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
 // calm: the cards rise in one after the other (fade, short rise, blur), and the glance card does not pulse while the feeds refresh
 {
   const css = fs.readFileSync(new URL('../src/home.css', import.meta.url), 'utf8');
-  assert(/\.hm-enter \{ animation: hmRise var\(--duration-reveal\)/.test(css) && /@keyframes hmRise/.test(css), 'a calm entrance');
+  assert(/\.hm-enter \{ animation: hmRise var\(--duration-slow\)/.test(css) && /@keyframes hmRise/.test(css), 'a calm entrance');
   assert(!/data-working/.test(css) && !/pillGlow/.test(css), 'no pulsing while the feeds refresh');
 }
 // arranging: the arrows in the Adjust menu and dragging a card by its heading change the order, and it is saved
@@ -280,6 +280,17 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
   const js = fs.readFileSync(new URL('../src/home.js', import.meta.url), 'utf8');
   assert(!/skeleton-card|skeleton-line/.test(js), 'the page does not paint placeholder cards first');
   assert(!d.querySelector('.skeleton-card'), 'no skeleton card on the page');
+}
+// animations can be switched off in the Appearance menu (the same setting as Reduce motion)
+{
+  d.getElementById('hmLook').click(); await tick(30);
+  const row = [...d.getElementById('hmLookMenu').querySelectorAll('.hm-look-row')].find((r) => /^Animations/.test(r.querySelector('.hm-look-label-row').textContent)); assert(row, 'an Animations row');
+  const [on, off] = [...row.querySelectorAll('button')]; assert.equal(on.getAttribute('aria-pressed'), 'true', 'on by default');
+  off.click(); await tick(60);
+  assert.equal(d.documentElement.getAttribute('data-motion'), 'reduce'); assert.equal(store.reduceMotion, true, 'saved as reduceMotion');
+  [...d.getElementById('hmLookMenu').querySelectorAll('.hm-look-row')].find((r) => /^Animations/.test(r.querySelector('.hm-look-label-row').textContent)).querySelectorAll('button')[0].click(); await tick(60);
+  assert(!d.documentElement.hasAttribute('data-motion'), 'back on');
+  d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(30);
 }
 // layout: a card's column placement for wide pages must come BEFORE the container queries that change it for narrower ones (a later rule wins over them:
 // the topics strip once kept "columns 3-4" on a medium page and broke the grid into uneven implicit columns)

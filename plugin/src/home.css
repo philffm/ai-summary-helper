@@ -141,7 +141,7 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
 
 /* ── Small movements. Everything reuses an animation that is already in styles.css (listIn, detailIn, chipPanelIn, spin
    lines); only the progress bar has a keyframe of its own. All of it stops when motion is reduced. ── */
-.hm-enter { animation: hmRise var(--duration-reveal) var(--easing-decelerate) backwards; animation-delay: var(--hm-delay, 0ms); }   /* the cards come in one after the other, slowly: fade, a short rise, a breath of blur */
+.hm-enter { animation: hmRise var(--duration-slow) var(--easing-decelerate) backwards; animation-delay: var(--hm-delay, 0ms); }   /* the cards come in one after the other, quickly: fade, a short rise, a breath of blur */
 @keyframes hmRise { from { opacity: 0; transform: translateY(14px) scale(.992); filter: blur(5px); } to { opacity: 1; transform: none; filter: blur(0); } }
 .lazy-in { animation: listIn var(--duration-fast) var(--easing-decelerate); }                                                       /* rows that scrolling loads fade in */
 .hm-pop { animation: detailIn var(--duration-base) var(--easing-decelerate); }                                                       /* a new highlight settles in */
