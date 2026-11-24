@@ -8074,5 +8074,11 @@
   },
   "f_pair_kaivo_mcp_3b54": {
     "message": "kaivo-mcp をペアリング"
+  },
+  "f_sans_serif_83fe": {
+    "message": "ゴシック体"
+  },
+  "f_serif_6216": {
+    "message": "明朝体"
   }
 }

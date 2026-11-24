@@ -8357,5 +8357,11 @@
   },
   "f_pair_kaivo_mcp_3b54": {
     "message": "kaivo-mcp'yi eşle"
+  },
+  "f_sans_serif_83fe": {
+    "message": "Serifsiz"
+  },
+  "f_serif_6216": {
+    "message": "Serifli"
   }
 }

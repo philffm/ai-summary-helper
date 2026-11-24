@@ -8357,5 +8357,11 @@
   },
   "f_pair_kaivo_mcp_3b54": {
     "message": "Parkoppla kaivo-mcp"
+  },
+  "f_sans_serif_83fe": {
+    "message": "Sans serif"
+  },
+  "f_serif_6216": {
+    "message": "Serif"
   }
 }

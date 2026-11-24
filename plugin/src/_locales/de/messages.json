@@ -8155,5 +8155,11 @@
   },
   "f_pair_kaivo_mcp_3b54": {
     "message": "kaivo-mcp koppeln"
+  },
+  "f_sans_serif_83fe": {
+    "message": "Serifenlos"
+  },
+  "f_serif_6216": {
+    "message": "Serife"
   }
 }

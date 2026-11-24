@@ -8056,5 +8056,11 @@
   },
   "f_pair_kaivo_mcp_3b54": {
     "message": "kaivo-mcp 페어링"
+  },
+  "f_sans_serif_83fe": {
+    "message": "산세리프"
+  },
+  "f_serif_6216": {
+    "message": "세리프"
   }
 }

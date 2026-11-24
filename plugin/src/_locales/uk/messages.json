@@ -8357,5 +8357,11 @@
   },
   "f_pair_kaivo_mcp_3b54": {
     "message": "Під'єднайте kaivo-mcp"
+  },
+  "f_sans_serif_83fe": {
+    "message": "Без засічок"
+  },
+  "f_serif_6216": {
+    "message": "З засічками"
   }
 }

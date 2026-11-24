@@ -8074,5 +8074,11 @@
   },
   "f_pair_kaivo_mcp_3b54": {
     "message": "kaivo-mcp पेयर करें"
+  },
+  "f_sans_serif_83fe": {
+    "message": "सैन्स-सेरिफ़"
+  },
+  "f_serif_6216": {
+    "message": "सेरिफ़"
   }
 }
