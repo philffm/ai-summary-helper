@@ -1550,11 +1550,11 @@
         "--fs-xs",
         "--glass-card",
         "--outline",
-        "--saved-note-ghost-bar",
+        "--saved-note-ghost-bg",
         "--saved-note-ghost-fg",
         "--saved-note-note-bg",
         "--saved-note-note-fg",
-        "--saved-note-user-bar",
+        "--saved-note-user-bg",
         "--saved-note-user-fg",
         "--text-primary"
       ]

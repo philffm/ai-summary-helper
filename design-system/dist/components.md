@@ -484,7 +484,7 @@ A note, a highlight or an AI highlight in Notes (sticky), with comment, source, 
 - Source: `plugin/src/modules/notesView.js`
 - Variants: Kind (Highlight / AI highlight / Note) · State (Default / Hover / Focus / Editing)
 - Properties: Text (text), Source (text), Tags (text), Show comment (boolean)
-- Tokens: `--fs-md`, `--fs-xs`, `--glass-card`, `--outline`, `--saved-note-ghost-bar`, `--saved-note-ghost-fg`, `--saved-note-note-bg`, `--saved-note-note-fg`, `--saved-note-user-bar`, `--saved-note-user-fg`, `--text-primary`
+- Tokens: `--fs-md`, `--fs-xs`, `--glass-card`, `--outline`, `--saved-note-ghost-bg`, `--saved-note-ghost-fg`, `--saved-note-note-bg`, `--saved-note-note-fg`, `--saved-note-user-bg`, `--saved-note-user-fg`, `--text-primary`
 - Accessibility:
   - <article> labelled with its kind
   - Actions are buttons; Remove asks first

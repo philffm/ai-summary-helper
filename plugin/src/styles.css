@@ -5778,12 +5778,10 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .notes-grid { column-width: clamp(150px, 31vw, 250px); column-gap: 10px; }   /* two columns in the popup and the side panel (400-500px), three or four on a wide page: the Grid choice looks like a grid at every size */
 .notes-grid .st { margin-bottom: 10px; }
 .notes-empty { color: var(--text-muted); text-align: center; padding: 28px 8px; }
-/* Saved notes, the "Zettel" look: the kind is in the outline colour: your highlight amber, an AI highlight teal (both solid, calm), a note filled (and each has its word and icon in the header) */
-.st { border-radius: 10px; padding: 12px 13px 10px; border: 1.5px solid transparent; background: var(--glass-card); color: var(--text-primary); display: flex; flex-direction: column; gap: 8px; break-inside: avoid; }
-.st-user { border-color: var(--saved-note-user-bar); }
-.st-user .st-kind { color: var(--saved-note-user-fg); }
-.st-ghost { border-color: var(--saved-note-ghost-bar); }
-.st-ghost .st-kind { color: var(--saved-note-ghost-fg); }
+/* Saved notes, the "Zettel" look: real sticky notes, a soft tint per kind (your highlight yellow, an AI highlight blue, a note pink); each has its word and icon in the header */
+.st { border-radius: 10px; padding: 12px 13px 10px; border: 0; background: var(--glass-card); color: var(--text-primary); display: flex; flex-direction: column; gap: 8px; break-inside: avoid; }
+.st-user { background: var(--saved-note-user-bg); color: var(--saved-note-user-fg); }
+.st-ghost { background: var(--saved-note-ghost-bg); color: var(--saved-note-ghost-fg); }
 .st-note { background: var(--saved-note-note-bg); color: var(--saved-note-note-fg); }
 .st header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: .02em; }
 .st-when { font-weight: 500; opacity: .7; }
@@ -5792,7 +5790,7 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .st-q::before { content: '\201C'; display: block; font-size: 34px; line-height: .6; height: 14px; color: var(--text-muted); opacity: .6; }
 .st-note-text { white-space: pre-wrap; }
 .st-quote { font-style: italic; opacity: .8; }
-.st-c { border-top: 1px dotted var(--outline); padding-top: 7px; white-space: pre-wrap; }
+.st-c { border-top: 1px dotted color-mix(in srgb, currentColor 30%, transparent); padding-top: 7px; white-space: pre-wrap; }
 .st footer { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-size: var(--fs-xs); }
 .st-src, .st-tag, .st-act { font: inherit; font-size: var(--fs-xs); color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 .st-src { opacity: .85; text-decoration: underline; text-underline-offset: 2px; text-align: left; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
