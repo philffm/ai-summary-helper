@@ -258,6 +258,11 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
   assert(!d.documentElement.hasAttribute('data-fontstyle'), 'back to serif');
   d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(30);
 }
+// the topics card's light is under the other cards and their text
+{
+  const css = fs.readFileSync(new URL('../src/home.css', import.meta.url), 'utf8');
+  assert(/\.hm-card \{ position: relative; z-index: 1; \}/.test(css) && /\.hm-card--art \{ z-index: 0; \}/.test(css) && !/\.hm-card--art \{ z-index: 1; \}/.test(css), 'the other cards are above the topics card');
+}
 // layout: a card's column placement for wide pages must come BEFORE the container queries that change it for narrower ones (a later rule wins over them:
 // the topics strip once kept "columns 3-4" on a medium page and broke the grid into uneven implicit columns)
 {

@@ -162,7 +162,10 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
    has a blurred glow behind it, the card carries a wash of the biggest topics' colours and a halo that reaches over its edge into the page. */
 .hm-grid.has-glance > [data-card="graph"] { overflow: visible; position: relative; isolation: isolate; }
 .hm-card--art { background-image: radial-gradient(50% 100% at 12% 40%, color-mix(in srgb, var(--art-1, transparent) 11%, transparent), transparent 75%); }
-.hm-card--art { z-index: 1; }   /* above its neighbours: the light falls softly over them, it is the point */
+/* The light of the topics card is UNDER the other cards and their text: every card sits one level above, the topics card at the base (its halos stay in its own
+   stacking context). The other cards are glass, so the colour shows through them softly; no text is washed over. */
+.hm-card { position: relative; z-index: 1; }
+.hm-card--art { z-index: 0; }
 /* two halos of different colours, much wider than the card, faint, each drifting on its own slow loop */
 .hm-card--art::before, .hm-card--art::after { content: ''; position: absolute; z-index: -1; border-radius: 50%; pointer-events: none; filter: blur(64px) saturate(1.5); opacity: .34; will-change: transform; }
 /* each colour sits in its own place and they hardly overlap (overlapping hues mix to a muddy grey, which shows on a light page) */
