@@ -180,8 +180,8 @@
   --glow-accent: rgba(76,141,255,0.16); /* Accent glow behind the hero. */
   --glow-highlight: rgba(228,168,62,0.12); /* Highlight glow behind the hero. */
   --grain-dot: rgba(255,255,255,0.035); /* Dot colour of the grain texture. */
-  --surface-bar: rgba(10,15,28,0.72); /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
-  --surface-bar-solid: rgba(10,15,28,0.97); /* Opaque header bar (menu open, reduced transparency). */
+  --surface-bar: rgba(11,12,16,0.72); /* Background of fixed bars (pane headers, toolbars) above scrolling content. */
+  --surface-bar-solid: rgba(11,12,16,0.97); /* Opaque header bar (menu open, reduced transparency). */
   /* semantic · text */
   --text: var(--gray-50); /* Body text and headlines. */
   --text-muted: var(--gray-300); /* Least important readable text: hints, meta lines, timestamps, placeholders (≥ 4.5:1). */
