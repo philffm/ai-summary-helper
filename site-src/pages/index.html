@@ -60,7 +60,7 @@
 <main id="main">
 
   <!-- ── Hero ────────────────────────────────────────────────────── -->
-  <section class="hero hero-scene hscene" data-hscene>
+  <section id="hero" class="hero hero-scene hscene" data-hscene>
   <div class="hs-grid">
     <div class="hs-text"><div class="hs-text-in">
       <div class="eyebrow"><span class="dash"></span> Chrome Extension · Part of byphil. <span class="dash"></span></div>
@@ -125,7 +125,7 @@
         </div>
       </div>
       <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
-      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>Watch the video</strong><small>Everything in under a minute</small></span></a>
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>Watch the video</strong><small>The whole tour in two minutes</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="Walkthrough"><button type="button" class="hs-pp" aria-label="Pause walkthrough"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"/><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"/></svg></button><button type="button" class="hs-dot is-on" aria-label="Step 1"></button><button type="button" class="hs-dot" aria-label="Step 2"></button><button type="button" class="hs-dot" aria-label="Step 3"></button><button type="button" class="hs-dot" aria-label="Step 4"></button></div>
       <p class="sr-only">AI Summary Helper opens a short summary of an article in a side panel, lets you ask follow-up questions that link back to the source passage, and switches summaries to the language you choose.</p>
     </div>
@@ -242,7 +242,7 @@
       <div class="section-head center reveal">
         <div class="eyebrow">Watch</div>
         <h2>Every feature in under 20 seconds</h2>
-        <p>Short clips recorded from the real extension. Tap one and swipe through the rest.</p>
+        <p>Short clips recorded from the real extension. Tap one to play it right here and browse the rest.</p>
       </div>
       <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
       <div class="vfeed-labels" hidden>
@@ -253,14 +253,14 @@
       </div>
       <div class="vstack reveal" data-vstack>
         <figure class="vstack-item" data-blog-video="komplett" style="--i:0">
-          <button class="vstack-open" type="button" aria-label="Play: AI Summary Helper in under a minute">
+          <button class="vstack-open" type="button" aria-label="Play: AI Summary Helper in two minutes">
             <video muted playsinline preload="none" width="360" height="520" poster="{{base}}assets/blog/video/komplett-en.jpg">
               <source src="{{base}}assets/blog/video/komplett-en.mp4" type="video/mp4">
             </video>
             <span class="vstack-play" aria-hidden="true">▶</span>
           </button>
           <figcaption>
-            <strong>AI Summary Helper in under a minute</strong>
+            <strong>AI Summary Helper in two minutes</strong>
             <span>Every feature, called out in one fast run: summaries, sources, research mode, a library, feeds, AI apps and more.</span>
             <a href="{{base}}blog/videos.html">All videos →</a>
           </figcaption>
@@ -844,6 +844,7 @@
         });
         if (blurb) blurb.textContent = text(name) || blurb.textContent;
         if (count) { count.hidden = name === 'all'; count.textContent = shown + ' / ' + cards.length; }
+        if (!fromUser && !/^#for=/.test(location.hash) && location.hash) return;   // a link to a clip (#v=...) keeps its hash for the player
         try {
           history.replaceState(null, '', name === 'all' ? location.pathname + location.search : location.pathname + location.search + '#for=' + name);
         } catch (e) {}
