@@ -1387,8 +1387,8 @@ body:has(.nav--pill){padding-top:88px}
 }
 
 /* ── Watch: focus fan (desktop, set by main.js as .is-fan): one clip in front, neighbours step back; its caption sits below ── */
-.vstack.is-fan{ --cw:260px; position:relative; display:block; height:calc(var(--cw) * 1.444 + 56px); max-width:1200px; margin:0 auto; padding:0; overflow-x:clip; touch-action:pan-y; margin-top:calc(var(--cw) * .34); scroll-margin-bottom:96px; }
-@media (max-width:760px){ .vstack.is-fan{ --cw:min(58vw, 230px); margin-inline:0; } .vstack.is-fan .vstack-item[data-pos="3"], .vstack.is-fan .vstack-item[data-pos="-3"]{ opacity:0; pointer-events:none; } }
+.vstack.is-fan{ --cw:260px; position:relative; display:block; height:calc(var(--cw) * 1.444 + 56px); max-width:1200px; margin:0 auto; padding:0; touch-action:pan-y; margin-top:calc(var(--cw) * .34); scroll-margin-bottom:96px; }
+@media (max-width:760px){ .vstack.is-fan{ --cw:min(58vw, 230px); margin-inline:0; overflow-x:clip; } .vstack.is-fan .vstack-item[data-pos="3"], .vstack.is-fan .vstack-item[data-pos="-3"]{ opacity:0; pointer-events:none; } }
 .vstack.is-fan .vstack-item{ position:absolute; left:50%; bottom:24px; width:var(--cw); margin:0 0 0 calc(var(--cw) / -2); flex:none; transform-origin:50% 100%; transition:transform var(--duration-slower) var(--easing-emphasized), opacity var(--duration-screen) var(--easing-standard); }
 .vstack.is-fan .vstack-item[data-pos="0"]{ transform:none; z-index:10; }
 .vstack.is-fan .vstack-item[data-pos="-1"]{ transform:translateX(calc(var(--cw) * -0.808)) scale(.77) rotate(-4deg); opacity:.92; z-index:9; }
