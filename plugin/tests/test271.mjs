@@ -242,6 +242,18 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
   ev('dragend', mover); await tick(60);
   assert(store['home:prefs'].order.length >= 7, 'the dragged order is saved');
 }
+// font: serif (the default) or sans-serif, in the Appearance menu; saved with the other appearance keys, applied to <html>
+{
+  d.getElementById('hmLook').click(); await tick(30);
+  const menu = d.getElementById('hmLookMenu'), rows = [...menu.querySelectorAll('.hm-look-row')];
+  const fontRow = rows.find((r) => /^Font/.test(r.querySelector('.hm-look-label-row').textContent)); assert(fontRow, 'a Font row in the Appearance menu');
+  const [serif, sans] = [...fontRow.querySelectorAll('button')]; assert.equal(serif.getAttribute('aria-pressed'), 'true', 'serif is the default');
+  sans.click(); await tick(60);
+  assert.equal(d.documentElement.getAttribute('data-fontstyle'), 'sans'); assert.equal(store.fontStyle, 'sans', 'saved');
+  [...d.getElementById('hmLookMenu').querySelectorAll('.hm-look-row')].find((r) => /^Font/.test(r.querySelector('.hm-look-label-row').textContent)).querySelectorAll('button')[0].click(); await tick(60);
+  assert(!d.documentElement.hasAttribute('data-fontstyle'), 'back to serif');
+  d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(30);
+}
 // layout: a card's column placement for wide pages must come BEFORE the container queries that change it for narrower ones (a later rule wins over them:
 // the topics strip once kept "columns 3-4" on a medium page and broke the grid into uneven implicit columns)
 {

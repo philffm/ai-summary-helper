@@ -1,6 +1,7 @@
 /* home.html — the start page. Tokens only (design-system); layout is a calm grid of cards. */
 html, body { height: auto; overflow: auto; }
-body.home { background: var(--bg-page); color: var(--text-primary); font-family: inherit; }
+body.home { background: var(--bg-page); color: var(--text-primary); font-family: 'Iowan Old Style', 'Charter', 'Source Serif 4', 'Georgia', 'Times New Roman', serif; }   /* serif unless the user chose sans-serif (Appearance menu) */
+:root[data-fontstyle='sans']:not([data-font='readable']) body.home { font-family: var(--font-ui); }   /* the easy-read font (Atkinson) still wins over both */
 .hm-wrap { max-width: 1480px; margin: 0 auto; padding: 16px 20px 40px; box-sizing: border-box; }
 .hm-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px) minmax(0, 1fr); align-items: center; gap: 16px; margin: 0 0 16px; }
 .hm-head .hm-title { justify-self: start; }

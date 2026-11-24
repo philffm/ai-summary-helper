@@ -5,7 +5,7 @@ import { applyTranslations } from './i18n.js';
 import { applyA11y, normalizeAppearance } from './a11y.js';
 import StorageManager from './storageManager.js';
 
-export const APPEARANCE_KEYS = ['theme', 'design', 'textScale', 'lineSpacing', 'readableFont', 'reduceMotion', 'iconStyle', 'colorScheme'];
+export const APPEARANCE_KEYS = ['theme', 'design', 'textScale', 'lineSpacing', 'readableFont', 'reduceMotion', 'iconStyle', 'colorScheme', 'fontStyle'];
 
 export async function bootPage({ api = globalThis.chrome } = {}) {
     let lang = 'en', appTheme = '', appearance = {};
