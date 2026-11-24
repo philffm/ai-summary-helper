@@ -118,7 +118,7 @@ function briefingCard(d) {
   else { latest.append(lul); lazy(lul, lul, feedItems, (i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link), 0, i.published), 12); }
   body.append(meta, el('div', 'hm-brief-body'));
   body.lastChild.append(text, latest);
-  const c = card(T('Today at a glance'), body, 'feeds'); if (d.updating) c.dataset.working = '1';   // the card breathes while the feeds refresh
+  const c = card(T('Today at a glance'), body, 'feeds');   // while the feeds refresh only the small line says so (no pulsing)
   return c;
 }
 
@@ -205,6 +205,11 @@ const builders = {
 const LABELS = { graph: 'Your topics', quiz: 'Time to repeat', gaps: 'Started, never deepened', briefing: 'Today at a glance', continue: 'Continue reading', recent: 'Recently saved', quote: 'From your highlights', stats: 'Your library' };
 
 const dockPrefs = { dock: undefined };
+let userOrder = [];   // the order of the cards the user arranged (widget ids); the briefing stays on the left, the others follow it
+const savePrefs = () => { try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock, order: userOrder } }); } catch (_) { /* optional */ } };
+/** Position of a card: where the user put it, else its place in the default order. */
+const rank = (w) => { const i = userOrder.indexOf(w); return i >= 0 ? i : userOrder.length + WIDGETS.indexOf(w); };
+const byRank = (list) => [...list].sort((a, b) => rank(a) - rank(b));
 let dock = null;
 let hidden = [], data = { index: [], feed: [], quote: null, recaps: {}, updating: false, quizzes: [], gaps: [], topics: [] };
 // Two columns where the page is wide, one below that (the width of the page itself: with the app docked beside it, it is narrower)
@@ -219,19 +224,19 @@ function render() {
   // With the glance card: a four-column grid. The glance card takes half (two columns, both rows), the other four cards a quarter each
   // beside it (Continue reading, Recently saved / Notes, Library). Without it the cards share two columns, shortest first.
   // Narrow (CSS): two columns, then one.
-  const shown = visibleWidgets(hidden).filter((w) => !(w === 'quiz' && !dueQuizzes(data.quizzes).length) && !(w === 'gaps' && !data.gaps.length) && !(w === 'graph' && !data.topics.length)), glance = shown.includes('briefing');
+  const shown = byRank(visibleWidgets(hidden)).filter((w) => !(w === 'quiz' && !dueQuizzes(data.quizzes).length) && !(w === 'gaps' && !data.gaps.length) && !(w === 'graph' && !data.topics.length)), glance = shown.includes('briefing');
   // rows: highlights/library, the two lists, then the topics strip, then quiz and gaps when they are there; the glance card runs beside all of them
   const rows = 2 + (shown.includes('graph') ? 1 : 0) + (shown.includes('quiz') || shown.includes('gaps') ? 1 : 0);
   grid.style.setProperty('--hm-tracks', 'auto minmax(0, 1fr)' + ' auto'.repeat(rows - 2)); grid.style.setProperty('--hm-glance-row', '1 / span ' + rows);
   grid.classList.toggle('has-glance', glance);
   if (glance) {
-    shown.forEach((w, i) => { const c = builders[w](data); c.style.order = String(WIDGETS.indexOf(w)); c.dataset.card = w; enter(c, i); grid.append(c); });
+    shown.forEach((w, i) => { const c = builders[w](data); c.style.order = String(rank(w)); c.dataset.card = w; enter(c, i); dragWire(c, w); grid.append(c); });
     lastCols = 4; fillLists(); entered = true; return renderCustom();
   }
   const n = colCount() >= 2 ? 2 : 1, cols = Array.from({ length: n }, () => el('div', 'hm-col')), height = Array(n).fill(0);
   grid.style.setProperty('--hm-cols', String(n));
   shown.forEach((w) => {
-    const c = builders[w](data); c.style.order = String(WIDGETS.indexOf(w)); c.dataset.card = w; enter(c, shown.indexOf(w));
+    const c = builders[w](data); c.style.order = String(rank(w)); c.dataset.card = w; enter(c, shown.indexOf(w)); dragWire(c, w);
     const i = height.indexOf(Math.min(...height));
     height[i] += 3; cols[i].append(c);
   });
@@ -243,10 +248,51 @@ function renderCustom() {
   const box = $('hmCustom'); const menu = $('hmAdjustMenu');
   if (menu && !menu.hidden && box.children.length) return;   // the menu is open: do not rebuild the checkbox that is being clicked
   box.textContent = '';
-  WIDGETS.forEach((w) => {
-    const lab = el('label'); const cb = el('input'); cb.type = 'checkbox'; cb.checked = !hidden.includes(w);
-    cb.addEventListener('change', () => { hidden = cb.checked ? hidden.filter((x) => x !== w) : [...hidden, w]; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock, briefMode: undefined } }); } catch (_) { /* optional */ } render(); });
-    lab.append(cb, document.createTextNode(T(LABELS[w]))); box.append(lab);
+  const ids = byRank(WIDGETS);
+  ids.forEach((w) => {   // in the order the cards have on the page
+    const row = el('div', 'hm-adjust-row'), lab = el('label'); const cb = el('input'); cb.type = 'checkbox'; cb.checked = !hidden.includes(w);
+    cb.addEventListener('change', () => { hidden = cb.checked ? hidden.filter((x) => x !== w) : [...hidden, w]; savePrefs(); render(); });
+    lab.append(cb, document.createTextNode(T(LABELS[w]))); row.append(lab);
+    if (w !== 'briefing') {   // the glance card stays on the left; the others can be moved (here, or by dragging a card by its heading)
+      const mk = (dir, text, label, disabled) => { const b = el('button', 'hm-adjust-move', text); b.type = 'button'; b.setAttribute('aria-label', label + ': ' + T(LABELS[w])); b.title = label; b.disabled = disabled; b.addEventListener('click', () => moveBy(w, dir)); return b; };
+      const pos = ids.filter((x) => x !== 'briefing').indexOf(w), last = ids.filter((x) => x !== 'briefing').length - 1;
+      row.append(mk(-1, '↑', T('Move up'), pos <= 0), mk(1, '↓', T('Move down'), pos >= last));
+    }
+    box.append(row);
+  });
+}
+
+// ── Arranging: drag a card by its heading, or the arrows in the Adjust menu. The order is saved with the other home page preferences.
+let dragging = null, lastMove = 0;
+/** w takes the place of `target` (the ones between shift by one). Returns whether anything changed. */
+function placeAt(w, target) {
+  const ids = byRank(WIDGETS).filter((x) => x !== w), at = ids.indexOf(target); if (at < 0) return false;
+  const was = byRank(WIDGETS), from = was.indexOf(w), to = was.indexOf(target);
+  ids.splice(from < to ? at + 1 : at, 0, w);
+  if (ids.join() === was.join()) return false;
+  userOrder = ids; return true;
+}
+function applyOrder() { document.querySelectorAll('#hmGrid [data-card]').forEach((c) => { c.style.order = String(rank(c.dataset.card)); }); }
+function moveBy(w, dir) {   // one step among the cards that are on the page (hidden ones and empty ones are skipped)
+  const ids = byRank(WIDGETS), shownNow = new Set([...document.querySelectorAll('#hmGrid [data-card]')].map((c) => c.dataset.card));
+  let k = ids.indexOf(w) + dir; while (k >= 0 && k < ids.length && (!shownNow.has(ids[k]) || ids[k] === 'briefing')) k += dir;
+  if (k < 0 || k >= ids.length || !placeAt(w, ids[k])) return;
+  savePrefs(); render(); const box = $('hmCustom'); box.textContent = ''; renderCustom();
+}
+function dragWire(c, w) {
+  if (w === 'briefing') return;
+  const head = c.querySelector('.hm-card-head'); if (!head) return;
+  head.classList.add('hm-grab');
+  const off = () => { c.draggable = false; };
+  head.addEventListener('mousedown', (e) => { if (e.button === 0 && !e.target.closest('a, button')) c.draggable = true; });
+  head.addEventListener('mouseup', off);
+  c.addEventListener('dragstart', (e) => { dragging = w; c.classList.add('hm-dragging'); if (e.dataTransfer) { e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', w); } catch (_) { /* no data */ } } });
+  c.addEventListener('dragend', () => { const moved = dragging; dragging = null; off(); if (moved) { savePrefs(); render(); } });
+  c.addEventListener('dragover', (e) => { if (dragging && dragging !== w) e.preventDefault(); });
+  c.addEventListener('dragenter', (e) => {
+    if (!dragging || dragging === w) return; e.preventDefault();
+    if (Date.now() - lastMove < 260) return;   // the layout shifts under the pointer: one move at a time
+    if (placeAt(dragging, w)) { lastMove = Date.now(); applyOrder(); }
   });
 }
 
@@ -318,7 +364,7 @@ async function init() {
   const hour = new Date().getHours();
   $('hmGreeting').textContent = { night: T('Good night'), morning: T('Good morning'), afternoon: T('Good afternoon'), evening: T('Good evening') }[greetingKey(hour)];
   bindSearchKeys();
-  dock = createAppDock({ startScreen: 'history', onChange: (isOpen, screen) => document.querySelectorAll('[data-screen]').forEach((b) => b.setAttribute('aria-pressed', String(isOpen && b.dataset.screen === screen))), getWidth: () => dockPrefs.dock, saveWidth: (w) => { dockPrefs.dock = w; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: w } }); } catch (_) { /* optional */ } } });
+  dock = createAppDock({ startScreen: 'history', onChange: (isOpen, screen) => document.querySelectorAll('[data-screen]').forEach((b) => b.setAttribute('aria-pressed', String(isOpen && b.dataset.screen === screen))), getWidth: () => dockPrefs.dock, saveWidth: (w) => { dockPrefs.dock = w; savePrefs(); } });
   document.querySelectorAll('[data-screen]').forEach((b) => b.addEventListener('click', () => dock.toggle(b.dataset.screen)));   // the rail and Settings: the same screen again closes the app
   await loadData();
   render(); mountSearch();
@@ -372,6 +418,7 @@ async function loadData() {
     const got = await chrome.storage.local.get({ [PREFS_KEY]: {}, [SK.feedItems]: [], [SK.feedBackground]: {}, [SK.feedRecaps]: {} });
     hidden = Array.isArray(got[PREFS_KEY].hidden) ? got[PREFS_KEY].hidden : [];
     if (got[PREFS_KEY].dock) dockPrefs.dock = got[PREFS_KEY].dock;
+    userOrder = Array.isArray(got[PREFS_KEY].order) ? got[PREFS_KEY].order.filter((w) => WIDGETS.includes(w)) : [];
     data.recaps = got[SK.feedRecaps] || {};
     data.feed = mergeFeed(got[SK.feedItems], (got[SK.feedBackground] || {}).items);
     data.index = await StorageManager.getArticlesIndex();

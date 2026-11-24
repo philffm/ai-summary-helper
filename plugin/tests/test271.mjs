@@ -17,6 +17,7 @@ assert(!hw.recentlySaved(index, 10).some((a) => a.id === 'd'), 'archived is not 
 assert.deepEqual(hw.libraryStats(index, now), { total: 5, unread: 3, starred: 1, finishedThisWeek: 1 });
 assert.deepEqual(hw.visibleWidgets(['quote', 'stats', 'quiz', 'gaps']), ['briefing', 'continue', 'recent', 'graph']);
 // highlight or note: by chance when both exist, the other when one has nothing usable
+const WIDGETS_ORDER = hw.WIDGETS;
 const hlIdx = [{ k: 'p1', n: 1 }], readPage = async () => [{ url: 'https://a.com/x', text: 'A highlight that is long enough to be worth reading again.', type: 'user' }];
 const noteIdx = [{ id: 'n1', kind: 'note' }, { id: 'c1', kind: 'comment' }], readNote = async (id) => (id === 'n1' ? { text: 'My own thought about how this connects to the other article.', title: 'Notes on X', url: 'https://n.com/' } : { text: 'a comment that should lose against a note' });
 const kinds = new Set(); for (let i = 0; i < 12; i++) kinds.add((await hw.pickSnippet({ hlIndex: hlIdx, readPage, noteIndex: noteIdx, readNote }, () => (i % 2 ? 0.1 : 0.9))).kind);
@@ -210,6 +211,36 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
   assert(!menu.hidden && btn.getAttribute('aria-expanded') === 'true' && menu.querySelectorAll('input[type=checkbox]').length === 8, 'it opens with one checkbox per card');
   d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(30);
   assert(menu.hidden, 'Escape closes it');
+}
+// calm: the cards rise in one after the other (fade, short rise, blur), and the glance card does not pulse while the feeds refresh
+{
+  const css = fs.readFileSync(new URL('../src/home.css', import.meta.url), 'utf8');
+  assert(/\.hm-enter \{ animation: hmRise var\(--duration-reveal\)/.test(css) && /@keyframes hmRise/.test(css), 'a calm entrance');
+  assert(!/data-working/.test(css) && !/pillGlow/.test(css), 'no pulsing while the feeds refresh');
+}
+// arranging: the arrows in the Adjust menu and dragging a card by its heading change the order, and it is saved
+{
+  const order = () => [...d.querySelectorAll('#hmGrid [data-card]')].sort((a, b) => Number(a.style.order) - Number(b.style.order)).map((c) => c.dataset.card);
+  const before = order(); assert.equal(before[0], 'briefing');
+  d.getElementById('hmAdjust').click(); await tick(30);
+  const rows = [...d.querySelectorAll('#hmCustom .hm-adjust-row')];
+  assert(!rows[0].querySelector('.hm-adjust-move'), 'the glance card is pinned: no arrows');
+  const statsRow = rows[WIDGETS_ORDER.indexOf('stats')]; const down = statsRow.querySelectorAll('.hm-adjust-move')[1];
+  down.click(); await tick(60);
+  const after = order(); assert(after.indexOf('stats') > before.indexOf('stats'), 'the arrow moved the card down: ' + before + ' → ' + after);
+  assert(Array.isArray(store['home:prefs'].order) && store['home:prefs'].order.indexOf('stats') > store['home:prefs'].order.indexOf('continue'), 'the order is saved with the preferences: ' + JSON.stringify(store['home:prefs']));
+  d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(30);
+  // dragging: the Recently saved card by its heading onto the first small card
+  const cardOf = (id) => d.querySelector('#hmGrid [data-card="' + id + '"]');
+  const mover = cardOf('recent'), target = cardOf(order().filter((x) => x !== 'briefing')[0]);
+  const ev = (type, el) => el.dispatchEvent(new w.Event(type, { bubbles: true, cancelable: true }));
+  const startRank = order().indexOf('recent');
+  mover.querySelector('.hm-card-head').dispatchEvent(new w.MouseEvent('mousedown', { bubbles: true, button: 0 }));
+  assert(mover.draggable, 'a press on the heading makes the card draggable');
+  ev('dragstart', mover); ev('dragenter', target); await tick(10);
+  assert(order().indexOf('recent') < startRank, 'dragging over another card moves it live: ' + order());
+  ev('dragend', mover); await tick(60);
+  assert(store['home:prefs'].order.length >= 7, 'the dragged order is saved');
 }
 // layout: a card's column placement for wide pages must come BEFORE the container queries that change it for narrower ones (a later rule wins over them:
 // the topics strip once kept "columns 3-4" on a medium page and broke the grid into uneven implicit columns)
