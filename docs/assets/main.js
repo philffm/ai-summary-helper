@@ -1281,6 +1281,8 @@ function setBilling(period) {
     }, { rootMargin: '-40% 0px -55% 0px' });
     Object.keys(links).forEach(function (k) { var s = document.getElementById(k); if (s) io.observe(s); });
   }
+  // The bottom bar: on a blog page the Blog item is the current one
+  if (/\/blog\//.test(location.pathname)) { var bl = nav.querySelector('.pill a[data-dock-blog]'); if (bl) bl.setAttribute('aria-current', 'page'); }
 
 
   // Language search (full-screen menu)
