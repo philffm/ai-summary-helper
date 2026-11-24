@@ -77,7 +77,7 @@ store['hl:page:https://a.com/x'] = [{ url: 'https://a.com/x', text: 'Quote from 
 store[SK.feedItems] = [{ id: 'f9', title: 'Feed news', link: 'https://f.com/n', published: now, feedTitle: 'Feed F' }];
 store[SK.feedRecaps] = { '1|all': { overview: 'Energy prices moved. [1]', themes: ['Grid fees rise [1]', 'Quiet elsewhere'], mood: 'neu', at: now - 3 * 3600000, n: 9, refs: { 1: 'f9' } } };
 let polls = 0;
-chrome.runtime.sendMessage = (m, cb) => { if (m.action === 'feedPollNow') { polls++; store[SK.feedBackground] = { items: [{ id: 'n1', title: 'Fresh from worker', link: 'https://f.com/fresh', published: Date.now() + 5 }] }; } const r = { ok: true }; if (cb) { cb(r); return; } return Promise.resolve(r); };
+const polled = []; chrome.runtime.sendMessage = (m, cb) => { if (m.action === 'feedPollNow') { polls++; polled.push(m); store[SK.feedBackground] = { items: [{ id: 'n1', title: 'Fresh from worker', link: 'https://f.com/fresh', published: Date.now() + 5 }] }; } const r = { ok: true }; if (cb) { cb(r); return; } return Promise.resolve(r); };
 await imp('../src/home.js'); await tick(400);
 assert.equal(polls, 1, 'opening the page asks the worker to refresh the feeds');
 assert(/Fresh from worker/.test(w.document.getElementById('hmGrid').textContent), 'what the refresh found shows without reloading');
@@ -94,6 +94,8 @@ assert(d.querySelectorAll('.hm-card h2 .hm-grip').length >= 6 && d.querySelector
 const sent = []; const origSend = chrome.runtime.sendMessage; chrome.runtime.sendMessage = (m, cb) => { sent.push(m); return origSend(m, cb); };
 d.querySelector('.hm-latest .hm-refresh').click(); await tick(200);
 assert(sent.some((m) => m.action === 'feedPollNow' && m.force === true), 'the button forces a pull of every feed');
+assert(polled.some((m) => m.open === true && !m.force), 'opening the page asks for the feeds that are due, even with background polling off');
+assert(/open && !force|!force && !open/.test(fs.readFileSync(new URL('../src/bg/feedPoll.js', import.meta.url), 'utf8')), 'the worker lets an opened page past the background-polling switch');
 chrome.runtime.sendMessage = origSend;
 const cards = [...d.querySelectorAll('.hm-card h2')].map((h) => h.textContent);
 assert.equal(cards.length, 8, 'the glance card (with the latest feed items), highlights, library, two reading lists, the topics strip, and the quiz and gap cards that have something to say: ' + cards);

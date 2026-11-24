@@ -130,7 +130,7 @@ function withFeedAiTimeout(signal) {
     };
 }
 
-async function pollFeeds({ force = false } = {}) {   // force: the user asked for it (home page button): every feed is fetched now, whatever its schedule or the background-polling choice
+async function pollFeeds({ force = false, open = false } = {}) {   // open: a page the user opened asks (the home page): it fetches what is due even when background polling is off   // force: the user asked for it (home page button): every feed is fetched now, whatever its schedule or the background-polling choice
     if (feedPollRunning || !FEED_WORKER) return;
     feedPollRunning = true;
     try {
@@ -143,7 +143,7 @@ async function pollFeeds({ force = false } = {}) {   // force: the user asked fo
         await pruneBackgroundFeedData(d.feedSettings);
         d.background = (await localGet(SK.feedBackground))[SK.feedBackground] || d.background;
         const configured = d.feedSettings.autoProcess && await backgroundOllamaConfigured();
-        if (d.feedSettings.backgroundPoll === false && !configured && !force) return;
+        if (d.feedSettings.backgroundPoll === false && !configured && !force && !open) return;
         const state = { items: [], ratings: {}, recaps: {}, ...(d.background || {}) };
         state.items = Array.isArray(state.items) ? state.items : [];
         state.ratings = state.ratings || {}; state.recaps = state.recaps || {};

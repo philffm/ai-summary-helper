@@ -523,7 +523,7 @@ async function refreshFeeds(force = false) {
   if (data.updating) return;
   const before = data.feed.length;
   data.updating = true; render();
-  const r = await bgMessage({ action: 'feedPollNow', force }, { timeout: 90000 });
+  const r = await bgMessage({ action: 'feedPollNow', force, open: true }, { timeout: 90000 });
   if (r && r.ok) await loadData();
   data.updating = false; render();
   if (data.feed.length !== before) mountSearch();   // the list in the search has the new items too
