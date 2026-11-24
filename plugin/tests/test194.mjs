@@ -102,5 +102,11 @@ assert.ok(!(noteRecKey(nid) in store)); assert.equal(root().querySelectorAll('.s
   const fs = await import('fs'); const css = fs.readFileSync(new URL('../src/styles.css', import.meta.url), 'utf8');
   assert(/\.notes-grid \{ column-width: clamp\(150px, 31vw, 250px\)/.test(css), 'the notes grid narrows its columns with the window');
 }
+// the Zettel look: the kind is in the outline (solid, dashed, filled)
+{
+  const fs = await import('fs'); const css = fs.readFileSync(new URL('../src/styles.css', import.meta.url), 'utf8');
+  assert(/\.st-user \{ border-color: var\(--saved-note-user-bar\); \}/.test(css) && /\.st-ghost \{ border-color: var\(--saved-note-ghost-bar\); border-style: dashed; \}/.test(css) && /\.st-note \{ background: var\(--saved-note-note-bg\)/.test(css), 'solid / dashed / filled');
+  assert(!/border-left: 4px solid;/.test(css.slice(css.indexOf('.st {'), css.indexOf('.st {') + 400)), 'no colour rail on the left any more');
+}
 console.log('TEST 194 OK');
 process.exit(0);
