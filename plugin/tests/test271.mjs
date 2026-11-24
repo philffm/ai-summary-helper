@@ -275,6 +275,12 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
   assert.equal(rowsNow(), startRows, 'shorter: back');
   d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(30);
 }
+// nothing is shown before the cards come in: no skeleton placeholders
+{
+  const js = fs.readFileSync(new URL('../src/home.js', import.meta.url), 'utf8');
+  assert(!/skeleton-card|skeleton-line/.test(js), 'the page does not paint placeholder cards first');
+  assert(!d.querySelector('.skeleton-card'), 'no skeleton card on the page');
+}
 // layout: a card's column placement for wide pages must come BEFORE the container queries that change it for narrower ones (a later rule wins over them:
 // the topics strip once kept "columns 3-4" on a medium page and broke the grid into uneven implicit columns)
 {

@@ -139,7 +139,7 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
 :root[data-design='contrast'] .hm-latest { border-inline-start-width: 2px; }
 :root[data-design='contrast'] .hm-card-link, :root[data-design='contrast'] .hm-brief-meta, :root[data-design='contrast'] .hm-link-sub, :root[data-design='contrast'] .hm-card h2 { color: var(--text-primary); }
 
-/* ── Small movements. Everything reuses an animation that is already in styles.css (listIn, detailIn, chipPanelIn, spin, the skeleton
+/* ── Small movements. Everything reuses an animation that is already in styles.css (listIn, detailIn, chipPanelIn, spin
    lines); only the progress bar has a keyframe of its own. All of it stops when motion is reduced. ── */
 .hm-enter { animation: hmRise var(--duration-reveal) var(--easing-decelerate) backwards; animation-delay: var(--hm-delay, 0ms); }   /* the cards come in one after the other, slowly: fade, a short rise, a breath of blur */
 @keyframes hmRise { from { opacity: 0; transform: translateY(14px) scale(.992); filter: blur(5px); } to { opacity: 1; transform: none; filter: blur(0); } }
@@ -151,7 +151,6 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
 .hm-link:active { transform: scale(.99); }
 .hm-bar > i { transform-origin: left center; animation: barGrow var(--duration-slower) var(--easing-decelerate) both; }
 @keyframes barGrow { from { transform: scaleX(0); } }
-.hm-card.skeleton-card { min-block-size: 8rem; }
 @media (prefers-reduced-motion: reduce) { .hm-enter, .lazy-in, .hm-pop, .hm-look-menu, .hm-updating::before, .hm-bar > i { animation: none; } }
 .hm-refresh { display: inline-grid; place-items: center; width: 24px; height: 24px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--text-muted); cursor: pointer; transition: color var(--duration-fast) var(--easing-standard), background var(--duration-fast) var(--easing-standard); }
 .hm-refresh:hover { color: var(--accent); background: var(--accent-soft); }

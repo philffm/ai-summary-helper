@@ -370,18 +370,14 @@ function wireAdjust() {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hidden) { setOpen(false); btn.focus(); } });
 }
 
-// The first paint: placeholder cards in the final layout (the shimmering lines of skeleton.js), replaced by the real ones
-function paintSkeleton() {
+// The first paint: nothing. The cards are not shown as placeholders first (no skeleton): the grid stays empty until the data is there, then the cards
+// come in one after the other (the entrance, see enter()).
+function prepareGrid() {
   const grid = $('hmGrid'); grid.classList.add('has-glance'); grid.setAttribute('aria-busy', 'true');
-  WIDGETS.forEach((w) => {
-    const c = el('section', 'hm-card skeleton-card'); c.dataset.card = w; c.setAttribute('aria-hidden', 'true');
-    ['skeleton-line skeleton-title', 'skeleton-line', 'skeleton-line', 'skeleton-line skeleton-short'].forEach((cl) => c.append(el('div', cl)));
-    grid.append(c);
-  });
 }
 
 async function init() {
-  paintSkeleton();
+  prepareGrid();
   const { appearance } = await bootPage();
   initRenameNotice();
   // the words that are written into home.html itself, in the user's language
