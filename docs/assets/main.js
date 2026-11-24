@@ -1396,27 +1396,51 @@ function setBilling(period) {
     return out.innerHTML;
   }
 
+  /* A clip plays where it is (in the coverflow, or on its card): no full-screen player to get stuck in. A second tap pauses it, the native
+     controls give seeking, sound and full screen on request; another clip, or moving the coverflow, stops it. */
+  var fans = [];
+  function stopInline(except) {
+    Array.prototype.forEach.call(document.querySelectorAll('figure.is-playing'), function (f) {
+      if (f === except) return;
+      var pv = f.querySelector('video'); if (pv) { pv.pause(); pv.controls = false; }
+      f.classList.remove('is-playing');
+    });
+  }
+  function playInline(fig) {
+    var v = fig.querySelector('video'); if (!v) return;
+    if (fig.classList.contains('is-playing') && !v.paused) { v.pause(); return; }
+    stopInline(fig);
+    if (v.preload === 'none') v.preload = 'auto';
+    v.muted = false; v.controls = true; fig.classList.add('is-playing');
+    v.play().catch(function () { v.muted = true; v.play().catch(function () {}); });   // a browser that refuses sound still plays it
+    if (!v.dataset.inlineWired) {
+      v.dataset.inlineWired = '1';
+      v.addEventListener('ended', function () { v.controls = false; fig.classList.remove('is-playing'); v.currentTime = 0; });
+    }
+  }
   groups.forEach(function (group) {
     var figs = Array.prototype.slice.call(group.querySelectorAll('figure[data-blog-video]'));
     var fan = group.hasAttribute('data-vstack') ? focusFan(group, figs) : null;
+    fans.push({ group: group, figs: figs, fan: fan });
     figs.forEach(function (fig, i) {
       var v = fig.querySelector('video');
       var hoverEl = fig.closest('.feature-card') || fig;   // a feature card previews its clip while the pointer is anywhere on it
       if (canHover) {
-        hoverEl.addEventListener('mouseenter', function () { v.muted = true; v.play().catch(function () {}); });
-        hoverEl.addEventListener('mouseleave', function () { v.pause(); });
+        hoverEl.addEventListener('mouseenter', function () { if (fig.classList.contains('is-playing')) return; v.muted = true; v.play().catch(function () {}); });
+        hoverEl.addEventListener('mouseleave', function () { if (fig.classList.contains('is-playing')) return; v.pause(); });
       }
       var openBtn = fig.querySelector('.vstack-open, .fvideo-open');
       if (openBtn) openBtn.addEventListener('click', function () {
+        if (fig.classList.contains('is-playing')) return;   // playing: the video's own controls handle taps (pause, seek, sound, full screen)
         if (fan && fan.on()) {
           if (fan.justSwiped()) return;                       // a swipe across the fan is not a tap
-          if (fan.index() !== i) { fan.set(i); return; }      // a clip at the side comes to the front first
+          if (fan.index() !== i) { stopInline(); fan.set(i); return; }   // a clip at the side comes to the front first
         }
-        open(figs, i);
+        playInline(fig);
       });
       var card = fig.closest('.feature-card');
       var cta = card && card.querySelector('.fvideo-cta');    // "Watch the clip" under the card text opens the same clip
-      if (cta) cta.addEventListener('click', function () { open(figs, i); });
+      if (cta) cta.addEventListener('click', function () { playInline(fig); });
     });
   });
 
@@ -1427,7 +1451,14 @@ function setBilling(period) {
       for (var g = 0; g < groups.length; g++) {
         var figs = Array.prototype.slice.call(groups[g].querySelectorAll('figure[data-blog-video]'));
         for (var k = 0; k < figs.length; k++) {
-          if (figs[k].getAttribute('data-blog-video') === name) { e.preventDefault(); open(figs, k); return; }
+          if (figs[k].getAttribute('data-blog-video') === name) {
+            e.preventDefault();
+            var gi = groups.indexOf(groups[g]), f0 = fans[gi] && fans[gi].fan;
+            if (f0 && f0.on()) f0.set(k);
+            groups[g].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(function () { playInline(figs[k]); }, 450);
+            return;
+          }
         }
       }                                                         // no such clip on this page: the link's own jump to #videos stands
     });
@@ -1484,7 +1515,7 @@ function setBilling(period) {
       var cap = figs[active].querySelector('figcaption');
       capEl.innerHTML = cap ? cap.innerHTML : '';
     }
-    function set(i) { active = ((i % n) + n) % n; paint(); }
+    function set(i) { active = ((i % n) + n) % n; stopInline(); paint(); }
     function apply() {
       isOn = mq.matches;
       group.classList.toggle('is-fan', isOn);

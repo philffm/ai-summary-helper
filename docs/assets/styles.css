@@ -1361,6 +1361,9 @@ body:has(.nav--pill){padding-top:88px}
 .vstack-open video{ display:block; width:100%; height:auto; aspect-ratio:1080/1560; object-fit:cover; background:var(--media-video); }
 .vstack-play{ position:absolute; left:50%; top:50%; width:52px; height:52px; margin:-26px 0 0 -26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:var(--fs-3xl); color:var(--on-media-strong); background:color-mix(in srgb, var(--media-night) 55%, transparent); backdrop-filter:blur(6px); border:1px solid color-mix(in srgb, var(--on-media-strong) 35%, transparent); opacity:0; transition:opacity var(--duration-base); pointer-events:none; }
 .vstack-item:hover .vstack-play, .vstack-open:focus-visible .vstack-play{ opacity:1; }
+.vstack-item.is-playing .vstack-play, .fvideo.is-playing .fvideo-play, figure.is-playing .vstack-play{ display:none; }
+.vstack-item.is-playing figcaption{ opacity:0; pointer-events:none; }
+.vstack-item.is-playing:hover{ transform:none; }
 .vstack-item figcaption{ position:absolute; left:0; right:0; bottom:0; padding:28px 12px 12px; border-radius:0 0 var(--radius-2xl) var(--radius-2xl); background:linear-gradient(transparent, color-mix(in srgb, var(--media-ink) 88%, transparent)); color:var(--on-media-strong); pointer-events:none; text-align:left; opacity:0; transition:opacity var(--duration-base); }
 /* the cards overlap, so only one title shows: the front card's, or the one under the pointer / in focus */
 .vstack-item:first-child figcaption, .vstack-item:hover figcaption, .vstack-item:focus-within figcaption{ opacity:1; }
