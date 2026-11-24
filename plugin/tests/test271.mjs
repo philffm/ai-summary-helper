@@ -304,8 +304,14 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
 {
   const line = d.getElementById('hmDayLine'); assert(line && !line.hidden && line.querySelector('.hm-dayline-text').textContent.length > 10, 'a line under the greeting');
   assert(line.querySelector('.hm-dayline-by') && /[\u201C\u201E]/.test(line.querySelector('.hm-dayline-text').textContent), 'a quote with its source');
+  const searches = []; globalThis.chrome.search = { query: (o) => { searches.push(o); return Promise.resolve(); } };
+  globalThis.chrome.permissions = globalThis.chrome.permissions || { request: async () => true };
   const first = line.querySelector('.hm-dayline-text').textContent; line.querySelector('.hm-dayline-again').click(); await tick(20);
   assert.notEqual(d.getElementById('hmDayLine').querySelector('.hm-dayline-text').textContent, first, 'New line shows another one');
+  // a search button on a quote: the browser's default search engine (chrome.search.query), opened in a new tab
+  const sbtn = d.getElementById('hmDayLine').querySelector('.hm-dayline-search'); assert(sbtn, 'a search button next to the line');
+  sbtn.click(); await tick(60);
+  assert(searches.length === 1 && searches[0].disposition === 'NEW_TAB' && /\u201C/.test(searches[0].text), 'it searches with the browser engine: ' + JSON.stringify(searches));
   d.getElementById('hmAdjust').click(); await tick(30);
   const [lineBox, aiBox] = d.querySelectorAll('.hm-adjust-extra input');
   assert(lineBox.checked && !aiBox.checked && !(store['feeds:settings'] || {}).recapNote, 'the line is on, the AI note is off by default');

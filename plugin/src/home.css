@@ -13,6 +13,9 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-dayline[hidden] { display: none; }
 .hm-dayline-by { margin-inline-start: 6px; font-style: normal; font-size: var(--fs-xs); color: var(--text-muted); white-space: nowrap; }
 .hm-dayline-ai { margin-inline-start: 6px; font-style: normal; font-size: var(--fs-xs); color: var(--text-muted); cursor: help; }
+.hm-dayline-search { display: inline-grid; place-items: center; margin-inline-start: 4px; padding: 2px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--text-muted); cursor: pointer; vertical-align: -2px; opacity: .6; transition: opacity var(--duration-fast) var(--easing-standard); }
+.hm-dayline-search:hover, .hm-dayline-search:focus-visible { opacity: 1; color: var(--accent); }
+.hm-dayline-search:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .hm-dayline-again { margin-inline-start: 4px; padding: 0 4px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--text-muted); font: inherit; font-style: normal; font-size: var(--fs-xs); cursor: pointer; opacity: 0; transition: opacity var(--duration-fast) var(--easing-standard); }
 .hm-greet:hover .hm-dayline-again, .hm-greet:focus-within .hm-dayline-again, .hm-dayline-again:focus-visible { opacity: 1; }
 .hm-dayline-again:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }

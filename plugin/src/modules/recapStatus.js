@@ -16,7 +16,7 @@ export async function activeModelLabel(forceLocal = false) {
         const s = await chrome.storage.sync.get(['connectionMode', 'activeService', 'preferredCloudModel']);
         if (s.connectionMode !== 'local') {
             const cloud = String(s.preferredCloudModel || '').split('/').pop();   // "google/gemini-3.6-flash" → "gemini-3.6-flash"
-            return cloud ? `${T('AISH cloud')} · ${cloud}` : T('AISH cloud');
+            return cloud ? `${T('byPhil Cloud')} · ${cloud}` : T('byPhil Cloud');
         }
         const m = await StorageManager.getActiveModel(s.activeService);
         return m && m.id ? pretty(m.id) : s.activeService;

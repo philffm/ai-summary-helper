@@ -20,6 +20,7 @@ import { mountCommandList } from './modules/commandPalette.js';
 import { externalCommands, externalArticleSearch } from './modules/paletteExternal.js';
 import { initRenameNotice } from './modules/renameNotice.js';
 import { dayLines, pickDayLine, dayOfYear, seeded } from './modules/dayLine.js';
+import { searchWeb, webSearchPossible } from './modules/webSearch.js';
 
 const PREFS_KEY = 'home:prefs';
 const $ = (id) => document.getElementById(id);
@@ -478,6 +479,15 @@ function paintDayLine() {
   p.append(el('span', 'hm-dayline-text', l.kind === 'note' ? l.text : (de ? '\u201E' + l.text + '\u201C' : '\u201C' + l.text + '\u201D')));
   if (l.kind === 'note') { const ai = el('span', 'hm-dayline-ai', '\u2726'); ai.title = T('Written with your recap (AI)'); p.append(ai); }
   else { const by = l.kind === 'own' ? [T('From you'), l.by].filter(Boolean).join(' \u00B7 ') : l.by; if (by) p.append(el('span', 'hm-dayline-by', by)); }
+  if ((l.kind === 'note' || l.kind === 'quote') && webSearchPossible()) {   // look it up: the browser's own default search engine (the `search` permission is asked for on the first click)
+    const q = l.kind === 'note' ? l.text.slice(0, 200) : '\u201C' + l.text.slice(0, 100) + '\u201D ' + (l.by || '');
+    const go = el('button', 'hm-dayline-search'); go.type = 'button'; go.append(iconEl('search', 'icon--sm')); go.title = T('Look it up'); go.setAttribute('aria-label', T('Look it up'));
+    go.addEventListener('click', async () => {
+      const r = await searchWeb(q);
+      if (r && r.ok === false) { const st = $('hmStatus'); st.textContent = T('Web search did not start: {why}', { why: r.why }); st.hidden = false; setTimeout(() => { st.hidden = true; }, 6000); }
+    });
+    p.append(go);
+  }
   const again = el('button', 'hm-dayline-again', '\u21BB'); again.type = 'button'; again.title = T('New line'); again.setAttribute('aria-label', T('New line'));
   again.addEventListener('click', () => { dayShift += 1; paintDayLine(); }); p.append(again);
   if (!dayLineSeen) { dayLineSeen = true; enter(p, 0); }

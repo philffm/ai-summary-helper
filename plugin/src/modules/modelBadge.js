@@ -1,4 +1,4 @@
-// modelBadge.js — the little icon in front of a model name: cloud (AISH cloud), server (Ollama), laptop (any other own model/API).
+// modelBadge.js — the little icon in front of a model name: cloud (byPhil Cloud), server (Ollama), laptop (any other own model/API).
 import { icon } from './icons.js';
 
 /**
