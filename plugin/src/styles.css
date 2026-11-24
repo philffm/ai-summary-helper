@@ -5778,11 +5778,11 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .notes-grid { column-width: clamp(150px, 31vw, 250px); column-gap: 10px; }   /* two columns in the popup and the side panel (400-500px), three or four on a wide page: the Grid choice looks like a grid at every size */
 .notes-grid .st { margin-bottom: 10px; }
 .notes-empty { color: var(--text-muted); text-align: center; padding: 28px 8px; }
-/* Saved notes, the "Zettel" look: the kind is in the outline: your highlight solid, an AI highlight dashed, a note filled (and each has its word and icon in the header) */
+/* Saved notes, the "Zettel" look: the kind is in the outline colour: your highlight amber, an AI highlight teal (both solid, calm), a note filled (and each has its word and icon in the header) */
 .st { border-radius: 10px; padding: 12px 13px 10px; border: 1.5px solid transparent; background: var(--glass-card); color: var(--text-primary); display: flex; flex-direction: column; gap: 8px; break-inside: avoid; }
 .st-user { border-color: var(--saved-note-user-bar); }
 .st-user .st-kind { color: var(--saved-note-user-fg); }
-.st-ghost { border-color: var(--saved-note-ghost-bar); border-style: dashed; }
+.st-ghost { border-color: var(--saved-note-ghost-bar); }
 .st-ghost .st-kind { color: var(--saved-note-ghost-fg); }
 .st-note { background: var(--saved-note-note-bg); color: var(--saved-note-note-fg); }
 .st header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: .02em; }
@@ -5804,7 +5804,6 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .st-ta { width: 100%; resize: vertical; font: inherit; font-size: var(--fs-md); padding: 8px; border-radius: 8px; border: 1px solid var(--outline); background: var(--glass-input); color: var(--text-primary); }
 .st-edit-row { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
 :root[data-design='contrast'] .st { border: 2px solid var(--outline); }
-:root[data-design='contrast'] .st-ghost { border-style: dashed; }
 :root[data-design='contrast'] .st-note { border-style: double; border-width: 4px; }
 @media (prefers-reduced-motion: reduce) { .notes-composer { transition: none; } }
 
