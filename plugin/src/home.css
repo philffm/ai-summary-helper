@@ -41,6 +41,9 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
 .hm-link:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-inset); }
 .hm-link-title { font-size: var(--fs-md); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 .hm-link-sub { font-size: var(--fs-sm); color: var(--text-muted); }
+.hm-link-sub--timed { display: flex; align-items: baseline; gap: .35em; min-width: 0; }
+.hm-link-src { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hm-link-when { flex: none; opacity: .7; white-space: nowrap; }   /* the time next to the source: there, not loud */
 .hm-bar { height: 3px; margin-top: 4px; border-radius: 2px; background: var(--surface-track); overflow: hidden; }
 .hm-bar > i { display: block; height: 100%; background: var(--accent); }
 .hm-empty { margin: 0; font-size: var(--fs-sm); color: var(--text-muted); }
@@ -50,11 +53,10 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
 .hm-stats dt { order: 1; font-size: var(--fs-sm); color: var(--text-muted); }
 .hm-stats dd { order: 0; margin: 0; font-size: var(--fs-xl); font-weight: 600; font-variant-numeric: tabular-nums; }
 .hm-goto { display: flex; flex-wrap: wrap; gap: 8px; }
-.hm-custom { margin-top: 18px; font-size: var(--fs-sm); color: var(--text-muted); }
-.hm-custom summary { cursor: pointer; }
-.hm-custom-list { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; }
-.hm-custom-list label { display: inline-flex; align-items: center; gap: 8px; }
-.hm-custom-list input { width: auto; margin: 0; padding: 0; }
+.hm-adjust-menu { min-width: 14rem; }
+.hm-adjust-list { display: grid; gap: 10px; }
+.hm-adjust-list label { display: flex; align-items: center; gap: 10px; font-size: var(--fs-sm); color: var(--text-primary); cursor: pointer; }
+.hm-adjust-list input { width: auto; margin: 0; padding: 0; }
 .hm-status { margin: -8px 0 10px; text-align: center; font-size: var(--fs-sm); color: var(--text-muted); }
 /* the command that opens the search, inside the field; gone while the list is open */
 .hm-key { position: absolute; top: 50%; right: 14px; transform: translateY(-50%); pointer-events: none; }
@@ -160,6 +162,9 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
 @keyframes artFloat { 50% { transform: translateY(-3px); } }
 .hm-bubble circle { opacity: .95; transition: opacity var(--duration-fast) var(--easing-standard), transform var(--duration-base) var(--easing-decelerate); transform-box: fill-box; transform-origin: center; }
 .hm-bubble:hover circle { opacity: 1; transform: scale(1.07); }
+/* a click leaves no mark (Chrome draws a square around the whole group); the keyboard gets a ring around the blob itself */
+.hm-bubble:focus { outline: none; }
+.hm-bubble:focus-visible circle { stroke: var(--focus-ring); stroke-width: 3; opacity: 1; }
 .hm-bubble-label { fill: var(--on-accent); font-size: 10px; font-weight: 600; text-anchor: middle; pointer-events: none; }
 @media (prefers-reduced-motion: reduce) { .hm-card--art::before, .hm-card--art::after, .hm-bubble { animation: none; } .hm-bubble circle { transition: none; } .hm-bubble:hover circle { transform: none; } }
 /* High contrast: no glow, no wash, no halo: crisp bubbles with a hard edge */
@@ -168,4 +173,5 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
 :root[data-design='contrast'] .hm-bubble { animation: none; }
 :root[data-design='contrast'] .hm-bubble circle { filter: none; }
 :root[data-design='contrast'] .hm-bubble circle { fill: var(--hm-solid) !important; opacity: 1; stroke: var(--outline); stroke-width: 2; }
+:root[data-design='contrast'] .hm-bubble:focus-visible circle { stroke: var(--focus-ring); stroke-width: 4; }
 :root[data-design='contrast'] .hm-bubble-label { fill: var(--text-primary); paint-order: stroke; stroke: var(--bg-page); stroke-width: 3px; }

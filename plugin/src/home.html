@@ -104,6 +104,7 @@
       <h1 id="hmGreeting" class="hm-title">Home</h1>
       <div id="hmBox" class="hm-box"></div>
       <nav class="hm-appbar" aria-label="App">
+        <div class="hm-look-wrap"><button type="button" id="hmAdjust" class="button-secondary btn-sm hm-icon-btn" aria-haspopup="true" aria-expanded="false" aria-controls="hmAdjustMenu" aria-label="Adjust" title="Adjust"><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16"><use href="#i-sliders-horizontal"/></svg></button><div id="hmAdjustMenu" class="hm-look-menu hm-adjust-menu" role="group" aria-label="Choose widgets" hidden><div id="hmCustom" class="hm-adjust-list"></div></div></div>
         <div class="hm-look-wrap"><button type="button" id="hmLook" class="button-secondary btn-sm hm-icon-btn" aria-haspopup="true" aria-expanded="false" aria-controls="hmLookMenu" title="Appearance"><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16"><use href="#i-sun-moon"/></svg></button><div id="hmLookMenu" class="hm-look-menu" role="group" aria-label="Appearance" hidden></div></div>
         <button type="button" class="button-secondary btn-sm hm-icon-btn" data-screen="settings" aria-label="Settings" title="Settings"><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16"><use href="#i-settings"/></svg></button>
       </nav>
@@ -111,10 +112,6 @@
     <div id="renameNotice" class="review-card" hidden></div>
     <p id="hmStatus" class="hm-status" role="status" aria-live="polite" hidden></p>
     <div id="hmGrid" class="hm-grid"></div>
-    <details class="hm-custom">
-      <summary>Choose widgets</summary>
-      <div id="hmCustom" class="hm-custom-list"></div>
-    </details>
   </main>
   <nav class="hm-rail" aria-label="App">
     <button type="button" class="hm-rail-btn" data-screen="feeds" aria-pressed="false" aria-label="Feeds" title="Feeds"><svg class="icon" aria-hidden="true" focusable="false" width="20" height="20"><use href="#i-newspaper"/></svg></button>

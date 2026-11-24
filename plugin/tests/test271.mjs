@@ -184,6 +184,27 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
   assert(/\.hm-stats dd \{ order: 0;/.test(css) && /\.hm-stats dt \{ order: 1;/.test(css), 'the value is shown before its label');
   const g = d.querySelector('.hm-stats > div'); assert(g.firstChild.tagName === 'DT' && g.lastChild.tagName === 'DD', 'label then value in the markup');
 }
+// a click on a topic bubble leaves no focus square; the keyboard gets a ring on the blob (also in High contrast)
+{
+  const css = fs.readFileSync(new URL('../src/home.css', import.meta.url), 'utf8');
+  assert(/\.hm-bubble:focus \{ outline: none; \}/.test(css) && /\.hm-bubble:focus-visible circle \{ stroke: var\(--focus-ring\)/.test(css), 'no outline on click, a ring on keyboard focus');
+  assert(/data-design='contrast'\] \.hm-bubble:focus-visible circle/.test(css), 'the ring wins over the High contrast outline');
+}
+// the latest feed items show a subtle time next to their source
+{
+  const first = d.querySelector('.hm-latest .hm-link .hm-link-sub'); assert(first && first.querySelector('.hm-link-when'), 'a feed item has a time next to its source');
+  assert(/^· /.test(first.querySelector('.hm-link-when').textContent) && /\d|min|std|h/i.test(first.querySelector('.hm-link-when').textContent), 'it reads as a short time: ' + first.textContent);
+}
+// "Adjust" at the top right opens the card choices in a small menu (they are no longer a line at the foot of the page)
+{
+  const btn = d.getElementById('hmAdjust'), menu = d.getElementById('hmAdjustMenu');
+  assert(btn && btn.closest('.hm-appbar') && !d.querySelector('.hm-custom'), 'the adjust button is in the header, the old line is gone');
+  assert(menu.hidden && btn.getAttribute('aria-expanded') === 'false', 'closed at first');
+  btn.click(); await tick(30);
+  assert(!menu.hidden && btn.getAttribute('aria-expanded') === 'true' && menu.querySelectorAll('input[type=checkbox]').length === 8, 'it opens with one checkbox per card');
+  d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(30);
+  assert(menu.hidden, 'Escape closes it');
+}
 // layout: a card's column placement for wide pages must come BEFORE the container queries that change it for narrower ones (a later rule wins over them:
 // the topics strip once kept "columns 3-4" on a medium page and broke the grid into uneven implicit columns)
 {

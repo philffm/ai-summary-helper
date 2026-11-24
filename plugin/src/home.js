@@ -26,10 +26,15 @@ const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls)
 const readerUrl = (a) => chrome.runtime.getURL('readerPage.html') + '#id=' + encodeURIComponent(a.id);
 const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (_) { return ''; } };
 
-function link(href, title, sub, progress) {
+function link(href, title, sub, progress, when) {
   const a = el('a', 'hm-link'); a.href = href; a.target = '_blank'; a.rel = 'noopener';
   a.append(el('span', 'hm-link-title', title));
-  if (sub) a.append(el('span', 'hm-link-sub', sub));
+  if (sub || when) {   // the source, and (for the feeds) a subtle "2 h ago" next to it
+    const s = el('span', 'hm-link-sub' + (when ? ' hm-link-sub--timed' : ''));
+    if (when) { s.append(el('span', 'hm-link-src', sub || ''), el('span', 'hm-link-when', (sub ? '· ' : '') + agoShort(when))); }   // the source gives way (an ellipsis), the time stays whole
+    else s.textContent = sub;
+    a.append(s);
+  }
   if (progress > 0) { const bar = el('span', 'hm-bar'); const i = el('i'); i.style.width = Math.round(progress * 100) + '%'; bar.append(i); a.append(bar); }
   return a;
 }
@@ -59,6 +64,11 @@ function countUp(node, to) {
   node.textContent = '0'; raf(step);
 }
 
+/** "2h ago" / "vor 2 Std.": the short form for a list (narrow style, at least a minute). */
+function agoShort(ms) {
+  const m = Math.round((Date.now() - ms) / 60000), rtf = new Intl.RelativeTimeFormat(document.documentElement.lang || undefined, { numeric: 'auto', style: 'narrow' });
+  return m < 60 ? rtf.format(-Math.max(1, m), 'minute') : m < 1440 ? rtf.format(-Math.round(m / 60), 'hour') : rtf.format(-Math.round(m / 1440), 'day');
+}
 function ago(ms) {
   const m = Math.round((Date.now() - ms) / 60000), rtf = new Intl.RelativeTimeFormat(document.documentElement.lang || undefined, { numeric: 'auto' });
   return m < 60 ? rtf.format(-Math.max(1, m), 'minute') : m < 1440 ? rtf.format(-Math.round(m / 60), 'hour') : rtf.format(-Math.round(m / 1440), 'day');
@@ -105,7 +115,7 @@ function briefingCard(d) {
   const feedItems = latestFeed(d.feed, 300), lul = el('ul', 'hm-list');
   latest.append(lh);
   if (!feedItems.length) latest.append(el('p', 'hm-empty', T('Subscribe to feeds to see new items here.')));
-  else { latest.append(lul); lazy(lul, lul, feedItems, (i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link)), 12); }
+  else { latest.append(lul); lazy(lul, lul, feedItems, (i) => link(i.link, i.title, i.feedTitle || i.source || hostOf(i.link), 0, i.published), 12); }
   body.append(meta, el('div', 'hm-brief-body'));
   body.lastChild.append(text, latest);
   const c = card(T('Today at a glance'), body, 'feeds'); if (d.updating) c.dataset.working = '1';   // the card breathes while the feeds refresh
@@ -229,7 +239,9 @@ function render() {
 }
 
 function renderCustom() {
-  const box = $('hmCustom'); box.textContent = '';
+  const box = $('hmCustom'); const menu = $('hmAdjustMenu');
+  if (menu && !menu.hidden && box.children.length) return;   // the menu is open: do not rebuild the checkbox that is being clicked
+  box.textContent = '';
   WIDGETS.forEach((w) => {
     const lab = el('label'); const cb = el('input'); cb.type = 'checkbox'; cb.checked = !hidden.includes(w);
     cb.addEventListener('change', () => { hidden = cb.checked ? hidden.filter((x) => x !== w) : [...hidden, w]; try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock, briefMode: undefined } }); } catch (_) { /* optional */ } render(); });
@@ -273,6 +285,15 @@ function wireLook(initial) {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hidden) { setOpen(false); btn.focus(); } });
 }
 
+// "Adjust" (top right, next to Appearance): which cards the page shows, in a small menu instead of a line at the foot of the page
+function wireAdjust() {
+  const btn = $('hmAdjust'), menu = $('hmAdjustMenu'); if (!btn || !menu) return;
+  const setOpen = (on) => { menu.hidden = !on; btn.setAttribute('aria-expanded', String(on)); if (on) { const l = $('hmCustom'); l.textContent = ''; renderCustom(); } };
+  btn.addEventListener('click', () => setOpen(menu.hidden));
+  document.addEventListener('click', (e) => { if (!menu.hidden && !menu.contains(e.target) && !btn.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hidden) { setOpen(false); btn.focus(); } });
+}
+
 // The first paint: placeholder cards in the final layout (the shimmering lines of skeleton.js), replaced by the real ones
 function paintSkeleton() {
   const grid = $('hmGrid'); grid.classList.add('has-glance'); grid.setAttribute('aria-busy', 'true');
@@ -290,9 +311,9 @@ async function init() {
   // the words that are written into home.html itself, in the user's language
   document.querySelectorAll('[data-screen]').forEach((b) => { const n = SECTION()[b.dataset.screen]; if (n) { b.setAttribute('aria-label', n); b.title = n; } });
   { const l = document.querySelector('.hm-look-label'); if (l) l.textContent = T('Appearance'); const lk = $('hmLook'); if (lk) lk.title = T('Appearance'); const m = $('hmLookMenu'); if (m) m.setAttribute('aria-label', T('Appearance'));
-    const sm = document.querySelector('.hm-custom summary'); if (sm) sm.textContent = T('Choose widgets');
+    const aj = $('hmAdjust'); if (aj) { aj.title = T('Adjust'); aj.setAttribute('aria-label', T('Adjust')); } const am = $('hmAdjustMenu'); if (am) am.setAttribute('aria-label', T('Choose widgets'));
     document.title = T('Home page'); document.querySelectorAll('.hm-appbar, .hm-rail').forEach((nav) => nav.setAttribute('aria-label', T('App'))); }
-  wireLook(appearance);
+  wireLook(appearance); wireAdjust();
   const hour = new Date().getHours();
   $('hmGreeting').textContent = { night: T('Good night'), morning: T('Good morning'), afternoon: T('Good afternoon'), evening: T('Good evening') }[greetingKey(hour)];
   bindSearchKeys();
