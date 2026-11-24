@@ -8520,5 +8520,11 @@
   },
   "f_serif_6216": {
     "message": "Serif"
+  },
+  "f_decrease_height_943c": {
+    "message": "Decrease height"
+  },
+  "f_increase_height_9808": {
+    "message": "Increase height"
   }
 }

@@ -8080,5 +8080,11 @@
   },
   "f_serif_6216": {
     "message": "明朝体"
+  },
+  "f_decrease_height_943c": {
+    "message": "高さを小さくする"
+  },
+  "f_increase_height_9808": {
+    "message": "高さを大きくする"
   }
 }

@@ -205,8 +205,13 @@ const builders = {
 const LABELS = { graph: 'Your topics', quiz: 'Time to repeat', gaps: 'Started, never deepened', briefing: 'Today at a glance', continue: 'Continue reading', recent: 'Recently saved', quote: 'From your highlights', stats: 'Your library' };
 
 const dockPrefs = { dock: undefined };
+// The size of a card on the wide page, in rows of the grid (eight rows fill the window): the defaults below, or what the user dragged / set. The columns are fixed by kind.
+const DEFAULT_ROWS = { briefing: 8, quote: 2, stats: 2, continue: 3, recent: 3, graph: 3, quiz: 2, gaps: 3 }, COLS = { briefing: 2, graph: 2 };
+const MIN_ROWS = 1, MAX_ROWS = 14;
+let userSizes = {};
+const rowsOf = (w) => Math.min(MAX_ROWS, Math.max(MIN_ROWS, Number(userSizes[w]) || DEFAULT_ROWS[w] || 3));
 let userOrder = [];   // the order of the cards the user arranged (widget ids); the briefing stays on the left, the others follow it
-const savePrefs = () => { try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock, order: userOrder } }); } catch (_) { /* optional */ } };
+const savePrefs = () => { try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock, order: userOrder, sizes: userSizes } }); } catch (_) { /* optional */ } };
 /** Position of a card: where the user put it, else its place in the default order. */
 const rank = (w) => { const i = userOrder.indexOf(w); return i >= 0 ? i : userOrder.length + WIDGETS.indexOf(w); };
 const byRank = (list) => [...list].sort((a, b) => rank(a) - rank(b));
@@ -233,12 +238,9 @@ function render() {
   // beside it (Continue reading, Recently saved / Notes, Library). Without it the cards share two columns, shortest first.
   // Narrow (CSS): two columns, then one.
   const shown = byRank(visibleWidgets(hidden)).filter((w) => !(w === 'quiz' && !dueQuizzes(data.quizzes).length) && !(w === 'gaps' && !data.gaps.length) && !(w === 'graph' && !data.topics.length)), glance = shown.includes('briefing');
-  // rows: highlights/library, the two lists, then the topics strip, then quiz and gaps when they are there; the glance card runs beside all of them
-  const rows = 2 + (shown.includes('graph') ? 1 : 0) + (shown.includes('quiz') || shown.includes('gaps') ? 1 : 0);
-  grid.style.setProperty('--hm-tracks', 'auto minmax(0, 1fr)' + ' auto'.repeat(rows - 2)); grid.style.setProperty('--hm-glance-row', '1 / span ' + rows);
   grid.classList.toggle('has-glance', glance);
   if (glance) {
-    shown.forEach((w, i) => { const c = builders[w](data); c.style.order = String(rank(w)); c.dataset.card = w; enter(c, i); dragWire(c, w); grid.append(c); });
+    shown.forEach((w, i) => { const c = builders[w](data); c.style.order = String(rank(w)); c.dataset.card = w; c.style.setProperty('--hm-rows', String(rowsOf(w))); c.style.setProperty('--hm-cols', String(COLS[w] || 1)); enter(c, i); dragWire(c, w); resizeWire(c, w); grid.append(c); });
     lastCols = 4; fillLists(); entered = true; return renderCustom();
   }
   const n = colCount() >= 2 ? 2 : 1, cols = Array.from({ length: n }, () => el('div', 'hm-col')), height = Array(n).fill(0);
@@ -257,15 +259,14 @@ function renderCustom() {
   if (menu && !menu.hidden && box.children.length) return;   // the menu is open: do not rebuild the checkbox that is being clicked
   box.textContent = '';
   const ids = byRank(WIDGETS);
-  ids.forEach((w) => {   // in the order the cards have on the page
+  ids.forEach((w, pos) => {   // in the order the cards have on the page
     const row = el('div', 'hm-adjust-row'), lab = el('label'); const cb = el('input'); cb.type = 'checkbox'; cb.checked = !hidden.includes(w);
     cb.addEventListener('change', () => { hidden = cb.checked ? hidden.filter((x) => x !== w) : [...hidden, w]; savePrefs(); render(); });
     lab.append(cb, document.createTextNode(T(LABELS[w]))); row.append(lab);
-    if (w !== 'briefing') {   // the glance card stays on the left; the others can be moved (here, or by dragging a card by its heading)
-      const mk = (dir, text, label, disabled) => { const b = el('button', 'hm-adjust-move', text); b.type = 'button'; b.setAttribute('aria-label', label + ': ' + T(LABELS[w])); b.title = label; b.disabled = disabled; b.addEventListener('click', () => moveBy(w, dir)); return b; };
-      const pos = ids.filter((x) => x !== 'briefing').indexOf(w), last = ids.filter((x) => x !== 'briefing').length - 1;
-      row.append(mk(-1, '↑', T('Move up'), pos <= 0), mk(1, '↓', T('Move down'), pos >= last));
-    }
+    const mk = (text, label, disabled, run) => { const b = el('button', 'hm-adjust-move', text); b.type = 'button'; b.setAttribute('aria-label', label + ': ' + T(LABELS[w])); b.title = label; b.disabled = disabled; b.addEventListener('click', run); return b; };
+    // height (wide page): fewer or more rows of the grid; position: one step up or down
+    row.append(mk('−', T('Decrease height'), rowsOf(w) <= MIN_ROWS, () => resizeBy(w, -1)), mk('+', T('Increase height'), rowsOf(w) >= MAX_ROWS, () => resizeBy(w, 1)),
+      mk('↑', T('Move up'), pos <= 0, () => moveBy(w, -1)), mk('↓', T('Move down'), pos >= ids.length - 1, () => moveBy(w, 1)));
     box.append(row);
   });
 }
@@ -283,12 +284,27 @@ function placeAt(w, target) {
 function applyOrder() { document.querySelectorAll('#hmGrid [data-card]').forEach((c) => { c.style.order = String(rank(c.dataset.card)); }); }
 function moveBy(w, dir) {   // one step among the cards that are on the page (hidden ones and empty ones are skipped)
   const ids = byRank(WIDGETS), shownNow = new Set([...document.querySelectorAll('#hmGrid [data-card]')].map((c) => c.dataset.card));
-  let k = ids.indexOf(w) + dir; while (k >= 0 && k < ids.length && (!shownNow.has(ids[k]) || ids[k] === 'briefing')) k += dir;
+  let k = ids.indexOf(w) + dir; while (k >= 0 && k < ids.length && !shownNow.has(ids[k])) k += dir;
   if (k < 0 || k >= ids.length || !placeAt(w, ids[k])) return;
   savePrefs(); render(); const box = $('hmCustom'); box.textContent = ''; renderCustom();
 }
+function setRows(w, rows) {
+  userSizes[w] = Math.min(MAX_ROWS, Math.max(MIN_ROWS, rows));
+  const c = document.querySelector('#hmGrid [data-card="' + w + '"]'); if (c) c.style.setProperty('--hm-rows', String(userSizes[w]));
+}
+function resizeBy(w, d) { setRows(w, rowsOf(w) + d); savePrefs(); fillLists(); const box = $('hmCustom'); box.textContent = ''; renderCustom(); }
+/** The strip at the bottom edge of a card: drag it and the card grows or shrinks by whole rows. */
+function resizeWire(c, w) {
+  const h = el('div', 'hm-resize'); h.setAttribute('aria-hidden', 'true'); c.append(h);
+  h.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return; e.preventDefault(); e.stopPropagation(); h.setPointerCapture(e.pointerId); c.classList.add('hm-resizing');
+    const unit = parseFloat(getComputedStyle($('hmGrid')).gridAutoRows) || 80, gap = 14, top = c.getBoundingClientRect().top;
+    const move = (ev) => setRows(w, Math.round((ev.clientY - top + gap) / (unit + gap)));
+    const up = () => { h.removeEventListener('pointermove', move); h.removeEventListener('pointerup', up); h.removeEventListener('pointercancel', up); c.classList.remove('hm-resizing'); savePrefs(); fillLists(); };
+    h.addEventListener('pointermove', move); h.addEventListener('pointerup', up); h.addEventListener('pointercancel', up);
+  });
+}
 function dragWire(c, w) {
-  if (w === 'briefing') return;
   const head = c.querySelector('.hm-card-head'); if (!head) return;
   head.classList.add('hm-grab');
   const NS = 'http://www.w3.org/2000/svg', grip = document.createElementNS(NS, 'svg');   // the handle: six dots next to the heading, shown on hover
@@ -432,6 +448,7 @@ async function loadData() {
     hidden = Array.isArray(got[PREFS_KEY].hidden) ? got[PREFS_KEY].hidden : [];
     if (got[PREFS_KEY].dock) dockPrefs.dock = got[PREFS_KEY].dock;
     userOrder = Array.isArray(got[PREFS_KEY].order) ? got[PREFS_KEY].order.filter((w) => WIDGETS.includes(w)) : [];
+    userSizes = got[PREFS_KEY].sizes && typeof got[PREFS_KEY].sizes === 'object' ? { ...got[PREFS_KEY].sizes } : {};
     data.recaps = got[SK.feedRecaps] || {};
     data.feed = mergeFeed(got[SK.feedItems], (got[SK.feedBackground] || {}).items);
     data.index = await StorageManager.getArticlesIndex();

@@ -86,7 +86,7 @@ const d = w.document;
 // the entrance survives the renders that come right after the first one: the cards carry their delay (a negative one when it is already going)
 assert([...d.querySelectorAll('.hm-card[data-card]')].some((c) => c.classList.contains('hm-enter') && /ms$/.test(c.style.getPropertyValue('--hm-delay'))), 'cards are still coming in');
 // every card but the glance card has a handle next to its heading
-assert(d.querySelectorAll('.hm-card h2 .hm-grip').length >= 5 && !d.querySelector('[data-card="briefing"] .hm-grip'), 'a drag handle next to the headings');
+assert(d.querySelectorAll('.hm-card h2 .hm-grip').length >= 6 && d.querySelector('[data-card="briefing"] .hm-grip'), 'a drag handle next to every heading, the glance card too');
 // the update button next to "Latest" pulls every feed now (force), whatever its schedule; so does the briefing's update button
 const sent = []; const origSend = chrome.runtime.sendMessage; chrome.runtime.sendMessage = (m, cb) => { sent.push(m); return origSend(m, cb); };
 d.querySelector('.hm-latest .hm-refresh').click(); await tick(200);
@@ -118,7 +118,7 @@ assert(/Continue/.test(d.querySelector('#hmBox .cmdk-list').textContent) && /Fre
 field.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true })); await tick(30);
 assert(!d.getElementById('hmBox').classList.contains('is-open'), 'Esc closes it again');
 // quizzes to repeat and topics started but never deepened: cards that appear only when there is something to say
-assert(/auto minmax\(0, 1fr\) auto auto/.test(d.getElementById('hmGrid').style.getPropertyValue('--hm-tracks')) && /span 4/.test(d.getElementById('hmGrid').style.getPropertyValue('--hm-glance-row')), 'rows for the topics strip and for quiz and gaps, the glance card beside all of them');
+assert(d.querySelector('[data-card="quiz"]') && d.querySelector('[data-card="gaps"]') && d.querySelector('[data-card="quiz"]').style.getPropertyValue('--hm-rows') && d.querySelector('[data-card="briefing"]').style.getPropertyValue('--hm-cols') === '2', 'quiz and gaps are cards with their rows; the glance card has two columns');
 const quizCard = d.querySelector('[data-card="quiz"]'), gapCard = d.querySelector('[data-card="gaps"]');
 assert(quizCard && /Heat pumps/.test(quizCard.textContent) && /2 questions to repeat/.test(quizCard.textContent), 'the due quiz, with what was missed: ' + (quizCard && quizCard.textContent));
 assert(gapCard && /Solo topic/.test(gapCard.textContent) && /never opened/.test(gapCard.textContent), 'a topic that was started and never opened');
@@ -228,8 +228,8 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
   const before = order(); assert.equal(before[0], 'briefing');
   d.getElementById('hmAdjust').click(); await tick(30);
   const rows = [...d.querySelectorAll('#hmCustom .hm-adjust-row')];
-  assert(!rows[0].querySelector('.hm-adjust-move'), 'the glance card is pinned: no arrows');
-  const statsRow = rows[WIDGETS_ORDER.indexOf('stats')]; const down = statsRow.querySelectorAll('.hm-adjust-move')[1];
+  assert.equal(rows[0].querySelectorAll('.hm-adjust-move').length, 4, 'every card has shorter, taller, up, down (the glance card too)'); assert(rows[0].querySelectorAll('.hm-adjust-move')[2].disabled, 'the first one cannot go up');
+  const statsRow = rows[WIDGETS_ORDER.indexOf('stats')]; const down = statsRow.querySelectorAll('.hm-adjust-move')[3];
   down.click(); await tick(60);
   const after = order(); assert(after.indexOf('stats') > before.indexOf('stats'), 'the arrow moved the card down: ' + before + ' → ' + after);
   assert(Array.isArray(store['home:prefs'].order) && store['home:prefs'].order.indexOf('stats') > store['home:prefs'].order.indexOf('continue'), 'the order is saved with the preferences: ' + JSON.stringify(store['home:prefs']));
@@ -263,11 +263,23 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
   const css = fs.readFileSync(new URL('../src/home.css', import.meta.url), 'utf8');
   assert(/\.hm-card \{ position: relative; z-index: 1; \}/.test(css) && /\.hm-card--art \{ z-index: 0; \}/.test(css) && !/\.hm-card--art \{ z-index: 1; \}/.test(css), 'the other cards are above the topics card');
 }
+// height: the + and - in the Adjust menu make a card taller or shorter by whole rows (and it is saved); the strip at the bottom edge is there too
+{
+  const card = d.querySelector('#hmGrid [data-card="graph"]'); const rowsNow = () => Number(card.style.getPropertyValue('--hm-rows'));
+  const startRows = rowsNow(); assert(startRows >= 1 && card.querySelector('.hm-resize'), 'a card has its rows and a resize strip');
+  d.getElementById('hmAdjust').click(); await tick(30);
+  const gRow = [...d.querySelectorAll('#hmCustom .hm-adjust-row')].find((r) => /Your topics/.test(r.textContent)); const [shorter, taller] = gRow.querySelectorAll('.hm-adjust-move');
+  taller.click(); await tick(40); assert.equal(rowsNow(), startRows + 1, 'taller: one row more');
+  assert.equal(store['home:prefs'].sizes.graph, startRows + 1, 'saved with the preferences');
+  const gRow2 = [...d.querySelectorAll('#hmCustom .hm-adjust-row')].find((r) => /Your topics/.test(r.textContent)); gRow2.querySelectorAll('.hm-adjust-move')[0].click(); await tick(40);
+  assert.equal(rowsNow(), startRows, 'shorter: back');
+  d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(30);
+}
 // layout: a card's column placement for wide pages must come BEFORE the container queries that change it for narrower ones (a later rule wins over them:
 // the topics strip once kept "columns 3-4" on a medium page and broke the grid into uneven implicit columns)
 {
   const css = fs.readFileSync(new URL('../src/home.css', import.meta.url), 'utf8');
   const medium = css.indexOf('@container hmwrap (max-width: 1100px)');
-  for (const rule of ['[data-card="graph"] { grid-column: 3 / span 2; }', '[data-card="briefing"] { grid-column: 1 / span 2;']) assert(css.indexOf(rule) > 0 && css.indexOf(rule) < medium, rule + ' comes before the container queries');
+  for (const rule of ['> [data-card] { grid-column: span var(--hm-cols, 1); grid-row: span var(--hm-rows, 3);']) assert(css.indexOf(rule) > 0 && css.indexOf(rule) < medium, rule + ' comes before the container queries');
 }
 console.log('TEST 271 OK'); process.exit(0);

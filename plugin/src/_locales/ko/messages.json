@@ -8062,5 +8062,11 @@
   },
   "f_serif_6216": {
     "message": "세리프"
+  },
+  "f_decrease_height_943c": {
+    "message": "높이 줄이기"
+  },
+  "f_increase_height_9808": {
+    "message": "높이 늘리기"
   }
 }

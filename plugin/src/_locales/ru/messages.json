@@ -8080,5 +8080,11 @@
   },
   "f_serif_6216": {
     "message": "С засечками"
+  },
+  "f_decrease_height_943c": {
+    "message": "Уменьшить высоту"
+  },
+  "f_increase_height_9808": {
+    "message": "Увеличить высоту"
   }
 }

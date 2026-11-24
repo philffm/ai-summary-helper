@@ -23,12 +23,11 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-wrap { container: hmwrap / inline-size; }
 body.home { overflow: clip; }   /* the light of the topics card ends at the edge of the window (not of the column: that cut it off in a vertical line) and must not make the page wider or taller */
 .hm-grid { display: grid; grid-template-columns: repeat(var(--hm-cols, 2), minmax(0, 1fr)); gap: 14px; align-items: start; }
-.hm-grid.has-glance { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: var(--hm-tracks, auto minmax(0, 1fr)); grid-auto-flow: dense; align-items: stretch; block-size: max(28rem, calc(100dvh - 7rem)); }   /* highlights and library are as tall as each other; the two lists below take the rest. The whole grid is capped at the window (above the fold): what does not fit scrolls inside its card. */
-.hm-grid.has-glance > [data-card] { min-block-size: 0; overflow: hidden; }
-.hm-grid.has-glance > [data-card="briefing"] { grid-column: 1 / span 2; grid-row: var(--hm-glance-row, 1 / span 2); }
-.hm-grid.has-glance > [data-card="graph"] { grid-column: 3 / span 2; }   /* (before the container queries below, which change it for narrower pages: a later rule would win over them) */   /* half the width, beside two rows of quarter cards */
+.hm-grid.has-glance { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: var(--hm-unit); grid-auto-flow: dense; align-items: stretch;
+  --hm-unit: calc((max(28rem, 100dvh - 7rem) - 7 * 14px) / 8); }   /* eight rows fill the window (above the fold) with the default sizes; every card has a number of rows (--hm-rows) and columns (--hm-cols) and can be made taller or shorter */
+.hm-grid.has-glance > [data-card] { grid-column: span var(--hm-cols, 1); grid-row: span var(--hm-rows, 3); min-block-size: 0; overflow: hidden; }   /* (before the container queries below, which change it for narrower pages: a later rule would win over them) */
 .hm-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-@container hmwrap (max-width: 1100px) { .hm-grid.has-glance { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; block-size: auto; } .hm-grid.has-glance > [data-card="graph"] { grid-column: 1 / -1; } .hm-grid.has-glance > [data-card] { overflow: visible; } .hm-brief-body { block-size: calc(var(--hm-latest-head) + var(--hm-item-h) * 5.66); } .hm-grid.has-glance > [data-card="briefing"] { grid-column: 1 / -1; grid-row: auto; } }   /* medium: the glance card on its own row, the others two by two */
+@container hmwrap (max-width: 1100px) { .hm-grid.has-glance { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: auto; } .hm-grid.has-glance > [data-card] { grid-column: auto; grid-row: auto; overflow: visible; } .hm-grid.has-glance > [data-card="graph"], .hm-grid.has-glance > [data-card="briefing"] { grid-column: 1 / -1; } .hm-brief-body { block-size: calc(var(--hm-latest-head) + var(--hm-item-h) * 5.66); } .hm-resize { display: none; } }   /* medium: the glance card on its own row, the others two by two (the heights are the content's) */
 @container hmwrap (max-width: 760px) { .hm-grid, .hm-grid.has-glance { grid-template-columns: minmax(0, 1fr); align-items: start; } .hm-grid.has-glance > [data-card="briefing"], .hm-grid.has-glance > [data-card="graph"] { grid-column: auto; } .hm-col { display: contents; } .hm-brief-body { grid-template-columns: minmax(0, 1fr); block-size: auto; } .hm-brief-text { overflow: visible; } .hm-latest { border-inline-start: 0; padding-inline-start: 0; } .hm-latest .hm-list { max-block-size: 24rem; } }   /* narrow (also with the app docked beside): one column, the cards in their own order */
 .hm-card { padding: 14px; border: 1px solid var(--outline); border-radius: var(--radius-lg); background: var(--bg-card, var(--glass-base)); box-sizing: border-box; }
 .hm-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
@@ -54,11 +53,11 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
 .hm-stats dt { order: 1; font-size: var(--fs-sm); color: var(--text-muted); }
 .hm-stats dd { order: 0; margin: 0; font-size: var(--fs-xl); font-weight: 600; font-variant-numeric: tabular-nums; }
 .hm-goto { display: flex; flex-wrap: wrap; gap: 8px; }
-.hm-adjust-menu { min-width: 14rem; }
+.hm-adjust-menu { min-width: 21rem; }
 .hm-adjust-list { display: grid; gap: 10px; }
 .hm-adjust-row { display: flex; align-items: center; gap: 4px; }
-.hm-adjust-row label { flex: 1 1 auto; }
-.hm-adjust-move { width: 26px; height: 26px; padding: 0; display: inline-grid; place-items: center; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--text-muted); font-size: var(--fs-md); cursor: pointer; }
+.hm-adjust-row label { flex: 1 1 auto; white-space: nowrap; }
+.hm-adjust-move { flex: none; width: 26px; height: 26px; padding: 0; display: inline-grid; place-items: center; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--text-muted); font-size: var(--fs-md); cursor: pointer; }
 .hm-adjust-move:hover:not(:disabled) { background: var(--surface-row); color: var(--text-primary); }
 .hm-adjust-move:disabled { opacity: .3; cursor: default; }
 .hm-adjust-move:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
@@ -69,6 +68,12 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
 .hm-grab:hover .hm-grip { opacity: 1; }
 @media (hover: none) { .hm-grip { opacity: .4; } }
 .hm-card.hm-dragging { opacity: .55; }
+/* the height: a strip at the bottom edge; drag it (rows snap to the grid), or the + and - in the Adjust menu */
+.hm-resize { position: absolute; inset-inline: 0; bottom: 0; height: 14px; cursor: ns-resize; touch-action: none; }
+.hm-resize::after { content: ''; position: absolute; inset-inline: calc(50% - 18px); bottom: 4px; height: 3px; border-radius: var(--radius-full); background: currentColor; opacity: 0; transition: opacity var(--duration-fast) var(--easing-standard); color: var(--text-muted); }
+.hm-card:hover .hm-resize::after, .hm-resize:hover::after, .hm-card.hm-resizing .hm-resize::after { opacity: .5; }
+.hm-card.hm-resizing { user-select: none; }
+@media (hover: none) { .hm-resize::after { opacity: .35; } }
 .hm-adjust-list label { display: flex; align-items: center; gap: 10px; font-size: var(--fs-sm); color: var(--text-primary); cursor: pointer; }
 .hm-adjust-list input { width: auto; margin: 0; padding: 0; }
 .hm-status { margin: -8px 0 10px; text-align: center; font-size: var(--fs-sm); color: var(--text-muted); }
