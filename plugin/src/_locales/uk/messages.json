@@ -8372,5 +8372,23 @@
   },
   "f_animations_8a8a": {
     "message": "Анімації"
+  },
+  "f_daily_line_2bd8": {
+    "message": "Рядок дня"
+  },
+  "f_daily_quote_with_the_rss_rec_d653": {
+    "message": "Цитата дня зі зведенням RSS (ШІ)"
+  },
+  "f_from_you_67e6": {
+    "message": "Від вас"
+  },
+  "f_new_line_8ec9": {
+    "message": "Інший рядок"
+  },
+  "f_the_ai_adds_a_thought_or_a_h_4e25": {
+    "message": "ШІ додає до зведення думку або історичний факт на сьогодні."
+  },
+  "f_written_with_your_recap_ai_1ae1": {
+    "message": "Написано разом із вашим зведенням (ШІ)"
   }
 }

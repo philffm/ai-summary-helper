@@ -8372,5 +8372,23 @@
   },
   "f_animations_8a8a": {
     "message": "Animaties"
+  },
+  "f_daily_line_2bd8": {
+    "message": "Zin van de dag"
+  },
+  "f_daily_quote_with_the_rss_rec_d653": {
+    "message": "Citaat van de dag bij de RSS-terugblik (AI)"
+  },
+  "f_from_you_67e6": {
+    "message": "Van jou"
+  },
+  "f_new_line_8ec9": {
+    "message": "Nieuwe zin"
+  },
+  "f_the_ai_adds_a_thought_or_a_h_4e25": {
+    "message": "De AI voegt bij de terugblik een gedachte of een historisch feit voor vandaag toe."
+  },
+  "f_written_with_your_recap_ai_1ae1": {
+    "message": "Geschreven met je terugblik (AI)"
   }
 }

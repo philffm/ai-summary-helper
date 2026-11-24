@@ -8089,5 +8089,23 @@
   },
   "f_animations_8a8a": {
     "message": "Animations"
+  },
+  "f_daily_line_2bd8": {
+    "message": "Phrase du jour"
+  },
+  "f_daily_quote_with_the_rss_rec_d653": {
+    "message": "Citation du jour avec le résumé RSS (IA)"
+  },
+  "f_from_you_67e6": {
+    "message": "De vous"
+  },
+  "f_new_line_8ec9": {
+    "message": "Nouvelle phrase"
+  },
+  "f_the_ai_adds_a_thought_or_a_h_4e25": {
+    "message": "L’IA ajoute une pensée ou un fait historique pour aujourd’hui en écrivant le résumé."
+  },
+  "f_written_with_your_recap_ai_1ae1": {
+    "message": "Écrit avec votre résumé (IA)"
   }
 }

@@ -19,6 +19,7 @@ import { createAppDock } from './modules/appDock.js';
 import { mountCommandList } from './modules/commandPalette.js';
 import { externalCommands, externalArticleSearch } from './modules/paletteExternal.js';
 import { initRenameNotice } from './modules/renameNotice.js';
+import { dayLines, pickDayLine, dayOfYear, seeded } from './modules/dayLine.js';
 
 const PREFS_KEY = 'home:prefs';
 const $ = (id) => document.getElementById(id);
@@ -210,8 +211,9 @@ const DEFAULT_ROWS = { briefing: 8, quote: 2, stats: 2, continue: 3, recent: 3, 
 const MIN_ROWS = 1, MAX_ROWS = 14;
 let userSizes = {};
 const rowsOf = (w) => Math.min(MAX_ROWS, Math.max(MIN_ROWS, Number(userSizes[w]) || DEFAULT_ROWS[w] || 3));
+let dayLineOn = true, recapNoteWanted = false, dayShift = 0, dayOwn = null;   // the line under the greeting: shown, the AI note asked for, "New line" steps, what the user saved
 let userOrder = [];   // the order of the cards the user arranged (widget ids); the briefing stays on the left, the others follow it
-const savePrefs = () => { try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock, order: userOrder, sizes: userSizes } }); } catch (_) { /* optional */ } };
+const savePrefs = () => { try { chrome.storage.local.set({ [PREFS_KEY]: { hidden, dock: dockPrefs.dock, order: userOrder, sizes: userSizes, dayLine: dayLineOn } }); } catch (_) { /* optional */ } };
 /** Position of a card: where the user put it, else its place in the default order. */
 const rank = (w) => { const i = userOrder.indexOf(w); return i >= 0 ? i : userOrder.length + WIDGETS.indexOf(w); };
 const byRank = (list) => [...list].sort((a, b) => rank(a) - rank(b));
@@ -258,6 +260,20 @@ function renderCustom() {
   const box = $('hmCustom'); const menu = $('hmAdjustMenu');
   if (menu && !menu.hidden && box.children.length) return;   // the menu is open: do not rebuild the checkbox that is being clicked
   box.textContent = '';
+  // the daily line under the greeting, and whether the feed recap may write one more line for it (AI, off unless asked for)
+  const extra = el('div', 'hm-adjust-extra');
+  const toggle = (label, checked, onChange, hint) => {
+    const lab = el('label'); const cb = el('input'); cb.type = 'checkbox'; cb.checked = checked; cb.addEventListener('change', () => onChange(cb.checked, cb));
+    lab.append(cb, document.createTextNode(label)); extra.append(lab); if (hint) extra.append(el('p', 'hm-adjust-hint', hint)); return cb;
+  };
+  const aiBox = {};
+  toggle(T('Daily line'), dayLineOn, (on) => { dayLineOn = on; savePrefs(); paintDayLine(); if (aiBox.cb) aiBox.cb.disabled = !on; });
+  aiBox.cb = toggle(T('Daily quote with the RSS recap (AI)'), recapNoteWanted, async (on) => {
+    recapNoteWanted = on; paintDayLine();
+    try { const cur = (await chrome.storage.local.get(SK.feedSettings))[SK.feedSettings] || {}; await chrome.storage.local.set({ [SK.feedSettings]: { ...cur, recapNote: on } }); } catch (_) { /* optional */ }
+  }, T('The AI adds a thought or a historical fact for today when it writes the recap.'));
+  aiBox.cb.disabled = !dayLineOn;
+  box.append(extra);
   const ids = byRank(WIDGETS);
   ids.forEach((w, pos) => {   // in the order the cards have on the page
     const row = el('div', 'hm-adjust-row'), lab = el('label'); const cb = el('input'); cb.type = 'checkbox'; cb.checked = !hidden.includes(w);
@@ -394,7 +410,7 @@ async function init() {
   document.querySelectorAll('[data-screen]').forEach((b) => b.addEventListener('click', () => dock.toggle(b.dataset.screen)));   // the rail and Settings: the same screen again closes the app
   await loadData();
   render(); mountSearch();
-  loadQuote();
+  loadQuote(); loadDayOwn(); paintDayLine();
   refreshFeeds();
 }
 
@@ -426,25 +442,56 @@ function bindSearchKeys() {
   });
 }
 
-// One random highlight: the page list is small (hl:index), and only the chosen page's record is read
+// The inputs for picking a highlight or a note: the page list is small (hl:index), and only the chosen page's record is read
+async function snippetSources() {
+  const got = await chrome.storage.local.get({ [SK.hlIndex]: [], [SK.notesIndex]: [] });
+  return {
+    hlIndex: got[SK.hlIndex], readPage: async (k) => normalizeHighlights((await chrome.storage.local.get(hlPageKey(k)))[hlPageKey(k)]),
+    noteIndex: got[SK.notesIndex], readNote: async (id) => (await chrome.storage.local.get(noteRecKey(id)))[noteRecKey(id)],
+  };
+}
 async function loadQuote() {
-  try {
-    const got = await chrome.storage.local.get({ [SK.hlIndex]: [], [SK.notesIndex]: [] });
-    data.quote = await pickSnippet({
-      hlIndex: got[SK.hlIndex], readPage: async (k) => normalizeHighlights((await chrome.storage.local.get(hlPageKey(k)))[hlPageKey(k)]),
-      noteIndex: got[SK.notesIndex], readNote: async (id) => (await chrome.storage.local.get(noteRecKey(id)))[noteRecKey(id)],
-    });
-  } catch (_) { data.quote = null; }
+  try { data.quote = await pickSnippet(await snippetSources()); } catch (_) { data.quote = null; }
   render();
+}
+
+// The daily line (under the greeting): today's recap note, a line the user saved (one day in four), a fixed quote (modules/dayLine.js)
+function dayNote() {
+  if (!recapNoteWanted) return '';
+  const f = latestBriefing(data.recaps, Date.now()), d0 = new Date(); d0.setHours(0, 0, 0, 0);
+  return f && f.day === d0.getTime() && f.recap && f.recap.note ? String(f.recap.note) : '';
+}
+async function loadDayOwn() {
+  try {
+    const now = new Date(), snip = await pickSnippet(await snippetSources(), seeded(now.getFullYear() * 400 + dayOfYear(now)));
+    dayOwn = snip && snip.text ? { text: String(snip.text).replace(/\s+/g, ' ').trim(), by: snip.kind === 'note' ? (snip.title || hostOf(snip.url)) : hostOf(snip.url) } : null;
+  } catch (_) { dayOwn = null; }
+  paintDayLine();
+}
+let dayLineSeen = false;
+function paintDayLine() {
+  const p = $('hmDayLine'); if (!p) return;
+  if (!dayLineOn) { p.hidden = true; return; }
+  const lang = document.documentElement.lang || '', de = /^de\b/i.test(lang);
+  const l = pickDayLine(dayLines({ now: new Date(), lang, note: dayNote(), own: dayOwn && !(data.quote && data.quote.text === dayOwn.text) ? dayOwn : null }), dayShift);
+  p.textContent = ''; p.hidden = false;
+  p.append(el('span', 'hm-dayline-text', l.kind === 'note' ? l.text : (de ? '\u201E' + l.text + '\u201C' : '\u201C' + l.text + '\u201D')));
+  if (l.kind === 'note') { const ai = el('span', 'hm-dayline-ai', '\u2726'); ai.title = T('Written with your recap (AI)'); p.append(ai); }
+  else { const by = l.kind === 'own' ? [T('From you'), l.by].filter(Boolean).join(' \u00B7 ') : l.by; if (by) p.append(el('span', 'hm-dayline-by', by)); }
+  const again = el('button', 'hm-dayline-again', '\u21BB'); again.type = 'button'; again.title = T('New line'); again.setAttribute('aria-label', T('New line'));
+  again.addEventListener('click', () => { dayShift += 1; paintDayLine(); }); p.append(again);
+  if (!dayLineSeen) { dayLineSeen = true; enter(p, 0); }
 }
 
 // Library and feed list as stored; the worker's newest finds (feeds:background) count too
 async function loadData() {
   try {
-    const got = await chrome.storage.local.get({ [PREFS_KEY]: {}, [SK.feedItems]: [], [SK.feedBackground]: {}, [SK.feedRecaps]: {} });
+    const got = await chrome.storage.local.get({ [PREFS_KEY]: {}, [SK.feedItems]: [], [SK.feedBackground]: {}, [SK.feedRecaps]: {}, [SK.feedSettings]: {} });
     hidden = Array.isArray(got[PREFS_KEY].hidden) ? got[PREFS_KEY].hidden : [];
     if (got[PREFS_KEY].dock) dockPrefs.dock = got[PREFS_KEY].dock;
     userOrder = Array.isArray(got[PREFS_KEY].order) ? got[PREFS_KEY].order.filter((w) => WIDGETS.includes(w)) : [];
+    dayLineOn = got[PREFS_KEY].dayLine !== false;
+    recapNoteWanted = (got[SK.feedSettings] || {}).recapNote === true;
     userSizes = got[PREFS_KEY].sizes && typeof got[PREFS_KEY].sizes === 'object' ? { ...got[PREFS_KEY].sizes } : {};
     data.recaps = got[SK.feedRecaps] || {};
     data.feed = mergeFeed(got[SK.feedItems], (got[SK.feedBackground] || {}).items);
@@ -457,6 +504,7 @@ async function loadData() {
       data.quizzes = keys.length ? Object.values(await chrome.storage.local.get(keys)) : [];
     } catch (_) { data.quizzes = []; }
   } catch (_) { /* empty cards explain themselves */ }
+  paintDayLine();   // a recap written meanwhile may carry today's note
 }
 
 // Opening the home page also refreshes the feeds that are due (the worker keeps each feed's own schedule and the user's

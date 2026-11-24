@@ -8089,5 +8089,23 @@
   },
   "f_animations_8a8a": {
     "message": "アニメーション"
+  },
+  "f_daily_line_2bd8": {
+    "message": "今日のひとこと"
+  },
+  "f_daily_quote_with_the_rss_rec_d653": {
+    "message": "RSSまとめに今日の言葉を添える（AI）"
+  },
+  "f_from_you_67e6": {
+    "message": "あなたの言葉"
+  },
+  "f_new_line_8ec9": {
+    "message": "別のひとこと"
+  },
+  "f_the_ai_adds_a_thought_or_a_h_4e25": {
+    "message": "AIがまとめを書くときに、今日にちなんだ考えや歴史上の出来事を一文添えます。"
+  },
+  "f_written_with_your_recap_ai_1ae1": {
+    "message": "まとめと一緒に書かれました（AI）"
   }
 }

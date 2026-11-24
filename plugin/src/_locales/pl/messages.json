@@ -8372,5 +8372,23 @@
   },
   "f_animations_8a8a": {
     "message": "Animacje"
+  },
+  "f_daily_line_2bd8": {
+    "message": "Zdanie dnia"
+  },
+  "f_daily_quote_with_the_rss_rec_d653": {
+    "message": "Cytat dnia z podsumowaniem RSS (AI)"
+  },
+  "f_from_you_67e6": {
+    "message": "Od ciebie"
+  },
+  "f_new_line_8ec9": {
+    "message": "Nowe zdanie"
+  },
+  "f_the_ai_adds_a_thought_or_a_h_4e25": {
+    "message": "AI dodaje do podsumowania myśl lub fakt historyczny na dziś."
+  },
+  "f_written_with_your_recap_ai_1ae1": {
+    "message": "Napisane z twoim podsumowaniem (AI)"
   }
 }

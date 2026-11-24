@@ -8071,5 +8071,23 @@
   },
   "f_animations_8a8a": {
     "message": "애니메이션"
+  },
+  "f_daily_line_2bd8": {
+    "message": "오늘의 한 줄"
+  },
+  "f_daily_quote_with_the_rss_rec_d653": {
+    "message": "RSS 요약과 함께 오늘의 한마디 (AI)"
+  },
+  "f_from_you_67e6": {
+    "message": "내가 남긴 글"
+  },
+  "f_new_line_8ec9": {
+    "message": "다른 문장"
+  },
+  "f_the_ai_adds_a_thought_or_a_h_4e25": {
+    "message": "AI가 요약을 쓸 때 오늘과 관련된 생각이나 역사적 사실을 한 줄 덧붙입니다."
+  },
+  "f_written_with_your_recap_ai_1ae1": {
+    "message": "요약과 함께 작성됨 (AI)"
   }
 }

@@ -8089,5 +8089,23 @@
   },
   "f_animations_8a8a": {
     "message": "動畫"
+  },
+  "f_daily_line_2bd8": {
+    "message": "每日一句"
+  },
+  "f_daily_quote_with_the_rss_rec_d653": {
+    "message": "隨 RSS 摘要產生每日一句（AI）"
+  },
+  "f_from_you_67e6": {
+    "message": "來自你"
+  },
+  "f_new_line_8ec9": {
+    "message": "換一句"
+  },
+  "f_the_ai_adds_a_thought_or_a_h_4e25": {
+    "message": "AI 在撰寫摘要時，會加上一句與今天相關的想法或歷史事實。"
+  },
+  "f_written_with_your_recap_ai_1ae1": {
+    "message": "與摘要一同產生（AI）"
   }
 }

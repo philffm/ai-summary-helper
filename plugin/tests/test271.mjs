@@ -84,7 +84,10 @@ assert(/Fresh from worker/.test(w.document.getElementById('hmGrid').textContent)
 assert(w.document.getElementById('hmStatus').hidden && !w.document.querySelector('.hm-updating'), 'the "Updating feeds…" line (inside the feeds card) is gone when the refresh is done');
 const d = w.document;
 // the entrance survives the renders that come right after the first one: the cards carry their delay (a negative one when it is already going)
-assert([...d.querySelectorAll('.hm-card[data-card]')].some((c) => c.classList.contains('hm-enter') && /ms$/.test(c.style.getPropertyValue('--hm-delay'))), 'cards are still coming in');
+{
+  const js = fs.readFileSync(new URL('../src/home.js', import.meta.url), 'utf8');   // the timing is too short to assert on a page that took a while to load: the logic is
+  assert(/ENTER_BASE \+ i \* ENTER_STEP - \(now - enterAt\)/.test(js) && /--hm-delay/.test(js), 'a render during the entrance continues it (a negative delay)');
+}
 // every card but the glance card has a handle next to its heading
 assert(d.querySelectorAll('.hm-card h2 .hm-grip').length >= 6 && d.querySelector('[data-card="briefing"] .hm-grip'), 'a drag handle next to every heading, the glance card too');
 // the update button next to "Latest" pulls every feed now (force), whatever its schedule; so does the briefing's update button
@@ -107,7 +110,7 @@ assert(/Quote from the user highlights/.test(d.getElementById('hmGrid').textCont
 assert(/Half read/.test([...d.querySelectorAll('.hm-card')].find((c) => /Continue reading/.test(c.textContent)).textContent), 'continue reading lists the started article');
 assert(/Feed news/.test(d.getElementById('hmGrid').textContent), 'feed item shown');
 assert([...d.querySelectorAll('.hm-link')].some((a) => a.href.includes('readerPage.html#id=')), 'saved articles open in the reading view');
-const box = d.querySelectorAll('#hmCustom input')[1]; box.checked = false; box.dispatchEvent(new w.Event('change', { bubbles: true })); await tick(50);
+const box = d.querySelectorAll('#hmCustom .hm-adjust-row input')[1]; box.checked = false; box.dispatchEvent(new w.Event('change', { bubbles: true })); await tick(50);
 assert.equal(d.querySelectorAll('.hm-card').length, 7, 'a card can be hidden');
 assert.deepEqual(store['home:prefs'].hidden, ['quote'], 'and the choice is remembered');
 assert(d.querySelector('#hmBox .hm-key'), 'the command that opens the search is shown inside the field');
@@ -212,7 +215,7 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
   assert(btn && btn.closest('.hm-appbar') && !d.querySelector('.hm-custom'), 'the adjust button is in the header, the old line is gone');
   assert(menu.hidden && btn.getAttribute('aria-expanded') === 'false', 'closed at first');
   btn.click(); await tick(30);
-  assert(!menu.hidden && btn.getAttribute('aria-expanded') === 'true' && menu.querySelectorAll('input[type=checkbox]').length === 8, 'it opens with one checkbox per card');
+  assert(!menu.hidden && btn.getAttribute('aria-expanded') === 'true' && menu.querySelectorAll('.hm-adjust-row input[type=checkbox]').length === 8, 'it opens with one checkbox per card');
   d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(30);
   assert(menu.hidden, 'Escape closes it');
 }
@@ -296,6 +299,23 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
 {
   const css = fs.readFileSync(new URL('../src/home.css', import.meta.url), 'utf8');
   assert(/body\.home \{ overflow: clip; min-height: 100dvh; \}/.test(css), 'the body fills the window');
+}
+// the daily line under the greeting: a quote with its source, New line steps on, and it can be switched off; the recap's AI note is a separate, off-by-default choice
+{
+  const line = d.getElementById('hmDayLine'); assert(line && !line.hidden && line.querySelector('.hm-dayline-text').textContent.length > 10, 'a line under the greeting');
+  assert(line.querySelector('.hm-dayline-by') && /[\u201C\u201E]/.test(line.querySelector('.hm-dayline-text').textContent), 'a quote with its source');
+  const first = line.querySelector('.hm-dayline-text').textContent; line.querySelector('.hm-dayline-again').click(); await tick(20);
+  assert.notEqual(d.getElementById('hmDayLine').querySelector('.hm-dayline-text').textContent, first, 'New line shows another one');
+  d.getElementById('hmAdjust').click(); await tick(30);
+  const [lineBox, aiBox] = d.querySelectorAll('.hm-adjust-extra input');
+  assert(lineBox.checked && !aiBox.checked && !(store['feeds:settings'] || {}).recapNote, 'the line is on, the AI note is off by default');
+  aiBox.checked = true; aiBox.dispatchEvent(new w.Event('change', { bubbles: true })); await tick(50);
+  assert.equal(store['feeds:settings'].recapNote, true, 'asking for it is saved with the feed settings');
+  aiBox.checked = false; aiBox.dispatchEvent(new w.Event('change', { bubbles: true })); await tick(50); assert.equal(store['feeds:settings'].recapNote, false);
+  lineBox.checked = false; lineBox.dispatchEvent(new w.Event('change', { bubbles: true })); await tick(50);
+  assert(d.getElementById('hmDayLine').hidden && store['home:prefs'].dayLine === false && aiBox.disabled, 'switched off: hidden, saved, and the AI choice is greyed out');
+  lineBox.checked = true; lineBox.dispatchEvent(new w.Event('change', { bubbles: true })); await tick(50); assert(!d.getElementById('hmDayLine').hidden);
+  d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(30);
 }
 // layout: a card's column placement for wide pages must come BEFORE the container queries that change it for narrower ones (a later rule wins over them:
 // the topics strip once kept "columns 3-4" on a medium page and broke the grid into uneven implicit columns)

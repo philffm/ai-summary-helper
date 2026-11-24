@@ -8529,5 +8529,23 @@
   },
   "f_animations_8a8a": {
     "message": "Animations"
+  },
+  "f_daily_line_2bd8": {
+    "message": "Daily line"
+  },
+  "f_daily_quote_with_the_rss_rec_d653": {
+    "message": "Daily quote with the RSS recap (AI)"
+  },
+  "f_from_you_67e6": {
+    "message": "From you"
+  },
+  "f_new_line_8ec9": {
+    "message": "New line"
+  },
+  "f_the_ai_adds_a_thought_or_a_h_4e25": {
+    "message": "The AI adds a thought or a historical fact for today when it writes the recap."
+  },
+  "f_written_with_your_recap_ai_1ae1": {
+    "message": "Written with your recap (AI)"
   }
 }

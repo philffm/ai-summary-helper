@@ -4,10 +4,22 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 :root[data-fontstyle='sans']:not([data-font='readable']) body.home { font-family: var(--font-ui); }   /* the easy-read font (Atkinson) still wins over both */
 .hm-wrap { max-width: 1480px; margin: 0 auto; padding: 16px 20px 40px; box-sizing: border-box; }
 .hm-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px) minmax(0, 1fr); align-items: center; gap: 16px; margin: 0 0 16px; }
-.hm-head .hm-title { justify-self: start; }
+.hm-head .hm-greet { justify-self: start; min-width: 0; }
 .hm-head .hm-appbar { justify-self: end; }
-@container hmwrap (max-width: 1000px) { .hm-head { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; } .hm-head .hm-title, .hm-head .hm-appbar { justify-self: center; } }   /* narrow: stacked, centred */
+@container hmwrap (max-width: 1000px) { .hm-head { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; } .hm-head .hm-greet, .hm-head .hm-appbar { justify-self: center; } }   /* narrow: stacked, centred */
 .hm-title { margin: 0; font-size: var(--fs-2xl); font-weight: 600; }
+/* the daily line: one quiet sentence under the greeting, italic, the source small and muted; "New line" shows on hover or focus */
+.hm-dayline { margin: 6px 0 0; max-width: 46ch; font-style: italic; font-size: var(--fs-md); line-height: 1.45; text-wrap: pretty; }
+.hm-dayline[hidden] { display: none; }
+.hm-dayline-by { margin-inline-start: 6px; font-style: normal; font-size: var(--fs-xs); color: var(--text-muted); white-space: nowrap; }
+.hm-dayline-ai { margin-inline-start: 6px; font-style: normal; font-size: var(--fs-xs); color: var(--text-muted); cursor: help; }
+.hm-dayline-again { margin-inline-start: 4px; padding: 0 4px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--text-muted); font: inherit; font-style: normal; font-size: var(--fs-xs); cursor: pointer; opacity: 0; transition: opacity var(--duration-fast) var(--easing-standard); }
+.hm-greet:hover .hm-dayline-again, .hm-greet:focus-within .hm-dayline-again, .hm-dayline-again:focus-visible { opacity: 1; }
+.hm-dayline-again:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+@media (hover: none) { .hm-dayline-again { opacity: .6; } }
+.hm-adjust-extra { display: grid; gap: 8px; padding-bottom: 10px; margin-bottom: 4px; border-bottom: 1px solid var(--outline); }
+.hm-adjust-hint { margin: 0; padding-inline-start: 26px; font-size: var(--fs-xs); color: var(--text-muted); }
+.hm-adjust-extra input:disabled + * { opacity: .5; }
 /* The search is the command list, inline: it opens under the field while you type or arrow through it, the cards step back. */
 .hm-box { position: relative; width: 100%; max-width: 560px; text-align: left; }
 .hm-box .cmdk-input { border: 1px solid var(--outline-strong); border-radius: var(--radius-md); background: var(--glass-input); padding: 14px 16px; font-size: var(--fs-base); }

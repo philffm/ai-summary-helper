@@ -8372,5 +8372,23 @@
   },
   "f_animations_8a8a": {
     "message": "Animationer"
+  },
+  "f_daily_line_2bd8": {
+    "message": "Dagens linje"
+  },
+  "f_daily_quote_with_the_rss_rec_d653": {
+    "message": "Dagens citat med RSS-resuméet (AI)"
+  },
+  "f_from_you_67e6": {
+    "message": "Fra dig"
+  },
+  "f_new_line_8ec9": {
+    "message": "Ny linje"
+  },
+  "f_the_ai_adds_a_thought_or_a_h_4e25": {
+    "message": "AI’en tilføjer en tanke eller et historisk faktum for i dag, når den skriver resuméet."
+  },
+  "f_written_with_your_recap_ai_1ae1": {
+    "message": "Skrevet med dit resumé (AI)"
   }
 }

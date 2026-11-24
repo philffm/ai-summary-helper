@@ -13,6 +13,7 @@ import { resolveLocale } from './i18n.js';
 import { conceptKey, conceptId, conceptList, topicLabel, hasLabel, lexiconLearn, lexiconBroader, lexiconMarkName, normalizeTopic, humanizeTag } from './topicConcepts.js';
 import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
 import { resolveCites, stripCites, maxRef } from './recapCites.js';
+import { SK } from './storageKeys.js';
 export const MAX_RECAP_ITEMS = 40;   // batch size for scoring requests
 let recapLimit = Infinity;            // items per recap request (user setting); 0 / Infinity = no limit
 export const getRecapLimit = () => recapLimit;
@@ -110,6 +111,15 @@ export async function uiLanguage() {
 }
 
 /** The user's saved style preferences for 'briefing' or 'recap' as a system-prompt suffix ('' when none). */
+/** "Daily quote with the RSS recap" (Home › Adjust): off unless the user turned it on. The recap then carries one more line, a thought or a historical fact for today. */
+async function recapNoteOn() {
+    try { return ((await chrome.storage.local.get(SK.feedSettings))[SK.feedSettings] || {}).recapNote === true; } catch (_) { return false; }
+}
+/** The extra line of the prompt: the only thing in the recap that may go beyond the items, and only when certain. */
+function noteLine(now = new Date()) {
+    const day = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+    return `Then one line: NOTE: one short sentence (at most 25 words) that is NOT about the items, the only line that may go beyond them. It is either a well-known historical event that happened on this calendar date (${day}) in an earlier year, with the year, or a short motivating thought for the day. Use a historical event only if you are certain it is true; otherwise write the thought. No quotes from named people.\n`;
+}
 async function feedStyle(scope) {
     try {
         const { feedPromptCfg } = await chrome.storage.sync.get('feedPromptCfg');
@@ -136,7 +146,7 @@ export function itemSig(i) {
  * The end of the prompt is what such a model keeps, so the task is repeated there in one line.
  */
 const AFTER = {
-    recap: (rate) => `\n\nNow write the recap exactly as instructed: ${rate ? 'the SCORES line, the LABELS line, ' : ''}2-3 sentences of overview about the news itself, up to 5 "- " lines, and the MOOD line. Do not describe the list and do not ask for a question.`,
+    recap: (rate, note = false) => `\n\nNow write the recap exactly as instructed: ${rate ? 'the SCORES line, the LABELS line, ' : ''}2-3 sentences of overview about the news itself, up to 5 "- " lines, ${note ? 'the NOTE line, ' : ''}and the MOOD line. Do not describe the list and do not ask for a question.`,
     scores: '\n\nNow give the scores exactly in the requested format, nothing else.',
     cats: '\n\nNow give the categories exactly in the requested format, nothing else.',
     topics: '\n\nNow reply with ONLY the tags, nothing else.',
@@ -428,6 +438,7 @@ export function parseRecap(text, n = 0) {
     const themes = [];
     let labels = null;
     let scores = null;
+    let note = '';
     // A model that answers with headings ("### Economy") has written a structured briefing: keep it whole so the
     // bullets stay under their heading instead of being pulled out into one flat, capped theme list.
     const structured = lines.some(l => /^#{1,6}\s+\S/.test(l));
@@ -436,6 +447,8 @@ export function parseRecap(text, n = 0) {
         if (lm) { labels = parseLabelLine(lm[1], n); continue; }
         const sm = l.match(/^SCORES\s*:\s*(.*)$/i);
         if (sm) { scores = parseScoreLine(sm[1], n); continue; }
+        const nm = l.match(/^NOTE\s*:\s*(.*)$/i);
+        if (nm) { note = nm[1].replace(/\s*\[\+?\d+\]/g, '').trim().slice(0, 240); continue; }
         const m = l.match(/^MOOD\s*:\s*(positive|mixed|negative|neutral)/i);
         if (m) {
             const v = m[1].toLowerCase();
@@ -444,7 +457,7 @@ export function parseRecap(text, n = 0) {
         else overview.push(l);
     }
     // Lines stay separate (the view renders markdown); the old single-line form is what a plain-text model gave anyway.
-    return { overview: overview.join(structured ? '\n' : ' '), themes: themes.slice(0, 5), mood, labels, scores };
+    return { overview: overview.join(structured ? '\n' : ' '), themes: themes.slice(0, 5), mood, labels, scores, ...(note ? { note } : {}) };
 }
 
 /**
@@ -469,6 +482,7 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText, 
     const lang = await languageName();
     const suffix = styleText !== undefined ? styleSuffix(styleText) : await feedStyle('briefing');
     const lr = await langRule();
+    const note = await recapNoteOn();
     const system = 'You write brief news-digest recaps from headlines and snippets. '
         + `Reply in the language ${lang}. Use ONLY the given items; do not invent facts. Format exactly:\n`
         + (rate
@@ -479,10 +493,11 @@ export async function generateRecap(list, subTitleFn, { rate = true, styleText, 
         + (rate ? 'Then' : 'First') + ', 2-3 sentences of overview.\n'
         + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the source.\n'
         + 'Right after each statement cite the numbered items it rests on in square brackets, like [3] or [3][5] (at most 3 per statement, only numbers from the list).\n'
+        + (note ? noteLine() : '')
         + 'Finally one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of the news).\n'
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const chunk = list.slice(0, recapLimit);
-    const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}${AFTER.recap(rate)}`, onStage, signal,
+    const text = await aiComplete(system, `Items:\n${itemsForPrompt(chunk, subTitleFn)}${AFTER.recap(rate, note)}`, onStage, signal,
         streamRatings(chunk.length, onProgress, rate && onRatings), { partial: true, service, feature: 'recap' });
     const r = resolveCites(parseRecap(text, chunk.length), chunk);   // [k] → the item behind it, kept in r.refs
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
@@ -497,6 +512,7 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
     const lang = await languageName();
     const suffix = await feedStyle('briefing');
     const lr = await langRule();
+    const note = await recapNoteOn();
     const system = 'You maintain a brief news-digest recap. You get the CURRENT recap and a numbered list of NEW or EDITED items (edited ones are marked). '
         + `Update the recap so it covers the earlier points and the new items. Reply in the language ${lang}. Use ONLY the given text; do not invent facts. `
         + 'Keep still-relevant points, add new standout stories naming the source, and drop or correct anything an edited item contradicts. Format exactly:\n'
@@ -507,15 +523,16 @@ export async function generateRecapUpdate(prev, fresh, subTitleFn, { rate = true
         + (rate ? 'Then' : 'First') + ', 2-3 sentences of overview.\n'
         + 'Then up to 5 lines starting with "- ", each one theme or standout story, naming the source.\n'
         + 'Markers like [12] in the current recap cite earlier items: keep them exactly where their statement stays. Cite NEW/EDITED items as [+1], [+2] … (their numbers in the list), at most 3 per statement.\n'
+        + (note ? noteLine() : '')
         + 'Finally one line: MOOD: positive, MOOD: mixed or MOOD: negative (overall tone of ALL the news).\n'
         + 'No headings, no markdown other than the "- " lines.' + suffix + lr;
     const chunk = fresh.slice(0, recapLimit);
     const cur = [prev.overview, ...(prev.themes || []).map(t => '- ' + t), `Mood: ${{ pos: 'positive', neg: 'negative' }[prev.mood] || 'mixed'}`].filter(Boolean).join('\n');
-    const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}${AFTER.recap(rate)}`, onStage, signal,
+    const text = await aiComplete(system, `Current recap:\n${cur}\n\nNew or edited items:\n${itemsForPrompt(chunk, subTitleFn, i => edited(i) ? ' (edited)' : '')}${AFTER.recap(rate, note)}`, onStage, signal,
         streamRatings(chunk.length, onProgress, rate && onRatings), { partial: true, service, feature: 'recap' });
     const r = resolveCites(parseRecap(text, chunk.length), chunk, prev.refs || {});   // [+k] continues the old numbering
     if (!r.overview && !r.themes.length) throw new Error(T('The AI returned an empty recap'));
-    return { ...r, sent: chunk };
+    return { ...r, ...(r.note || prev.note ? { note: r.note || prev.note } : {}), sent: chunk };
 }
 
 export function parseScores(text, n) {

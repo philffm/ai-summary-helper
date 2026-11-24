@@ -8372,5 +8372,23 @@
   },
   "f_animations_8a8a": {
     "message": "Animasyonlar"
+  },
+  "f_daily_line_2bd8": {
+    "message": "Günün cümlesi"
+  },
+  "f_daily_quote_with_the_rss_rec_d653": {
+    "message": "RSS özetiyle günün alıntısı (YZ)"
+  },
+  "f_from_you_67e6": {
+    "message": "Senden"
+  },
+  "f_new_line_8ec9": {
+    "message": "Yeni cümle"
+  },
+  "f_the_ai_adds_a_thought_or_a_h_4e25": {
+    "message": "YZ, özeti yazarken bugün için bir düşünce ya da tarihî bir olgu ekler."
+  },
+  "f_written_with_your_recap_ai_1ae1": {
+    "message": "Özetinle birlikte yazıldı (YZ)"
   }
 }
