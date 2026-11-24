@@ -63,6 +63,11 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
 .hm-adjust-move:disabled { opacity: .3; cursor: default; }
 .hm-adjust-move:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 .hm-grab { cursor: grab; }
+.hm-card h2 { position: relative; }
+.hm-grip { position: absolute; inset-inline-start: -12px; top: 50%; translate: 0 -50%; fill: currentColor; opacity: 0; transition: opacity var(--duration-fast) var(--easing-standard); }   /* in the gutter left of the heading: no shift of the text */
+.hm-card:hover .hm-grip, .hm-card:focus-within .hm-grip { opacity: .5; }
+.hm-grab:hover .hm-grip { opacity: 1; }
+@media (hover: none) { .hm-grip { opacity: .4; } }
 .hm-card.hm-dragging { opacity: .55; }
 .hm-adjust-list label { display: flex; align-items: center; gap: 10px; font-size: var(--fs-sm); color: var(--text-primary); cursor: pointer; }
 .hm-adjust-list input { width: auto; margin: 0; padding: 0; }
@@ -131,7 +136,7 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
 
 /* ── Small movements. Everything reuses an animation that is already in styles.css (listIn, detailIn, chipPanelIn, spin, the skeleton
    lines); only the progress bar has a keyframe of its own. All of it stops when motion is reduced. ── */
-.hm-enter { animation: hmRise var(--duration-reveal) var(--easing-decelerate) backwards; animation-delay: calc(120ms + var(--i, 0) * 120ms); }   /* the cards come in one after the other, slowly: fade, a short rise, a breath of blur */
+.hm-enter { animation: hmRise var(--duration-reveal) var(--easing-decelerate) backwards; animation-delay: var(--hm-delay, 0ms); }   /* the cards come in one after the other, slowly: fade, a short rise, a breath of blur */
 @keyframes hmRise { from { opacity: 0; transform: translateY(14px) scale(.992); filter: blur(5px); } to { opacity: 1; transform: none; filter: blur(0); } }
 .lazy-in { animation: listIn var(--duration-fast) var(--easing-decelerate); }                                                       /* rows that scrolling loads fade in */
 .hm-pop { animation: detailIn var(--duration-base) var(--easing-decelerate); }                                                       /* a new highlight settles in */

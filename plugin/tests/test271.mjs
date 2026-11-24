@@ -83,6 +83,10 @@ assert.equal(polls, 1, 'opening the page asks the worker to refresh the feeds');
 assert(/Fresh from worker/.test(w.document.getElementById('hmGrid').textContent), 'what the refresh found shows without reloading');
 assert(w.document.getElementById('hmStatus').hidden && !w.document.querySelector('.hm-updating'), 'the "Updating feeds…" line (inside the feeds card) is gone when the refresh is done');
 const d = w.document;
+// the entrance survives the renders that come right after the first one: the cards carry their delay (a negative one when it is already going)
+assert([...d.querySelectorAll('.hm-card[data-card]')].some((c) => c.classList.contains('hm-enter') && /ms$/.test(c.style.getPropertyValue('--hm-delay'))), 'cards are still coming in');
+// every card but the glance card has a handle next to its heading
+assert(d.querySelectorAll('.hm-card h2 .hm-grip').length >= 5 && !d.querySelector('[data-card="briefing"] .hm-grip'), 'a drag handle next to the headings');
 // the update button next to "Latest" pulls every feed now (force), whatever its schedule; so does the briefing's update button
 const sent = []; const origSend = chrome.runtime.sendMessage; chrome.runtime.sendMessage = (m, cb) => { sent.push(m); return origSend(m, cb); };
 d.querySelector('.hm-latest .hm-refresh').click(); await tick(200);

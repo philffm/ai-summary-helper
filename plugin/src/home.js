@@ -217,7 +217,15 @@ const colCount = () => { const w = (document.querySelector('.hm-wrap') || {}).cl
 let lastCols = 0;
 window.addEventListener('resize', () => { if (lastCols && !document.getElementById('hmGrid').classList.contains('has-glance') && colCount() !== lastCols) render(); });
 
-const enter = (c, i) => { if (!entered) { c.classList.add('hm-enter'); c.style.setProperty('--i', String(i)); } };
+// The entrance: each card rises in its turn. A render that happens while it is still going (the quote, the refresh line: a few milliseconds after
+// the first one) rebuilds the cards, so they continue where the animation was (a negative delay) instead of showing up at once.
+let enterAt = 0; const ENTER_BASE = 120, ENTER_STEP = 120, ENTER_MS = 500;
+const enter = (c, i) => {
+  const now = performance.now(); if (!enterAt) enterAt = now;
+  const delay = ENTER_BASE + i * ENTER_STEP - (now - enterAt);
+  if (delay + ENTER_MS <= 0) return;   // the entrance is over
+  c.classList.add('hm-enter'); c.style.setProperty('--hm-delay', Math.round(delay) + 'ms');
+};
 let entered = false;   // the cards fly in once, on the first real render (later renders are updates: no replay)
 function render() {
   const grid = $('hmGrid'); grid.textContent = ''; grid.removeAttribute('aria-busy'); fillers.length = 0;
@@ -283,6 +291,10 @@ function dragWire(c, w) {
   if (w === 'briefing') return;
   const head = c.querySelector('.hm-card-head'); if (!head) return;
   head.classList.add('hm-grab');
+  const NS = 'http://www.w3.org/2000/svg', grip = document.createElementNS(NS, 'svg');   // the handle: six dots next to the heading, shown on hover
+  grip.setAttribute('class', 'hm-grip'); grip.setAttribute('viewBox', '0 0 8 14'); grip.setAttribute('width', '8'); grip.setAttribute('height', '14'); grip.setAttribute('aria-hidden', 'true'); grip.setAttribute('focusable', 'false');
+  [[2, 2], [6, 2], [2, 7], [6, 7], [2, 12], [6, 12]].forEach(([x, y]) => { const dot = document.createElementNS(NS, 'circle'); dot.setAttribute('cx', String(x)); dot.setAttribute('cy', String(y)); dot.setAttribute('r', '1.3'); grip.append(dot); });
+  const h2 = head.querySelector('h2'); if (h2) h2.prepend(grip);
   const off = () => { c.draggable = false; };
   head.addEventListener('mousedown', (e) => { if (e.button === 0 && !e.target.closest('a, button')) c.draggable = true; });
   head.addEventListener('mouseup', off);
