@@ -21,7 +21,7 @@ body.home { background: var(--bg-page); color: var(--text-primary); font-family:
 .hm-grid.is-dim { opacity: .35; }
 .hm-hint { font-size: var(--fs-xs); color: var(--text-muted); }
 .hm-wrap { container: hmwrap / inline-size; }
-body.home { overflow: clip; }   /* the light of the topics card ends at the edge of the window (not of the column: that cut it off in a vertical line) and must not make the page wider or taller */
+body.home { overflow: clip; min-height: 100dvh; }   /* the light of the topics card ends at the edge of the window (not of the column: that cut it off in a vertical line) and must not make the page wider or taller. The body is at least as tall as the window, so with short cards the light is not cut off at the foot of the content. */
 .hm-grid { display: grid; grid-template-columns: repeat(var(--hm-cols, 2), minmax(0, 1fr)); gap: 14px; align-items: start; }
 .hm-grid.has-glance { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: var(--hm-unit); grid-auto-flow: dense; align-items: stretch;
   --hm-unit: calc((max(28rem, 100dvh - 7rem) - 7 * 14px) / 8); }   /* eight rows fill the window (above the fold) with the default sizes; every card has a number of rows (--hm-rows) and columns (--hm-cols) and can be made taller or shorter */

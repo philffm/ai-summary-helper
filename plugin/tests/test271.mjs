@@ -292,6 +292,11 @@ assert(/#feeds\/recap\/1$/.test(d.querySelector('iframe.app-dock').src), 'it ope
   assert(!d.documentElement.hasAttribute('data-motion'), 'back on');
   d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await tick(30);
 }
+// the light is clipped at the window, not at the end of the (short) content
+{
+  const css = fs.readFileSync(new URL('../src/home.css', import.meta.url), 'utf8');
+  assert(/body\.home \{ overflow: clip; min-height: 100dvh; \}/.test(css), 'the body fills the window');
+}
 // layout: a card's column placement for wide pages must come BEFORE the container queries that change it for narrower ones (a later rule wins over them:
 // the topics strip once kept "columns 3-4" on a medium page and broke the grid into uneven implicit columns)
 {
