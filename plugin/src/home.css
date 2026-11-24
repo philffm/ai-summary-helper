@@ -71,6 +71,7 @@ body.home { overflow: clip; }   /* the light of the topics card ends at the edge
 .hm-wrap { padding-inline-end: 68px; }     /* room for the rail */
 .hm-quote { margin: 0 0 8px; padding: 0; font-size: var(--fs-md); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .hm-quote-src { display: block; margin-bottom: 10px; }
+.hm-quote-note { margin: 6px 0 0; font-size: var(--fs-sm); color: var(--text-muted); }
 
 .hm-brief-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin-bottom: 8px; }
 .hm-brief-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: var(--fs-sm); color: var(--text-muted); }

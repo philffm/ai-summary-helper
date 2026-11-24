@@ -24,6 +24,12 @@ assert.deepEqual([...kinds].sort(), ['highlight', 'note'], 'both kinds come up, 
 assert.equal((await hw.pickSnippet({ hlIndex: [], readPage, noteIndex: noteIdx, readNote })).text.slice(0, 6), 'My own', 'a note (not a comment) when there are no highlights');
 assert.equal((await hw.pickSnippet({ hlIndex: hlIdx, readPage, noteIndex: [{ id: 'x', kind: 'note' }], readNote: async () => ({ text: 'short' }) }, () => 0.9)).kind, 'highlight', 'the other kind when one has nothing usable');
 assert.equal(await hw.pickSnippet({ hlIndex: [], readPage, noteIndex: [], readNote }), null);
+// a comment on a highlight is not a note: alone it is a sentence without its passage (the card once showed only that)
+assert.equal(await hw.pickSnippet({ hlIndex: [], readPage, noteIndex: [{ id: 'c1', kind: 'comment' }], readNote }), null, 'only comments and no highlights: nothing to show');
+assert.equal((await hw.pickSnippet({ hlIndex: hlIdx, readPage, noteIndex: [{ id: 'c1', kind: 'comment' }], readNote }, () => 0.9)).kind, 'highlight', 'comments do not make the note side');
+// a note written with a quote brings the quote
+const withQ = await hw.pickNote([{ id: 'q1', kind: 'note' }], async () => ({ text: 'My thought on this passage, in my own words.', quote: 'The passage I selected on the page.', title: 'T', url: 'https://q.com/' }));
+assert.equal(withQ.quote, 'The passage I selected on the page.'); assert(/^My thought/.test(withQ.text));
 // topics and their bubbles
 const arts2 = [['AI', 'Energy'], ['AI'], ['AI', 'Energy'], ['Energy'], ['Solo'], ['AI', '🌐 de']].map((tags, i) => ({ id: 'z' + i, tags, timestamp: new Date().toISOString() }));
 const tt = hw.topTopics(arts2, { tagId: (t) => 'tag-' + t, tagLabel: (t) => t, isLanguage: (t) => t.startsWith('🌐') });

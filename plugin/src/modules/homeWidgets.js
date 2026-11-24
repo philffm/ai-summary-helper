@@ -93,17 +93,19 @@ export function dueQuizzes(recs, now = Date.now()) {
 }
 
 /**
- * A note of the user's own (kind "note", else a comment on a highlight), picked at random from the lean index; only that record is read.
- * → { text, title, url } or null
+ * A note of the user's own (kind "note"), picked at random from the lean index; only that record is read. A comment on a highlight is not
+ * one: on its own it is a sentence without the passage it belongs to (the card once showed only that), so the highlight side shows those.
+ * A note that was written with a quote brings the quote too.
+ * → { text, quote?, title, url } or null
  */
 export async function pickNote(noteIndex, readRec, rand = Math.random) {
-    const list = (Array.isArray(noteIndex) ? noteIndex : []).filter((e) => e && e.id);
-    const own = list.filter((e) => e.kind === 'note'), pool = own.length ? own : list;
+    const pool = (Array.isArray(noteIndex) ? noteIndex : []).filter((e) => e && e.id && e.kind === 'note');
     for (let i = 0; i < 3 && pool.length; i++) {
         const e = pool.splice(Math.floor(rand() * pool.length), 1)[0];
         let rec = null; try { rec = await readRec(e.id); } catch (_) { /* next */ }
         const text = String((rec && rec.text) || '').replace(/\s+/g, ' ').trim();
-        if (text.length >= 12) return { text: text.slice(0, 600), title: (rec && rec.title) || '', url: (rec && rec.url) || '' };
+        const quote = String((rec && rec.quote) || '').replace(/\s+/g, ' ').trim();
+        if (text.length >= 12) return { text: text.slice(0, 600), ...(quote ? { quote: quote.slice(0, 400) } : {}), title: (rec && rec.title) || '', url: (rec && rec.url) || '' };
     }
     return null;
 }
@@ -113,7 +115,7 @@ export async function pickNote(noteIndex, readRec, rand = Math.random) {
  * one when the first has nothing usable. → { kind: 'highlight' | 'note', text, url, title? } or null
  */
 export async function pickSnippet({ hlIndex, readPage, noteIndex, readNote }, rand = Math.random) {
-    const hasHl = (Array.isArray(hlIndex) ? hlIndex : []).some((p) => p && p.k && p.n > 0), hasNote = (Array.isArray(noteIndex) ? noteIndex : []).length > 0;
+    const hasHl = (Array.isArray(hlIndex) ? hlIndex : []).some((p) => p && p.k && p.n > 0), hasNote = (Array.isArray(noteIndex) ? noteIndex : []).some((e) => e && e.kind === 'note');
     const order = hasHl && hasNote ? (rand() < 0.5 ? ['highlight', 'note'] : ['note', 'highlight']) : hasHl ? ['highlight'] : hasNote ? ['note'] : [];
     for (const kind of order) {
         if (kind === 'highlight') { const q = await pickQuote(hlIndex, readPage, rand); if (q) return { kind, ...q }; }

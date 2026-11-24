@@ -151,13 +151,14 @@ const builders = {
   quote: (d) => {
     const body = el('div'), note = d.quote && d.quote.kind === 'note';
     if (d.quote) {
-      const q = el('blockquote', 'hm-quote', d.quote.text);
+      const withQuote = note && d.quote.quote;   // a note written with a quote: the passage first, the note under it
+      const q = el('blockquote', 'hm-quote', withQuote ? d.quote.quote : d.quote.text);
       const label = note ? (d.quote.title || hostOf(d.quote.url)) : (hostOf(d.quote.url) || d.quote.url);
       const a = d.quote.url ? el('a', 'hm-link-sub hm-quote-src', label || d.quote.url) : el('span', 'hm-link-sub hm-quote-src', label);
       if (d.quote.url) { a.href = d.quote.url; a.target = '_blank'; a.rel = 'noopener'; }
       if (d.quoteFresh) { q.classList.add('hm-pop'); d.quoteFresh = false; }
       const more = el('button', 'button-secondary btn-sm', T('Another')); more.type = 'button'; more.addEventListener('click', () => { data.quoteFresh = true; loadQuote(); });
-      body.append(q, a, el('div', 'hm-quote-more')); body.lastChild.append(more);
+      body.append(q); if (withQuote) body.append(el('p', 'hm-quote-note', d.quote.text)); body.append(a, el('div', 'hm-quote-more')); body.lastChild.append(more);
     } else body.append(el('p', 'hm-empty', T('Highlights you save show up here, one at a time.')));
     return card(note ? T('From your notes') : T('From your highlights'), body, 'notes');   // a highlight or a note, by chance
   },
