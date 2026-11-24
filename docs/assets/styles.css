@@ -1366,7 +1366,7 @@ body:has(.nav--pill){padding-top:88px}
 .vstack-item.is-playing:hover{ transform:none; }
 .vstack-share{ position:absolute; top:10px; right:10px; z-index:3; width:36px; height:36px; border-radius:50%; border:0; display:none; align-items:center; justify-content:center; cursor:pointer; color:var(--on-accent); background:color-mix(in srgb, var(--media-ink) 62%, transparent); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
 .vstack-share:hover{ background:var(--accent-fill); }
-.vstack-share:focus-visible{ outline:var(--focus-ring-width) solid var(--focus-ring); outline-offset:var(--focus-ring-offset); }
+.vstack-share:focus-visible{ outline:3px solid var(--highlight-text); outline-offset:3px; }
 .vstack-item:hover .vstack-share, .vstack-item:focus-within .vstack-share, .vstack-item.is-playing .vstack-share{ display:inline-flex; }
 .vstack.is-fan .vstack-item:not([data-pos="0"]) .vstack-share{ display:none; }
 .vstack.is-fan .vstack-item[data-pos="0"] .vstack-share{ display:inline-flex; }
