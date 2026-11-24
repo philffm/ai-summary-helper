@@ -1452,53 +1452,40 @@ function setBilling(period) {
     });
   });
 
-  /* Hero "Watch the video": a small player over the page, right where the visitor is (no jump to the coverflow, no swiping on to other clips).
-     One clip, native controls, Share and the install button; Esc, the cross or a tap beside it closes it and the page stays where it was. */
-  var modal = null, modalReturn = null;
-  function closeModal() {
-    if (!modal) return;
-    var v = modal.querySelector('video'); if (v) v.pause();
-    modal.remove(); modal = null;
-    document.documentElement.classList.remove('vmodal-open');
-    document.removeEventListener('keydown', modalKey, true);
-    if (modalReturn && modalReturn.focus) modalReturn.focus({ preventScroll: true });
+  /* Hero "Watch the video": the clip plays in the hero itself, in the place of the demo window (no jump to the coverflow, no overlay to close
+     first). One clip with its native controls, Share and a cross that brings the demo back; Esc does the same. */
+  var heroPlayer = null, heroReturn = null;
+  function closeHero() {
+    if (!heroPlayer) return;
+    var v = heroPlayer.querySelector('video'); if (v) v.pause();
+    var wrap = heroPlayer.parentNode; heroPlayer.remove(); heroPlayer = null;
+    if (wrap) wrap.classList.remove('is-playing');
+    document.removeEventListener('keydown', heroKey, true);
+    if (heroReturn && heroReturn.focus) heroReturn.focus({ preventScroll: true });
   }
-  function modalKey(e) {
-    if (e.key === 'Escape') { e.preventDefault(); closeModal(); return; }
-    if (e.key !== 'Tab' || !modal) return;
-    var f = modal.querySelectorAll('button, a[href], video[controls]');   // keep the focus inside while it is open
-    if (!f.length) return;
-    var first = f[0], last = f[f.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  }
-  function openModal(fig) {
-    if (modal) closeModal();
-    stopInline();
+  function heroKey(e) { if (e.key === 'Escape' && heroPlayer) { e.preventDefault(); closeHero(); } }
+  function openHero(fig) {
+    var wrap = document.querySelector('.hs-vwrap'); if (!wrap) return false;
+    closeHero(); stopInline();
     var id = fig.getAttribute('data-blog-video'), src = fig.querySelector('video source'), vid = fig.querySelector('video');
     var tmp = document.createElement('div'); tmp.innerHTML = captionHtml(fig);
-    var title = (tmp.querySelector('strong') || tmp).textContent.trim();
-    modalReturn = document.activeElement;
-    modal = document.createElement('div'); modal.className = 'vmodal'; modal.setAttribute('role', 'dialog'); modal.setAttribute('aria-modal', 'true'); modal.setAttribute('aria-label', title);
-    var box = document.createElement('div'); box.className = 'vmodal-box';
+    heroReturn = document.activeElement;
+    heroPlayer = document.createElement('div'); heroPlayer.className = 'hs-player'; heroPlayer.setAttribute('role', 'region');
+    heroPlayer.setAttribute('aria-label', (tmp.querySelector('strong') || tmp).textContent.trim());
     var v = document.createElement('video'); v.controls = true; v.playsInline = true; v.preload = 'auto';
     if (vid && vid.poster) v.poster = vid.poster;
     v.src = src ? src.src : '';
-    var x = document.createElement('button'); x.type = 'button'; x.className = 'vmodal-close'; x.textContent = '\u00D7'; x.setAttribute('aria-label', labels.close || 'Close'); x.addEventListener('click', closeModal);
-    box.appendChild(v);
-    var row = document.createElement('div'); row.className = 'vmodal-actions';
-    var sh = document.createElement('button'); sh.type = 'button'; sh.className = 'vmodal-share'; sh.textContent = labels.share || 'Share'; sh.addEventListener('click', function () { share(fig); });
-    var ins = document.createElement('a'); ins.className = 'vmodal-install'; ins.href = campaignUrl(install.href, id); ins.textContent = install.text;
-    if (/^https?:/.test(ins.href) && ins.href.indexOf(location.origin) !== 0) { ins.target = '_blank'; ins.rel = 'noopener'; }
-    row.appendChild(sh); row.appendChild(ins);
-    modal.appendChild(x); modal.appendChild(box); modal.appendChild(row);
-    modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
-    document.body.appendChild(modal);
-    document.documentElement.classList.add('vmodal-open');
-    document.addEventListener('keydown', modalKey, true);
+    var x = document.createElement('button'); x.type = 'button'; x.className = 'hs-player-close'; x.textContent = '\u00D7'; x.setAttribute('aria-label', labels.close || 'Close'); x.addEventListener('click', closeHero);
+    var sh = document.createElement('button'); sh.type = 'button'; sh.className = 'hs-player-share'; sh.textContent = labels.share || 'Share'; sh.addEventListener('click', function () { share(fig); });
+    heroPlayer.appendChild(v); heroPlayer.appendChild(x); heroPlayer.appendChild(sh);
+    wrap.classList.add('is-playing'); wrap.appendChild(heroPlayer);
+    document.addEventListener('keydown', heroKey, true);
+    var r = wrap.getBoundingClientRect();   // bring the hero player fully into view when the page is scrolled past it
+    if (r.top < 0 || r.bottom > window.innerHeight) wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
     T('Video', 'open_hero', id);
     v.play().catch(function () { v.muted = true; v.play().catch(function () {}); });
-    x.focus();
+    x.focus({ preventScroll: true });
+    return true;
   }
   Array.prototype.forEach.call(document.querySelectorAll('[data-open-video]'), function (btn) {
     btn.addEventListener('click', function (e) {
@@ -1506,7 +1493,7 @@ function setBilling(period) {
       for (var g = 0; g < groups.length; g++) {
         var figs = Array.prototype.slice.call(groups[g].querySelectorAll('figure[data-blog-video]'));
         for (var k = 0; k < figs.length; k++) {
-          if (figs[k].getAttribute('data-blog-video') === name) { e.preventDefault(); openModal(figs[k]); return; }
+          if (figs[k].getAttribute('data-blog-video') === name) { if (openHero(figs[k])) e.preventDefault(); return; }
         }
       }                                                         // no such clip on this page: the link's own jump to #videos stands
     });
