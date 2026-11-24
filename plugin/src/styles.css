@@ -5687,9 +5687,11 @@ body.is-resizing, body.is-resizing *, body.is-resizing *::before, body.is-resizi
 .card-menu-tag { margin-left: auto; padding: 1px 8px; border-radius: 999px; font-size: var(--fs-xs); font-weight: 600; background: var(--accent-a15); color: var(--accent); }
 .card-menu-item.is-active { background: var(--accent-a15); }
 .detail-toolbar > .detail-split { flex: 2.2 1 0; }
-.detail-toolbar > .detail-split > .detail-split-more { flex: 0 0 44px; font-size: inherit; }
-.detail-toolbar > .detail-split > .detail-split-more .icon { width: 18px; height: 18px; }
-.detail-toolbar:not(.with-labels) > .detail-split { flex: 1.6 1 0; }
+/* the main action is the larger part (a label from the container width up, else its icon with room around it); the dropdown is the small one */
+.detail-toolbar > .detail-split > .detail-split-main { min-width: 56px; padding: 0 14px; }
+.detail-toolbar > .detail-split > .detail-split-more { flex: 0 0 32px; font-size: inherit; }
+.detail-toolbar > .detail-split > .detail-split-more .icon { width: 16px; height: 16px; }
+.detail-toolbar:not(.with-labels) > .detail-split { flex: 2.2 1 0; }
 .detail-split-more .icon { transition: transform var(--duration-fast) var(--easing-standard); }
 .detail-split-more[aria-expanded="true"] .icon { transform: rotate(180deg); }
 html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
