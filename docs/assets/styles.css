@@ -772,6 +772,7 @@ footer .copyright{ font-size:var(--fs-sm); color:var(--text-muted); margin-top:1
 .an-notice{ position:fixed; left:16px; bottom:calc(84px + env(safe-area-inset-bottom, 0px)); z-index:90; max-width:420px; display:flex; flex-direction:column; gap:10px;
   background:var(--bg-raised); color:var(--text); border:1px solid var(--border-medium);
   border-radius:var(--radius-lg); padding:14px 16px; box-shadow:0 8px 30px color-mix(in srgb, var(--shadow-ink) 30%, transparent); font-size:var(--fs-sm-plus); line-height:1.5; }
+@media (min-width:1180px){ .an-notice{ bottom:calc(14px + env(safe-area-inset-bottom, 0px)); max-width:360px; } }
 .an-notice p{ margin:0; }
 .an-notice a, .an-dialog a{ color:inherit; text-decoration:underline; }
 .an-actions{ display:flex; gap:8px; flex-wrap:wrap; }
@@ -1071,7 +1072,8 @@ footer .copyright a:hover, .foot-links a:hover{ text-decoration-color:currentCol
 .hs-cursor{ position:absolute; left:0; top:0; z-index:30; width:28px; height:28px; pointer-events:none; filter:drop-shadow(0 3px 5px color-mix(in srgb, var(--shadow-ink) 35%, transparent)); will-change:transform; }
 .hs-ripple{ position:absolute; left:0; top:0; z-index:29; width:44px; height:44px; margin:-22px 0 0 -22px; border-radius:50%; background:var(--mock-ripple); border:2px solid var(--mock-ripple-edge); pointer-events:none; opacity:0; }
 .hscene-canvas{ transition:none; }
-.hs-ctrl{ display:flex; align-items:center; justify-content:center; gap:10px; margin-top:14px; margin-bottom:60px; }
+.hs-ctrl{ display:flex; align-items:center; justify-content:center; gap:10px; margin-top:14px; }
+@media (min-width:861px){ .hs-ctrl{ justify-content:flex-end; padding-inline-end:clamp(8px,2vw,32px); } }   /* beside the bottom bar, not behind it */
 .hs-pp, .hs-dot{ border:0; cursor:pointer; }
 .hs-pp{ width:30px; height:30px; border-radius:50%; display:grid; place-items:center; background:var(--surface-1-strong); color:var(--text); border:1px solid var(--border-medium); }
 .hs-pp .pp-play{ display:none; } .hs-pp.is-paused .pp-play{ display:block; } .hs-pp.is-paused .pp-pause{ display:none; }
