@@ -1367,7 +1367,7 @@ function setBilling(period) {
   function clipUrl(id) { return location.origin + location.pathname + '#v=' + encodeURIComponent(id); }
   function setHash(id) { try { history.replaceState(null, '', id ? '#v=' + encodeURIComponent(id) : location.pathname + location.search); } catch (e) {} }
   function flash(text) {
-    if (!toast) { toast = document.createElement('div'); toast.className = 'vfeed-toast'; toast.setAttribute('role', 'status'); feed.appendChild(toast); }
+    if (!toast) { toast = document.createElement('div'); toast.className = 'vfeed-toast'; toast.setAttribute('role', 'status'); (feed || document.body).appendChild(toast); }
     toast.textContent = text; toast.classList.remove('on'); void toast.offsetWidth; toast.classList.add('on');
   }
   function share(fig) {
@@ -1412,6 +1412,7 @@ function setBilling(period) {
     stopInline(fig);
     if (v.preload === 'none') v.preload = 'auto';
     v.muted = false; v.controls = true; fig.classList.add('is-playing');
+    setHash(fig.getAttribute('data-blog-video'));
     v.play().catch(function () { v.muted = true; v.play().catch(function () {}); });   // a browser that refuses sound still plays it
     if (!v.dataset.inlineWired) {
       v.dataset.inlineWired = '1';
@@ -1422,6 +1423,13 @@ function setBilling(period) {
     var figs = Array.prototype.slice.call(group.querySelectorAll('figure[data-blog-video]'));
     var fan = group.hasAttribute('data-vstack') ? focusFan(group, figs) : null;
     fans.push({ group: group, figs: figs, fan: fan });
+    if (group.hasAttribute('data-vstack')) figs.forEach(function (fig) {   // a share button on the clip: its link is this page with #v=<clip>
+      var sb = document.createElement('button'); sb.type = 'button'; sb.className = 'vstack-share';
+      sb.setAttribute('aria-label', labels.share || 'Share'); sb.title = labels.share || 'Share';
+      sb.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      sb.addEventListener('click', function (e) { e.stopPropagation(); share(fig); });
+      fig.appendChild(sb);
+    });
     figs.forEach(function (fig, i) {
       var v = fig.querySelector('video');
       var hoverEl = fig.closest('.feature-card') || fig;   // a feature card previews its clip while the pointer is anywhere on it
@@ -1491,7 +1499,7 @@ function setBilling(period) {
     var dotsEl = nav && nav.querySelector('.vstack-dots');
     var n = figs.length, active = 0, isOn = false, swiped = false, x0 = null;
     if (!capEl || !nav || !dotsEl || n < 3) return null;   // older translated pages without the fan markup keep the plain stack
-    var mq = window.matchMedia('(min-width: 761px)');
+    var mq = { matches: true, addEventListener: function () {} };   // the coverflow works at every width (phones swipe it)
     figs.forEach(function (f, i) {
       var d = document.createElement('button');
       d.type = 'button'; d.className = 'vstack-dot'; d.tabIndex = -1;
@@ -1712,7 +1720,10 @@ function setBilling(period) {
     var i = figs.map(function (f) { return f.getAttribute('data-blog-video'); }).indexOf(m[1]);
     if (i < 0) return false;
     T('Video', 'open_shared', m[1]);
-    open(figs, i);
+    var gi = groups.indexOf(group), f1 = fans[gi] && fans[gi].fan;
+    if (f1 && f1.on()) f1.set(i);
+    group.scrollIntoView({ block: 'center' });
+    setTimeout(function () { playInline(figs[i]); }, 300);   // no tap yet: a browser that blocks sound plays it muted
     return true;
   });
 })();

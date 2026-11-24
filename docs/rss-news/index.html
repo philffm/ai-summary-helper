@@ -265,6 +265,7 @@
         });
         if (blurb) blurb.textContent = text(name) || blurb.textContent;
         if (count) { count.hidden = name === 'all'; count.textContent = shown + ' / ' + cards.length; }
+        if (!fromUser && !/^#for=/.test(location.hash) && location.hash) return;   // a link to a clip (#v=...) keeps its hash for the player
         try {
           history.replaceState(null, '', name === 'all' ? location.pathname + location.search : location.pathname + location.search + '#for=' + name);
         } catch (e) {}

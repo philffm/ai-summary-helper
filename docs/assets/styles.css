@@ -1364,6 +1364,16 @@ body:has(.nav--pill){padding-top:88px}
 .vstack-item.is-playing .vstack-play, .fvideo.is-playing .fvideo-play, figure.is-playing .vstack-play{ display:none; }
 .vstack-item.is-playing figcaption{ opacity:0; pointer-events:none; }
 .vstack-item.is-playing:hover{ transform:none; }
+.vstack-share{ position:absolute; top:10px; right:10px; z-index:3; width:36px; height:36px; border-radius:50%; border:0; display:none; align-items:center; justify-content:center; cursor:pointer; color:var(--on-accent); background:color-mix(in srgb, var(--media-ink) 62%, transparent); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
+.vstack-share:hover{ background:var(--accent-fill); }
+.vstack-share:focus-visible{ outline:var(--focus-ring-width) solid var(--focus-ring); outline-offset:var(--focus-ring-offset); }
+.vstack-item:hover .vstack-share, .vstack-item:focus-within .vstack-share, .vstack-item.is-playing .vstack-share{ display:inline-flex; }
+.vstack.is-fan .vstack-item:not([data-pos="0"]) .vstack-share{ display:none; }
+.vstack.is-fan .vstack-item[data-pos="0"] .vstack-share{ display:inline-flex; }
+.vstack-item.is-playing .vstack-share{ top:auto; bottom:56px; right:10px; }
+/* a playing clip grows: in the coverflow it scales up in front of its neighbours, in the scroll row it widens */
+.vstack.is-fan .vstack-item[data-pos="0"].is-playing, .vstack.is-fan .vstack-item[data-pos="0"].is-playing:hover{ transform:scale(1.3); z-index:12; }
+@media (max-width:760px){ .vstack.is-fan .vstack-item[data-pos="0"].is-playing{ transform:scale(1.22); } }
 .vstack-item figcaption{ position:absolute; left:0; right:0; bottom:0; padding:28px 12px 12px; border-radius:0 0 var(--radius-2xl) var(--radius-2xl); background:linear-gradient(transparent, color-mix(in srgb, var(--media-ink) 88%, transparent)); color:var(--on-media-strong); pointer-events:none; text-align:left; opacity:0; transition:opacity var(--duration-base); }
 /* the cards overlap, so only one title shows: the front card's, or the one under the pointer / in focus */
 .vstack-item:first-child figcaption, .vstack-item:hover figcaption, .vstack-item:focus-within figcaption{ opacity:1; }
@@ -1377,15 +1387,16 @@ body:has(.nav--pill){padding-top:88px}
 }
 
 /* ── Watch: focus fan (desktop, set by main.js as .is-fan): one clip in front, neighbours step back; its caption sits below ── */
-.vstack.is-fan{ position:relative; display:block; height:430px; max-width:1200px; margin:0 auto; padding:0; }
-.vstack.is-fan .vstack-item{ position:absolute; left:50%; bottom:24px; width:260px; margin:0 0 0 -130px; flex:none; transform-origin:50% 100%; transition:transform var(--duration-slower) var(--easing-emphasized), opacity var(--duration-screen) var(--easing-standard); }
+.vstack.is-fan{ --cw:260px; position:relative; display:block; height:calc(var(--cw) * 1.444 + 56px); max-width:1200px; margin:0 auto; padding:0; overflow-x:clip; touch-action:pan-y; margin-top:calc(var(--cw) * .34); scroll-margin-bottom:96px; }
+@media (max-width:760px){ .vstack.is-fan{ --cw:min(58vw, 230px); margin-inline:0; } .vstack.is-fan .vstack-item[data-pos="3"], .vstack.is-fan .vstack-item[data-pos="-3"]{ opacity:0; pointer-events:none; } }
+.vstack.is-fan .vstack-item{ position:absolute; left:50%; bottom:24px; width:var(--cw); margin:0 0 0 calc(var(--cw) / -2); flex:none; transform-origin:50% 100%; transition:transform var(--duration-slower) var(--easing-emphasized), opacity var(--duration-screen) var(--easing-standard); }
 .vstack.is-fan .vstack-item[data-pos="0"]{ transform:none; z-index:10; }
-.vstack.is-fan .vstack-item[data-pos="-1"]{ transform:translateX(-210px) scale(.77) rotate(-4deg); opacity:.92; z-index:9; }
-.vstack.is-fan .vstack-item[data-pos="1"]{ transform:translateX(210px) scale(.77) rotate(4deg); opacity:.92; z-index:9; }
-.vstack.is-fan .vstack-item[data-pos="-2"]{ transform:translateX(-375px) scale(.65) rotate(-8deg); opacity:.75; z-index:8; }
-.vstack.is-fan .vstack-item[data-pos="2"]{ transform:translateX(375px) scale(.65) rotate(8deg); opacity:.75; z-index:8; }
-.vstack.is-fan .vstack-item[data-pos="-3"]{ transform:translateX(-505px) scale(.58) rotate(-12deg); opacity:.55; z-index:7; }
-.vstack.is-fan .vstack-item[data-pos="3"]{ transform:translateX(505px) scale(.58) rotate(12deg); opacity:.55; z-index:7; }
+.vstack.is-fan .vstack-item[data-pos="-1"]{ transform:translateX(calc(var(--cw) * -0.808)) scale(.77) rotate(-4deg); opacity:.92; z-index:9; }
+.vstack.is-fan .vstack-item[data-pos="1"]{ transform:translateX(calc(var(--cw) * 0.808)) scale(.77) rotate(4deg); opacity:.92; z-index:9; }
+.vstack.is-fan .vstack-item[data-pos="-2"]{ transform:translateX(calc(var(--cw) * -1.442)) scale(.65) rotate(-8deg); opacity:.75; z-index:8; }
+.vstack.is-fan .vstack-item[data-pos="2"]{ transform:translateX(calc(var(--cw) * 1.442)) scale(.65) rotate(8deg); opacity:.75; z-index:8; }
+.vstack.is-fan .vstack-item[data-pos="-3"]{ transform:translateX(calc(var(--cw) * -1.942)) scale(.58) rotate(-12deg); opacity:.55; z-index:7; }
+.vstack.is-fan .vstack-item[data-pos="3"]{ transform:translateX(calc(var(--cw) * 1.942)) scale(.58) rotate(12deg); opacity:.55; z-index:7; }
 .vstack.is-fan .vstack-item[data-pos="far"]{ transform:scale(.5); opacity:0; pointer-events:none; z-index:1; }
 .vstack.is-fan .vstack-item[data-pos="0"]:hover{ transform:translateY(-8px); }
 .vstack.is-fan .vstack-item:not([data-pos="0"]):hover{ opacity:1; }
