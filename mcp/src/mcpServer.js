@@ -35,7 +35,8 @@ export function createMcpServer(relay) {
 
     server.setRequestHandler(CallToolRequestSchema, async (req) => {
         const { name, arguments: args } = req.params;
-        if (name === 'get_brand' && brandGuide()) return toolResult({ guide: brandGuide() });   // from the cache, works while the browser is closed
+        if (name === 'get_brand' && !relay.isExtensionConnected() && brandGuide()) return toolResult({ guide: brandGuide() });   // the browser is closed: the guide from the last hello (the colours the user had then)
+        // browser open: the extension answers, with the colour scheme the user has set right now
         if (!relay.isExtensionConnected()) return errorResult(NOT_RUNNING);
         try {
             const data = await relay.call(name, args || {});

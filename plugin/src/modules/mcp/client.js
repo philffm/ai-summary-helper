@@ -35,12 +35,17 @@ export function toolDefinitions() {
         list_feed_items: def('List items from the user\'s subscribed feeds.', { unread: { type: 'boolean' }, since: str, topic: str, limit: num }),
         save_url: def('Save a URL into the user\'s AISH inbox, with an optional note and reminder.', { url: str, note: str, remind_at: str, tags: strArr }, ['url'], false),
         library_stats: def('Statistics about the user\'s reading (counts only, no article text): saves per month/weekday/hour, busiest day, longest streak, top tags, sites, languages, models, mood over time, highlight counts, most-highlighted articles, reopened vs never reopened. Use `year` (e.g. 2026) for a year in review / "Wrapped". Call get_article on the articles it names before quoting them.', { year: num, since: str, until: str }),
-        get_brand: { description: 'Get the brand guide (colours, type, shapes, tone, CSS starter) for styling anything made from the user\'s AISH library. Call it before building an artifact, page, deck, doc or chart from library content, unless the user asks for another style.', inputSchema: { type: 'object', properties: {}, required: [] } },
+        get_brand: { description: 'Get the brand guide (colours, type, shapes, tone, CSS starter) for styling anything made from the user\'s AISH library. It returns the colour scheme the user has chosen (`current`, `css`) and every other scheme (`schemes`): build the report in the current colours, and when it is finished offer the user the other colour schemes so they can switch. Call it before building an artifact, page, deck, doc or chart from library content, unless the user asks for another style.', inputSchema: { type: 'object', properties: {}, required: [] } },
     };
 }
 
 export function toolList() { return Object.keys(TOOLS); }
 
+/** The display settings the user has chosen (colour scheme, brightness): AI apps build reports in them. */
+async function readAppearance() {
+    const keys = ['theme', 'colorScheme', 'design'];
+    try { return { ...(await chrome.storage.local.get(keys)), ...(await chrome.storage.sync.get(keys)) }; } catch (_) { return {}; }
+}
 function nowIso() { return new Date().toISOString(); }
 
 /**
@@ -85,6 +90,7 @@ export function createMcpClient(opts = {}) {
                 storage,
                 setStorage,
                 excludeTag: config.excludeTag,
+                appearance: tool === 'get_brand' ? await readAppearance() : undefined,
                 now: Date.now(),
             });
             send({ id, type: 'result', ok: true, data });
@@ -132,7 +138,8 @@ export function createMcpClient(opts = {}) {
         // clear the live connection's ping timer or flag (that let the MV3 worker go idle and drop the link).
         const current = () => socket === ws;
 
-        ws.addEventListener('open', () => {
+        ws.addEventListener('open', async () => {
+            const appearance = await readAppearance();
             if (!current()) { try { ws.close(); } catch (_) { /* ignore */ } return; }
             connected = true;
             backoffIdx = 0;
@@ -151,7 +158,7 @@ export function createMcpClient(opts = {}) {
                     { name: 'write_from_collection', description: 'Drafts from one collection, citing its sources.', args: ['collection'] },
                     { name: 'on_brand', description: 'Styles what you make from the library in the brand (colours, type, shapes, tone).' },
                 ],
-                brand: brandDefinition(),
+                brand: brandDefinition(appearance),
             });
             if (pingTimer) clearInterval(pingTimer);
             // Regular traffic keeps the MV3 service worker alive (each message resets its 30 s idle timer).

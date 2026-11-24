@@ -179,6 +179,13 @@ function fixture() {
     const { get_brand, requireScope } = await import('../src/modules/mcp/tools.js');
     const { toolDefinitions } = await import('../src/modules/mcp/client.js');
     assert.ok((await get_brand()).guide.includes('#2563eb'));
+    // the user's colours: the scheme they chose is the one in the guide and CSS, the others are offered for a switch
+    const v = await get_brand({}, { appearance: { colorScheme: 'viola', theme: 'dark' } });
+    assert.deepEqual(v.current, { scheme: 'viola', mode: 'dark' }); assert.ok(v.css.includes('#8B68FF') && !v.css.includes('prefers-color-scheme') && v.guide.includes('Viola'), 'viola, dark only');
+    assert.deepEqual(Object.keys(v.schemes).sort(), ['aish', 'graphite', 'kaivo', 'viola']); assert.ok(v.schemes.kaivo.light.accent.startsWith('#') && v.schemes.graphite.dark.bg === '#10100F');
+    assert.ok(/Offer the other colours/.test(v.guide) && /Kaivo \(kaivo\)/.test(v.guide) && !/Viola \(viola\): accent/.test(v.guide), 'the other schemes are offered');
+    const sys = await get_brand({}, { appearance: { colorScheme: 'aish' } }); assert.ok(sys.css.includes('prefers-color-scheme: dark') && sys.current.mode === 'system', 'system brightness ships both');
+    assert.equal((await get_brand({}, { appearance: { colorScheme: 'default' } })).current.scheme, 'aish', 'default = the build own colours');
     requireScope('get_brand', {}, {});   // must not throw with every scope off
     const defs = toolDefinitions();
     assert.ok(defs.get_brand);

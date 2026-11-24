@@ -14,7 +14,7 @@ import { toArticleJson } from '../articleFormat.js';
 import { pageKeyForUrl } from '../pageKey.js';
 import { createHighlightStore } from '../highlightStore.js';
 import { decisionDueAt } from '../decisionTime.js';
-import { BRAND_GUIDE } from './brand.js';
+import { brandNow } from './brand.js';
 import { SIM_VERSION, buildEntry, fingerprintOf, similarTo } from '../graphSimilarity.js';
 import { isLanguageTag } from '../topicConcepts.js';
 
@@ -368,8 +368,8 @@ export async function library_stats(args = {}, { storage, excludeTag, now = Date
 }
 
 /** The brand guide as a tool, because some routes (desktop bridges) pass on tools only, not server instructions or resources. No scope: it holds no library data. */
-export async function get_brand() {
-    return { guide: BRAND_GUIDE };
+export async function get_brand(_args, ctx = {}) {
+    return brandNow(ctx.appearance || {});   // the colour scheme the user has set now, plus every scheme's values for a switch afterwards
 }
 
 export const TOOLS = { search_library, related_articles, get_article, list_highlights, list_due, list_collections, get_collection, list_feed_items, save_url, library_stats, get_brand };
