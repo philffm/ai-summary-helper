@@ -2,7 +2,7 @@
 import { createHighlightStore } from '../highlightStore.js';
 import { confirmSheet } from '../confirmSheet.js';
 import { SK } from '../storageKeys.js';
-import { filterBackupSecrets, hasBackupSecrets, prepareImportedData } from '../backupUtils.js';
+import { filterBackupSecrets, hasBackupSecrets, prepareImportedData, SETTINGS_LOCAL_KEYS } from '../backupUtils.js';
 import StorageManager from '../storageManager.js';
 import { T } from '../feedI18n.js';
 import { setLabel } from '../icons.js';
@@ -89,7 +89,8 @@ export function initBackupRestore() {
                         _backup_version: 1,
                         _exported_at: new Date().toISOString(),
                         _contains_secrets: includeSecrets,
-                        ...safeSyncData
+                        ...safeSyncData,
+                        ...Object.fromEntries(SETTINGS_LOCAL_KEYS.filter((k) => k in safeLocalData).map((k) => [k, safeLocalData[k]]))
                     };
                     filename = `aish_settings_${date}.json`;
                 }

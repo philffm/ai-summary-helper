@@ -14,7 +14,7 @@ export const SECRET_KEYS = [
 ];
 
 /** Never part of a backup, in either direction: restoring them on another device would repeat what was already done there. */
-export const TRANSIENT_KEYS = [SK.graphSim, SK.targetOutbox, SK.mcpLog, SK.syncDeviceId, SK.syncPlaces, SK.syncConnections, SK.syncStatus, SK.syncClock, SK.cloudRoute];
+export const TRANSIENT_KEYS = [SK.graphSim, SK.targetOutbox, SK.mcpLog, SK.syncDeviceId, SK.syncStatus, SK.syncClock, SK.cloudRoute];
 /** Key prefixes that are per device and never leave it (sync stamps describe this device's view of the library). */
 export const TRANSIENT_PREFIXES = [SYNC_STAMPS, SYNC_LEDGER];
 

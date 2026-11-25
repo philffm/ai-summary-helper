@@ -618,7 +618,12 @@ function formScreen(place, st, count, connections = [], places = []) {
             if (conflictMsg) out.push(el('p', 'setting-note', conflictMsg));
         }
         if (!connNow) out.push(button(T('Choose another folder'), 'mcp-link-button', () => chooseFolder(serverDraft.flavor || '')));
-        else if (!editing || true) out.push(button(T('Allow access again'), 'mcp-link-button', async () => { const h = await createHandleVault().load(connNow.id); const ok = await createHandleVault().allow(h).catch(() => false); testMsg = { ok, text: ok ? T('Access is allowed.') : T('The browser did not allow access.') }; render(); }));
+        else if (!editing || true) out.push(button(T('Allow access again'), 'mcp-link-button', async () => {
+            const vault = createHandleVault();
+            let h = await vault.load(connNow.id);
+            // a place restored from a backup has no folder yet: the browser keeps that itself, so it is chosen again here
+            if (!h) { try { h = await globalThis.showDirectoryPicker({ mode: 'readwrite', id: 'aish-sync' }); await vault.save(connNow.id, h); } catch (_) { return; } }
+            const ok = await vault.allow(h).catch(() => false); testMsg = { ok, text: ok ? T('Access is allowed.') : T('The browser did not allow access.') }; render(); }));
     } else if (connections.some((c) => c.service !== 'folder')) {
         const pick = el('div', 'mcp-apps'); pick.setAttribute('role', 'radiogroup'); pick.setAttribute('aria-label', T('Server'));
         for (const c of connections.filter((x) => x.service !== 'folder')) {
