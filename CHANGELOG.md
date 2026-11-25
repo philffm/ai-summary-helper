@@ -5,6 +5,51 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.57 (2026-11-25)
+
+### All changes
+
+#### Changed
+
+- style(android): the companion gets the Kaivo launcher icon and colours
+- feat(site): the hero button plays the tour in the hero itself, over the demo window (close, share), instead of an overlay
+- feat(site): the hero button plays the tour in a small dialog over the page (close, share, install) instead of jumping to the coverflow
+- feat(site): the hero clip is the new narrated Kaivo tour (komplett-new-<lang>-gemini, 12 languages, ~6.5 MB each); two minutes instead of one
+- feat(site): the video coverflow works on phones (swipe), a playing clip grows, every clip has a share button and old #v=<clip> links open and play it in place (a persona script was wiping the hash)
+- feat(site): the video clips play in place in the coverflow (second tap pauses, native controls) instead of opening the full-screen swipe player
+- style(tokens): the dark bar colour (ink.nav) is a neutral near-black like the page background instead of a saturated navy
+- feat(site): slimmer header (logo, Add to Chrome, menu) and the pill navigation moves to a floating bottom bar that follows the section being read (Overview, See it, Features, Pricing, Blog)
+- feat(mcp): get_brand returns the colour scheme the user has set (and brightness), every other scheme for a switch, and tells the AI app to offer them when the report is done
+- feat(home): the daily line has a search button (the browser's default search engine; the search permission is asked for on the first click); the recap status says byPhil Cloud, not the product name
+- style(notes): real sticky notes: a soft tint per kind (yellow, blue, pink) instead of an outline
+- style(notes): an AI highlight has a solid outline too (the dashed line was restless); the kind stays in the colour, the icon and the word
+- feat(home): the entrance is quicker (30 ms + 55 ms per card, 300 ms each); Animations on/off in the Appearance menu (the Reduce motion setting)
+- style(notes): the notes look like Zettel: the kind is in the outline (your highlight solid, an AI highlight dashed, a note filled), quotes in the reading font with an opening mark, the comment under a dotted rule; no colour rail any more
+- style(home): the light of the topics card is under the other cards and their text (they sit one level above it; glass, so the colour shows through softly)
+- i18n: Serif and Sans-serif in 24 languages
+- feat(home): the font can be chosen in the Appearance menu: serif (the default) or sans-serif; saved with the other appearance keys, the easy-read font still wins
+- feat(home): the cards come in one after the other, slowly (fade, a short rise, a breath of blur) and the glance card no longer pulses while the feeds refresh; the cards can be arranged: drag one by its heading, or the arrows in the Adjust menu (the order is saved; the glance card stays on the left)
+- feat(home): the card choices are an Adjust menu at the top right (next to Appearance) instead of a line at the foot; the latest feed items show a subtle time next to their source; a click on a topic bubble leaves no focus square (the keyboard gets a ring on the blob)
+- style(home): the library numbers sit above their labels (labels wrap differently, the numbers line up)
+- docs(store): Russian and Ukrainian store descriptions
+- docs(store): Finnish and Arabic store descriptions
+
+#### Fixed
+
+- fix(build): keep other files in plugin/prod
+- fix(site): the cookie notice sits beside the bottom bar on wide screens and the hero slider controls move right, clear of the bar
+- fix(site): the desktop coverflow is not clipped at the column edge (only the phone one is)
+- fix(site): focus outline of the clip share button uses the site's focus colour
+- fix(home): opening the home page fetches the feeds that are due even when background polling is off (it silently fetched nothing before)
+- fix(detail): the Send split button: the main action is the larger part and the dropdown the small one (32 px), at every width
+- feat(home): a daily line under the greeting (one quiet sentence): a fixed collection of sourced quotes in English and German, a line the user saved one day in four, and optionally a thought or historical fact written with the feed recap (AI, off by default; switchable in the Adjust menu)
+- fix(home): the light is not cut off at the foot of short content (the body is at least as tall as the window)
+- fix(home): no skeleton placeholders: nothing is shown until the cards come in
+- fix(notes): the Grid view is a grid at every width (two columns in the popup and the side panel, three or four on a wide page)
+- feat(home): every card can be moved (the glance card too: it is no longer fixed to the left and the full height) and made taller or shorter by whole rows: drag the strip at the bottom edge, or the + and - in the Adjust menu; sizes are saved
+- fix(home): the cards really come in one after the other (a render right after the first one rebuilt the cards and cut the animation: they continue where it was); a drag handle (six dots) in the gutter next to each heading
+- fix(home): 'From your notes' no longer shows a bare comment on a highlight (only the user's own notes; a note written with a quote shows the passage first)
+
 ## 2.2.56 (2026-11-23)
 
 ### All changes
