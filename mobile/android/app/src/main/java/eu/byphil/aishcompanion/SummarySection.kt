@@ -51,7 +51,7 @@ fun AccessibilityCard(model: AppModel) {
     var scale by remember { mutableStateOf(model.store.readerScale) }
     SettingsGroup {
         ChoiceRow("Appearance", "Follow the phone, or always light or dark.", listOf("system" to "System", "light" to "Light", "dark" to "Dark"), model.themeMode, icon = Icons.Filled.DarkMode) { model.changeThemeMode(it) }
-        if (android.os.Build.VERSION.SDK_INT >= 31) ToggleRow("Match my wallpaper", "Use your wallpaper's colours instead of the Kaivo blue. High contrast keeps the brand colours.", model.dynamicColor, icon = Icons.Filled.Wallpaper) { model.changeDynamicColor(it) }
+        if (android.os.Build.VERSION.SDK_INT >= 31) ToggleRow("Match my wallpaper", "Use your wallpaper's colours instead of the Kaivo teal. High contrast keeps the brand colours.", model.dynamicColor, icon = Icons.Filled.Wallpaper) { model.changeDynamicColor(it) }
         ToggleRow("High contrast", "Stronger text and border colours throughout the app.", model.highContrast, icon = Icons.Filled.Contrast) { model.changeHighContrast(it) }
         ToggleRow("Reduce motion", "No list animations. The system's \"remove animations\" setting is respected as well.", model.reduceMotion, icon = Icons.Filled.MotionPhotosOff) { model.changeReduceMotion(it) }
         ChoiceRow("Reading typeface", "\"Easy read\" is Atkinson Hyperlegible, designed for low vision.", ReaderLook.FONTS, model.readerFont, icon = Icons.Filled.TextFields) { model.changeReaderFont(it) }

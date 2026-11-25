@@ -16,49 +16,49 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
-// The AISH look, taken from the extension's design tokens (plugin/src/styles.css): the same blues, the same neutral
+// The Kaivo look, following the extension's design tokens (design-system, brand Kaivo): the same teals, the same neutral
 // surfaces in light and dark, 12/16 px radii. Fixed colours on purpose (no Android 12 dynamic colour) so the app
 // matches the extension and the website.
 private val Light = lightColorScheme(
-    primary = Color(0xFF2563EB), onPrimary = Color.White,
-    primaryContainer = Color(0xFFDBEAFE), onPrimaryContainer = Color(0xFF1E3A8A),
-    secondary = Color(0xFF2F5FD0), onSecondary = Color.White,   // 5.5:1 (the lighter #3B82F6 gave white text only 3.7:1)
-    background = Color(0xFFFAF8FF), onBackground = Color(0xFF0F172A),
-    surface = Color(0xFFFAF8FF), onSurface = Color(0xFF0F172A),
-    surfaceVariant = Color(0xFFEEF1F8), onSurfaceVariant = Color(0xFF566274),
-    outline = Color(0xFF64748B), outlineVariant = Color(0xFFD5DBE6),
+    primary = Color(0xFF0F6675), onPrimary = Color.White,
+    primaryContainer = Color(0xFFCFECEF), onPrimaryContainer = Color(0xFF0A444E),
+    secondary = Color(0xFF0F6675), onSecondary = Color.White,   // 6.6:1 (the lighter #1C7F8E gives white text only 4.7:1)
+    background = Color(0xFFF6FAFA), onBackground = Color(0xFF0F172A),
+    surface = Color(0xFFF6FAFA), onSurface = Color(0xFF0F172A),
+    surfaceVariant = Color(0xFFEEF3F4), onSurfaceVariant = Color(0xFF566274),
+    outline = Color(0xFF64748B), outlineVariant = Color(0xFFD3DEE0),
     error = Color(0xFFDC2626), onError = Color.White,
-    secondaryContainer = Color(0xFFE0E9FB), onSecondaryContainer = Color(0xFF1E3A8A),
+    secondaryContainer = Color(0xFFDCEFF1), onSecondaryContainer = Color(0xFF0A444E),
     tertiaryContainer = Color(0xFFFDF0C8), onTertiaryContainer = Color(0xFF5B3B05),
     errorContainer = Color(0xFFFEE2E2), onErrorContainer = Color(0xFF7F1D1D),
-    surfaceContainerLowest = Color.White, surfaceContainerLow = Color(0xFFF5F6FC), surfaceContainer = Color(0xFFF0F2FA),
-    surfaceContainerHigh = Color(0xFFEAEDF6), surfaceContainerHighest = Color(0xFFE4E8F2),
+    surfaceContainerLowest = Color.White, surfaceContainerLow = Color(0xFFF2F7F7), surfaceContainer = Color(0xFFEEF3F4),
+    surfaceContainerHigh = Color(0xFFE7EEF0), surfaceContainerHighest = Color(0xFFE0E9EB),
 )
 private val Dark = darkColorScheme(
-    primary = Color(0xFF60A5FA), onPrimary = Color(0xFF0B0E14),
-    primaryContainer = Color(0xFF1E3A8A), onPrimaryContainer = Color(0xFFDBEAFE),
-    secondary = Color(0xFF3B82F6), onSecondary = Color(0xFF0B0E14),   // dark text on the bright blue: 5.3:1
+    primary = Color(0xFF3FA6B3), onPrimary = Color(0xFF0B0E14),
+    primaryContainer = Color(0xFF0B525E), onPrimaryContainer = Color(0xFFCFECEF),
+    secondary = Color(0xFF3FA6B3), onSecondary = Color(0xFF0B0E14),   // dark text on the light teal: 6.7:1
     background = Color(0xFF0B0E14), onBackground = Color(0xFFE8EDF5),
     surface = Color(0xFF0B0E14), onSurface = Color(0xFFE8EDF5),
-    surfaceVariant = Color(0xFF171C26), onSurfaceVariant = Color(0xFF94A3B8),
-    outline = Color(0xFF64748B), outlineVariant = Color(0xFF2A3140),
+    surfaceVariant = Color(0xFF172326), onSurfaceVariant = Color(0xFF94A3B8),
+    outline = Color(0xFF64748B), outlineVariant = Color(0xFF27393D),
     error = Color(0xFFFCA5A5), onError = Color(0xFF0B0E14),
-    secondaryContainer = Color(0xFF1E2B4A), onSecondaryContainer = Color(0xFFDBEAFE),
+    secondaryContainer = Color(0xFF133238), onSecondaryContainer = Color(0xFFCFECEF),
     tertiaryContainer = Color(0xFF3D2F0F), onTertiaryContainer = Color(0xFFFDE68A),
     errorContainer = Color(0xFF4C1D1D), onErrorContainer = Color(0xFFFECACA),
-    surfaceContainerLowest = Color(0xFF080A10), surfaceContainerLow = Color(0xFF0F131B), surfaceContainer = Color(0xFF131822),
-    surfaceContainerHigh = Color(0xFF181E2A), surfaceContainerHighest = Color(0xFF1E2532),
+    surfaceContainerLowest = Color(0xFF080A10), surfaceContainerLow = Color(0xFF0E1719), surfaceContainer = Color(0xFF111D20),
+    surfaceContainerHigh = Color(0xFF172629), surfaceContainerHighest = Color(0xFF1D2E32),
 )
 // High contrast: text and borders at the strongest steps (WCAG AAA for text), same brand hue.
 private val LightHigh = Light.copy(
-    primary = Color(0xFF1D4ED8), onSurface = Color(0xFF000000), onBackground = Color(0xFF000000), onSurfaceVariant = Color(0xFF2B3544),
-    outline = Color(0xFF334155), outlineVariant = Color(0xFF64748B), primaryContainer = Color(0xFFBFD7FE), onPrimaryContainer = Color(0xFF0B1F5C),
-    secondary = Color(0xFF1D4ED8),
+    primary = Color(0xFF0A444E), onSurface = Color(0xFF000000), onBackground = Color(0xFF000000), onSurfaceVariant = Color(0xFF2B3544),
+    outline = Color(0xFF334155), outlineVariant = Color(0xFF64748B), primaryContainer = Color(0xFFB4E0E5), onPrimaryContainer = Color(0xFF062F36),
+    secondary = Color(0xFF0A444E),
 )
 private val DarkHigh = Dark.copy(
-    primary = Color(0xFF93C5FD), onSurface = Color(0xFFFFFFFF), onBackground = Color(0xFFFFFFFF), onSurfaceVariant = Color(0xFFD5DBE6),
-    outline = Color(0xFFCBD5E1), outlineVariant = Color(0xFF94A3B8), primaryContainer = Color(0xFF1E3A8A), onPrimaryContainer = Color(0xFFFFFFFF),
-    secondary = Color(0xFF93C5FD), onSecondary = Color(0xFF0B0E14),
+    primary = Color(0xFF7CCBD4), onSurface = Color(0xFFFFFFFF), onBackground = Color(0xFFFFFFFF), onSurfaceVariant = Color(0xFFD5DBE6),
+    outline = Color(0xFFCBD5E1), outlineVariant = Color(0xFF94A3B8), primaryContainer = Color(0xFF0B525E), onPrimaryContainer = Color(0xFFFFFFFF),
+    secondary = Color(0xFF7CCBD4), onSecondary = Color(0xFF0B0E14),
 )
 
 /** The extension's chips and filters are fully rounded pills; one shape for every chip of the app. */
@@ -98,7 +98,7 @@ fun AishTheme(
     highContrast: Boolean = false, reduceMotion: Boolean = false,
     /** "system", "light" or "dark": the app's own choice, independent of the system setting. */
     themeMode: String = "system",
-    /** Android 12+: take the colours from the wallpaper instead of the brand blue. Ignored with high contrast. */
+    /** Android 12+: take the colours from the wallpaper instead of the brand teal. Ignored with high contrast. */
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit,
 ) {

@@ -5,8 +5,8 @@ const root = path.resolve(process.env.AISH_SRC, '..', '..');
 const kt = fs.readFileSync(path.join(root, 'mobile/android/app/src/main/java/eu/byphil/aishcompanion/Theme.kt'), 'utf8');
 const notes = fs.readFileSync(path.join(root, 'mobile/android/app/src/main/java/eu/byphil/aishcompanion/NotesScreen.kt'), 'utf8');
 
-// the extension's colours as the token pipeline resolves them (design-system/dist/tokens.resolved.json, default brand)
-const resolved = JSON.parse(fs.readFileSync(path.join(root, 'design-system/dist/tokens.resolved.json'), 'utf8')).aish.app;
+// the extension's colours as the token pipeline resolves them (design-system/dist/tokens.resolved.json, brand Kaivo: the app ships as Kaivo)
+const resolved = JSON.parse(fs.readFileSync(path.join(root, 'design-system/dist/tokens.resolved.json'), 'utf8')).kaivo.app;
 const hexOf = (mode, name) => { const t = resolved[mode][name]; assert.ok(t, name + ' missing'); return /#[0-9a-fA-F]{6}/.exec(t.value)[0].toLowerCase(); };
 const tokenAfter = (from, name) => hexOf(from, name);
 const darkFrom = 'dark';
