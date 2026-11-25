@@ -292,7 +292,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     var mineTick by remember(id) { mutableIntStateOf(0) }   // bumped when the reader marks or unmarks a paragraph
     val mine = remember(id, mineTick) { model.articles.userHighlights(id).map { Highlight(false, it) } }
     val allHighlights = remember(article, mine) { article.highlights + mine.filter { m -> article.highlights.none { it.text == m.text } } }
-    val placed = remember(id, allHighlights) { Highlighter.place(article.blocks, allHighlights) }
+    val placed = remember(id, allHighlights, mineTick) { Highlighter.place(article.blocks, allHighlights, model.articles.highlightAnchors(id)) }
     val archived = model.readTick >= 0 && model.articles.isArchived(id)
     val scale = model.readerScale   // set in the reader sheet or Settings → Accessibility
     var sheet by remember(id) { mutableStateOf(false) }
@@ -391,15 +391,30 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
             item { HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant) }
             items(article.blocks.size) { i ->
                 val block = article.blocks[i]
-                BlockView(block, placed[i] ?: emptyList(), onLongPress = {
-                    val on = model.articles.toggleHighlight(id, block.text)
-                    mineTick++
-                    android.widget.Toast.makeText(context, if (on) "Highlighted" else "Highlight removed", android.widget.Toast.LENGTH_SHORT).show()
-                })
+                val here = placed[i] ?: emptyList()
+                BlockView(block, here, marking = Marking(
+                    highlight = { from, to ->
+                        Highlighter.wholeWords(block.text, from, to)?.let { words ->
+                            // own marks the selection touches become one with it
+                            val touched = here.filter { !it.ghost && it.start < words.last + 1 && it.end > words.first }
+                            val start = minOf(words.first, touched.minOfOrNull { it.start } ?: words.first)
+                            val end = maxOf(words.last + 1, touched.maxOfOrNull { it.end } ?: 0)
+                            model.articles.removeHighlights(id, touched.map { block.text.substring(it.start, it.end) })
+                            model.articles.addHighlight(id, block.text.substring(start, end), i, start)
+                            mineTick++
+                        }
+                    },
+                    remove = { marks ->
+                        val texts = marks.map { block.text.substring(it.start, it.end) }
+                        // a mark placed by its words may differ from the stored text in spacing
+                        model.articles.removeHighlights(id, model.articles.userHighlights(id).filter { stored -> texts.any { it.split(Regex("\\s+")) == stored.split(Regex("\\s+")) } })
+                        mineTick++
+                    },
+                ))
             }
             if (article.truncated) item { Text("This long article was shortened to fit. Tap Read original for the rest.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }
             if (allHighlights.isNotEmpty()) item { Highlights(allHighlights) }
-            if (allHighlights.isEmpty() && article.blocks.isNotEmpty()) item { Text("Tip: press and hold a paragraph to highlight it.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+            if (allHighlights.isEmpty() && article.blocks.isNotEmpty()) item { Text("Tip: press and hold a word, adjust the selection, then choose Highlight.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
         }
         ActionBar(
             primary = BarAction(Icons.Filled.OpenInBrowser, "Read original") { onOpenWeb(article.url) },

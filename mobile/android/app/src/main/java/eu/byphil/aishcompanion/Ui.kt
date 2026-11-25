@@ -1,5 +1,6 @@
 package eu.byphil.aishcompanion
 
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import android.text.format.DateUtils
@@ -200,39 +201,109 @@ fun markedText(text: String, marks: List<Mark>): AnnotatedString {
     }
 }
 
-/** One article block. [marks] are the highlights found in this block's text. */
+/** What the selection menu of a paragraph can do: mark the selected words, or remove the reader's own marks under them. */
+class Marking(val highlight: (start: Int, end: Int) -> Unit, val remove: (List<Mark>) -> Unit)
+
+/** One article block. [marks] are the highlights found in this block's text; with [marking] its words can be selected and marked. */
 @Composable
-@OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
-fun BlockView(b: Block, marks: List<Mark> = emptyList(), onLongPress: (() -> Unit)? = null) {
-    val text = markedText(b.text, marks)
-    val haptic = androidx.compose.ui.platform.LocalHapticFeedback.current
-    val press = if (onLongPress == null || b.type == "pre") Modifier else Modifier.combinedClickable(
-        onClick = {}, onLongClick = { haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress); onLongPress() },
+fun BlockView(b: Block, marks: List<Mark> = emptyList(), marking: Marking? = null) {
+    BlockContent(b, markedText(b.text, marks), marks, marking.takeIf { b.type != "pre" })
+}
+
+/** A paragraph in a platform TextView: the system's own selection handles and menu, with "Highlight" added to it. */
+@Composable
+private fun SelectableText(text: String, marks: List<Mark>, marking: Marking, style: androidx.compose.ui.text.TextStyle, color: Color, modifier: Modifier = Modifier) {
+    val user = markColors(false); val ghost = markColors(true)
+    val resolver = androidx.compose.ui.platform.LocalFontFamilyResolver.current
+    val typeface by resolver.resolve(style.fontFamily, style.fontWeight ?: FontWeight.Normal, style.fontStyle ?: FontStyle.Normal)
+    val density = androidx.compose.ui.platform.LocalDensity.current
+    val sizeSp = if (style.fontSize.isSp) style.fontSize.value else 17f
+    val linePx = with(density) { if (style.lineHeight.isSp) style.lineHeight.roundToPx() else 0 }
+    val spanned = remember(text, marks, user, ghost) {
+        android.text.SpannableString(text).apply {
+            for (m in marks) {
+                if (m.start < 0 || m.end > text.length || m.start >= m.end) continue
+                val (bg, fg) = if (m.ghost) ghost else user
+                setSpan(android.text.style.BackgroundColorSpan(bg.toArgb()), m.start, m.end, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                setSpan(android.text.style.ForegroundColorSpan(fg.toArgb()), m.start, m.end, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+        }
+    }
+    val current = androidx.compose.runtime.rememberUpdatedState(marks to marking)
+    androidx.compose.ui.viewinterop.AndroidView(
+        modifier = modifier.fillMaxWidth(),
+        factory = { context ->
+            android.widget.TextView(context).apply {
+                setTextIsSelectable(true)
+                includeFontPadding = false
+                customSelectionActionModeCallback = object : android.view.ActionMode.Callback {
+                    private val add = 0x4b41; private val drop = 0x4b42
+                    private fun own() = current.value.first.filter { !it.ghost && it.start < selectionEnd && it.end > selectionStart }
+                    override fun onCreateActionMode(mode: android.view.ActionMode, menu: android.view.Menu): Boolean {
+                        menu.add(android.view.Menu.NONE, add, 0, "Highlight")
+                        menu.add(android.view.Menu.NONE, drop, 1, "Remove highlight")
+                        return true
+                    }
+                    override fun onPrepareActionMode(mode: android.view.ActionMode, menu: android.view.Menu): Boolean {
+                        menu.findItem(drop)?.isVisible = own().isNotEmpty()
+                        return true
+                    }
+                    override fun onActionItemClicked(mode: android.view.ActionMode, item: android.view.MenuItem): Boolean {
+                        val from = minOf(selectionStart, selectionEnd); val to = maxOf(selectionStart, selectionEnd)
+                        when (item.itemId) {
+                            add -> current.value.second.highlight(from, to)
+                            drop -> current.value.second.remove(own())
+                            else -> return false
+                        }
+                        performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS)
+                        mode.finish()
+                        return true
+                    }
+                    override fun onDestroyActionMode(mode: android.view.ActionMode) {}
+                }
+            }
+        },
+        update = { view ->
+            view.typeface = typeface as? android.graphics.Typeface
+            view.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, sizeSp)
+            view.setTextColor(color.toArgb())
+            if (linePx > 0) {
+                val natural = view.paint.getFontMetricsInt(null)
+                view.setLineSpacing((linePx - natural).toFloat(), 1f)
+            }
+            // setting the same text again would drop a selection the reader is making
+            if (view.tag != spanned) { view.tag = spanned; view.text = spanned }
+        },
     )
-    Box(press) { BlockContent(b, text) }
 }
 
 @Composable
-private fun BlockContent(b: Block, text: androidx.compose.ui.text.AnnotatedString) {
+private fun BlockContent(b: Block, text: androidx.compose.ui.text.AnnotatedString, marks: List<Mark>, marking: Marking?) {
     val rs = LocalReaderStyle.current
     val body = MaterialTheme.typography.bodyLarge.copy(fontFamily = rs.family ?: MaterialTheme.typography.bodyLarge.fontFamily)
     val line = (27 * rs.spacing).sp
+    val plain = androidx.compose.material3.LocalContentColor.current
+    @Composable
+    fun words(style: androidx.compose.ui.text.TextStyle, modifier: Modifier = Modifier, color: Color = plain) {
+        if (marking == null) Text(text, style = style, color = color, modifier = modifier)
+        else SelectableText(b.text, marks, marking, style, color, modifier)
+    }
     when (b.type) {
-        "h1" -> Text(text, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold, modifier = Modifier.semantics { heading() }.padding(top = 12.dp))
-        "h2" -> Text(text, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, modifier = Modifier.semantics { heading() }.padding(top = 10.dp))
-        "h3" -> Text(text, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold, modifier = Modifier.semantics { heading() }.padding(top = 6.dp))
+        "h1" -> words(MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold), Modifier.semantics { heading() }.padding(top = 12.dp))
+        "h2" -> words(MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.SemiBold), Modifier.semantics { heading() }.padding(top = 10.dp))
+        "h3" -> words(MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold), Modifier.semantics { heading() }.padding(top = 6.dp))
         "li" -> Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Text("•", style = MaterialTheme.typography.bodyLarge)
-            Text(text, style = body, fontSize = 17.sp, lineHeight = line, modifier = Modifier.weight(1f))
+            words(body.copy(fontSize = 17.sp, lineHeight = line), Modifier.weight(1f))
         }
         "q" -> Row(Modifier.height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Box(Modifier.width(3.dp).fillMaxHeight().background(MaterialTheme.colorScheme.primary, RoundedCornerShape(2.dp)))
-            Text(text, style = body, fontSize = 17.sp, fontStyle = FontStyle.Italic, lineHeight = line, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            words(body.copy(fontSize = 17.sp, fontStyle = FontStyle.Italic, lineHeight = line), color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         "pre" -> Surface(color = MaterialTheme.colorScheme.surfaceVariant, shape = MaterialTheme.shapes.small) {
             Text(b.text, fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.bodySmall, modifier = Modifier.horizontalScroll(rememberScrollState()).padding(12.dp))
         }
-        else -> Text(text, style = body, fontSize = 17.sp, lineHeight = (28 * rs.spacing).sp)
+        else -> words(body.copy(fontSize = 17.sp, lineHeight = (28 * rs.spacing).sp))
     }
 }
 
