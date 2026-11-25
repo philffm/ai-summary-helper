@@ -1,0 +1,10 @@
+// The one place for the bundle id. The extension's id is this plus ".extension".
+// It can no longer change once an app with this id has been submitted to App Store Connect.
+KAIVO_BUNDLE_ID = eu.byphil.aisummaryhelper
+// Shared between the app and the widgets (and later the Safari extension).
+KAIVO_APP_GROUP = group.$(KAIVO_BUNDLE_ID)
+
+// Written by scripts/version.sh from current_version.json (not committed).
+#include? "Version.xcconfig"
+// Your signing team and other local overrides (not committed): see Local.xcconfig.example.
+#include? "Local.xcconfig"
