@@ -105,6 +105,7 @@ export const SK = {
     syncSecrets: 'sync:secrets', // { [connectionId]: { password | accessKey/secret | key } } — secret, never backed up
     cloudRoute: 'cloud:route',   // { region: 'eu' | 'global', model, at }: the route the hosted service reported for the last request (transient)
     syncStatus: 'sync:status',   // { [placeId]: { at, ok, error, counts } } last run per place
+    nativeSent: 'native:sent',   // Safari on iOS: { folder, items: { articleId: signature } } already handed to the app (bg/nativeLibrary.js)
     syncClock: 'sync:clock',     // { t }: highest stamp time this device has made or seen
     // notes (Notes tab): your own notes and the comments on highlights. One key per note, plus a lean index. Backed up with everything else.
     notesIndex: 'notes:index',
