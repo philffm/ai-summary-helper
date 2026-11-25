@@ -243,7 +243,7 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
 
 /**
  * The bottom navigation as in the extension: a rounded bar that floats above the content, the current tab as a filled pill. Sizes keep every item a
- * comfortable touch target (48 dp or more); the pill carries white/dark text on the brand blue, so the current tab is told by shape and colour.
+ * comfortable touch target (48 dp or more); the pill carries white/dark text on the brand teal, so the current tab is told by shape and colour.
  */
 @Composable
 private fun FloatingNav(tabs: List<Tab>, selected: Int, icon: @Composable (Tab) -> Unit, onSelect: (Int) -> Unit) {

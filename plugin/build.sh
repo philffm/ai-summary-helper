@@ -78,8 +78,9 @@ fi
 ROOT_DIR="$SCRIPT_DIR"
 DEV_DIR="dev"
 PROD_DIR="prod"
-rm -rf "$DEV_DIR" "$PROD_DIR"
+rm -rf "$DEV_DIR"
 mkdir -p "$DEV_DIR" "$PROD_DIR"
+rm -f "$PROD_DIR"/*.zip   # only the zips of earlier builds: anything else kept in prod/ stays
 
 # ==========================================
 # Build every platform with the one build implementation (scripts/build.js), then zip

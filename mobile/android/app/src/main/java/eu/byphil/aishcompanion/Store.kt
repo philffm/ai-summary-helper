@@ -78,7 +78,7 @@ class Store(context: Context) {
         get() = prefs.getString("ui.theme", "system") ?: "system"
         set(v) = prefs.edit().putString("ui.theme", v).apply()
 
-    /** Android 12+: colours from the wallpaper instead of the brand blue. */
+    /** Android 12+: colours from the wallpaper instead of the brand teal. */
     var dynamicColor: Boolean
         get() = prefs.getBoolean("ui.dynamic", false)
         set(v) = prefs.edit().putBoolean("ui.dynamic", v).apply()
