@@ -17614,9 +17614,9 @@
           "model": "google/gemini-3.7-flash"
         },
         "hi": {
-          "text": "करते थे, क्योंकि वही तय करेगा कि कौन सा replacement आपके लिए वाकई काम करेगा।",
-          "translatedAt": "2026-08-18T17:42:35.450Z",
-          "model": "google/gemini-3.7-flash"
+          "text": ", क्योंकि वही तय करेगा कि कौन सा replacement आपके लिए वाकई काम करेगा।",
+          "translatedAt": "2026-11-26T19:07:44.994Z",
+          "model": "claude-sonnet-5-5"
         },
         "de": {
           "text": "– denn genau das entscheidet darüber, welche Alternative sich langfristig bewährt.",
