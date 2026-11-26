@@ -8,6 +8,8 @@ import StorageManager from './modules/storageManager.js';
 import { SK, hlPageKey, noteRecKey, QUIZ_REC } from './modules/storageKeys.js';
 import { bgMessage } from './modules/bgMessage.js';
 import { normalizeHighlights } from './modules/highlightRecords.js';
+import { createHighlightStore } from './modules/highlightStore.js';
+import { createBriefingHighlighter, isBriefingPage } from './modules/homeHighlights.js';
 import { renderInline, renderAnswer } from './modules/qaView.js';
 import { chipCites, citedSources } from './modules/recapCites.js';
 import { lazyList } from './modules/lazyList.js';
@@ -77,6 +79,9 @@ function ago(ms) {
 }
 const MOOD = () => ({ pos: T('Mostly positive'), neu: T('Mixed'), neg: T('Mostly heavy') });
 
+let marker = null;   // highlighting in the briefing, set up with the first card
+const briefingMarker = () => marker || (marker = createBriefingHighlighter({ store: createHighlightStore({ storage: chrome.storage.local }), T, tell: (m) => { bgMessage(m); } }));
+
 // "Today at a glance": the feed briefing (with the numbered sources the model cited as chips, recapCites.js) takes two thirds of the card,
 // the latest feed items the last third. The refresh that starts with the page reports in the latest pane.
 function briefingCard(d) {
@@ -104,6 +109,7 @@ function briefingCard(d) {
     if ((r.themes || []).length) { const ul = el('ul', 'hm-brief-list'); r.themes.forEach((t) => { const li = el('li'); renderInline(li, t); ul.append(li); }); text.append(ul); }
     chipCites(text, r, byId);
     const src = citedSources(r, byId);
+    briefingMarker().attach(text, found.day);
     if (src.length) {
       const det = el('details', 'hm-brief-src'); det.append(el('summary', '', TN(src.length, '{n} source', '{n} sources')));
       const ol = el('ol'); src.forEach(({ n, item }) => { const li = el('li'); li.value = n; const a = el('a', '', item.title || item.link); a.href = item.link; a.target = '_blank'; a.rel = 'noopener noreferrer'; li.append(a); ol.append(li); });
@@ -155,9 +161,12 @@ const builders = {
     if (d.quote) {
       const withQuote = note && d.quote.quote;   // a note written with a quote: the passage first, the note under it
       const q = el('blockquote', 'hm-quote', withQuote ? d.quote.quote : d.quote.text);
-      const label = note ? (d.quote.title || hostOf(d.quote.url)) : (hostOf(d.quote.url) || d.quote.url);
+      const own = isBriefingPage(d.quote.url) && !d.quote.cites;   // marked in a briefing, next to no source: the briefing is the place to go
+      const target = d.quote.cites || d.quote.url;
+      const label = note ? (d.quote.title || hostOf(d.quote.url)) : isBriefingPage(d.quote.url) ? [T('Briefing'), d.quote.cites && hostOf(d.quote.cites)].filter(Boolean).join(' \u00B7 ') : hostOf(d.quote.url) || d.quote.url;
       const a = d.quote.url ? el('a', 'hm-link-sub hm-quote-src', label || d.quote.url) : el('span', 'hm-link-sub hm-quote-src', label);
-      if (d.quote.url) { a.href = d.quote.url; a.target = '_blank'; a.rel = 'noopener'; }
+      if (own) { a.href = '#'; a.addEventListener('click', (e) => { e.preventDefault(); if (dock) dock.open('feeds/recap/' + d.quote.briefingDay); }); }
+      else if (target) { a.href = target; a.target = '_blank'; a.rel = 'noopener'; }
       if (d.quoteFresh) { q.classList.add('hm-pop'); d.quoteFresh = false; }
       const more = el('button', 'button-secondary btn-sm', T('Another')); more.type = 'button'; more.addEventListener('click', () => { data.quoteFresh = true; loadQuote(); });
       body.append(q); if (withQuote) body.append(el('p', 'hm-quote-note', d.quote.text)); body.append(a, el('div', 'hm-quote-more')); body.lastChild.append(more);
@@ -465,7 +474,7 @@ function dayNote() {
 async function loadDayOwn() {
   try {
     const now = new Date(), snip = await pickSnippet(await snippetSources(), seeded(now.getFullYear() * 400 + dayOfYear(now)));
-    dayOwn = snip && snip.text ? { text: String(snip.text).replace(/\s+/g, ' ').trim(), by: snip.kind === 'note' ? (snip.title || hostOf(snip.url)) : hostOf(snip.url) } : null;
+    dayOwn = snip && snip.text ? { text: String(snip.text).replace(/\s+/g, ' ').trim(), by: snip.kind === 'note' ? (snip.title || hostOf(snip.url)) : isBriefingPage(snip.url) ? T('Briefing') : hostOf(snip.url) } : null;
   } catch (_) { dayOwn = null; }
   paintDayLine();
 }

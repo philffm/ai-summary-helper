@@ -2,6 +2,7 @@
 import { confirmDestructive } from '../confirmDialog.js';
 import { deleteData, describeData } from '../dataReset.js';
 import { T, TN } from '../feedI18n.js';
+import { openSettingsPanel } from '../settingsNav.js';
 
 // ── Section: Danger Zone ─────────────────────────────────────────────
 export function initDangerZone() {
@@ -40,7 +41,12 @@ export function initDangerZone() {
             title, body, confirmLabel, content: list,
             canConfirm: () => chosen().length > 0,
             extraLabel: T('Export backup first'),
-            onExtra: () => { document.getElementById('exportSettingsButton')?.click(); }
+            // saving a file lives on Backup & sync: go there and open the choice
+            onExtra: async () => {
+                (await import('./backup.js')).initBackupRestore();
+                openSettingsPanel('sync');
+                document.getElementById('exportSettingsButton')?.click();
+            }
         });
         if (!yes) return;
         const ids = chosen();

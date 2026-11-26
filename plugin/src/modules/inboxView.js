@@ -10,6 +10,8 @@ import { feedSyncAdapter } from './feedSyncStore.js';
 import { setLabel, setIconLabel } from './icons.js';
 import { normalizeUrl } from './textUtils.js';
 import { withArticleLock } from './articleLock.js';
+import { storeBuild } from './storeBuild.js';
+import { ensureAiConsent } from './aiConsent.js';
 
 const $ = (id) => document.getElementById(id);
 const manager = createInboxManager();
@@ -193,6 +195,7 @@ async function summarize(entry) {
         chrome.runtime.sendMessage({ action: 'cancelQueuedSummary', id: q.jobId }, () => { void chrome.runtime.lastError; });
         endSum(entry.id); return;
     }
+    if (storeBuild() && !(await ensureAiConsent())) return;
     const { host } = shortLink(entry.url);
     sumErrors.delete(entry.id);
     sumBusy.set(entry.id, { pct: 5, key: normalizeUrl(entry.url), queued: false, jobId: null, timer: null });

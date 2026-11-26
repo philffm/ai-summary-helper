@@ -53,6 +53,8 @@ import { icon, iconEl, setLabel, stripEmoji } from './icons.js';
 import { paintSeg, bindSegKeys } from './segmented.js';
 import { makeReorderable, reorderGrip } from './reorder.js';
 import { estimateFeedInterval, feedPriority, feedQualityWeight, reconcileItemIds } from './feedWorker.js';
+import { storeBuild } from './storeBuild.js';
+import { ensureAiConsent } from './aiConsent.js';
 
 const SUBS_KEY = SK.feedSubs;
 const ITEMS_KEY = SK.feedItems;
@@ -353,7 +355,7 @@ async function toggleFavorite(item) {
     render();
     // Optional: favorites summarize themselves in a background tab (always
     // extension mode so nothing steals focus).
-    if (createdStub && settings.autoSummarizeFavs) {
+    if (createdStub && settings.autoSummarizeFavs && (!storeBuild() || await ensureAiConsent())) {
         chrome.runtime.sendMessage({ action: 'openFeedItem', url: item.link, summarize: true, forceExtension: true }, () => void chrome.runtime.lastError);
     }
 }

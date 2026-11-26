@@ -1,0 +1,201 @@
+# Kaivo for iPhone and iPad: a SwiftUI app that carries the Safari Web Extension built from plugin/src.
+# The Xcode project is generated (xcodegen) and not committed: run ./build.sh, or `xcodegen generate` after it ran once.
+name: Kaivo
+options:
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+configFiles:
+  Debug: Config/Base.xcconfig
+  Release: Config/Base.xcconfig
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    CODE_SIGN_STYLE: Automatic
+targets:
+  Kaivo:
+    type: application
+    platform: iOS
+    sources:
+      - App
+      - Shared
+      - path: ../../design-system/dist/ios/DesignTokens.swift
+        group: Shared
+      # the starter feeds, shared with the extension and the Android app
+      - path: ../../shared/suggested-feeds.json
+        group: Shared
+    dependencies:
+      - target: KaivoExtension
+      - target: KaivoWidgets
+      - target: KaivoShare
+    entitlements:
+      path: App/Kaivo.entitlements
+      properties:
+        com.apple.security.application-groups: [$(KAIVO_APP_GROUP)]
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Kaivo
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        ITSAppUsesNonExemptEncryption: false
+        NSAlarmKitUsageDescription: Kaivo sets the wake alarm you switch on, so that it rings even when the phone is silent.
+        NSSupportsLiveActivities: true
+        UIBackgroundModes: [audio]
+        # summaries come from a model server in the reader's own network, which speaks plain http
+        NSLocalNetworkUsageDescription: Kaivo asks the model server you set up in your network to summarize articles.
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        KaivoExtensionBundleId: $(KAIVO_BUNDLE_ID).extension
+        KaivoAppGroup: $(KAIVO_APP_GROUP)
+        CFBundleURLTypes:
+          - CFBundleURLName: $(KAIVO_BUNDLE_ID)
+            CFBundleURLSchemes: [kaivo]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(KAIVO_BUNDLE_ID)
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+  KaivoWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - Widgets
+      - Shared
+      - path: ../../design-system/dist/ios/DesignTokens.swift
+        group: Shared
+      - path: App/Localizable.xcstrings
+        group: Widgets
+    info:
+      path: Widgets/Info.plist
+      properties:
+        CFBundleDisplayName: Kaivo
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        KaivoAppGroup: $(KAIVO_APP_GROUP)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: Widgets/KaivoWidgets.entitlements
+      properties:
+        com.apple.security.application-groups: [$(KAIVO_APP_GROUP)]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(KAIVO_BUNDLE_ID).widgets
+    dependencies:
+      - sdk: WidgetKit.framework
+      - sdk: SwiftUI.framework
+  KaivoShare:
+    type: app-extension
+    platform: iOS
+    sources:
+      - ShareExtension
+      - path: Shared/SharedStore.swift
+        group: ShareExtension
+      - path: Shared/SharedLinks.swift
+        group: ShareExtension
+      - path: App/Localizable.xcstrings
+        group: ShareExtension
+    entitlements:
+      path: ShareExtension/KaivoShare.entitlements
+      properties:
+        com.apple.security.application-groups: [$(KAIVO_APP_GROUP)]
+    info:
+      path: ShareExtension/Info.plist
+      properties:
+        CFBundleDisplayName: Kaivo
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        KaivoAppGroup: $(KAIVO_APP_GROUP)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsWebURLWithMaxCount: 1
+              NSExtensionActivationSupportsText: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(KAIVO_BUNDLE_ID).share
+  KaivoTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests
+    dependencies:
+      - target: Kaivo
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(KAIVO_BUNDLE_ID).tests
+        GENERATE_INFOPLIST_FILE: YES
+  KaivoUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - UITests
+    dependencies:
+      - target: Kaivo
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(KAIVO_BUNDLE_ID).uitests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: Kaivo
+  KaivoExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - Extension
+      - path: Shared/SharedStore.swift
+        group: Extension
+      - path: Shared/SafariInbox.swift
+        group: Extension
+      - path: Shared/SafariModel.swift
+        group: Extension
+    entitlements:
+      path: Extension/KaivoExtension.entitlements
+      properties:
+        com.apple.security.application-groups: [$(KAIVO_APP_GROUP)]
+    info:
+      path: Extension/Info.plist
+      properties:
+        CFBundleDisplayName: Kaivo
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        KaivoAppGroup: $(KAIVO_APP_GROUP)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.Safari.web-extension
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).SafariWebExtensionHandler
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(KAIVO_BUNDLE_ID).extension
+        # the script below runs node and copies the web extension into the bundle
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+    dependencies:
+      - sdk: SafariServices.framework
+    postBuildScripts:
+      - name: Build and copy the web extension
+        script: '"$SRCROOT/scripts/copy-extension.sh"'
+        basedOnDependencyAnalysis: false
+schemes:
+  Kaivo:
+    build:
+      targets:
+        Kaivo: all
+        KaivoTests: [test]
+    test:
+      targets: [KaivoTests]
+    run:
+      config: Debug
+    archive:
+      config: Release
+  # records the App Store preview: videos/scripts/ios-preview.mjs
+  KaivoTour:
+    build:
+      targets:
+        Kaivo: [test]
+        KaivoUITests: [test]
+    test:
+      targets: [KaivoUITests]

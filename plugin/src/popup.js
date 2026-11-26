@@ -15,9 +15,7 @@ import { initWorkspace } from './modules/workspaceManager.js';
 // import { initModelManager } from './modules/modelManager.js';
 import { initLanguageManager } from './modules/languageManager.js';
 import { languageMatches } from './modules/languages.js';
-// import { initPodcastManager } from './modules/podcastManager.js';
-// Use window.initPodcastManager if needed
-import { initShortcuts } from './modules/shortcuts.js';
+import { initShortcuts, isPhone } from './modules/shortcuts.js';
 import { initSearchFields } from './modules/searchField.js';
 import { currentSurface, sidePanelAvailable, attachToSidePanel, detachToPopup } from './modules/panelDock.js';
 import { initMainScreen } from './modules/mainScreen.js';
@@ -27,6 +25,9 @@ import { initSettingsNav, openSettingsPanel } from './modules/settingsNav.js';
 import { initAccordion } from './modules/accordion.js';
 import { initBackToTop } from './modules/backToTop.js';
 import { initDock } from './modules/dockPrefs.js';
+import { initCompact, isCompact } from './modules/compactNav.js';
+import { bindHomeButtons } from './modules/settings/homePage.js';
+import { initAiConsent } from './modules/aiConsent.js';
 import { T } from './modules/feedI18n.js';
 import { escapeHtml } from './modules/textUtils.js';
 
@@ -68,30 +69,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // initModelManager(ui); // Not exported from modelManager.js
     initLanguageManager(ui);
     initSettingsNav(ui);
-    if (window.initPodcastManager) {
-        window.initPodcastManager(ui);
-    }
     initShortcuts(ui);
-    const homeBtn = document.getElementById('openHomeButton');
-    if (homeBtn) homeBtn.addEventListener('click', () => chrome.tabs.create({ url: chrome.runtime.getURL('home.html') }));
-    const copyHome = document.getElementById('copyHomeAddressButton');
-    if (copyHome) {
-        const addr = chrome.runtime.getURL('home.html');
-        const hint = document.getElementById('homeAddressHint');
-        // where the user pastes it: the browser's own start page setting (the new tab page itself cannot be set without an override)
-        if (hint) hint.textContent = /Firefox/.test(navigator.userAgent)
-            ? T('Paste it in Firefox Settings › Home › Homepage and new windows › Custom URLs.')
-            : T('Paste it in Chrome Settings › On startup › Open a specific page, or under Appearance › Home button.');
-        copyHome.addEventListener('click', async () => {
-            const label = copyHome.textContent;
-            try { await navigator.clipboard.writeText(addr); copyHome.textContent = T('Copied'); }
-            catch (_) {   // clipboard refused: show the address so it can be selected
-                const input = Object.assign(document.createElement('input'), { value: addr, readOnly: true }); input.setAttribute('aria-label', T('Home page address'));
-                copyHome.replaceWith(input); input.select(); return;
-            }
-            setTimeout(() => { copyHome.textContent = label; }, 1800);
-        });
-    }
+    bindHomeButtons(document);
     initSearchFields();
     initMainScreen(ui);
     initReviewPrompt();
@@ -101,6 +80,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     initAccordion(ui);
     initBackToTop();
     await initDock(ui).catch(() => {});   // dock order + hidden tabs before the first screen is placed
+    // Safari's sheet on an iPhone: its own, tighter way around (modules/compactNav.js)
+    if (currentSurface() === 'popup' && isCompact()) initCompact(document);
+    initAiConsent(document);
 
     // Tab modules. Settings (it also drives the sign-in mask), History, the phone inbox and About load right after the
     // main screen. Feeds, Notes and the sync / AI-apps panels load when their screen is first shown, or a few seconds
@@ -240,6 +222,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             popoutBtn.removeAttribute('data-i18n-title');
             popoutBtn.parentElement.append(popoutBtn);   // Close is the last button, after Settings (the corner that closes things)
         }
+
+        if (surface === 'popup' && !docking && !ffSidebar && isPhone()) popoutBtn.hidden = true;
 
         popoutBtn.addEventListener('click', async () => {
             if (surface === 'float') { try { window.parent.postMessage({ aishFloat: 'close' }, location.origin); } catch (_) { /* host gone */ } return; }

@@ -5,6 +5,8 @@
 // Link picking is pure (`extractLinks`, test262); nothing leaves the device until the reader taps Summarize.
 import { T, TN } from './feedI18n.js';
 import { el } from './dom.js';
+import { storeBuild } from './storeBuild.js';
+import { ensureAiConsent } from './aiConsent.js';
 
 export const LINKS_MAX = 40;          // links listed per article
 export const BATCH_MAX = 5;           // "Summarize the n sources" at most
@@ -129,7 +131,8 @@ export function mountArticleLinks(host, deps) {
     // asked = key → when it was last seen waiting/running (or asked for): until an article arrives or it has been gone for a while, it is still on its way
     const statusOf = (l) => state.saved.has(l.key) ? 'done' : state.running === l.key ? 'running' : (state.queued.has(l.key) || state.asked.has(l.key)) ? 'queued' : state.failed.has(l.key) ? 'failed' : 'idle';
 
-    const summarize = (items) => {
+    const summarize = async (items) => {
+        if (storeBuild() && !(await ensureAiConsent())) return;
         items.forEach((l) => {
             if (statusOf(l) === 'done' || statusOf(l) === 'running' || statusOf(l) === 'queued') return;
             state.failed.delete(l.key); state.queued.add(l.key); state.asked.set(l.key, Date.now());

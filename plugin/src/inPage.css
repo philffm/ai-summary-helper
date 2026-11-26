@@ -62,7 +62,7 @@
   /* semantic · feedback */
   --favorite: #facc15; /* Star / favourite yellow. */
   --ok-bright: #22c55e; /* Bright success green for savings, feed badges and progress fills. */
-  --ok-strong: color-mix(in srgb, var(--ok) 85%, var(--on-solid)); /* Second stop of the success gradient (podcast button). */
+  --ok-strong: color-mix(in srgb, var(--ok) 85%, var(--on-solid)); /* Darker green for success marks and words. */
   --on-warn: #422006; /* Text on a --mood-warn fill. */
   --danger-strong: #e24646; /* Second stop of the danger gradient (destructive buttons). */
   --ok: #15803d; /* Success: saved, synced, signed in (fills and dots; text ≥ 4.5:1 on cards). */
@@ -1770,6 +1770,8 @@ button.hlp-q:hover { text-decoration: underline; text-underline-offset: 3px; }
   border-radius: var(--radius-sm); font-size: var(--fs-lg); line-height: 1; color: var(--text-inverse); cursor: pointer; }
 .np-bar button:hover { background: color-mix(in srgb, var(--text-inverse) 14%, transparent); }
 .np-bar button:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-inset); }
+/* a finger needs 44; text under 16px makes iOS zoom the page when the field is focused */
+@media (pointer: coarse) { .np-bar button { min-width: 48px; height: 44px; } .np-card .np-ta { font-size: var(--fs-lg); } .np-card .np-go { min-height: 44px; } }
 .np-card { position: absolute; width: 320px; max-width: calc(100vw - 16px); display: flex; flex-direction: column; gap: var(--spacing-s-2);
   padding: var(--spacing-s-3) var(--spacing-s-3) var(--spacing-s-3) var(--spacing-s-4); background: var(--surface-sheet); color: var(--text-primary);
   border: 1px solid var(--outline); border-radius: var(--radius-lg); box-shadow: var(--shadow-modal); font-size: var(--fs-base); }

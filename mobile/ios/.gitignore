@@ -1,0 +1,13 @@
+# generated: ./build.sh
+Kaivo.xcodeproj/
+build/
+Config/Version.xcconfig
+# your signing team
+Config/Local.xcconfig
+xcuserdata/
+# written by xcodegen from project.yml
+App/Info.plist
+Extension/Info.plist
+Widgets/Info.plist
+# written by xcodegen from project.yml
+*/*.entitlements

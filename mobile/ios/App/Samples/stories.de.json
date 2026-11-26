@@ -1,0 +1,117 @@
+[
+ {
+  "id": "unread-tab",
+  "title": "Die Halbwertszeit eines ungelesenen Tabs: eine Längsschnittstudie",
+  "host": "applied-procrastination.example",
+  "link": "",
+  "tags": [
+   "Wissenschaft",
+   "Lesen"
+  ],
+  "passages": [
+   "Zusammenfassung. Wir haben 412 Tabs begleitet, die „zum späteren Lesen“ geöffnet worden waren. Nach einer Woche waren 9 gelesen, 31 versehentlich geschlossen, und der Rest wartete höflich.",
+   "Methode. Die Teilnehmenden sollten ihr Verhalten nicht ändern. Dieser Bitte kamen sie mit großer Begeisterung nach. Eine Hilfskraft sah zweimal täglich nach jedem Tab und beschreibt die Erfahrung heute als „lang“.",
+   "Ergebnisse. Die Wahrscheinlichkeit, dass ein Tab gelesen wird, halbiert sich alle 41 Stunden. Tabs mit „ultimativ“ im Titel zerfallen am schnellsten. Ein Tab über Zeitmanagement überlebte alle elf Wochen und wurde als Beweis für Ausdauer angeführt.",
+   "Diskussion. Ein offener Tab liefert offenbar fast die ganze Befriedigung des Lesens, und das ganz ohne Aufwand. Wir nennen das Umgebungsgelehrsamkeit. Sie endet schlagartig beim Neustart des Laptops.",
+   "Einschränkungen. Zwei der drei Autoren hatten den Entwurf dieser Arbeit während der gesamten Studie in einem Tab offen und haben ihn nicht gelesen."
+  ],
+  "mark": "Ein offener Tab liefert offenbar fast die ganze Befriedigung des Lesens, und das ganz ohne Aufwand.",
+  "ai": "Die Wahrscheinlichkeit, dass ein Tab gelesen wird, halbiert sich alle 41 Stunden.",
+  "summary": [
+   "Ein offener Tab fühlt sich wie Lesen an, ist es aber nicht.",
+   "Nach 41 Stunden ist die halbe Chance dahin."
+  ]
+ },
+ {
+  "id": "houseplants",
+  "title": "Bewerten Zimmerpflanzen unsere Leselisten? Eine erste Untersuchung",
+  "host": "windowsill-science.example",
+  "link": "",
+  "tags": [
+   "Wissenschaft",
+   "Gestaltung"
+  ],
+  "passages": [
+   "Hintergrund. Viele Menschen fühlen sich beim Scrollen von einem Farn beobachtet. Ob der Farn Grund dazu hat, wurde bislang nicht kontrolliert untersucht.",
+   "Methode. 24 Pflanzen standen einen Monat lang neben lesenden Personen. Die eine Hälfte las lange Artikel zu Ende, die andere las Überschriften und bildete sich feste Meinungen. Der Blattwinkel wurde jeden Morgen mit einem von einem Kind geliehenen Geodreieck gemessen.",
+   "Ergebnisse. Pflanzen neben der Überschriften-Gruppe neigten sich im Mittel um 3,2 Grad weg. Diese Gruppe saß auch weiter vom Fenster entfernt, was wir nur erwähnen, weil ein Gutachter darauf bestand.",
+   "Ein Gummibaum warf während einer Kommentarspalte ein Blatt ab. Der Effekt ließ sich nicht wiederholen, obwohl das Team es mit mehreren Kommentarspalten versuchte.",
+   "Fazit. Wir können nicht zeigen, dass Pflanzen urteilen. Wir empfehlen trotzdem, den Artikel zu Ende zu lesen: Es kostet wenig, und der Farn steht direkt daneben."
+  ],
+  "mark": "Wir empfehlen trotzdem, den Artikel zu Ende zu lesen: Es kostet wenig, und der Farn steht direkt daneben.",
+  "ai": "Wir können nicht zeigen, dass Pflanzen urteilen.",
+  "summary": [
+   "Pflanzen neigten sich von Überschriftenlesern weg, vermutlich zum Fenster.",
+   "Zu Ende lesen wird dennoch empfohlen."
+  ]
+ },
+ {
+  "id": "woodpecker",
+  "title": "Warum Spechte kein Kopfweh bekommen",
+  "host": "journals.plos.org",
+  "link": "https://doi.org/10.1371/journal.pone.0026490",
+  "tags": [
+   "Wissenschaft",
+   "Gesundheit"
+  ],
+  "passages": [
+   "Ein Specht hämmert mit etwa 6 bis 7 Metern pro Sekunde gegen Bäume und bremst dabei mit rund dem Tausendfachen der Erdbeschleunigung, tausende Male am Tag. Ein Ingenieurteam wollte wissen, warum sein Gehirn keinen Schaden nimmt.",
+   "Sie filmten Buntspechte und zum Vergleich Wiedehopfe mit Hochgeschwindigkeitskameras, untersuchten die Schädel im Mikro-CT und bauten den Kopf als Computermodell nach.",
+   "Der Spechtschädel hat hinten mehr plattenförmigen Schwammknochen. Ein langes, schlingenartiges Zungenbein reicht weit in den Kopf, und die beiden Schnabelhälften sind unterschiedlich lang.",
+   "Im Modell verringerten diese Formen die Belastung des Gehirns. Die Autoren schließen, dass die Feinstruktur von Schädel und Schnabel eine wesentliche Rolle spielt, und halten sie für eine Anregung für besseren Kopfschutz beim Menschen.",
+   "Quelle: Wang L, Cheung JT-M, Pu F, Li D, Zhang M, Fan Y (2011), Why Do Woodpeckers Resist Head Impact Injury: A Biomechanical Investigation, PLoS ONE 6(10): e26490, doi.org/10.1371/journal.pone.0026490, Lizenz CC BY. Zusammenfassung und Übersetzung von Kaivo, von den Autoren nicht geprüft."
+  ],
+  "mark": "Die Autoren schließen, dass die Feinstruktur von Schädel und Schnabel eine wesentliche Rolle spielt",
+  "ai": "Ein langes, schlingenartiges Zungenbein reicht weit in den Kopf",
+  "summary": [
+   "Schädel, Zungenbein und Schnabel schützen gemeinsam das Gehirn.",
+   "Die Studie könnte besseren Kopfschutz anregen."
+  ]
+ },
+ {
+  "id": "toaster",
+  "title": "Mein Toaster hat Ansichten über Newsletter",
+  "host": "kitchen-dispatch.example",
+  "link": "",
+  "tags": [
+   "Medien",
+   "Software"
+  ],
+  "passages": [
+   "Es begann mit einem Firmware-Update. Am Montag röstete der Toaster Brot. Am Dienstag röstete er Brot und fragte, ob ich schon über sein wöchentliches Krümel-Magazin nachgedacht hätte.",
+   "Ich lehnte ab. Der Toaster zeigte Verständnis und stellte die Frage erneut, diesmal mit dem „Nein“ in sehr kleinem Grau. Ich habe zwei Kinder großgezogen, ich kenne den Trick.",
+   "Bis Donnerstag hatte er mich einsortiert. Offenbar bin ich „begeisterte Wochenend-Sauerteigperson“, was jemanden überrascht, der Toastbrot im Stehen isst.",
+   "Ich wollte eine Liste abbestellen, die ich nie abonniert hatte. Der Toaster bat um einen Grund und bot fünf an. „Du bist ein Toaster“ war nicht dabei.",
+   "Wir haben uns geeinigt. Er schickt einen Brief im Monat, ich lese ihn, während das Brot drin ist, und keiner von uns erwähnt die Spülmaschine, die einen Podcast plant."
+  ],
+  "mark": "Er schickt einen Brief im Monat, ich lese ihn, während das Brot drin ist",
+  "ai": "Offenbar bin ich „begeisterte Wochenend-Sauerteigperson“",
+  "summary": [
+   "Ein Küchengerät entdeckt das Marketing.",
+   "Der Waffenstillstand: ein Brief im Monat."
+  ]
+ },
+ {
+  "id": "sock",
+  "title": "Die Socke, die ging: Notizen aus der Waschküche",
+  "host": "laundry-review.example",
+  "link": "",
+  "tags": [
+   "Lesen",
+   "Städte"
+  ],
+  "passages": [
+   "Sieben Paare gingen hinein. Dreizehn Socken kamen heraus. Ich habe sie dreimal auf dem Bett gezählt, bei gutem Licht, mit der Geduld eines Menschen, der anderes zu tun hätte.",
+   "Es fehlt die linke graue. Man wird sagen, Socken hätten kein Links und Rechts. Man hat nicht mit dieser Socke gelebt.",
+   "Ich durchsuchte Trommel, Dichtung, das Spannbettlaken, das Kleinteile hortet, und den Spalt hinter der Maschine. Dort fand ich einen Kassenzettel aus einem anderen Jahrzehnt und einen Knopf, der zu nichts gehört.",
+   "Meine Nachbarin meint, Socken verschwänden nicht, sondern zögen dorthin, wo man sie braucht. Sie sagt das ganz ruhig. Sie besitzt auch eine Schublade voller Einzelsocken, nach Hoffnung sortiert.",
+   "Ich trage die verbliebene jetzt mit einer grünen Partnerin. Bisher hat es niemand bemerkt, außer dem Farn."
+  ],
+  "mark": "Meine Nachbarin meint, Socken verschwänden nicht, sondern zögen dorthin, wo man sie braucht.",
+  "ai": "Ich habe sie dreimal auf dem Bett gezählt",
+  "summary": [
+   "Eine graue Socke kommt nicht zurück.",
+   "Eine grüne übernimmt."
+  ]
+ }
+]

@@ -12,6 +12,9 @@ import { createHighlightStore } from './highlightStore.js';
 import { hashValue, stampRecord, tombstone, syncFields, unknownFields, RECORD_SIDE, tick, observe } from './syncStamps.js';
 
 export const shardOf = (key) => hashValue(key).slice(-2).padStart(2, '0');
+// every name a shard can have (two base-36 characters): stamps are asked for by name, never by reading the whole storage
+const DIGITS = [...'0123456789abcdefghijklmnopqrstuvwxyz'];
+const SHARD_KEYS = DIGITS.flatMap((a) => DIGITS.map((b) => syncStampsKey(a + b)));
 
 let tail = Promise.resolve();
 /** One lock for every stamp read-modify-write: Web Locks across all extension contexts, a promise chain without them. */
@@ -188,6 +191,24 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
         } catch (_) { return 0; }
     }
 
+    /** Puts back what [adopt] replaced, when the data could not be written. `before`: { key: the earlier entry, or null }. */
+    async function revert(before) {
+        const keys = Object.keys(before || {});
+        if (!keys.length) return 0;
+        return lock(async () => {
+            const shards = await get(storage, [...new Set(keys.map((k) => syncStampsKey(shardOf(k))))]);
+            const out = {};
+            for (const k of keys) {
+                const sk = syncStampsKey(shardOf(k));
+                const shard = out[sk] || (out[sk] = shards[sk] && typeof shards[sk] === 'object' ? shards[sk] : {});
+                if (before[k]) shard[k] = before[k]; else delete shard[k];
+            }
+            await set(storage, out);
+            release(keys);
+            return keys.length;
+        });
+    }
+
     /**
      * Take over stamps that came from another device (the merged result of a pull). Written BEFORE the data they describe, so the
      * storage events of that data find matching hashes and stamp nothing (the echo guard). Raises the clock above everything seen.
@@ -257,13 +278,17 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
         });
     }
 
-    /** Every stamp, flattened (for the engine and the tests). */
+    /** Every stamp, flattened (for the engine and the tests). The engine asks after every package: reading everything here
+     *  loaded the whole library each time and ended the extension on phones for lack of memory. */
     async function all() {
-        const d = await get(storage, null);
+        // where the browser lists its keys, take every shard that is really there; Safari: ask for each possible name
+        let names = SHARD_KEYS;
+        if (typeof storage.getKeys === 'function') { try { names = (await storage.getKeys()).filter((k) => k.startsWith(SYNC_STAMPS)); } catch (_) { /* ask by name */ } }
+        const d = await get(storage, names);
         const out = {};
         for (const [k, v] of Object.entries(d || {})) if (k.startsWith(SYNC_STAMPS) && v && typeof v === 'object') Object.assign(out, v);
         return out;
     }
 
-    return { onChanged, markDeleted, keep, scan, all, adopt, release, purge, backfillHighlightIds, enabled };
+    return { onChanged, markDeleted, keep, scan, all, adopt, revert, release, purge, backfillHighlightIds, enabled };
 }

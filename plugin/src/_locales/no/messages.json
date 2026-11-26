@@ -2290,9 +2290,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "Klikk på Ollama-ikonet i menylinjen (øverst til høyre) og velg <b>Quit Ollama</b>."
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "Klikk «Generer 🎙️» for å lage episoden din."
-  },
   "f_close_pane_d66b": {
     "message": "Lukk panel {n}",
     "description": "Placeholders: {n} (keep as is)"
@@ -2331,17 +2328,8 @@
   "f_copy_0d38": {
     "message": "Kopier 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "Opprettede podkaster"
-  },
   "f_custom_prompt_text_10af": {
     "message": "Egen prompttekst"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "Egen stil (valgfritt):"
-  },
-  "f_custom_style_ba7f": {
-    "message": "Egen stil:"
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "D3-biblioteket kunne ikke lastes."
@@ -2383,9 +2371,6 @@
     "message": "Levering: {name}",
     "description": "Placeholders: {name} (keep as is)"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "Beskriv podkaststilen din"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "Skjul grafstatistikk"
   },
@@ -2397,9 +2382,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "Dra denne lenken til bokmerkelinjen 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "Lærerik"
   },
   "f_endpoint_url_ddad": {
     "message": "Endepunkt-URL"
@@ -2421,10 +2403,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "Skriv inn e-posten din..."
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "Feil ved generering av podkast: {msg}",
-    "description": "Placeholders: {msg} (keep as is)"
   },
   "f_error_d391": {
     "message": "Feil:"
@@ -2514,14 +2492,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "Lag et bokmerkelett som oppsummerer alle sider i alle nettlesere – også iOS/Android der utvidelsen ikke kan kjøre. Bruker byphil Cloud-innloggingen din."
   },
-  "f_generate_237e": {
-    "message": "Generer 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "Genererer lyd… 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "Genererer…"
   },
   "f_get_key_4f7c": {
     "message": "Hent nøkkel"
@@ -2714,9 +2686,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "Ingen artikler å vise i graf ennå."
   },
-  "f_no_audio_8798": {
-    "message": "Ingen lyd"
-  },
   "f_no_content_available_0c7a": {
     "message": "Ikke noe innhold tilgjengelig."
   },
@@ -2800,9 +2769,6 @@
   "f_persist_optional_29ce": {
     "message": "Behold (valgfritt)"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "Velg et navn på showet ditt:"
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "Angi Kindle-leverings-e-posten din i innstillingene først."
   },
@@ -2814,15 +2780,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "Skriv inn bekreftelseskoden."
-  },
-  "f_podcast_name_1b92": {
-    "message": "Podkastnavn"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "Podkastlengde (minutter):"
-  },
-  "f_podcast_style_61d0": {
-    "message": "Podkaststil:"
   },
   "f_positive_tone_6466": {
     "message": "Positiv tone"
@@ -2946,9 +2903,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "Søker i LAN etter LocalSend-mottaker..."
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "Velg opptil 5 artikler:"
-  },
   "f_send_share_bb4a": {
     "message": "Send og del"
   },
@@ -3016,9 +2970,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "Logget inn · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "Solo"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "Noe gikk galt – prøv igjen."
   },
@@ -3033,9 +2984,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "Stopp Ollama"
-  },
-  "f_storytelling_6d0b": {
-    "message": "Historiefortelling"
   },
   "f_style_fba4": {
     "message": "Stil:"
@@ -3148,9 +3096,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "Feil e-post? Gå tilbake"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "Du er klar til å generere podkasten din!"
   },
   "f_a_donation_8832": {
     "message": "en donasjon"
@@ -8393,5 +8338,170 @@
   },
   "f_look_it_up_7148": {
     "message": "Slå opp"
+  },
+  "f_page_9196": {
+    "message": "Side"
+  },
+  "f_this_view_3936": {
+    "message": "Denne visningen"
+  },
+  "f_legend_0984": {
+    "message": "Tegnforklaring"
+  },
+  "f_account_deleted_b71d": {
+    "message": "Kontoen er slettet."
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "Si først opp et løpende abonnement via lenken i betalingskvitteringen."
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "Enkelt: bare e-posten din, ingen API-nøkkel."
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "Kunne ikke slette kontoen: {why}"
+  },
+  "f_delete_account_5421": {
+    "message": "Slett konto"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "Slette kontoen din?"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "Logg inn på nytt før du sletter kontoen."
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "Takk for at du holder AISH uavhengig."
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "Kontoen og eventuelt pass på den fjernes for godt. Dette kan ikke angres."
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 Gratisgrensen er nådd (3 sendinger)."
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 Send to Kindle\n\nGratisnivå: 3 Kindle-sendinger inkludert.\n\nSørg for at kindle@byphil.eu står på listen over godkjente avsendere på Kindle (se Amazon-hjelp).\n\nSende denne artikkelen til Kindle?"
+  },
+  "f_allow_19d2": {
+    "message": "Tillat"
+  },
+  "f_allowed_66fd": {
+    "message": "Tillatt: {who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "Ikke tillatt ennå: {who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "Ingenting ble sendt. Tillat det først under Innstillinger › Modeller og API."
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "Sende tekst til en KI-tjeneste?"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "Sending av tekst til KI-tjenester"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "For å oppsummere, merke og svare sender AISH teksten fra sidene, de lagrede artiklene og strømmene du bruker det med, og spørsmålene dine, til {who}. Ingenting sendes før du tillater det. Du kan trekke tilbake under Innstillinger › Modeller og API."
+  },
+  "f_withdraw_6cb7": {
+    "message": "Trekk tilbake"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud, som sender det videre til OpenRouter og selskapet bak den valgte modellen"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "En rolig startside i sin egen fane: les videre, nye artikler, strømmene dine og et søk (⌘K / Ctrl+K). Den erstatter ikke nettleserens side for ny fane."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "Et løpende abonnement sies opp sammen med kontoen din."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome og Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "Kopier adressen"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "Startsideknapp: Innstillinger › Utseende › Vis startsideknappen, og lim inn adressen."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "Siden kan ikke settes som startside i Safari på iPhone og iPad. Åpne den med knappen over, eller bruk fanen I dag i AISH-appen."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "Siden kan ennå ikke settes som startside i Safari. Åpne den med knappen over."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "Åpne den, eller gjør den til startside"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari på Mac"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "Gjør den til startside"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "Innstillinger › Ved oppstart › Åpne en bestemt side eller et sett med sider › Legg til en ny side, og lim inn adressen."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "Innstillinger › Start, startside og ny fane › Når Edge starter › Åpne disse sidene › Legg til en ny side, og lim inn adressen."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone og iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (denne nettleseren)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "Artikler som Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "Sikkerhetskopi og synk"
+  },
+  "f_bring_back_4fde": {
+    "message": "Hent tilbake"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "Fra en fil…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "Fra et sted: åpne det over, og velg «Gjenopprett herfra…»."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "Behold en kopi et sted"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "Hold biblioteket likt på enhetene dine, eller ta vare på en kopi et sted. Ingenting forlater enheten før du legger til et sted."
+  },
+  "f_last_full_copy_4175": {
+    "message": "Siste fulle kopi: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "Ingen full kopi ennå"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "Én gang, som fil"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "Bare innstillingene eller også artiklene. Nøkler holdes utenfor med mindre du velger dem."
+  },
+  "f_pass_on_78d1": {
+    "message": "Gi videre"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "Lagre en fil, eller legg til et sted som oppbevarer en kopi."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "Lagre til fil"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "Lagret som fil"
+  },
+  "f_storage_df06": {
+    "message": "Lagring"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "Lagring · tagger · slett"
+  },
+  "f_ago_dfc8": {
+    "message": "for {t} siden"
   }
 }

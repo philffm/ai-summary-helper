@@ -4,6 +4,7 @@ import { SK } from '../storageKeys.js';
 import { escapeHtml } from '../textUtils.js';
 import StorageManager from '../storageManager.js';
 import { normalizeKindleFormat } from '../kindleFormat.js';
+import { storeBuild } from '../storeBuild.js';
 import { sendToLocalSend } from '../localSendClient.js';
 import { T } from '../feedI18n.js';
 import { withQuestions, qaMarkdown } from '../conversation.js';
@@ -343,7 +344,7 @@ export async function sendToKindle(article) {
 
     const isPro = config[SK.user]?.subscription_status === 'active';
     if (!isPro) {
-        const confirmation = await (await import('../confirmSheet.js')).confirmSheet({ title: T('Send to Kindle'), confirmLabel: T('Send'), danger: false, text: T('📚 Send to Kindle\n\nFree tier: 3 Kindle sends included.\nUpgrade to Pro for unlimited.\n\nMake sure kindle@byphil.eu is in your Kindle approved senders list (see Amazon help).\n\nSend this article to Kindle?') });
+        const confirmation = await (await import('../confirmSheet.js')).confirmSheet({ title: T('Send to Kindle'), confirmLabel: T('Send'), danger: false, text: storeBuild() ? T('📚 Send to Kindle\n\nFree tier: 3 Kindle sends included.\n\nMake sure kindle@byphil.eu is in your Kindle approved senders list (see Amazon help).\n\nSend this article to Kindle?') : T('📚 Send to Kindle\n\nFree tier: 3 Kindle sends included.\nUpgrade to Pro for unlimited.\n\nMake sure kindle@byphil.eu is in your Kindle approved senders list (see Amazon help).\n\nSend this article to Kindle?') });
         if (!confirmation) return;
     }
 
@@ -385,7 +386,7 @@ export async function sendToKindle(article) {
         } else {
             const msg = resData.error || T('Kindle delivery failed.');
             if (resData.error?.includes('Free tier limit') || resData.error?.includes('402')) {
-                alert(T('📚 Free tier limit reached (3 sends).\n\nUpgrade to Pro for unlimited Kindle delivery.\n\nhttps://philwornath.com/links'));
+                alert(storeBuild() ? T('📚 Free tier limit reached (3 sends).') : T('📚 Free tier limit reached (3 sends).\n\nUpgrade to Pro for unlimited Kindle delivery.\n\nhttps://philwornath.com/links'));
             } else if (hist.ui) {
                 hist.ui.showToast(msg);
             } else {

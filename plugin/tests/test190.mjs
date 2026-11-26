@@ -1,4 +1,4 @@
-// Settings → Sync & backup: the list, the add flow, the form with test and save, editing and removing a place.
+// Settings → Backup & sync: the list, the add flow, the form with test and save, editing and removing a place.
 import assert from 'assert';
 import { setup, imp } from './harness.mjs';
 import { createFakeDav } from './fakeDav.mjs';
@@ -33,8 +33,8 @@ const vault = { load: async (id) => ({ queryPermission: async () => (id === 'a' 
 assert.deepEqual((await V.lapsedFolders([{ id: 'a', service: 'folder', name: 'A' }, { id: 'b', service: 'folder', name: 'B' }, { id: 'c', service: 'webdav', name: 'C' }], vault)).map((c) => c.id), ['a']);
 // start: explains itself and starts from the goal (sync, back up, publish), the Settings row says Off
 V.initSyncView(); await wait();
-assert.match(text(), /Nothing leaves this device until you add one/);
-assert.deepEqual([...root().querySelectorAll('.settings-row-title')].map((e) => e.textContent), ['Sync my devices', 'Back up', 'Publish a reading list']);
+assert.match(text(), /Nothing leaves this device until you add a place/);
+assert.deepEqual([...root().querySelectorAll('.settings-row-title')].map((e) => e.textContent), ['Sync my devices', 'Keep a copy in a place'], 'publishing moved under “Pass on”');
 assert.ok(!root().querySelector('.sync-place'), 'no places yet');
 assert.ok(document.querySelector('#settingsPanel-sync .settings-panel-head') && !document.querySelector('#settingsPanel-sync .settings-panel-head').hidden, 'the list keeps the panel header');
 assert.equal(document.querySelector('.settings-row-sub[data-sub="sync"]').textContent, 'Off');
@@ -51,7 +51,7 @@ assert.match(rows[1].textContent, /S3-compatible/);
 // the S3 row opens a form with bucket, region and access key (not a folder form)
 click(rows[1]); await wait(100);
 assert.ok($('syncBucket') && $('syncRegion') && $('syncUser') && $('syncUrl'), 'S3 fields'); assert.match(root().textContent, /Access key ID/); assert.match(root().textContent, /Secret access key/);
-click(byText('button', 'Sync & backup')); await wait(60); click(byText('button', 'Sync my devices')); await wait(60); rows = [...root().querySelectorAll('.settings-row')];
+click(byText('button', 'Backup & sync')); await wait(60); click(byText('button', 'Sync my devices')); await wait(60); rows = [...root().querySelectorAll('.settings-row')];
 click(rows[0]); await wait(80);
 
 // form: a new place starts encrypted (the safe choice) and asks for a passphrase twice; Readable is one tap away
@@ -169,7 +169,7 @@ click(fixBtn); await wait(120);
 assert.ok($('syncPass') && $('syncPass').getAttribute('aria-invalid') === 'true', 'Fix opens the server login with the error at the password field');
 assert.match($($('syncPass').getAttribute('aria-describedby').split(' ')[0]).textContent, /did not accept/);
 assert.ok(root().querySelector('details.sync-fold[data-fold="server"]').open);
-click(byText('button', '‹ Sync')); await wait(80);
+click(byText('button', '‹ Backup')); await wait(80);
 
 // live progress: the row says what it is doing, the form's status card follows without touching what is typed
 store[SK.syncStatus] = { [id]: { at: new Date().toISOString(), ok: true, pushed: 1, running: { phase: 'uploading', done: 12, total: 340, since: Date.now(), at: Date.now() } } };
@@ -191,7 +191,7 @@ store[SK.syncStatus] = { [id]: { at: new Date().toISOString(), ok: true, pushed:
 for (const f of globalThis.__chL || []) f({ [SK.syncStatus]: { newValue: store[SK.syncStatus] } }, 'local');
 await wait(80);
 assert.ok(!$('syncHero').querySelector('progress'), 'a stale run is not shown as running');
-click(byText('button', '‹ Sync')); await wait(80);
+click(byText('button', '‹ Backup')); await wait(80);
 
 // remove: asked in the page (no browser dialog), Cancel keeps it
 const exact = (t) => [...root().querySelectorAll('button')].find((b) => b.textContent === t);

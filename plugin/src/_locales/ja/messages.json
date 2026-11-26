@@ -2186,9 +2186,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "メニューバー（右上）のOllamaアイコンをクリックし、<b>Quit Ollama</b>を選びます。"
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "「生成 🎙️」をクリックしてエピソードを作成します。"
-  },
   "f_close_pane_d66b": {
     "message": "ペイン{n}を閉じる"
   },
@@ -2225,17 +2222,8 @@
   "f_copy_0d38": {
     "message": "コピー 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "作成したポッドキャスト"
-  },
   "f_custom_prompt_text_10af": {
     "message": "カスタムプロンプト"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "カスタムスタイル（任意）:"
-  },
-  "f_custom_style_ba7f": {
-    "message": "カスタムスタイル:"
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "D3ライブラリを読み込めませんでした。"
@@ -2276,9 +2264,6 @@
   "f_delivery_83d6": {
     "message": "送信先: {name}"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "ポッドキャストのスタイルを入力"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "グラフの統計を閉じる"
   },
@@ -2290,9 +2275,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "このリンクをブックマークバーにドラッグ 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "教育"
   },
   "f_endpoint_url_ddad": {
     "message": "エンドポイントURL"
@@ -2314,9 +2296,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "メールアドレスを入力..."
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "ポッドキャストの生成エラー: {msg}"
   },
   "f_error_d391": {
     "message": "エラー:"
@@ -2402,14 +2381,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "拡張機能が動かないiOS/Androidを含め、どのブラウザでもページを要約できるブックマークレットを作成します。byphil Cloudのログインを使用します。"
   },
-  "f_generate_237e": {
-    "message": "生成 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "音声を生成中… 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "生成中…"
   },
   "f_get_key_4f7c": {
     "message": "キーを取得"
@@ -2600,9 +2573,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "グラフ化できる記事がまだありません。"
   },
-  "f_no_audio_8798": {
-    "message": "音声なし"
-  },
   "f_no_content_available_0c7a": {
     "message": "利用できるコンテンツがありません。"
   },
@@ -2684,9 +2654,6 @@
   "f_persist_optional_29ce": {
     "message": "保持（任意）"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "番組の名前を決めてください:"
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "先に設定でKindle配信用のメールアドレスを入力してください。"
   },
@@ -2698,15 +2665,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "確認コードを入力してください。"
-  },
-  "f_podcast_name_1b92": {
-    "message": "ポッドキャスト名"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "ポッドキャストの長さ（分）:"
-  },
-  "f_podcast_style_61d0": {
-    "message": "ポッドキャストのスタイル:"
   },
   "f_positive_tone_6466": {
     "message": "ポジティブなトーン"
@@ -2828,9 +2786,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "LANでLocalSend受信側を検索中..."
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "記事を最大5件選択:"
-  },
   "f_send_share_bb4a": {
     "message": "送信と共有"
   },
@@ -2897,9 +2852,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "ログイン中 · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "ソロ"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "問題が発生しました。もう一度お試しください。"
   },
@@ -2914,9 +2866,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "Ollamaを停止"
-  },
-  "f_storytelling_6d0b": {
-    "message": "ストーリーテリング"
   },
   "f_style_fba4": {
     "message": "スタイル:"
@@ -3025,9 +2974,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "メールが違いますか？ 戻る"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "ポッドキャストを生成する準備ができました！"
   },
   "f_a_donation_8832": {
     "message": "寄付"
@@ -8110,5 +8056,170 @@
   },
   "f_look_it_up_7148": {
     "message": "調べる"
+  },
+  "f_page_9196": {
+    "message": "ページ"
+  },
+  "f_this_view_3936": {
+    "message": "この表示"
+  },
+  "f_legend_0984": {
+    "message": "凡例"
+  },
+  "f_account_deleted_b71d": {
+    "message": "アカウントを削除しました。"
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "継続中の定期購入は、先に支払い明細のリンクから解約してください。"
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "簡単：メールアドレスだけ、APIキーは不要。"
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "アカウントを削除できませんでした：{why}"
+  },
+  "f_delete_account_5421": {
+    "message": "アカウントを削除"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "アカウントを削除しますか？"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "削除する前にもう一度サインインしてください。"
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "AISHの独立を支えてくださりありがとうございます。"
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "アカウントと付随するパスは完全に削除されます。元に戻せません。"
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 無料プランの上限に達しました（3回送信）。"
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 Kindleに送信\n\n無料プランではKindle送信を3回までご利用いただけます。\n\nkindle@byphil.eu がKindleの承認済み送信者リストに登録されていることを確認してください（Amazonヘルプ参照）。\n\nこの記事をKindleに送信しますか？"
+  },
+  "f_allow_19d2": {
+    "message": "許可"
+  },
+  "f_allowed_66fd": {
+    "message": "許可済み：{who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "未許可：{who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "何も送信していません。先に「設定 › モデルとAPI」で許可してください。"
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "AIサービスにテキストを送信しますか？"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "AIサービスへのテキスト送信"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "要約・タグ付け・回答のために、AISHはこれらの機能を使うページ、保存した記事、フィードのテキストと質問を {who} に送信します。許可するまで何も送信されません。許可は「設定 › モデルとAPI」で取り消せます。"
+  },
+  "f_withdraw_6cb7": {
+    "message": "取り消す"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud（OpenRouterと選択したモデルの提供会社に転送されます）"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "専用タブの落ち着いたスタートページ：読書の続き、新着記事、フィード、検索（⌘K / Ctrl+K）。ブラウザの新しいタブページは置き換えません。"
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "継続中の定期購入はアカウントと一緒に解約されます。"
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "ChromeとBrave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "アドレスをコピー"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "ホームボタン：設定 › デザイン › ホームボタンを表示する、を選んでアドレスを貼り付けます。"
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "iPhoneとiPadのSafariではスタートページに設定できません。上のボタンで開くか、AISHアプリの「今日」タブをお使いください。"
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "Safariではまだスタートページに設定できません。上のボタンで開いてください。"
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "開く、またはスタートページに設定"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "MacのSafari"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "スタートページに設定する"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "設定 › 起動時 › 特定のページまたはページセットを開く › 新しいページを追加、でアドレスを貼り付けます。"
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "設定 › [スタート]、[ホーム]、および [新規タブ] ページ › Edge の起動時 › これらのページを開く › 新しいページを追加、でアドレスを貼り付けます。"
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhoneとiPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser}（このブラウザ）"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "記事をMarkdownで（.zip）"
+  },
+  "f_backup_sync_f954": {
+    "message": "バックアップと同期"
+  },
+  "f_bring_back_4fde": {
+    "message": "戻す"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "ファイルから…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "保存先から：上で開いて「ここから復元…」を選びます。"
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "保存先にコピーを置く"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "デバイス間でライブラリを揃えるか、どこかにコピーを保管します。保存先を追加するまで、このデバイスから何も出ません。"
+  },
+  "f_last_full_copy_4175": {
+    "message": "最後の完全なコピー：{when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "完全なコピーはまだありません"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "一度だけ、ファイルで"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "設定のみ、または記事も含めて。キーは選ばない限り含まれません。"
+  },
+  "f_pass_on_78d1": {
+    "message": "渡す"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "ファイルに保存するか、コピーを保管する保存先を追加してください。"
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "ファイルに保存"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "ファイルとして保存"
+  },
+  "f_storage_df06": {
+    "message": "ストレージ"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "ストレージ・タグ・削除"
+  },
+  "f_ago_dfc8": {
+    "message": "{t}前"
   }
 }

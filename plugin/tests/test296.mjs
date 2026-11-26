@@ -1,0 +1,30 @@
+// Backup & sync holds everything that makes or brings back a copy; the newest full copy is named there and above the
+// delete buttons. A two-way sync is not counted as a copy.
+import { setup, imp, tick } from './harness.mjs'; import assert from 'assert';
+const { w, store } = setup({});
+const d = w.document; globalThis.document = d; globalThis.window = w;
+const panel = (n) => d.getElementById('settingsPanel-' + n);
+for (const id of ['exportSettingsButton', 'importSettingsButton', 'exportMarkdownButton', 'publishListButton', 'lastCopy']) assert.ok(panel('sync').querySelector('#' + id), id + ' is on Backup & sync');
+assert.ok(panel('library').querySelector('#lastCopyLink') && !panel('library').querySelector('#exportSettingsButton'));
+const { latestCopy, paintLastCopy } = await imp('modules/settings/lastCopy.js');
+const { SK } = await imp('modules/storageKeys.js');
+assert.equal(await latestCopy(), null);
+const ago = (h) => new Date(Date.now() - h * 3600e3).toISOString();
+store[SK.syncPlaces] = [{ id: 'a', name: 'Everywhere', direction: 'twoway' }, { id: 'b', name: 'Nextcloud', direction: 'push' }, { id: 'c', name: 'Website', direction: 'publish' }];
+store[SK.syncStatus] = { a: { ok: true, at: ago(1) }, b: { ok: true, at: ago(5) }, c: { ok: true, at: ago(1) } };
+assert.equal((await latestCopy()).name, 'Nextcloud', 'only a place that keeps a copy counts');
+store[SK.syncStatus].b.ok = false;
+assert.equal(await latestCopy(), null, 'a failed run is no copy');
+store[SK.lastFileBackup] = ago(2);
+assert.equal((await latestCopy()).name, '');
+let opened = 0;
+await paintLastCopy(d, () => opened++);
+assert.match(d.getElementById('lastCopy').textContent, /Last full copy: .*Saved as a file/);
+d.getElementById('lastCopyLink').click(); await tick(10);
+assert.equal(opened, 1, 'the line above the delete buttons leads to the copies');
+const { initSyncView } = await imp('modules/syncView.js');
+store[SK.syncPlaces] = []; initSyncView(); await tick(150);
+assert.equal(d.getElementById('copyExtras').hidden, false);
+d.getElementById('publishListButton').click(); await tick(150);
+assert.ok(d.getElementById('copyExtras').hidden && d.getElementById('lastCopy').hidden, 'the form stands alone');
+console.log('copies on one panel ok'); process.exit(0);

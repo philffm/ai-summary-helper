@@ -11,6 +11,9 @@ import { attachSearchClear } from './searchField.js';
 // ⌘N / Ctrl+N (new summary) and ⌘/Ctrl+Enter (summarize / send) live in mainScreen.js; arrow keys for tab bars in tabbar.js.
 
 export const isMac = () => /Mac|iPhone|iPad/i.test((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || navigator.userAgent || '');
+/** A phone: touch only and a small screen, so there is no keyboard shortcut, no local model and no room for a sidebar. */
+export const isPhone = () => !!globalThis.matchMedia?.('(hover: none) and (pointer: coarse)').matches
+    && Math.min(globalThis.screen?.width || 9999, globalThis.screen?.height || 9999) < 600;
 export const modPressed = (e) => (isMac() ? e.metaKey : e.ctrlKey);
 export const searchHint = () => (isMac() ? '⌘ + F' : 'Ctrl + F');
 

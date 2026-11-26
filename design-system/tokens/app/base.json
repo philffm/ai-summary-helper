@@ -306,7 +306,7 @@
         "ok-strong": {
           "$type": "color",
           "$value": "color-mix(in srgb, {app.semantic.feedback.ok} 85%, {app.semantic.base.on-solid})",
-          "$description": "Second stop of the success gradient (podcast button).",
+          "$description": "Darker green for success marks and words.",
           "$extensions": {
             "eu.byphil.ds": {
               "template": true

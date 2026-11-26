@@ -153,6 +153,7 @@ class AppModel(context: Context) {
     fun changeAlarm(next: AlarmSettings) {
         Guard.begin(app, "alarm")   // cleared by the settings card once it has been drawn with the new settings
         store.alarm = next; alarm = next
+        store.wakeJson = null   // what was chosen under the old settings no longer counts
         try {
             AlarmScheduler.reschedule(app); alarmError = null
         } catch (e: Throwable) {

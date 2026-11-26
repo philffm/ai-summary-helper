@@ -64,20 +64,22 @@ class StorageManager {
     /**
      * Everything except the library: the settings, accounts and small state, without the article records, the notes and
      * highlights per page, the feed items and the graph. getAll() reads them all (megabytes per article), which is what made
-     * the Settings screens slow on a big library. Where the browser cannot list keys it falls back to getAll().
+     * the Settings screens slow on a big library. Where the browser cannot list keys (Safari) the settings are asked for by
+     * their names: never getAll(), which on a phone with a large library ends the popup for lack of memory.
      */
     static async getSettings() {
         const big = new Set([SK.articlesIndex, SK.feedItems, SK.feedRecaps, SK.graphSim]);
         const skip = (k) => big.has(k) || isArticleRecKey(k) || isCollRecKey(k) || isNoteRecKey(k) || isHlPageKey(k) || k.startsWith(ARTICLE_REC_LEGACY);
-        if (typeof chrome.storage.local.getKeys !== 'function') return this.getAll();
-        try {
-            const keys = (await chrome.storage.local.getKeys()).filter((k) => !skip(k));
-            const [syncData, localData] = await Promise.all([
-                new Promise(resolve => chrome.storage.sync.get(null, resolve)),
-                new Promise(resolve => chrome.storage.local.get(keys, resolve)),
-            ]);
-            return { ...syncData, ...localData };
-        } catch (_) { return this.getAll(); }
+        const known = () => [...new Set([...LOCAL_KEY_LIST, ...Object.keys(SK_LEGACY)])].filter((k) => k !== 'articles' && !skip(k));
+        let keys = null;
+        if (typeof chrome.storage.local.getKeys === 'function') {
+            try { keys = (await chrome.storage.local.getKeys()).filter((k) => !skip(k)); } catch (_) { /* ask by name */ }
+        }
+        const [syncData, localData] = await Promise.all([
+            new Promise(resolve => chrome.storage.sync.get(null, resolve)),
+            new Promise(resolve => chrome.storage.local.get(keys || known(), resolve)),
+        ]);
+        return { ...syncData, ...localData };
     }
 
     /**
@@ -754,7 +756,7 @@ class StorageManager {
         // records. Cheap no-op after the first run (checked via a dedicated flag,
         // not the blob itself). Every read/write call site (background.js,
         // content.js, content/core.js, mainScreen.js, articleManager.js,
-        // podcastManager.js, analyticsManager.js, settingsManager.js) has been
+        // analyticsManager.js, settingsManager.js) has been
         // switched to the articlesIndex/article:<id> shape, so it's now safe to
         // run this on every popup/service-worker startup.
         await this.migrateArticlesToIndexedRecords();

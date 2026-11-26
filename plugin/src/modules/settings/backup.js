@@ -2,7 +2,7 @@
 import { createHighlightStore } from '../highlightStore.js';
 import { confirmSheet } from '../confirmSheet.js';
 import { SK } from '../storageKeys.js';
-import { filterBackupSecrets, hasBackupSecrets, prepareImportedData } from '../backupUtils.js';
+import { filterBackupSecrets, hasBackupSecrets, prepareImportedData, writeRestored, SETTINGS_LOCAL_KEYS } from '../backupUtils.js';
 import StorageManager from '../storageManager.js';
 import { T } from '../feedI18n.js';
 import { setLabel } from '../icons.js';
@@ -11,13 +11,15 @@ import { exportHistoryMarkdown } from '../markdownArchive.js';
 // ── Section: Backup & Restore ────────────────────────────────────────
 export function initBackupRestore() {
     const btnExport = document.getElementById('exportSettingsButton');
+    if (btnExport && btnExport.dataset.bound) return;   // opened from the delete dialog and loaded with the panel
+    if (btnExport) btnExport.dataset.bound = '1';
     const btnImport = document.getElementById('importSettingsButton');
     const fileInput = document.getElementById('importSettingsFile');
     const btnMd = document.getElementById('exportMarkdownButton');
 
     // ── Export history as Markdown (Obsidian / Logseq friendly .zip) ──
     if (btnMd) {
-        const mdLabel = '📝 ' + T('Export history as Markdown (.zip)');
+        const mdLabel = '📝 ' + T('Articles as Markdown (.zip)');
         btnMd.textContent = mdLabel;
         btnMd.addEventListener('click', async () => {
             btnMd.disabled = true;
@@ -49,12 +51,12 @@ export function initBackupRestore() {
 
         btnExport.addEventListener('click', () => {
             choicePanel.hidden = !choicePanel.hidden;
-            btnExport.textContent = choicePanel.hidden ? '📤 ' + T('Export') : '📤 ' + T('Export') + ' ▲';
+            btnExport.textContent = choicePanel.hidden ? '📤 ' + T('Save to a file') : '📤 ' + T('Save to a file') + ' ▲';
         });
 
         const doExport = async (includeContent) => {
             choicePanel.hidden = true;
-            btnExport.textContent = '📤 ' + T('Export');
+            btnExport.textContent = '📤 ' + T('Save to a file');
             try {
                 const includeSecrets = document.getElementById('includeBackupSecrets')?.checked === true;
                 if (includeSecrets && !(await confirmSheet({ title: T('Export with secrets?'), text: T('This backup will contain API keys, sign-in details, license keys, and an install identifier. Anyone with the file could use its keys or identify this install. Continue?'), confirmLabel: T('Export'), danger: false }))) return;
@@ -89,7 +91,8 @@ export function initBackupRestore() {
                         _backup_version: 1,
                         _exported_at: new Date().toISOString(),
                         _contains_secrets: includeSecrets,
-                        ...safeSyncData
+                        ...safeSyncData,
+                        ...Object.fromEntries(SETTINGS_LOCAL_KEYS.filter((k) => k in safeLocalData).map((k) => [k, safeLocalData[k]]))
                     };
                     filename = `aish_settings_${date}.json`;
                 }
@@ -103,6 +106,7 @@ export function initBackupRestore() {
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
+                if (includeContent) await chrome.storage.local.set({ [SK.lastFileBackup]: new Date().toISOString() });   // a full copy
 
                 const origNodes = [...btnExport.childNodes].map(n => n.cloneNode(true));   // nodes, not text: keeps the icon
                 setLabel(btnExport, includeContent
@@ -141,7 +145,8 @@ export function initBackupRestore() {
 
                     const containsSecrets = hasBackupSecrets(importedData);
                     if (containsSecrets && !(await confirmSheet({ title: T('Import secrets?'), text: T('This backup contains API keys, sign-in details, license keys, or an install identifier. Importing will replace matching stored secrets. Continue?'), confirmLabel: T('Import'), danger: false }))) return;
-                    const currentData = await StorageManager.getAll();
+                    // only what the merge needs: reading a whole library back would double the memory a phone has to find
+                    const currentData = await StorageManager.get([SK.syncConnections, SK.syncPlaces, SK.syncSecrets, SK.servicesConfig]);
 
                     if ([2, 3, 4, 5].includes(importedData._backup_version)) {
                         // FIX: Leverage the new StorageManager routing
@@ -152,29 +157,17 @@ export function initBackupRestore() {
                         if (preparedSettings) await StorageManager.set(preparedSettings);
 
                         if (local) {
+                            // an old-shape backup (one big list) is split the way the startup migration does it
+                            let rows = local;
                             if (Array.isArray(local.articles)) {
-                                // Old-shape backup (pre-migration) — split it the
-                                // same way the startup migration does, don't
-                                // write the flat array back verbatim or every
-                                // migrated screen will simply never see it again.
                                 const { index, records } = StorageManager.splitArticlesArray(local.articles);
-                                const { articles: _old, ...rest } = local; // drop the old key from the pass-through write
-                                await StorageManager.set({ ...rest, [SK.articlesIndex]: index });
-
-                                // Write per-article records in chunks rather than
-                                // one call with hundreds of keys and all their
-                                // content at once (same reasoning as the startup
-                                // migration's chunked write).
-                                const CHUNK_SIZE = 25;
-                                const recordKeys = Object.keys(records);
-                                for (let i = 0; i < recordKeys.length; i += CHUNK_SIZE) {
-                                    const chunk = {};
-                                    recordKeys.slice(i, i + CHUNK_SIZE).forEach(k => chunk[k] = records[k]);
-                                    await StorageManager.setLocal(chunk);
-                                }
-                            } else {
-                                await StorageManager.set(local); // already new-shape
+                                const { articles: _old, ...rest } = local;
+                                rows = { ...rest, ...records, [SK.articlesIndex]: index };
                             }
+                            // in pieces, straight into local storage, showing how far it is
+                            const label = [...btnImport.childNodes].map((n) => n.cloneNode(true));
+                            try { await writeRestored(rows, { onProgress: (i, n) => setLabel(btnImport, `${Math.round(i / n * 100)} %`) }); }
+                            finally { btnImport.replaceChildren(...label); }
                         }
 
                         // highlights: the restored pages get an index; an old backup's single list (hl:all) is merged into pages by the
@@ -193,7 +186,8 @@ export function initBackupRestore() {
                     chrome.runtime.reload();
                 } catch (err) {
                     console.error('Import failed:', err);
-                    alert(T('Invalid backup file. Please select a valid AI Summary Helper export.'));
+                    // the reason as the browser gave it: a full store and a broken file need different answers
+                    alert(T('Invalid backup file. Please select a valid AI Summary Helper export.') + '\n\n' + String((err && err.message) || err).slice(0, 300));
                 } finally {
                     fileInput.value = '';
                 }

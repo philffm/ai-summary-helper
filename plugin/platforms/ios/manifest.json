@@ -9,15 +9,18 @@
     "activeTab",
     "scripting",
     "storage",
+    "unlimitedStorage",
     "contextMenus",
     "notifications",
-    "alarms"
+    "alarms",
+    "nativeMessaging"
   ],
   "host_permissions": [
     "<all_urls>",
     "file:///*"
   ],
   "background": {
+    "persistent": false,
     "scripts": [
       "audioEngine.js",
       "ttsEngine.js",
@@ -29,7 +32,8 @@
       "background.js",
       "bg/feedPoll.js",
       "bg/aiComplete.js",
-      "bg/checkoutClaim.js"
+      "bg/checkoutClaim.js",
+      "bg/nativeLibrary.js"
     ]
   },
   "action": {

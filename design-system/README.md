@@ -141,6 +141,11 @@ component to its manifest entry with Code Connect (label Markdown, source `desig
 `dist/android/DesignTokens.kt` holds the app colours per brand × theme as Compose `Color`s. The Android app does not read it
 yet (`mobile/android/…/Theme.kt` still has its own palette); switching it over is a follow-up.
 
+## iOS
+
+`dist/ios/DesignTokens.swift` holds the same colours as SwiftUI `Color`s (one `enum` per brand, light and dark in one
+value). The app in `mobile/ios` compiles this file directly: use `KaivoTokens.accent`, never a hex value.
+
 ## Decisions
 
 See `adr/`.

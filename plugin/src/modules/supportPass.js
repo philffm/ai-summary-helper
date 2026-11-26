@@ -5,6 +5,7 @@
 // Stripe redirects to the thank-you page, where the extension claims the payment (bg/checkoutClaim.js). Signed in and active:
 // a short “active” line. Signed out: hidden (the sign-in form above says it all). Built from existing classes only.
 import { T } from './feedI18n.js';
+import { storeBuild } from './storeBuild.js';
 
 // Buying goes through the API, which redirects to the current payment provider (byphilapi src/routes/billing.js):
 // a provider switch is a server change, no extension release.
@@ -30,7 +31,8 @@ export function renderSupportPass(doc, user, { open = (url) => window.open(url, 
     const box = doc.getElementById('supportPassGroup');
     if (!box) return;
     box.textContent = '';
-    if (!user) { box.hidden = true; return; }
+    // the App Store build says nothing about buying: only a pass that is already running is shown
+    if (!user || (storeBuild() && !isPassActive(user))) { box.hidden = true; return; }
     box.hidden = false;
     const el = (tag, cls, text) => { const n = doc.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
     const head = el('div', 'flex-label-row');
@@ -40,7 +42,7 @@ export function renderSupportPass(doc, user, { open = (url) => window.open(url, 
     head.append(badge);
     box.append(head);
     if (isPassActive(user)) {
-        box.append(el('p', 'input-caption', T('Thank you for keeping AISH independent. Change card, switch plan or cancel from the link in your Stripe receipt.')));
+        box.append(el('p', 'input-caption', storeBuild() ? T('Thank you for keeping AISH independent.') : T('Thank you for keeping AISH independent. Change card, switch plan or cancel from the link in your Stripe receipt.')));
         return;
     }
     box.append(el('p', 'input-caption', T('More cloud models, no daily cap, Kindle delivery. Keeps AISH independent.')));

@@ -2168,9 +2168,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "메뉴 바(오른쪽 위)의 Ollama 아이콘을 클릭하고 <b>Quit Ollama</b>를 선택하세요."
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "“생성 🎙️”을 눌러 에피소드를 만드세요."
-  },
   "f_close_pane_d66b": {
     "message": "패널 {n} 닫기"
   },
@@ -2207,17 +2204,8 @@
   "f_copy_0d38": {
     "message": "복사 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "만든 팟캐스트"
-  },
   "f_custom_prompt_text_10af": {
     "message": "사용자 지정 프롬프트"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "사용자 지정 스타일 (선택):"
-  },
-  "f_custom_style_ba7f": {
-    "message": "사용자 지정 스타일:"
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "D3 라이브러리를 불러오지 못했어요."
@@ -2258,9 +2246,6 @@
   "f_delivery_83d6": {
     "message": "전송: {name}"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "팟캐스트 스타일을 설명하세요"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "그래프 통계 닫기"
   },
@@ -2272,9 +2257,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "이 링크를 북마크 바로 드래그하세요 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "교육"
   },
   "f_endpoint_url_ddad": {
     "message": "엔드포인트 URL"
@@ -2296,9 +2278,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "이메일을 입력하세요..."
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "팟캐스트 생성 오류: {msg}"
   },
   "f_error_d391": {
     "message": "오류:"
@@ -2384,14 +2363,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "확장 프로그램이 실행되지 않는 iOS/Android를 포함해 어떤 브라우저에서든 페이지를 요약하는 북마클릿을 만들어요. byphil Cloud 로그인을 사용합니다."
   },
-  "f_generate_237e": {
-    "message": "생성 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "오디오 생성 중… 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "생성 중…"
   },
   "f_get_key_4f7c": {
     "message": "키 받기"
@@ -2582,9 +2555,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "그래프로 표시할 기사가 아직 없어요."
   },
-  "f_no_audio_8798": {
-    "message": "오디오 없음"
-  },
   "f_no_content_available_0c7a": {
     "message": "사용 가능한 콘텐츠가 없어요."
   },
@@ -2666,9 +2636,6 @@
   "f_persist_optional_29ce": {
     "message": "유지 (선택)"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "프로그램 이름을 정하세요:"
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "먼저 설정에서 Kindle 전송용 이메일 주소를 입력하세요."
   },
@@ -2680,15 +2647,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "인증 코드를 입력하세요."
-  },
-  "f_podcast_name_1b92": {
-    "message": "팟캐스트 이름"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "팟캐스트 길이(분):"
-  },
-  "f_podcast_style_61d0": {
-    "message": "팟캐스트 스타일:"
   },
   "f_positive_tone_6466": {
     "message": "긍정적 톤"
@@ -2810,9 +2768,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "LAN에서 LocalSend 수신 기기를 찾는 중..."
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "기사를 최대 5개 선택하세요:"
-  },
   "f_send_share_bb4a": {
     "message": "전송 및 공유"
   },
@@ -2879,9 +2834,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "로그인됨 · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "솔로"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "문제가 발생했어요. 다시 시도하세요."
   },
@@ -2896,9 +2848,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "Ollama 중지"
-  },
-  "f_storytelling_6d0b": {
-    "message": "스토리텔링"
   },
   "f_style_fba4": {
     "message": "스타일:"
@@ -3007,9 +2956,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "이메일이 틀렸나요? 뒤로 가기"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "팟캐스트를 생성할 준비가 되었어요!"
   },
   "f_a_donation_8832": {
     "message": "후원"
@@ -8092,5 +8038,170 @@
   },
   "f_look_it_up_7148": {
     "message": "찾아보기"
+  },
+  "f_page_9196": {
+    "message": "페이지"
+  },
+  "f_this_view_3936": {
+    "message": "이 화면"
+  },
+  "f_legend_0984": {
+    "message": "범례"
+  },
+  "f_account_deleted_b71d": {
+    "message": "계정이 삭제되었습니다."
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "진행 중인 구독은 먼저 결제 영수증의 링크에서 해지하세요."
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "간편하게: 이메일만 있으면 되고 API 키는 필요 없습니다."
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "계정을 삭제할 수 없습니다: {why}"
+  },
+  "f_delete_account_5421": {
+    "message": "계정 삭제"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "계정을 삭제할까요?"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "계정을 삭제하기 전에 다시 로그인하세요."
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "AISH가 독립적으로 남도록 도와주셔서 감사합니다."
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "계정과 연결된 패스가 영구히 삭제됩니다. 되돌릴 수 없습니다."
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 무료 요금제 한도에 도달했어요 (3회 전송)."
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 Kindle로 보내기\n\n무료 요금제는 Kindle 전송 3회가 포함돼요.\n\nkindle@byphil.eu가 Kindle 승인된 발신자 목록에 있는지 확인하세요 (Amazon 도움말 참고).\n\n이 기사를 Kindle로 보낼까요?"
+  },
+  "f_allow_19d2": {
+    "message": "허용"
+  },
+  "f_allowed_66fd": {
+    "message": "허용됨: {who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "아직 허용 안 됨: {who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "아무것도 보내지 않았습니다. 먼저 설정 › 모델 및 API에서 허용하세요."
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "AI 서비스로 텍스트를 보낼까요?"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "AI 서비스로 텍스트 전송"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "요약, 태그 지정, 답변을 위해 AISH는 이 기능을 사용하는 페이지, 저장한 글, 피드의 텍스트와 질문을 {who}(으)로 보냅니다. 허용하기 전에는 아무것도 보내지 않습니다. 설정 › 모델 및 API에서 철회할 수 있습니다."
+  },
+  "f_withdraw_6cb7": {
+    "message": "철회"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud(OpenRouter와 선택한 모델의 제공 회사로 전달됨)"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "별도 탭의 차분한 시작 페이지: 이어 읽기, 새 글, 내 피드와 검색(⌘K / Ctrl+K). 브라우저의 새 탭 페이지를 대체하지 않습니다."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "진행 중인 구독은 계정과 함께 해지됩니다."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome 및 Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "주소 복사"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "홈 버튼: 설정 › 모양 › 홈 버튼 표시를 켠 뒤 주소를 붙여넣으세요."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "iPhone과 iPad의 Safari에서는 시작 페이지로 설정할 수 없습니다. 위 버튼으로 열거나 AISH 앱의 '오늘' 탭을 사용하세요."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "Safari에서는 아직 시작 페이지로 설정할 수 없습니다. 위 버튼으로 여세요."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "열기 또는 시작 페이지로 설정"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Mac의 Safari"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "시작 페이지로 설정하기"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "설정 › 시작 그룹 › 특정 페이지 또는 페이지 모음 열기 › 새 페이지 추가에서 주소를 붙여넣으세요."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "설정 › 시작, 홈 및 새 탭 페이지 › Edge가 시작될 때 › 다음 페이지 열기 › 새 페이지 추가에서 주소를 붙여넣으세요."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone 및 iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser}(현재 브라우저)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "글을 Markdown으로 (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "백업 및 동기화"
+  },
+  "f_bring_back_4fde": {
+    "message": "되돌리기"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "파일에서…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "저장 위치에서: 위에서 열고 ‘여기서 복원…’을(를) 선택하세요."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "위치에 사본 보관"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "여러 기기의 라이브러리를 맞추거나 어딘가에 사본을 보관하세요. 위치를 추가하기 전에는 아무것도 기기를 벗어나지 않습니다."
+  },
+  "f_last_full_copy_4175": {
+    "message": "마지막 전체 사본: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "아직 전체 사본이 없습니다"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "한 번, 파일로"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "설정만 또는 글까지 포함. 키는 선택하지 않으면 제외됩니다."
+  },
+  "f_pass_on_78d1": {
+    "message": "전달하기"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "파일로 저장하거나 사본을 보관할 위치를 추가하세요."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "파일로 저장"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "파일로 저장됨"
+  },
+  "f_storage_df06": {
+    "message": "저장 공간"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "저장 공간 · 태그 · 삭제"
+  },
+  "f_ago_dfc8": {
+    "message": "{t} 전"
   }
 }

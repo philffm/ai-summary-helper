@@ -4,9 +4,10 @@
 // before the request and tell the user what to do: sign in again. refreshSession() renews a token that is about to expire.
 
 import { SK } from './storageKeys.js';
+import { storeBuild } from './storeBuild.js';
 
 export const SESSION_EXPIRED_MESSAGE = 'Your session has expired. Please sign in again under Settings › Account.';
-export const SIGN_IN_HINT = ' Already a Pro user? Sign in again under Settings › Account.';
+export const SIGN_IN_HINT = storeBuild() ? ' Signed in before? Sign in again under Settings › Account.' : ' Already a Pro user? Sign in again under Settings › Account.';
 
 /** Expiry of a readable JWT in ms since the epoch, or null when the token has no readable `exp`. */
 export function tokenExpiresAt(token) {

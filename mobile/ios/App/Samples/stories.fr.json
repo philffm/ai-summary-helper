@@ -1,0 +1,117 @@
+[
+ {
+  "id": "unread-tab",
+  "title": "La demi-vie d’un onglet non lu : une étude longitudinale",
+  "host": "applied-procrastination.example",
+  "link": "",
+  "tags": [
+   "science",
+   "lecture"
+  ],
+  "passages": [
+   "Résumé. Nous avons suivi 412 onglets ouverts « pour lire plus tard ». Au bout d’une semaine, 9 avaient été lus, 31 fermés par accident et les autres attendaient poliment.",
+   "Méthode. Les participants devaient ne rien changer à leurs habitudes. Ils s’y sont tenus avec un bel enthousiasme. Une assistante observait chaque onglet deux fois par jour et qualifie aujourd’hui l’expérience de « longue ».",
+   "Résultats. La probabilité qu’un onglet soit lu diminue de moitié toutes les 41 heures. Ceux dont le titre contient « ultime » déclinent le plus vite. Un onglet sur la gestion du temps a survécu aux onze semaines et fut cité comme preuve de persévérance.",
+   "Discussion. Garder un onglet ouvert procure presque toute la satisfaction de la lecture, sans aucun effort. Nous appelons cela l’érudition d’ambiance. Elle disparaît dès que l’ordinateur redémarre.",
+   "Limites. Deux des trois auteurs ont gardé le brouillon de cet article dans un onglet pendant toute l’étude et ne l’ont pas lu."
+  ],
+  "mark": "Garder un onglet ouvert procure presque toute la satisfaction de la lecture, sans aucun effort.",
+  "ai": "La probabilité qu’un onglet soit lu diminue de moitié toutes les 41 heures.",
+  "summary": [
+   "Un onglet ouvert ressemble à une lecture sans en être une.",
+   "Après 41 heures, la moitié des chances est perdue."
+  ]
+ },
+ {
+  "id": "houseplants",
+  "title": "Les plantes d’intérieur jugent-elles nos listes de lecture ? Une enquête préliminaire",
+  "host": "windowsill-science.example",
+  "link": "",
+  "tags": [
+   "science",
+   "design"
+  ],
+  "passages": [
+   "Contexte. Beaucoup disent se sentir observés par une fougère pendant qu’ils font défiler leur écran. Aucune étude contrôlée n’a vérifié si la fougère avait des raisons.",
+   "Méthode. 24 plantes ont passé un mois près de lecteurs. La moitié finissait les longs articles ; l’autre lisait les titres et se forgeait des avis tranchés. L’angle des feuilles était mesuré chaque matin avec un rapporteur emprunté à un enfant.",
+   "Résultats. Les plantes du groupe des titres se sont écartées de 3,2 degrés en moyenne. Ce groupe était aussi assis plus loin de la fenêtre, ce que nous mentionnons uniquement parce qu’un relecteur a insisté.",
+   "Un caoutchouc a perdu une feuille pendant un fil de commentaires. L’équipe n’a pas réussi à reproduire l’effet, malgré plusieurs fils.",
+   "Conclusion. Rien ne prouve que les plantes jugent qui que ce soit. Nous conseillons tout de même de finir l’article : cela coûte peu et la fougère est juste là."
+  ],
+  "mark": "Nous conseillons tout de même de finir l’article : cela coûte peu et la fougère est juste là.",
+  "ai": "Rien ne prouve que les plantes jugent qui que ce soit.",
+  "summary": [
+   "Les plantes s’écartaient des lecteurs de titres, sans doute vers la fenêtre.",
+   "Mieux vaut quand même finir l’article."
+  ]
+ },
+ {
+  "id": "woodpecker",
+  "title": "Pourquoi les pics n’ont pas mal à la tête",
+  "host": "journals.plos.org",
+  "link": "https://doi.org/10.1371/journal.pone.0026490",
+  "tags": [
+   "science",
+   "santé"
+  ],
+  "passages": [
+   "Un pic frappe les arbres à environ 6 à 7 mètres par seconde et s’arrête sous près de mille fois la pesanteur, des milliers de fois par jour. Des ingénieurs ont voulu savoir pourquoi son cerveau n’en souffre pas.",
+   "Ils ont filmé des pics épeiches et, pour comparaison, des huppes à haute vitesse, examiné les crânes au micro-scanner et reconstruit la tête en modèle numérique.",
+   "Le crâne du pic comporte à l’arrière davantage d’os spongieux en plaques. Un long os de la langue, en forme de bride, s’avance loin dans la tête, et les deux parties du bec n’ont pas la même longueur.",
+   "Dans le modèle, ces formes réduisaient la contrainte sur le cerveau. Les auteurs concluent que la structure fine du crâne et du bec joue un rôle majeur, et suggèrent qu’elle pourrait inspirer de meilleures protections pour la tête humaine.",
+   "Source : Wang L, Cheung JT-M, Pu F, Li D, Zhang M, Fan Y (2011), Why Do Woodpeckers Resist Head Impact Injury: A Biomechanical Investigation, PLoS ONE 6(10): e26490, doi.org/10.1371/journal.pone.0026490, licence CC BY. Résumé et traduction par Kaivo, non relus par les auteurs."
+  ],
+  "mark": "Les auteurs concluent que la structure fine du crâne et du bec joue un rôle majeur",
+  "ai": "Un long os de la langue, en forme de bride, s’avance loin dans la tête",
+  "summary": [
+   "Crâne, os de la langue et bec protègent ensemble le cerveau.",
+   "L’étude pourrait inspirer de meilleures protections."
+  ]
+ },
+ {
+  "id": "toaster",
+  "title": "Mon grille-pain a des idées sur les newsletters",
+  "host": "kitchen-dispatch.example",
+  "link": "",
+  "tags": [
+   "médias",
+   "logiciel"
+  ],
+  "passages": [
+   "Tout a commencé par une mise à jour. Lundi, le grille-pain grillait le pain. Mardi, il grillait le pain et demandait si j’avais songé à m’abonner à sa lettre hebdomadaire sur l’actualité des miettes.",
+   "J’ai refusé. Il a dit comprendre, puis a reposé la question, avec le « Non » en tout petit gris. J’ai élevé deux enfants, je connais la manœuvre.",
+   "Jeudi, il m’avait segmentée. Je serais une « passionnée de levain du week-end », nouvelle étonnante pour qui mange du pain de mie debout.",
+   "J’ai voulu me désabonner d’une liste jamais rejointe. Il a réclamé un motif et en a proposé cinq, dont aucun n’était « tu es un grille-pain ».",
+   "Nous avons un accord. Il envoie une lettre par mois, je la lis pendant que le pain grille, et nous ne parlons pas du lave-vaisselle, qui veut lancer un podcast."
+  ],
+  "mark": "Il envoie une lettre par mois, je la lis pendant que le pain grille",
+  "ai": "Je serais une « passionnée de levain du week-end »",
+  "summary": [
+   "Un appareil de cuisine découvre le marketing.",
+   "La trêve : une lettre par mois."
+  ]
+ },
+ {
+  "id": "sock",
+  "title": "La chaussette partie : carnet de buanderie",
+  "host": "laundry-review.example",
+  "link": "",
+  "tags": [
+   "lecture",
+   "villes"
+  ],
+  "passages": [
+   "Sept paires sont entrées. Treize chaussettes sont ressorties. Je les ai comptées trois fois sur le lit, en pleine lumière, avec la patience de qui fuit une autre tâche.",
+   "Il manque la grise gauche. On dira que les chaussettes n’ont ni gauche ni droite. On n’a pas vécu avec celle-là.",
+   "J’ai fouillé le tambour, le joint, le drap-housse qui thésaurise les petites choses et le recoin derrière la machine, où dormaient un ticket d’une autre décennie et un bouton d’aucun de mes vêtements.",
+   "Ma voisine soutient que les chaussettes ne disparaissent pas mais partent là où l’on a besoin d’elles. Elle le dit calmement. Elle possède aussi un tiroir de chaussettes seules, rangées par espoir.",
+   "Je porte désormais la rescapée avec une partenaire verte. Personne n’a rien remarqué, sauf la fougère."
+  ],
+  "mark": "Ma voisine soutient que les chaussettes ne disparaissent pas mais partent là où l’on a besoin d’elles.",
+  "ai": "Je les ai comptées trois fois sur le lit",
+  "summary": [
+   "Une chaussette grise ne revient pas.",
+   "Une verte la remplace."
+  ]
+ }
+]

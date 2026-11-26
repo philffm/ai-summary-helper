@@ -20,6 +20,8 @@ import { loadLexicon, saveLexicon } from './topicLexicon.js';
 import { paperState, paperChips, paperType, paperSearchText } from './paperInfo.js';
 import { mountPhoneCards, loadPhoneEntries, pollInbox } from './inboxView.js';
 import { hist } from './history/state.js';
+import { storeBuild } from './storeBuild.js';
+import { ensureAiConsent } from './aiConsent.js';
 
 // Escapes translated text for use inside double-quoted HTML attributes.
 const escAttr = escapeHtml;
@@ -1067,8 +1069,9 @@ function buildArticleCard(article) {
         sumBtn.className = 'button-primary btn-sm';
         sumBtn.style.marginTop = '8px';
         setIconLabel(sumBtn, 'sparkles', T('✨ Summarize'));
-        sumBtn.addEventListener('click', (event) => {
+        sumBtn.addEventListener('click', async (event) => {
             event.stopPropagation();
+            if (storeBuild() && !(await ensureAiConsent())) return;
             sumBtn.disabled = true;
             setIconLabel(sumBtn, 'loader', T('⏳ Summarizing…'));
             chrome.runtime.sendMessage({ action: 'openFeedItem', url: article.url, summarize: true }, (res) => {

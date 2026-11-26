@@ -1,4 +1,4 @@
-// Settings → Sync & backup, status and review (Figma AISH-029 A + C2): one status model with tone, words and the fixing action;
+// Settings → Backup & sync, status and review (Figma AISH-029 A + C2): one status model with tone, words and the fixing action;
 // errors are placed at their field; deletions from other devices are answered one by one and sent only on Apply; no window.confirm.
 import assert from 'assert';
 import { setup, imp } from './harness.mjs';
@@ -83,7 +83,7 @@ click(exact('Keep all')); await wait();
 assert.ok(exact('Apply (3)'), 'Keep all marks every one, still waiting for Apply');
 
 // readable place (or an older status without the list): one question for all, asked in the page
-click(exact('‹ Sync & backup')); await wait(100);
+click(exact('‹ Backup & sync')); await wait(100);
 click([...root().querySelectorAll('.sync-place .settings-row')][1]); await wait(120);
 assert.match(text(), /12 files are no longer wanted here/);
 click(exact('Remove them…')); await wait();
@@ -94,7 +94,7 @@ click(exact('Remove them…')); await wait(); click(exact('Remove them')); await
 assert.deepEqual(sent.find((m) => m.confirmRemovals), { action: 'syncNow', placeId: 'p2', confirmRemovals: true });
 
 // edit: settings are folded, the kind is not offered again; Restore asks in the page
-click(exact('‹ Sync & backup')); await wait(100);
+click(exact('‹ Backup & sync')); await wait(100);
 click(root().querySelector('.sync-place .settings-row')); await wait(120);
 assert.ok(root().querySelectorAll('details.sync-fold').length >= 4);
 assert.ok(!root().querySelector('.mcp-tile'));

@@ -1,0 +1,42 @@
+// Highlighting in the briefing of the home page: the highlight sits on the briefing of that day (never on the cited article,
+// whose words these are not), remembers the cited source, leaves out the source numbers, is drawn again, and can be removed.
+import assert from 'assert'; import path from 'path'; import { pathToFileURL } from 'url';
+const SRC = process.env.AISH_SRC;
+const imp = (m) => import(pathToFileURL(path.resolve(SRC, m)).href);
+const { JSDOM } = await import('jsdom');
+const dom = new JSDOM('<div id="t"><ul><li>Cheap batteries now move midday sun into the evening <a class="rc-cite" href="https://energy.test/a?utm=1">1</a>.</li><li>A short history of the feed is worth a look today.</li></ul></div>');
+const doc = dom.window.document; globalThis.NodeFilter = dom.window.NodeFilter; globalThis.Node = dom.window.Node;
+const { createBriefingHighlighter, briefingPage, isBriefingPage, citedSourceFor, selectedText } = await imp('modules/homeHighlights.js');
+const { createHighlightStore } = await imp('modules/highlightStore.js');
+const data = new Map();
+const storage = { get: async (k) => { const keys = typeof k === 'string' ? [k] : Array.isArray(k) ? k : Object.keys(k || {}); return Object.fromEntries(keys.filter((x) => data.has(x)).map((x) => [x, JSON.parse(JSON.stringify(data.get(x)))])); }, set: async (o) => { for (const [k, v] of Object.entries(o)) data.set(k, JSON.parse(JSON.stringify(v))); }, remove: async (k) => { for (const x of [].concat(k)) data.delete(x); } };
+const store = createHighlightStore({ storage }), told = [];
+const root = doc.getElementById('t'), day = new Date(2026, 10, 25).getTime();
+assert.equal(briefingPage(day), 'https://briefing.invalid/2026-11-25'); assert.ok(isBriefingPage(briefingPage(day)) && !isBriefingPage('https://energy.test/a'));
+const marker = createBriefingHighlighter({ store, T: (s) => s, tell: (m) => told.push(m), doc });
+await marker.attach(root, day);
+const range = (li, from, to) => { const r = doc.createRange(), walk = doc.createTreeWalker(root.querySelectorAll('li')[li], 4), nodes = []; for (let n = walk.nextNode(); n; n = walk.nextNode()) nodes.push(n); r.setStart(nodes[0], nodes[0].nodeValue.indexOf(from)); const last = nodes.find((n) => n.nodeValue.includes(to)); r.setEnd(last, last.nodeValue.indexOf(to) + to.length); return r; };
+const withChip = range(0, 'midday sun', '.');
+assert.equal(selectedText(withChip), 'midday sun into the evening .', 'the number is not part of the words');
+assert.equal(citedSourceFor(root, range(0, 'Cheap', 'batteries')), 'https://energy.test/a?utm=1');
+assert.equal(citedSourceFor(root, range(1, 'short', 'history')), '');
+const cited = await marker.add(range(0, 'Cheap', 'midday sun'));
+const own = await marker.add(range(1, 'history', 'the feed'));
+assert.equal(cited.url, briefingPage(day)); assert.equal(cited.cites, 'https://energy.test/a?utm=1');
+assert.equal(own.url, briefingPage(day)); assert.equal(own.cites, undefined);
+assert.deepEqual(await store.forPage('https://energy.test/a'), [], 'nothing is put on the source\u2019s page');
+assert.equal(cited.via, 'briefing'); assert.equal(cited.briefingDay, day);
+assert.equal(root.querySelectorAll('mark[tabindex="0"][role="button"]').length, 2);
+const saved = await store.all();
+assert.deepEqual(saved.map((h) => [h.text, h.via]).sort(), [['Cheap batteries now move midday sun', 'briefing'], ['history of the feed', 'briefing']]);
+// drawn again on the next visit
+root.querySelectorAll('mark').forEach((m) => m.replaceWith(...m.childNodes)); root.normalize();
+assert.equal(await marker.attach(root, day), 2);
+assert.equal(await marker.attach(root, day + 86400000), 0, 'another day’s briefing has none of them');
+root.querySelectorAll('mark').forEach((m) => m.replaceWith(...m.childNodes)); root.normalize();
+await marker.attach(root, day);
+assert.ok(await marker.remove(cited.id));
+assert.equal((await store.all()).length, 1); assert.equal(root.querySelectorAll('mark').length, 1);
+assert.deepEqual(told, [{ action: 'syncHlDeleted', ids: [cited.id] }]);
+console.log('test287 passed');
+process.exit(0);

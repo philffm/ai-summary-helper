@@ -1,0 +1,117 @@
+[
+ {
+  "id": "unread-tab",
+  "title": "The half-life of an unread browser tab: a longitudinal study",
+  "host": "applied-procrastination.example",
+  "link": "",
+  "tags": [
+   "science",
+   "reading"
+  ],
+  "passages": [
+   "Abstract. We followed 412 browser tabs that their owners had opened “to read later”. After one week, 9 had been read, 31 had been closed by accident and the rest were still waiting, politely.",
+   "Method. Participants were asked not to change their behaviour. They complied with great enthusiasm. Each tab was observed twice a day by a research assistant who now describes the experience as “long”.",
+   "Results. The probability that a tab is read falls by half every 41 hours. Tabs with the word “ultimate” in the title decay fastest. One tab about time management survived all eleven weeks of the study and was cited by its owner as evidence of commitment.",
+   "Discussion. Keeping a tab open appears to deliver most of the satisfaction of reading it at none of the cost. We call this effect ambient scholarship. It disappears at once when the laptop restarts.",
+   "Limitations. Two of the three authors had the draft of this paper open in a tab for the whole study and have not read it."
+  ],
+  "mark": "Keeping a tab open appears to deliver most of the satisfaction of reading it at none of the cost.",
+  "ai": "The probability that a tab is read falls by half every 41 hours.",
+  "summary": [
+   "An open tab feels like reading without being it.",
+   "Half of the chance to read it is gone after 41 hours."
+  ]
+ },
+ {
+  "id": "houseplants",
+  "title": "Do houseplants judge our reading lists? A preliminary investigation",
+  "host": "windowsill-science.example",
+  "link": "",
+  "tags": [
+   "science",
+   "design"
+  ],
+  "passages": [
+   "Background. Many people report feeling observed by a fern while scrolling. No controlled study has examined whether the fern has grounds.",
+   "Method. Twenty-four plants were placed next to readers for one month. Half of the readers finished long articles; the other half read headlines and formed strong opinions. Leaf angle was measured every morning with a protractor borrowed from a child.",
+   "Results. Plants beside the headline group leaned away by a mean of 3.2 degrees. This was also the group that sat further from the window, which we mention only because a reviewer insisted.",
+   "One rubber plant dropped a leaf during a comment thread. The team could not reproduce the effect, although it tried with several comment threads.",
+   "Conclusion. We cannot show that plants judge anyone. We recommend finishing the article anyway, since it costs little and the fern is right there."
+  ],
+  "mark": "We recommend finishing the article anyway, since it costs little and the fern is right there.",
+  "ai": "We cannot show that plants judge anyone.",
+  "summary": [
+   "Plants leaned away from headline readers, probably towards the window.",
+   "Finishing the article is still advised."
+  ]
+ },
+ {
+  "id": "woodpecker",
+  "title": "Why woodpeckers do not get headaches",
+  "host": "journals.plos.org",
+  "link": "https://doi.org/10.1371/journal.pone.0026490",
+  "tags": [
+   "science",
+   "health"
+  ],
+  "passages": [
+   "A woodpecker drums on trees at about 6 to 7 metres per second and stops at roughly a thousand times the pull of gravity, thousands of times a day. A team of engineers wanted to know why the bird does not hurt its brain.",
+   "They filmed great spotted woodpeckers and, for comparison, hoopoes with high-speed cameras, examined the skulls with a micro CT scanner and rebuilt the head as a computer model.",
+   "The woodpecker’s skull has more plate-like spongy bone at the back. A long, sling-like bone for the tongue reaches far into the head, and the two halves of the beak differ in length.",
+   "In the model, these shapes lowered the strain on the brain. The authors conclude that the fine structure of skull and beak plays a major part, and suggest that it might inspire better protection for human heads.",
+   "Source: Wang L, Cheung JT-M, Pu F, Li D, Zhang M, Fan Y (2011), Why Do Woodpeckers Resist Head Impact Injury: A Biomechanical Investigation, PLoS ONE 6(10): e26490, doi.org/10.1371/journal.pone.0026490, licence CC BY. Summary and translation by Kaivo; the authors have not reviewed it."
+  ],
+  "mark": "The authors conclude that the fine structure of skull and beak plays a major part",
+  "ai": "A long, sling-like bone for the tongue reaches far into the head",
+  "summary": [
+   "Skull, tongue bone and beak together protect the bird’s brain.",
+   "The study may help to design better head protection."
+  ]
+ },
+ {
+  "id": "toaster",
+  "title": "My toaster has opinions about newsletters",
+  "host": "kitchen-dispatch.example",
+  "link": "",
+  "tags": [
+   "media",
+   "software"
+  ],
+  "passages": [
+   "It started with a firmware update. On Monday the toaster browned bread. On Tuesday it browned bread and asked whether I had considered subscribing to its weekly digest of crumb-related news.",
+   "I declined. The toaster said it understood and showed me the question again, this time with the “No” written in a very small grey font. I have raised two children and I know this move.",
+   "By Thursday it had segmented me. Apparently I am a Weekend Sourdough Enthusiast, which is news to someone who eats plain sliced bread standing up.",
+   "I tried to unsubscribe from a list I had never joined. The toaster asked me for a reason and offered five, none of which was “you are a toaster”.",
+   "We have reached an agreement. It sends one letter a month, I read it while the bread is in, and neither of us mentions the dishwasher, which wants to do a podcast."
+  ],
+  "mark": "It sends one letter a month, I read it while the bread is in",
+  "ai": "Apparently I am a Weekend Sourdough Enthusiast",
+  "summary": [
+   "A kitchen appliance discovers marketing.",
+   "The truce: one letter a month."
+  ]
+ },
+ {
+  "id": "sock",
+  "title": "The sock that left: field notes from the laundry",
+  "host": "laundry-review.example",
+  "link": "",
+  "tags": [
+   "reading",
+   "cities"
+  ],
+  "passages": [
+   "Seven pairs went in. Thirteen socks came out. I have counted them on the bed three times, in good light, with the patience of someone avoiding other work.",
+   "The missing one is the left grey one. People will say socks have no left and right. People have not lived with this sock.",
+   "I searched the drum, the seal, the fitted sheet, which hoards small things, and the gap behind the machine, where I found a receipt from another decade and a button that belongs to no garment I own.",
+   "My neighbour holds that socks do not vanish but move on to where they are needed. She says it calmly. She also has one drawer containing only single socks, arranged by hope.",
+   "I have decided to wear the remaining one with a green partner. So far nobody has noticed, except the fern."
+  ],
+  "mark": "My neighbour holds that socks do not vanish but move on to where they are needed.",
+  "ai": "I have counted them on the bed three times",
+  "summary": [
+   "One grey sock does not come back.",
+   "A green one takes its place."
+  ]
+ }
+]

@@ -241,8 +241,17 @@ export async function openStorageSheet({ report, index = null, keep = new Set(),
 
 // ── cleanup that keeps the summaries (and so the statistics) ────────────────
 
-const getAll = () => new Promise(r => { try { chrome.storage.local.get(null, (d) => r(d || {})); } catch (_) { r({}); } });
+const getMany = (keys) => new Promise(r => { try { chrome.storage.local.get(keys, (d) => r(d || {})); } catch (_) { r({}); } });
 const setMany = (o) => new Promise(r => { try { chrome.storage.local.set(o, () => r()); } catch (_) { r(); } });
+
+/** The records of these articles, a few at a time: all of them together are more than a phone's popup can hold. */
+async function eachRecord(ids, fn, size = 20) {
+    for (let i = 0; i < ids.length; i += size) {
+        const part = ids.slice(i, i + size);
+        const got = await getMany(part.map((id) => ARTICLE_REC + id));
+        for (const id of part) { const rec = got[ARTICLE_REC + id]; if (rec) fn(id, rec); }
+    }
+}
 
 /**
  * What a cleanup would free, from the real records: { images: {n, bytes}, text: {n, bytes} }.
@@ -250,35 +259,34 @@ const setMany = (o) => new Promise(r => { try { chrome.storage.local.set(o, () =
  * starred or in a collection. Summaries stay either way. Counts only, nothing changes.
  */
 export async function scanCleanup(index, { minDays = OLD_DAYS, keep = new Set() } = {}) {
-    const all = await getAll();
     const out = { images: { n: 0, bytes: 0 }, text: { n: 0, bytes: 0 }, contentBytes: 0 };
     const textIds = new Set(textCleanupIds(index, { minDays, keep }));
-    for (const a of index || []) {
-        const rec = all[ARTICLE_REC + a.id];
-        if (!rec || typeof rec.content !== 'string' || !rec.content) continue;
+    await eachRecord((index || []).map((a) => a.id), (id, rec) => {
+        if (typeof rec.content !== 'string' || !rec.content) return;
         const ib = imageBytes(rec.content);
         out.contentBytes += rec.content.length;
         if (ib > 0) { out.images.n++; out.images.bytes += ib; }
-        if (textIds.has(a.id)) { out.text.n++; out.text.bytes += rec.content.length; }
-    }
+        if (textIds.has(id)) { out.text.n++; out.text.bytes += rec.content.length; }
+    });
     return out;
 }
 
 /** Removes the pictures from every saved page. Text, summary, highlights and statistics are untouched. Returns { n, bytes }. */
 export async function removeSavedImages(index) {
-    const all = await getAll();
-    const batch = {}; let n = 0, bytes = 0;
-    for (const a of index || []) {
-        const key = ARTICLE_REC + a.id; const rec = all[key];
-        if (!rec || typeof rec.content !== 'string') continue;
-        const ib = imageBytes(rec.content);
-        const next = stripImages(rec.content);
-        if (next === rec.content) continue;
-        bytes += Math.max(0, rec.content.length - next.length); n++;
-        batch[key] = { ...rec, content: next };
-        if (Object.keys(batch).length >= 25) { await setMany(batch); for (const k of Object.keys(batch)) delete batch[k]; }
+    let n = 0, bytes = 0;
+    const ids = (index || []).map((a) => a.id);
+    for (let i = 0; i < ids.length; i += 20) {
+        const batch = {};
+        await eachRecord(ids.slice(i, i + 20), (id, rec) => {
+            if (typeof rec.content !== 'string') return;
+            const ib = imageBytes(rec.content);
+            const next = stripImages(rec.content);
+            if (next === rec.content) return;
+            bytes += Math.max(0, rec.content.length - next.length); n++;
+            batch[ARTICLE_REC + id] = { ...rec, content: next };
+        });
+        if (Object.keys(batch).length) await setMany(batch);
     }
-    if (Object.keys(batch).length) await setMany(batch);
     return { n, bytes };
 }
 
@@ -288,16 +296,20 @@ export async function removeSavedImages(index) {
  */
 export async function dropPageText(index, ids, indexKey) {
     const set = new Set(ids || []);
-    const all = await getAll();
-    const batch = {}; let n = 0, bytes = 0;
-    for (const id of set) {
-        const key = ARTICLE_REC + id; const rec = all[key];
-        if (!rec || typeof rec.content !== 'string' || !rec.content) continue;
-        bytes += rec.content.length; n++;
-        batch[key] = { ...rec, content: '', contentPruned: true };
-        if (Object.keys(batch).length >= 25) { await setMany(batch); for (const k of Object.keys(batch)) delete batch[k]; }
+    let n = 0, bytes = 0;
+    const wanted = [...set];
+    for (let i = 0; i < wanted.length; i += 20) {
+        const part = {};
+        await eachRecord(wanted.slice(i, i + 20), (id, rec) => {
+            if (typeof rec.content !== 'string' || !rec.content) return;
+            bytes += rec.content.length; n++;
+            part[ARTICLE_REC + id] = { ...rec, content: '', contentPruned: true };
+        });
+        if (Object.keys(part).length) await setMany(part);
     }
-    const raw = Array.isArray(all[indexKey]) ? all[indexKey] : (index || []);   // the stored index itself, so nothing else in it changes
+    const batch = {};
+    const stored = (await getMany([indexKey]))[indexKey];
+    const raw = Array.isArray(stored) ? stored : (index || []);   // the stored index itself, so nothing else in it changes
     const next = raw.map(a => set.has(a.id) ? { ...a, contentPruned: true } : a);
     batch[indexKey] = next;
     await setMany(batch);

@@ -1,0 +1,3 @@
+// Copy to Local.xcconfig. Needed to run on a real device or to archive; simulator builds work without it.
+// Your team id: Xcode → Settings → Accounts, or developer.apple.com → Membership.
+DEVELOPMENT_TEAM = XXXXXXXXXX

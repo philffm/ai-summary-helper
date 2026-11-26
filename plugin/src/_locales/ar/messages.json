@@ -2093,9 +2093,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "انقر على أيقونة Ollama في شريط القوائم (أعلى اليمين) واختر <b>Quit Ollama</b>."
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "انقر «إنشاء 🎙️» لإنشاء حلقتك."
-  },
   "f_close_pane_d66b": {
     "message": "إغلاق اللوحة {n}"
   },
@@ -2132,17 +2129,8 @@
   "f_copy_0d38": {
     "message": "نسخ 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "البودكاست المُنشأة"
-  },
   "f_custom_prompt_text_10af": {
     "message": "نص المطالبة المخصص"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "أسلوب مخصص (اختياري):"
-  },
-  "f_custom_style_ba7f": {
-    "message": "أسلوب مخصص:"
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "فشل تحميل مكتبة D3."
@@ -2183,9 +2171,6 @@
   "f_delivery_83d6": {
     "message": "التسليم: {name}"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "صف أسلوب البودكاست"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "إخفاء إحصاءات الرسم البياني"
   },
@@ -2197,9 +2182,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "اسحب هذا الرابط إلى شريط الإشارات المرجعية 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "تعليمي"
   },
   "f_endpoint_url_ddad": {
     "message": "عنوان URL لنقطة النهاية"
@@ -2221,9 +2203,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "أدخل بريدك الإلكتروني..."
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "خطأ في إنشاء البودكاست: {msg}"
   },
   "f_error_d391": {
     "message": "خطأ:"
@@ -2309,14 +2288,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "أنشئ Bookmarklet يلخّص أي صفحة في أي متصفح — بما في ذلك iOS/Android حيث لا تعمل الإضافة. يستخدم تسجيل دخولك إلى byphil Cloud."
   },
-  "f_generate_237e": {
-    "message": "إنشاء 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "جارٍ إنشاء الصوت… 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "جارٍ الإنشاء…"
   },
   "f_get_key_4f7c": {
     "message": "احصل على مفتاح"
@@ -2507,9 +2480,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "لا توجد مقالات لعرضها في الرسم البياني بعد."
   },
-  "f_no_audio_8798": {
-    "message": "لا صوت"
-  },
   "f_no_content_available_0c7a": {
     "message": "لا يتوفر محتوى."
   },
@@ -2591,9 +2561,6 @@
   "f_persist_optional_29ce": {
     "message": "حفظ دائم (اختياري)"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "اختر اسمًا لبرنامجك:"
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "يرجى ضبط بريد Kindle الإلكتروني للتسليم في الإعدادات أولًا."
   },
@@ -2605,15 +2572,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "يرجى إدخال رمز التحقق."
-  },
-  "f_podcast_name_1b92": {
-    "message": "اسم البودكاست"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "مدة البودكاست (بالدقائق):"
-  },
-  "f_podcast_style_61d0": {
-    "message": "أسلوب البودكاست:"
   },
   "f_positive_tone_6466": {
     "message": "نبرة إيجابية"
@@ -2735,9 +2693,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "جارٍ البحث عن مستلم LocalSend في الشبكة المحلية..."
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "اختر حتى 5 مقالات:"
-  },
   "f_send_share_bb4a": {
     "message": "إرسال ومشاركة"
   },
@@ -2804,9 +2759,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "تم تسجيل الدخول · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "فردي"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "حدث خطأ ما — يرجى المحاولة مجددًا."
   },
@@ -2821,9 +2773,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "إيقاف Ollama"
-  },
-  "f_storytelling_6d0b": {
-    "message": "سرد القصص"
   },
   "f_style_fba4": {
     "message": "الأسلوب:"
@@ -2932,9 +2881,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "بريد خاطئ؟ ارجع"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "أنت جاهز لإنشاء بودكاستك!"
   },
   "f_a_donation_8832": {
     "message": "تبرعًا"
@@ -8110,5 +8056,170 @@
   },
   "f_look_it_up_7148": {
     "message": "ابحث عنه"
+  },
+  "f_page_9196": {
+    "message": "الصفحة"
+  },
+  "f_this_view_3936": {
+    "message": "هذا العرض"
+  },
+  "f_legend_0984": {
+    "message": "مفتاح الرسم"
+  },
+  "f_account_deleted_b71d": {
+    "message": "تم حذف الحساب."
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "ألغِ أولًا أي اشتراك جارٍ عبر الرابط في إيصال الدفع."
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "سهل: بريدك الإلكتروني فقط، دون مفتاح API."
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "تعذّر حذف الحساب: {why}"
+  },
+  "f_delete_account_5421": {
+    "message": "حذف الحساب"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "حذف حسابك؟"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "سجّل الدخول مجددًا قبل حذف الحساب."
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "شكرًا لأنك تبقي AISH مستقلًا."
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "سيُزال حسابك وأي اشتراك عليه نهائيًا. لا يمكن التراجع عن ذلك."
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 تم بلوغ حد الفئة المجانية (3 عمليات إرسال)."
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 إرسال إلى Kindle\n\nالفئة المجانية: 3 عمليات إرسال إلى Kindle.\n\nتأكد من وجود kindle@byphil.eu في قائمة المرسلين المعتمدين في Kindle (راجع مساعدة Amazon).\n\nهل تريد إرسال هذه المقالة إلى Kindle؟"
+  },
+  "f_allow_19d2": {
+    "message": "سماح"
+  },
+  "f_allowed_66fd": {
+    "message": "مسموح: {who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "غير مسموح بعد: {who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "لم يُرسل شيء. اسمح بذلك أولًا في الإعدادات ‹ النماذج وواجهة API."
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "إرسال النص إلى خدمة ذكاء اصطناعي؟"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "إرسال النص إلى خدمات الذكاء الاصطناعي"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "للتلخيص والوسم والإجابة، يرسل AISH نصوص الصفحات والمقالات المحفوظة والخلاصات التي تستخدم معها هذه الميزات، وأسئلتك، إلى {who}. لا يُرسل شيء قبل أن تسمح. يمكنك سحب الإذن في الإعدادات ‹ النماذج وواجهة API."
+  },
+  "f_withdraw_6cb7": {
+    "message": "سحب الإذن"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud، التي تمرّره إلى OpenRouter وإلى الشركة المطوّرة للنموذج المختار"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "صفحة بداية هادئة في علامة تبويب خاصة: متابعة القراءة، المقالات الجديدة، خلاصاتك وبحث (⌘K / Ctrl+K). لا تحلّ محل صفحة علامة التبويب الجديدة في متصفحك."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "يُلغى أي اشتراك جارٍ مع حذف حسابك."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome وBrave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "نسخ العنوان"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "زر الصفحة الرئيسية: الإعدادات › المظهر › إظهار زر الصفحة الرئيسية، ثم الصق العنوان."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "لا يمكن تعيينها صفحة بداية في Safari على iPhone وiPad. افتحها بالزر أعلاه، أو استخدم تبويب «اليوم» في تطبيق AISH."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "لا يمكن بعد تعيينها صفحة بداية في Safari. افتحها بالزر أعلاه."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "افتحها أو اجعلها صفحة البداية"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari على Mac"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "اجعلها صفحة البداية"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "الإعدادات › عند بدء التشغيل › فتح صفحة معينة أو مجموعة صفحات › إضافة صفحة جديدة، ثم الصق العنوان."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "الإعدادات › البدء والصفحة الرئيسية وعلامة التبويب الجديدة › عند بدء Edge › فتح هذه الصفحات › إضافة صفحة جديدة، ثم الصق العنوان."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone وiPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (هذا المتصفح)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "المقالات بصيغة Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "النسخ والمزامنة"
+  },
+  "f_bring_back_4fde": {
+    "message": "الاسترجاع"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "من ملف…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "من مكان: افتحه أعلاه واختر «استعادة من هنا…»."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "احتفظ بنسخة في مكان"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "أبقِ مكتبتك متطابقة بين أجهزتك أو احتفظ بنسخة في مكان ما. لا يغادر شيء هذا الجهاز قبل أن تضيف مكانًا."
+  },
+  "f_last_full_copy_4175": {
+    "message": "آخر نسخة كاملة: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "لا توجد نسخة كاملة بعد"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "مرة واحدة، كملف"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "إعداداتك فقط أو مع مقالاتك. تبقى المفاتيح خارجها ما لم تخترها."
+  },
+  "f_pass_on_78d1": {
+    "message": "المشاركة"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "احفظ ملفًا أو أضف مكانًا يحتفظ بنسخة."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "حفظ في ملف"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "محفوظة كملف"
+  },
+  "f_storage_df06": {
+    "message": "التخزين"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "التخزين · الوسوم · الحذف"
+  },
+  "f_ago_dfc8": {
+    "message": "قبل {t}"
   }
 }

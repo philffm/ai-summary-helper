@@ -42,6 +42,7 @@ import { conceptKey, isKnownTopic, isLanguageTag, topicLabel, broaderKeysOf } fr
 import { fetchAnnotationsForArticle, escapeHtml } from './annotationExporter.js';
 import { setIconLabel, iconEl } from './icons.js';
 import { paperState } from './paperInfo.js';
+import { isPhone } from './shortcuts.js';
 import { tagIdOf, tagLabelOf, findGaps, stamp } from './graphGaps.js';
 export { findGaps };
 
@@ -83,6 +84,10 @@ const TAG_PALETTE = [
 
 const MIN_TAG_DEGREE_DEFAULT = 2; // default: hide tags used on fewer than 2 articles
 const NODE_CAP = 300;             // hard safety cap even when "show all" is on
+const LEAN_ARTICLES = 500;           // from here (and always on a phone) Topics leaves out what costs much and shows nothing
+// A large library, or a phone: tags of a single article are not made into nodes (Topics does not draw them and they tie nothing together),
+// the dots are put where the packing wants them without a running simulation, and a phone does not read every saved text.
+export const leanGraph = (articles) => isPhone() || articles > LEAN_ARTICLES;
 const OVERVIEW_NODE_CAP = 6000;   // Topics draws no links and packs instead of simulating forces, so it can show (nearly) everything
 
 // Neglected-article surfacing: an article is "neglected" once it has sat
@@ -642,7 +647,8 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     // Topics is wanted when asked for, or by default for an archive of enough articles. It needs far fewer resources than the force layout
     // (no links drawn, nothing to simulate: the packing decides), so it shows every tag and every article and is not held to Detail's node cap.
     const wantsOverview = container.__graphLayout ? container.__graphLayout === 'overview' : articles.length >= OVERVIEW_MIN_ARTICLES;
-    let raw = buildGraphData(articles, wantsOverview ? 1 : minTagDegree, similarityIndex, simNow && simNow.links, { keepOrphans: wantsOverview });
+    const lean = leanGraph(articles.length);
+    let raw = buildGraphData(articles, wantsOverview ? (lean ? MIN_TAG_DEGREE_DEFAULT : 1) : minTagDegree, similarityIndex, simNow && simNow.links, { keepOrphans: wantsOverview });
     // the fixed categories (and the old catch-all "General") as tag ids, so the structure treats them as categories
     const categories = new Set([...CATEGORIES, 'General'].map(tagIdOf));
     // the broader topics the lexicon knows, per tag node (weak ties in the structure, see graphStructure.js addBroaderTies)
@@ -784,7 +790,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
             node.attr('r', nodeRadius);
             placeShapes();
         } else simulation.force('center', d3.forceCenter(newWidth / 2, newHeight / 2));
-        simulation.alpha(0.5).restart();
+        if (overview && lean) settle(); else simulation.alpha(0.5).restart();
     };
     const scheduleResize = () => {
         clearTimeout(resizeDebounce);
@@ -1041,11 +1047,26 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
             subLabels.attr('x', k => at(pack.sub, k.id).x).attr('y', k => at(pack.sub, k.id).y - at(pack.sub, k.id).r - 3);
             fitSubLabels(d3.zoomTransform(svg.node()).k);
         }
+        declutter();
     }
     // A subtopic name is only worth drawing once its area is big enough on screen to carry it; zooming in brings the rest.
     function fitSubLabels(k) {
-        if (!subLabels) return;
-        subLabels.style('display', s => ((pack.sub.get(s.id) || { r: 0 }).r * k >= SUB_LABEL_MIN_R ? null : 'none'));
+        if (subLabels) subLabels.style('display', s => ((pack.sub.get(s.id) || { r: 0 }).r * k >= SUB_LABEL_MIN_R ? null : 'none'));
+        declutter();
+    }
+    // A narrow sheet (the iPhone layout): of two names that would lie on each other, the smaller topic's is left out; tapping
+    // its circle still names it.
+    function declutter() {
+        if (!clusterLabels || !container.ownerDocument.documentElement.dataset.compact) return;
+        const taken = [];
+        const place = (labels, weight) => labels.nodes().filter(el => el.style.display !== 'none' && el.getBBox).sort((a, b) => weight(b.__data__) - weight(a.__data__)).forEach(el => {
+            const box = el.getBBox();
+            const covered = taken.some(t => box.x < t.x + t.width && box.x + box.width > t.x && box.y < t.y + t.height && box.y + box.height > t.y);
+            el.style.visibility = covered ? 'hidden' : '';
+            if (!covered) taken.push(box);
+        });
+        place(clusterLabels, c => (c.other ? 0 : clusterMembers.get(c.id).length));   // "everything else" says the least
+        if (subLabels) place(subLabels, k => k.size || 0);
     }
     placeShapes();
 
@@ -1075,6 +1096,13 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
     });
     simulation.on('end', () => { if (overview) { link.attr('x1', d => d.source.x).attr('y1', d => d.source.y).attr('x2', d => d.target.x).attr('y2', d => d.target.y); placeLabels(); } });
     if (overview) simulation.alphaDecay(0.06);   // the targets are fixed by the packing; no need for the long cool-down of the force layout
+    // Lean: hundreds of frames that would move thousands of dots a few pixels: placed once instead (a drag still wakes it).
+    function settle() {
+        simulation.stop();
+        nodes.forEach(n => { const home = homeOf(n); n.x = home.x; n.y = home.y; });
+        simulation.on('tick')(); simulation.on('end')();
+    }
+    if (overview && lean) settle();
 
     // ── Focus and path ───────────────────────────────────────────────────
     // Focus: one cluster, or an article with what hangs on it, stays bright; the rest steps back and its titles stay quiet.
@@ -1313,7 +1341,7 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         container.addEventListener('graph-time-range', container.__graphBriefRange);
     });
     renderGraphControls(container, {
-        hiddenTagCount,
+        hiddenTagCount: overview ? 0 : hiddenTagCount,
         capped,
         currentlyFiltered: minTagDegree > 1,
         stillOrphanCount,
@@ -1326,11 +1354,13 @@ function renderGraph(container, allArticles, highlightTimestamp, minTagDegree, s
         },
     });
     renderColorLegend(container, colorMode, { ageColor, moodColor });   // the legend only exists now
-    followSimilarity(container, () => { simulation.stop(); renderGraph(container, allArticles, highlightTimestamp, minTagDegree, similarityIndex); });
+    followSimilarity(container, () => { simulation.stop(); renderGraph(container, allArticles, highlightTimestamp, minTagDegree, similarityIndex); }, !lean);
 }
 
 /** Joins the background similarity run: swaps in a new result while the picture is untouched, otherwise offers it in a chip. */
-function followSimilarity(container, rerender) {
+/** `swap`: a better result may redraw the picture by itself; a large one is only offered it (a redraw holds the page still for a while). */
+function followSimilarity(container, rerender, swap = true) {
+    const deep = !isPhone();   // reading every saved text, pictures and all, is more than a phone's web page can carry
     if (container.__graphSimStop) { container.__graphSimStop(); container.__graphSimStop = null; }
     import('./graphSimilarityCache.js').then((m) => {
         if (!container.isConnected) return;
@@ -1338,9 +1368,9 @@ function followSimilarity(container, rerender) {
             if (!container.isConnected) return;
             container.__graphSim = { links: u.links, sig: u.sig, terms: u.terms, items: u.items };
             const fresh = u.sig !== container.__graphSimUsed;
-            if (fresh && !container.__graphTouched && container.dataset.graphMode !== 'list') { rerender(); return; }
-            showSimilarityChip(container, { fresh, running: !u.complete, done: u.done, total: u.total }, rerender);
-        });
+            if (swap && fresh && !container.__graphTouched && container.dataset.graphMode !== 'list') { rerender(); return; }
+            showSimilarityChip(container, { fresh, running: deep && !u.complete, done: u.done, total: u.total }, rerender);
+        }, { deep });
     }).catch(() => { /* no similarity run: the graph stays on tags */ });
 }
 

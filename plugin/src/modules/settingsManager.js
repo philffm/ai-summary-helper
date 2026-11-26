@@ -1,15 +1,15 @@
 // settingsManager.js — Settings screen: the UI is in popup.html (static panels), the logic per area in settings/<area>.js.
-// This file wires them up. The panels that are only needed when they are opened (Library & Data, the bookmarklet in
+// This file wires them up. The panels that are only needed when they are opened (Storage & cleanup, the bookmarklet in
 // Send to) load on demand: popup.js passes { lazy: true }; tests and the other surfaces load everything at once.
 //   settings/autosave.js        Save button flash + autoSave(key, value)
 //   settings/models.js          Models › connection path, provider, key, endpoint (+ settings/localModels.js: local servers, Ollama guide)
 //   settings/general.js         theme, accessibility, reading, dock, side panel
 //   settings/sendTargets.js     Kindle / LocalSend / KOReader devices, delivery method
 //   settings/bookmarklet.js     bookmarklet generator                     (Send to — on demand)
-//   settings/tagCleanup.js      on-device tag cleanup, tag names           (Library & Data — on demand)
-//   settings/backup.js          export / import settings                   (Library & Data — on demand)
-//   settings/storageCleanup.js  storage & cleanup                          (Library & Data — on demand)
-//   settings/danger.js          delete history / settings / everything     (Library & Data — on demand)
+//   settings/tagCleanup.js      on-device tag cleanup, tag names           (Storage & cleanup — on demand)
+//   settings/backup.js          export / import settings                   (Backup & sync — on demand)
+//   settings/storageCleanup.js  storage & cleanup                          (Storage & cleanup — on demand)
+//   settings/danger.js          delete history / settings / everything     (Storage & cleanup — on demand)
 //   settings/speedRead.js       Speed-Read                                 (Reading — on demand)
 
 import { SK } from './storageKeys.js';
@@ -24,16 +24,22 @@ import { initLocalSendSettings } from './settings/sendTargets.js';
 // panel name (settingsNav) → the sections it needs that are not loaded at start
 const ON_DEMAND = {
     library: async () => {
-        const [tags, danger, backup, cleanup] = await Promise.all([
-            import('./settings/tagCleanup.js'), import('./settings/danger.js'),
-            import('./settings/backup.js'), import('./settings/storageCleanup.js'),
+        const [tags, danger, cleanup, copy, nav] = await Promise.all([
+            import('./settings/tagCleanup.js'), import('./settings/danger.js'), import('./settings/storageCleanup.js'),
+            import('./settings/lastCopy.js'), import('./settingsNav.js'),
         ]);
         tags.initLocalIntelligence();
         danger.initDangerZone();
-        backup.initBackupRestore();
+        copy.initLastCopy(() => nav.openSettingsPanel('sync'));
         cleanup.initStorageCleanup(await StorageManager.getSettings());
     },
+    sync: async () => {
+        const [backup, copy, nav] = await Promise.all([import('./settings/backup.js'), import('./settings/lastCopy.js'), import('./settingsNav.js')]);
+        backup.initBackupRestore();
+        copy.initLastCopy(() => nav.openSettingsPanel('sync'));
+    },
     send: async () => (await import('./settings/bookmarklet.js')).initBookmarkletGenerator(),
+    home: async () => (await import('./settings/homePage.js')).initHomeSettings(),
     reading: async () => (await import('./settings/speedRead.js')).initSpeedReadSettings(),
 };
 

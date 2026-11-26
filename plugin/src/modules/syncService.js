@@ -101,7 +101,7 @@ export function migrateLegacy(places, connections, secrets) {
     return { places: out, connections: conns, secrets: sec, changed };
 }
 
-export function createSyncService({ storage, makeStore, stampStore, viewerSource, dataHooks = {}, now = () => Date.now(), log = () => {}, scheduleSoon = () => {} }) {
+export function createSyncService({ storage, makeStore, stampStore, viewerSource, dataHooks = {}, now = () => Date.now(), log = () => {}, scheduleSoon = () => {}, engine = {} }) {
     const active = new Set();   // places with a run going: the alarm, the debounce and "Publish now" must not start a second one on the same place
     const statusNow = async () => { const d = await get(storage, { [SK.syncStatus]: {} }); return d[SK.syncStatus] && typeof d[SK.syncStatus] === 'object' ? d[SK.syncStatus] : {}; };
     const setStatus = async (id, s) => storage.set({ [SK.syncStatus]: { ...(await statusNow()), [id]: s } });
@@ -143,7 +143,7 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
         const held = st.secrets[keyOfPlace(place.id)];
         if (!held || !held.master) throw new Error('The key for this place is not on this device. Remove the place and add it again with the passphrase.');
         const keys = await openWithMaster(meta, fromB64(held.master));
-        return syncEncryptedPlace({ place, storage, store, keys, meta, stampStore, adapter: createDataAdapter({ storage, hooks: dataHooks }), now, pushOnly: place.direction === 'push' && !opts.pullOnly, ...opts });
+        return syncEncryptedPlace({ place, storage, store, keys, meta, stampStore, adapter: createDataAdapter({ storage, hooks: dataHooks }), now, pushOnly: place.direction === 'push' && !opts.pullOnly, ...engine, ...opts });
     }
 
     return {
@@ -286,6 +286,8 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
             const st = await load();
             const places = st.places.filter((p) => p.enabled !== false && (!id || p.id === id));
             if (!places.length) return {};
+            // the changes a run makes ask for another run: while it is still going there is nothing to prepare for
+            if (places.every((p) => active.has(p.id))) return Object.fromEntries(places.map((p) => [p.id, { skipped: 'running' }]));
             if (stampStore) await stampStore.scan();
             const stamps = stampStore ? await stampStore.all() : {};
             const results = {};
@@ -301,8 +303,10 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
                     const t = now();
                     if (p.phase === lastPhase && t - lastWrite < 500 && p.done < p.total) return;   // about twice a second, always on a phase change and at the end
                     lastPhase = p.phase; lastWrite = t;
+                    log('[sync]', p.phase, `${p.done}/${p.total}`);   // readable in the web inspector: shows how far a run got that never ended
                     writing = writing.then(() => setRunning(place.id, { ...p, ...(isLocal ? { local: true } : {}), since, at: t }));
                 };
+                log('[sync] starting');
                 await setRunning(place.id, { phase: 'starting', done: 0, total: 0, since, at: since });
                 try {
                     const connection = st.connections.find((c) => c.id === place.connectionId);
@@ -312,7 +316,7 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
                         const r = await runEncrypted(place, connection, st, { onProgress, confirmDeletes: confirmRemovals, ...answers });
                         await writing; results[place.id] = r;
                         await setStatus(place.id, { at, ok: true, pushed: r.pushed, pulled: r.pulled, applied: r.applied, merged: r.merged, purged: r.purged, needsConfirm: r.needsConfirm, ...(r.needsConfirm && r.pending && r.pending.length ? { pending: r.pending } : {}), stale: r.stale, errors: r.errors.length, ...(r.errors.length ? { firstError: r.errors[0] } : {}), more: r.more });
-                        if (r.more) scheduleSoon(1);
+                        if (r.more) scheduleSoon(0.5);   // the rest follows after the shortest pause the browser allows
                         continue;
                     }
                     const viewer = place.viewer && viewerSource ? await viewerSource(place) : null;
@@ -320,7 +324,7 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
                     await writing;
                     results[place.id] = r;
                     await setStatus(place.id, { at, ok: true, pushed: r.pushed, removed: r.removed, unchanged: r.unchanged, errors: r.errors.length, more: r.more, remaining: r.remaining, needsConfirm: r.needsConfirm, viewer: r.viewer, repaired: r.repaired, orphans: r.orphans });   // no `running`: the run is over
-                    if (r.more) scheduleSoon(1);
+                    if (r.more) scheduleSoon(0.5);   // the rest follows after the shortest pause the browser allows
                 } catch (e) {
                     log('[sync]', place.id, e && e.message);
                     await writing;

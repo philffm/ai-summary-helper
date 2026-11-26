@@ -2093,9 +2093,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "Clicca sull'icona di Ollama nella barra dei menu (in alto a destra) e scegli <b>Quit Ollama</b>."
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "Clicca su «Genera 🎙️» per creare il tuo episodio."
-  },
   "f_close_pane_d66b": {
     "message": "Chiudi riquadro {n}"
   },
@@ -2132,17 +2129,8 @@
   "f_copy_0d38": {
     "message": "Copia 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "Podcast creati"
-  },
   "f_custom_prompt_text_10af": {
     "message": "Testo del prompt personalizzato"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "Stile personalizzato (facoltativo):"
-  },
-  "f_custom_style_ba7f": {
-    "message": "Stile personalizzato:"
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "Impossibile caricare la libreria D3."
@@ -2183,9 +2171,6 @@
   "f_delivery_83d6": {
     "message": "Consegna: {name}"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "Descrivi lo stile del tuo podcast"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "Nascondi statistiche del grafo"
   },
@@ -2197,9 +2182,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "Trascina questo link sulla barra dei preferiti 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "Educativo"
   },
   "f_endpoint_url_ddad": {
     "message": "URL dell'endpoint"
@@ -2221,9 +2203,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "Inserisci la tua email..."
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "Errore nella generazione del podcast: {msg}"
   },
   "f_error_d391": {
     "message": "Errore:"
@@ -2309,14 +2288,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "Genera un bookmarklet che riassume qualsiasi pagina in qualsiasi browser, anche su iOS/Android dove l'estensione non funziona. Usa il tuo accesso a byphil Cloud."
   },
-  "f_generate_237e": {
-    "message": "Genera 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "Generazione audio… 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "Generazione…"
   },
   "f_get_key_4f7c": {
     "message": "Ottieni chiave"
@@ -2507,9 +2480,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "Ancora nessun articolo per il grafo."
   },
-  "f_no_audio_8798": {
-    "message": "Nessun audio"
-  },
   "f_no_content_available_0c7a": {
     "message": "Nessun contenuto disponibile."
   },
@@ -2591,9 +2561,6 @@
   "f_persist_optional_29ce": {
     "message": "Mantieni (facoltativo)"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "Scegli un nome per il tuo programma:"
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "Prima configura l'email di consegna Kindle nelle impostazioni."
   },
@@ -2605,15 +2572,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "Inserisci il codice di verifica."
-  },
-  "f_podcast_name_1b92": {
-    "message": "Nome del podcast"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "Durata del podcast (minuti):"
-  },
-  "f_podcast_style_61d0": {
-    "message": "Stile del podcast:"
   },
   "f_positive_tone_6466": {
     "message": "Tono positivo"
@@ -2735,9 +2693,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "Ricerca del ricevitore LocalSend in LAN..."
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "Seleziona fino a 5 articoli:"
-  },
   "f_send_share_bb4a": {
     "message": "Invia e condividi"
   },
@@ -2804,9 +2759,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "Connesso · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "Solo"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "Qualcosa è andato storto. Riprova."
   },
@@ -2821,9 +2773,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "Ferma Ollama"
-  },
-  "f_storytelling_6d0b": {
-    "message": "Narrativa"
   },
   "f_style_fba4": {
     "message": "Stile:"
@@ -2932,9 +2881,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "Email sbagliata? Torna indietro"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "Sei pronto a generare il tuo podcast!"
   },
   "f_a_donation_8832": {
     "message": "una donazione"
@@ -8110,5 +8056,170 @@
   },
   "f_look_it_up_7148": {
     "message": "Cerca"
+  },
+  "f_page_9196": {
+    "message": "Pagina"
+  },
+  "f_this_view_3936": {
+    "message": "Questa vista"
+  },
+  "f_legend_0984": {
+    "message": "Legenda"
+  },
+  "f_account_deleted_b71d": {
+    "message": "Account eliminato."
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "Disdici prima un abbonamento attivo con il link nella ricevuta di pagamento."
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "Comodo: solo la tua email, nessuna chiave API."
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "Impossibile eliminare l’account: {why}"
+  },
+  "f_delete_account_5421": {
+    "message": "Elimina account"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "Eliminare il tuo account?"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "Accedi di nuovo prima di eliminare l’account."
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "Grazie per mantenere AISH indipendente."
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "Il tuo account e l’eventuale pass vengono rimossi per sempre. Non si può annullare."
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 Limite del piano gratuito raggiunto (3 invii)."
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 Invia a Kindle\n\nPiano gratuito: 3 invii a Kindle inclusi.\n\nAssicurati che kindle@byphil.eu sia nell'elenco dei mittenti approvati di Kindle (vedi la guida di Amazon).\n\nInviare questo articolo a Kindle?"
+  },
+  "f_allow_19d2": {
+    "message": "Consenti"
+  },
+  "f_allowed_66fd": {
+    "message": "Consentito: {who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "Non ancora consentito: {who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "Non è stato inviato nulla. Consentilo prima in Impostazioni › Modelli e API."
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "Inviare testo a un servizio di IA?"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "Invio di testo a servizi di IA"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "Per riassumere, etichettare e rispondere, AISH invia il testo delle pagine, degli articoli salvati e dei feed con cui lo usi, e le tue domande, a {who}. Nulla viene inviato senza il tuo consenso. Puoi revocarlo in Impostazioni › Modelli e API."
+  },
+  "f_withdraw_6cb7": {
+    "message": "Revoca"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud, che lo inoltra a OpenRouter e all’azienda del modello scelto"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "Una pagina iniziale essenziale in una scheda a sé: continua a leggere, nuovi articoli, i tuoi feed e una ricerca (⌘K / Ctrl+K). Non sostituisce la pagina Nuova scheda del browser."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "L’abbonamento attivo viene disdetto insieme all’account."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome e Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "Copia indirizzo"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "Pulsante Home: Impostazioni › Aspetto › Mostra pulsante Home, poi incolla l’indirizzo."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "In Safari su iPhone e iPad non si può impostare come pagina iniziale. Aprila con il pulsante qui sopra o usa la scheda Oggi dell’app AISH."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "In Safari non si può ancora impostare come pagina iniziale. Aprila con il pulsante qui sopra."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "Aprila o impostala come pagina iniziale"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari su Mac"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "Impostala come pagina iniziale"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "Impostazioni › All’avvio › Apri una pagina specifica o un insieme di pagine › Aggiungi una nuova pagina, poi incolla l’indirizzo."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "Impostazioni › Avvio, home e nuova scheda › All’avvio di Edge › Apri queste pagine › Aggiungi una nuova pagina, poi incolla l’indirizzo."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone e iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (questo browser)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "Articoli in Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "Backup e sincronizzazione"
+  },
+  "f_bring_back_4fde": {
+    "message": "Recupera"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "Da un file…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "Da un luogo: aprilo qui sopra e scegli “Ripristina da qui…”."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "Tieni una copia in un luogo"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "Tieni la libreria uguale sui tuoi dispositivi o conserva una copia da qualche parte. Nulla lascia questo dispositivo finché non aggiungi un luogo."
+  },
+  "f_last_full_copy_4175": {
+    "message": "Ultima copia completa: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "Ancora nessuna copia completa"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "Una volta, come file"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "Solo le impostazioni o anche gli articoli. Le chiavi restano fuori se non le scegli."
+  },
+  "f_pass_on_78d1": {
+    "message": "Condividi"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "Salva un file o aggiungi un luogo che conservi una copia."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "Salva in un file"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "Salvata come file"
+  },
+  "f_storage_df06": {
+    "message": "Spazio"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "Spazio · tag · elimina"
+  },
+  "f_ago_dfc8": {
+    "message": "{t} fa"
   }
 }

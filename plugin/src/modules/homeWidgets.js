@@ -47,7 +47,7 @@ export async function pickQuote(hlIndex, readPage, rand = Math.random, tries = 4
         const page = pages.splice(Math.floor(rand() * pages.length), 1)[0];
         let recs = []; try { recs = await readPage(page.k) || []; } catch (_) { /* next page */ }
         const ok = recs.filter((r) => r && r.type !== 'ghost' && !r.dismissed && r.text && r.text.length >= 25 && r.text.length <= 600);
-        if (ok.length) { const r = ok[Math.floor(rand() * ok.length)]; return { text: r.text, url: r.url || page.k, timestamp: r.timestamp || '' }; }
+        if (ok.length) { const r = ok[Math.floor(rand() * ok.length)]; return { text: r.text, url: r.url || page.k, timestamp: r.timestamp || '', ...(r.via ? { via: r.via, briefingDay: r.briefingDay, ...(r.cites ? { cites: r.cites } : {}) } : {}) }; }
     }
     return null;
 }

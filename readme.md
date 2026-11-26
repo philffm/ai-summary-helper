@@ -132,29 +132,20 @@ Install from the [Chrome Web Store](https://chromewebstore.google.com/detail/hld
 1. Run `npm run build:firefox` (or `node plugin/scripts/build.js firefox`) to sync `plugin/src/` into `plugin/dev/aish-extension-firefox/` with the Firefox manifest.
 2. Open `about:debugging#/runtime/this-firefox` in Firefox and click **Load Temporary Add-on**, then select `plugin/dev/aish-extension-firefox/manifest.json`.
 
-### Safari (iOS / macOS)
+### Safari (iOS)
 
-1. Run `npm run build:ios` (or `node plugin/scripts/build.js ios`) to sync `plugin/src/` into `plugin/dev/aish-extension-ios/`.
-2. Convert the WebExtension into a native container app:
-   ```bash
-   xcrun safari-web-extension-converter ./plugin/dev/aish-extension-ios \
-   --project-location plugin/dist/ios \
-   --app-name "AI Summary Helper" \
-   --bundle-identifier "eu.byphil.aisummaryhelper" \
-   --copy-resources \
-   --force
-      
+The iPhone and iPad app lives in [`mobile/ios`](mobile/ios/README.md): a small SwiftUI app that carries the Safari Web
+Extension built from `plugin/src`. One command builds it (needs Xcode and `brew install xcodegen`):
 
-   ```
-3. In Xcode, ensure the extension target bundle ID starts with the parent app's bundle ID (e.g. `eu.byphil.aisummaryhelper.extension`), select the same signing team for both targets, and run on a concrete device/simulator (not "Any iOS Device").
-
-> `npm run build:ios` runs `plugin/build.sh`, which also bumps the version in `current_version.json`, `plugin/src/popup.html` and the platform manifests. Revert those files before committing if you only built to test.
+```bash
+mobile/ios/build.sh --run     # simulator; --open opens the generated project in Xcode
+```
 
 #### Testing in Safari
 
 There is no automated Safari run: the Node tests use jsdom, so Safari behaviour has to be checked by hand.
 
-1. **macOS Safari first (fastest loop).** Run the macOS target in Xcode, then Safari → Settings → Advanced → *Show features for web developers*, Develop → *Allow Unsigned Extensions* (needed again after every Safari restart), Settings → Extensions → enable the extension and allow it on all websites. Debug via Develop → *Web Extension Background Content*.
+1. **macOS Safari first (fastest loop).** There is no macOS target yet; to try the extension on a Mac, convert it with `xcrun safari-web-extension-converter plugin/dev/kaivo-extension-ios`, run the macOS target of that throwaway project, then Safari → Settings → Advanced → *Show features for web developers*, Develop → *Allow Unsigned Extensions* (needed again after every Safari restart), Settings → Extensions → enable the extension and allow it on all websites. Debug via Develop → *Web Extension Background Content*.
 2. **iOS Simulator.** Run the iOS scheme, open Safari → `aA` menu → *Manage Extensions*, enable it and allow website access. Inspect from the Mac's Safari under Develop → *Simulator*.
 3. **A real iPhone.** Set the signing team on both targets, enable Developer Mode on the phone and Settings → Safari → Advanced → *Web Inspector*. iOS suspends background pages more aggressively than the simulator, so the checks below only count on a device.
 

@@ -159,25 +159,50 @@ function bundleModuleGraph(entryPath, globalName) {
         if (modules.has(id)) return;
         let src = fs.readFileSync(absPath, 'utf8');
         const deps = [];
+        const reExports = [];   // [name outside, expression inside]
+        const pairs = (list) => list.split(',').map((s) => s.trim()).filter(Boolean).map((s) => s.split(/\s+as\s+/));
+        // `export { a, b as c } from './x.js';` — taken from the other module, offered by this one
+        let hop = 0;
+        src = src.replace(/^export\s+\{([^}]*)\}\s+from\s+['"]([^'"]+)['"]\s*;?[ \t]*(?:\/\/.*)?$/gm, (all, list, spec) => {
+            const local = `__re${hop++}`;
+            for (const [name, as] of pairs(list)) reExports.push([as || name, `${local}.${name}`]);
+            return `import { __all as ${local} } from '${spec}';`;
+        });
+        // `export { a, b as c };` — names this module has already
+        src = src.replace(/^export\s+\{([^}]*)\}\s*;?[ \t]*(?:\/\/.*)?$/gm, (all, list) => {
+            for (const [name, as] of pairs(list)) reExports.push([as || name, name]);
+            return '';
+        });
+        const unknown = src.match(/^export\s+(?!(?:async\s+)?(?:function|const|let|class)\s+\w)[^\n]*/m);
+        if (unknown) throw new Error(`${id}: the bundler does not understand "${unknown[0]}"`);
         const importRe = /^import\s+\{([\s\S]*?)\}\s+from\s+['"]([^'"]+)['"]\s*;?\s*$/gm;
         let match;
         while ((match = importRe.exec(src))) {
-            const names = match[1].split(',').map((s) => s.trim()).filter(Boolean).map((s) => {
-                const [imported, local] = s.split(/\s+as\s+/);
-                return `${imported}${local ? `: ${local}` : ''}`;
-            }).join(', ');
+            const wanted = pairs(match[1]);
             const dep = path.resolve(path.dirname(absPath), match[2]);
             resolve(dep);
-            deps.push({ start: match.index, end: importRe.lastIndex, code: `const { ${names} } = __require(${JSON.stringify(idOf(dep))});` });
+            const from = JSON.stringify(idOf(dep));
+            if (wanted[0] && wanted[0][0] === '__all') {
+                deps.push({ start: match.index, end: importRe.lastIndex, code: `const ${wanted[0][1]} = __require(${from});` });
+                continue;
+            }
+            // a name the other module does not offer would only show up as "x is not a function" in someone's browser
+            const offered = modules.get(idOf(dep));
+            for (const [name] of offered ? wanted : []) {
+                if (!offered.exports.includes(name)) throw new Error(`${id}: ${idOf(dep)} does not export "${name}"`);
+            }
+            const names = wanted.map(([imported, local]) => `${imported}${local ? `: ${local}` : ''}`).join(', ');
+            deps.push({ start: match.index, end: importRe.lastIndex, code: `const { ${names} } = __require(${from});` });
         }
         for (const dep of deps.reverse()) src = src.slice(0, dep.start) + dep.code + src.slice(dep.end);
         const exports = [...src.matchAll(/^export\s+(?:async\s+)?(?:function|const|let|class)\s+(\w+)/gm)].map((m) => m[1]);
         src = src.replace(/^export\s+/gm, '');
-        modules.set(id, { src, exports });
+        modules.set(id, { src, exports: [...exports, ...reExports.map(([name]) => name)],
+            returns: [...exports, ...reExports.map(([name, value]) => (name === value ? name : `${name}: ${value}`))] });
     }
     resolve(entryPath);
     const factories = [...modules].map(([id, module]) =>
-        `${JSON.stringify(id)}: (__require) => { ${module.src}\nreturn { ${module.exports.join(', ')} }; }`
+        `${JSON.stringify(id)}: (__require) => { ${module.src}\nreturn { ${module.returns.join(', ')} }; }`
     ).join(',\n');
     const entryId = idOf(entryPath);
     return `// AI Summary Helper — bundled background modules
@@ -348,6 +373,8 @@ async function main() {
         built.push(buildPlatform('ios', path.join(PLATFORMS, 'ios', 'manifest.json')));
     }
 
+    // the App Store build shows nothing to buy (modules/storeBuild.js)
+    for (const dir of built.filter((d) => d && /-ios$/.test(d))) { useStoreBuild(dir); useIosDescriptions(dir); }
     if (stripeTest) for (const dir of built.filter(Boolean)) useStripeTestMode(dir);
     if (apiBase) for (const dir of built.filter(Boolean)) pointAtApi(dir, apiBase);
     // The source stylesheets are written in Kaivo colours (design-system/config.json), the source text in AISH: the plain build is the
@@ -366,12 +393,12 @@ function copyTree(from, to) {
 }
 
 /**
- * `--<brand>` / `--brand=<id>` (see brands/README.md): the default build in dev/aish-extension-<platform> stays as it is, and
- * a rebranded copy goes to dev/<slug>-extension-<platform>. `--strict` fails when the old name is still visible.
+ * The source-brand build in dev/aish-extension-<platform> stays as it is, and a rebranded copy goes to
+ * dev/<slug>-extension-<platform>: Kaivo unless `--<brand>` / `--brand=<id>` names another (`--aish`: no copy; see
+ * brands/README.md). `--strict` fails when the old name is still visible.
  * Without brands/ in the checkout (it is git-excluded) the flag is ignored with a warning.
  */
 async function brandCopies(dirs, args) {
-    if (!args.some((a) => a.startsWith('--') && !['--clean', '--api', '--stripe-test', '--strict', '--bundle'].includes(a))) return;
     const BRANDS = path.join(ROOT, '..', 'brands', 'index.mjs');
     if (!fs.existsSync(BRANDS)) { console.warn('  ! brand flag ignored: brands/index.mjs is not in this checkout'); return; }
     const { brandIdFromArgs, loadBrand, isDefault, brandBuild, warnProvisional } = await import(pathToFileURL(BRANDS).href);
@@ -422,6 +449,41 @@ function pointAtApi(dir, base) {
     };
     walk(dir);
     console.log(`  ⚠ ${path.basename(dir)}: DEV BUILD, API → ${base} (${hits} references in ${files} files). Do not ship this build.`);
+}
+
+/** Apple refuses an upload when a language's extension description is longer than 112 characters (the browser stores
+ *  allow 132): the iOS build takes the shorter ones from ios-descriptions.json, and stops if one is still too long. */
+function useIosDescriptions(dir) {
+    const short = JSON.parse(fs.readFileSync(path.join(__dirname, 'ios-descriptions.json'), 'utf8'));
+    const root = path.join(dir, '_locales');
+    for (const locale of fs.readdirSync(root)) {
+        const file = path.join(root, locale, 'messages.json');
+        if (!fs.existsSync(file)) continue;
+        const messages = JSON.parse(fs.readFileSync(file, 'utf8'));
+        const entry = messages.extensionDescription;
+        if (!entry) continue;
+        if (short[locale]) { entry.message = short[locale]; fs.writeFileSync(file, JSON.stringify(messages, null, 2) + '\n'); }
+        if (entry.message.length > 112) { console.error(`  ✗ ${path.basename(dir)}: the ${locale} extension description has ${entry.message.length} characters, Apple allows 112`); process.exit(1); }
+    }
+}
+
+/** Sets every `/*@store-build*\/ false` of a build to true; a build without one would show purchases, so that stops here. */
+function useStoreBuild(dir) {
+    const MARK = '/*@store-build*/ false';
+    let hits = 0;
+    const walk = (d) => {
+        for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+            const p = path.join(d, e.name);
+            if (e.isDirectory()) { walk(p); continue; }
+            if (!p.endsWith('.js')) continue;
+            const src = fs.readFileSync(p, 'utf8');
+            if (src.includes(MARK)) { fs.writeFileSync(p, src.split(MARK).join('true')); hits++; }
+        }
+    };
+    walk(dir);
+    // the module, the classic background script and the bundled content script
+    if (hits < 3) { console.error(`  ✗ ${path.basename(dir)}: the store-build mark was found ${hits} times, expected at least 3`); process.exit(1); }
+    console.log(`  ✓ ${path.basename(dir)}: no purchases (${hits} files)`);
 }
 
 /**

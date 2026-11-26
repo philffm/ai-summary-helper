@@ -41,7 +41,7 @@ The site is assembled in two conceptual layers.
 ### Shared site chrome
 
 Navigation and footer markup lives once in
-[`site-src/partials/`](/Users/phil/dev/ai-summary-helper/site-src/partials).
+[`site-src/partials/`](site-src/partials).
 Pages include them with markers such as:
 
 ```html
@@ -131,7 +131,7 @@ Localization is content-change tracked rather than copied blindly.
 2. Run `npm run site:build`. This produces the canonical English pages in
    `docs/`.
 3. `translate.mjs` reads the page inventory from
-   [`docs/i18n/locales.json`](/Users/phil/dev/ai-summary-helper/docs/i18n/locales.json).
+   [`docs/i18n/locales.json`](docs/i18n/locales.json).
 4. For every configured content page and locale, it hashes the complete
    generated English source.
 5. A locale page is stale when its manifest hash does not match that source
