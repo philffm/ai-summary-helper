@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://kaivo.byphil.eu/pl/prywatnosc.html">
 <meta property="og:type" content="website">
 <script src="../assets/analytics.js" defer=""></script>
-<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/prywatnosc.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="pl"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Polityka prywatności — AI Summary Helper"><meta name="twitter:description" content="Jak AI Summary Helper dba o Twoje dane: klucze API i historia artykułów pozostają wyłącznie na Twoim urządzeniu."><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://kaivo.byphil.eu/pl/prywatnosc.html"></head>
+<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/prywatnosc.html"><link rel="canonical" href="https://kaivo.byphil.eu/pl/prywatnosc.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="pl"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Polityka prywatności — AI Summary Helper"><meta name="twitter:description" content="Jak AI Summary Helper dba o Twoje dane: klucze API i historia artykułów pozostają wyłącznie na Twoim urządzeniu."><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"></head>
 <body>
 
 <a href="#main" class="skip-link">Przejdź do treści</a>
@@ -38,12 +38,8 @@
       <img src="../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
-    <nav class="pill" aria-label="Główny">
-      <a href="index.html#features" data-sec="features">Funkcje</a>
-      <a href="index.html#see-it" data-sec="see-it">Demo</a>
-      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=pl-prywatnosc&amp;utm_campaign=nav" class="pill-cta" target="_blank" rel="noopener">Dodaj do Chrome</a>
-    </nav>
-    <div class="nav-island"><div class="nav-tools">
+    <div class="nav-island"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=pl-prywatnosc&amp;utm_campaign=nav" class="pill-cta nav-cta" target="_blank" rel="noopener">Dodaj do Chrome</a>
+    <div class="nav-tools">
       <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Wyślij tę stronę na komputer" title="Wyślij na komputer"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="Język" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Przełącz na tryb jasny">
@@ -55,11 +51,17 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
     </button></div>
   </div>
+    <nav class="pill" aria-label="Główny">
+      <a href="index.html" data-sec="hero">Przegląd</a>
+      <a href="index.html#see-it" data-sec="see-it">Zobacz to w akcji</a>
+      <a href="index.html#features" data-sec="features">Funkcje</a>
+      <a href="blog/" data-dock-blog="">Blog</a>
+    </nav>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="Mobilne">
-        <a href="index.html#features"><span class="mm-n">01</span>Funkcje</a>
-        <a href="index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="index.html#use-cases"><span class="mm-n">01</span>Zastosowania</a>
+        <a href="index.html#problem" data-slider-goto="problem"><span class="mm-n">02</span>Jak to działa</a>
         <a href="../education/"><span class="mm-n">03</span>Edukacja</a>
         <a href="blog/"><span class="mm-n">04</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Alternatywa dla Pocket: na co zwrócić uwagę</a>
@@ -134,7 +136,7 @@
         <h3>Połączenie z dostawcą AI</h3>
         <p>To Ty decydujesz, jak generowane są podsumowania:</p>
         <ul>
-          <li><strong>Własny klucz API (BYOK — Bring Your Own Key)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek lub własny punkt końcowy (custom endpoint). Twój klucz API jest przechowywany wyłącznie lokalnie na Twoim urządzeniu (nigdy nie jest synchronizowany ani wysyłany do nas). Treść stron, które zdecydujesz się podsumować, jest wysyłana bezpośrednio z Twojej przeglądarki do wybranego dostawcy przy użyciu Twojego klucza i podlega polityce prywatności tego dostawcy. Nie widzimy, nie rejestrujemy ani nie przechowujemy tych treści.</li>
+          <li><strong>Własny klucz API (BYOK — Bring Your Own Key)</strong> — OpenAI, Anthropic (Claude), Google Gemini, Mistral AI, DeepSeek, OpenRouter lub własny punkt końcowy. Twój klucz API jest przechowywany lokalnie tylko na Twoim urządzeniu (nigdy nie jest synchronizowany ani wysyłany do nas). Treść stron, które wybierasz do streszczenia, trafia prosto z przeglądarki do wybranego dostawcy, z Twoim kluczem i zgodnie z jego polityką prywatności. Nie widzimy, nie rejestrujemy i nie przechowujemy tej treści.</li>
           <li><strong>Model lokalny przez Ollama</strong> — jeśli uruchamiasz model lokalnie, treść strony jest przesyłana wyłącznie na Twoją własną maszynę. Nic nie opuszcza Twojego urządzenia.</li>
           <li><strong>byphil Cloud (opcjonalne, płatne)</strong> — opcja hostowana dla osób, które wolą nie zarządzać własnym kluczem API. Jeśli wybierzesz ten pakiet, tekst przekazany do podsumowania przechodzi przez nasz backend, który przekazuje zapytanie za pośrednictwem OpenRouter do dostawcy danego modelu i zwraca podsumowanie. Dane są wyłącznie przekazywane w tranzycie: nie przechowujemy treści stron, adresów URL ani podsumowań. Jedyne informacje rejestrowane na koncie to metadane użycia: liczba zrealizowanych zapytań, zużycie tokenów, czas ostatniego zapytania oraz wybrany model. Samo konto jest opcjonalne — wszystkie pozostałe funkcje działają bez niego. Przy włączonym ustawieniu „Preferuj serwery w UE” modele posiadające endpoint w Europie są uruchamiane wyłącznie na tych endpointach, a aplikacja oznacza, które modele spełniają to kryterium. Ogranicza to fizyczną lokalizację przetwarzania modelu, lecz nie eliminuje pośredników z trasy przesyłu: tekst wciąż przechodzi przez naszą usługę (działającą na serwerze w Niemczech), a następnie przez OpenRouter (firmę z USA) w drodze do modelu. Dodatkowo funkcje odczytu na głos (read-aloud) i zamiany mowy na tekst (speech-to-text) nie posiadają wariantu z serwerami w UE.</li>
         </ul>
@@ -164,10 +166,10 @@
           </tbody>
         </table>
         <p>Pozycje oznaczone jako „Sync” korzystają z wbudowanej synchronizacji Chrome powiązanej z Twoim kontem Google — dane te przechodzą przez infrastrukturę Google, a nie naszą, dokładnie tak samo jak zakładki. Nie mamy do nich żadnego odrębnego dostępu.</p>
-        <p>Możesz wyeksportować swoje dane w dowolnym momencie w menu Ustawienia → Biblioteka i dane → Kopia zapasowa i przywracanie. Kopie zapasowe domyślnie pomijają klucze API, dane logowania, klucze licencyjne i identyfikatory instalacji; ich dołączenie wymaga wyraźnej zgody z ostrzeżeniem, ponieważ każdy posiadacz pliku mógłby z nich skorzystać. Przechowuj wyeksportowane pliki w bezpiecznym miejscu i pamiętaj, że starsze kopie mogą zawierać poufne dane. W tym samym miejscu sekcja „Strefa niebezpieczna” pozwala usunąć według kategorii (z podglądem liczby usuwanych elementów): podsumowania i archiwum, zaznaczenia, kanały RSS, podcasty, klucze API / logowanie / licencje, cele wysyłania (Kindle, LocalSend) oraz preferencje. <em>Usuń wszystkie dane</em> usuwa wszystko, co rozszerzenie przechowuje na urządzeniu, przywracając stan początkowy. Usunięcie rozszerzenia również czyści jego dane. Działania te usuwają wyłącznie dane lokalne. Zarządzanie kontem i danymi przechowywanymi na naszym serwerze (patrz niżej) odbywa się pod adresem <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: tam możesz wyeksportować swoje dane i usunąć konto. Rozszerzenie oraz aplikacja na Androida zawierają bezpośrednie odnośniki w ustawieniach konta.</p>
+        <p>Swoje dane możesz wyeksportować w każdej chwili przez Ustawienia → Kopie i synchronizacja. Kopie domyślnie pomijają klucze API, dane logowania, klucze licencyjne i identyfikatory instalacji; ich dołączenie wymaga wyraźnego wyboru z ostrzeżeniem, bo każdy, kto ma ten plik, może ich użyć. Przechowuj wyeksportowane pliki w tajemnicy i pamiętaj, że starsze kopie mogą zawierać sekrety. W tym samym miejscu Strefa ryzyka pozwala usuwać według kategorii, z liczbą tego, co zniknie: streszczenia i archiwum, wyróżnienia, kanały, podcasty, klucze API / logowanie / licencja, cele wysyłki (Kindle, LocalSend) i preferencje. <em>Usuń wszystkie dane</em> usuwa wszystko, co rozszerzenie przechowuje na urządzeniu, przywracając stan początkowy. Usunięcie rozszerzenia również czyści jego dane. Działania te usuwają wyłącznie dane lokalne. Zarządzanie kontem i danymi przechowywanymi na naszym serwerze (patrz niżej) odbywa się pod adresem <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: tam możesz wyeksportować swoje dane i usunąć konto. Rozszerzenie oraz aplikacja na Androida zawierają bezpośrednie odnośniki w ustawieniach konta.</p>
 
         <h3>Kanały RSS</h3>
-        <p>Wbudowany czytnik kanałów przechowuje Twoje subskrypcje i pobrane wpisy lokalnie w przeglądarce — bez synchronizacji i bez wysyłania do nas. Gdy dodajesz lub odświeżasz kanał, rozszerzenie wysyła zapytanie bezpośrednio pod adres serwera wydawcy, dokładnie tak jak przeglądarka podczas odwiedzania strony, więc wydawca widzi to zapytanie. Nie pośredniczymy, nie rejestrujemy ani nie mamy wglądu w Twoje subskrypcje czy listę lektur. Import plików OPML odbywa się w całości na Twoim urządzeniu. Jeśli włączysz sprawdzanie w tle (domyślnie wyłączone), rozszerzenie odpytuje kanały w wybranym interwale wyłącznie po to, by wyświetlić licznik na pasku narzędzi. Podsumowywanie wpisu z RSS działa identycznie jak w przypadku zwykłej strony: treść trafia do wybranego dostawcy AI tylko wtedy, gdy uruchomisz podsumowanie. Opcjonalne funkcje podsumowania dnia AI i oceny tonu AI działają tak samo: wyłącznie po kliknięciu rozszerzenie przesyła tytuły, nazwy źródeł i krótkie fragmenty (nie całe artykuły) do wybranego dostawcy AI, a gotowe podsumowanie jest zapisywane w pamięci podręcznej urządzenia. Odcinki podcastów z kanałów RSS są strumieniowane bezpośrednio z serwera wydawcy po naciśnięciu przycisku Odtwórz.</p>
+        <p>Wbudowany czytnik kanałów przechowuje subskrypcje i pobrane wpisy lokalnie w przeglądarce — nigdy nie są synchronizowane ani wysyłane do nas. Gdy dodajesz lub odświeżasz kanał, rozszerzenie pobiera jego adres prosto z serwera wydawcy, tak jak zrobiłaby to przeglądarka podczas wizyty na stronie, więc wydawca widzi to zapytanie. Nie pośredniczymy, nie rejestrujemy i nie widzimy Twoich subskrypcji ani listy lektur. Import OPML odbywa się w całości na Twoim urządzeniu. Sprawdzanie w tle jest domyślnie włączone i można je wyłączyć w ustawieniach kanałów: gdy przeglądarka jest otwarta, rozszerzenie pobiera kanały ponownie w wybranym odstępie, wyłącznie po to, by pokazać licznik na ikonie paska narzędzi. Streszczanie wpisu z kanału działa jak streszczanie każdej innej strony: jego treść trafia tylko do wybranego dostawcy AI i tylko wtedy, gdy uruchamiasz streszczenie. Opcjonalne podsumowanie dnia i ocena tonu przez AI działają tak samo: tylko po kliknięciu rozszerzenie wysyła tytuły, nazwy źródeł i krótkie fragmenty (nie całe artykuły) do wybranego dostawcy AI, a powstałe podsumowanie jest przechowywane w pamięci podręcznej na urządzeniu. Odcinki podcastów z kanału są strumieniowane prosto z serwera wydawcy po naciśnięciu Odtwórz.</p>
 
         <h3>Wysyłanie artykułów: Kindle, LocalSend i menu udostępniania</h3>
         <p>Dostępne są dwie różne ścieżki, z których tylko jedna łączy się z naszym serwerem:</p>
@@ -177,7 +179,7 @@
         </ul>
 
         <h3>Synchronizacja biblioteki, kopia zapasowa i publikowanie (opcjonalnie)</h3>
-        <p>Wyłączone do momentu dodania lokalizacji w Ustawienia → Synchronizacja i kopia zapasowa. Lokalizacja to folder na wybranym serwerze (Nextcloud lub inny serwer WebDAV bądź zasobnik zgodny z S3, taki jak AWS S3, Cloudflare R2 czy Backblaze B2) lub folder na Twoim komputerze. Nie zarządzamy tymi serwerami, nie pośredniczymy w transmisji i nigdy nie mamy wglądu w przechowywane tam dane.</p>
+        <p>Wyłączone, dopóki nie dodasz miejsca w Ustawienia → Kopie i synchronizacja. Miejsce to folder na wybranym przez Ciebie serwerze (Nextcloud lub inny serwer WebDAV albo zasobnik zgodny z S3, np. AWS S3, Cloudflare R2 czy Backblaze B2) lub folder na Twoim komputerze. Nie prowadzimy tych serwerów, nie uczestniczymy w tym i nigdy nie widzimy, co tam umieszczasz.</p>
         <ul>
           <li><strong>Zaszyfrowane lokalizacje</strong> synchronizuj całą bibliotekę między urządzeniami lub twórz kopię zapasową: artykuły, podsumowania, pełne teksty, wyróżnienia, notatki, kolekcje i tagi. Wszystko jest szyfrowane w przeglądarce (AES-256-GCM, za pomocą klucza generowanego z hasła), zanim opuści urządzenie, a nazwy plików są maskowane. Serwer lub folder widzi tylko zaszyfrowane pliki, ich rozmiar oraz czas modyfikacji. Klucz wygenerowany z hasła pozostaje w pamięci lokalnej tej przeglądarki, co pozwala na synchronizację w tle. Jeśli wybierzesz sugerowane losowe słowa, one również są tam przechowywane, więc możesz je podejrzeć w ustawieniach; samodzielnie utworzone hasło nie jest nigdzie zapisywane. Żadna z tych informacji nie jest synchronizowana ani dołączana do kopii zapasowej. Jeśli zgubisz hasło, nikt nie będzie w stanie odczytać plików — łącznie z nami.</li>
           <li><strong>Czytelne lokalizacje</strong> publikuj zwykłe pliki (oraz, jeśli chcesz, prostą stronę przeglądarki) na potrzeby własnej witryny lub narzędzi. Wysyłane są tylko artykuły pasujące do ustawionego filtra tagów. Notatki, przypomnienia i pełna treść artykułów nigdy nie są publikowane, chyba że włączysz to ręcznie w strefie zaawansowanej — wtedy każdy, kto ma dostęp do folderu, będzie mógł je odczytać.</li>
@@ -232,10 +234,13 @@
             <tr><td><code>offscreen</code>, <code>tts</code></td><td>Odtwarzanie podcastów oraz odczytywanie podsumowań na głos w tle, gdy okienko rozszerzenia jest zamknięte</td></tr>
             <tr><td>Dostęp do systemu plików (wybrany folder)</td><td>Tylko po wskazaniu folderu na komputerze jako lokalizacji synchronizacji lub kopii zapasowej; przeglądarka prosi o zgodę i dostępny jest wyłącznie ten konkretny folder</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Prowadzenie obszernego lokalnego archiwum artykułów i zaznaczeń bez limitów pamięci przeglądarki</td></tr>
+            <tr><td><code>zakładki</code> (opcjonalnie)</td><td>Tylko jeśli w widoku czytania wybierzesz „Zapisz w zakładkach przeglądarki”; przeglądarka najpierw pyta o zgodę. Dodajemy lub aktualizujemy jedną zakładkę tego artykułu w folderze „AI Summary Helper”; przeszukujemy i zmieniamy tylko własny folder, nie pozostałe zakładki</td></tr>
+            <tr><td><code>wyszukiwanie</code> (opcjonalnie)</td><td>Tylko jeśli wybierzesz „Szukaj w sieci” w polu wyszukiwania na stronie startowej lub w palecie poleceń; przeglądarka najpierw pyta o zgodę. Wpisane słowa trafiają do domyślnej wyszukiwarki przeglądarki, dokładnie tak, jak po wpisaniu w pasku adresu. Nie widzimy ich, nie przechowujemy i nigdzie indziej nie wysyłamy</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Pozwala generować podsumowanie dowolnej odwiedzanej strony — treść jest odczytywana i przesyłana wyłącznie po aktywnym uruchomieniu podsumowania, nigdy w tle. Umożliwia również rozszerzeniu łączenie się z podanym serwerem synchronizacji lub zasobnikiem pod dowolnym adresem</td></tr>
           </tbody>
         </table>
         <p>Nie wykorzystujemy tych uprawnień do śledzenia Twojej aktywności, budowania profilu reklamowego ani zbierania danych wykraczających poza realizację wyżej wymienionych funkcji.</p>
+        <p>Korzystanie z informacji otrzymanych z interfejsów API Google będzie zgodne z dokumentem <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq" target="_blank" rel="noopener">Zasady dotyczące danych użytkownika w Chrome Web Store</a>, w tym z wymaganiami ograniczonego użycia.</p>
 
         <h2>Czego nie robimy</h2>
         <ul>
@@ -248,7 +253,7 @@
         <h2>Usługi podmiotów trzecich</h2>
         <p>W zależności od konfiguracji rozszerzenia treść strony może być przesyłana do:</p>
         <ul>
-          <li>OpenAI, Google (Gemini), Mistral AI lub DeepSeek — wyłącznie jeśli wprowadzisz własny klucz API danego dostawcy i tylko dla strony, którą aktywnie podsumowujesz.</li>
+          <li>OpenAI, Anthropic (Claude), Google (Gemini), Mistral AI, DeepSeek lub OpenRouter (który przekazuje do wybranego tam modelu) — tylko jeśli podasz własny klucz API tego dostawcy i tylko dla strony, którą sam streszczasz.</li>
           <li>Nasz backend byphil oraz powiązana baza danych, hostowane przez IONOS SE w Niemczech — wyłącznie w przypadku zalogowania się, korzystania z byphil Cloud lub funkcji Send to Kindle.</li>
           <li>OpenRouter, za pośrednictwem którego byphil Cloud łączy się z modelami, oraz docelowego dostawcy modelu — podsumowywany tekst jest przekazywany wyłącznie na potrzeby danego zapytania.</li>
           <li>Stripe — obsługa płatności i zarządzanie subskrypcjami jako Merchant of Record.</li>

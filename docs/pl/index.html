@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
-<title>AI Summary Helper: podsumowuj, zapisuj i przeszukuj sieć</title>
+<title>AI Summary Helper: Twój prywatny towarzysz AI do czytania i wiedzy</title>
 <script>
 // Old language links were /?lang=xx. GitHub Pages cannot 301 a query string, so send them to the language folder (canonical already points to /).
 (function () {
@@ -14,7 +14,7 @@
   location.replace('/' + (dir ? dir + '/' : '') + location.hash);
 })();
 </script>
-<meta name="description" content="Rozszerzenie do Chrome, które podsumowuje strony za pomocą AI, czyta kanały RSS i tworzy przeszukiwalne archiwum. Wyszukiwanie i rekomendacje działają lokalnie na Twoim urządzeniu.">
+<meta name="description" content="Zamień czytanie w wiedzę, która zostaje. AI Summary Helper to prywatny, lokalny w pierwszej kolejności pomocnik w czytaniu artykułów, plików PDF i filmów, z odpowiedziami powiązanymi ze źródłem i przeszukiwalnym archiwum.">
 
 <script>
   (function(){
@@ -34,16 +34,21 @@
 <link rel="preload" href="../assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="preload" href="../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="stylesheet" href="../assets/styles.css">
 
 <meta property="og:title" content="AI Summary Helper">
-<meta property="og:description" content="Podsumowuj, zapisuj i przeszukuj sieć lokalnie na urządzeniu. Rozszerzenie do Chrome stworzone dla osób, które nie chcą więcej gubić artykułów do przeczytania.">
+<meta property="og:description" content="Zamień czytanie w wiedzę, która zostaje: odpowiedzi powiązane ze źródłem, prywatne przeszukiwalne archiwum i lokalna AI.">
 <meta property="og:url" content="https://kaivo.byphil.eu/pl/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="AI Summary Helper zeigt eine quellenverlinkte KI-Zusammenfassung neben dem Originalartikel.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Summary Helper: your private AI reading and knowledge companion">
+<meta name="twitter:description" content="Turn reading into knowledge you keep with source-linked answers, a private searchable archive and local-first AI.">
+<meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp">
+<meta name="twitter:image:alt" content="AI Summary Helper zeigt eine quellenverlinkte KI-Zusammenfassung neben dem Originalartikel.">
 
 <script src="../assets/analytics.js" defer=""></script>
-<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/"><link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="pl"><meta name="twitter:title" content="AI Summary Helper"><meta name="twitter:description" content="Podsumowuj, zapisuj i przeszukuj sieć lokalnie na urządzeniu. Rozszerzenie do Chrome stworzone dla osób, które nie chcą więcej gubić artykułów do przeczytania."><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://kaivo.byphil.eu/pl/"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kaivo.byphil.eu/#website","url":"https://kaivo.byphil.eu/","name":"AI Summary Helper","inLanguage":"pl","publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"SoftwareApplication","@id":"https://kaivo.byphil.eu/#app","name":"AI Summary Helper","url":"https://kaivo.byphil.eu/pl/","description":"Rozszerzenie do Chrome, które podsumowuje strony za pomocą AI, czyta kanały RSS i tworzy przeszukiwalne archiwum. Wyszukiwanie i rekomendacje działają lokalnie na Twoim urządzeniu.","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Chromium browsers, Firefox, Android (beta companion app)","installUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","downloadUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","image":"https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp","inLanguage":"pl","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free; a donation (Support Pass) unlocks byphil Cloud with many AI models"},"author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"FAQPage","@id":"https://kaivo.byphil.eu/pl/#faq","inLanguage":"pl","mainEntity":[{"@type":"Question","name":"Czy muszę zakładać konto, aby korzystać z narzędzia?","acceptedAnswer":{"@type":"Answer","text":"Nie. Zainstaluj aplikację, dodaj własny klucz dostawcy AI (lub użyj lokalnego modelu Ollama) i zacznij zapisywać. Konto jest potrzebne tylko wtedy, gdy chcesz korzystać z byphil Cloud (wiele modeli AI bez własnego klucza) lub zwiększyć liczbę wysyłek na Kindle/LocalSend, co odblokowuje darowizna."}},{"@type":"Question","name":"Jakie dane faktycznie opuszczają moją przeglądarkę?","acceptedAnswer":{"@type":"Answer","text":"Wyłącznie treść zapytania o podsumowanie wysyłana do wybranego dostawcy AI. Jeśli korzystasz z czytnika RSS, pobierane są subskrybowane kanały, a w przypadku kliknięcia w podsumowanie AI — nagłówki i krótkie fragmenty z danego dnia. Wyszukiwanie, wykrywanie duplikatów, porządkowanie tagów, ocena tonu oraz rekomendacje działają w 100% lokalnie na Twoim archiwum z zachowaniem pełnej prywatności i zgodności z RODO."}},{"@type":"Question","name":"Czy mogę używać narzędzia całkowicie bez dostępu do chmury?","acceptedAnswer":{"@type":"Answer","text":"Tak — wystarczy wskazać lokalny model Ollama, a proces podsumowywania również odbędzie się lokalnie na Twoim urządzeniu. Wszystkie pozostałe funkcje działają tak domyślnie."}},{"@type":"Question","name":"Co stanie się z moimi zapisami, jeśli przestanę wspierać projekt?","acceptedAnswer":{"@type":"Answer","text":"Twoje archiwum pozostaje nienaruszone tam, gdzie było — w pamięci lokalnej Twojej przeglądarki na urządzeniu. Support Pass odblokowuje jedynie dodatki chmurowe (dostęp do byphil Cloud AI, nielimitowane wysyłki Kindle/LocalSend), nigdy nie blokując dostępu do Twoich zapisanych materiałów."}},{"@type":"Question","name":"Jak zainstalować aplikację towarzyszącą na Androida?","acceptedAnswer":{"@type":"Answer","text":"Pobierz plik APK z powyższego linku (lub z sekcji najnowsze wydanie), otwórz go i zezwól na instalację w przeglądarce. Następnie sparuj urządzenie, skanując kod QR w rozszerzeniu w zakładce Ustawienia → Skrzynka z telefonu. Aplikacja nie jest jeszcze dostępna w Google Play."}},{"@type":"Question","name":"Czy kod źródłowy jest otwarty (open source)?","acceptedAnswer":{"@type":"Answer","text":"Tak — kod źródłowy rozszerzenia jest publicznie dostępny w serwisie GitHub, na licencji AGPL-3.0. Jest bezpłatny do użytku osobistego, edukacyjnego oraz non-profit; firmy chcące korzystać z niego poza warunkami licencji AGPL mogą uzyskać licencję komercyjną."}}]}]}</script><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"AI Summary Helper w mniej niż minutę","description":"Wszystkie funkcje omówione w ekspresowym tempie: podsumowania, źródła, tryb badawczy, biblioteka, kanały, aplikacje AI i wiele więcej.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT2M2S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4","inLanguage":"en","transcript":"Everything it can do in under a minute! Summarize any page! YouTube videos? Done! PDFs? Done! Every answer shows its source! The AI marks the key passages! Papers recognised by their DOI! Compare sources on one question! Forty-one languages! Read aloud while it writes! A library with search and stats! Your reading, as a report! Your reading as a knowledge graph: tap a topic and get the overview! RSS feeds with a daily recap! Only the good news, if you like! A digest to your e-reader: pick a few articles, and they get beamed straight over to you! Export to Obsidian, Word, PDF! Your library inside your AI apps! Sync and back up to Nextcloud, WebDAV, S3 or a folder! Your key, a local model, or cloud!","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Zweryfikuj odpowiedź ze źródłem","description":"Zadaj dodatkowe pytanie i przejdź bezpośrednio do fragmentu tekstu, na którym oparto odpowiedź.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/quellen-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/quellen-en.mp4","inLanguage":"en","transcript":"AI answers. With receipts. Ask follow-up questions. Every answer points to the passage it came from.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Zadawaj pytania o swoje zaznaczenia","description":"Zaznacz fragment, zadaj o niego pytanie i uzyskaj odpowiedź ze wskazaniem źródła.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/highlights-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/highlights-en.mp4","inLanguage":"en","transcript":"Highlighting barely helps you learn. That is what a big review of learning techniques found. So do not stop at the highlight: ask about it, and the answer shows you where it comes from.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Jedno podsumowanie zamiast 40 źródeł","description":"Cały dzień z Twoich kanałów informacyjnych w jednym briefingu.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4","inLanguage":"en","transcript":"No algorithm. Your feed is yours. You pick your sources and curate them your way. One click, and you get a briefing of the whole day.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Twoje lektury jako graf wiedzy","description":"Artykuły powiązane tematycznie, z podsumowaniem każdego zagadnienia.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4","inLanguage":"en","transcript":"What you read is connected. Your knowledge graph links articles through their topics. Tap one, and you get a briefing on everything you have read about it.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Jedno wydanie zamiast sterty zakładek","description":"Trzy zapisane artykuły połączone w jedno wygodne wydanie na czytnik Kindle.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/digest-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/digest-en.mp4","inLanguage":"en","transcript":"We save far more than we ever read. So turn the pile into one digest: pick a few saves, and they land on your Kindle as one magazine.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Twój klucz. Twój model. Twoje dane.","description":"Własny klucz API, lokalny model z Ollama lub byPhil Cloud.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M15S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4","inLanguage":"en","transcript":"Privacy is a trade-off. When the risk is clear, people share less. So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup. Your library stays in the browser.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Alternatywa dla Pocket","description":"Zapisuj, twórz podsumowania i wysyłaj na Kindle.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pocket-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pocket-en.mp4","inLanguage":"en","transcript":"Pocket is gone. Now what? Save any page with one click, with a summary on top. Your library has tags and search, and sends to your Kindle. Free, and it all stays on your device.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Od podsumowania prosto na Kindle","description":"Nawyk, od którego rozpoczęła się historia tego projektu.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/senden-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/senden-en.mp4","inLanguage":"en","transcript":"From summary to Kindle. Summarize the page, open the menu, send it to your Kindle. Seconds later it is on your e-reader, ready for the couch.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"72-minutowy wykład w pigułce","description":"Podsumowania na podstawie napisów wideo i odpowiedzi z bezpośrednim cytowaniem fragmentów.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.mp4","inLanguage":"en","transcript":"A 72-minute lecture. Who has the time? Open the video and tap Summarize. The extension reads the captions, and you get the key points in your language. Ask a follow-up, and every answer shows you the passage in the transcript.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"84-stronicowy PDF w kilka sekund","description":"Otwórz plik PDF w przeglądarce i podsumuj go w swoim języku.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pdf-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pdf-en.mp4","inLanguage":"en","transcript":"An 84-page PDF. Who reads that? Open a PDF in your browser and tap Summarize. Reports, studies, manuals: the key points in seconds, in your language. And you can see what the model read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Publikacje naukowe rozpoznawane po numerze DOI","description":"Badanie kliniczne, przegląd czy preprint na pierwszy rzut oka – kluczowe fakty i cytowanie prosto z DOI.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/paper-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/paper-en.mp4","inLanguage":"en","transcript":"Preprint or peer-reviewed? Know before you cite. Summarize a paper and it is recognised by its DOI. Trial, review or preprint: you see it at a glance. Design, sample and limitations are pulled out, and the citation comes straight from the DOI registry.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Jedno pytanie, pięć źródeł","description":"Kolekcje porównują punkty wspólne, rozbieżności i pominięte wątki w różnych źródłach.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/recherche-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/recherche-en.mp4","inLanguage":"en","transcript":"One question, five sources. Where do they disagree? Bundle your saved articles under one question. Every source gets a type: peer-reviewed, preprint, news or opinion. One click compares them: where they agree, where they disagree, and what is missing.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Wirtualne zakreślenia","description":"AI zaznacza kluczowe fragmenty artykułu. Możesz je zatwierdzić lub odrzucić.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ghost-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ghost-en.mp4","inLanguage":"en","transcript":"The AI marks what matters while you read. After the summary, the AI marks the key passages right in the article, as ghost highlights. Tap one to keep it, or dismiss it. Skimming turns into reading on purpose.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Śledzenie nastroju czytanych wiadomości","description":"Filtr pozytywnych wiadomości i wykres nastroju na przestrzeni kolejnych tygodni.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/stimmung-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/stimmung-en.mp4","inLanguage":"en","transcript":"Your news diet has a mood. The AI rates every headline from heavy to good. Tap the smile, and only the good news is left. And the mood chart shows how your reading has felt over the weeks.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Natychmiastowy odsłuch","description":"Podsumowanie jest odczytywane na głos już w trakcie jego generowania przez AI.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/instant-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M27S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/instant-en.mp4","inLanguage":"en","transcript":"Why wait for the summary to finish? Switch on Instant read, and it is spoken while it is still being written.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Twoja biblioteka w aplikacjach AI","description":"Claude Desktop, LM Studio i Cursor przeszukują Twoją bibliotekę, cytują wyróżnienia i podają źródła.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M25S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4","inLanguage":"en","transcript":"Your AI app has never read what you read. Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights. Ask what is due, let it save the best from your feeds, or ask for your year, wrapped. Nothing goes through our server, and you choose what they may read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Eksport do Obsidian i nie tylko","description":"Każde podsumowanie zapisuje się jako przejrzysta notatka: Obsidian, Markdown, Word, ODT lub PDF.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/export-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/export-en.mp4","inLanguage":"en","transcript":"Your summaries belong in your notes. Every summary leaves as a clean note: to Obsidian, as Markdown, Word, OpenDocument or PDF. With the title, the source, your tags and your highlights, ready to keep.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Twoje czytanie w formie raportu","description":"Seria dni czytania, zaoszczędzony czas, aktywność i tematy na przestrzeni tygodni.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4","inLanguage":"en","transcript":"Where did your reading time go? Open Analytics and your library becomes a report: your streak, the time summaries saved you, your topics over the weeks and the words you keep coming back to.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ponad 20 języków, wieloplatformowość","description":"Czytaj i twórz podsumowania w wybranym języku. Rozszerzenie, natywny panel boczny lub skryptozakładka (bookmarklet) — wszędzie tam, gdzie rozszerzenie nie ma dostępu.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M13S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4","inLanguage":"en","transcript":"You read slower in a second language. Eye-tracking studies show it, even for fluent readers. Summaries in 41 languages: search, tap, done.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Prawdziwe wyszukiwanie lokalne na urządzeniu","description":"Wyszukiwanie pełnotekstowe w tytułach, tagach i treści artykułów — oparte na indeksie TF-IDF generowanym lokalnie w przeglądarce. Błyskawiczne działanie bez wysyłania danych do chmury.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4","inLanguage":"en","transcript":"Your reading, finally findable. Everything you summarized stays on your device. With tags, search and stats.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head>
+<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/"><link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/"><link rel="canonical" href="https://kaivo.byphil.eu/pl/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="pl"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kaivo.byphil.eu/#website","url":"https://kaivo.byphil.eu/","name":"AI Summary Helper","inLanguage":"pl","publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"SoftwareApplication","@id":"https://kaivo.byphil.eu/#app","name":"AI Summary Helper","url":"https://kaivo.byphil.eu/pl/","description":"Zamień czytanie w wiedzę, która zostaje. AI Summary Helper to prywatny, lokalny w pierwszej kolejności pomocnik w czytaniu artykułów, plików PDF i filmów, z odpowiedziami powiązanymi ze źródłem i przeszukiwalnym archiwum.","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Chromium browsers, Firefox, Android (beta companion app)","installUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","downloadUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","image":"https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp","inLanguage":"pl","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free; a donation (Support Pass) unlocks byphil Cloud with many AI models"},"author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"FAQPage","@id":"https://kaivo.byphil.eu/pl/#faq","inLanguage":"pl","mainEntity":[{"@type":"Question","name":"Czy muszę zakładać konto, aby korzystać z narzędzia?","acceptedAnswer":{"@type":"Answer","text":"Nie. Zainstaluj, podaj własny klucz dostawcy AI lub użyj lokalnego modelu Ollama i zacznij zapisywać. Konto jest potrzebne tylko do opcjonalnego dostępu do byphil Cloud lub dodatkowych wysyłek na Kindle i do LocalSend. Zobacz opcje dostawców →"}},{"@type":"Question","name":"Jakie dane faktycznie opuszczają moją przeglądarkę?","acceptedAnswer":{"@type":"Answer","text":"Do skonfigurowanego dostawcy AI trafia tylko samo żądanie streszczenia. RSS wymaga też zapytań do subskrybowanych kanałów; podsumowanie AI wysyła nagłówki i krótkie fragmenty tylko na Twoją prośbę. Wyszukiwanie, wykrywanie duplikatów, tagi i rekomendacje działają lokalnie. Zobacz architekturę na urządzeniu →"}},{"@type":"Question","name":"Czy moje strony lub wyróżnienia służą do trenowania modelu?","acceptedAnswer":{"@type":"Answer","text":"AI Summary Helper nie używa Twoich treści do trenowania własnego modelu. Przy własnym kluczu obowiązują zasady danych wybranego dostawcy. Z Ollamą żądanie streszczenia zostaje na Twoim komputerze. Przeczytaj o modelu prywatności →"}},{"@type":"Question","name":"Czy mogę używać narzędzia całkowicie bez dostępu do chmury?","acceptedAnswer":{"@type":"Answer","text":"Tak. Wskaż lokalny model Ollama, a także samo streszczanie zostanie na Twoim komputerze. Cała reszta już działa lokalnie. Porównaj własny klucz i Ollamę →"}},{"@type":"Question","name":"Gdzie przechowywane jest moje archiwum lektur?","acceptedAnswer":{"@type":"Answer","text":"Domyślnie w przeglądarce na Twoim urządzeniu. Możesz je wyeksportować jako Markdown albo zaszyfrować i skopiować do własnego Nextcloud, serwera WebDAV, zasobnika S3 lub folderu lokalnego. Przeczytaj poradnik synchronizacji →"}},{"@type":"Question","name":"Co się stanie, gdy wyczyszczę dane przeglądarki?","acceptedAnswer":{"@type":"Answer","text":"Usunięcie lokalnych danych przeglądarki może skasować archiwum, jeśli nie masz kopii. Przed czyszczeniem danych lub zmianą profilu wyeksportuj bibliotekę albo ustaw zaszyfrowaną synchronizację z własnym miejscem. Przeczytaj poradnik o kopiach i synchronizacji →"}},{"@type":"Question","name":"Którzy dostawcy i modele AI są obsługiwani?","acceptedAnswer":{"@type":"Answer","text":"Możesz używać OpenAI, Gemini, Mistral, DeepSeek, zgodnego własnego punktu końcowego lub lokalnego modelu Ollama. Podaj własny klucz albo skorzystaj z opcjonalnego dostępu byphil Cloud. Jak działa własny klucz →"}},{"@type":"Question","name":"Czy mogę streszczać PDF-y, filmy z YouTube i wpisy RSS?","acceptedAnswer":{"@type":"Answer","text":"Tak. Streszczaj PDF-y otwarte w przeglądarce lub dołączone z dysku, filmy z YouTube na podstawie napisów i artykuły z wbudowanego czytnika RSS. Obejrzyj filmy o sposobach pracy → Przeczytaj o zestawieniach z kanałów →"}},{"@type":"Question","name":"Na ile można ufać streszczeniom AI?","acceptedAnswer":{"@type":"Answer","text":"Wyniki AI mogą być błędne i nie zastępują sprawdzenia źródła. Odpowiedzi na pytania uzupełniające pokazują fragment, na którym się opierają, więc możesz porównać streszczenie z oryginalną stroną. Naucz się 10-sekundowego sprawdzania źródła →"}},{"@type":"Question","name":"Które przeglądarki i platformy są obsługiwane?","acceptedAnswer":{"@type":"Answer","text":"Używaj rozszerzenia, wbudowanego panelu bocznego lub bookmarkletu. Aplikacja towarzysząca na Androida dodaje linki z telefonu; wersji na iOS jeszcze nie ma. Zobacz pracę z przeglądarką i zapisywaniem →"}},{"@type":"Question","name":"Jak zainstalować aplikację towarzyszącą na Androida?","acceptedAnswer":{"@type":"Answer","text":"Pobierz plik APK z najnowsze wydanie, a potem sparuj, skanując kod QR w Ustawienia → Skrzynka telefonu. Aplikacji nie ma jeszcze w Google Play. Przeczytaj, jak zapisywanie wpisuje się w pracę →"}},{"@type":"Question","name":"Co odblokowuje Support Pass?","acceptedAnswer":{"@type":"Answer","text":"Support Pass finansuje niezależny rozwój z otwartym źródłem i może odblokować opcjonalny dostęp do AI przez byphil Cloud lub dodatkowe wysyłki na Kindle i do LocalSend. Lokalne archiwum i lokalne użycie nie są za nim zamknięte. Zrozum granicę opcjonalnej chmury →"}},{"@type":"Question","name":"Co stanie się z moimi zapisami, jeśli przestanę wspierać projekt?","acceptedAnswer":{"@type":"Answer","text":"Twoje archiwum pozostaje nienaruszone tam, gdzie było — w pamięci lokalnej Twojej przeglądarki na urządzeniu. Support Pass odblokowuje jedynie dodatki chmurowe (dostęp do byphil Cloud AI, nielimitowane wysyłki Kindle/LocalSend), nigdy nie blokując dostępu do Twoich zapisanych materiałów. Zobacz, jak Digest przywraca sens zapisanym rzeczom →"}},{"@type":"Question","name":"Czy kod źródłowy jest otwarty (open source)?","acceptedAnswer":{"@type":"Answer","text":"Tak — kod źródłowy rozszerzenia jest publicznie dostępny w serwisie GitHub, na licencji AGPL-3.0. Jest bezpłatny do użytku osobistego, edukacyjnego oraz non-profit; firmy chcące korzystać z niego poza warunkami licencji AGPL mogą uzyskać licencję komercyjną. Przeczytaj o lokalnej architekturze →"}}]}]}</script><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"AI Summary Helper w dwie minuty","description":"Wszystkie funkcje omówione w ekspresowym tempie: podsumowania, źródła, tryb badawczy, biblioteka, kanały, aplikacje AI i wiele więcej.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT2M2S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4","inLanguage":"en","transcript":"Everything it can do in under a minute! Summarize any page! YouTube videos? Done! PDFs? Done! Every answer shows its source! The AI marks the key passages! Papers recognised by their DOI! Compare sources on one question! Forty-one languages! Read aloud while it writes! A library with search and stats! Your reading, as a report! Your reading as a knowledge graph: tap a topic and get the overview! RSS feeds with a daily recap! Only the good news, if you like! A digest to your e-reader: pick a few articles, and they get beamed straight over to you! Export to Obsidian, Word, PDF! Your library inside your AI apps! Sync and back up to Nextcloud, WebDAV, S3 or a folder! Your key, a local model, or cloud!","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Zweryfikuj odpowiedź ze źródłem","description":"Zadaj dodatkowe pytanie i przejdź bezpośrednio do fragmentu tekstu, na którym oparto odpowiedź.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/quellen-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/quellen-en.mp4","inLanguage":"en","transcript":"AI answers. With receipts. Ask follow-up questions. Every answer points to the passage it came from.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Zadawaj pytania o swoje zaznaczenia","description":"Zaznacz fragment, zadaj o niego pytanie i uzyskaj odpowiedź ze wskazaniem źródła.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/highlights-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/highlights-en.mp4","inLanguage":"en","transcript":"Highlighting barely helps you learn. That is what a big review of learning techniques found. So do not stop at the highlight: ask about it, and the answer shows you where it comes from.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Jedno podsumowanie zamiast 40 źródeł","description":"Cały dzień z Twoich kanałów informacyjnych w jednym briefingu.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4","inLanguage":"en","transcript":"No algorithm. Your feed is yours. You pick your sources and curate them your way. One click, and you get a briefing of the whole day.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Twoje lektury jako graf wiedzy","description":"Artykuły powiązane tematycznie, z podsumowaniem każdego zagadnienia.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4","inLanguage":"en","transcript":"What you read is connected. Your knowledge graph links articles through their topics. Tap one, and you get a briefing on everything you have read about it.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Jedno wydanie zamiast sterty zakładek","description":"Trzy zapisane artykuły połączone w jedno wygodne wydanie na czytnik Kindle.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/digest-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/digest-en.mp4","inLanguage":"en","transcript":"We save far more than we ever read. So turn the pile into one digest: pick a few saves, and they land on your Kindle as one magazine.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Twój klucz. Twój model. Twoje dane.","description":"Własny klucz API, lokalny model z Ollama lub byPhil Cloud.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M15S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4","inLanguage":"en","transcript":"Privacy is a trade-off. When the risk is clear, people share less. So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup. Your library stays in the browser.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Alternatywa dla Pocket","description":"Zapisuj, twórz podsumowania i wysyłaj na Kindle.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pocket-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pocket-en.mp4","inLanguage":"en","transcript":"Pocket is gone. Now what? Save any page with one click, with a summary on top. Your library has tags and search, and sends to your Kindle. Free, and it all stays on your device.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Od podsumowania prosto na Kindle","description":"Nawyk, od którego rozpoczęła się historia tego projektu.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/senden-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/senden-en.mp4","inLanguage":"en","transcript":"From summary to Kindle. Summarize the page, open the menu, send it to your Kindle. Seconds later it is on your e-reader, ready for the couch.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"72-minutowy wykład w pigułce","description":"Podsumowania na podstawie napisów wideo i odpowiedzi z bezpośrednim cytowaniem fragmentów.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.mp4","inLanguage":"en","transcript":"A 72-minute lecture. Who has the time? Open the video and tap Summarize. The extension reads the captions, and you get the key points in your language. Ask a follow-up, and every answer shows you the passage in the transcript.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"84-stronicowy PDF w kilka sekund","description":"Otwórz plik PDF w przeglądarce i podsumuj go w swoim języku.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pdf-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pdf-en.mp4","inLanguage":"en","transcript":"An 84-page PDF. Who reads that? Open a PDF in your browser and tap Summarize. Reports, studies, manuals: the key points in seconds, in your language. And you can see what the model read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Publikacje naukowe rozpoznawane po numerze DOI","description":"Badanie kliniczne, przegląd czy preprint na pierwszy rzut oka – kluczowe fakty i cytowanie prosto z DOI.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/paper-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/paper-en.mp4","inLanguage":"en","transcript":"Preprint or peer-reviewed? Know before you cite. Summarize a paper and it is recognised by its DOI. Trial, review or preprint: you see it at a glance. Design, sample and limitations are pulled out, and the citation comes straight from the DOI registry.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Jedno pytanie, pięć źródeł","description":"Kolekcje porównują punkty wspólne, rozbieżności i pominięte wątki w różnych źródłach.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/recherche-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/recherche-en.mp4","inLanguage":"en","transcript":"One question, five sources. Where do they disagree? Bundle your saved articles under one question. Every source gets a type: peer-reviewed, preprint, news or opinion. One click compares them: where they agree, where they disagree, and what is missing.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Wirtualne zakreślenia","description":"AI zaznacza kluczowe fragmenty artykułu. Możesz je zatwierdzić lub odrzucić.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ghost-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ghost-en.mp4","inLanguage":"en","transcript":"The AI marks what matters while you read. After the summary, the AI marks the key passages right in the article, as ghost highlights. Tap one to keep it, or dismiss it. Skimming turns into reading on purpose.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Śledzenie nastroju czytanych wiadomości","description":"Filtr pozytywnych wiadomości i wykres nastroju na przestrzeni kolejnych tygodni.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/stimmung-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/stimmung-en.mp4","inLanguage":"en","transcript":"Your news diet has a mood. The AI rates every headline from heavy to good. Tap the smile, and only the good news is left. And the mood chart shows how your reading has felt over the weeks.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Natychmiastowy odsłuch","description":"Podsumowanie jest odczytywane na głos już w trakcie jego generowania przez AI.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/instant-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M27S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/instant-en.mp4","inLanguage":"en","transcript":"Why wait for the summary to finish? Switch on Instant read, and it is spoken while it is still being written.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Twoja biblioteka w aplikacjach AI","description":"Claude Desktop, LM Studio i Cursor przeszukują Twoją bibliotekę, cytują wyróżnienia i podają źródła.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M25S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4","inLanguage":"en","transcript":"Your AI app has never read what you read. Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights. Ask what is due, let it save the best from your feeds, or ask for your year, wrapped. Nothing goes through our server, and you choose what they may read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Eksport do Obsidian i nie tylko","description":"Każde podsumowanie zapisuje się jako przejrzysta notatka: Obsidian, Markdown, Word, ODT lub PDF.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/export-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/export-en.mp4","inLanguage":"en","transcript":"Your summaries belong in your notes. Every summary leaves as a clean note: to Obsidian, as Markdown, Word, OpenDocument or PDF. With the title, the source, your tags and your highlights, ready to keep.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Twoje czytanie w formie raportu","description":"Seria dni czytania, zaoszczędzony czas, aktywność i tematy na przestrzeni tygodni.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4","inLanguage":"en","transcript":"Where did your reading time go? Open Analytics and your library becomes a report: your streak, the time summaries saved you, your topics over the weeks and the words you keep coming back to.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ponad 20 języków, wieloplatformowość","description":"Czytaj i streszczaj w ponad 20 językach za pomocą rozszerzenia, wbudowanego panelu bocznego lub skryptozakładka (bookmarklet) gdy rozszerzenie nie ma dostępu do strony.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M13S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4","inLanguage":"en","transcript":"You read slower in a second language. Eye-tracking studies show it, even for fluent readers. Summaries in 41 languages: search, tap, done.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Prawdziwe wyszukiwanie lokalne na urządzeniu","description":"Przeszukuj tytuły, tagi i treść artykułów indeksem TF-IDF działającym w przeglądarce. Wyszukiwanie pełnotekstowe zostaje na urządzeniu, bez wysyłania na serwer.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4","inLanguage":"en","transcript":"Your reading, finally findable. Everything you summarized stays on your device. With tags, search and stats.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head>
 <body>
 
 <a href="#main" class="skip-link">Przejdź do treści</a>
@@ -54,12 +59,8 @@
       <img src="../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
-    <nav class="pill" aria-label="Główny">
-      <a href="index.html#features" data-sec="features">Funkcje</a>
-      <a href="index.html#see-it" data-sec="see-it">Demo</a>
-      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=pl&amp;utm_campaign=nav" class="pill-cta" target="_blank" rel="noopener">Dodaj do Chrome</a>
-    </nav>
-    <div class="nav-island"><div class="nav-tools">
+    <div class="nav-island"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=pl&amp;utm_campaign=nav" class="pill-cta nav-cta" target="_blank" rel="noopener">Dodaj do Chrome</a>
+    <div class="nav-tools">
       <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Wyślij tę stronę na komputer" title="Wyślij na komputer"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="Język" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Przełącz na tryb jasny">
@@ -71,11 +72,17 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
     </button></div>
   </div>
+    <nav class="pill" aria-label="Główny">
+      <a href="index.html" data-sec="hero">Przegląd</a>
+      <a href="index.html#see-it" data-sec="see-it">Zobacz to w akcji</a>
+      <a href="index.html#features" data-sec="features">Funkcje</a>
+      <a href="blog/" data-dock-blog="">Blog</a>
+    </nav>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="Mobilne">
-        <a href="index.html#features"><span class="mm-n">01</span>Funkcje</a>
-        <a href="index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="index.html#use-cases"><span class="mm-n">01</span>Zastosowania</a>
+        <a href="index.html#problem" data-slider-goto="problem"><span class="mm-n">02</span>Jak to działa</a>
         <a href="../education/"><span class="mm-n">03</span>Edukacja</a>
         <a href="blog/"><span class="mm-n">04</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Alternatywa dla Pocket: na co zwrócić uwagę</a>
@@ -123,12 +130,12 @@
 <main id="main">
 
   <!-- ── Hero ────────────────────────────────────────────────────── -->
-  <section class="hero hero-scene hscene" data-hscene="">
+  <section id="hero" class="hero hero-scene hscene" data-hscene="">
   <div class="hs-grid">
     <div class="hs-text"><div class="hs-text-in">
       <div class="eyebrow"><span class="dash"></span> Rozszerzenie Chrome · Część byphil. <span class="dash"></span></div>
-      <h1>Podsumowuj strony w sieci.<br><em>Zachowaj to, co najważniejsze.</em></h1>
-      <p class="sub">Jedno kliknięcie zamienia dowolną stronę w krótkie podsumowanie tuż obok artykułu. Wszystko pozostaje w Twojej przeglądarce, więc bez trudu znajdziesz to ponownie.</p>
+      <h1>Zamień czytanie w<br><em>wiedzę, która zostaje.</em></h1>
+      <p class="sub">Szybciej rozumiej artykuły, pliki PDF i filmy. Sprawdzaj odpowiedzi u źródeł. Zbuduj prywatną, przeszukiwalną bazę wiedzy na własnym urządzeniu.</p>
       <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=pl&amp;utm_campaign=cta" target="_blank" rel="noopener" class="btn-primary" data-desktop-cta="">Dodaj do Chrome — za darmo</a>
@@ -136,7 +143,7 @@
         </div>
         <p class="send-note" data-send-note="" hidden="">Chrome na telefonie nie pozwala na instalację rozszerzeń. Wyślij link na swój komputer i dodaj je tam. <a href="#" data-send-mail="">Wyślij e-mailem</a> · <a href="#" data-send-copy="">Skopiuj link</a></p>
         <p class="hero-proof"><a href="https://www.producthunt.com/products/ai-summary-helper/launches/ai-summary-helper-summarize-articles" target="_blank" rel="noopener" data-track="hero-producthunt">139 głosów na Product Hunt</a> · <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">Open source</a> · Stworzono w UE</p>
-        <p class="hero-meta">Bez konieczności zakładania konta · Korzystaj z własnego klucza AI lub działaj w pełni offline z Ollama</p>
+        <p class="hero-meta">Bez konta · Twój klucz lub lokalna Ollama · Otwarte źródło · Powstaje w UE</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>Czytaj dowolną stronę.</b><span>Otwórz artykuł jak zwykle. AISH działa dyskretnie w tle przeglądarki.</span></li>
@@ -188,9 +195,23 @@
         </div>
       </div>
       <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
-      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>Obejrzyj wideo</strong><small>Wszystko w mniej niż minutę</small></span></a>
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>Obejrzyj wideo</strong><small>Cała prezentacja w dwie minuty</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="Przewodnik"><button type="button" class="hs-pp" aria-label="Wstrzymaj przewodnik"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="Krok 1"></button><button type="button" class="hs-dot" aria-label="Krok 2"></button><button type="button" class="hs-dot" aria-label="Krok 3"></button><button type="button" class="hs-dot" aria-label="Krok 4"></button></div>
       <p class="sr-only">AI Summary Helper wyświetla zwięzłe podsumowanie w bocznym panelu, pozwala zadawać pytania ze wskazaniem źródeł w tekście i generuje treści w wybranym języku.</p>
+    </div>
+  </div>
+</section>
+
+<section id="use-cases" class="use-case-section">
+  <div class="wrap">
+    <div class="section-head center reveal"><div class="eyebrow">Stworzone pod Twój sposób czytania</div><h2>Wybierz swoją ścieżkę</h2></div>
+    <div class="use-case-grid blog-grid reveal">
+      <a href="research-papers/" class="use-case-card blog-card"><span class="blog-date">Dla badaczy i studentów</span><h3>Badania i PDF-y<br>bez gubienia źródła</h3><span class="blog-read">Poznaj tryb badawczy →</span></a>
+      <a href="youtube-summarizer/" class="use-case-card blog-card"><span class="blog-date">Dla uczących się z wideo</span><h3>Zamień długie filmy w<br>wiedzę, której możesz użyć</h3><span class="blog-read">Poznaj czytanie wideo →</span></a>
+      <a href="rss-news/" class="use-case-card blog-card"><span class="blog-date">Do własnego śledzenia wiadomości</span><h3>Sam wybieraj<br>bieżące wydarzenia</h3><span class="blog-read">Poznaj lokalne RSS →</span></a>
+      <a href="e-reader/" class="use-case-card blog-card"><span class="blog-date">Dla użytkowników czytników</span><h3>Zarchiwizuj raz,<br>czytaj na Kindle</h3><span class="blog-read">Poznaj pracę z czytnikiem →</span></a>
+      <a href="local-ai/" class="use-case-card blog-card"><span class="blog-date">Dla ceniących prywatność</span><h3>Twoje czytanie pozostaje<br>Twoje</h3><span class="blog-read">Zobacz lokalny sposób pracy →</span></a>
+      <a href="mcp/" class="use-case-card blog-card"><span class="blog-date">Do połączonych przepływów AI</span><h3>Połącz<br>swoją wiedzę</h3><span class="blog-read">Poznaj MCP →</span></a>
     </div>
   </div>
 </section>
@@ -204,35 +225,52 @@
         <div class="eyebrow">Zobacz to w akcji</div>
         <h2>Podsumowanie bezpośrednio obok artykułu</h2>
         <p>Przeczytaj skrót, dopytaj o szczegóły i zobacz źródłowy fragment artykułu. Prawdziwy interfejs w wersji 2.2.</p>
+        <nav class="slide-jumps" aria-label="Jak to działa">
+          <a href="#problem" data-slider-goto="problem">Problem</a>
+          <a href="#understand" data-slider-goto="understand">Zrozum</a>
+          <a href="#verify" data-slider-goto="verify">Zweryfikuj</a>
+          <a href="#retain" data-slider-goto="retain">Zapamiętaj</a>
+          <a href="#difference" data-slider-goto="difference">Więcej niż streszczenia</a>
+          <a href="#privacy" data-slider-goto="privacy">Prywatność (RODO)</a>
+        </nav>
       </div>
       <div class="cx cx--fit reveal" data-carousel="" role="region" aria-roledescription="carousel" aria-label="Zrzuty ekranu produktu">
         <div class="cx-stage">
           <ul class="cx-track" tabindex="0">
-          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 5">
+          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 8" id="problem">
+            <figure><div class="cx-card" style="--img:url(photo/evening-sofa-ereader-1600.webp)"><span class="cx-big cx-big--text">Stos „na później”</span><strong class="cx-title">Zapisujesz więcej, niż kiedykolwiek przeczytasz</strong><span class="cx-text">Większość zapisywanych treści rzadko otwieramy ponownie. Digest wybiera dla Ciebie pięć pozycji i przesyła je do czytania offline.</span><small class="cx-src">1. Dotknij Digest · 2. Ustaw nastrój · 3. Wyślij do czytania offline</small><a class="cx-slide-link" href="blog/zapisane-ale-nigdy-nieprzeczytane.html">Przeczytaj poradnik →</a></div><figcaption><strong>Czytaj wieczorem, a nie w dwunastu kartach</strong><span>Digest zamienia stos zapisanych linków w jeden sensowny pakiet na wieczór, Kindle lub dojazd.</span></figcaption></figure>
+          </li>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 8" id="understand">
             <figure>
               <img src="../assets/shots/aish-inpage-detail-en.webp" srcset="../assets/shots/aish-inpage-detail-en-720.webp 720w, ../assets/shots/aish-inpage-detail-en.webp 1440w" sizes="(max-width: 820px) 92vw, 1100px" width="1440" height="900" loading="lazy" alt="Podsumowanie w panelu bocznym obok czytanego artykułu">
               <figcaption><strong>Podsumowanie obok artykułu</strong><span>Przeczytaj najważniejsze punkty bez opuszczania strony.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 8" id="verify">
             <figure>
               <img src="../assets/shots/aish-inpage-ask-en.webp" width="1440" height="900" loading="lazy" alt="Odpowiedź na pytanie uzupełniające z oznaczeniem źródła i podświetlonymi zdaniami w artykule">
               <figcaption><strong>Zadawaj pytania do strony</strong><span>Odpowiedzi precyzyjnie wskazują fragmenty, na których bazują.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 8">
             <figure>
               <img src="../assets/shots/aish-split-wide-en.webp" width="1280" height="800" loading="lazy" alt="Widok dzielony z listą, grafem wiedzy i analityką obok siebie">
               <figcaption><strong>Nowość w 2.2: widok dzielony (split view)</strong><span>Lista, graf wiedzy i statystyki obok siebie na dużych ekranach.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="5 / 8" id="retain">
             <figure>
               <img src="../assets/shots/aish-research-dark-en.webp" width="1280" height="800" loading="lazy" alt="Tryb badawczy z kolekcją publikacji naukowych w trybie ciemnym">
               <figcaption><strong>Nowość w 2.2: tryb badawczy (research mode)</strong><span>Szczegóły badań, cytowania DOI i kolekcje artykułów naukowych.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="5 / 5" data-desktop-only="">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="6 / 8" id="difference">
+            <figure><div class="cx-card" style="--img:url(photo/scene-library-laptop-1200.webp)"><span class="cx-big cx-big--text">Więcej niż streszczenie</span><strong class="cx-title">Jednorazowe streszczenie kończy się tutaj</strong><span class="cx-text">AISH zamienia odpowiedź w źródło, które możesz sprawdzić, zachować i do którego możesz wrócić.</span><div class="cx-compare" aria-label="AISH w porównaniu z jednorazowym streszczeniem"><div class="cx-compare-row"><span>AISH</span><strong>Odpowiedzi powiązane ze źródłem</strong></div><div class="cx-compare-row is-muted"><span>Jednorazowe streszczenie</span><strong>Streszczenie bez śladu do źródła</strong></div><div class="cx-compare-row"><span>AISH</span><strong>Lokalne przeszukiwalne archiwum</strong></div><div class="cx-compare-row is-muted"><span>Jednorazowe streszczenie</span><strong>Brak trwałego kontekstu lektury</strong></div><div class="cx-compare-row"><span>AISH</span><strong>Tryb badawczy z obsługą DOI</strong></div><div class="cx-compare-row is-muted"><span>Jednorazowe streszczenie</span><strong>Ten sam sposób pracy dla każdej strony</strong></div></div><small class="cx-src">Zrozum · Zweryfikuj · Zapamiętaj</small></div><figcaption><strong>Nie tylko krótsza strona</strong><span>Trzymaj razem źródło, kontekst i następne pytanie.</span></figcaption></figure>
+          </li>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="7 / 8" id="privacy">
+            <figure><div class="cx-card" style="--img:url(photo/nas-shelf-laptop-phone-1600.webp)"><span class="cx-big cx-big--text">Zbudowane zgodnie z filozofią byphil</span><strong class="cx-title">Twoje archiwum pozostaje w 100% Twoje</strong><span class="cx-text">Wyszukiwanie, wykrywanie duplikatów, porządkowanie tagów i sugestie podobnych artykułów działają bezpośrednio w Twojej przeglądarce – bez serwerów i bez konta. Jedynie zapytanie o podsumowanie trafia na zewnątrz, i to wyłącznie do wybranego przez Ciebie dostawcy AI. Z lokalnym modelem Ollama nawet te dane nie opuszczają Twojego urządzenia.</span><small class="cx-src">Lokalne archiwum · Twój dostawca · Konto niepotrzebne</small><a class="cx-slide-link" href="prywatnosc.html">Przeczytaj o modelu prywatności →</a></div><figcaption><strong>Twoja biblioteka mieszka na Twoim urządzeniu</strong><span>Wybierz klucz, model i miejsce, w którym leży Twoje archiwum lektur.</span></figcaption></figure>
+          </li>
+          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="8 / 8" data-desktop-only="">
             <figure>
               <div class="demo-frame" data-demo="" data-demo-scale="1180" data-src="../demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Uruchom demo na żywo</span></button>
@@ -241,7 +279,7 @@
               <figcaption><strong>Kliknij Podsumuj na przykładowej stronie</strong><span>Oto rzeczywisty interfejs rozszerzenia działający w Twojej przeglądarce. Żadne dane nie są wysyłane na zewnątrz.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="5 / 5" data-mobile-only="">
+          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="8 / 8" data-mobile-only="">
             <figure>
               <div class="demo-frame demo-frame--phone" data-demo="" data-demo-fit="420x800" data-demo-params="chrome=0&amp;tour=0&amp;surface=sidepanel" data-src="../demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Wypróbuj panel boczny</span></button>
@@ -253,20 +291,28 @@
           <button type="button" class="cx-nav cx-prev" aria-label="Poprzedni slajd"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
           <button type="button" class="cx-nav cx-next" aria-label="Następny slajd"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
         </div>
-        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Slajd 1"></button><button type="button" class="cx-dot" aria-label="Slajd 2"></button><button type="button" class="cx-dot" aria-label="Slajd 3"></button><button type="button" class="cx-dot" aria-label="Slajd 4"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="Slajd 5: demo na żywo">Demo</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="Slajd 5: demo na żywo">Demo</button></div>
+        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Przejdź do slajdu o problemie listy lektur"></button><button type="button" class="cx-dot" aria-label="Przejdź do slajdu o rozumieniu"></button><button type="button" class="cx-dot" aria-label="Przejdź do slajdu o weryfikacji"></button><button type="button" class="cx-dot" aria-label="Przejdź do slajdu o grafie wiedzy"></button><button type="button" class="cx-dot" aria-label="Przejdź do slajdu o zapamiętywaniu"></button><button type="button" class="cx-dot" aria-label="Przejdź do slajdu o prywatności"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="Przejdź do slajdu z demo na żywo">Demo</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="Przejdź do slajdu z demo na żywo">Demo</button></div>
       </div>
     </div>
   </section>
 
-  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (../assets/main.js) ──
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
        Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
        when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="archive" class="outcome-section">
+    <div class="wrap">
+      <div class="section-head center reveal"><div class="eyebrow">Archiwum</div><h2>Twoje lektury, zachowane i przenośne</h2><p>Zapisywanie to sedno AI Summary Helper. Wszystko, co archiwizujesz, zostaje na Twoim urządzeniu i może iść z Tobą.</p></div>
+      <div class="outcome-grid reveal"><article class="outcome-card"><span class="outcome-kicker">Zachowaj</span><h3>Artykuły razem z obrazami</h3><p>Zapisz cały artykuł, nie tylko link. Obrazy są zmniejszane i kompresowane, więc strona pozostaje czytelna i mała.</p></article><article class="outcome-card"><span class="outcome-kicker">Znajdź</span><h3>Szukaj i łącz na swoim urządzeniu</h3><p>Wyszukiwanie pełnotekstowe, tagi i graf wiedzy działają w przeglądarce, bez wysyłania biblioteki.</p></article><article class="outcome-card"><span class="outcome-kicker">Zabierz</span><h3>Wyślij na Kindle lub do LocalSend</h3><p>Wyślij artykuł lub zestawienie na Kindle albo prosto na urządzenie z KOReader czy LocalSend i czytaj z dala od ekranu.</p></article></div>
+      <div class="hero-cta reveal" style="justify-content:center;margin-top:24px;"><a class="btn-secondary" href="e-reader/">Archiwum i czytnik →</a></div>
+    </div>
+  </section>
+
   <section id="videos">
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="eyebrow">Zobacz</div>
         <h2>Każda funkcja w mniej niż 20 sekund</h2>
-        <p>Krótkie klipy nagrane bezpośrednio w rozszerzeniu. Kliknij jeden i przeglądaj pozostałe.</p>
+        <p>Krótkie klipy nagrane w prawdziwym rozszerzeniu. Dotknij jednego, aby odtworzyć go tutaj, i przejrzyj pozostałe.</p>
       </div>
       <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
       <div class="vfeed-labels" hidden="">
@@ -277,14 +323,14 @@
       </div>
       <div class="vstack reveal" data-vstack="">
         <figure class="vstack-item" data-blog-video="komplett" style="--i:0">
-          <button class="vstack-open" type="button" aria-label="Odtwórz: AI Summary Helper w mniej niż minutę">
+          <button class="vstack-open" type="button" aria-label="Odtwórz: AI Summary Helper w dwie minuty">
             <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/komplett-en.jpg">
               <source src="../assets/blog/video/komplett-en.mp4" type="video/mp4">
             </video>
             <span class="vstack-play" aria-hidden="true">▶</span>
           </button>
           <figcaption>
-            <strong>AI Summary Helper w mniej niż minutę</strong>
+            <strong>AI Summary Helper w dwie minuty</strong>
             <span>Wszystkie funkcje omówione w ekspresowym tempie: podsumowania, źródła, tryb badawczy, biblioteka, kanały, aplikacje AI i wiele więcej.</span>
             <a href="blog/videos.html">Wszystkie filmy →</a>
           </figcaption>
@@ -535,7 +581,7 @@
   </section>
 
   <!-- ── Features ────────────────────────────────────────────────── -->
-  <section id="features">
+  <section id="features" data-default-persona="all">
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="eyebrow">Możliwości</div>
@@ -597,7 +643,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>Wbudowany czytnik RSS</h3>
-          <p>Śledź blogi i serwisy informacyjne, filtruj po źródle, tagu, dacie lub nastroju, importuj pliki OPML oraz otwieraj lub podsumowuj wpisy jednym kliknięciem. Odtwarzaj podcasty bezpośrednio w rozszerzeniu i generuj opcjonalne podsumowania dnia z nagłówków. Ulubione trafiają do archiwum, a kanały są zapisywane lokalnie na Twoim urządzeniu.</p>
+          <p>Śledź blogi i serwisy informacyjne, filtruj według źródła, tagu, daty lub nastroju, importuj OPML i streszczaj dowolny wpis jednym kliknięciem. Odtwarzaj kanały z podcastami w rozszerzeniu i włącz opcjonalne podsumowanie AI; kanały i ulubione zostają na Twoim urządzeniu.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -611,7 +657,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" stroke-width="1.7"></rect><path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="#fff"></path></svg></div>
           <h3>Wideo z YouTube na podstawie napisów</h3>
-          <p>Otwórz materiał wideo i wygeneruj podsumowanie. Rozszerzenie analizuje napisy, tworzy kluczowe punkty w Twoim języku, a odpowiedzi na kolejne pytania precyzyjnie wskazują fragment, z którego pochodzą.</p>
+          <p>Streszczaj filmy z YouTube na podstawie napisów, otrzymuj najważniejsze punkty w swoim języku i zadawaj pytania uzupełniające z odwołaniami do źródła.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -625,7 +671,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M14 3v4h4M9.5 12h5M9.5 15.5h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Pliki PDF jak każda inna strona</h3>
-          <p>Otwórz plik PDF w przeglądarce lub wczytaj go z dysku i podsumuj jak zwykłą stronę. Sekcja „Użyte zasoby” transparentnie pokazuje, co przetworzył model: liczbę słów, tokenów oraz nazwę modelu.</p>
+          <p>Streszczaj PDF-y w przeglądarce lub pliki z dysku jak każdą stronę. „Czego użyłem” pokazuje słowa, tokeny i model, którym czytała AI.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher feeds go">
@@ -639,7 +685,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>Ponad 20 języków, wieloplatformowość</h3>
-          <p>Czytaj i twórz podsumowania w wybranym języku. Rozszerzenie, natywny panel boczny lub <a href="../bookmarklet.html">skryptozakładka (bookmarklet)</a> — wszędzie tam, gdzie rozszerzenie nie ma dostępu.</p>
+          <p>Czytaj i streszczaj w ponad 20 językach za pomocą rozszerzenia, wbudowanego panelu bocznego lub <a href="../bookmarklet.html">skryptozakładka (bookmarklet)</a> gdy rozszerzenie nie ma dostępu do strony.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
@@ -653,7 +699,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>Podsumowania AI z wybranym modelem</h3>
-          <p>OpenAI, Gemini, Mistral, DeepSeek lub własny endpoint — albo lokalny model przez Ollama bez łączenia się z siecią.</p>
+          <p>Wybierz OpenAI, Gemini, Mistral, DeepSeek, własny punkt końcowy lub lokalną Ollamę, aby streszczenia nigdy nie musiały opuszczać urządzenia.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="researcher go">
@@ -667,7 +713,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>Subtelne wyróżnienia wprost na stronie</h3>
-          <p>AI delikatnie podświetla <mark class="ai-ghost-highlight">najważniejsze dosłowne fragmenty</mark> w artykule — dzięki czemu możesz <mark class="ai-ghost-highlight">błyskawicznie wyłapać kluczowe wnioski</mark>, a cytaty trafiają razem z podsumowaniem na Kindle, do LocalSend lub plików Markdown.</p>
+          <p>AI wyróżnia <mark class="ai-ghost-highlight">ważne fragmenty słowo w słowo</mark> abyś mógł przejrzeć kluczowe wnioski i wyeksportować je razem ze streszczeniem na Kindle, do LocalSend lub Markdown.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -681,7 +727,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6c3-1.4 5.5-1.4 8 0v13c-2.5-1.4-5-1.4-8 0V6ZM20 6c-3-1.4-5.5-1.4-8 0v13c2.5-1.4 5-1.4 8 0V6Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>Tryb badawczy: artykuły naukowe rozpoznawane po DOI</h3>
-          <p>Artykuły naukowe są automatycznie rozpoznawane na podstawie numeru DOI i metadanych, a następnie oznaczane jako badanie kliniczne, przegląd lub preprint. Narzędzie wyodrębnia metodologię, próbę i ograniczenia, a rekord bibliograficzny generuje bezpośrednio z rejestru DOI bez ryzyka halucynacji AI.</p>
+          <p>Rozpoznawaj prace naukowe po DOI i metadanych cytowań, oznaczaj status badania, przeglądu lub preprintu i wyciągaj schemat badania, próbę, ograniczenia oraz cytowania z rejestru DOI.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -695,7 +741,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect><rect x="10" y="10" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect></svg></div>
           <h3>Porównaj źródła wokół jednego pytania</h3>
-          <p>Grupuj zapisane artykuły w kolekcję, określ rodzaj każdego źródła (recenzowane, preprint, publicystyka, opinia), zweryfikuj je równolegle i pozwól AI zestawić podsumowania: sprawdzić punkty wspólne, sprzeczności oraz pominięte kwestie.</p>
+          <p>Grupuj artykuły, oznaczaj źródła jako recenzowane, preprint, wiadomość lub opinię, sprawdzaj je metodą lektury lateralnej i porównuj, gdzie streszczenia się zgadzają, różnią lub gubią kontekst.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="feeds go">
@@ -709,7 +755,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M5 10v4h3l4.5 3.5v-11L8 10H5Z" fill="#fff"></path><path d="M16 9c1.3 1.7 1.3 4.3 0 6M18.5 6.5c2.5 3 2.5 8 0 11" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Natychmiastowy odsłuch: słuchaj w trakcie generowania</h3>
-          <p>Podsumowanie jest czytane na głos już podczas pisania: najpierw tytuł, a potem zdanie po zdaniu – z pełną kontrolą pauzy, wyciszenia i tempa mowy. Możesz odsłuchać je ponownie z poziomu dowolnej karty.</p>
+          <p>Słuchaj, gdy powstaje streszczenie: najpierw tytuł, potem zdanie po zdaniu, z pauzą, wyciszeniem i regulacją tempa. Odtwórz ponownie z dowolnej karty.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder">
@@ -723,7 +769,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Prawdziwe wyszukiwanie lokalne na urządzeniu</h3>
-          <p>Wyszukiwanie pełnotekstowe w tytułach, tagach i treści artykułów — oparte na indeksie TF-IDF generowanym lokalnie w przeglądarce. Błyskawiczne działanie bez wysyłania danych do chmury.</p>
+          <p>Przeszukuj tytuły, tagi i treść artykułów indeksem TF-IDF działającym w przeglądarce. Wyszukiwanie pełnotekstowe zostaje na urządzeniu, bez wysyłania na serwer.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
@@ -737,7 +783,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>Graf wiedzy zamiast zwykłej listy</h3>
-          <p>Zobacz powiązania między artykułami — poprzez wspólne tagi oraz podobieństwo tematyczne, nawet jeśli teksty nie mają wspólnych kategorii.</p>
+          <p>Zobacz, jak zapisane artykuły łączą się przez wspólne tagi i podobieństwo tematów, nawet gdy nie mają żadnego wspólnego tagu.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
@@ -751,7 +797,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>Świadome zapisywanie na później</h3>
-          <p>Oznacz cel przeczytania z uzasadnieniem i terminem, aby otrzymać przypomnienie — zamiast powiększać stos artykułów, których nigdy więcej nie otworzysz.</p>
+          <p>Zapisz decyzję z uzasadnieniem i terminem, a dostaniesz przypomnienie, zanim zniknie w stosie nieprzeczytanych.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="hoarder go">
@@ -765,7 +811,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Inteligentny, automatyczny przegląd (Digest)</h3>
-          <p>Jednym kliknięciem wybierzesz zróżnicowany zestaw zapisanych materiałów — bez powielania tych samych tematów — spakowany do jednego pliku na Kindle lub do LocalSend.</p>
+          <p>Jedno dotknięcie tworzy różnorodne zestawienie zamiast pięciu wersji tej samej historii i pakuje je na Kindle lub do LocalSend.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -779,7 +825,7 @@
           </figure>
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#fff" stroke-width="1.7"></circle><path d="M8.5 14c1 1.6 2.2 2.3 3.5 2.3s2.5-.7 3.5-2.3M9 9.5h.01M15 9.5h.01" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>Filtr nastroju i analiza trendu w czasie</h3>
-          <p>AI analizuje wydźwięk nagłówków od przytłaczających po budujące. Jednym kliknięciem wyświetl tylko pozytywne wiadomości i śledź ogólny nastrój czytanych treści w ujęciu dziennym, tygodniowym oraz miesięcznym.</p>
+          <p>Oceniaj nagłówki od ciężkich po dobre, filtruj dobre wiadomości i śledź nastrój swoich lektur według dnia, tygodnia lub miesiąca.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher hoarder">
@@ -793,18 +839,18 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="11" rx="2.2" stroke="#fff" stroke-width="1.7"></rect><path d="M9 20h6M12 16v4M8.5 10.5l2 2 3.5-4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>Twoja biblioteka w Claude, LM Studio i Cursor</h3>
-          <p>Włącz aplikacje AI w Ustawieniach, a Claude Desktop, LM Studio, Cursor i inne aplikacje MCP na Twoim komputerze będą mogły przeszukiwać bibliotekę, cytować wyróżnienia i wyświetlać zaległości. Jeśli na to zezwolisz, mogą również zapisywać dla Ciebie linki. Nic nie trafia na nasz serwer, a Ty decydujesz, do czego mają dostęp.</p>
+          <p>Claude Desktop, LM Studio, Cursor i inne aplikacje MCP mogą przeszukiwać Twoją bibliotekę, cytować wyróżnienia i pokazywać, co ma termin. Ty kontrolujesz dostęp; nic nie przechodzi przez nasz serwer.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Twoja biblioteka w Twojej własnej pamięci masowej, w pełni zaszyfrowana</h3>
-          <p>Synchronizuj i twórz kopie zapasowe biblioteki we własnej chmurze Nextcloud, na serwerze WebDAV, w zasobniku S3 lub w folderze na komputerze. Wszystko jest najpierw szyfrowane w przeglądarce, więc serwer widzi wyłącznie zaszyfrowane pliki. Możesz też opublikować listę na własnej stronie – wraz z wyszukiwarką, grafem tagów i mapą 3D. Domyślnie wyłączone; nie prowadzimy serwera synchronizacji i nie mamy dostępu do Twoich danych. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Jak to skonfigurować</a> · <a href="blog/digital-sovereignty-for-individuals.html">Dlaczego to ważne</a></p>
+          <p>Synchronizuj zaszyfrowaną bibliotekę z własnym Nextcloud, serwerem WebDAV, zasobnikiem S3 lub folderem lokalnym. Publikuj przeszukiwalną listę z grafem tagów i mapą 3D; nie prowadzimy serwera synchronizacji. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Jak to skonfigurować</a> · <a href="../demo/index.html?screen=settings&amp;panel=sync&amp;flow=sync-add" target="_blank" rel="noopener">Wypróbuj konfigurację synchronizacji</a></p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Notatki i komentarze na dowolnej stronie</h3>
-          <p>Zaznacz tekst i wybierz działanie: wyróżnij go, dodaj komentarz lub zapisz notatkę z cytatem. Wszystko trafia do zakładki Notatki – w formie listy lub siatki samoprzylepnych karteczek, posortowane według artykułów lub tagów – i synchronizuje się z resztą biblioteki.</p>
+          <p>Wyróżniaj tekst, komentuj go lub zapisuj notatki z cytatem. Porządkuj notatki jako listę lub siatkę karteczek według artykułu albo tagu, obok swojej biblioteki.</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">
@@ -817,7 +863,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>Eksport do Obsidian, Markdown, Word i PDF</h3>
-          <p>Prześlij podsumowanie prosto do skarbca Obsidian lub wyeksportuj je jako Markdown, Word (DOCX), OpenDocument bądź PDF — z tytułem, źródłem, tagami i wyróżnieniami w jednej notatce.</p>
+          <p>Eksportuj streszczenia do Obsidian, Markdown, Word (DOCX), OpenDocument lub PDF z tytułem, źródłem, tagami i wyróżnieniami w jednej notatce.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
         <div class="feature-card" data-personas="hoarder feeds">
@@ -831,7 +877,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V11M12 19V5M19 19v-6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path></svg></div>
           <h3>Raport analityczny z Twojego czytania</h3>
-          <p>Seria czytania, czas zaoszczędzony dzięki podsumowaniom, aktywność, tematy na przestrzeni tygodni i chmura słów — generowane lokalnie z Twojej biblioteki.</p>
+          <p>Sprawdzaj serie czytania, czas zaoszczędzony dzięki streszczeniom, aktywność, tematy tygodnia i chmurę słów obliczoną z Twojej biblioteki.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Obejrzyj klip</button>
         </div>
       </div>
@@ -868,6 +914,7 @@
         });
         if (blurb) blurb.textContent = text(name) || blurb.textContent;
         if (count) { count.hidden = name === 'all'; count.textContent = shown + ' / ' + cards.length; }
+        if (!fromUser && !/^#for=/.test(location.hash) && location.hash) return;   // a link to a clip (#v=...) keeps its hash for the player
         try {
           history.replaceState(null, '', name === 'all' ? location.pathname + location.search : location.pathname + location.search + '#for=' + name);
         } catch (e) {}
@@ -880,38 +927,10 @@
 
       // #for=<audience> in a link opens the page filtered
       var m = /^#for=([a-z]+)$/.exec(location.hash);
-      if (m && names[m[1]]) setPersona(m[1], false);
+      var initial = document.getElementById('features').getAttribute('data-default-persona') || 'all';
+      setPersona(m && names[m[1]] ? m[1] : initial, false);
     })();
   </script>
-
-  <!-- ── Digest spotlight ────────────────────────────────────────── -->
-  <section id="digest">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <div class="eyebrow">Stos „na później”</div>
-        <h2>Zapisujesz więcej, niż kiedykolwiek przeczytasz</h2>
-        <p>Większość zapisywanych treści rzadko otwieramy ponownie. Digest wybiera dla Ciebie pięć pozycji i przesyła je do czytania offline.</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="../assets/photo/evening-sofa-ereader-600.webp" srcset="../assets/photo/evening-sofa-ereader-600.webp 600w, ../assets/photo/evening-sofa-ereader-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1600" height="1195" loading="lazy" decoding="async" alt="Ilustracja: osoba na kanapie wieczorem, czytająca na czytniku e-booków pod kocem">
-        <figcaption>Przeczytaj wieczorem, zamiast w dwunastu otwartych kartach. Ilustracja wygenerowana przez AI.</figcaption>
-      </figure>
-      <div class="feature-grid digest-steps reveal">
-        <div class="feature-card">
-          <h3 style="margin-top:0;">1. Kliknij Digest</h3>
-          <p>Pięć zapisanych materiałów, dobranych pod kątem aktualności i różnorodności.</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">2. Określ swój nastrój</h3>
-          <p>Lekkie, neutralne czy pogłębione: wybór dopasowuje się do Twojego nastroju.</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">3. Czytaj w trybie offline</h3>
-          <p>Jedna paczka na Twój czytnik Kindle lub urządzenie w sieci lokalnej – gotowa na lot lub dojazd do pracy.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ── Phone companion ────────────────────────────────────────── -->
   <section id="phone">
@@ -942,28 +961,13 @@
     </div>
   </section>
 
-  <!-- ── Why on-device ──────────────────────────────────────────── -->
-  <section>
-    <div class="wrap wrap-narrow">
-      <div class="section-head center reveal">
-        <div class="eyebrow">Zbudowane zgodnie z filozofią byphil</div>
-        <h2>Twoje archiwum pozostaje w 100% Twoje</h2>
-        <p>Wyszukiwanie, wykrywanie duplikatów, porządkowanie tagów i sugestie podobnych artykułów działają bezpośrednio w Twojej przeglądarce – bez serwerów i bez konta. Jedynie zapytanie o podsumowanie trafia na zewnątrz, i to wyłącznie do wybranego przez Ciebie dostawcy AI. Z lokalnym modelem Ollama nawet te dane nie opuszczają Twojego urządzenia.</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="../assets/photo/scene-library-laptop-600.webp" srcset="../assets/photo/scene-library-laptop-600.webp 600w, ../assets/photo/scene-library-laptop-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1200" height="670" loading="lazy" decoding="async" alt="Ilustracja: laptop na uporządkowanym drewnianym biurku obok rośliny i stosu notatników">
-        <figcaption>Twoja biblioteka pozostaje na Twoim urządzeniu. Ilustracja wygenerowana przez AI.</figcaption>
-      </figure>
-    </div>
-  </section>
-
   <!-- ── Pricing ─────────────────────────────────────────────────── -->
   <section id="pricing">
     <div class="wrap wrap-narrow">
       <div class="section-head center reveal">
         <div class="eyebrow">Bezpłatne dla każdego</div>
-        <h2>Bezpłatne. Darowizny odblokowują modele AI.</h2>
-        <p>Wszystko działa bezpłatnie z własnym kluczem AI lub modelem lokalnym. Jeśli projekt Ci się podoba, możesz podziękować darowizną. Zapewnia ona również dostęp do byphil Cloud: wiele modeli AI w jednym miejscu, bez klucza i konfiguracji, a przy tym wspiera każde narzędzie tworzone przez byphil.</p>
+        <h2>Wesprzyj projekt. Korzystaj z AI bez wysiłku.</h2>
+        <p>Wszystko działa za darmo z Twoim kluczem AI lub modelem lokalnym. Support Pass finansuje niezależne oprogramowanie lokalne w pierwszej kolejności, dodaje AI bez wysiłku i nieograniczone czytanie offline, nie trzymając archiwum jako zakładnika.</p>
       </div>
 
       <div style="text-align:center;">
@@ -999,7 +1003,7 @@
           <ul>
             <li>byphil Cloud: wiele modeli AI, bez konieczności posiadania klucza API</li>
             <li>Nielimitowane wysyłanie na Kindle i przez LocalSend, w tym pakiety Digest</li>
-            <li>Wspiera każde narzędzie byphil</li>
+            <li>Wspiera niezależny rozwój z otwartym źródłem</li>
           </ul>
           <a href="https://byphil.eu/#pass" class="tier-cta">Wesprzyj projekt</a>
         </div>
@@ -1016,31 +1020,77 @@
       <div class="section-head center reveal">
         <div class="eyebrow">Często zadawane pytania</div>
         <h2>Przed instalacją</h2>
+        <p>Przeszukuj odpowiedzi według tematu, dostawcy, prywatności, archiwum lub platformy.</p>
       </div>
-      <div class="faq reveal">
-        <details>
+      <div class="faq-tools reveal">
+        <label class="sr-only" for="faqSearch">Przeszukaj najczęstsze pytania</label>
+        <input id="faqSearch" type="search" data-faq-search="" placeholder="Przeszukaj pytania…" autocomplete="off" spellcheck="false" aria-controls="faqList">
+        <div class="faq-filters" role="group" aria-label="Filtruj pytania według tematu">
+          <button type="button" class="faq-filter is-active" data-faq-filter="all" aria-pressed="true">Wszystko</button>
+          <button type="button" class="faq-filter" data-faq-filter="basics" aria-pressed="false">Podstawy</button>
+          <button type="button" class="faq-filter" data-faq-filter="privacy" aria-pressed="false">Prywatność (RODO)</button>
+          <button type="button" class="faq-filter" data-faq-filter="ai" aria-pressed="false">AI i źródła</button>
+          <button type="button" class="faq-filter" data-faq-filter="archive" aria-pressed="false">Archiwum</button>
+          <button type="button" class="faq-filter" data-faq-filter="platforms" aria-pressed="false">Platformy</button>
+        </div>
+        <p id="faqSearchStatus" class="faq-search-status" aria-live="polite"></p>
+      </div>
+      <div class="faq reveal" id="faqList">
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
           <summary>Czy muszę zakładać konto, aby korzystać z narzędzia?</summary>
-          <p>Nie. Zainstaluj aplikację, dodaj własny klucz dostawcy AI (lub użyj lokalnego modelu Ollama) i zacznij zapisywać. Konto jest potrzebne tylko wtedy, gdy chcesz korzystać z byphil Cloud (wiele modeli AI bez własnego klucza) lub zwiększyć liczbę wysyłek na Kindle/LocalSend, co odblokowuje darowizna.</p>
+          <p>Nie. Zainstaluj, podaj własny klucz dostawcy AI lub użyj lokalnego modelu Ollama i zacznij zapisywać. Konto jest potrzebne tylko do opcjonalnego dostępu do byphil Cloud lub dodatkowych wysyłek na Kindle i do LocalSend. <a href="blog/wlasny-klucz-wlasny-model.html">Zobacz opcje dostawców →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="privacy">
           <summary>Jakie dane faktycznie opuszczają moją przeglądarkę?</summary>
-          <p>Wyłącznie treść zapytania o podsumowanie wysyłana do wybranego dostawcy AI. Jeśli korzystasz z czytnika RSS, pobierane są subskrybowane kanały, a w przypadku kliknięcia w podsumowanie AI — nagłówki i krótkie fragmenty z danego dnia. Wyszukiwanie, wykrywanie duplikatów, porządkowanie tagów, ocena tonu oraz rekomendacje działają w 100% lokalnie na Twoim archiwum z zachowaniem pełnej prywatności i zgodności z RODO.</p>
+          <p>Do skonfigurowanego dostawcy AI trafia tylko samo żądanie streszczenia. RSS wymaga też zapytań do subskrybowanych kanałów; podsumowanie AI wysyła nagłówki i krótkie fragmenty tylko na Twoją prośbę. Wyszukiwanie, wykrywanie duplikatów, tagi i rekomendacje działają lokalnie. <a href="blog/wyszukiwanie-i-tagi-bez-chmury.html">Zobacz architekturę na urządzeniu →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
+          <summary>Czy moje strony lub wyróżnienia służą do trenowania modelu?</summary>
+          <p>AI Summary Helper nie używa Twoich treści do trenowania własnego modelu. Przy własnym kluczu obowiązują zasady danych wybranego dostawcy. Z Ollamą żądanie streszczenia zostaje na Twoim komputerze. <a href="prywatnosc.html">Przeczytaj o modelu prywatności →</a></p>
+        </details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
           <summary>Czy mogę używać narzędzia całkowicie bez dostępu do chmury?</summary>
-          <p>Tak — wystarczy wskazać lokalny model Ollama, a proces podsumowywania również odbędzie się lokalnie na Twoim urządzeniu. Wszystkie pozostałe funkcje działają tak domyślnie.</p>
+          <p>Tak. Wskaż lokalny model Ollama, a także samo streszczanie zostanie na Twoim komputerze. Cała reszta już działa lokalnie. <a href="blog/wlasny-klucz-wlasny-model.html">Porównaj własny klucz i Ollamę →</a></p>
         </details>
-        <details>
-          <summary>Co stanie się z moimi zapisami, jeśli przestanę wspierać projekt?</summary>
-          <p>Twoje archiwum pozostaje nienaruszone tam, gdzie było — w pamięci lokalnej Twojej przeglądarki na urządzeniu. Support Pass odblokowuje jedynie dodatki chmurowe (dostęp do byphil Cloud AI, nielimitowane wysyłki Kindle/LocalSend), nigdy nie blokując dostępu do Twoich zapisanych materiałów.</p>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive">
+          <summary>Gdzie przechowywane jest moje archiwum lektur?</summary>
+          <p>Domyślnie w przeglądarce na Twoim urządzeniu. Możesz je wyeksportować jako Markdown albo zaszyfrować i skopiować do własnego Nextcloud, serwera WebDAV, zasobnika S3 lub folderu lokalnego. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Przeczytaj poradnik synchronizacji →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive privacy">
+          <summary>Co się stanie, gdy wyczyszczę dane przeglądarki?</summary>
+          <p>Usunięcie lokalnych danych przeglądarki może skasować archiwum, jeśli nie masz kopii. Przed czyszczeniem danych lub zmianą profilu wyeksportuj bibliotekę albo ustaw zaszyfrowaną synchronizację z własnym miejscem. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Przeczytaj poradnik o kopiach i synchronizacji →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds" data-faq-category="ai">
+          <summary>Którzy dostawcy i modele AI są obsługiwani?</summary>
+          <p>Możesz używać OpenAI, Gemini, Mistral, DeepSeek, zgodnego własnego punktu końcowego lub lokalnego modelu Ollama. Podaj własny klucz albo skorzystaj z opcjonalnego dostępu byphil Cloud. <a href="blog/wlasny-klucz-wlasny-model.html">Jak działa własny klucz →</a></p>
+        </details>
+        <details data-faq-personas="researcher feeds" data-faq-category="ai">
+          <summary>Czy mogę streszczać PDF-y, filmy z YouTube i wpisy RSS?</summary>
+          <p>Tak. Streszczaj PDF-y otwarte w przeglądarce lub dołączone z dysku, filmy z YouTube na podstawie napisów i artykuły z wbudowanego czytnika RSS. <a href="blog/videos.html">Obejrzyj filmy o sposobach pracy →</a> <a href="blog/jedno-podsumowanie-zamiast-40-kanalow.html">Przeczytaj o zestawieniach z kanałów →</a></p>
+        </details>
+        <details data-faq-personas="researcher feeds" data-faq-category="ai">
+          <summary>Na ile można ufać streszczeniom AI?</summary>
+          <p>Wyniki AI mogą być błędne i nie zastępują sprawdzenia źródła. Odpowiedzi na pytania uzupełniające pokazują fragment, na którym się opierają, więc możesz porównać streszczenie z oryginalną stroną. <a href="blog/sprawdzanie-streszczenia-ai-u-zrodla.html">Naucz się 10-sekundowego sprawdzania źródła →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="platforms">
+          <summary>Które przeglądarki i platformy są obsługiwane?</summary>
+          <p>Używaj rozszerzenia, wbudowanego panelu bocznego lub bookmarkletu. Aplikacja towarzysząca na Androida dodaje linki z telefonu; wersji na iOS jeszcze nie ma. <a href="blog/od-bookmarkletu-do-2-0.html">Zobacz pracę z przeglądarką i zapisywaniem →</a></p>
+        </details>
+        <details data-faq-personas="shared" data-faq-category="platforms">
           <summary>Jak zainstalować aplikację towarzyszącą na Androida?</summary>
-          <p>Pobierz plik APK z powyższego linku (lub z sekcji <a href="https://github.com/philffm/kaivo/releases/latest" target="_blank" rel="noopener">najnowsze wydanie</a>), otwórz go i zezwól na instalację w przeglądarce. Następnie sparuj urządzenie, skanując kod QR w rozszerzeniu w zakładce Ustawienia → Skrzynka z telefonu. Aplikacja nie jest jeszcze dostępna w Google Play.</p>
+          <p>Pobierz plik APK z <a href="https://github.com/philffm/kaivo/releases/latest" target="_blank" rel="noopener">najnowsze wydanie</a>, a potem sparuj, skanując kod QR w Ustawienia → Skrzynka telefonu. Aplikacji nie ma jeszcze w Google Play. <a href="blog/od-bookmarkletu-do-2-0.html">Przeczytaj, jak zapisywanie wpisuje się w pracę →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="shared" data-faq-category="basics">
+          <summary>Co odblokowuje Support Pass?</summary>
+          <p>Support Pass finansuje niezależny rozwój z otwartym źródłem i może odblokować opcjonalny dostęp do AI przez byphil Cloud lub dodatkowe wysyłki na Kindle i do LocalSend. Lokalne archiwum i lokalne użycie nie są za nim zamknięte. <a href="blog/wlasny-klucz-wlasny-model.html">Zrozum granicę opcjonalnej chmury →</a></p>
+        </details>
+        <details data-faq-personas="hoarder" data-faq-category="basics">
+          <summary>Co stanie się z moimi zapisami, jeśli przestanę wspierać projekt?</summary>
+          <p>Twoje archiwum pozostaje nienaruszone tam, gdzie było — w pamięci lokalnej Twojej przeglądarki na urządzeniu. Support Pass odblokowuje jedynie dodatki chmurowe (dostęp do byphil Cloud AI, nielimitowane wysyłki Kindle/LocalSend), nigdy nie blokując dostępu do Twoich zapisanych materiałów. <a href="blog/zapisane-ale-nigdy-nieprzeczytane.html">Zobacz, jak Digest przywraca sens zapisanym rzeczom →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
           <summary>Czy kod źródłowy jest otwarty (open source)?</summary>
-          <p>Tak — kod źródłowy rozszerzenia jest publicznie dostępny w serwisie <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">GitHub</a>, na licencji AGPL-3.0. Jest bezpłatny do użytku osobistego, edukacyjnego oraz non-profit; firmy chcące korzystać z niego poza warunkami licencji AGPL mogą uzyskać licencję komercyjną.</p>
+          <p>Tak — kod źródłowy rozszerzenia jest publicznie dostępny w serwisie <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">GitHub</a>, na licencji AGPL-3.0. Jest bezpłatny do użytku osobistego, edukacyjnego oraz non-profit; firmy chcące korzystać z niego poza warunkami licencji AGPL mogą uzyskać licencję komercyjną. <a href="blog/wyszukiwanie-i-tagi-bez-chmury.html">Przeczytaj o lokalnej architekturze →</a></p>
         </details>
       </div>
     </div>
