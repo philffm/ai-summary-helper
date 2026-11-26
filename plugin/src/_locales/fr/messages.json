@@ -2180,9 +2180,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "Cliquez sur l’icône Ollama dans la barre des menus (en haut à droite) et choisissez <b>Quit Ollama</b>."
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "Cliquez sur « Générer 🎙️ » pour créer votre épisode."
-  },
   "f_close_pane_d66b": {
     "message": "Fermer le volet {n}"
   },
@@ -2219,17 +2216,8 @@
   "f_copy_0d38": {
     "message": "Copier 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "Podcasts créés"
-  },
   "f_custom_prompt_text_10af": {
     "message": "Texte de prompt perso"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "Style perso (facultatif) :"
-  },
-  "f_custom_style_ba7f": {
-    "message": "Style perso :"
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "Échec du chargement de la bibliothèque D3."
@@ -2270,9 +2258,6 @@
   "f_delivery_83d6": {
     "message": "Envoi : {name}"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "Décrivez le style de votre podcast"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "Masquer les stats du graphe"
   },
@@ -2284,9 +2269,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "Faites glisser ce lien vers votre barre de favoris 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "Éducatif"
   },
   "f_endpoint_url_ddad": {
     "message": "URL de l’endpoint"
@@ -2308,9 +2290,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "Saisissez votre e-mail…"
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "Erreur lors de la création du podcast : {msg}"
   },
   "f_error_d391": {
     "message": "Erreur :"
@@ -2396,14 +2375,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "Générez un bookmarklet qui résume n’importe quelle page dans n’importe quel navigateur, y compris sur iOS/Android où l’extension ne fonctionne pas. Il utilise votre connexion byphil Cloud."
   },
-  "f_generate_237e": {
-    "message": "Générer 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "Génération de l’audio… 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "Génération…"
   },
   "f_get_key_4f7c": {
     "message": "Obtenir une clé"
@@ -2594,9 +2567,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "Aucun article à afficher dans le graphe."
   },
-  "f_no_audio_8798": {
-    "message": "Pas d’audio"
-  },
   "f_no_content_available_0c7a": {
     "message": "Aucun contenu disponible."
   },
@@ -2678,9 +2648,6 @@
   "f_persist_optional_29ce": {
     "message": "Conserver (facultatif)"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "Choisissez un nom pour votre émission :"
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "Veuillez d’abord configurer votre adresse e-mail d’envoi Kindle dans les réglages."
   },
@@ -2692,15 +2659,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "Veuillez saisir le code de vérification."
-  },
-  "f_podcast_name_1b92": {
-    "message": "Nom du podcast"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "Durée du podcast (minutes) :"
-  },
-  "f_podcast_style_61d0": {
-    "message": "Style du podcast :"
   },
   "f_positive_tone_6466": {
     "message": "Ton positif"
@@ -2822,9 +2780,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "Recherche d’un récepteur LocalSend sur le réseau local..."
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "Sélectionnez jusqu’à 5 articles :"
-  },
   "f_send_share_bb4a": {
     "message": "Envoi et partage"
   },
@@ -2891,9 +2846,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "Connecté · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "Solo"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "Un problème est survenu — veuillez réessayer."
   },
@@ -2908,9 +2860,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "Arrêter Ollama"
-  },
-  "f_storytelling_6d0b": {
-    "message": "Récit"
   },
   "f_style_fba4": {
     "message": "Style :"
@@ -3019,9 +2968,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "Mauvais e-mail ? Retour"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "Vous êtes prêt à générer votre podcast !"
   },
   "f_a_donation_8832": {
     "message": "un don"
@@ -8110,5 +8056,74 @@
   },
   "f_look_it_up_7148": {
     "message": "Rechercher"
+  },
+  "f_page_9196": {
+    "message": "Page"
+  },
+  "f_this_view_3936": {
+    "message": "Cette vue"
+  },
+  "f_legend_0984": {
+    "message": "Légende"
+  },
+  "f_account_deleted_b71d": {
+    "message": "Compte supprimé."
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "Résiliez d’abord tout abonnement en cours avec le lien de votre reçu de paiement."
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "Pratique : juste votre e-mail, sans clé API."
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "Impossible de supprimer le compte : {why}"
+  },
+  "f_delete_account_5421": {
+    "message": "Supprimer le compte"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "Supprimer votre compte ?"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "Reconnectez-vous avant de supprimer le compte."
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "Merci de garder AISH indépendant."
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "Votre compte et tout pass associé sont supprimés définitivement. Cette action est irréversible."
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 Limite de l’offre gratuite atteinte (3 envois)."
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 Envoyer vers Kindle\n\nOffre gratuite : 3 envois Kindle inclus.\n\nAssurez-vous que kindle@byphil.eu figure dans votre liste d’expéditeurs approuvés Kindle (voir l’aide d’Amazon).\n\nEnvoyer cet article vers Kindle ?"
+  },
+  "f_allow_19d2": {
+    "message": "Autoriser"
+  },
+  "f_allowed_66fd": {
+    "message": "Autorisé : {who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "Pas encore autorisé : {who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "Rien n’a été envoyé. Autorisez-le d’abord dans Réglages › Modèles et API."
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "Envoyer du texte à un service d’IA ?"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "Envoi de texte à des services d’IA"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "Pour résumer, étiqueter et répondre, AISH envoie le texte des pages, articles enregistrés et flux avec lesquels vous l’utilisez, ainsi que vos questions, à {who}. Rien n’est envoyé sans votre autorisation. Vous pouvez la retirer dans Réglages › Modèles et API."
+  },
+  "f_withdraw_6cb7": {
+    "message": "Retirer"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud, qui le transmet à OpenRouter et à l’éditeur du modèle choisi"
   }
 }

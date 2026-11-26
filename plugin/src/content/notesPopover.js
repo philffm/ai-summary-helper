@@ -88,6 +88,8 @@ export function npShowActions({ x, y, label, items }) {
  */
 export function npShowComposer({ x, y, heading, quote = '', placeholder = 'Write here…', saveLabel = 'Save', onSave }) {
   npHide();
+  // a phone: the keyboard and the browser's bar take the lower half, so the box sits at the top of what is visible
+  const phone = !!window.matchMedia?.('(pointer: coarse)').matches && window.innerWidth < 600;
   const host = npEnsureHost(), root = host._root;
   const card = document.createElement('div'); card.className = 'np-card'; card.setAttribute('role', 'dialog'); card.setAttribute('aria-label', heading);
   const head = document.createElement('div'); head.className = 'np-head';
@@ -97,7 +99,7 @@ export function npShowComposer({ x, y, heading, quote = '', placeholder = 'Write
   if (quote) { const q = document.createElement('p'); q.className = 'np-quote'; q.textContent = '“' + (quote.length > 160 ? quote.slice(0, 160) + '…' : quote) + '”'; card.appendChild(q); }
   const ta = document.createElement('textarea'); ta.className = 'np-ta'; ta.placeholder = placeholder; ta.setAttribute('aria-label', heading); card.appendChild(ta);
   const row = document.createElement('div'); row.className = 'np-row';
-  const hint = document.createElement('span'); hint.className = 'np-hint'; hint.textContent = 'End with #tags · ⌘/Ctrl+Enter';
+  const hint = document.createElement('span'); hint.className = 'np-hint'; hint.textContent = phone ? 'End with #tags' : 'End with #tags · ⌘/Ctrl+Enter';
   const go = document.createElement('button'); go.type = 'button'; go.className = 'np-go'; go.textContent = saveLabel; go.disabled = true;
   row.append(hint, go); card.appendChild(row);
   ta.addEventListener('input', () => { go.disabled = !splitTags(ta.value).text; });
@@ -109,7 +111,8 @@ export function npShowComposer({ x, y, heading, quote = '', placeholder = 'Write
   };
   go.addEventListener('click', save);
   ta.addEventListener('keydown', (e) => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') { e.preventDefault(); save(); } });
-  const p = npClamp(x - 20, y + 10, 330); card.style.left = p.left + 'px'; card.style.top = p.top + 'px';
+  const p = phone ? npClamp(window.scrollX + (window.innerWidth - 320) / 2, window.scrollY + 16, 320) : npClamp(x - 20, y + 10, 330);
+  card.style.left = p.left + 'px'; card.style.top = p.top + 'px';
   root.appendChild(card);
   npWatchOutside(host, () => !!ta.value.trim());   // a click elsewhere does not throw away what is being typed
   ta.focus();

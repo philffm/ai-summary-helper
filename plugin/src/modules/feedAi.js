@@ -14,6 +14,8 @@ import { conceptKey, conceptId, conceptList, topicLabel, hasLabel, lexiconLearn,
 import { resolveFeedStyle, styleSuffix } from './promptBuilder.js';
 import { resolveCites, stripCites, maxRef } from './recapCites.js';
 import { SK } from './storageKeys.js';
+import { storeBuild } from './storeBuild.js';
+
 export const MAX_RECAP_ITEMS = 40;   // batch size for scoring requests
 let recapLimit = Infinity;            // items per recap request (user setting); 0 / Infinity = no limit
 export const getRecapLimit = () => recapLimit;
@@ -31,6 +33,15 @@ export function aiComplete(system, user, onStage, signal, onProgress, { partial 
     // Chrome's built-in model runs right here in the page (it is not reachable from the service worker's request path).
     if (service === 'nano') return import('./nanoModel.js').then(m => m.nanoComplete({ system, user, signal, onStage, onProgress }));
     if (aiTransport) return aiTransport({ system, user, signal, partial, service, feature, target, onStage, onProgress });
+    const send = () => askBackground(system, user, onStage, signal, onProgress, { partial, service, feature, target });
+    if (!storeBuild()) return send();
+    return import('./aiConsent.js').then(async ({ ensureAiConsent, notAllowed }) => {
+        if (!(await ensureAiConsent({ service, target }))) throw notAllowed();
+        return send();
+    });
+}
+
+function askBackground(system, user, onStage, signal, onProgress, { partial, service, feature, target }) {
     return new Promise((resolve, reject) => {
         const id = `ai${Date.now()}_${++aiSeq}`;
         let settled = false;

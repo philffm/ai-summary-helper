@@ -2290,9 +2290,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "Klicka på Ollama-ikonen i menyraden (uppe till höger) och välj <b>Quit Ollama</b>."
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "Klicka på ”Generera 🎙️” för att skapa ditt avsnitt."
-  },
   "f_close_pane_d66b": {
     "message": "Stäng ruta {n}",
     "description": "Placeholders: {n} (keep as is)"
@@ -2331,17 +2328,8 @@
   "f_copy_0d38": {
     "message": "Kopiera 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "Skapade podcasts"
-  },
   "f_custom_prompt_text_10af": {
     "message": "Egen prompttext"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "Egen stil (valfritt):"
-  },
-  "f_custom_style_ba7f": {
-    "message": "Egen stil:"
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "D3-biblioteket kunde inte laddas."
@@ -2383,9 +2371,6 @@
     "message": "Leverans: {name}",
     "description": "Placeholders: {name} (keep as is)"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "Beskriv din podcaststil"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "Stäng grafstatistik"
   },
@@ -2397,9 +2382,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "Dra länken till ditt bokmärkesfält 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "Utbildande"
   },
   "f_endpoint_url_ddad": {
     "message": "Endpoint-URL"
@@ -2421,10 +2403,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "Ange din e-post..."
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "Fel vid skapande av podcast: {msg}",
-    "description": "Placeholders: {msg} (keep as is)"
   },
   "f_error_d391": {
     "message": "Fel:"
@@ -2514,14 +2492,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "Skapa en bookmarklet som sammanfattar valfri sida i valfri webbläsare – även iOS/Android där tillägget inte fungerar. Den använder din byPhil Cloud-inloggning."
   },
-  "f_generate_237e": {
-    "message": "Generera 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "Genererar ljud… 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "Genererar…"
   },
   "f_get_key_4f7c": {
     "message": "Hämta nyckel"
@@ -2714,9 +2686,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "Inga artiklar att visa i grafen än."
   },
-  "f_no_audio_8798": {
-    "message": "Inget ljud"
-  },
   "f_no_content_available_0c7a": {
     "message": "Inget innehåll tillgängligt."
   },
@@ -2800,9 +2769,6 @@
   "f_persist_optional_29ce": {
     "message": "Behåll (valfritt)"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "Välj ett namn på ditt program:"
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "Ange först din Kindle-leveransadress i inställningarna."
   },
@@ -2814,15 +2780,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "Ange verifieringskoden."
-  },
-  "f_podcast_name_1b92": {
-    "message": "Podcastnamn"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "Podcastlängd (minuter):"
-  },
-  "f_podcast_style_61d0": {
-    "message": "Podcaststil:"
   },
   "f_positive_tone_6466": {
     "message": "Positiv ton"
@@ -2946,9 +2903,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "Söker efter LocalSend-mottagare i LAN..."
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "Välj upp till 5 artiklar:"
-  },
   "f_send_share_bb4a": {
     "message": "Skicka & dela"
   },
@@ -3016,9 +2970,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "Inloggad · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "Solo"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "Något gick fel – försök igen."
   },
@@ -3033,9 +2984,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "Stoppa Ollama"
-  },
-  "f_storytelling_6d0b": {
-    "message": "Berättande"
   },
   "f_style_fba4": {
     "message": "Stil:"
@@ -3148,9 +3096,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "Fel e-post? Gå tillbaka"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "Du är redo att skapa din podcast!"
   },
   "f_a_donation_8832": {
     "message": "en donation"
@@ -8393,5 +8338,74 @@
   },
   "f_look_it_up_7148": {
     "message": "Slå upp"
+  },
+  "f_page_9196": {
+    "message": "Sida"
+  },
+  "f_this_view_3936": {
+    "message": "Den här vyn"
+  },
+  "f_legend_0984": {
+    "message": "Teckenförklaring"
+  },
+  "f_account_deleted_b71d": {
+    "message": "Kontot är raderat."
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "Säg först upp ett pågående abonnemang via länken i betalningskvittot."
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "Smidigt: bara din e-post, ingen API-nyckel."
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "Det gick inte att radera kontot: {why}"
+  },
+  "f_delete_account_5421": {
+    "message": "Radera konto"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "Radera ditt konto?"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "Logga in igen innan du raderar kontot."
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "Tack för att du håller AISH oberoende."
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "Ditt konto och eventuellt pass på det tas bort för gott. Det går inte att ångra."
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 Gratisgränsen nådd (3 utskick)."
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 Skicka till Kindle\n\nGratisnivå: 3 Kindle-utskick ingår.\n\nSe till att kindle@byphil.eu finns bland Kindles godkända avsändare (se Amazons hjälp).\n\nSkicka artikeln till Kindle?"
+  },
+  "f_allow_19d2": {
+    "message": "Tillåt"
+  },
+  "f_allowed_66fd": {
+    "message": "Tillåtet: {who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "Inte tillåtet än: {who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "Inget skickades. Tillåt det först under Inställningar › Modeller och API."
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "Skicka text till en AI-tjänst?"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "Skicka text till AI-tjänster"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "För att sammanfatta, tagga och svara skickar AISH texten från de sidor, sparade artiklar och flöden du använder det med, samt dina frågor, till {who}. Inget skickas innan du tillåter det. Du kan återkalla det under Inställningar › Modeller och API."
+  },
+  "f_withdraw_6cb7": {
+    "message": "Återkalla"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud, som skickar det vidare till OpenRouter och företaget bakom den valda modellen"
   }
 }

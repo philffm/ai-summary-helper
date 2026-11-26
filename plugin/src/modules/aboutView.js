@@ -6,6 +6,7 @@
 import { T } from './feedI18n.js';
 import { SK } from './storageKeys.js';
 import { iconEl } from './icons.js';
+import { storeBuild } from './storeBuild.js';
 
 const LINKS = {
     donate: 'https://link.philwornath.com/?source=aish#donate',
@@ -68,7 +69,7 @@ export function initAboutView() {
     const note = el('div', 'about-card');
     note.append(el('h3', 'about-title', T('Hi, I\'m Phil 👋')));
     note.append(el('p', 'about-text', T('I build AI Summary Helper on my own. It\'s open source, shows no ads and keeps your library on your device.')));
-    note.append(linkButton(LINKS.donate, T('Support with a donation'), 'button-primary about-donate', 'heart'));
+    if (!storeBuild()) note.append(linkButton(LINKS.donate, T('Support with a donation'), 'button-primary about-donate', 'heart'));
     const acts = el('div', 'about-actions');
     acts.append(linkButton(LINKS.feedback, T('Give feedback'), 'button-secondary btn-sm', 'message-square'),
         linkButton(LINKS.contact, T('Contact me'), 'button-secondary btn-sm'));

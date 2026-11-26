@@ -76,6 +76,7 @@
         "--danger-text",
         "--duration-fast",
         "--easing-standard",
+        "--fs-base",
         "--fs-lg",
         "--fs-md",
         "--fs-sm",
@@ -1934,6 +1935,46 @@
       "dont": [
         "Do not add actions to it (it only opens screens)",
         "Do not show it while the app floats over the page: the app's own close button takes over"
+      ]
+    },
+    {
+      "name": "Briefing highlight",
+      "status": "stable",
+      "purpose": "Highlight a passage in the briefing of the home page: select text, press the button under it. A highlight offers to be removed when it is clicked or focused and activated.",
+      "selectors": [
+        ".hm-mark-pop",
+        ".hm-brief-text mark"
+      ],
+      "source": [
+        "plugin/src/modules/homeHighlights.js"
+      ],
+      "variants": {
+        "State": [
+          "Selected text",
+          "Highlighted",
+          "Remove offered"
+        ]
+      },
+      "props": {},
+      "figmaPending": true,
+      "a11y": [
+        "Highlights are in the tab order with the role button and a label that starts with \"Remove highlight\"",
+        "Enter or Space on a highlight offers the button and moves focus to it; Escape closes it"
+      ],
+      "do": [
+        "Keep the button next to the passage it acts on"
+      ],
+      "dont": [
+        "Highlight without a button press: selecting text must stay free for copying"
+      ],
+      "tokens": [
+        "--elevation-2",
+        "--focus-ring",
+        "--focus-ring-offset",
+        "--focus-ring-width",
+        "--radius-sm",
+        "--saved-note-user-bg",
+        "--saved-note-user-fg"
       ]
     }
   ]

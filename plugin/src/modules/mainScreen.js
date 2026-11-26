@@ -12,7 +12,7 @@ import { T, TN, uiLocale } from './feedI18n.js';
 import { topicLabel } from './topicConcepts.js';
 import { t } from './i18n.js';
 import { paperChips } from './paperInfo.js';
-import { modalOpen } from './shortcuts.js';
+import { modalOpen, isPhone } from './shortcuts.js';
 import { initInstantRead } from './instantRead.js';
 import { getReader } from './reader.js';
 import { createComposer, samePage, contextRows, statusLines, activeStep } from './composerState.js';
@@ -22,6 +22,8 @@ import { typeText } from './typewriter.js';
 import { sidebarTokenFromHash, acceptSidebarMessage, SIDEBAR_TOKEN_FIELD } from './sidebarChannel.js';
 import { currentLengthSpec } from './summaryLength.js';
 import { bgMessage } from './bgMessage.js';
+import { storeBuild } from './storeBuild.js';
+import { ensureAiConsent } from './aiConsent.js';
 
 export function initMainScreen(ui) {
     const fetchSummaryButton = document.getElementById('fetchSummary');
@@ -900,7 +902,7 @@ export function initMainScreen(ui) {
             if (recentTitle) recentTitle.textContent = T('No recent summaries');
             if (recentMeta) {
                 const mac = /Mac|iPhone|iPad/i.test((navigator.platform || '') + ' ' + (navigator.userAgent || ''));
-                recentMeta.textContent = T('Summarize a page to see it here') + ' · ' + (mac ? '⌘ + Shift + E' : 'Ctrl + Shift + E');
+                recentMeta.textContent = T('Summarize a page to see it here') + (isPhone() ? '' : ' · ' + (mac ? '⌘ + Shift + E' : 'Ctrl + Shift + E'));
             }
         }
     };
@@ -1310,6 +1312,7 @@ export function initMainScreen(ui) {
             if (q) sendFollowUp(q);
             return;
         }
+        if (storeBuild() && !(await ensureAiConsent())) return;
         const additionalQuestions = additionalQuestionsInput.value;
         const chipEl = document.getElementById('pageCard');
         const chipRect = chipEl ? chipEl.getBoundingClientRect() : null;
@@ -1488,6 +1491,7 @@ function setupOnboardingExtras(ui) {
     set('onboardingOllamaHint', T('Ollama, Chrome’s built-in model, LM Studio and more. No account, no key.'));
     const mac = /Mac|iPhone|iPad/i.test((navigator.platform || '') + ' ' + (navigator.userAgent || ''));
     set('onboardingTip', T('Tip: press {key} on any page to summarize it.', { key: mac ? '⌘ + Shift + E' : 'Ctrl + Shift + E' }));
+    if (isPhone()) ['onboardingTip', 'onboardingOllamaBtn'].forEach((id) => { const el = document.getElementById(id); if (el) el.hidden = true; });
 
     // Own key / Ollama: open the model settings with the matching tab already selected.
     const openModels = (radioId) => {

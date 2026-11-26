@@ -4698,7 +4698,7 @@
     },
     "feedback/ok-strong": {
      "codeSyntax": "var(--ok-strong)",
-     "description": "Second stop of the success gradient (podcast button).",
+     "description": "Darker green for success marks and words.",
      "modes": {
       "light": {
        "value": {

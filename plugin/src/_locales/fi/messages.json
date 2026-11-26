@@ -2290,9 +2290,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "Napsauta Ollama-kuvaketta valikkorivillä (oikealla ylhäällä) ja valitse <b>Quit Ollama</b>."
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "Luo jakso napsauttamalla “Luo 🎙️”."
-  },
   "f_close_pane_d66b": {
     "message": "Sulje ruutu {n}",
     "description": "Placeholders: {n} (keep as is)"
@@ -2331,17 +2328,8 @@
   "f_copy_0d38": {
     "message": "Kopioi 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "Luodut podcastit"
-  },
   "f_custom_prompt_text_10af": {
     "message": "Oman kehotteen teksti"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "Oma tyyli (valinnainen):"
-  },
-  "f_custom_style_ba7f": {
-    "message": "Oma tyyli:"
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "D3-kirjaston lataus epäonnistui."
@@ -2383,9 +2371,6 @@
     "message": "Toimitus: {name}",
     "description": "Placeholders: {name} (keep as is)"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "Kuvaile podcastisi tyyli"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "Sulje kaavion tilastot"
   },
@@ -2397,9 +2382,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "Vedä tämä linkki kirjanmerkkipalkkiisi 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "Opetus"
   },
   "f_endpoint_url_ddad": {
     "message": "Päätepisteen URL"
@@ -2421,10 +2403,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "Anna sähköpostiosoitteesi..."
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "Virhe podcastin luonnissa: {msg}",
-    "description": "Placeholders: {msg} (keep as is)"
   },
   "f_error_d391": {
     "message": "Virhe:"
@@ -2514,14 +2492,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "Luo kirjanmerkkiohjelma, joka tiivistää minkä tahansa sivun missä tahansa selaimessa – myös iOS:llä ja Androidilla, missä laajennus ei toimi. Käyttää byphil Cloud -kirjautumistasi."
   },
-  "f_generate_237e": {
-    "message": "Luo 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "Luodaan ääntä… 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "Luodaan…"
   },
   "f_get_key_4f7c": {
     "message": "Hanki avain"
@@ -2714,9 +2686,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "Ei vielä kaavioitavia artikkeleita."
   },
-  "f_no_audio_8798": {
-    "message": "Ei ääntä"
-  },
   "f_no_content_available_0c7a": {
     "message": "Sisältöä ei saatavilla."
   },
@@ -2800,9 +2769,6 @@
   "f_persist_optional_29ce": {
     "message": "Säilytä (valinnainen)"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "Valitse ohjelmallesi nimi:"
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "Määritä ensin Kindle-toimitussähköpostisi asetuksissa."
   },
@@ -2814,15 +2780,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "Anna vahvistuskoodi."
-  },
-  "f_podcast_name_1b92": {
-    "message": "Podcastin nimi"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "Podcastin pituus (minuuttia):"
-  },
-  "f_podcast_style_61d0": {
-    "message": "Podcastin tyyli:"
   },
   "f_positive_tone_6466": {
     "message": "Myönteinen sävy"
@@ -2946,9 +2903,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "Etsitään LocalSend-vastaanottajaa lähiverkosta..."
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "Valitse enintään 5 artikkelia:"
-  },
   "f_send_share_bb4a": {
     "message": "Lähetys ja jako"
   },
@@ -3016,9 +2970,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "Kirjautunut · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "Yksin"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "Jokin meni pieleen – yritä uudelleen."
   },
@@ -3033,9 +2984,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "Pysäytä Ollama"
-  },
-  "f_storytelling_6d0b": {
-    "message": "Tarinankerronta"
   },
   "f_style_fba4": {
     "message": "Tyyli:"
@@ -3148,9 +3096,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "Väärä sähköposti? Takaisin"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "Olet valmis luomaan podcastisi!"
   },
   "f_a_donation_8832": {
     "message": "lahjoitusta"
@@ -8393,5 +8338,74 @@
   },
   "f_look_it_up_7148": {
     "message": "Hae lisätietoa"
+  },
+  "f_page_9196": {
+    "message": "Sivu"
+  },
+  "f_this_view_3936": {
+    "message": "Tämä näkymä"
+  },
+  "f_legend_0984": {
+    "message": "Selite"
+  },
+  "f_account_deleted_b71d": {
+    "message": "Tili poistettu."
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "Peruuta ensin voimassa oleva tilaus maksukuitin linkistä."
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "Helppoa: pelkkä sähköposti, ei API-avainta."
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "Tiliä ei voitu poistaa: {why}"
+  },
+  "f_delete_account_5421": {
+    "message": "Poista tili"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "Poistetaanko tilisi?"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "Kirjaudu uudelleen sisään ennen tilin poistamista."
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "Kiitos, että pidät AISHin riippumattomana."
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "Tilisi ja sen mahdollinen passi poistetaan pysyvästi. Tätä ei voi perua."
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 Ilmaisen tason raja saavutettu (3 lähetystä)."
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 Lähetä Kindleen\n\nIlmainen taso: 3 Kindle-lähetystä mukana.\n\nVarmista, että kindle@byphil.eu on Kindlesi hyväksyttyjen lähettäjien luettelossa (katso Amazonin ohje).\n\nLähetetäänkö tämä artikkeli Kindleen?"
+  },
+  "f_allow_19d2": {
+    "message": "Salli"
+  },
+  "f_allowed_66fd": {
+    "message": "Sallittu: {who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "Ei vielä sallittu: {who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "Mitään ei lähetetty. Salli se ensin kohdassa Asetukset › Mallit ja API."
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "Lähetetäänkö tekstiä tekoälypalveluun?"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "Tekstin lähettäminen tekoälypalveluihin"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "Tiivistämistä, tunnisteita ja vastauksia varten AISH lähettää niiden sivujen, tallennettujen artikkelien ja syötteiden tekstin, joiden kanssa käytät näitä, sekä kysymyksesi vastaanottajalle {who}. Mitään ei lähetetä ennen lupaasi. Voit perua luvan kohdassa Asetukset › Mallit ja API."
+  },
+  "f_withdraw_6cb7": {
+    "message": "Peru lupa"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud, joka välittää sen OpenRouterille ja valitun mallin tarjoajalle"
   }
 }

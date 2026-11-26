@@ -1,5 +1,6 @@
 import { SK } from './storageKeys.js';
 import { confirmSheet } from './confirmSheet.js';
+import { isTokenExpired, refreshSession } from './sessionToken.js';
 import { escapeHtml } from './textUtils.js';
 // authManager.js - Handles Authentication flow via api.byphil.eu proxy
 //
@@ -16,6 +17,7 @@ import StorageManager from './storageManager.js';
 import { T, TN } from './feedI18n.js';
 import { newAccountModel } from './cloudRegion.js';
 import { renderSupportPass, isPassActive } from './supportPass.js';
+import { storeBuild } from './storeBuild.js';
 
 let activeOtpId = null;
 let otpExpiryTimeoutId = null;
@@ -289,7 +291,7 @@ function setLoggedInOnlySectionsVisible(isLoggedIn, user = null) {
     // “Have a license key or gift code?” in the Support Pass card is pressed (unless a key is already stored).
     const legacyLicenseGroup = document.getElementById('legacyLicenseGroup');
     if (!legacyLicenseGroup) return;
-    if (!isLoggedIn || isPassActive(user)) { legacyLicenseGroup.style.display = 'none'; legacyLicenseGroup.dataset.open = ''; return; }
+    if (storeBuild() || !isLoggedIn || isPassActive(user)) { legacyLicenseGroup.style.display = 'none'; legacyLicenseGroup.dataset.open = ''; return; }
     const keyInput = document.getElementById('licenseKey');
     const open = legacyLicenseGroup.dataset.open === '1' || !!(keyInput && keyInput.value);
     legacyLicenseGroup.style.display = open ? 'block' : 'none';
@@ -587,7 +589,7 @@ async function verifyOtp(view) {
     }
 }
 
-async function logout() {
+async function logout({ message = T('Logged out.') } = {}) {
     clearOtpExpiryTimeout();
     const logoutData = {
         [SK.token]: null,
@@ -603,8 +605,38 @@ async function logout() {
     const currentState = await readAuthState();
     await refreshAuthState({ ...currentState, ...logoutData });
 
-    if (uiManagerRef) uiManagerRef.showToast(T('Logged out.'));
-    else alert(T('Logged out.'));
+    if (uiManagerRef) uiManagerRef.showToast(message);
+    else alert(message);
+}
+
+/**
+ * Removes the account on the server, then forgets it here. The server wants a live sign-in (a license key is not enough),
+ * so a session close to its end is renewed first.
+ */
+export async function deleteAccount({ confirm = confirmSheet, request = fetch, renew = refreshSession } = {}) {
+    const before = await readAuthState();
+    if (!before[SK.token]) return false;
+    const active = isPassActive(before[SK.user]);
+    const text = [T('Your account and any pass on it are removed for good. This cannot be undone.'),
+        active ? T('Cancel a running subscription first, with the link in your payment receipt.') : ''].filter(Boolean).join(' ');
+    if (!(await confirm({ title: T('Delete your account?'), text, confirmLabel: T('Delete account') }))) return false;
+    const say = (message) => (uiManagerRef ? uiManagerRef.showToast(message) : alert(message));
+    try {
+        await renew({ apiBase: StorageManager.getApiBase() }).catch(() => {});
+        const token = (await readAuthState())[SK.token];
+        if (!token || isTokenExpired(token)) { say(T('Please sign in again before deleting the account.')); return false; }
+        const res = await request(`${StorageManager.getApiBase()}/v1/auth/delete-account`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }, body: JSON.stringify({ confirmation: 'DELETE' }),
+        });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok || !body.success) { say(T('Could not delete the account: {why}', { why: body.error || String(res.status) })); return false; }
+    } catch (e) {
+        say(T('Could not delete the account: {why}', { why: e.message }));
+        return false;
+    }
+    await StorageManager.set({ [SK.licenseKey]: '' });
+    await logout({ message: T('Account deleted.') });
+    return true;
 }
 
 async function goBackToEmail(view) {
@@ -641,6 +673,14 @@ export function registerAuthView(ids) {
     view.verifyBtn.addEventListener('click', () => verifyOtp(view));
     if (view.backBtn) view.backBtn.addEventListener('click', () => goBackToEmail(view));
     if (view.logoutBtn) view.logoutBtn.addEventListener('click', () => logout());
+    const remove = view.logoutBtn && document.getElementById('deleteAccountBtn');
+    if (remove && !remove.dataset.bound) {
+        remove.dataset.bound = '1';
+        remove.addEventListener('click', () => deleteAccount());
+    }
+    // the App Store build offers no way to a web page that sells
+    const manage = document.getElementById('manageAccountLink');
+    if (manage && storeBuild()) (manage.closest('p') || manage).hidden = true;
     if (view.licenseToggleBtn) view.licenseToggleBtn.addEventListener('click', () => {
         const g = document.getElementById('legacyLicenseGroup');
         if (!g) return;
@@ -714,7 +754,7 @@ export async function initAuthManager(uiManager) {
         titleEl: 'onboardingTitle',
         leadEl: 'onboardingLead',
         heroTitle: () => T('☁️ Free cloud models'),
-        heroLead: () => T('Convenient: just your email, no API key. Also supports me, an independent developer.'),
+        heroLead: () => (storeBuild() ? T('Convenient: just your email, no API key.') : T('Convenient: just your email, no API key. Also supports me, an independent developer.')),
     });
 
     if (!views.length) return;

@@ -2290,9 +2290,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "Klik på Ollama-ikonet i menulinjen (øverst til højre) og vælg <b>Quit Ollama</b>."
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "Klik på “Generér 🎙️” for at oprette dit afsnit."
-  },
   "f_close_pane_d66b": {
     "message": "Luk rude {n}",
     "description": "Placeholders: {n} (keep as is)"
@@ -2331,17 +2328,8 @@
   "f_copy_0d38": {
     "message": "Kopiér 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "Oprettede podcasts"
-  },
   "f_custom_prompt_text_10af": {
     "message": "Brugerdefineret prompttekst"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "Brugerdefineret stil (valgfrit):"
-  },
-  "f_custom_style_ba7f": {
-    "message": "Brugerdefineret stil:"
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "D3-biblioteket kunne ikke indlæses."
@@ -2383,9 +2371,6 @@
     "message": "Levering: {name}",
     "description": "Placeholders: {name} (keep as is)"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "Beskriv din podcaststil"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "Luk grafstatistik"
   },
@@ -2397,9 +2382,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "Træk dette link til din bogmærkelinje 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "Lærerig"
   },
   "f_endpoint_url_ddad": {
     "message": "Endpoint-URL"
@@ -2421,10 +2403,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "Indtast din e-mail..."
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "Fejl ved generering af podcast: {msg}",
-    "description": "Placeholders: {msg} (keep as is)"
   },
   "f_error_d391": {
     "message": "Fejl:"
@@ -2514,14 +2492,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "Generér en bookmarklet, der resumerer enhver side i enhver browser – også på iOS/Android, hvor udvidelsen ikke kan køre. Den bruger dit byphil Cloud-login."
   },
-  "f_generate_237e": {
-    "message": "Generér 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "Genererer lyd… 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "Genererer…"
   },
   "f_get_key_4f7c": {
     "message": "Hent nøgle"
@@ -2714,9 +2686,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "Ingen artikler at vise i grafen endnu."
   },
-  "f_no_audio_8798": {
-    "message": "Ingen lyd"
-  },
   "f_no_content_available_0c7a": {
     "message": "Intet indhold tilgængeligt."
   },
@@ -2800,9 +2769,6 @@
   "f_persist_optional_29ce": {
     "message": "Bevar (valgfrit)"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "Vælg et navn til dit show:"
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "Konfigurér først din Kindle-leveringsadresse i indstillingerne."
   },
@@ -2814,15 +2780,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "Indtast bekræftelseskoden."
-  },
-  "f_podcast_name_1b92": {
-    "message": "Podcastnavn"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "Podcastlængde (minutter):"
-  },
-  "f_podcast_style_61d0": {
-    "message": "Podcaststil:"
   },
   "f_positive_tone_6466": {
     "message": "Positiv tone"
@@ -2946,9 +2903,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "Søger på LAN efter LocalSend-modtager..."
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "Vælg op til 5 artikler:"
-  },
   "f_send_share_bb4a": {
     "message": "Send & del"
   },
@@ -3016,9 +2970,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "Logget ind · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "Solo"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "Noget gik galt – prøv igen."
   },
@@ -3033,9 +2984,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "Stop Ollama"
-  },
-  "f_storytelling_6d0b": {
-    "message": "Historiefortælling"
   },
   "f_style_fba4": {
     "message": "Stil:"
@@ -3148,9 +3096,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "Forkert e-mail? Gå tilbage"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "Du er klar til at generere din podcast!"
   },
   "f_a_donation_8832": {
     "message": "en donation"
@@ -8393,5 +8338,74 @@
   },
   "f_look_it_up_7148": {
     "message": "Slå op"
+  },
+  "f_page_9196": {
+    "message": "Side"
+  },
+  "f_this_view_3936": {
+    "message": "Denne visning"
+  },
+  "f_legend_0984": {
+    "message": "Signaturforklaring"
+  },
+  "f_account_deleted_b71d": {
+    "message": "Kontoen er slettet."
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "Opsig først et løbende abonnement via linket i din kvittering."
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "Nemt: kun din e-mail, ingen API-nøgle."
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "Kontoen kunne ikke slettes: {why}"
+  },
+  "f_delete_account_5421": {
+    "message": "Slet konto"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "Slet din konto?"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "Log ind igen, før du sletter kontoen."
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "Tak, fordi du holder AISH uafhængig."
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "Din konto og et eventuelt pas på den fjernes for altid. Det kan ikke fortrydes."
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 Grænsen for gratis niveau er nået (3 afsendelser)."
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 Send to Kindle\n\nGratis niveau: 3 Kindle-afsendelser inkluderet.\n\nSørg for, at kindle@byphil.eu står på din Kindles liste over godkendte afsendere (se Amazons hjælp).\n\nSend denne artikel til Kindle?"
+  },
+  "f_allow_19d2": {
+    "message": "Tillad"
+  },
+  "f_allowed_66fd": {
+    "message": "Tilladt: {who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "Ikke tilladt endnu: {who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "Intet blev sendt. Tillad det først under Indstillinger › Modeller og API."
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "Send tekst til en AI-tjeneste?"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "Afsendelse af tekst til AI-tjenester"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "For at opsummere, tagge og svare sender AISH teksten fra de sider, gemte artikler og feeds, du bruger det med, samt dine spørgsmål til {who}. Intet sendes, før du tillader det. Du kan trække tilladelsen tilbage under Indstillinger › Modeller og API."
+  },
+  "f_withdraw_6cb7": {
+    "message": "Træk tilbage"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud, som sender det videre til OpenRouter og virksomheden bag den valgte model"
   }
 }

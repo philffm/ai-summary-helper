@@ -9,8 +9,7 @@ class UIManager {
             settings: document.getElementById('settingsScreen'),
             history: document.getElementById('historyScreen'),
             feeds: document.getElementById('feedsScreen'),
-            notes: document.getElementById('notesScreen'),
-            podcast: document.getElementById('podcastScreen')
+            notes: document.getElementById('notesScreen')
         };
 
         // Safety net: if anything still scrolls the screen container sideways (focus/scrollIntoView on an
@@ -19,6 +18,14 @@ class UIManager {
         if (container) {
             const reset = () => { if (container.scrollLeft) container.scrollLeft = 0; if (container.scrollTop) container.scrollTop = 0; };
             container.addEventListener('scroll', reset, { passive: true });
+        }
+
+        // the tabs change their width when the translations arrive or the sheet takes its size: the marker follows
+        const nav = document.getElementById('bottomNav');
+        if (nav && typeof ResizeObserver === 'function') {
+            const follow = new ResizeObserver(() => this.positionNavBlob(document.body.dataset.screen || 'main'));
+            follow.observe(nav);
+            nav.querySelectorAll('.nav-item').forEach((item) => follow.observe(item));
         }
     }
 
@@ -50,11 +57,9 @@ class UIManager {
         const nav = document.getElementById('bottomNav');
         if (!nav) return;
 
-        const navRect = nav.getBoundingClientRect();
-        const itemRect = activeItem.getBoundingClientRect();
-
-        const x = itemRect.left - navRect.left;
-        const w = itemRect.width;
+        // layout positions, not the drawn rectangle: a sheet that is still sliding or scaling in would give wrong numbers
+        const x = activeItem.offsetLeft;
+        const w = activeItem.offsetWidth;
         blob.style.transform = `translateX(${x}px)`;
         blob.style.width = `${w}px`;
     }
@@ -63,7 +68,7 @@ class UIManager {
         const targetIdx = this.screenOrder.indexOf(screenName);
         document.body.dataset.screen = screenName;   // CSS: header layout switcher only on feeds/history
 
-        // Handle screens not in the nav order (e.g. 'podcast')
+        // Handle screens not in the nav order
         if (targetIdx === -1) {
             // Hide nav-order screens so only the external screen is visible
             this.screenOrder.forEach((name) => {
@@ -243,25 +248,6 @@ class UIManager {
         stack.appendChild(toast);
         timer = setTimeout(() => toast.remove(), duration);
         return { dismiss, setText: (m) => { text.textContent = m; }, el: toast };
-    }
-
-    // Podcast menu entry point
-    enterPodcastMenu() {
-        if (this.screens.history && document.getElementById('podcastScreen')) {
-            this.showScreen('history');
-            import('./archiveManager.js').then(mod => {
-                mod.showPodcastManagerInHistory();
-            });
-        } else {
-            this.showScreen('podcast');
-            const podcastScreen = this.screens.podcast;
-            if (podcastScreen) {
-                podcastScreen.innerHTML = '';
-                import('./podcastManager.js').then(mod => {
-                    mod.renderPodcastUI(podcastScreen);
-                });
-            }
-        }
     }
 }
 

@@ -1,6 +1,7 @@
 // settingsIndex.js — what Settings contains, as data: panels and the searchable controls (also the command palette's settings entries).
 // Kept apart from settingsNav.js so pages that only list settings (home page, reading view) do not load the Settings screen code.
 import { T, N_ } from './feedI18n.js';
+import { storeBuild } from './storeBuild.js';
 
 // Search index: one entry per control. `target` is the element id to scroll to
 // and flash after jumping to its panel; `kw` are extra match words.
@@ -70,7 +71,7 @@ export const PANEL_TITLES = {
 export function settingsEntries() {
     return [
         ...Object.entries(PANEL_TITLES).map(([panel, title]) => ({ panel, title: T(title), target: undefined, kw: '' })),
-        ...INDEX.map(([panel, title, target, kw]) => ({ panel, title: T(title), target, kw })),
+        ...INDEX.filter(([, , target]) => !(storeBuild() && target === 'licenseKey')).map(([panel, title, target, kw]) => ({ panel, title: T(title), target, kw })),
     ];
 }
 

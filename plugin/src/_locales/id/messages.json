@@ -2290,9 +2290,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "Klik ikon Ollama di menu bar (kanan atas) dan pilih <b>Quit Ollama</b>."
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "Klik “Buat 🎙️” untuk membuat episode Anda."
-  },
   "f_close_pane_d66b": {
     "message": "Tutup panel {n}",
     "description": "Placeholders: {n} (keep as is)"
@@ -2331,17 +2328,8 @@
   "f_copy_0d38": {
     "message": "Salin 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "Podcast Dibuat"
-  },
   "f_custom_prompt_text_10af": {
     "message": "Teks prompt kustom"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "Gaya kustom (opsional):"
-  },
-  "f_custom_style_ba7f": {
-    "message": "Gaya kustom:"
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "Library D3 gagal dimuat."
@@ -2383,9 +2371,6 @@
     "message": "Pengiriman: {name}",
     "description": "Placeholders: {name} (keep as is)"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "Deskripsikan gaya podcast Anda"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "Tutup statistik grafik"
   },
@@ -2397,9 +2382,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "Seret tautan ini ke bookmarks bar Anda 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "Edukasi"
   },
   "f_endpoint_url_ddad": {
     "message": "URL Endpoint"
@@ -2421,10 +2403,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "Masukkan email Anda..."
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "Error membuat podcast: {msg}",
-    "description": "Placeholders: {msg} (keep as is)"
   },
   "f_error_d391": {
     "message": "Error:"
@@ -2514,14 +2492,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "Buat bookmarklet yang meringkas halaman apa pun di browser mana pun — termasuk iOS/Android tempat ekstensi tidak bisa berjalan. Menggunakan login byphil Cloud Anda."
   },
-  "f_generate_237e": {
-    "message": "Buat 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "Membuat audio… 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "Membuat…"
   },
   "f_get_key_4f7c": {
     "message": "Dapatkan Key"
@@ -2714,9 +2686,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "Belum ada artikel untuk digrafikkan."
   },
-  "f_no_audio_8798": {
-    "message": "Tanpa audio"
-  },
   "f_no_content_available_0c7a": {
     "message": "Konten tidak tersedia."
   },
@@ -2800,9 +2769,6 @@
   "f_persist_optional_29ce": {
     "message": "Simpan (opsional)"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "Pilih nama untuk acara Anda:"
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "Atur alamat email pengiriman Kindle Anda di pengaturan terlebih dahulu."
   },
@@ -2814,15 +2780,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "Masukkan kode verifikasi."
-  },
-  "f_podcast_name_1b92": {
-    "message": "Nama Podcast"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "Durasi podcast (menit):"
-  },
-  "f_podcast_style_61d0": {
-    "message": "Gaya podcast:"
   },
   "f_positive_tone_6466": {
     "message": "Nada positif"
@@ -2946,9 +2903,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "Mencari penerima LocalSend di LAN..."
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "Pilih hingga 5 artikel:"
-  },
   "f_send_share_bb4a": {
     "message": "Kirim & Bagikan"
   },
@@ -3016,9 +2970,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "Masuk · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "Solo"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "Terjadi kesalahan — silakan coba lagi."
   },
@@ -3033,9 +2984,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "Hentikan Ollama"
-  },
-  "f_storytelling_6d0b": {
-    "message": "Bercerita"
   },
   "f_style_fba4": {
     "message": "Gaya:"
@@ -3148,9 +3096,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "Email salah? Kembali"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "Anda siap membuat podcast!"
   },
   "f_a_donation_8832": {
     "message": "donasi"
@@ -8393,5 +8338,74 @@
   },
   "f_look_it_up_7148": {
     "message": "Cari tahu"
+  },
+  "f_page_9196": {
+    "message": "Halaman"
+  },
+  "f_this_view_3936": {
+    "message": "Tampilan ini"
+  },
+  "f_legend_0984": {
+    "message": "Legenda"
+  },
+  "f_account_deleted_b71d": {
+    "message": "Akun dihapus."
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "Batalkan dulu langganan yang berjalan lewat tautan di tanda terima pembayaran."
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "Praktis: cukup email, tanpa kunci API."
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "Akun tidak dapat dihapus: {why}"
+  },
+  "f_delete_account_5421": {
+    "message": "Hapus akun"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "Hapus akun Anda?"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "Masuk lagi sebelum menghapus akun."
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "Terima kasih telah menjaga AISH tetap independen."
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "Akun Anda beserta pass di dalamnya dihapus selamanya. Ini tidak dapat dibatalkan."
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 Batas paket gratis tercapai (3 pengiriman)."
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 Send to Kindle\n\nPaket gratis: 3 pengiriman Kindle termasuk.\n\nPastikan kindle@byphil.eu ada di daftar approved senders Kindle Anda (lihat bantuan Amazon).\n\nKirim artikel ini ke Kindle?"
+  },
+  "f_allow_19d2": {
+    "message": "Izinkan"
+  },
+  "f_allowed_66fd": {
+    "message": "Diizinkan: {who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "Belum diizinkan: {who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "Tidak ada yang dikirim. Izinkan dulu di Pengaturan › Model & API."
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "Kirim teks ke layanan AI?"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "Pengiriman teks ke layanan AI"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "Untuk meringkas, memberi tag, dan menjawab, AISH mengirim teks halaman, artikel tersimpan, dan feed yang Anda pakai dengannya, serta pertanyaan Anda, ke {who}. Tidak ada yang dikirim sebelum Anda mengizinkan. Izin dapat dicabut di Pengaturan › Model & API."
+  },
+  "f_withdraw_6cb7": {
+    "message": "Cabut"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud, yang meneruskannya ke OpenRouter dan perusahaan di balik model yang dipilih"
   }
 }

@@ -14,7 +14,7 @@ export const SECRET_KEYS = [
 ];
 
 /** Never part of a backup, in either direction: restoring them on another device would repeat what was already done there. */
-export const TRANSIENT_KEYS = [SK.nativeSent, SK.graphSim, SK.targetOutbox, SK.mcpLog, SK.syncDeviceId, SK.syncStatus, SK.syncClock, SK.cloudRoute];
+export const TRANSIENT_KEYS = [SK.nativeSent, SK.graphSim, SK.targetOutbox, SK.mcpLog, SK.syncDeviceId, SK.syncStatus, SK.syncClock, SK.cloudRoute, SK.aiConsent];
 /** Key prefixes that are per device and never leave it (sync stamps describe this device's view of the library). */
 export const TRANSIENT_PREFIXES = [SYNC_STAMPS, SYNC_LEDGER];
 
@@ -33,7 +33,7 @@ export const CATEGORIES = {
     // preferences: everything in sync storage, plus the local UI state and the feed / podcast preferences
     prefs: {
         syncAll: true, localStorageToo: true,
-        keys: [SK.feedSettings, SK.feedUi, SK.topicLexicon, SK.podcastName, SK.podcastLength, SK.podcastStyle, SK.podcastCustomStyle,
+        keys: [SK.feedSettings, SK.feedUi, SK.aiConsent, SK.topicLexicon, SK.podcastName, SK.podcastLength, SK.podcastStyle, SK.podcastCustomStyle,
             SK.summaryMode, SK.summaryLength, SK.summaryLengthMode, SK.summaryLengthBias, SK.activityView, SK.workspace, SK.reviewPrompt, SK.renameNotice, SK.exportAllQuestions, SK.lastCollection, SK.collStats, SK.storageHint, SK.mcpConfig, SK.mcpLog],
     },
 };

@@ -2186,9 +2186,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "Klicke in der Menüleiste (oben rechts) auf das Ollama-Symbol und wähle <b>Quit Ollama</b>."
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "Klicke auf „Generate 🎙️“, um deine Folge zu erstellen."
-  },
   "f_close_pane_d66b": {
     "message": "Bereich {n} schließen"
   },
@@ -2225,17 +2222,8 @@
   "f_copy_0d38": {
     "message": "Kopieren 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "Erstellte Podcasts"
-  },
   "f_custom_prompt_text_10af": {
     "message": "Eigener Prompt-Text"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "Eigener Stil (optional):"
-  },
-  "f_custom_style_ba7f": {
-    "message": "Eigener Stil:"
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "D3-Bibliothek konnte nicht geladen werden."
@@ -2276,9 +2264,6 @@
   "f_delivery_83d6": {
     "message": "Zustellung: {name}"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "Beschreibe den Stil deines Podcasts"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "Graph-Statistik ausblenden"
   },
@@ -2290,9 +2275,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "Zieh diesen Link in deine Lesezeichenleiste 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "Lehrreich"
   },
   "f_endpoint_url_ddad": {
     "message": "Endpoint-URL"
@@ -2314,9 +2296,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "E-Mail eingeben …"
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "Fehler beim Erstellen des Podcasts: {msg}"
   },
   "f_error_d391": {
     "message": "Fehler:"
@@ -2402,14 +2381,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "Erstelle ein Bookmarklet, das jede Seite in jedem Browser zusammenfasst – auch unter iOS/Android, wo die Erweiterung nicht läuft. Es nutzt dein byphil-Cloud-Login."
   },
-  "f_generate_237e": {
-    "message": "Erstellen 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "Audio wird erstellt … 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "Wird erstellt …"
   },
   "f_get_key_4f7c": {
     "message": "Schlüssel holen"
@@ -2600,9 +2573,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "Noch keine Artikel für den Graphen."
   },
-  "f_no_audio_8798": {
-    "message": "Kein Audio"
-  },
   "f_no_content_available_0c7a": {
     "message": "Kein Inhalt verfügbar."
   },
@@ -2684,9 +2654,6 @@
   "f_persist_optional_29ce": {
     "message": "Speichern (optional)"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "Gib deiner Show einen Namen:"
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "Bitte hinterlege zuerst deine Kindle-Zustelladresse in den Einstellungen."
   },
@@ -2698,15 +2665,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "Bitte gib den Bestätigungscode ein."
-  },
-  "f_podcast_name_1b92": {
-    "message": "Podcast-Name"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "Podcast-Länge (Minuten):"
-  },
-  "f_podcast_style_61d0": {
-    "message": "Podcast-Stil:"
   },
   "f_positive_tone_6466": {
     "message": "Positiver Ton"
@@ -2828,9 +2786,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "Suche im LAN nach LocalSend-Empfänger …"
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "Wähle bis zu 5 Artikel:"
-  },
   "f_send_share_bb4a": {
     "message": "Senden & Teilen"
   },
@@ -2897,9 +2852,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "Angemeldet · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "Solo"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "Etwas ist schiefgelaufen – bitte versuch es noch einmal."
   },
@@ -2914,9 +2866,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "Ollama beenden"
-  },
-  "f_storytelling_6d0b": {
-    "message": "Storytelling"
   },
   "f_style_fba4": {
     "message": "Stil:"
@@ -3025,9 +2974,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "Falsche E-Mail? Zurück"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "Dein Podcast kann losgehen!"
   },
   "f_a_donation_8832": {
     "message": "eine Spende"
@@ -8191,5 +8137,74 @@
   },
   "f_look_it_up_7148": {
     "message": "Nachschlagen"
+  },
+  "f_page_9196": {
+    "message": "Seite"
+  },
+  "f_this_view_3936": {
+    "message": "Diese Ansicht"
+  },
+  "f_legend_0984": {
+    "message": "Legende"
+  },
+  "f_account_deleted_b71d": {
+    "message": "Konto gelöscht."
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "Kündige zuerst ein laufendes Abo über den Link in deinem Zahlungsbeleg."
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "Bequem: nur deine E-Mail, kein API-Schlüssel."
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "Das Konto konnte nicht gelöscht werden: {why}"
+  },
+  "f_delete_account_5421": {
+    "message": "Konto löschen"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "Dein Konto löschen?"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "Melde dich erneut an, bevor du das Konto löschst."
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "Danke, dass du AISH unabhängig hältst."
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "Dein Konto und ein Pass darauf werden endgültig entfernt. Das lässt sich nicht rückgängig machen."
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 Limit des Gratis-Tarifs erreicht (3 Sendungen)."
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 An Kindle senden\n\nGratis-Tarif: 3 Kindle-Sendungen inklusive.\n\nStelle sicher, dass kindle@byphil.eu in deiner Liste der freigegebenen Absender bei Kindle steht (siehe Amazon-Hilfe).\n\nDiesen Artikel an Kindle senden?"
+  },
+  "f_allow_19d2": {
+    "message": "Erlauben"
+  },
+  "f_allowed_66fd": {
+    "message": "Erlaubt: {who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "Noch nicht erlaubt: {who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "Es wurde nichts gesendet. Erlaube es zuerst unter Einstellungen › Modelle & API."
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "Text an einen KI-Dienst senden?"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "Text an KI-Dienste senden"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "Zum Zusammenfassen, Verschlagworten und Antworten sendet AISH den Text der Seiten, gespeicherten Artikel und Feeds, mit denen du das nutzt, und deine Fragen an {who}. Vor deiner Erlaubnis wird nichts gesendet. Du kannst sie unter Einstellungen › Modelle & API widerrufen."
+  },
+  "f_withdraw_6cb7": {
+    "message": "Widerrufen"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud, die ihn an OpenRouter und den Anbieter des gewählten Modells weitergibt"
   }
 }

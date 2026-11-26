@@ -62,7 +62,7 @@
   /* semantic · feedback */
   --favorite: #facc15; /* Star / favourite yellow. */
   --ok-bright: #22c55e; /* Bright success green for savings, feed badges and progress fills. */
-  --ok-strong: color-mix(in srgb, var(--ok) 85%, var(--on-solid)); /* Second stop of the success gradient (podcast button). */
+  --ok-strong: color-mix(in srgb, var(--ok) 85%, var(--on-solid)); /* Darker green for success marks and words. */
   --on-warn: #422006; /* Text on a --mood-warn fill. */
   --danger-strong: #e24646; /* Second stop of the danger gradient (destructive buttons). */
   --ok: #15803d; /* Success: saved, synced, signed in (fills and dots; text ≥ 4.5:1 on cards). */
@@ -1530,6 +1530,19 @@ body {
   padding-bottom: 0;
 }
 
+/* Phones: Safari shows the popup in a sheet. It decides the width itself and gives as much height as the page asks for,
+   up to the sheet's edge: the root asks for the full desktop height, the body keeps to what is really visible. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 480px) {
+    html { min-height: 600px; }
+    body { position: fixed; inset: 0; width: auto; height: auto; min-width: 0; min-height: 0; }
+    /* so little height that content scrolling under the header must not show through it */
+    body .header::before { background: linear-gradient(to bottom, var(--bg-page) calc(100% - 12px), transparent); }
+    /* the screens scroll to the edge: the bar lets what passes under it show through, blurred so that its labels stay clear */
+    body .bottom-nav { background: color-mix(in srgb, var(--nav-bg) 52%, transparent); -webkit-backdrop-filter: blur(12px) saturate(1.6); backdrop-filter: blur(12px) saturate(1.6); }
+  }
+}
+
 a {
   color: var(--text-link);
   text-underline-offset: 2px;
@@ -1955,8 +1968,7 @@ ul#articleList {
 }
 
 .article-card,
-.tool-card,
-.podcast-card {
+.tool-card {
   margin-bottom: var(--spacing-s-3);
   padding: var(--spacing-s-4);
   border-radius: var(--radius-lg);
@@ -1972,8 +1984,7 @@ ul#articleList {
 }
 
 .article-card:hover,
-.tool-card:hover,
-.podcast-card:hover {
+.tool-card:hover {
   border-color: var(--accent);   /* blue border instead of a raised shadow */
 }
 
@@ -2007,34 +2018,22 @@ ul#articleList {
 
 /* ── History Cards ─────────────────────────────────────────────────────── */
 
-/* ── Tool & Podcast Cards ──────────────────────────────────────────────── */
+/* ── Tool Cards ────────────────────────────────────────────────────────── */
 
-#podcastList {
-  display: flex;
-  gap: var(--spacing-s-3);
-  overflow-x: auto;
-  margin: 0;
-  padding: var(--spacing-s-3) var(--spacing-s-1);
-}
-
-.tool-card,
-.podcast-card {
+.tool-card {
   min-width: 200px;
   flex: 0 0 auto;
 }
 
-.tool-card-content,
-.podcast-card-content {
+.tool-card-content {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-s-2);
 }
 
-.tool-card h3, .tool-card p,
-.podcast-card h3, .podcast-card p { margin: 0; }
+.tool-card h3, .tool-card p { margin: 0; }
 
-.discover-button,
-.podcast-card .share-button {
+.discover-button {
   margin-top: auto;
   color: var(--text-link);
   text-decoration: none;
@@ -2042,8 +2041,7 @@ ul#articleList {
   font-size: var(--fs-md);
 }
 
-.discover-button:hover,
-.podcast-card .share-button:hover {
+.discover-button:hover {
   text-decoration: underline;
 }
 
@@ -2273,39 +2271,6 @@ ul#articleList {
 #settingsForm {
   position: relative;
   padding-bottom: 64px;
-}
-
-/* ── Podcast ───────────────────────────────────────────────────────────── */
-
-.podcast-menu {
-  position: absolute;
-  top: 58px;
-  right: 10px;
-  width: 300px;
-  z-index: var(--z-popover);
-  padding: var(--spacing-s-4);
-  border-radius: var(--radius-lg);
-  background: var(--glass-base);
-  backdrop-filter: blur(32px);
-  -webkit-backdrop-filter: blur(32px);
-  border: 1px solid var(--glass-border-strong);
-  box-shadow: var(--shadow-modal);
-}
-
-.podcast-menu button {
-  width: 100%;
-  margin-bottom: var(--spacing-s-2);
-}
-
-#playPodcastButton {
-  margin-top: 0;
-  color: var(--on-solid);
-  background: linear-gradient(135deg, var(--ok), var(--ok-strong));
-}
-
-#podcastAudioPlayer {
-  width: 100%;
-  margin-top: var(--spacing-s-2);
 }
 
 /* ── Toast ─────────────────────────────────────────────────────────────── */
@@ -5085,25 +5050,6 @@ body[data-surface="tab"] { min-width: 0; }
 .save-menu .card-menu-item { min-height: 48px; }
 @media (forced-colors: active) { .composer-pill .save-split { border: 1px solid ButtonText; } }
 
-/* Podcast wizard (were inline styles in podcastManager.js; selected state via aria-pressed, follows the theme) */
-.podcast-pick-list { display: flex; gap: 12px; overflow-x: auto; padding: 8px 0; }
-.podcast-pick { flex: none; min-width: 220px; max-width: 260px; display: flex; flex-direction: column; gap: 6px; padding: 14px; text-align: left; font: inherit; color: var(--text-primary); background: var(--glass-card); border: 1px solid var(--outline); border-radius: var(--radius-sm); cursor: pointer; }
-.podcast-pick:hover { border-color: var(--accent-a30); }
-.podcast-pick:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
-.podcast-pick[aria-pressed="true"] { border: 2px solid var(--accent); padding: 13px; background: var(--accent-a10); }
-.podcast-pick-title { font-weight: 700; }
-.podcast-pick-summary { font-size: var(--fs-md); color: var(--text-secondary); }
-.podcast-pick-date { font-size: var(--fs-xs); color: var(--text-muted); }
-.podcast-length { position: relative; width: 100%; }
-.podcast-length-value { position: absolute; top: 48px; left: 0; transform: translateX(-12px); white-space: nowrap; }
-.podcast-field-label { margin-top: 1em; }
-.podcast-style-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.podcast-style-chip { padding: 5px 13px; border-radius: var(--radius-full); border: 1px solid var(--accent-a30); background: var(--glass-input); color: var(--text-primary); font: inherit; cursor: pointer; }
-.podcast-style-chip:hover { border-color: var(--accent); }
-.podcast-style-chip:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
-.podcast-style-chip[aria-pressed="true"] { background: var(--accent-a15); border-color: var(--accent); color: var(--accent); }
-.podcast-custom-style { margin-bottom: 8px; }
-
 /* Settings: send devices, LocalSend scan status, export choice (were inline styles in settingsManager.js) */
 .device-empty { font-size: var(--fs-xs); color: var(--text-muted); }
 .device-row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid var(--outline); border-radius: var(--radius-xs); background: var(--glass-input); }
@@ -5272,6 +5218,7 @@ body[data-surface="tab"] { min-width: 0; }
 .onboarding-container .onboarding-option p { margin: 0 0 var(--spacing-s-2); font-size: var(--fs-sm); }
 .onboarding-option .onboarding-auth-box { max-width: none; padding: 0; margin: 0; border: 0; background: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
 .onboarding-option--action { cursor: pointer; font: inherit; }
+.onboarding-option[hidden] { display: none; }
 .onboarding-option--action strong { font-size: var(--fs-base); }
 .onboarding-option--action span { font-size: var(--fs-sm); color: var(--text-secondary); }
 .onboarding-option--action:hover { border-color: var(--accent); }
@@ -5287,6 +5234,8 @@ body[data-surface="tab"] { min-width: 0; }
 .onboarding-option .onboarding-auth-box .auth-message { min-height: 0; margin-top: 0; }
 .onboarding-option .onboarding-auth-box .auth-message:empty { display: none; }
 .onboarding-container .onboarding-option .onboarding-auth-box p:last-child { margin-bottom: 0; }
+/* a low window (a phone's sheet): the floating pill would lie across the text, so it takes its place at the end */
+@media (max-height: 520px) { .onboarding-skip { position: static; align-self: center; flex: none; margin-top: var(--spacing-s-4); } }
 .onboarding-skip.button-primary { width: auto; max-width: none; background: var(--accent); border-color: transparent; color: var(--on-accent); }
 .onboarding-skip:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
 .onboarding-step { width: 100%; display: flex; flex-direction: column; align-items: center; }
@@ -6301,6 +6250,11 @@ details.links-group > summary.links-cap { cursor: pointer; list-style-position: 
 .rc-cite { display: inline-block; vertical-align: baseline; margin-inline: 1px; padding: 0 5px; min-width: 1.2em; text-align: center; font-size: var(--fs-xs); font-weight: 600; line-height: 1.4; color: var(--accent); background: var(--accent-soft); border-radius: var(--radius-sm); text-decoration: none; }
 .rc-cite:hover { background: var(--accent); color: var(--surface-sheet); }
 .rc-cite:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+/* highlights in the briefing of the home page (modules/homeHighlights.js) */
+.hm-brief-text { position: relative; }
+.hm-brief-text mark { background: var(--saved-note-user-bg); color: var(--saved-note-user-fg); border-radius: var(--radius-sm); cursor: pointer; }
+.hm-brief-text mark:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-ring-offset); }
+.hm-mark-pop { position: absolute; z-index: 2; box-shadow: var(--elevation-2); }
 .feed-recap-sources { margin-top: 10px; font-size: var(--fs-sm); color: var(--text-muted); }
 .feed-recap-sources summary { cursor: pointer; }
 .feed-recap-sources ol { margin: 8px 0 0; padding-inline-start: 22px; display: grid; gap: 4px; }
@@ -6319,3 +6273,77 @@ details.links-group > summary.links-cap { cursor: pointer; list-style-position: 
 :root[data-design='contrast'] .hm-rail { border-width: 2px; box-shadow: none; }
 :root[data-design='contrast'] .hm-rail-btn[aria-pressed='true'] { background: var(--text-primary); color: var(--bg-page); }
 @media print { .hm-rail { display: none; } }
+
+/* Phones: no keyboard, so no shortcut hints; and in a low sheet the note field follows the list instead of covering it. */
+@media (pointer: coarse) and (max-width: 480px) {
+  input:not([type='checkbox']):not([type='radio']):not([type='range']), textarea, select { font-size: max(16px, 1em) !important; }   /* under 16px iOS zooms the page into the field and cuts it off */
+  .notes-hint { display: none; }
+  #fetchSummary[data-kbd]::after, .notes-add[data-kbd]::after { display: none; }
+}
+@media (pointer: coarse) and (max-height: 520px) {
+  /* relative, not static: its fade is placed against the bar itself */
+  .controls-bar.notes-dock { position: relative; bottom: auto; margin: var(--spacing-s-3) 0 0; }
+}
+
+/* ── Buttons side by side share one height, whichever kind they are (secondary was 36, primary 47, danger 21) ── */
+:is(.coll-actions, .confirm-actions, .mcp-actions, .st-edit-row, .export-choice, .settings-action-row, .sendsheet-body) > :is(.button-primary, .button-secondary, .button-danger, .button-danger-outline):not(.btn-sm):not(.btn-md) {
+  height: auto; min-height: 40px; padding: 8px 14px; font-size: var(--fs-base);
+}
+@media (pointer: coarse) { :is(.coll-actions, .confirm-actions, .mcp-actions, .st-edit-row, .export-choice, .settings-action-row, .sendsheet-body) > :is(.button-primary, .button-secondary, .button-danger, .button-danger-outline):not(.btn-sm):not(.btn-md) { min-height: 44px; } }
+
+/* ── iPhone sheet (modules/compactNav.js, html[data-compact]) ──
+   Safari's sheet opens half high and already says "Kaivo": no header of our own, one row above each list (pick what to
+   see, search), the rest behind "More" in the bar. The controls that are replaced stay in the page and are pressed from here. */
+html[data-compact] { --header-h: 0px; }
+html[data-compact] .header { display: none; }
+html[data-compact] .bottom-nav { padding-inline: 8px; }
+html[data-compact] .bottom-nav .nav-item { min-width: 0; padding-inline: 6px; }
+.compact-pick, .compact-search { flex: none; height: 44px; display: inline-flex; align-items: center; gap: 8px; }
+.compact-pick { padding: 0 14px; font-size: var(--fs-base); font-weight: 700; }
+.compact-pick-count { color: var(--text-muted); font-weight: 600; }
+.compact-search { position: relative; width: 48px; justify-content: center; padding: 0; margin-inline-start: auto; }
+.compact-search.is-narrowed::after { content: ""; position: absolute; top: 7px; inset-inline-end: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+html[data-compact] #feedControls .feed-controlbar { order: -1; margin: 0; }
+html[data-compact] #feedControls:not([style*="display: none"]) { display: flex; flex-direction: column; gap: 8px; }
+html[data-compact] #feedControls :is(#feedRefreshBtn, #feedAddBtn, #feedGraphBtn, #feedInsightsBtn) { display: none; }
+html[data-compact] #feedControls:not(.compact-open) :is(.feed-toolbar, #feedChipRow, #feedScopeRow) { display: none; }
+html[data-compact] #feedControls .feed-toolbar { margin: 0; }
+html[data-compact] #historyScreen .history-tabs, html[data-compact] :is(#graphToggleBtn, #reportToggleBtn) { display: none; }
+html[data-compact] #historyTopRow { flex-wrap: wrap; }
+html[data-compact] #historyTopBar:not(.compact-open) #searchInputWrap { display: none; }
+html[data-compact] #historyTopBar #searchInputWrap { order: 3; flex-basis: 100%; }
+html[data-compact] #notesRoot :is(.notes-head, .notes-filters), html[data-compact] #notesRoot:not(.compact-open) .notes-bar { display: none; }
+.compact-row { position: sticky; top: 0; z-index: var(--z-bar); display: flex; gap: 8px; align-items: center; padding: 10px 0; background: var(--glass-base);
+  backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); transition: transform var(--duration-base) var(--easing-standard), opacity var(--duration-base) var(--easing-standard); }
+.compact-row.scroll-hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+html[data-compact] #notesScreen:not(.compact-writing) #notesComposer, html[data-compact] body:not([data-screen="notes"]) .compact-plus, html[data-compact] body.compact-writing .compact-plus { display: none; }
+/* writing: the field stays above the bar wherever the list is scrolled to (sticky: "fixed" would scroll along inside a screen) */
+html[data-compact] #notesScreen.compact-writing #notesComposer.notes-dock { position: sticky; bottom: calc(var(--bottom-nav-space) + var(--controls-bottom-gap) - var(--nav-clearance) - 6px); z-index: var(--z-bar); }
+.compact-plus { position: fixed; inset-inline-end: 20px; bottom: calc(var(--bottom-nav-space) + 14px); z-index: var(--z-bar); width: 54px; height: 54px; display: flex; align-items: center; justify-content: center;
+  border: 0; border-radius: 50%; background: var(--accent); color: var(--on-accent); box-shadow: var(--elevation-4); }
+html[data-compact] #mainScreen .chip-row:not(.compact-open) > .chip:not(.compact-options) { display: none; }
+.compact-options { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; }
+.compact-menu { position: fixed; z-index: calc(var(--z-nav) + 1); display: flex; flex-direction: column; gap: 2px; min-width: 220px; max-width: calc(100% - 24px); max-height: calc(100% - var(--bottom-nav-space) - 24px);
+  overflow-y: auto; padding: 8px; border: 1px solid var(--outline); border-radius: 16px; background: var(--bg-page); box-shadow: var(--elevation-4); }
+.compact-menu--more { inset-inline-end: 12px; bottom: calc(var(--bottom-nav-space) + 8px); }
+.compact-menu--pick { inset-inline-start: 16px; top: 62px; }
+.compact-menu-title { margin: 6px 8px 2px; font-size: var(--fs-2xs); font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.compact-menu-item { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 44px; padding: 0 12px; border: 0; border-radius: 10px;
+  background: transparent; color: var(--text-primary); font-size: var(--fs-base); font-weight: 600; text-align: start; }
+.compact-menu-item[aria-checked="true"] { background: color-mix(in srgb, var(--accent) 16%, transparent); }
+.compact-menu-note { color: var(--text-muted); font-weight: 600; }
+/* the graph in the sheet: one row on top, one row of tools below, the legend and notes only on demand */
+html[data-compact] #historyScreen:not(.ws-active) > #graphContainer { margin-inline: calc(-1 * var(--spacing-s-4)); border-radius: 0; }
+html[data-compact] .graph-topbar { top: 8px; left: 8px; right: 8px; flex-wrap: nowrap; gap: 6px; }
+html[data-compact] .graph-topbar .graph-view-toggle { flex: 1 1 auto; min-width: 0; display: flex; }
+html[data-compact] .graph-topbar .graph-view-toggle button { flex: 1 1 auto; min-width: 0; padding-inline: 6px; font-size: var(--fs-sm); white-space: nowrap; }
+html[data-compact] .graph-topbar .graph-filterbar { flex: none; flex-wrap: nowrap; gap: 6px; }
+html[data-compact] .graph-topbar :is(.graph-research-chip, .graph-adjust-btn) { width: 44px; height: 44px; padding: 0; justify-content: center; gap: 0; font-size: 0; }   /* the word stays for screen readers */
+html[data-compact] .graph-topbar :is(.graph-research-chip, .graph-adjust-btn) .ic { font-size: var(--fs-lg); }
+html[data-compact] .graph-tools { flex-direction: row; inset-inline-end: 8px; inset-inline-start: auto; bottom: 8px; }
+html[data-compact] .graph-tools :is(.graph-tool--plus, .graph-tool--minus) { display: none; }   /* two fingers zoom */
+html[data-compact] .graph-tools .graph-tool-sep { width: 1px; height: 24px; margin: 0 2px; align-self: center; }
+html[data-compact] :is(#graphContainer, #feedGraph):not(.legend-open) :is(.graph-controls-bottom-center, .graph-controls-bottom-right) { display: none !important; }   /* the note sets its own display */
+html[data-compact] .legend-open .graph-controls-bottom-right { inset-inline: 8px; bottom: 66px; max-width: none; align-items: stretch; padding: 8px; border: 1px solid var(--outline); border-radius: 14px; background: var(--bg-page); }
+html[data-compact] .legend-open .graph-controls-bottom-right .graph-legend { justify-content: flex-start; }
+html[data-compact] .legend-open .graph-controls-bottom-center { top: calc(var(--graph-topbar-h, 46px) + 64px) !important; bottom: auto !important; }

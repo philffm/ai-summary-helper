@@ -2290,9 +2290,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "Клацніть іконку Ollama в рядку меню (угорі праворуч) і оберіть <b>Quit Ollama</b>."
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "Натисніть «Створити 🎙️», щоб згенерувати випуск."
-  },
   "f_close_pane_d66b": {
     "message": "Закрити панель {n}",
     "description": "Placeholders: {n} (keep as is)"
@@ -2331,17 +2328,8 @@
   "f_copy_0d38": {
     "message": "Копіювати 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "Створені подкасти"
-  },
   "f_custom_prompt_text_10af": {
     "message": "Текст власного промпту"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "Власний стиль (необов’язково):"
-  },
-  "f_custom_style_ba7f": {
-    "message": "Власний стиль:"
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "Не вдалося завантажити бібліотеку D3."
@@ -2383,9 +2371,6 @@
     "message": "Доставка: {name}",
     "description": "Placeholders: {name} (keep as is)"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "Опишіть стиль подкасту"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "Закрити статистику графа"
   },
@@ -2397,9 +2382,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "Перетягніть це посилання на панель закладок 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "Освітній"
   },
   "f_endpoint_url_ddad": {
     "message": "URL кінцевої точки"
@@ -2421,10 +2403,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "Введіть email..."
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "Помилка створення подкасту: {msg}",
-    "description": "Placeholders: {msg} (keep as is)"
   },
   "f_error_d391": {
     "message": "Помилка:"
@@ -2514,14 +2492,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "Створіть букмарклет, що підсумовує будь-яку сторінку в будь-якому браузері — навіть на iOS/Android, де розширення не працює. Використовує ваш вхід у byphil Cloud."
   },
-  "f_generate_237e": {
-    "message": "Створити 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "Створюю аудіо… 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "Створення…"
   },
   "f_get_key_4f7c": {
     "message": "Отримати ключ"
@@ -2714,9 +2686,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "Поки немає статей для графа."
   },
-  "f_no_audio_8798": {
-    "message": "Немає аудіо"
-  },
   "f_no_content_available_0c7a": {
     "message": "Вміст недоступний."
   },
@@ -2800,9 +2769,6 @@
   "f_persist_optional_29ce": {
     "message": "Зберігати (необов’язково)"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "Оберіть назву для вашого шоу:"
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "Спершу вкажіть email доставки Kindle в налаштуваннях."
   },
@@ -2814,15 +2780,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "Введіть код підтвердження."
-  },
-  "f_podcast_name_1b92": {
-    "message": "Назва подкасту"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "Тривалість подкасту (хв):"
-  },
-  "f_podcast_style_61d0": {
-    "message": "Стиль подкасту:"
   },
   "f_positive_tone_6466": {
     "message": "Позитивний тон"
@@ -2946,9 +2903,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "Шукаю отримувача LocalSend у локальній мережі..."
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "Оберіть до 5 статей:"
-  },
   "f_send_share_bb4a": {
     "message": "Надсилання й обмін"
   },
@@ -3016,9 +2970,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "Ви увійшли · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "Соло"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "Щось пішло не так — спробуйте ще раз."
   },
@@ -3033,9 +2984,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "Зупиніть Ollama"
-  },
-  "f_storytelling_6d0b": {
-    "message": "Сторітелінг"
   },
   "f_style_fba4": {
     "message": "Стиль:"
@@ -3148,9 +3096,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "Не той email? Назад"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "Усе готово для створення подкасту!"
   },
   "f_a_donation_8832": {
     "message": "донат"
@@ -8393,5 +8338,74 @@
   },
   "f_look_it_up_7148": {
     "message": "Знайти"
+  },
+  "f_page_9196": {
+    "message": "Сторінка"
+  },
+  "f_this_view_3936": {
+    "message": "Цей екран"
+  },
+  "f_legend_0984": {
+    "message": "Позначення"
+  },
+  "f_account_deleted_b71d": {
+    "message": "Обліковий запис видалено."
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "Спершу скасуйте чинну підписку за посиланням у квитанції про оплату."
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "Зручно: лише ваша пошта, без ключа API."
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "Не вдалося видалити обліковий запис: {why}"
+  },
+  "f_delete_account_5421": {
+    "message": "Видалити обліковий запис"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "Видалити ваш обліковий запис?"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "Увійдіть знову, перш ніж видаляти обліковий запис."
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "Дякуємо, що допомагаєте AISH лишатися незалежним."
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "Ваш обліковий запис і перепустку в ньому буде видалено назавжди. Це не можна скасувати."
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 Ліміт безкоштовного тарифу вичерпано (3 надсилання)."
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 Send to Kindle\n\nБезкоштовно: 3 надсилання на Kindle.\n\nПереконайтеся, що kindle@byphil.eu є у списку схвалених відправників Kindle (див. довідку Amazon).\n\nНадіслати цю статтю на Kindle?"
+  },
+  "f_allow_19d2": {
+    "message": "Дозволити"
+  },
+  "f_allowed_66fd": {
+    "message": "Дозволено: {who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "Ще не дозволено: {who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "Нічого не надіслано. Спершу дозвольте це в «Налаштування › Моделі та API»."
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "Надіслати текст ШІ-сервісу?"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "Надсилання тексту ШІ-сервісам"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "Щоб робити підсумки, ставити теги й відповідати, AISH надсилає текст сторінок, збережених статей і стрічок, з якими ви це використовуєте, та ваші запитання отримувачу: {who}. Без вашого дозволу нічого не надсилається. Відкликати його можна в «Налаштування › Моделі та API»."
+  },
+  "f_withdraw_6cb7": {
+    "message": "Відкликати"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud, який передає його в OpenRouter і компанії вибраної моделі"
   }
 }

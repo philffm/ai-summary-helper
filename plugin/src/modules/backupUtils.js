@@ -74,6 +74,41 @@ function mergeSync(imported, current) {
     return imported;
 }
 
+/**
+ * The pieces a restored library is written in, about 2 MB or 50 keys each: a phone cannot take 100 MB in one call.
+ * The lists of articles come last, so that they never name a record that is not there yet.
+ */
+export function restoreChunks(data, maxChars = 2_000_000, maxKeys = 50) {
+    const lists = [SK.articlesIndex, SK.collIndex, SK.hlIndex];
+    const keys = Object.keys(data || {});
+    const ordered = [...keys.filter((k) => !lists.includes(k)), ...keys.filter((k) => lists.includes(k))];
+    const chunks = [];
+    let chunk = {}, size = 0, count = 0;
+    for (const k of ordered) {
+        const own = (JSON.stringify(data[k]) || '').length + k.length;
+        if (count && (size + own > maxChars || count >= maxKeys)) { chunks.push(chunk); chunk = {}; size = 0; count = 0; }
+        chunk[k] = data[k]; size += own; count++;
+    }
+    if (count) chunks.push(chunk);
+    return chunks;
+}
+
+/**
+ * Writes the local part of a backup piece by piece into local storage and fails loudly: a full or refused store is
+ * reported only through runtime.lastError.
+ */
+export async function writeRestored(data, { area = chrome.storage.local, onProgress } = {}) {
+    const chunks = restoreChunks(data);
+    for (let i = 0; i < chunks.length; i++) {
+        await new Promise((resolve, reject) => {
+            const done = () => { const failed = chrome.runtime?.lastError; if (failed) reject(new Error(failed.message || String(failed))); else resolve(); };
+            const pending = area.set(chunks[i], done);
+            if (pending && typeof pending.catch === 'function') pending.catch(reject);
+        });
+        onProgress?.(i + 1, chunks.length);
+    }
+}
+
 export function prepareImportedData(data, currentData) {
     const imported = renameKeys(data);
     for (const k of Object.keys(imported)) if (isTransient(k)) delete imported[k];   // a restored queue would send everything again, maybe from another device

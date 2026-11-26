@@ -2093,9 +2093,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "點擊選單列（右上角）的 Ollama 圖示，選擇 <b>Quit Ollama</b>。"
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "點擊「產生 🎙️」來建立你的節目。"
-  },
   "f_close_pane_d66b": {
     "message": "關閉窗格 {n}"
   },
@@ -2132,17 +2129,8 @@
   "f_copy_0d38": {
     "message": "複製 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "已建立的 Podcast"
-  },
   "f_custom_prompt_text_10af": {
     "message": "自訂提示詞文字"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "自訂風格（選填）："
-  },
-  "f_custom_style_ba7f": {
-    "message": "自訂風格："
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "D3 函式庫載入失敗。"
@@ -2183,9 +2171,6 @@
   "f_delivery_83d6": {
     "message": "傳送方式：{name}"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "描述你的 Podcast 風格"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "關閉圖譜統計"
   },
@@ -2197,9 +2182,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "將此連結拖曳到書籤列 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "教育"
   },
   "f_endpoint_url_ddad": {
     "message": "端點 URL"
@@ -2221,9 +2203,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "輸入你的電子郵件..."
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "產生 Podcast 時發生錯誤：{msg}"
   },
   "f_error_d391": {
     "message": "錯誤："
@@ -2309,14 +2288,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "產生一個可在任何瀏覽器中摘要網頁的書籤小工具，包括無法執行擴充功能的 iOS/Android。它會使用你的 byphil Cloud 登入狀態。"
   },
-  "f_generate_237e": {
-    "message": "產生 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "正在產生音訊… 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "產生中…"
   },
   "f_get_key_4f7c": {
     "message": "取得金鑰"
@@ -2507,9 +2480,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "還沒有可繪製圖譜的文章。"
   },
-  "f_no_audio_8798": {
-    "message": "無音訊"
-  },
   "f_no_content_available_0c7a": {
     "message": "沒有可用內容。"
   },
@@ -2591,9 +2561,6 @@
   "f_persist_optional_29ce": {
     "message": "保留（選填）"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "為你的節目取個名字："
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "請先在設定中設定 Kindle 接收信箱。"
   },
@@ -2605,15 +2572,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "請輸入驗證碼。"
-  },
-  "f_podcast_name_1b92": {
-    "message": "Podcast 名稱"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "Podcast 長度（分鐘）："
-  },
-  "f_podcast_style_61d0": {
-    "message": "Podcast 風格："
   },
   "f_positive_tone_6466": {
     "message": "正面語氣"
@@ -2735,9 +2693,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "正在區域網路中搜尋 LocalSend 接收端..."
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "最多選擇 5 篇文章："
-  },
   "f_send_share_bb4a": {
     "message": "傳送與分享"
   },
@@ -2804,9 +2759,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "已登入 · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "單人"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "發生錯誤，請再試一次。"
   },
@@ -2821,9 +2773,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "停止 Ollama"
-  },
-  "f_storytelling_6d0b": {
-    "message": "故事敘述"
   },
   "f_style_fba4": {
     "message": "風格："
@@ -2932,9 +2881,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "信箱填錯了？返回"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "可以產生你的 Podcast 了！"
   },
   "f_a_donation_8832": {
     "message": "贊助"
@@ -8110,5 +8056,74 @@
   },
   "f_look_it_up_7148": {
     "message": "查一查"
+  },
+  "f_page_9196": {
+    "message": "頁面"
+  },
+  "f_this_view_3936": {
+    "message": "此畫面"
+  },
+  "f_legend_0984": {
+    "message": "圖例"
+  },
+  "f_account_deleted_b71d": {
+    "message": "帳戶已刪除。"
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "請先透過付款收據中的連結取消進行中的訂閱。"
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "方便：只需電郵，無需 API 金鑰。"
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "無法刪除帳戶：{why}"
+  },
+  "f_delete_account_5421": {
+    "message": "刪除帳戶"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "刪除你的帳戶？"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "刪除帳戶前請重新登入。"
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "多謝你讓 AISH 保持獨立。"
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "你的帳戶及其中的通行證將被永久刪除，且無法復原。"
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 已達免費方案上限（3 次傳送）。"
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 傳送到 Kindle\n\n免費方案：包含 3 次 Kindle 傳送。\n\n請確認 kindle@byphil.eu 已在你的 Kindle 認可寄件者清單中（請見 Amazon 說明）。\n\n要將這篇文章傳送到 Kindle 嗎？"
+  },
+  "f_allow_19d2": {
+    "message": "允許"
+  },
+  "f_allowed_66fd": {
+    "message": "已允許：{who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "尚未允許：{who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "沒有傳送任何內容。請先在「設定 › 模型與 API」允許。"
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "將文字傳送給 AI 服務？"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "向 AI 服務傳送文字"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "為了摘要、加標籤和回答問題，AISH 會把你使用這些功能的網頁、已儲存文章和訂閱源的文字及你的問題傳送給 {who}。在你允許之前不會傳送任何內容。可在「設定 › 模型與 API」撤銷。"
+  },
+  "f_withdraw_6cb7": {
+    "message": "撤銷"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud（它會轉交給 OpenRouter 及所選模型的供應公司）"
   }
 }

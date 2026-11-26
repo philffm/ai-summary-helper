@@ -2093,9 +2093,6 @@
   "f_click_the_ollama_icon_in_the_2c7c": {
     "message": "انقر على أيقونة Ollama في شريط القوائم (أعلى اليمين) واختر <b>Quit Ollama</b>."
   },
-  "f_click_generate_to_create_you_aa04": {
-    "message": "انقر «إنشاء 🎙️» لإنشاء حلقتك."
-  },
   "f_close_pane_d66b": {
     "message": "إغلاق اللوحة {n}"
   },
@@ -2132,17 +2129,8 @@
   "f_copy_0d38": {
     "message": "نسخ 📋"
   },
-  "f_created_podcasts_1914": {
-    "message": "البودكاست المُنشأة"
-  },
   "f_custom_prompt_text_10af": {
     "message": "نص المطالبة المخصص"
-  },
-  "f_custom_style_optional_0950": {
-    "message": "أسلوب مخصص (اختياري):"
-  },
-  "f_custom_style_ba7f": {
-    "message": "أسلوب مخصص:"
   },
   "f_d3_library_failed_to_load_301f": {
     "message": "فشل تحميل مكتبة D3."
@@ -2183,9 +2171,6 @@
   "f_delivery_83d6": {
     "message": "التسليم: {name}"
   },
-  "f_describe_your_podcast_style_2c26": {
-    "message": "صف أسلوب البودكاست"
-  },
   "f_dismiss_graph_stats_0600": {
     "message": "إخفاء إحصاءات الرسم البياني"
   },
@@ -2197,9 +2182,6 @@
   },
   "f_drag_this_link_to_your_bookm_d09a": {
     "message": "اسحب هذا الرابط إلى شريط الإشارات المرجعية 🔖"
-  },
-  "f_educational_6bf0": {
-    "message": "تعليمي"
   },
   "f_endpoint_url_ddad": {
     "message": "عنوان URL لنقطة النهاية"
@@ -2221,9 +2203,6 @@
   },
   "f_enter_your_email_b13a": {
     "message": "أدخل بريدك الإلكتروني..."
-  },
-  "f_error_generating_podcast_472a": {
-    "message": "خطأ في إنشاء البودكاست: {msg}"
   },
   "f_error_d391": {
     "message": "خطأ:"
@@ -2309,14 +2288,8 @@
   "f_generate_a_bookmarklet_that__081e": {
     "message": "أنشئ Bookmarklet يلخّص أي صفحة في أي متصفح — بما في ذلك iOS/Android حيث لا تعمل الإضافة. يستخدم تسجيل دخولك إلى byphil Cloud."
   },
-  "f_generate_237e": {
-    "message": "إنشاء 🎙️"
-  },
   "f_generating_audio_bbb6": {
     "message": "جارٍ إنشاء الصوت… 🔊"
-  },
-  "f_generating_22a9": {
-    "message": "جارٍ الإنشاء…"
   },
   "f_get_key_4f7c": {
     "message": "احصل على مفتاح"
@@ -2507,9 +2480,6 @@
   "f_no_articles_to_graph_yet_3fc2": {
     "message": "لا توجد مقالات لعرضها في الرسم البياني بعد."
   },
-  "f_no_audio_8798": {
-    "message": "لا صوت"
-  },
   "f_no_content_available_0c7a": {
     "message": "لا يتوفر محتوى."
   },
@@ -2591,9 +2561,6 @@
   "f_persist_optional_29ce": {
     "message": "حفظ دائم (اختياري)"
   },
-  "f_pick_a_name_for_your_show_46b5": {
-    "message": "اختر اسمًا لبرنامجك:"
-  },
   "f_please_configure_your_kindle_186c": {
     "message": "يرجى ضبط بريد Kindle الإلكتروني للتسليم في الإعدادات أولًا."
   },
@@ -2605,15 +2572,6 @@
   },
   "f_please_enter_the_verificatio_ac88": {
     "message": "يرجى إدخال رمز التحقق."
-  },
-  "f_podcast_name_1b92": {
-    "message": "اسم البودكاست"
-  },
-  "f_podcast_length_minutes_c389": {
-    "message": "مدة البودكاست (بالدقائق):"
-  },
-  "f_podcast_style_61d0": {
-    "message": "أسلوب البودكاست:"
   },
   "f_positive_tone_6466": {
     "message": "نبرة إيجابية"
@@ -2735,9 +2693,6 @@
   "f_searching_lan_for_localsend__08f3": {
     "message": "جارٍ البحث عن مستلم LocalSend في الشبكة المحلية..."
   },
-  "f_select_up_to_5_articles_dcb7": {
-    "message": "اختر حتى 5 مقالات:"
-  },
   "f_send_share_bb4a": {
     "message": "إرسال ومشاركة"
   },
@@ -2804,9 +2759,6 @@
   "f_signed_in_byphil_cloud_f9ba": {
     "message": "تم تسجيل الدخول · byPhil Cloud"
   },
-  "f_solo_976a": {
-    "message": "فردي"
-  },
   "f_something_went_wrong_please__7745": {
     "message": "حدث خطأ ما — يرجى المحاولة مجددًا."
   },
@@ -2821,9 +2773,6 @@
   },
   "f_stop_ollama_b489": {
     "message": "إيقاف Ollama"
-  },
-  "f_storytelling_6d0b": {
-    "message": "سرد القصص"
   },
   "f_style_fba4": {
     "message": "الأسلوب:"
@@ -2932,9 +2881,6 @@
   },
   "f_wrong_email_go_back_ba6a": {
     "message": "بريد خاطئ؟ ارجع"
-  },
-  "f_you_re_ready_to_generate_you_ff41": {
-    "message": "أنت جاهز لإنشاء بودكاستك!"
   },
   "f_a_donation_8832": {
     "message": "تبرعًا"
@@ -8110,5 +8056,74 @@
   },
   "f_look_it_up_7148": {
     "message": "ابحث عنه"
+  },
+  "f_page_9196": {
+    "message": "الصفحة"
+  },
+  "f_this_view_3936": {
+    "message": "هذا العرض"
+  },
+  "f_legend_0984": {
+    "message": "مفتاح الرسم"
+  },
+  "f_account_deleted_b71d": {
+    "message": "تم حذف الحساب."
+  },
+  "f_cancel_a_running_subscriptio_1e97": {
+    "message": "ألغِ أولًا أي اشتراك جارٍ عبر الرابط في إيصال الدفع."
+  },
+  "f_convenient_just_your_email_n_1f37": {
+    "message": "سهل: بريدك الإلكتروني فقط، دون مفتاح API."
+  },
+  "f_could_not_delete_the_account_3738": {
+    "message": "تعذّر حذف الحساب: {why}"
+  },
+  "f_delete_account_5421": {
+    "message": "حذف الحساب"
+  },
+  "f_delete_your_account_7cc3": {
+    "message": "حذف حسابك؟"
+  },
+  "f_please_sign_in_again_before__cc48": {
+    "message": "سجّل الدخول مجددًا قبل حذف الحساب."
+  },
+  "f_thank_you_for_keeping_aish_i_ca0b": {
+    "message": "شكرًا لأنك تبقي AISH مستقلًا."
+  },
+  "f_your_account_and_any_pass_on_3c14": {
+    "message": "سيُزال حسابك وأي اشتراك عليه نهائيًا. لا يمكن التراجع عن ذلك."
+  },
+  "f_free_tier_limit_reached_3_se_a842": {
+    "message": "📚 تم بلوغ حد الفئة المجانية (3 عمليات إرسال)."
+  },
+  "f_send_to_kindle_free_tier_3_k_a86f": {
+    "message": "📚 إرسال إلى Kindle\n\nالفئة المجانية: 3 عمليات إرسال إلى Kindle.\n\nتأكد من وجود kindle@byphil.eu في قائمة المرسلين المعتمدين في Kindle (راجع مساعدة Amazon).\n\nهل تريد إرسال هذه المقالة إلى Kindle؟"
+  },
+  "f_allow_19d2": {
+    "message": "سماح"
+  },
+  "f_allowed_66fd": {
+    "message": "مسموح: {who}"
+  },
+  "f_not_allowed_yet_db80": {
+    "message": "غير مسموح بعد: {who}"
+  },
+  "f_nothing_was_sent_allow_it_un_4b0c": {
+    "message": "لم يُرسل شيء. اسمح بذلك أولًا في الإعدادات ‹ النماذج وواجهة API."
+  },
+  "f_send_text_to_an_ai_service_3a24": {
+    "message": "إرسال النص إلى خدمة ذكاء اصطناعي؟"
+  },
+  "f_sending_text_to_ai_services_f69f": {
+    "message": "إرسال النص إلى خدمات الذكاء الاصطناعي"
+  },
+  "f_to_summarize_tag_and_answer__86d1": {
+    "message": "للتلخيص والوسم والإجابة، يرسل AISH نصوص الصفحات والمقالات المحفوظة والخلاصات التي تستخدم معها هذه الميزات، وأسئلتك، إلى {who}. لا يُرسل شيء قبل أن تسمح. يمكنك سحب الإذن في الإعدادات ‹ النماذج وواجهة API."
+  },
+  "f_withdraw_6cb7": {
+    "message": "سحب الإذن"
+  },
+  "f_byphil_cloud_which_passes_it_b809": {
+    "message": "byPhil Cloud، التي تمرّره إلى OpenRouter وإلى الشركة المطوّرة للنموذج المختار"
   }
 }

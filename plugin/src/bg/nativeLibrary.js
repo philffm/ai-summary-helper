@@ -3,10 +3,13 @@
 // A web extension's storage is invisible to the app that carries it. So the background sends every saved article, with its
 // summary and highlights, to the app's native handler (mobile/ios/Extension/SafariWebExtensionHandler.swift), which puts it
 // into the folder the app and the extension share. One way only: iOS does not let the app talk to the extension.
+// It also tells the app which model connection is active here (toModel), so that the app can summarize with it.
 // It runs only with the `nativeMessaging` permission, which only platforms/ios/manifest.json declares.
 // Classic script (background.scripts). What was sent is remembered per device in `native:sent`.
+/* global aiTokenExpired */
 (function () {
-    const KEY_INDEX = 'articles:index', KEY_REC = 'articles:rec:', KEY_HL_INDEX = 'hl:index', KEY_HL_PAGE = 'hl:page:', KEY_SENT = 'native:sent';
+    const KEY_INDEX = 'articles:index', KEY_REC = 'articles:rec:', KEY_HL_INDEX = 'hl:index', KEY_HL_PAGE = 'hl:page:', KEY_SENT = 'native:sent', KEY_FEEDS = 'feeds:subs';
+    const MAX_FEEDS = 500, RESUME_ALARM = 'kaivo-handoff';
     const MAX_CONTENT = 200000, MAX_SUMMARY = 40000, MAX_HIGHLIGHTS = 200;
     const MAX_IMAGE = 1500000, MAX_IMAGES = 30;   // base64 characters of one picture, and pictures per article
     // written as an escape: Safari does not read a background script as UTF-8, an emoji typed here would not match
@@ -53,21 +56,79 @@
         };
     }
 
+    /** What the app gets of the subscriptions: address, name and tags of every web feed. */
+    function toFeeds(subs) {
+        return (Array.isArray(subs) ? subs : []).filter((f) => f && /^https?:/i.test(f.url || '')).slice(0, MAX_FEEDS)
+            .map((f) => ({ url: str(f.url, 2048), title: str(f.customTitle || f.title, 500), tags: (Array.isArray(f.tags) ? f.tags : []).filter((t) => typeof t === 'string').slice(0, 12) }));
+    }
+
+    /**
+     * The model connection that is active in this extension, and nothing else of the settings: only the one key or token
+     * that is in use leaves the storage, for the app on this device. The same choices as aiComplete (bg/aiComplete.js).
+     * null when no model is usable.
+     */
+    function toModel(sync, local, services, expired) {
+        const s = sync || {}, all = local || {};
+        const installId = str(all['account:installId'], 200);
+        if ((s.connectionMode || 'cloud') === 'cloud') {
+            const token = all['account:token'];
+            const key = (token && !(expired && expired(token)) && token) || all['account:licenseKey'] || '';
+            return {
+                mode: 'cloud', service: 'cloud', name: 'byPhil Cloud', format: 'openai',
+                url: 'https://api.byphil.eu/v1/projects/ai_summary_helper/chat',
+                model: str(s.preferredCloudModel, 200) || 'google/gemini-3.8-flash',
+                key: str(key, 8000), installId, region: s.cloudRegionPref === 'prefer-eu' ? 'prefer-eu' : '',
+            };
+        }
+        const service = str(s.activeService, 40) || 'openai';
+        const cfg = (all['config:services'] || {})[service] || {};
+        const meta = (services || []).find((x) => String(x.id || '').toLowerCase() === service.toLowerCase()) || {};
+        const idOf = (m) => (!m ? '' : typeof m === 'string' ? m : (m.id || ''));
+        const model = str(cfg.modelIdentifier || idOf(cfg.activeModelId) || idOf(Array.isArray(cfg.customModel) ? cfg.customModel[0] : cfg.customModel) || cfg.model || meta.defaultModel, 200);
+        const key = str(cfg.apiKey, 8000);
+        const gemini = service === 'gemini';
+        const url = gemini
+            ? 'https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(model) + ':generateContent'
+            : str(cfg.endpointUrl || cfg.endpoint || meta.endpointUrl, 2048);
+        if (!model || !/^https?:/i.test(url) || (!key && !meta.apiKeyOptional)) return null;
+        return { mode: 'own', service, name: str(meta.name, 80) || service, format: gemini ? 'gemini' : 'openai', url, model, key, installId: '', region: '' };
+    }
+
     /**
      * Sends what changed since the last run. `send(message)` resolves with the handler's answer. The app answers every
      * "hello" with an id of its shared folder; a different id (the app was installed anew) sends everything again.
      */
-    function createSender({ storage, send }) {
+    function createSender({ storage, send, connection }) {
         const get = (keys) => new Promise((resolve) => storage.get(keys, resolve));
         const set = (values) => new Promise((resolve) => storage.set(values, () => resolve()));
         let running = null, again = false;
+        const touched = new Set();   // ids whose saved text changed since they were last looked at
+        // kept in memory only: a restarted background tells the app again, so a connection that got lost there comes back
+        let modelMark = null;
 
         async function once() {
             const hello = await send({ type: 'hello' });
             if (!hello || !hello.ok) return { sent: 0, ok: false };
-            const base = await get([KEY_INDEX, KEY_HL_INDEX, KEY_SENT]);
-            const index = Array.isArray(base[KEY_INDEX]) ? base[KEY_INDEX] : [];
-            const ledger = base[KEY_SENT] && base[KEY_SENT].folder === hello.folder ? { ...base[KEY_SENT].items } : {};
+            const base = await get([KEY_INDEX, KEY_HL_INDEX, KEY_SENT, KEY_FEEDS]);
+            // newest first: a large library takes a while, and what was saved last is what someone looks for
+            const index = (Array.isArray(base[KEY_INDEX]) ? base[KEY_INDEX].slice() : [])
+                .sort((a, b) => String((b && b.timestamp) || '').localeCompare(String((a && a.timestamp) || '')));
+            const known = base[KEY_SENT] && base[KEY_SENT].folder === hello.folder ? base[KEY_SENT] : null;
+            const ledger = known ? { ...known.items } : {};
+            let feedMark = (known && known.feeds) || '';
+            const remember = () => set({ [KEY_SENT]: { folder: hello.folder, items: ledger, feeds: feedMark } });
+            // first, because a large library takes a while
+            const model = connection ? await connection().catch((e) => { send({ type: 'model-error', error: str(String(e && e.message || e), 200) }); }) : undefined;
+            const mark = model === undefined ? null : hello.folder + hash(JSON.stringify(model));
+            if (mark !== null && mark !== modelMark) {
+                const reply = await send({ type: 'model', connection: model });
+                if (reply && reply.ok) modelMark = mark;
+            }
+            const feeds = toFeeds(base[KEY_FEEDS]);
+            if (feeds.length && hash(JSON.stringify(feeds)) !== feedMark) {
+                const reply = await send({ type: 'feeds', feeds });
+                if (reply && reply.ok) { feedMark = hash(JSON.stringify(feeds)); await remember(); }
+            }
             const byPage = new Map();
             const pages = (Array.isArray(base[KEY_HL_INDEX]) ? base[KEY_HL_INDEX] : []).map((p) => p && p.k).filter(Boolean);
             for (const k of pages) {
@@ -78,13 +139,20 @@
                     byPage.get(page).push(h);
                 }
             }
-            let sent = 0, ok = true;
+            let sent = 0, ok = true, noted = false;
             for (const entry of index) {
-                const rec = entry && (await get([KEY_REC + entry.id]))[KEY_REC + entry.id];
-                const article = toPackage(entry, rec, byPage.get(pageOf(entry && entry.url)));
+                if (!entry || typeof entry.id !== 'string') continue;
+                const marks = byPage.get(pageOf(entry.url)) || [];
+                // the list entry and the highlights say whether anything moved: a library's texts are not read again for nothing
+                const light = hash(JSON.stringify([entry, marks]));
+                const seen = ledger[entry.id];
+                const changed = touched.delete(entry.id);
+                if (!changed && Array.isArray(seen) && seen[0] === light) continue;
+                const rec = (await get([KEY_REC + entry.id]))[KEY_REC + entry.id];
+                const article = toPackage(entry, rec, marks);
                 if (!article) continue;
                 const sig = hash(JSON.stringify(article));
-                if (ledger[article.id] === sig) continue;
+                if ((Array.isArray(seen) ? seen[1] : seen) === sig) { ledger[article.id] = [light, sig]; noted = true; continue; }
                 const { images, ...rest } = article;
                 let taken = true;
                 for (const image of images) {   // before the article, so that the app finds them when it reads it
@@ -92,15 +160,16 @@
                     if (!reply || !reply.ok) { taken = false; break; }
                 }
                 const answer = taken && await send({ type: 'article', article: rest });
-                if (!answer || !answer.ok) { ok = false; continue; }
-                ledger[article.id] = sig;
+                if (!answer || !answer.ok) { ok = false; if (changed) touched.add(article.id); continue; }
+                ledger[article.id] = [light, sig];
                 sent += 1;
-                await set({ [KEY_SENT]: { folder: hello.folder, items: ledger } });   // after each one: the background may be put to sleep
+                await remember();   // after each one: the background may be put to sleep
             }
+            if (noted) await remember();
             return { sent, ok };
         }
 
-        return function run() {
+        function run() {
             if (running) { again = true; return running; }
             running = (async () => {
                 let result;
@@ -108,20 +177,39 @@
                 return result;
             })().catch((e) => ({ sent: 0, ok: false, error: String(e && e.message || e) })).finally(() => { running = null; });
             return running;
-        };
+        }
+        run.touch = (ids) => ids.forEach((id) => touched.add(id));
+        return run;
     }
 
-    self.AISH_NATIVE = { toPackage, createSender };
+    self.AISH_NATIVE = { toPackage, toFeeds, toModel, createSender };
 
     const api = typeof browser !== 'undefined' ? browser : (typeof chrome !== 'undefined' ? chrome : null);
     const permissions = api && api.runtime && api.runtime.getManifest ? api.runtime.getManifest().permissions || [] : [];
     if (!permissions.includes('nativeMessaging') || !api.runtime.sendNativeMessage) return;
 
-    const run = createSender({ storage: api.storage.local, send: (message) => Promise.resolve(api.runtime.sendNativeMessage(APP, message)) });
+    async function connection() {
+        const sync = await api.storage.sync.get(['activeService', 'connectionMode', 'preferredCloudModel', 'cloudRegionPref']);
+        const local = await new Promise((resolve) => api.storage.local.get(['config:services', 'account:token', 'account:licenseKey', 'account:installId'], resolve));
+        const services = await (await fetch(api.runtime.getURL('services.json'))).json();
+        return toModel(sync, local, services, typeof aiTokenExpired === 'function' ? aiTokenExpired : null);
+    }
+    const run = createSender({ storage: api.storage.local, send: (message) => Promise.resolve(api.runtime.sendNativeMessage(APP, message)), connection });
     let timer = null;
-    const soon = () => { clearTimeout(timer); timer = setTimeout(() => run().then((r) => { if (!r.ok) console.warn('[Kaivo] the app did not take the library', r.error || ''); }), 800); };
+    // a few seconds of quiet first: a sync or an import writes many times in a row
+    // iOS puts the background to sleep in the middle of a long hand-over: an alarm wakes it to go on, and goes when it is done
+    const alarm = (on) => { try { if (on) api.alarms.create(RESUME_ALARM, { periodInMinutes: 1 }); else api.alarms.clear(RESUME_ALARM); } catch (_) { /* no alarms */ } };
+    // a run that returns has ended, whatever it says: only one that was cut off leaves the alarm behind
+    const start = () => { alarm(true); return run().then((r) => { alarm(false); if (!r.ok) console.warn('[Kaivo] the app did not take the library', r.error || ''); }); };
+    const soon = () => { clearTimeout(timer); timer = setTimeout(start, 4000); };
+    if (api.alarms && api.alarms.onAlarm) api.alarms.onAlarm.addListener((a) => { if (a && a.name === RESUME_ALARM) soon(); });
     api.storage.onChanged.addListener((changes, area) => {
-        if (area === 'local' && Object.keys(changes).some((k) => k === KEY_INDEX || k === KEY_HL_INDEX || k.startsWith(KEY_REC))) soon();
+        const keys = Object.keys(changes);
+        if (area === 'sync' && keys.some((k) => k === 'activeService' || k === 'connectionMode' || k === 'preferredCloudModel' || k === 'cloudRegionPref')) soon();
+        if (area !== 'local') return;
+        if (keys.some((k) => k === 'config:services' || k === 'account:token' || k === 'account:licenseKey')) soon();
+        run.touch(keys.filter((k) => k.startsWith(KEY_REC)).map((k) => k.slice(KEY_REC.length)));
+        if (keys.some((k) => k === KEY_INDEX || k === KEY_HL_INDEX || k === KEY_FEEDS || k.startsWith(KEY_REC) || k.startsWith(KEY_HL_PAGE))) soon();
     });
     soon();   // whatever was saved while this was not running
 }());

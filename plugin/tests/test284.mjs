@@ -54,10 +54,34 @@ accept = true;
 assert.equal((await run()).sent, 1, 'what was refused is tried again');
 assert.ok(!('images' in got.at(-1)));
 store['articles:rec:article_1_a'] = { content: '<img src="data:image/png;base64,QUJDRA==">' };
-const order = []; const ordered = N.createSender({ storage, send: async (m) => { order.push(m.type); return { ok: true, folder }; } });
-await ordered(); assert.deepEqual(order, ['hello', 'image', 'article']);
+const order = []; const reads = [];
+const counting = { get: (keys, cb) => { reads.push(...keys.filter((k) => k.startsWith('articles:rec:'))); storage.get(keys, cb); }, set: storage.set };
+const ordered = N.createSender({ storage: counting, send: async (m) => { order.push(m.type); return { ok: true, folder }; } });
+await ordered(); assert.deepEqual([order, reads], [['hello'], []], 'nothing moved: no saved text is read');
+ordered.touch(['article_1_a']); order.length = 0;
+await ordered(); assert.deepEqual(order, ['hello', 'image', 'article'], 'a changed text is sent');
+reads.length = 0; await ordered(); assert.deepEqual(reads, [], 'and not read again afterwards');
 const deaf = N.createSender({ storage, send: async () => { throw new Error('no app'); } });
 assert.equal((await deaf()).ok, false, 'a missing app is not an error that escapes');
 
+// newest first, and the feed subscriptions go along
+const lib = { 'articles:index': [{ ...entry, id: 'old', timestamp: '2026-01-01T00:00:00.000Z' }, { ...entry, id: 'new', timestamp: '2026-11-01T00:00:00.000Z' }],
+    'feeds:subs': [{ url: 'https://a.test/feed', title: 'A', customTitle: 'Mine', tags: ['x'], etag: 'e' }, { url: 'ftp://no' }, { url: 'https://b.test/rss', title: 'B' }] };
+const box = { get: (keys, cb) => cb(Object.fromEntries(keys.filter((k) => k in lib).map((k) => [k, structuredClone(lib[k])]))), set: (v, cb) => { Object.assign(lib, plain(v)); cb(); } };
+const log = []; const both = N.createSender({ storage: box, send: async (m) => { log.push(m.type === 'article' ? m.article.id : m.type === 'feeds' ? plain(m.feeds) : m.type); return { ok: true, folder: 'z' }; } });
+await both();
+assert.deepEqual(log, ['hello', [{ url: 'https://a.test/feed', title: 'Mine', tags: ['x'] }, { url: 'https://b.test/rss', title: 'B', tags: [] }], 'new', 'old']);
+log.length = 0; await both(); assert.deepEqual(log, ['hello'], 'unchanged feeds are not sent again');
+lib['feeds:subs'] = lib['feeds:subs'].slice(0, 1); log.length = 0; await both(); assert.equal(log[1].length, 1, 'a changed list is');
+// the wake-up alarm covers a run that is cut off; one that ends, even refused, removes it again
+{
+    const alarms = []; let timer = null;
+    const chrome = { runtime: { getManifest: () => ({ permissions: ['nativeMessaging'] }), sendNativeMessage: () => Promise.resolve({ ok: false }) },
+        alarms: { create: () => alarms.push('create'), clear: () => alarms.push('clear'), onAlarm: { addListener: () => {} } },
+        storage: { local: { get: (k, cb) => cb({}), set: (v, cb) => cb() }, onChanged: { addListener: () => {} } } };
+    vm.runInNewContext(code, { self: {}, chrome, URL, setTimeout: (f) => { timer = f; return 1; }, clearTimeout: () => {}, console: { warn: () => {} } });
+    await timer();
+    assert.deepEqual(alarms, ['create', 'clear']);
+}
 console.log('TEST 284 OK');
 process.exit(0);

@@ -406,6 +406,55 @@ try {
   }, true);
 } catch (_) { /* no document */ }
 
+// A finger selects without any mouse event (iPhone, iPad, Android): only selectionchange tells. The toolbar appears once
+// the selection has rested. The system's own copy menu sits above or below the selection, wherever it likes, so ours has a
+// fixed place away from the text: low on the screen, clear of the browser's bar, or at the top when the selection is low.
+const HL_TOUCH_REST = 500;
+let hlTouch = false;
+let hlTouchTimer = 0;
+try {
+  document.addEventListener('pointerdown', (e) => { hlTouch = e.pointerType === 'touch' || e.pointerType === 'pen'; }, true);
+  document.addEventListener('selectionchange', () => {
+    clearTimeout(hlTouchTimer);
+    if (hlTouch) hlTouchTimer = setTimeout(hlTouchSelection, HL_TOUCH_REST);
+  });
+} catch (_) { /* no document */ }
+
+function hlTouchSelection() {
+  if (!userHighlightingEnabled || isHighlightingSuppressed()) return;
+  const selection = window.getSelection();
+  // a tap on our own button may drop the selection first: the toolbar stays, only the "already shown" memory goes
+  if (!selection || selection.rangeCount === 0 || selection.isCollapsed) { hlLastShown = ''; return; }
+  const range = selection.getRangeAt(0);
+  const text = range.toString().replace(/\s+/g, ' ').trim();
+  if (text.replace(/[^\p{L}\p{N}]/gu, '').length < 3) return;
+  if (hlInEditable(selection.anchorNode) || hlInEditable(selection.focusNode)) return;
+  const key = `${text}|${range.startOffset}|${range.endOffset}`;
+  if (key === hlLastShown) return;
+  hlLastShown = key;
+  const box = range.getBoundingClientRect ? range.getBoundingClientRect() : { bottom: 0 };
+  const dock = window.innerHeight - 190;   // top of the toolbar when it sits low
+  const px = window.scrollX + window.innerWidth / 2 - 35;   // the toolbar is drawn from 40 left of this point, 156 wide
+  const py = window.scrollY + (box.bottom > dock - 70 ? 16 : dock) + 46;   // and 46 above it
+  const held = range.cloneRange(), whole = range.toString().trim();
+  const reattach = hlReattachId;
+  if (reattach) {
+    showHighlightTooltip(px, py, () => {
+      if (hlLive.has(reattach)) hlReattach(reattach, held);
+      else applyHighlightFromRange(held, whole);
+      hlReattachId = null;
+      selection.removeAllRanges();
+    }, '🔗 Attach here');
+    return;
+  }
+  npShowToolbar({
+    x: px, y: py,
+    onHighlight: () => hlSelectionAction('highlight', selection, held, whole, px, py),
+    onComment: () => hlSelectionAction('comment', selection, held, whole, px, py),
+    onNote: () => hlSelectionAction('note', selection, held, whole, px, py),
+  });
+}
+
 /** The selection of a mouse-up, or null when it is not a real selection gesture. */
 function hlQualify(event) {
   if (!event || event.button !== 0 || !hlDown || hlDown.inField) return null;

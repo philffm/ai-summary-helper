@@ -1329,8 +1329,7 @@
       "--on-accent on --mood-pos",
       "--on-accent on --ok",
       "--on-solid on --danger-strong",
-      "--on-solid on --localsend-bg",
-      "--on-solid on --ok-strong"
+      "--on-solid on --localsend-bg"
     ]
   }
 }

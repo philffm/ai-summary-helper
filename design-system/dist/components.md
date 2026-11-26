@@ -12,7 +12,7 @@ Start an action. Primary for the one main action on a screen (Summarize, Connect
 - Source: `plugin/src/popup.html`
 - Variants: Variant (Primary / Secondary / Ghost / Danger / Danger outline) · Size (L / M / S) · State (Default / Hover / Disabled / Focus)
 - Properties: Label (text), Icon (text), Show icon (boolean)
-- Tokens: `--accent`, `--accent-glow`, `--accent-light`, `--danger`, `--danger-text`, `--duration-fast`, `--easing-standard`, `--fs-lg`, `--fs-md`, `--fs-sm`, `--glass-border`, `--glass-card`, `--glass-inner-glow`, `--glass-input`, `--on-accent`, `--on-solid`, `--outline`, `--radius-md`, `--spacing-s-3`, `--text-primary`
+- Tokens: `--accent`, `--accent-glow`, `--accent-light`, `--danger`, `--danger-text`, `--duration-fast`, `--easing-standard`, `--fs-base`, `--fs-lg`, `--fs-md`, `--fs-sm`, `--glass-border`, `--glass-card`, `--glass-inner-glow`, `--glass-input`, `--on-accent`, `--on-solid`, `--outline`, `--radius-md`, `--spacing-s-3`, `--text-primary`
 - Accessibility:
   - <button> (never a div); disabled is the native attribute, not only opacity
   - Focus: --focus-ring, offset 2px
@@ -640,3 +640,21 @@ A slim vertical bar of icon buttons on the right edge of the home page (Feeds, H
 - Don't:
   - Do not add actions to it (it only opens screens)
   - Do not show it while the app floats over the page: the app's own close button takes over
+
+## Briefing highlight
+
+Status: stable · not in Figma yet
+
+Highlight a passage in the briefing of the home page: select text, press the button under it. A highlight offers to be removed when it is clicked or focused and activated.
+
+- CSS: `.hm-mark-pop`, `.hm-brief-text mark`
+- Source: `plugin/src/modules/homeHighlights.js`
+- Variants: State (Selected text / Highlighted / Remove offered)
+- Tokens: `--elevation-2`, `--focus-ring`, `--focus-ring-offset`, `--focus-ring-width`, `--radius-sm`, `--saved-note-user-bg`, `--saved-note-user-fg`
+- Accessibility:
+  - Highlights are in the tab order with the role button and a label that starts with "Remove highlight"
+  - Enter or Space on a highlight offers the button and moves focus to it; Escape closes it
+- Do:
+  - Keep the button next to the passage it acts on
+- Don't:
+  - Highlight without a button press: selecting text must stay free for copying

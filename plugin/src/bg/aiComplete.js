@@ -10,6 +10,7 @@
 // local Ollama), but non-streaming and callable from any extension page.
 
 const AISH_API_BASE = 'https://api.byphil.eu';
+const AI_STORE_BUILD = /*@store-build*/ false;   // see modules/storeBuild.js: nothing to buy is mentioned on iOS
 
 // "Prefer EU servers" (Settings → Models, hosted models only): the hosted service pins EU endpoints for models that have them and runs the others
 // as usual. A service that does not know the header ignores it. The answer's X-AISH-Region says which route was really used; the app shows that.
@@ -90,6 +91,7 @@ function aiFriendlyError(status, body, cloud) {
     if (/rate_limited/.test(e)) return 'Too many AI requests in a short time. Please wait a few minutes.';
     if (/too_large/.test(e)) return 'That is too much text for one request. Try fewer items.';
     if (/402|429|trial exhausted|requests per day|requests per week|quota|too many|rate/i.test(e)) {
+        if (AI_STORE_BUILD) return 'You\u2019ve reached today\u2019s limit. Come back tomorrow, or use your own key or model.' + (cloud ? ' Signed in before? Sign in again under Settings \u203a Account.' : '');
         return 'You\u2019ve reached your free daily limit. Come back tomorrow \u2014 or upgrade to Pro for unlimited use.' + (cloud ? ' Already a Pro user? Sign in again under Settings \u203a Account.' : '');
     }
     if (cloud && (status === 401 || status === 403)) return 'Your session could not be verified. Please sign in again under Settings \u203a Account.';
@@ -169,7 +171,18 @@ async function allowLocalModelServers() {
 allowLocalModelServers();
 
 // Model requests: Chrome's built-in model (model id `chrome-builtin`, see builtinAi.js) answers here, everything else is a normal fetch.
-const aiFetchRaw = (url, init) => (typeof AishBuiltin !== 'undefined' ? AishBuiltin.aiFetch(url, init) : fetch(url, init));
+// The App Store build sends nothing to a service on the internet before the person allowed that host (modules/aiConsent.js
+// asks). This device and the local network need no yes. The same rule as PRIVATE_HOST there (test295 compares them).
+const AI_PRIVATE_HOST = /^(localhost|.+\.localhost|.+\.local|127(\.\d+){3}|10(\.\d+){3}|192\.168(\.\d+){2}|172\.(1[6-9]|2\d|3[01])(\.\d+){2}|\[::1\]|\[f[cd][0-9a-f]{2}:.*\]|\[fe80:.*\])$/i;
+async function aiRequireConsent(url, init) {
+    if (typeof AishBuiltin !== 'undefined' && AishBuiltin.isBuiltin(init && init.body)) return;
+    const host = new URL(String(url)).hostname;
+    if (AI_PRIVATE_HOST.test(host)) return;
+    const allowed = (await chrome.storage.local.get([SK.aiConsent]))[SK.aiConsent] || {};
+    if (!allowed[host]) throw Object.assign(new Error(`Nothing was sent. Allow sending text to ${host} first, under Settings \u203a Models & API.`), { code: 'ai-consent' });
+}
+const aiSend = (url, init) => (typeof AishBuiltin !== 'undefined' ? AishBuiltin.aiFetch(url, init) : fetch(url, init));
+const aiFetchRaw = (url, init) => (AI_STORE_BUILD || globalThis.__aishStoreBuild ? aiRequireConsent(url, init).then(() => aiSend(url, init)) : aiSend(url, init));
 // A local model that is still loading (apfel right after Apple Intelligence was turned on or updated: "Model assets are loading.
 // Try again in a moment.") accepts the request and then breaks the stream. For local servers the start of the stream is read
 // first: real text → hand on everything (nothing lost); "loading" → wait and ask again, up to about two minutes; still loading →

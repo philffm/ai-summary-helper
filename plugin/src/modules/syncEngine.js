@@ -40,21 +40,28 @@ const status = (e) => (e && e.status) || 0;
  * @returns {Promise<{ pulled, applied, pushed, removed, errors: string[], more: boolean, joined: boolean, needsConfirm: number, pending: { key, at }[] }>}
  */
 export async function syncEncryptedPlace(o) {
-    const { place, storage, store, keys, meta, stampStore, adapter, backup, now = Date.now, budgetMs = 150000, chunk = 25, concurrency = 4, onProgress = () => {}, pullOnly = false, pushOnly = false, forceFirst = false, confirmDeletes = false, tombstoneTtlMs = TOMBSTONE_TTL_MS } = o;
+    const { place, storage, store, keys, meta, stampStore, adapter, backup, now = Date.now, budgetMs = 150000, chunk = 50, concurrency = 4, pullConcurrency = o.concurrency || 8, onProgress = () => {}, pullOnly = false, pushOnly = false, forceFirst = false, confirmDeletes = false, tombstoneTtlMs = TOMBSTONE_TTL_MS } = o;
     const started = now();
     const out = { pulled: 0, applied: 0, pushed: 0, removed: 0, merged: 0, purged: 0, needsConfirm: 0, pending: [], kept: 0, stale: false, errors: [], more: false, joined: false };
     const keepSet = new Set(Array.isArray(o.keep) ? o.keep : []), removeSet = new Set(Array.isArray(o.remove) ? o.remove : []);
     const toKeep = new Map();   // key → the time of the marker it must beat
     const became = new Set();   // articles that got live data in this run (new here, or brought back): the only ones that can have a twin from another device
     const lk = syncLedgerKey(place.id);
-    const L = (await get(storage, { [lk]: {} }))[lk] || {};
+    const held = (await get(storage, { [lk]: {} }))[lk] || {};
+    // Ledgers without `v` counted as joined after their first chunk. One of those that never finished a run may hold stamps for
+    // data that was never written (a run that broke off), so the join starts again: the server wins where the two differ.
+    const unfinished = !!(held.joined && !held.lastSync && held.v !== 2);
+    const L = unfinished ? { salt: held.salt } : held;
     if (L.salt && meta && L.salt !== meta.salt) throw new Error('This place was set up again on the server (a different key). Nothing was changed. Remove the place here and add it again to join it.');
     const items = { ...(L.items || {}) }, dirty = new Set(L.dirty || []);
     const firstRun = !L.joined || forceFirst;   // forceFirst (restore): the server's values win where they differ
     const stale = !!(L.lastSync && now() - L.lastSync > tombstoneTtlMs);   // away longer than deletion markers are kept: old records here may have been deleted and forgotten elsewhere
     out.stale = stale;
     let lastSync = L.lastSync || 0;
-    const save = () => set(storage, { [lk]: { joined: 1, salt: (meta && meta.salt) || L.salt || '', items, dirty: [...dirty], lastSync, blocked: out.needsConfirm } });
+    let joined = L.joined ? 1 : 0;   // only once everything on the server has been seen here
+    const unread = new Set(L.unread || []);   // files a join could not read: still to be joined, and nothing is pushed over them
+    let clean = 0;   // 1 once a run of a join stopped on purpose (time budget): everything it took over is written
+    const save = () => set(storage, { [lk]: { v: 2, joined, clean, salt: (meta && meta.salt) || L.salt || '', items, dirty: [...dirty], unread: [...unread], lastSync, blocked: out.needsConfirm } });
     const overBudget = () => now() - started > budgetMs;
     const names = new Map();
     const nameFor = async (key) => { let n = names.get(key); if (!n) { n = await nameOf(keys, typeOf(key), idOf(key)); names.set(key, n); } return n; };
@@ -62,7 +69,11 @@ export async function syncEncryptedPlace(o) {
 
     onProgress({ phase: 'checking', done: 0, total: 0 });
     if (firstRun && backup) await backup();   // a failure aborts the run before anything is written
-    await stampStore.scan({});
+    // Joining compares what is really stored, not what older stamps say: every record is read, once. A run that follows one
+    // which stopped on purpose can rely on the stamps; after anything else (an error, a closed browser) it reads them all again.
+    const resumed = firstRun && !forceFirst && L.clean === 1;
+    if (resumed) await set(storage, { [lk]: { ...L, clean: 0 } });
+    await stampStore.scan({ full: firstRun && !resumed });
     let stamps = await stampStore.all();
     const liveHere = Object.values(stamps).filter((s) => s && !s.deleted).length;
     // an unanswered question stays unanswered: while deletions are waiting for a yes, no further ones are applied on their own
@@ -89,8 +100,9 @@ export async function syncEncryptedPlace(o) {
     async function ingest(files) {
         if (!files.length) return;
         const data = await adapter.readMany(files.map((x) => x.rec.key));
-        const adopt = {}, apply = [];
+        const adopt = {}, apply = [], before = {};
         for (const { name, etag, rec } of files) {
+            const joining = firstRun || unread.has(name);
             const key = rec.key, st = stamps[key], d = data.get(key);
             let local = null;
             if (st && st.deleted) local = { rev: st.rev, f: {}, values: {}, deleted: true };
@@ -98,7 +110,7 @@ export async function syncEncryptedPlace(o) {
                 const f = clone(st.f), values = clone(d.fields);
                 for (const n of Object.keys(f)) {
                     if (!(n in values) && d.unknown.includes(n)) delete f[n];   // not held here is not "removed here": the server's copy decides
-                    else if (firstRun && rec.f[n] && rec.f[n].h !== f[n].h) f[n].t = 0;   // joining: the server's value wins where the two differ
+                    else if (joining && rec.f[n] && rec.f[n].h !== f[n].h) f[n].t = 0;   // joining: the server's value wins where the two differ
                 }
                 local = { rev: st.rev, f, values };
             }
@@ -114,16 +126,22 @@ export async function syncEncryptedPlace(o) {
             }
             if (r.changedLocal) {
                 const entry = r.merged.deleted ? { rev: r.merged.rev, f: {}, deleted: true } : { rev: r.merged.rev, f: r.merged.f };
-                adopt[key] = entry;
+                adopt[key] = entry; before[key] = st || null;
                 if (!(r.merged.deleted && !d)) apply.push({ key, merged: r.merged });
                 if (key.startsWith('article:') && !r.merged.deleted && !d) became.add(idOf(key));
             }
             items[key] = { n: name, e: etag, t: rec.rev.t };
             if (r.changedRemote) dirty.add(key);
             known.set(name, key);
+            unread.delete(name);
         }
         await stampStore.adopt(adopt);            // the stamps first...
-        await adapter.applyMany(apply);           // ...then the data they describe
+        try {
+            await adapter.applyMany(apply);       // ...then the data they describe
+        } catch (e) {
+            if (stampStore.revert) await stampStore.revert(before);   // no stamp may stand for data that was not written
+            throw e;
+        }
         if (stampStore.release) stampStore.release(Object.keys(adopt));   // written: events are read against the stored state again
         stamps = await stampStore.all();
         out.applied += apply.length;
@@ -136,14 +154,16 @@ export async function syncEncryptedPlace(o) {
         if (overBudget()) { out.more = true; break; }
         onProgress({ phase: 'pulling', done: i, total: toPull.length });
         const part = toPull.slice(i, i + chunk), got = [];
-        for (let j = 0; j < part.length; j += concurrency) {
-            await Promise.all(part.slice(j, j + concurrency).map(async (name) => {
-                try { const r = await readFile(name); if (r) got.push(r); } catch (e) { out.errors.push(e.message); }
+        for (let j = 0; j < part.length; j += pullConcurrency) {
+            await Promise.all(part.slice(j, j + pullConcurrency).map(async (name) => {
+                try { const r = await readFile(name); if (r) got.push(r); } catch (e) { out.errors.push(e.message); if (firstRun) unread.add(name); }
             }));
         }
         await ingest(got); out.pulled += got.length;
         await save();
     }
+    if (!out.more) joined = 1;
+    else clean = 1;
     if (out.more || pullOnly) { out.joined = !out.more; await save(); return out; }
     // kept despite a deletion elsewhere: a newer stamp here wins over the marker, so the push below brings it back everywhere
     if (toKeep.size && stampStore.keep) {
@@ -200,6 +220,7 @@ export async function syncEncryptedPlace(o) {
 
     // 2) push
     const pending = Object.entries(stamps).filter(([key, st]) => st && st.rev && (dirty.has(key) || !items[key] || items[key].t < st.rev.t) && (!stale || st.rev.t > L.lastSync)).map(([key]) => key);   // after a long absence only what changed since is pushed
+    for (const name of unread) { const key = known.get(name), at = pending.indexOf(key); if (at >= 0) pending.splice(at, 1); }
     for (let i = 0; i < pending.length; i += chunk) {
         if (overBudget()) { out.more = true; break; }
         onProgress({ phase: 'uploading', done: i, total: pending.length });

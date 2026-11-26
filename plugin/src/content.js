@@ -5,6 +5,7 @@ import { paperIndexFields, detectPaperInText, matchPagePaper } from './content/p
 import { finalizeSummary, withTagEn } from './content/finalize.js';
 import { TAG_INSTRUCTION, TAG_EXAMPLE } from './modules/topicCategories.js';
 import { isTokenExpired, refreshSession, SESSION_EXPIRED_MESSAGE, SIGN_IN_HINT } from './modules/sessionToken.js';
+import { storeBuild } from './modules/storeBuild.js';
 // content.js — Orchestrator
 // Entry point for the content script. Imports from ./content/* modules and
 // wires them together. The build system (scripts/build.js) bundles this into
@@ -144,6 +145,7 @@ import {
     const isLimit =
       /402|429|trial exhausted|requests per day|requests per week|limit|quota|too many|rate/i.test(e);
     if (!isLimit) return `Error: ${e}`;
+    if (storeBuild()) return 'You\u2019ve reached today\u2019s summary limit. Come back tomorrow, or use your own key or model.' + SIGN_IN_HINT;
     return 'You\u2019ve reached your free daily summary limit. Come back tomorrow for 3 more \u2014 or upgrade to Pro for unlimited summaries.' + SIGN_IN_HINT;
   }
 
