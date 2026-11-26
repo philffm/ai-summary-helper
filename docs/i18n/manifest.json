@@ -202754,6 +202754,76 @@
           "model": "deepseek/deepseek-v4.1-flash"
         }
       }
+    },
+    "d4b1ea5708dd532930a85188b45aff6f0a3ed458500c7577e0127a538eb0d100": {
+      "en": "Overview",
+      "translations": {
+        "de": {
+          "text": "Überblick",
+          "translatedAt": "2026-11-24T15:26:14.540Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "4f8d3c5499dd77712cbfef1eb042c381a654342535329b6bc77d0418219958ed": {
+      "en": "The whole tour in two minutes",
+      "translations": {
+        "de": {
+          "text": "Die ganze Tour in zwei Minuten",
+          "translatedAt": "2026-11-24T15:26:14.540Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "0ef79f0f6a5a8b932c7edafa79ecfe3eac688962d541f6a80d428f458c6e3fad": {
+      "en": "Short clips recorded from the real extension. Tap one to play it right here and browse the rest.",
+      "translations": {
+        "de": {
+          "text": "Kurze Clips, aufgenommen mit der echten Extension. Tippe auf einen, um ihn direkt hier abzuspielen, und sieh dir die übrigen an.",
+          "translatedAt": "2026-11-24T15:26:14.540Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "a1123977e52420ee5de980bd8ebd9075ba7ab601bc096d6f28dcbb51b6e574b3": {
+      "en": "AI Summary Helper in two minutes",
+      "translations": {
+        "de": {
+          "text": "AI Summary Helper in zwei Minuten",
+          "translatedAt": "2026-11-24T15:26:14.540Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "6bfc2acb99f8de056925793ab8c83bf48ce35687fef64dabbce2053b6089e54c": {
+      "en": "Play: AI Summary Helper in two minutes",
+      "translations": {
+        "de": {
+          "text": "Abspielen: AI Summary Helper in zwei Minuten",
+          "translatedAt": "2026-11-24T15:26:14.540Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "5863d6b5a0a7a4e4cae1850158b60f7a76b37377d9ef8fb1493410e3b267a1fe": {
+      "en": "You can export your data at any time via Settings → Backup & sync. Backups omit API keys, sign-in details, license keys, and install identifiers by default; including them is an explicit opt-in with a warning because anyone with that file can use them. Keep exported files private, and remember that older backups may contain secrets. In the same place, the Danger zone lets you delete, by category and with a count of what will go: summaries and archive, highlights, feeds, podcasts, API keys / sign-in / license, send targets (Kindle, LocalSend) and preferences.",
+      "translations": {
+        "de": {
+          "text": "Sie können Ihre Daten jederzeit über Einstellungen → Backup & Sync exportieren. Backups lassen API-Schlüssel, Anmeldedaten, Lizenzschlüssel und Installations-IDs standardmäßig weg; sie einzubeziehen ist ein ausdrückliches Opt-in mit einer Warnung, denn jeder, der diese Datei hat, kann sie nutzen. Halten Sie exportierte Dateien privat und bedenken Sie, dass ältere Backups Geheimnisse enthalten können. An derselben Stelle können Sie in der Gefahrenzone nach Kategorie löschen – mit einer Anzahl dessen, was entfernt wird: Zusammenfassungen und Archiv, Highlights, Feeds, Podcasts, API-Schlüssel / Anmeldung / Lizenz, Sendeziele (Kindle, LocalSend) und Voreinstellungen.",
+          "translatedAt": "2026-11-26T17:20:56.793Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
+    },
+    "336c9ccdc818a8abe5813dda04fc7364b359f99733603d7abe0ca4ab5bdec998": {
+      "en": "Off until you add a place in Settings → Backup & sync. A place is a folder on a server you choose (Nextcloud or another WebDAV server, or an S3-compatible bucket such as AWS S3, Cloudflare R2 or Backblaze B2) or a folder on your own computer. We do not run these servers, we are not involved, and we never see what you put there.",
+      "translations": {
+        "de": {
+          "text": "Deaktiviert, bis Sie in Einstellungen → Backup & Sync einen Ort hinzufügen. Ein Ort ist ein Ordner auf einem Server Ihrer Wahl (Nextcloud oder ein anderer WebDAV-Server oder ein S3-kompatibler Bucket wie AWS S3, Cloudflare R2 oder Backblaze B2) oder ein Ordner auf Ihrem eigenen Computer. Wir betreiben diese Server nicht, sind nicht daran beteiligt und sehen nie, was Sie dort ablegen.",
+          "translatedAt": "2026-11-26T17:20:56.793Z",
+          "model": "deepseek/deepseek-v4.1-flash"
+        }
+      }
     }
   }
 }
