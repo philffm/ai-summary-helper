@@ -22,6 +22,7 @@
 
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import path from 'node:path';
+import { existsSync } from 'node:fs';
 import * as cheerio from 'cheerio';
 import { localizedPath } from './lib/localized-paths.mjs';
 
@@ -36,6 +37,7 @@ const SITE_BASE = 'https://kaivo.byphil.eu';
 // One place for the product name (the rename is undecided): pages written with {{product}} pick it up from site-src/site.json.
 const PRODUCT = JSON.parse(await readFile(path.join(SITE_SRC, 'site.json'), 'utf8')).product;
 
+const THEME_SCRIPT = `<script>(function(){var t;try{t=localStorage.getItem('aish_theme')}catch(e){}if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.setAttribute('data-theme',t)})();</script>`;
 const INCLUDE_RE = /<!--include:([a-zA-Z0-9_-]+)-->/g;
 const HOMEPAGE_SOURCE = await readFile(path.join(PAGES_DIR, 'index.html'), 'utf8');
 const FEATURES_START = HOMEPAGE_SOURCE.indexOf('<!-- ── Features');
@@ -162,7 +164,9 @@ function evidenceSection(persona) {
         mcp: ['older-woman-home-nas-desk', 'it-specialist-server-room', 'offline-laptop-cable', 'woman-cafe-knowledge-graph']
     };
     const pics = IMAGES[persona] || IMAGES.privacy;
-    const slides = (slidesByPersona[persona] || slidesByPersona.privacy).map((s, i) => [...s.slice(0, 5), `${pics[i]}-1600.webp`]);
+    // The scene photos exist up to 1200 px only; asking for 1600 was a 404.
+    const photo = (name) => `${name}-${existsSync(path.join(OUT_DIR, 'assets', 'photo', `${name}-1600.webp`)) ? 1600 : 1200}.webp`;
+    const slides = (slidesByPersona[persona] || slidesByPersona.privacy).map((s, i) => [...s.slice(0, 5), photo(pics[i])]);
     const total = slides.length + 1;
     return `<section class="landing-evidence"><div class="wrap"><div class="section-head center reveal"><div class="eyebrow">In practice</div><h2>${title}</h2><p>${intro}</p></div><div class="cx cx--fit reveal" data-carousel role="region" aria-roledescription="carousel" aria-label="Evidence and live demo for this reading workflow"><ul class="cx-track">${slides.map(([big, heading, text, source, href, image], i) => `<li class="cx-slide${i === 0 ? ' is-active' : ''}" aria-roledescription="slide" aria-label="${i + 1} / ${total}"><figure><div class="cx-card" style="--img:url({{base}}assets/photo/${image})"><span class="cx-big cx-big--text">${big}</span><strong class="cx-title">${heading}</strong><span class="cx-text">${text}</span>${href ? `<small class="cx-src">Source: <a href="${href}" target="_blank" rel="noopener">${source}</a></small>` : ''}</div></figure></li>`).join('')}${landingDemoSlide(persona, slides.length)}</ul><button type="button" class="cx-nav cx-prev" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="cx-nav cx-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="cx-dots">${slides.map((_, i) => `<button type="button" class="cx-dot${i === 0 ? ' is-active' : ''}" aria-label="Slide ${i + 1}"></button>`).join('')}<button type="button" class="cx-dot cx-dot--demo" aria-label="Go to live demo slide">Demo</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="Go to live demo slide">Demo</button></div></div></div></section>`;
 }
@@ -204,6 +208,25 @@ function filteredFaqSection(persona) {
         if (!personas.includes(persona)) $(item).remove();
     });
     return $('body').html().replace(/[ \t]+$/gm, '');
+}
+
+// A part of the home page, reused as it is: <!--include:home:pricing--> and so on. One source, so the two cannot drift.
+const HOME_PARTS = {
+    'use-cases': ['<section id="use-cases"', '<!-- ── See it'],
+    pricing: ['<!-- ── Pricing', '<!-- ── FAQ']
+};
+
+function homePart(name) {
+    if (!(name in HOME_PARTS)) throw new Error(`Unknown home page part "${name}".`);
+    const [from, to] = HOME_PARTS[name].map((marker) => HOMEPAGE_SOURCE.indexOf(marker));
+    if (from < 0 || to < from) throw new Error(`Could not locate the "${name}" part in the homepage.`);
+    return HOMEPAGE_SOURCE.slice(from, to).trimEnd();
+}
+
+/** The first few questions of the home page FAQ, as plain <details>. */
+function firstFaqItems(count) {
+    const $ = cheerio.load(SHARED_FAQ, { decodeEntities: false });
+    return $('#faqList details').slice(0, count).map((_, item) => $.html(item)).get().join('\n        ');
 }
 
 function landingHeroVideo(persona) {
@@ -285,6 +308,8 @@ async function buildPage(relPath, partials, config) {
     html = html.replaceAll('<!--include:landing-demo-->', '');
     html = html.replace(/<!--include:faq:([a-z]+)-->/g, (_, persona) => filteredFaqSection(persona));
     html = html.replace(/<!--include:related:([a-z]+)-->/g, (_, topic) => relatedReadingSection(topic));
+    html = html.replace(/<!--include:home:([a-z-]+)-->/g, (_, name) => homePart(name));
+    html = html.replace(/<!--include:faq-items:(\d+)-->/g, (_, count) => firstFaqItems(Number(count)));
     html = html.replace(INCLUDE_RE, (match, name) => {
         if (!(name in partials)) {
             throw new Error(`${relPath}: unknown partial "${name}" (looked in site-src/partials/${name}.html)`);
@@ -294,6 +319,8 @@ async function buildPage(relPath, partials, config) {
 
     html = html.replaceAll('{{base}}', base);
     html = html.replaceAll('{{product}}', PRODUCT);
+    // Every page follows the saved or system theme before first paint, also those whose template carries no script for it.
+    if (!html.includes('aish_theme')) html = html.replace(/<meta charset="?UTF-8"?\s*\/?>/i, (m) => m + THEME_SCRIPT);
 
     // Reciprocal hreflang: every translated page already points back at
     // this English page as an alternate (translate.mjs handles that) —

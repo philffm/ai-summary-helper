@@ -26,3 +26,6 @@ videos/
 marketing/
 # Claude Code local state
 .claude/
+
+# Branded copies of the site (npm run site:build writes docs-kaivo/)
+/docs-kaivo/

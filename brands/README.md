@@ -1,15 +1,21 @@
 # Brands (white-label builds)
 
-The source tree is written in one brand, the default (`aish.json`: "AI Summary Helper" / "AISH"). Any other brand is a
-small JSON file next to it, applied to a **finished build output** so the source never forks.
+The source tree is written in one brand (`aish.json`: "AI Summary Helper" / "AISH"). Any other brand is a small JSON
+file next to it, applied to a **finished build output** so the source never forks. **Builds produce Kaivo unless another
+brand is named**; `--aish` builds the source brand only.
 
 ```
-npm run build -- --<brand>            # extension, all platforms → plugin/dev/<brand>-extension-<platform>
+npm run build:all                     # extension, all platforms → plugin/dev/kaivo-extension-<platform>
+npm run build:all -- --<brand>        # another brand → plugin/dev/<brand>-extension-<platform>
 plugin/build.sh --<brand>             # + zips in plugin/prod/<brand>-extension-<platform>-<version>.zip (no version bump)
-npm run site:build && npm run site:brand -- --<brand>   # docs/ → docs-<brand>/ (translated pages included)
+npm run site:build                    # docs/ and its Kaivo copy docs-kaivo/ (translated pages included)
+npm run site:brand -- --<brand>       # docs/ → docs-<brand>/
+npm run brand:images                  # redraw the blog images and social preview → brands/kaivo/site/ (committed)
+npm run brand:shots                   # product screenshots from the demo → brands/kaivo/site/ (committed)
 node brands/index.mjs list
 ```
-Add `--strict` to fail when the old brand is still visible in the output. The default build (no flag) is byte-identical to before.
+Add `--strict` to fail when the old brand is still visible in the output. `docs/` and `plugin/dev/aish-extension-*` stay in
+the source brand; they are the input of the copies.
 
 ## Brand file
 

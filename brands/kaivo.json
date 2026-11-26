@@ -31,7 +31,7 @@
     }
   },
   "needsNewArtwork": [
-    "assets/*.png, og-share.jpeg, extension.png, site screenshots and videos (raster artwork)",
+    "assets/*.png, og-share.jpeg, extension.png and the videos (raster artwork); the website pictures in kaivo/site/ come from scripts/brand-images.mjs and scripts/brand-shots.mjs",
     "mobile/android is not covered by the brand flag yet"
   ],
   "assets": {

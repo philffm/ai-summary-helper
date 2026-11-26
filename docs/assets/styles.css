@@ -769,11 +769,18 @@ footer .copyright{ font-size:var(--fs-sm); color:var(--text-muted); margin-top:1
 @media (max-width:420px){ .hero-switch-btn{ padding:9px 13px; font-size:var(--fs-sm); white-space:nowrap; } .hero-switch-btn svg{ display:none; } }
 
 /* ── Analytics notice + settings dialog ───────────────────────────── */
-.an-notice{ position:fixed; left:16px; bottom:calc(84px + env(safe-area-inset-bottom, 0px)); z-index:90; max-width:420px; display:flex; flex-direction:column; gap:10px;
-  background:var(--bg-raised); color:var(--text); border:1px solid var(--border-medium);
-  border-radius:var(--radius-lg); padding:14px 16px; box-shadow:0 8px 30px color-mix(in srgb, var(--shadow-ink) 30%, transparent); font-size:var(--fs-sm-plus); line-height:1.5; }
-@media (min-width:1180px){ .an-notice{ bottom:calc(14px + env(safe-area-inset-bottom, 0px)); max-width:360px; } }
+/* A small floating chip: one sentence and two equal choices. It sits at the bottom edge and moves up while the bar is there. */
+.an-notice{ position:fixed; left:12px; right:12px; bottom:calc(14px + env(safe-area-inset-bottom, 0px)); z-index:90; width:fit-content; max-width:520px; margin-inline:auto; display:flex; align-items:center; gap:2px;
+  background:var(--nav-bg-solid); color:var(--text-muted); border:1px solid var(--border-medium); border-radius:var(--radius-pill); padding:2px 6px 2px 16px;
+  box-shadow:0 2px 10px color-mix(in srgb, var(--shadow-ink) 8%, transparent); font-size:var(--fs-xs); line-height:1.35; }
+.an-notice .an-actions{ flex:none; flex-wrap:nowrap; gap:0; }
+.an-notice .an-btn{ min-height:44px; padding:0 8px; border:0; background:transparent; color:var(--accent-text); font-size:var(--fs-xs); font-weight:600; white-space:nowrap; }
+.an-notice .an-btn:hover{ background:transparent; filter:none; text-decoration:underline; }
+@media (min-width:861px){ .an-notice{ bottom:calc(84px + env(safe-area-inset-bottom, 0px)); } }
+@media (min-width:1280px){ .an-notice{ right:auto; margin-inline:0; left:16px; max-width:360px; bottom:calc(14px + env(safe-area-inset-bottom, 0px)); } }
+@media (max-width:860px){ body:has(.nav--pill .pill:not(.is-away)) .an-notice{ bottom:calc(78px + env(safe-area-inset-bottom, 0px)); } }
 .an-notice p{ margin:0; }
+body.nav-locked .an-notice{ display:none; }   /* the open menu has the screen to itself */
 .an-notice a, .an-dialog a{ color:inherit; text-decoration:underline; }
 .an-actions{ display:flex; gap:8px; flex-wrap:wrap; }
 .an-btn{ font:inherit; font-weight:500; padding:7px 14px; border-radius:var(--radius-md); cursor:pointer; background:transparent; color:inherit;
@@ -789,13 +796,6 @@ footer .copyright{ font-size:var(--fs-sm); color:var(--text-muted); margin-top:1
 .an-dialog h2{ margin:0; font-size:var(--fs-3xl); }
 .an-dialog p{ margin:0; }
 .an-small{ font-size:var(--fs-xs-plus); opacity:.8; }
-@media (max-width:520px){
-  /* slim bar: text and buttons side by side, small type, so it no longer covers a third of the first screen */
-  .an-notice{ left:8px; right:8px; bottom:calc(78px + env(safe-area-inset-bottom, 0px)); max-width:none; flex-direction:row; align-items:center; gap:8px; padding:8px 10px; font-size:var(--fs-xs); line-height:1.35; border-radius:var(--radius-md); }
-  .an-notice .an-actions{ flex-wrap:nowrap; flex:none; }
-  .an-notice .an-btn{ padding:5px 10px; font-size:var(--fs-xs); }
-}
-
 /* ── Accessibility: focus on filled controls, target size, link affordance ── */
 .hero-switch-btn.active:focus-visible, .persona-btn.active:focus-visible, .tier-toggle button.active:focus-visible,
 .tier-cta:focus-visible, .btn:focus-visible{ outline:3px solid var(--text); outline-offset:2px; box-shadow:0 0 0 5px var(--accent); }
@@ -1185,7 +1185,7 @@ body:has(.nav--pill){padding-bottom:calc(76px + env(safe-area-inset-bottom, 0px)
 .nav--pill .mm-lang summary{cursor:pointer;display:flex;gap:8px;align-items:center}
 .nav--pill .mm-lang summary svg{width:16px;height:16px}
 
-.nav--pill .theme-toggle-mobile{display:flex;justify-content:space-between;align-items:center;background:none;border:1px solid var(--border-medium);border-radius:var(--radius-pill);padding:12px 16px;cursor:pointer}
+.nav--pill .theme-toggle-mobile{display:flex;justify-content:space-between;align-items:center;min-height:48px;background:none;border:0;border-top:1px solid var(--border-subtle);padding:0;cursor:pointer}
 .nav--pill .theme-toggle-mobile svg{width:18px;height:18px}
 body.nav-locked{overflow:hidden}
 @media (max-width:860px){
@@ -1247,22 +1247,16 @@ body:has(.nav--pill){padding-top:88px}
 .nav--pill .pill{box-shadow:0 2px 10px color-mix(in srgb, var(--shadow-ink) 8%, transparent)}
 .nav--pill .mega-tag{font:600 var(--fs-3xs)/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
 .nav--pill .pill,.nav--pill .tool-btn,.nav--pill .theme-toggle,.nav--pill .nav-toggle{background:var(--nav-bg-solid)}
-@media (max-width:520px){.nav--pill .pill{padding:5px;gap:0}.nav--pill .pill a{padding:9px 10px;font-size:var(--fs-sm)}.nav--pill .nav-cta{padding:8px 12px;font-size:var(--fs-sm)}.nav--pill .tool-btn{display:none}}
+@media (max-width:520px){.nav--pill .pill{padding:5px;gap:0}.nav--pill .pill a{padding:9px 10px;font-size:var(--fs-sm)}.nav--pill .nav-cta{padding:8px 12px;font-size:var(--fs-sm)}.nav--pill #sendBtn{display:none}}
 
-/* ===== Language block inside the full-screen menu (search + grouped pills) ===== */
+/* ===== Language block inside the full-screen menu (one alphabetical list) ===== */
 .nav--pill .mm-lang{margin-top:28px}
-.nav--pill .mm-lang-h,.nav--pill .lang-group-h{font:600 var(--fs-2xs) var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin:0 0 8px}
-.nav--pill .lang-search{display:flex;align-items:center;gap:10px;padding:0 16px;height:52px;border-radius:var(--radius-2xl);border:1px solid var(--border-medium);background:var(--surface-1);color:var(--text-muted);margin-bottom:18px}
-.nav--pill .lang-search:focus-within{border-color:var(--accent)}
-.nav--pill .lang-search svg{width:18px;height:18px;flex:none}
-.nav--pill .lang-search input{flex:1;min-width:0;background:none;border:0;outline:0;font:500 var(--fs-lg) var(--font-body);color:var(--text)}
-.nav--pill .lang-group{margin-bottom:16px}
-.nav--pill .lang-pills{display:flex;flex-wrap:wrap;gap:8px}
-.nav--pill .lang-pill{display:inline-flex;align-items:center;padding:8px 14px;border-radius:var(--radius-pill);border:1px solid var(--border-medium);background:var(--surface-1);color:var(--text);font-size:var(--fs-md);font-weight:500;text-decoration:none;transition:border-color var(--duration-fast),background var(--duration-fast)}
-.nav--pill .lang-pill:hover{border-color:var(--accent)}
-.nav--pill .lang-pill[aria-current]{border-color:var(--accent-fill);background:var(--accent-fill);color:var(--on-accent)}
-.nav--pill .lang-pill[hidden],.nav--pill .lang-group[hidden]{display:none}
-.nav--pill .lang-empty{color:var(--text-muted);font-size:var(--fs-md)}
+.nav--pill .mm-lang-h{font:600 var(--fs-2xs) var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin:0 0 8px}
+.nav--pill .lang-pills{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));column-gap:24px}
+.nav--pill .lang-pill{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;border-bottom:1px solid var(--border-subtle);color:var(--text);font-size:var(--fs-base);text-decoration:none;transition:color var(--duration-fast)}
+.nav--pill .lang-pill:hover{color:var(--accent-text)}
+.nav--pill .lang-pill[aria-current]{color:var(--accent-text);font-weight:700}
+.nav--pill .lang-pill[aria-current]::after{content:"✓"}
 @media (min-width:861px){
   .nav--pill .mm-inner{grid-template-areas:"links lang" "links posts" "bottom posts";grid-template-rows:auto auto 1fr}
   .nav--pill .mm-lang{grid-area:lang;margin-top:0}
@@ -1274,7 +1268,7 @@ body:has(.nav--pill){padding-top:88px}
   .nav--pill .mm-posts{margin-top:12px}
 }
 
-/* Menu modes: hamburger → blog first, languages collapsed to the search field; globe → languages first, all expanded */
+/* Menu modes: hamburger → blog first, languages collapsed to one card; globe → languages first, all expanded */
 @media (min-width:861px){
   .nav--pill .mobile-menu[data-mode="menu"] .mm-inner{grid-template-areas:"links posts" "links lang" "bottom lang"}
   .nav--pill .mobile-menu[data-mode="menu"] .mm-posts{margin-top:0;margin-bottom:28px}
@@ -1283,11 +1277,11 @@ body:has(.nav--pill){padding-top:88px}
 
 /* Menu mode: blog as cards + language as a single card; language mode: full panel */
 .nav--pill .lang-card{display:none}
-.nav--pill .mobile-menu[data-mode="menu"] .lang-card{display:flex;align-items:center;gap:12px;width:100%;padding:18px 20px;border-radius:var(--radius-3xl);border:1px solid var(--border-medium);background:var(--surface-1);color:var(--text);font:600 var(--fs-xl) var(--font-body);cursor:pointer;text-align:start}
+.nav--pill .mobile-menu[data-mode="menu"] .lang-card{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:0;border:0;border-bottom:1px solid var(--border-subtle);background:none;color:var(--text);font:600 var(--fs-xl) var(--font-body);cursor:pointer;text-align:start}
 .nav--pill .lang-card svg{width:22px;height:22px;color:var(--accent);flex:none}
 .nav--pill .lang-card small{margin-inline-start:auto;font-weight:400;font-size:var(--fs-sm);color:var(--text-muted)}
-.nav--pill .lang-card:hover{border-color:var(--accent)}
-.nav--pill .mobile-menu[data-mode="menu"] .lang-search,.nav--pill .mobile-menu[data-mode="menu"] .mm-lang-h,.nav--pill .mobile-menu[data-mode="menu"] .lang-groups{display:none}
+.nav--pill .lang-card:hover{color:var(--accent-text)}
+.nav--pill .mobile-menu[data-mode="menu"] .mm-lang-h,.nav--pill .mobile-menu[data-mode="menu"] .lang-groups{display:none}
 @media (min-width:861px){
   .nav--pill .mobile-menu[data-mode="menu"] .mm-posts{grid-template-columns:1fr 1fr;gap:12px}
   .nav--pill .mobile-menu[data-mode="menu"] .mm-posts-h,.nav--pill .mobile-menu[data-mode="menu"] .mm-all{grid-column:1/-1}
@@ -1298,16 +1292,70 @@ body:has(.nav--pill){padding-top:88px}
 }
 
 /* ===== Language suggestion: floating glass chip under the pill nav ===== */
-.lang-banner{position:fixed;top:92px;left:50%;z-index:90;max-width:calc(100vw - 24px);padding:6px 6px 6px 16px;border-radius:var(--radius-pill);border:1px solid var(--border-medium);background:var(--nav-bg-solid);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 2px 12px color-mix(in srgb, var(--shadow-ink) 10%, transparent);opacity:0;transform:translate(-50%,-10px);transition:opacity var(--duration-slow),transform var(--duration-slow);pointer-events:none;flex-wrap:nowrap;gap:10px;font-size:var(--fs-md)}
-.lang-banner.is-in{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.lang-banner{width:fit-content;max-width:calc(100% - 24px);margin:0 auto 12px;padding:6px 6px 6px 16px;border-radius:var(--radius-pill);border:1px solid var(--border-medium);background:var(--nav-bg-solid);flex-wrap:nowrap;gap:10px;font-size:var(--fs-md)}
 .lang-banner-inner{display:flex;align-items:center;gap:10px}
 .lang-banner-globe{color:var(--accent);flex:none}
 .lang-banner-text{color:var(--text-muted)}
-.lang-banner-link{display:inline-block;margin-inline-start:4px;padding:6px 14px;border-radius:var(--radius-pill);background:var(--accent-fill);color:var(--on-accent);font-weight:600;text-decoration:none;white-space:nowrap}
+.lang-banner-link{margin-inline-start:2px;color:var(--accent-text);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .lang-banner-close{position:static;transform:none;flex:none;width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
-@media (max-width:860px){.lang-banner{top:66px;padding-left:12px;font-size:var(--fs-sm)}.lang-banner-text{line-height:1.3}}
-@media (prefers-reduced-motion:reduce){.lang-banner{transition:none}}
-@media (max-width:860px){.lang-banner{width:calc(100vw - 24px);border-radius:var(--radius-3xl);padding:8px 8px 8px 14px}.lang-banner-inner{width:100%}.lang-banner-text{flex:1;text-align:start}.lang-banner-close{margin-inline-start:auto}}
+@media (max-width:860px){.lang-banner{padding-left:12px;font-size:var(--fs-sm)}.lang-banner-text{line-height:1.3}}
+@media (max-width:860px){.lang-banner{width:calc(100% - 24px);border-radius:var(--radius-3xl);padding:8px 8px 8px 14px}.lang-banner-inner{width:100%}.lang-banner-text{flex:1;text-align:start}.lang-banner-close{margin-inline-start:auto}}
+
+/* ===== Phones first: header ground, bottom bar, touch targets ===== */
+body.nav-locked .nav--pill .pill{display:none}
+.nav--pill .pill a{justify-content:center;min-height:44px}
+/* The logo floats on its own; the controls share one island, built like the bottom bar, so text never runs under them
+   and no full-width bar covers the page. */
+.nav--pill .wordmark img{box-shadow:0 2px 10px color-mix(in srgb, var(--shadow-ink) 16%, transparent)}
+.nav--pill .nav-island{display:flex;align-items:center;gap:4px;margin-inline-start:auto;min-width:0;padding:5px;border-radius:var(--radius-pill);background:var(--nav-bg-solid);border:1px solid var(--border-medium);box-shadow:0 2px 10px color-mix(in srgb, var(--shadow-ink) 8%, transparent)}
+.nav--pill .nav-island .tool-btn,.nav--pill .nav-island .theme-toggle,.nav--pill .nav-island .nav-toggle{width:44px;height:44px;margin:0;border-color:transparent;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav--pill .nav-island button:hover{background:var(--surface-1)}
+.nav--pill .nav-tools:empty{display:none}
+/* The top install button waits while the page's own button is on screen (main.js). */
+.nav--pill.cta-wait .nav-cta{display:none}
+/* Until main.js has run: no top button (and on older translated pages none inside the bottom bar), so nothing flashes. */
+html:not(.nav-ready) .nav--pill .nav-cta,.nav--pill .pill>.pill-cta{display:none}
+/* Open menu: the menu button turns into a close button. */
+.nav--pill .nav-toggle[aria-expanded="true"] svg{display:none}
+.nav--pill .nav-toggle[aria-expanded="true"]::before,.nav--pill .nav-toggle[aria-expanded="true"]::after{content:"";position:absolute;width:20px;height:2px;border-radius:var(--radius-pill);background:currentColor;transform:rotate(45deg)}
+.nav--pill .nav-toggle[aria-expanded="true"]::after{transform:rotate(-45deg)}
+/* Phones: the language button opens the languages alone. */
+@media (max-width:860px){
+  .nav--pill .mobile-menu[data-mode="lang"] :is(.mm-links,.mm-posts,.mm-bottom,.lang-card){display:none}
+  .nav--pill .mobile-menu[data-mode="lang"] .mm-lang{margin-top:0}
+}
+/* Open menu: a plain ground in the menu's colour keeps its list from running under the logo and the close button. */
+body.nav-locked header.nav.nav--pill::before{content:"";position:absolute;z-index:2;left:0;right:0;top:-26px;bottom:-10px;background:var(--bg);pointer-events:none}
+.nav--pill .mm-lang{scroll-margin-top:96px}
+/* Photo heroes run under the header; the language suggestion has to start below it. */
+body:has(.hero--photo) .lang-banner{position:absolute;top:92px;left:0;right:0;margin-inline:auto;z-index:1}
+/* The scripts swap buttons per device with the hidden attribute; the button classes set a display that would win over it. */
+.btn-primary[hidden],.btn-secondary[hidden],.pill-cta[hidden],.nav--pill .mm-cta[hidden]{display:none}
+@media (max-width:860px){
+  header.nav.nav--pill{top:8px}
+  body.nav-locked header.nav.nav--pill::before{top:-8px}
+  header.nav.nav--pill .wordmark{flex:none;min-width:44px;min-height:44px}
+  .nav--pill .nav-pill-row{gap:8px}
+  .nav--pill .tool-btn,.nav--pill .theme-toggle,.nav--pill .nav-toggle{width:44px;height:44px;flex:none}
+  .nav--pill .nav-toggle{margin-inline-start:0}
+  .nav--pill .nav-cta{justify-content:center;min-width:0;min-height:44px;white-space:normal;overflow-wrap:anywhere;hyphens:auto;text-align:center;line-height:1.15}
+  .nav--pill .pill{left:12px;right:12px;max-width:520px;margin-inline:auto;transform:none;gap:2px;padding:5px}
+  html.nav-ready .nav--pill .pill{transition:transform var(--duration-base) var(--easing-standard),opacity var(--duration-base) var(--easing-standard)}
+  .nav--pill .pill a{flex:1 1 0;padding:4px 6px;white-space:normal;text-align:center;line-height:1.15}
+  .nav--pill .pill a[data-sec="hero"]{display:none}
+  .nav--pill .pill.is-away:not(:focus-within){transform:translateY(calc(100% + 24px + env(safe-area-inset-bottom, 0px)));opacity:0;pointer-events:none}
+  .nav--pill .mm-links a.mm-sub{min-height:44px;align-items:center}
+  .btn-primary,.btn-secondary,.pill-cta{min-height:44px}
+}
+/* Phones: the header is logo and menu. Theme is in the menu; on a phone or tablet so is the install path, and the page's own
+   button carries it, so the top bar needs none. A narrow desktop window keeps "Add to Chrome". */
+@media (max-width:860px){
+  .nav--pill .theme-toggle{display:none}
+  html.is-handheld .nav--pill .nav-cta{display:none}
+}
+html.is-handheld .nav--pill .mm-cta--secondary{background:var(--accent-fill);border-color:transparent;color:var(--on-accent)}
+@media (max-width:420px){.nav--pill .pill a{padding:4px;font-size:var(--fs-xs)}.nav--pill .nav-cta{padding:4px 10px;font-size:var(--fs-xs)}}
+@media (max-width:860px){body:has(.hero--photo) .lang-banner{top:68px}}
 
 /* ── Blog videos: a card with the clip on the left and what it shows on the right (stacked on phones) ── */
 .post-figure--video{ display:flex; align-items:center; gap:28px; margin:36px 0; padding:18px; border:1px solid var(--border-subtle); border-radius:var(--radius-4xl); background:linear-gradient(180deg, var(--surface-1), var(--surface-2)); }
@@ -1390,7 +1438,7 @@ body:has(.nav--pill){padding-top:88px}
 
 /* ── Watch: focus fan (desktop, set by main.js as .is-fan): one clip in front, neighbours step back; its caption sits below ── */
 .vstack.is-fan{ --cw:260px; position:relative; display:block; height:calc(var(--cw) * 1.444 + 56px); max-width:1200px; margin:0 auto; padding:0; touch-action:pan-y; margin-top:calc(var(--cw) * .34); scroll-margin-bottom:96px; }
-@media (max-width:760px){ .vstack.is-fan{ --cw:min(58vw, 230px); margin-inline:0; overflow-x:clip; } .vstack.is-fan .vstack-item[data-pos="3"], .vstack.is-fan .vstack-item[data-pos="-3"]{ opacity:0; pointer-events:none; } }
+@media (max-width:760px){ .vstack.is-fan{ --cw:min(58vw, 230px); margin-inline:0; overflow:visible; }   /* the side cards run to the screen edge, where the section clips them */ .vstack.is-fan .vstack-item[data-pos="3"], .vstack.is-fan .vstack-item[data-pos="-3"]{ opacity:0; pointer-events:none; } }
 .vstack.is-fan .vstack-item{ position:absolute; left:50%; bottom:24px; width:var(--cw); margin:0 0 0 calc(var(--cw) / -2); flex:none; transform-origin:50% 100%; transition:transform var(--duration-slower) var(--easing-emphasized), opacity var(--duration-screen) var(--easing-standard); }
 .vstack.is-fan .vstack-item[data-pos="0"]{ transform:none; z-index:10; }
 .vstack.is-fan .vstack-item[data-pos="-1"]{ transform:translateX(calc(var(--cw) * -0.808)) scale(.77) rotate(-4deg); opacity:.92; z-index:9; }
@@ -1418,6 +1466,9 @@ body:has(.nav--pill){padding-top:88px}
 .vstack-dots{ display:flex; gap:8px; }
 .vstack-dot{ width:8px; height:8px; padding:0; border:0; border-radius:50%; background:var(--border-strong); cursor:pointer; transition:background var(--duration-base), transform var(--duration-base); }
 .vstack-dot.on{ background:var(--accent-fill); transform:scale(1.25); }
+/* Phones: many clips, so the dots tighten up and the arrows stay on the screen. */
+@media (max-width:560px){ .vstack-nav{ gap:12px; } .vstack-arrow{ flex:none; } .vstack-dots{ gap:4px; } .vstack-dot{ width:6px; height:6px; } }
+@media (max-width:420px){ .vstack-nav{ gap:8px; } .vstack-dots{ gap:3px; } .vstack-dot{ width:5px; height:5px; } }
 @media (prefers-reduced-motion: reduce){ .vstack.is-fan .vstack-item, .vstack-dot{ transition:none; } }
 /* narrower desktops: fewer clips at the sides, and nothing may cause a horizontal scrollbar */
 #videos{ overflow-x:clip; }
@@ -1519,7 +1570,7 @@ footer .foot-eco-h{ font-family:var(--font-mono); font-size:var(--fs-2xs-plus); 
 .tier-once a{ color:var(--text); text-decoration:underline; text-decoration-color:var(--border-strong); text-underline-offset:3px; }
 .tier-once a:hover{ text-decoration-color:currentColor; }
 button.tier-cta{ width:100%; font-family:inherit; cursor:pointer; color:inherit; }
-button.tier-cta[hidden]{ display:none; }
+.tier-cta[hidden]{ display:none; }
 
 /* Live demo as a slide of the "See it" gallery (desktop only: main.js removes it on phones) */
 .cx-slide .demo-frame{ --dw:100%; width:100%; margin:0; height:auto; aspect-ratio:16/10; }
@@ -1643,6 +1694,7 @@ body:has(.hero--photo){ padding-top:0; }
 
 /* Blog video: a poster card that opens the same full-screen player as the home page. Wide screens: a sticky rail beside the text. */
 .post-video{ margin:28px 0; }
+.post-video video{ max-width:100%; height:auto; }
 .post-video-open{ position:relative; display:block; width:100%; max-width:300px; padding:0; border:0; background:none; cursor:pointer; border-radius:var(--radius-3xl); overflow:hidden; box-shadow:0 18px 44px color-mix(in srgb, var(--shadow-ink) 34%, transparent); }
 .post-video-open video{ display:block; width:100%; height:auto; aspect-ratio:1080/1560; object-fit:cover; background:var(--media-video); }
 .post-video-play{ position:absolute; left:50%; top:50%; width:64px; height:64px; margin:-32px 0 0 -32px; border-radius:50%; background:color-mix(in srgb, var(--media-veil) 62%, transparent); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); color:var(--on-media-strong); display:flex; align-items:center; justify-content:center; font-size:var(--fs-4xl); padding-left:3px; box-shadow:0 0 0 6px color-mix(in srgb, var(--on-media-strong) 14%, transparent); transition:transform var(--duration-fast) var(--easing-standard); }
@@ -2015,3 +2067,85 @@ body:has(.hero--photo){ padding-top:0; }
 .hs-player-close:focus-visible, .hs-player-share:focus-visible, .hs-player video:focus-visible{ outline:3px solid var(--highlight-text); outline-offset:3px; }
 @media (max-width:860px){ .hs-vwrap.is-playing{ min-height:min(78dvh, 640px); } }
 @media (prefers-reduced-motion: reduce){ .hs-player{ animation:none; } }
+
+/* ── Story landing page (/start/, in test): hero, one product picture that follows five steps, then shorter sections.
+   Everything is scoped to .start-page, so no other page changes. ── */
+.start-page section{ padding:56px 0; }
+.start-page h2{ font-family:var(--font-display); font-weight:600; letter-spacing:-0.015em; line-height:1.18; text-wrap:balance; }
+.st{ max-width:1200px; margin:0 auto; padding:0 20px; }
+.start-page .st-hero{ padding:20px 0 20px; }   /* the body already leaves room for the floating logo */
+.st-eyebrow{ display:none; }
+.st-hero h1{ font-family:var(--font-display); font-weight:600; font-size:clamp(34px, 10vw, 62px); line-height:1.06; letter-spacing:-0.025em; margin:0 0 14px; text-wrap:balance; }
+.st-hero h1 em{ font-style:normal; color:var(--accent-text); }
+.st-sub{ font-size:var(--fs-xl); line-height:1.55; color:var(--text-muted); margin:0 0 20px; max-width:44ch; }
+.st-hero .hero-cta{ justify-content:flex-start; margin-bottom:12px; }
+.st-hero .hero-proof{ font-size:var(--fs-sm); font-weight:400; color:var(--text-muted); margin:0; }
+/* The picture sticks under the floating logo and buttons; the steps scroll past below it. */
+.st-stage{ position:sticky; top:76px; z-index:5; background:var(--bg); margin:0 -20px; padding:6px 20px 12px; }
+.st-stage::before{ content:""; position:absolute; left:0; right:0; bottom:100%; height:76px; background:var(--bg); opacity:0; pointer-events:none; }
+.st-stage.is-stuck::before{ opacity:1; }
+.st-frame{ position:relative; width:min(100%, 420px, 50svh * 1.105); aspect-ratio:21/19; margin:0 auto; overflow:hidden; border-radius:var(--radius-3xl); border:1px solid var(--border-medium); background:var(--surface-1); box-shadow:0 18px 40px color-mix(in srgb, var(--shadow-ink) 16%, transparent); }
+.st-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; opacity:0; transition:opacity var(--duration-reveal) var(--easing-standard); }
+.st-frame .is-on img{ opacity:1; }
+.st-dots{ display:flex; justify-content:center; gap:6px; list-style:none; margin:10px 0 0; padding:0; }
+.st-dots li{ width:20px; height:3px; border-radius:var(--radius-pill); background:var(--border-medium); }
+.st-dots li.is-on{ background:var(--accent-text); }
+.start-page .st-steps{ padding:0 0 24px; scroll-margin-top:calc(104px + min(100vw - 40px, 420px, 50svh * 1.105) * 0.905); }
+.st-steps ol{ list-style:none; margin:0; padding:0; }
+.st-steps li{ min-height:46svh; padding:22px 0; }
+.st-steps li:last-child{ min-height:30svh; }
+.st-n{ font-family:var(--font-mono); font-size:var(--fs-xs); color:var(--highlight-text); }
+.st-steps h2{ font-size:var(--fs-6xl); margin:8px 0; }
+.st-steps p, .st-band p, .st-own p, .start-page #phone p, .st-end p{ color:var(--text-muted); font-size:var(--fs-prose); line-height:1.6; margin:0; max-width:48ch; }
+.st-more{ display:inline-flex; align-items:center; min-height:44px; font-weight:600; font-size:var(--fs-base); color:var(--accent-text); text-decoration:none; }
+.st-more:hover{ text-decoration:underline; text-underline-offset:3px; }
+.st-split{ display:grid; gap:24px; }
+.st-split img{ width:100%; height:auto; border-radius:var(--radius-4xl); }
+.st-split h2, .st-end h2{ font-size:clamp(28px, 5vw, 44px); margin:0 0 12px; }
+.st-own{ display:grid; gap:12px; list-style:none; margin:0; padding:0; }
+.st-own li{ padding:20px; border-radius:var(--radius-2xl); border:1px solid var(--border-medium); background:var(--surface-1); }
+.st-own h3{ font-family:var(--font-display); font-size:var(--fs-3xl); font-weight:600; margin:0 0 6px; }
+.st-feats{ border-bottom:1px solid var(--border-medium); }
+.st-feats details{ border-top:1px solid var(--border-medium); }
+.st-feats summary{ display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:54px; cursor:pointer; list-style:none; font-family:var(--font-display); font-size:var(--fs-xl); font-weight:600; }
+.st-feats summary::-webkit-details-marker{ display:none; }
+.st-feats summary::after{ content:"+"; font-size:var(--fs-4xl); font-weight:400; color:var(--accent-text); }
+.st-feats details[open] summary::after{ content:"−"; }
+.st-feats summary:focus-visible{ outline:3px solid var(--accent-text); outline-offset:2px; }
+.st-feats details p{ margin:0 0 16px; color:var(--text-muted); font-size:var(--fs-base); line-height:1.6; }
+.st-center{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px; }
+.start-page p.st-center{ margin:24px 0 0; }
+.start-page #phone h2{ font-size:var(--fs-6xl); margin:0; }
+.start-page .use-case-grid{ margin-top:24px; }
+.st-end .hero-cta{ margin:8px 0 0; }
+/* The bottom bar of this page stays after the hero and ends in the install button (data-dock-stay, assets/main.js). */
+.start-page .nav--pill .pill a.dock-cta, .start-page .nav--pill .pill button.dock-cta{ border:0; cursor:pointer; font-family:var(--font-body); font-weight:600; background:var(--accent-fill); color:var(--on-accent); border-radius:var(--radius-pill); white-space:nowrap; min-height:44px; display:inline-flex; align-items:center; justify-content:center; padding:0 18px; }
+.start-page .nav--pill .pill .dock-cta[hidden]{ display:none; }
+@media (min-width:861px){ html:not(.is-handheld) .start-page .nav--pill .pill .dock-cta{ display:none; } }
+@media (max-width:860px){
+  .start-page .nav--pill .nav-cta{ display:none; }   /* one install button: the bottom bar's (a narrow desktop window would show two) */
+  .start-page .nav--pill .pill{ width:min(460px, calc(100vw - 24px)); }
+  .start-page .nav--pill .pill .dock-cta{ flex:1.8 1 0; min-width:0; padding:0 8px; }
+  /* "Choose your path" as a short list on phones */
+  .start-page .use-case-grid{ grid-template-columns:1fr; gap:8px; }
+  .start-page .use-case-card{ padding:14px 18px; }
+  .start-page .use-case-card h3{ min-height:0; margin:0; font-size:var(--fs-lg); }
+  .start-page .use-case-card .blog-date{ margin-bottom:4px; }
+  .start-page .use-case-card .blog-read{ display:none; }
+}
+@media (max-width:420px){ .start-page .nav--pill .pill a, .start-page .nav--pill .pill .dock-cta{ font-size:var(--fs-sm); } .start-page .nav--pill .pill a:not(.dock-cta){ padding-inline:10px; } }
+@media (min-width:861px){
+  .st{ display:grid; grid-template-columns:minmax(0, 0.8fr) minmax(0, 1.2fr); column-gap:56px; margin-top:-88px; padding:0 32px; }   /* the stage has its own room for the top bar */
+  .start-page .st-hero{ grid-column:1; grid-row:1; display:flex; flex-direction:column; justify-content:center; min-height:100svh; padding:88px 0 80px; }
+  .st-eyebrow{ display:flex; align-self:flex-start; margin-bottom:16px; }
+  .st-hero h1{ font-size:clamp(36px, 3.9vw, 54px); }
+  .st-stage{ grid-column:2; grid-row:1 / span 2; align-self:start; top:0; height:100vh; margin:0; padding:84px 0 92px; display:flex; flex-direction:column; justify-content:center; background:none; }
+  .st-stage::before{ display:none; }
+  .st-frame{ width:min(100%, (100vh - 214px) * 9 / 7); aspect-ratio:9/7; }
+  .start-page .st-steps{ grid-column:1; grid-row:2; scroll-margin-top:0; }
+  .st-steps li{ min-height:76vh; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; }
+  .st-steps li:last-child{ min-height:64vh; }
+  .st-split{ grid-template-columns:minmax(0, 1.1fr) minmax(0, 1fr); align-items:center; gap:56px; }
+  .st-own{ grid-template-columns:repeat(3, 1fr); }
+  .start-page .blog-grid.st-two{ grid-template-columns:repeat(2, minmax(0, 1fr)); max-width:760px; margin-inline:auto; }
+}

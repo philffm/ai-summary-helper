@@ -108,9 +108,8 @@
     if (CONSENT_MODE === 'optin' && get(K_CHOICE)) return;
     var optin = CONSENT_MODE === 'optin';
     var n = el('div', { 'class': 'an-notice', role: 'region', 'aria-label': 'Analytics notice' },
-      '<p><strong>Privacy-friendly analytics.</strong> ' +
-      (optin ? 'May we count anonymous visits? ' : 'We count anonymous visits with a self-hosted Matomo. ') +
-      'No cookies, no tracking across sites, no personal data. <a href="' + privacyHref() + '">Details</a></p>' +
+      '<p>' + (optin ? 'May we count anonymous visits, without cookies? ' : 'Self-hosted, cookieless visit counts. No personal data. ') +
+      '<a href="' + privacyHref() + '">Details</a></p>' +
       '<div class="an-actions">' +
       (optin
         ? '<button type="button" data-a="allow" class="an-btn an-primary">Allow</button><button type="button" data-a="deny" class="an-btn">No thanks</button>'

@@ -27,7 +27,8 @@ import { execFileSync } from 'node:child_process';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 export const REPO = path.resolve(HERE, '..');
-export const DEFAULT_BRAND = 'aish';
+export const DEFAULT_BRAND = 'aish';   // the brand the source tree is written in; the others are applied on top of it
+export const BUILD_BRAND = 'kaivo';    // what the builds produce when no brand is named (`--aish` builds the source brand only)
 
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -45,14 +46,14 @@ export function loadBrand(id = DEFAULT_BRAND) {
 
 export const isDefault = (brand) => !brand || brand.id === DEFAULT_BRAND;
 
-/** `--<id>` / `--brand=<id>` anywhere in argv (or BRAND=<id> in the environment) → brand id; default otherwise. */
+/** `--<id>` / `--brand=<id>` anywhere in argv (or BRAND=<id> in the environment) → brand id; BUILD_BRAND otherwise. */
 export function brandIdFromArgs(args = [], env = process.env) {
     const known = listBrands();
     for (const a of args) {
         if (a.startsWith('--brand=')) return a.slice(8);
-        if (a.startsWith('--') && known.includes(a.slice(2)) && a.slice(2) !== DEFAULT_BRAND) return a.slice(2);
+        if (a.startsWith('--') && known.includes(a.slice(2))) return a.slice(2);
     }
-    return env.BRAND || DEFAULT_BRAND;
+    return env.BRAND || BUILD_BRAND;
 }
 
 // ── Text rules ─────────────────────────────────────────────────────────────

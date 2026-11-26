@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090C">
+<title>Go to the source: {{product}} (test page)</title>
+<!-- A new home page in test (variant A, "the thread"). Not linked, not indexed, not translated: it is listed under "exempt" in
+     docs/i18n/locales.json, and aish:landing keeps the language banner from suggesting versions that do not exist. -->
+<meta name="robots" content="noindex">
+<meta name="aish:landing" content="start">
+<meta name="aish:hreflang" content="custom">
+<meta name="description" content="Summaries and answers that point back to the passage, saved on your own device.">
+<script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('aish_theme');
+      var theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+<link rel="icon" type="image/svg+xml" href="{{base}}assets/icon.svg">
+<link rel="preload" href="{{base}}assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{base}}assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{base}}assets/styles.css">
+<script src="{{base}}assets/analytics.js" defer></script>
+</head>
+<body class="start-page">
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!--include:nav-home-->
+
+<main id="main">
+
+  <!-- ── Hero and story: one product picture that follows the five steps (assets/main.js, [data-story]) ── -->
+  <div class="st" data-story>
+    <section id="hero" class="st-hero">
+      <div class="eyebrow st-eyebrow"><span class="dash"></span> Browser extension · Part of byphil. <span class="dash"></span></div>
+      <h1>Go to the source.<br><em>Take it with you.</em></h1>
+      <p class="st-sub">Summaries and answers that point back to the passage, saved on your own device.</p>
+      <div class="hero-cta">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary" data-desktop-cta>Add to Chrome — it's free</a>
+        <button type="button" class="btn-secondary" data-send hidden>Send to my computer</button>
+      </div>
+      <p class="send-note" data-send-note hidden>Extensions run on a computer. <a href="#" data-send-mail>Email me the link</a> · <a href="#" data-send-copy>Copy it</a></p>
+      <p class="hero-proof"><a href="https://www.producthunt.com/products/ai-summary-helper/launches/ai-summary-helper-summarize-articles" target="_blank" rel="noopener" data-track="hero-producthunt">139 upvotes on Product Hunt</a> · <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">Open source</a> · No account · Made in the EU</p>
+    </section>
+
+    <div class="st-stage">
+      <div class="st-frame">
+        <picture class="is-on" data-shot><source media="(min-width:861px)" srcset="{{base}}assets/shots/story-read-wide-light-en.webp"><img src="{{base}}assets/shots/story-read-tall-light-en.webp" width="840" height="760" alt="An article open in the browser"></picture>
+        <picture data-shot><source media="(min-width:861px)" srcset="{{base}}assets/shots/story-summary-wide-light-en.webp"><img src="{{base}}assets/shots/story-summary-tall-light-en.webp" width="840" height="760" alt="The side panel with an AI summary in key points"></picture>
+        <picture data-shot><source media="(min-width:861px)" srcset="{{base}}assets/shots/story-source-wide-light-en.webp"><img src="{{base}}assets/shots/story-source-tall-light-en.webp" width="840" height="760" alt="A question, the answer, and the passage it came from highlighted in the article"></picture>
+        <picture data-shot><source media="(min-width:861px)" srcset="{{base}}assets/shots/story-keep-wide-light-en.webp"><img src="{{base}}assets/shots/story-keep-tall-light-en.webp" width="840" height="760" alt="The library of saved articles with tags"></picture>
+        <picture data-shot><source media="(min-width:861px)" srcset="{{base}}assets/shots/story-take-wide-light-en.webp"><img src="{{base}}assets/shots/story-take-tall-light-en.webp" width="840" height="760" alt="The menu of a saved article: send to Kindle, send to phone, export as Markdown"></picture>
+      </div>
+      <ol class="st-dots" aria-hidden="true"><li class="is-on"></li><li></li><li></li><li></li><li></li></ol>
+    </div>
+
+    <section id="see-it" class="st-steps" aria-label="How it works">
+      <ol>
+        <li data-step><span class="st-n">1 / 5</span><h2>Read any page</h2><p>Open an article, a PDF or a video page as usual. {{product}} waits in your browser.</p></li>
+        <li data-step><span class="st-n">2 / 5</span><h2>Get the short version</h2><p>One click, and the key points appear beside the article, in the language you choose.</p></li>
+        <li data-step><span class="st-n">3 / 5</span><h2>Ask, then check</h2><p>Every answer points to the passage it came from, so you can read it yourself.</p></li>
+        <li data-step><span class="st-n">4 / 5</span><h2>Keep what matters</h2><p>Saved articles, highlights and notes stay on your device, with search, tags and a knowledge graph.</p></li>
+        <li data-step><span class="st-n">5 / 5</span><h2>Take it with you</h2><p>Send it to your Kindle or phone, or export it as Markdown.</p><a class="st-more" href="{{base}}blog/videos.html">Watch the two-minute tour →</a></li>
+      </ol>
+    </section>
+  </div>
+
+  <!-- ── The problem, and Digest ── -->
+  <section class="st-band">
+    <div class="wrap st-split">
+      <img src="{{base}}assets/photo/evening-sofa-ereader-800.webp" srcset="{{base}}assets/photo/evening-sofa-ereader-600.webp 600w, {{base}}assets/photo/evening-sofa-ereader-800.webp 800w, {{base}}assets/photo/evening-sofa-ereader-1200.webp 1200w" sizes="(max-width:860px) 100vw, 560px" loading="lazy" width="1200" height="800" alt="Someone reading on an e-reader on a sofa in the evening">
+      <div>
+        <h2>You save more than you will ever read.</h2>
+        <p>Tap Digest. It picks a varied five from your saves and sends them to your Kindle or e-reader for the evening.</p>
+        <a class="st-more" href="{{base}}blog/unread-saves.html">How Digest works →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ownership ── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal"><div class="eyebrow">Private by design</div><h2>Yours, all the way down</h2></div>
+      <ul class="st-own reveal">
+        <li><h3>Your AI</h3><p>Bring your own key, or run a local model with Ollama.</p></li>
+        <li><h3>Your device</h3><p>The library, search and knowledge graph stay in your browser.</p></li>
+        <li><h3>Your storage</h3><p>Encrypted sync to your Nextcloud, S3 or a folder.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Features, short ── -->
+  <section id="features">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center reveal"><div class="eyebrow">What it does</div><h2>And when you need more</h2></div>
+      <div class="st-feats reveal">
+        <details><summary>Summaries with your choice of model</summary><p>OpenAI, Gemini, Mistral, DeepSeek, a custom endpoint, or local Ollama for summaries that never need to leave your device.</p></details>
+        <details><summary>PDFs and YouTube videos</summary><p>Summarize browser PDFs and videos from their captions, and ask follow-up questions with source citations.</p></details>
+        <details><summary>A built-in RSS reader</summary><p>Follow blogs and news sites, filter by source, tag, date or mood, import OPML and summarize any item in one click.</p></details>
+        <details><summary>Research mode</summary><p>Papers are recognised by their DOI, with study design, sample, limitations and a citation from the DOI registry.</p></details>
+        <details><summary>Highlights, notes and comments</summary><p>Highlight text on any page, comment on it, and find your notes again by article or tag.</p></details>
+        <details><summary>Export and your AI apps</summary><p>Export to Obsidian, Markdown, Word or PDF, or let Claude, LM Studio and Cursor search your library when you allow it.</p></details>
+      </div>
+      <p class="st-center"><a class="btn-secondary" href="{{base}}index.html#features">All features</a></p>
+    </div>
+  </section>
+
+<!--include:home:use-cases-->
+
+  <!-- ── Phone ── -->
+  <section id="phone">
+    <div class="wrap wrap-narrow st-center">
+      <div class="eyebrow">Android <span class="beta-badge">Beta</span></div>
+      <h2>Send links from your phone to your computer</h2>
+      <p>The companion app adds {{product}} to your share sheet. Links travel end-to-end encrypted and wait in your browser. There is no iPhone app yet.</p>
+      <a href="https://github.com/philffm/kaivo/releases/latest/download/aish-companion.apk" class="btn-secondary" data-track="companion-apk">Download for Android (APK)</a>
+    </div>
+  </section>
+
+<!--include:home:pricing-->
+
+  <!-- ── Questions ── -->
+  <section id="questions">
+    <div class="wrap">
+      <div class="section-head center reveal"><div class="eyebrow">Questions</div><h2>Before you install</h2></div>
+      <div class="faq reveal">
+        <!--include:faq-items:5-->
+      </div>
+      <p class="st-center"><a class="btn-secondary" href="{{base}}index.html#faqList">All questions</a></p>
+    </div>
+  </section>
+
+  <!-- ── Blog ── -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal"><div class="eyebrow">From the blog</div><h2>Notes on reading and trust</h2></div>
+      <div class="blog-grid st-two reveal">
+        <a class="blog-card" href="{{base}}blog/verify-ai-summary.html"><span class="blog-date">Guide</span><h3>Check an AI summary against its source</h3><p>A quick way to check any answer against the page it came from, and what a quote can and cannot prove.</p><span class="blog-read">Read the post →</span></a>
+        <a class="blog-card" href="{{base}}blog/pocket-alternative.html"><span class="blog-date">Guide</span><h3>Looking for a Pocket alternative? Here's what actually matters</h3><p>Pocket's shutdown left a real gap. A decision guide based on what you actually used it for.</p><span class="blog-read">Read the post →</span></a>
+      </div>
+      <p class="st-center"><a class="btn-secondary" href="{{base}}blog/">All posts →</a></p>
+    </div>
+  </section>
+
+  <!-- ── The end: the promise once more, and the way in ── -->
+  <section class="st-end" data-dock-end>
+    <div class="wrap st-center">
+      <h2>Go to the source.</h2>
+      <p>Free with your own AI key or a local model.</p>
+      <div class="hero-cta">
+        <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb" target="_blank" rel="noopener" class="btn-primary" data-desktop-cta>Add to Chrome — it's free</a>
+        <button type="button" class="btn-secondary" data-send hidden>Send to my computer</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!--include:footer-home-->
+
+</body></html>

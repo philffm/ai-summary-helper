@@ -29,6 +29,13 @@
     window.aishTrack && window.aishTrack('Theme', 'toggle', current === 'light' ? 'dark' : 'light');
   }
 
+  // Pages without the inline theme script in <head> (older translated topic pages) follow the saved or system theme too.
+  if (!root.hasAttribute('data-theme')) {
+    var first = null;
+    try { first = localStorage.getItem('aish_theme'); } catch (e) {}
+    if (first !== 'light' && first !== 'dark') first = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    root.setAttribute('data-theme', first);
+  }
   applyThemeChrome(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
   if (btnDesktop) btnDesktop.addEventListener('click', toggleTheme);
   if (btnMobile) btnMobile.addEventListener('click', toggleTheme);
@@ -1161,6 +1168,63 @@ function setBilling(period) {
   loop();
 })();
 
+// Translated pages built before the current navigation carry the install button inside the bottom bar, where long
+// labels push it off a phone screen: move it to the top row, where the current pages have it.
+(function () {
+  var row = document.querySelector('.nav--pill .nav-pill-row'), cta = document.querySelector('.nav--pill .pill > .pill-cta');
+  if (!row || !cta || row.querySelector('.nav-cta')) return;
+  cta.classList.add('nav-cta');
+  var tools = row.querySelector('.nav-tools');
+  if (tools) tools.parentNode.insertBefore(cta, tools); else row.appendChild(cta);
+})();
+
+/* ── Story landing page ([data-story], /start/): the product picture follows the step being read, in the page's theme. Its menu
+   and bottom bar jump within the page, and the bar's "Blog" becomes the install button. Runs before the device-aware script
+   below, which then picks the right action for this device. ── */
+(function () {
+  var story = document.querySelector('[data-story]');
+  if (!story) return;
+  var nav = document.getElementById('siteNav'), dock = nav && nav.querySelector('.pill');
+  if (nav) [].forEach.call(nav.querySelectorAll('.pill a[data-sec], .mm-links a, .mm-row a'), function (a) {
+    var id = a.getAttribute('data-sec') || (a.getAttribute('href') || '').split('index.html#')[1];
+    if (id && document.getElementById(id)) a.setAttribute('href', '#' + id);
+  });
+  var blog = dock && dock.querySelector('[data-dock-blog]'), store = story.querySelector('a[data-desktop-cta]');
+  if (blog && store) {
+    var add = document.createElement('a');
+    add.className = 'dock-cta'; add.href = store.href; add.target = '_blank'; add.rel = 'noopener';
+    add.setAttribute('data-desktop-cta', ''); add.textContent = 'Add to Chrome';
+    var send = document.createElement('button');
+    send.type = 'button'; send.className = 'dock-cta'; send.hidden = true; send.setAttribute('data-send', ''); send.textContent = 'Send to computer';
+    blog.replaceWith(add, send);
+    dock.setAttribute('data-dock-stay', '');
+  }
+  var stage = story.querySelector('.st-stage'), shots = story.querySelectorAll('[data-shot]'), steps = story.querySelectorAll('[data-step]'), dots = story.querySelectorAll('.st-dots li');
+  var wide = window.matchMedia('(min-width:861px)'), queued = false;
+  function paint() {
+    var theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    [].forEach.call(story.querySelectorAll('.st-frame source, .st-frame img'), function (el) {
+      var attr = el.tagName === 'IMG' ? 'src' : 'srcset', now = el.getAttribute(attr), next = now.replace(/-(light|dark)-/, '-' + theme + '-');
+      if (next !== now) el.setAttribute(attr, next);
+    });
+  }
+  function update() {
+    queued = false;
+    var h = window.innerHeight, box = stage.getBoundingClientRect(), under = wide.matches ? 0 : box.bottom, n = 0;
+    // the picture changes when the next caption is well clear of the bottom bar and the privacy chip
+    var line = under + (h - under) * (wide.matches ? 0.55 : 0.36);
+    [].forEach.call(steps, function (s, i) { if (s.getBoundingClientRect().top < line) n = i; });
+    [].forEach.call(shots, function (s, i) { s.classList.toggle('is-on', i === n); });
+    [].forEach.call(dots, function (d, i) { d.classList.toggle('is-on', i <= n); });
+    stage.classList.toggle('is-stuck', !wide.matches && box.top <= 77);
+  }
+  function queue() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', queue);
+  new MutationObserver(paint).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  paint(); update();
+})();
+
 // Device-aware install path: Chrome on a phone or tablet cannot install extensions, so there the primary action
 // becomes "Send to my computer" (native share sheet, else copy link). Nothing is collected: no address is asked for,
 // the mail option only opens the visitor's own mail app.
@@ -1192,6 +1256,34 @@ function setBilling(period) {
     } else copy();
   }
   document.querySelectorAll('[data-send]').forEach(function (b) { b.addEventListener('click', send); });
+  // Where "send" replaces the hidden install button of a hero, it becomes the main button.
+  // On Android the companion app is the main button of a hero (the loop below turns the install link into it).
+  var android = /Android/i.test(ua) && !/Firefox\//.test(ua) && !!document.querySelector('.mm-row a[href$="#phone"]');
+  document.querySelectorAll('.hero-cta').forEach(function (row) {
+    var send_ = row.querySelector('button[data-send].btn-secondary'), main = row.querySelector('.btn-primary[data-desktop-cta]');
+    if (!send_ || !main) return;
+    if (android) main.hidden = false;
+    else send_.classList.replace('btn-secondary', 'btn-primary');
+  });
+  // Every other "Add to Chrome" button (top bar, page heroes, menu) gets the action that works on this device. Labels are
+  // taken from the page itself, so translated pages stay in their language. Firefox on Android can install the add-on.
+  if (!/Firefox\//.test(ua)) {
+    var textOf = function (sel) {
+      var el = [].filter.call(document.querySelectorAll(sel), function (e) { return e.textContent.trim(); })[0];
+      return el ? el.textContent.trim() : '';
+    };
+    var sendLabel = textOf('button[data-send]') || (/^en/i.test(document.documentElement.lang) ? 'Send to my computer' : '');
+    var app = /Android/i.test(ua) && document.querySelector('.mm-row a[href$="#phone"]');
+    document.querySelectorAll('a.pill-cta[href*="chromewebstore"], a.btn-primary[href*="chromewebstore"]').forEach(function (a) {
+      if (a.hidden) return;
+      if (app) { a.href = app.getAttribute('href'); a.textContent = app.textContent.trim(); a.removeAttribute('target'); return; }
+      // A written "send" button right beside it already does the job (the icon in the top bar does not count).
+      if ([].some.call(a.parentNode.children, function (b) { return b.matches('button[data-send]') && b.textContent.trim(); })) { a.hidden = true; return; }
+      if (!sendLabel) return;
+      a.textContent = sendLabel; a.href = URL_; a.removeAttribute('target');
+      a.addEventListener('click', function (e) { e.preventDefault(); send(); });
+    });
+  }
   document.querySelectorAll('[data-send-copy]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); copy(); }); });
   document.querySelectorAll('[data-send-mail]').forEach(function (a) {
     a.href = 'mailto:?subject=' + encodeURIComponent(TITLE) + '&body=' + encodeURIComponent(TEXT + '\n' + URL_);
@@ -1209,6 +1301,36 @@ function setBilling(period) {
     if (!a.children.length) a.textContent = a.textContent.replace(/Chrome/g, 'Firefox');
   });
   document.querySelectorAll('a[data-store="alt"]').forEach(function (a) { a.href = CHURL; a.textContent = 'Chrome'; });
+})();
+
+/* ── Floating bars: the install button in the top island waits for the page's own; the bottom bar stays out of the first
+   screen and of the way while reading down, and comes back on the way up, at the end of the page and when it has keyboard focus (CSS). ── */
+(function () {
+  var nav = document.getElementById('siteNav');
+  if (!nav) return;
+  var own = document.querySelector('main .hero-cta');
+  if (own && own.getBoundingClientRect().top + window.scrollY > window.innerHeight * 1.5) own = null;   // a button far down is not the hero's
+  var dock = nav.querySelector('.pill'), last = window.scrollY, away = true, queued = false;
+  var end = document.querySelector('[data-dock-end]');
+  function update() {
+    queued = false;
+    var y = Math.max(0, window.scrollY), h = window.innerHeight;
+    nav.classList.toggle('cta-wait', !!own && own.getClientRects().length > 0 && own.getBoundingClientRect().bottom > 72);
+    if (!dock) return;
+    if (y < h * 0.6 || y > last + 6) away = true;
+    else if (y < last - 6) away = false;
+    if (y + h >= document.documentElement.scrollHeight - 4) away = false;
+    // data-dock-stay (the story landing page): the bar carries the install button, so it stays from the hero to the closing one.
+    if (dock.hasAttribute('data-dock-stay')) away = (!!own && own.getBoundingClientRect().bottom > 72) || (!!end && end.getBoundingClientRect().top < h - 80);
+    if (Math.abs(y - last) > 6) last = y;
+    dock.classList.toggle('is-away', away);
+  }
+  function queue() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', queue);
+  update();
+  // Only now may the top install button show: before this it would flash on phones and over the page's own button.
+  document.documentElement.classList.add('nav-ready');
 })();
 
 /* ── Floating pill nav: compact on scroll, mega menu, more menu, language picker, active section, scroll lock ── */
@@ -1285,40 +1407,31 @@ function setBilling(period) {
   if (/\/blog\//.test(location.pathname)) { var bl = nav.querySelector('.pill a[data-dock-blog]'); if (bl) bl.setAttribute('aria-current', 'page'); }
 
 
-  // Language search (full-screen menu)
-  var ls = document.getElementById('langSearch'), lg = document.getElementById('langGroups');
-  if (ls && lg) {
-    var pills = [].slice.call(lg.querySelectorAll('.lang-pill')), empty = lg.querySelector('.lang-empty');
-    var curPill = lg.querySelector('[aria-current]');
-    if (curPill) { ls.placeholder = curPill.textContent; var cc = document.querySelector('.lang-card-cur'); if (cc) cc.textContent = curPill.textContent; }
-    var lc = document.getElementById('langCard');
-    if (lc && mm) lc.addEventListener('click', function () { mm.setAttribute('data-mode', 'lang'); ls.focus(); });
-    function filter() {
-      var q = ls.value.trim().toLowerCase(), n = 0;
-      pills.forEach(function (a) { var ok = !q || a.getAttribute('data-q').indexOf(q) > -1; a.hidden = !ok; if (ok) n++; });
-      [].forEach.call(lg.querySelectorAll('.lang-group'), function (g) { g.hidden = !g.querySelector('.lang-pill:not([hidden])'); });
-      if (empty) empty.hidden = n > 0;
-    }
-    ls.addEventListener('input', filter);
-    ls.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') { var f = pills.filter(function (a) { return !a.hidden; })[0]; if (f) location.href = f.href; }
-    });
-    if (mm) new MutationObserver(function () {
-      if (!mm.hidden && window.matchMedia('(min-width:861px)').matches) setTimeout(function () { if (mm.getAttribute('data-mode') === 'lang') ls.focus(); }, 60);
-      if (mm.hidden) { ls.value = ''; filter(); }
-    }).observe(mm, { attributes: true, attributeFilter: ['hidden'] });
+  // Language groups (full-screen menu): the language card shows the current language and opens them
+  var lg = document.getElementById('langGroups'), curPill = lg && lg.querySelector('[aria-current]');
+  var curLabel = document.querySelector('.lang-card-cur');
+  if (curPill && curLabel) curLabel.textContent = curPill.textContent;
+  function showLanguages() {
+    mm.setAttribute('data-mode', 'lang');
+    setTimeout(function () {
+      var box = mm.querySelector('.mm-lang');
+      if (window.matchMedia('(max-width:860px)').matches) mm.scrollTop = 0;   // phones show the languages alone
+      else if (box) box.scrollIntoView({ block: 'start' });
+      var first = curPill || (lg && lg.querySelector('.lang-pill')); if (first) first.focus({ preventScroll: true });
+    }, 80);
   }
+  var lc = document.getElementById('langCard');
+  if (lc && mm) lc.addEventListener('click', showLanguages);
 
   if (mm && tg) tg.addEventListener('click', function () { mm.setAttribute('data-mode', 'menu'); });
 
-  // Globe button: open the full-screen menu and jump to the language search
+  // Globe button: open the full-screen menu at the languages; pressed again, close it
   var gb = document.getElementById('langBtn');
   if (gb && mm && tg) gb.addEventListener('click', function (ev) {
     ev.stopPropagation();
+    if (!mm.hidden && mm.getAttribute('data-mode') === 'lang') { tg.click(); return; }
     if (mm.hidden) tg.click();
-    mm.setAttribute('data-mode', 'lang');
-    var box = mm.querySelector('.mm-lang');
-    setTimeout(function () { if (box) box.scrollIntoView({ block: 'center' }); var s = document.getElementById('langSearch'); if (s) s.focus({ preventScroll: true }); }, 80);
+    showLanguages();
   });
 
   // Scroll lock while full-screen menu is open
