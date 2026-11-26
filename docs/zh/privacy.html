@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://kaivo.byphil.eu/zh/privacy.html">
 <meta property="og:type" content="website">
 <script src="../assets/analytics.js" defer=""></script>
-<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="zh-Hans" href="https://kaivo.byphil.eu/zh/privacy.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="隐私政策 — AI Summary Helper"><meta name="twitter:description" content="AI Summary Helper 如何处理您的数据：您的 API key 和文章历史记录仅保留在本地设备上。"><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://kaivo.byphil.eu/zh/privacy.html"></head>
+<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="zh-Hans" href="https://kaivo.byphil.eu/zh/privacy.html"><link rel="canonical" href="https://kaivo.byphil.eu/zh/privacy.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="隐私政策 — AI Summary Helper"><meta name="twitter:description" content="AI Summary Helper 如何处理您的数据：您的 API key 和文章历史记录仅保留在本地设备上。"><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"></head>
 <body>
 
 <a href="#main" class="skip-link">跳转至主要内容</a>
@@ -38,13 +38,8 @@
       <img src="../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
-    <nav class="pill" aria-label="主要">
-      <a href="index.html#use-cases" data-sec="use-cases">使用场景</a>
-      <a href="index.html#problem" data-sec="problem" data-slider-goto="problem">工作原理</a>
-      <a href="blog/">博客</a>
-      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=zh-privacy&amp;utm_campaign=nav" class="pill-cta" target="_blank" rel="noopener">添加至 Chrome</a>
-    </nav>
-    <div class="nav-island"><div class="nav-tools">
+    <div class="nav-island"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=zh-privacy&amp;utm_campaign=nav" class="pill-cta nav-cta" target="_blank" rel="noopener">添加至 Chrome</a>
+    <div class="nav-tools">
       <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="将此页面发送至我的电脑" title="发送至我的电脑"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="语言" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="切换至浅色模式">
@@ -56,6 +51,12 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
     </button></div>
   </div>
+    <nav class="pill" aria-label="主要">
+      <a href="index.html" data-sec="hero">概览</a>
+      <a href="index.html#see-it" data-sec="see-it">界面预览</a>
+      <a href="index.html#features" data-sec="features">功能特性</a>
+      <a href="blog/" data-dock-blog="">博客</a>
+    </nav>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="移动端">
@@ -135,7 +136,7 @@
         <h3>您的 AI 服务商连接</h3>
         <p>由您自主选择摘要生成方式：</p>
         <ul>
-          <li><strong>自带密钥（BYOK）</strong> — OpenAI、Google Gemini、Mistral AI、DeepSeek 或自定义端点。您的 API key 仅保存在本地设备上（绝不同步，绝不上报给我们）。您选择生成摘要的页面内容会使用您自己的密钥直接从浏览器发送给所选服务商，并受该服务商自身隐私政策的约束。我们无法查看、记录或存储这些内容。</li>
+          <li><strong>自带密钥（BYOK）</strong> ——OpenAI、Anthropic（Claude）、Google Gemini、Mistral AI、DeepSeek、OpenRouter 或自定义端点。您的 API key 仅保存在您的设备本地（从不同步，也从不发送给我们）。您选择总结的网页内容，会使用您自己的 key 从浏览器直接发送给您所选的服务商，并适用该服务商自己的隐私政策。我们不会查看、记录或存储这些内容。</li>
           <li><strong>通过 Ollama 运行本地模型</strong> — 如果您在本地运行模型，页面内容仅会发送到您自己的机器上。任何数据都不会离开您的设备。</li>
           <li><strong>byphil Cloud（可选，付费）</strong> — 专为不想自行管理 API key 的用户提供的云端托管方案。若选择此方案，您请求摘要的文本会经由我们的后端，代表您通过 OpenRouter 转发至底层模型提供商，并返回摘要结果。这仅为中继传输：我们不会存储网页内容、URL 或摘要。针对每个账户，我们仅记录用量元数据：已完成的请求数、Token 消耗量、最后一次请求的时间以及所使用的模型。账户本身为可选项；所有其他功能在未登录状态下均可正常使用。开启“优先使用欧盟服务器”设置后，具备欧洲节点的模型将仅在这些节点上运行，应用也会标明哪些模型支持、哪些不支持。这仅限制了模型的运行位置，并未缩短传输链路：您的文本仍会先经过我们的服务（运行于德国服务器），再通过美国公司 OpenRouter 传输至模型，且朗读和语音转文字功能暂无欧盟节点选项。</li>
         </ul>
@@ -165,10 +166,10 @@
           </tbody>
         </table>
         <p>标有“同步”的项目使用 Chrome 自带的同步功能，并与您的 Google 账户绑定 —— 与书签同步原理相同，该数据仅经由 Google 的基础设施传输，绝不经过我们的服务器。我们无法以任何独立方式访问该数据。</p>
-        <p>您可以随时通过“设置 → 资料库与数据 → 备份与恢复”（Settings → Library &amp; Data → Backup &amp; restore）导出数据。默认情况下，备份会自动排除 API keys、登录凭据、license keys 以及安装标识符；若要包含这些项，需由您明确主动开启并确认安全警告，因为任何获取该文件的人均可直接使用它们。请妥善保管导出的文件，并注意较旧的备份文件中可能仍含有敏感凭据。在同一页面中，危险区域（Danger zone）支持按类别清理数据，并会清晰列出各项即将删除的数量：摘要与归档、划线高亮、订阅源（feeds）、播客、API keys / 登录信息 / 许可证、发送目标（Kindle、LocalSend）以及偏好设置。 <em>删除所有数据</em> 会清除扩展程序存储在设备上的所有数据并重置为初始状态。卸载扩展程序同样会清除其全部本地数据。这些操作仅删除本地数据。您的账户以及我们在服务器上保存的记录（见下文），均可在以下页面进行管理： <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>：您可以在该页面导出个人数据并注销账户。扩展程序和 Android 应用均可在账户设置中直接跳转至该页面。</p>
+        <p>您可以随时通过“设置 → 备份与同步”导出数据。备份默认不包含 API key、登录信息、许可证密钥和安装标识符；若要包含，需要您明确选择并会显示警告，因为任何拿到该文件的人都能使用它们。请妥善保管导出的文件，并注意旧备份可能含有机密信息。在同一位置的“危险区域”，您可以按类别删除数据，并看到将删除的数量：摘要与存档、高亮、订阅源、播客、API key／登录／许可证、发送目标（Kindle、LocalSend）以及偏好设置。 <em>删除所有数据</em> 会清除扩展程序存储在设备上的所有数据并重置为初始状态。卸载扩展程序同样会清除其全部本地数据。这些操作仅删除本地数据。您的账户以及我们在服务器上保存的记录（见下文），均可在以下页面进行管理： <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>：您可以在该页面导出个人数据并注销账户。扩展程序和 Android 应用均可在账户设置中直接跳转至该页面。</p>
 
         <h3>RSS 订阅源</h3>
-        <p>内置的 Feeds 阅读器会将您的订阅和抓取的 Feed 内容完整保存在本地浏览器中——绝不同步，也绝不会发送给我们。当您添加或刷新订阅源时，插件会直接向发布者的服务器发起请求（就像您在浏览器中直接访问该网站一样），因此发布者端可以看到该网络请求。我们绝不代理、记录或查看您的任何订阅与阅读列表。OPML 导入完全在您的本地设备上处理。若开启后台检查（默认关闭），插件仅会按您设定的时间间隔重新请求 Feed，以在工具栏图标上显示未读计数。对 Feed 内容生成摘要的机制与普通网页相同：仅在您主动触发摘要时，内容才会被发送至您指定的 AI 提供商。可选的 AI 每日回顾与 AI 语气评分机制亦然：只有在您点击时，插件才会将条目标题、来源名称及简短摘要片段（非全文）发送至您选择的 AI 提供商，生成的总结内容也仅缓存在您的本地设备上。点击播放时，Feed 中的播客单集将直接从发布者服务器进行流式传输播放。</p>
+        <p>内置的订阅阅读器会把您的订阅和抓取到的条目保存在浏览器本地——从不同步，也从不发送给我们。当您添加或刷新订阅源时，扩展会像浏览器访问网站一样，直接向发布者的服务器请求该订阅地址，因此发布者可以看到这次请求。我们不会代理、记录或查看您的订阅或阅读清单。OPML 导入完全在您的设备上处理。后台检查默认开启，可在订阅源设置中关闭：浏览器打开期间，扩展会按您选择的间隔重新请求订阅源，仅用于在工具栏图标上显示数量。总结订阅条目与总结其他网页方式相同：内容只会发送给您选择的 AI 服务商，且仅在您触发总结时发送。可选的每日 AI 回顾和 AI 语气评分同样如此：只有当您点击时，扩展才会把条目标题、来源名称和简短摘录（而非完整文章）发送给您选择的 AI 服务商，生成的回顾缓存在您的设备上。当您按下播放时，订阅源中的播客节目直接从发布者的服务器流式播放。</p>
 
         <h3>发送文章：Kindle、LocalSend 和系统分享面板</h3>
         <p>传输途径分为两种，其中只有一种会经过我们的服务器：</p>
@@ -178,7 +179,7 @@
         </ul>
 
         <h3>文库同步、备份与发布（可选）</h3>
-        <p>默认处于关闭状态，直到你在“设置 → 同步与备份”中添加存储位置。存储位置可以是你自选服务器上的文件夹（如 Nextcloud 或其他 WebDAV 服务器，亦或是 AWS S3、Cloudflare R2 或 Backblaze B2 等 S3 兼容存储桶），也可以是你本地电脑上的文件夹。我们不运营这些服务器，不参与任何中转，也绝无法查看你存放的内容。</p>
+        <p>在“设置 → 备份与同步”中添加位置之前，此功能处于关闭状态。位置是指您选择的服务器上的文件夹（Nextcloud 或其他 WebDAV 服务器，或兼容 S3 的存储桶，例如 AWS S3、Cloudflare R2 或 Backblaze B2），或您自己电脑上的文件夹。这些服务器并非由我们运营，我们不参与其中，也永远看不到您存放的内容。</p>
         <ul>
           <li><strong>加密存储位置</strong> 在多台设备间同步您的整个资料库，或妥善保留一份备份：文章、摘要、全文、高亮标注、笔记、合集及标签。所有数据在离开设备前均已在浏览器内完成加密（采用基于您密码派生的 AES-256-GCM 密钥），文件名亦经过混淆处理。服务器或存储目录仅能看到加密文件、文件大小及修改时间。由密码派生的密钥始终仅保留在当前浏览器的本地存储中，以确保同步可在后台运行。如果您使用系统推荐的随机词组，词组也会保存在本地，方便您随时在对应设置中查阅；若使用自定义密码，系统则不会予以存储。这些敏感信息绝不会被同步，也不会包含在任何备份中。若遗失密码，任何人（包括我们）都无法解密并读取您的文件。</li>
           <li><strong>明文存储位置</strong> 发布明文文件（如需要，还可包含轻量级查看页面），供你自己的网站或工具调用。仅会导出符合你设定的标签筛选条件的文章。除非你在危险区域设置中主动开启，否则笔记、提醒事项和文章全文绝不会被发布；一旦开启，任何有权访问该文件夹的人都可以直接阅读这些内容。</li>
@@ -233,10 +234,13 @@
             <tr><td><code>offscreen</code>、 <code>tts</code></td><td>在弹窗关闭后，继续在后台播放播客音频并朗读摘要内容</td></tr>
             <tr><td>文件系统访问（选定文件夹）</td><td>仅当你选择电脑上的本地文件夹作为同步或备份位置时触发；浏览器会请求你的授权，且扩展仅能访问被选中的该文件夹</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>保存海量本地文章与高亮归档，无需担心触及默认存储配额上限</td></tr>
+            <tr><td><code>书签</code> （可选）</td><td>仅当您在阅读视图中选择“保存到浏览器书签”时；浏览器会先征求许可。我们会在名为“AI Summary Helper”的文件夹中为该文章添加或更新一个书签；我们只查找和修改自己的文件夹，不涉及您的其他书签</td></tr>
+            <tr><td><code>搜索</code> （可选）</td><td>仅当您在主页搜索框或命令面板中选择“搜索网页”时；浏览器会先征求许可。您输入的文字会交给浏览器自带的默认搜索引擎，与您在地址栏中输入完全一样。我们不会查看、存储这些文字，也不会发送到其他任何地方</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>允许你对所访问的任意网页生成摘要 —— 仅在你主动触发摘要操作时才会读取并传输内容，绝不会在后台被动采集。同时允许扩展访问你输入的同步服务器或存储桶（支持任意自定义地址）</td></tr>
           </tbody>
         </table>
         <p>我们绝不会利用这些权限跟踪您的浏览轨迹、建立广告画像，或收集超出上述功能所需之外的任何数据。</p>
+        <p>对从 Google API 收到的信息的使用将遵守 <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq" target="_blank" rel="noopener">Chrome 应用商店用户数据政策</a>，包括其中的“有限使用”要求。</p>
 
         <h2>我们绝不会做的事</h2>
         <ul>
@@ -249,7 +253,7 @@
         <h2>第三方服务</h2>
         <p>根据您的配置偏好，您的页面内容可能会发送至：</p>
         <ul>
-          <li>OpenAI、Google (Gemini)、Mistral AI 或 DeepSeek —— 仅当您填入了对应服务商的 API key，且仅针对您主动要求生成摘要的网页。</li>
+          <li>OpenAI、Anthropic（Claude）、Google（Gemini）、Mistral AI、DeepSeek 或 OpenRouter（会转发到您在那里选择的模型）——仅当您为该服务商输入了自己的 API key 时，且仅限您主动总结的网页。</li>
           <li>我们的 byphil 后端及其数据库，均托管于德国的 IONOS SE —— 仅在您登录、使用 byphil Cloud 或 Send to Kindle 时涉及。</li>
           <li>OpenRouter（byphil Cloud 借此连接模型）及所路由的模型提供商 —— 您提交摘要的文本仅会在该单次请求中转发至您指定的模型。</li>
           <li>Stripe —— 作为法定销售商（Merchant of Record）处理付款交易与订阅管理。</li>

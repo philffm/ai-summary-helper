@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://kaivo.byphil.eu/ja/privacy.html">
 <meta property="og:type" content="website">
 <script src="../assets/analytics.js" defer=""></script>
-<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="ja" href="https://kaivo.byphil.eu/ja/privacy.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="ja_JP"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="プライバシーポリシー — AI Summary Helper"><meta name="twitter:description" content="AI Summary Helperのデータ取り扱いについて：APIキーや記事履歴はお使いの端末内にのみ保持されます。"><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://kaivo.byphil.eu/ja/privacy.html"></head>
+<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="ja" href="https://kaivo.byphil.eu/ja/privacy.html"><link rel="canonical" href="https://kaivo.byphil.eu/ja/privacy.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="ja_JP"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="プライバシーポリシー — AI Summary Helper"><meta name="twitter:description" content="AI Summary Helperのデータ取り扱いについて：APIキーや記事履歴はお使いの端末内にのみ保持されます。"><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"></head>
 <body>
 
 <a href="#main" class="skip-link">コンテンツへスキップ</a>
@@ -38,13 +38,8 @@
       <img src="../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
-    <nav class="pill" aria-label="プライマリ">
-      <a href="index.html#use-cases" data-sec="use-cases">活用例</a>
-      <a href="index.html#problem" data-sec="problem" data-slider-goto="problem">使い方</a>
-      <a href="blog/">ブログ</a>
-      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=ja-privacy&amp;utm_campaign=nav" class="pill-cta" target="_blank" rel="noopener">Chromeに追加</a>
-    </nav>
-    <div class="nav-island"><div class="nav-tools">
+    <div class="nav-island"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=ja-privacy&amp;utm_campaign=nav" class="pill-cta nav-cta" target="_blank" rel="noopener">Chromeに追加</a>
+    <div class="nav-tools">
       <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="このページをパソコンに送信" title="パソコンに送信"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="言語" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="ライトモードに切り替え">
@@ -56,6 +51,12 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
     </button></div>
   </div>
+    <nav class="pill" aria-label="プライマリ">
+      <a href="index.html" data-sec="hero">概要</a>
+      <a href="index.html#see-it" data-sec="see-it">実際の画面を見る</a>
+      <a href="index.html#features" data-sec="features">機能</a>
+      <a href="blog/" data-dock-blog="">ブログ</a>
+    </nav>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="モバイル">
@@ -135,7 +136,7 @@
         <h3>AIプロバイダーとの接続</h3>
         <p>要約の生成方法は以下から選択できます：</p>
         <ul>
-          <li><strong>独自のAPIキーを使用（BYOK）</strong> — OpenAI、Google Gemini、Mistral AI、DeepSeek、またはカスタムエンドポイント。APIキーはお使いの端末ローカルにのみ保存されます（同期や当方への送信は行われません）。要約対象として選択したページコンテンツは、ご自身のキーを使用してブラウザから直接選択したプロバイダーへ送信され、各プロバイダーのプライバシーポリシーに従って処理されます。当方がこのコンテンツを閲覧、ログ記録、または保存することはありません。</li>
+          <li><strong>独自のAPIキーを使用（BYOK）</strong> — OpenAI、Anthropic（Claude）、Google Gemini、Mistral AI、DeepSeek、OpenRouter、またはカスタムエンドポイント。APIキーはお使いの端末内にのみ保存されます（同期されることも、当社に送信されることもありません）。要約すると選んだページの内容は、ご自身のキーを使ってブラウザから選択したプロバイダーへ直接送信され、そのプロバイダーのプライバシーポリシーが適用されます。当社がこの内容を閲覧、記録、保存することはありません。</li>
           <li><strong>Ollama経由のローカルモデル</strong> — モデルをローカルで実行する場合、ページコンテンツはお使いの端末内でのみ処理されます。データが端末外に送信されることは一切ありません。</li>
           <li><strong>byphil Cloud（オプション・有料）</strong> ——APIキーをご自身で管理せずに利用したい方向けのホスティング型プランです。このプランを選択すると、要約対象のテキストは当サービスのバックエンドを経由し、OpenRouterを通じて各モデルプロバイダーへとリレーされ、要約結果を返します。データは中継されるだけであり、ページの内容やURL、生成された要約がサーバーに保存されることはありません。アカウントごとに記録されるのは、完了したリクエスト数、トークン消費量、最終リクエスト日時、使用したモデルなどの利用メタデータのみです。アカウントの作成自体は任意であり、他のすべての機能はアカウントなしでご利用いただけます。「Prefer EU servers（EUサーバーを優先）」設定を有効にすると、欧州にエンドポイントを持つモデルはそのエンドポイントでのみ実行され、アプリ上でも対応状況が表示されます。これによりモデルが実行される場所は制限されますが、通信経路そのものが省略されるわけではありません。テキストはドイツ国内のサーバーで稼働する当サービスを経由し、米国企業であるOpenRouterを通ってモデルへと送信されます。なお、音声読み上げおよび音声テキスト変換にはEU限定のオプションはありません。</li>
         </ul>
@@ -165,10 +166,10 @@
           </tbody>
         </table>
         <p>「同期ストレージ」と記載された項目は、Googleアカウントに紐づくChrome内蔵の同期機能を使用します。ブックマークと同様にGoogleのインフラストラクチャを経由して同期され、当社のサーバーを経由することはなく、当社がアクセスすることもできません。</p>
-        <p>データはいつでも「設定」→「ライブラリとデータ」→「バックアップと復元」からエクスポートできます。バックアップではデフォルトでAPIキー、サインイン情報、ライセンスキー、インストール識別子が除外されます。ファイルを入手した第三者がこれらを利用できてしまうため、含める場合は警告を伴う明示的なオプトインが必要です。エクスポートしたファイルは非公開で安全に管理し、過去のバックアップにも機密情報が含まれている可能性がある点にご留意ください。同じ画面にある「Danger zone」では、削除される項目数を確認しながら、カテゴリ別（要約とアーカイブ、ハイライト、フィード、ポッドキャスト、APIキー／サインイン／ライセンス、送信先（Kindle、LocalSend）、各種設定）にデータを削除できます。 <em>すべてのデータを削除</em> を実行すると、拡張機能が端末内に保存しているすべてのデータが削除され、初期状態に戻ります。拡張機能をアンインストールすることでもデータは削除されます。これらの操作で削除されるのはローカルデータのみです。アカウントおよび当社のサーバーに保持されている記録（下記参照）の管理は、 <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>から行えます。こちらでデータの書き出しやアカウントの削除が可能です。拡張機能およびAndroidアプリのアカウント設定からもリンクされています。</p>
+        <p>データは「設定 → バックアップと同期」からいつでもエクスポートできます。バックアップには、初期設定ではAPIキー、ログイン情報、ライセンスキー、インストール識別子は含まれません。含める場合は明示的な選択が必要で、警告が表示されます。そのファイルを持つ人は誰でも利用できるためです。エクスポートしたファイルは非公開で保管し、古いバックアップには秘密情報が含まれている可能性があることにご注意ください。同じ場所の「危険な操作」では、要約とアーカイブ、ハイライト、フィード、ポッドキャスト、APIキー／ログイン／ライセンス、送信先（Kindle、LocalSend）、各種設定を、削除される件数を確認しながらカテゴリーごとに削除できます。 <em>すべてのデータを削除</em> を実行すると、拡張機能が端末内に保存しているすべてのデータが削除され、初期状態に戻ります。拡張機能をアンインストールすることでもデータは削除されます。これらの操作で削除されるのはローカルデータのみです。アカウントおよび当社のサーバーに保持されている記録（下記参照）の管理は、 <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>から行えます。こちらでデータの書き出しやアカウントの削除が可能です。拡張機能およびAndroidアプリのアカウント設定からもリンクされています。</p>
 
         <h3>RSSフィード</h3>
-        <p>内蔵のFeedsリーダーは、購読情報や取得したフィードアイテムをお使いのブラウザ内にローカル保存します。外部と同期されたり、当社に送信されたりすることは一切ありません。フィードを追加または更新すると、通常のブラウザでサイトを閲覧するときと同様に、拡張機能が配信元のサーバーへ直接フィードアドレスをリクエストします（そのため配信元側にはアクセスが認識されます）。当社がお客様の購読情報やリーディングリストをプロキシ経由で中継、ログ記録、または閲覧することはありません。OPMLのインポートもすべてお使いのデバイス上（オンデバイス）で処理されます。バックグラウンドチェック（デフォルトではオフ）を有効にした場合、拡張機能は設定した間隔でフィードを再取得しますが、これはツールバーアイコンに未読件数を表示するためだけのものです。フィードアイテムの要約は他のWebページの要約と同様に機能し、要約を実行したときにのみ、選択したAIプロバイダーに対象コンテンツが送信されます。オプションのAIデイリーダイジェストやAIトーンスコアリングも同様に、クリックしたときにのみ、記事タイトル、ソース名、短いスニペット（記事全文ではありません）が選択したAIプロバイダーへ送信され、生成された要約はお使いのデバイス上にキャッシュされます。フィード内のポッドキャストエピソードは、「再生」を押すと配信元のサーバーから直接ストリーミング再生されます。</p>
+        <p>内蔵のフィードリーダーは、購読情報と取得した記事をブラウザ内にローカル保存します。同期されることも、当社に送信されることもありません。フィードを追加・更新すると、拡張機能はサイトを訪問するときのブラウザと同じように、発行元のサーバーへ直接そのフィードのアドレスを要求します。そのため発行元はリクエストを確認できます。当社は購読情報や読書リストを中継、記録、閲覧しません。OPMLのインポートはすべて端末内で処理されます。バックグラウンドでの確認は初期設定でオンになっており、フィードの設定でオフにできます。ブラウザを開いている間、拡張機能は指定した間隔でフィードを再取得しますが、目的はツールバーのアイコンに件数を表示することだけです。フィードの記事の要約は、ほかのページの要約と同じ仕組みです。内容は選択したAIプロバイダーにのみ、要約を実行したときにだけ送信されます。任意で使える1日のまとめとAIによるトーン判定も同様で、クリックしたときにのみ、記事の見出し、配信元の名前、短い抜粋（記事全文ではありません）を選択したAIプロバイダーに送信し、生成されたまとめは端末にキャッシュされます。フィード内のポッドキャストは、再生を押すと発行元のサーバーから直接ストリーミングされます。</p>
 
         <h3>記事の送信：Kindle、LocalSend、共有シート</h3>
         <p>送信経路は2種類あり、当社のサーバーを経由するのはそのうちの1つだけです：</p>
@@ -178,7 +179,7 @@
         </ul>
 
         <h3>ライブラリ同期、バックアップ、公開機能（オプション）</h3>
-        <p>「設定 → 同期とバックアップ」で場所を追加するまでオフになっています。「場所」とは、ご自身で選択したサーバー上のフォルダ（NextcloudなどのWebDAVサーバー、またはAWS S3、Cloudflare R2、Backblaze B2などのS3互換バケット）、あるいはお使いのコンピュータ上のフォルダを指します。開発元がこれらのサーバーを運営・関与することはなく、保存されたデータを見ることも一切ありません。</p>
+        <p>「設定 → バックアップと同期」で保存先を追加するまでオフです。保存先とは、ご自身で選んだサーバー（NextcloudなどのWebDAVサーバー、またはAWS S3、Cloudflare R2、Backblaze B2のようなS3互換バケット）上のフォルダー、あるいはお使いのパソコンのフォルダーです。これらのサーバーは当社が運営するものではなく、当社は関与せず、保存した内容を目にすることもありません。</p>
         <ul>
           <li><strong>暗号化された場所</strong> デバイス間でライブラリ全体を常に同期し、バックアップを保持できます。記事、要約、全文、ハイライト、メモ、コレクション、タグなどすべてが対象です。すべてのデータはデバイスから送信される前にブラウザ内で暗号化され（パスフレーズから生成されたキーによるAES-256-GCM暗号化）、ファイル名もスクランブル化されます。サーバーや保存先フォルダー側から確認できるのは、暗号化されたファイル、ファイルサイズ、更新日時のみです。パスフレーズから生成されたキーはお使いのブラウザのローカルストレージにのみ保持されるため、バックグラウンドでの同期が可能です。自動提案されたランダムな単語を使用した場合は、設定画面から確認できるように単語もローカルに保持されますが、ご自身で設定したパスフレーズは保存されません。これらの情報が同期されたり、バックアップに含まれたりすることは一切ありません。万が一パスフレーズを紛失した場合、開発元である私たちを含め、誰もファイルを閲覧・復元することはできません。</li>
           <li><strong>閲覧可能な場所</strong> ご自身のウェブサイトやツール向けにプレーンファイル（および、希望する場合は軽量なビューアページ）を公開します。設定したタグフィルターに一致する記事のみが出力されます。危険ゾーン（Danger Zone）で明示的に有効にしない限り、メモ、リマインダー、記事本文が公開されることはありません（有効にした場合、そのフォルダを開くことができるすべての人が閲覧可能になります）。</li>
@@ -233,10 +234,13 @@
             <tr><td><code>offscreen</code>、 <code>tts</code></td><td>ポップアップを閉じた状態でも、バックグラウンドでポッドキャストの音声を再生したり要約を読み上げたりします</td></tr>
             <tr><td>ファイルシステムアクセス（選択したフォルダ）</td><td>同期またはバックアップの場所としてコンピュータ上のフォルダを選択した場合にのみ使用されます。ブラウザが許可を求め、アクセスできるのはそのフォルダのみに限定されます</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>デフォルトのストレージ容量制限を気にせず、記事やハイライトの大規模なローカルアーカイブを保持します</td></tr>
+            <tr><td><code>ブックマーク</code> （任意）</td><td>閲覧画面で「ブラウザのブックマークに保存」を選んだ場合に限ります。その前にブラウザが許可を求めます。該当する記事のブックマークを「AI Summary Helper」フォルダーに追加または更新します。当社が参照・変更するのは専用フォルダーのみで、その他のブックマークには触れません</td></tr>
+            <tr><td><code>検索</code> （任意）</td><td>ホーム画面の検索欄またはコマンドパレットで「ウェブを検索」を選んだ場合に限ります。その前にブラウザが許可を求めます。入力した言葉は、アドレスバーに入力した場合とまったく同じように、ブラウザの既定の検索エンジンに渡されます。当社がその言葉を閲覧、保存、ほかへ送信することはありません</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>アクセスしたページの要約を可能にします — コンテンツの読み取りと送信は、ユーザーが明示的に要約を実行した時のみ行われ、バックグラウンド等で勝手に実行されることはありません。また、拡張機能が指定された同期サーバーやバケット（任意のアドレス）にアクセスするためにも使用されます</td></tr>
           </tbody>
         </table>
         <p>これらの権限を、閲覧行動の追跡、広告プロファイルの作成、または上記の機能提供以外の目的でデータを収集するために使用することはありません。</p>
+        <p>Google APIから受け取る情報の利用は、 <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq" target="_blank" rel="noopener">Chromeウェブストアのユーザーデータポリシー</a>（限定的な使用の要件を含む）に準拠します。</p>
 
         <h2>行わないこと（安心への取り組み）</h2>
         <ul>
@@ -249,7 +253,7 @@
         <h2>サードパーティサービス</h2>
         <p>拡張機能の設定に応じて、ページコンテンツは以下の送信先に送信される場合があります：</p>
         <ul>
-          <li>OpenAI、Google (Gemini)、Mistral AI、または DeepSeek：該当プロバイダーのAPIキーをご自身で設定し、かつ能動的に要約を実行したページのみ送信されます。</li>
+          <li>OpenAI、Anthropic（Claude）、Google（Gemini）、Mistral AI、DeepSeek、またはOpenRouter（そこで選んだモデルに転送します）。そのプロバイダーのAPIキーをご自身で入力した場合に限り、ご自身で要約したページのみが対象です。</li>
           <li>ドイツのIONOS SEでホストされているbyphilバックエンドおよびデータベース（サインイン時、byphil Cloud、またはSend to Kindleの利用時のみ）</li>
           <li>OpenRouter（byphil Cloudがモデルに接続する経路）および中継先のモデルプロバイダー — 要約対象のテキストは、そのリクエストのためだけに使用モデルへと中継されます。</li>
           <li>Stripe — 販売代理人（Merchant of Record）としての決済およびサブスクリプション管理。</li>
@@ -273,7 +277,7 @@
         <p>拡張機能のアップデートや機能変更に伴い、本プライバシーポリシーを更新する場合があります。重要な変更がある場合は「最終更新日」を更新の上、本ページにて通知します。変更後も拡張機能の利用を継続された場合、改定後のポリシーに同意いただいたものとみなされます。</p>
 
         <h2>お問い合わせ</h2>
-        <p>本プライバシーポリシーに関するご質問やお問い合わせは、 <a href="mailto:info@byphil.eu">info@byphil.eu</a>、または <a href="https://github.com/philffm/kaivo/issues">GitHub Issues</a>にて公開されています。</p>
+        <p>本プライバシーポリシーに関するご質問やお問い合わせは、 <a href="mailto:info@byphil.eu">info@byphil.eu</a>、または <a href="https://github.com/philffm/kaivo/issues">GitHub Issues</a>。</p>
       </div>
     </div>
   </section>

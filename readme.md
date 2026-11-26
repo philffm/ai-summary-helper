@@ -165,7 +165,7 @@ Checklist (what is known to differ on Safari / iOS):
 
 The bookmarklet generator lives on its own page: [kaivo.byphil.eu/bookmarklet.html](https://kaivo.byphil.eu/bookmarklet.html) (the landing page only teases it). It supports both **byPhil Cloud** (email magic-code login, no API key) and **bring-your-own-key** providers (OpenAI, DeepSeek, Mistral, Gemini, Ollama). The generated bookmarklet always inserts the summary on the page and can optionally share it via the system share sheet, Send to Kindle (byPhil Cloud proxy), or Send to LocalSend (direct P2P). It also checks `bookmarklet-version.json` on each run and warns when it is outdated.
 
-The generator's source lives in `site-src/pages/bookmarklet.html` (markup) and `docs/assets/main.js` (the `/* ── Bookmarklet generator */` component). The HTML pages are assembled from `site-src/` into `docs/` by `npm run site:build`, and GitHub Pages serves `docs/`. Do not edit the generated `docs/*.html` or `docs/lang/` by hand; the `translate.yml` workflow rebuilds them on every push to `main` that touches `site-src/`.
+The generator's source lives in `site-src/pages/bookmarklet.html` (markup) and `docs/assets/main.js` (the `/* ── Bookmarklet generator */` component). The HTML pages are assembled from `site-src/` into `docs/` by `npm run site:build`, and GitHub Pages serves `docs/`. Do not edit the generated `docs/*.html` or `docs/lang/` by hand; translations are added as described in `docs/i18n/README.md` (the OpenRouter workflow `translate.yml` is optional and does not run on its own).
 
 ## Architecture
 
@@ -339,7 +339,7 @@ ai-summary-helper/
 └── .github/workflows/
     ├── release.yml               # Tag-triggered: build + version bump + GitHub release
     ├── ci.yml                    # Pull requests: lint + affected tests. main / nightly / tags: all tests, audits, i18n
-    └── translate.yml             # Auto-translates docs/ content → docs/<locale>/
+    └── translate.yml             # Optional: translates docs/ → docs/<locale>/ through OpenRouter
 ```
 
 #### `plugin/src/modules/` — ES module responsibilities

@@ -22,7 +22,7 @@
 <link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
 <link rel="preload" href="../../assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="stylesheet" href="../../assets/styles.css">
 <script src="../../assets/analytics.js" defer=""></script>
-<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hant" href="https://kaivo.byphil.eu/zh-tw/blog/bring-your-own-key.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="zh_TW"><meta property="og:type" content="article"><meta property="og:title" content="你的 API Key。你的模型。你的資料。— AI Summary Helper"><meta property="og:description" content="「自備 API Key」對瀏覽器擴充功能到底意味著什麼：你的 API Key 存放在哪裡、網頁文字傳送到何處，以及使用本機模型時會有什麼不同。"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="你的 API Key。你的模型。你的資料。— AI Summary Helper"><meta name="twitter:description" content="「自備 API Key」對瀏覽器擴充功能到底意味著什麼：你的 API Key 存放在哪裡、網頁文字傳送到何處，以及使用本機模型時會有什麼不同。"><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://kaivo.byphil.eu/zh-tw/blog/bring-your-own-key.html"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://kaivo.byphil.eu/zh-tw/blog/bring-your-own-key.html#post","headline":"你的 API Key。你的模型。你的資料。","description":"「自備 API Key」對瀏覽器擴充功能到底意味著什麼：你的 API Key 存放在哪裡、網頁文字傳送到何處，以及使用本機模型時會有什麼不同。","inLanguage":"zh-Hant","image":"https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://kaivo.byphil.eu/zh-tw/blog/bring-your-own-key.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://kaivo.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://kaivo.byphil.eu/zh-tw/blog/"},{"@type":"ListItem","position":3,"name":"你的 API Key。你的模型。你的資料。","item":"https://kaivo.byphil.eu/zh-tw/blog/bring-your-own-key.html"}]}]}</script></head>
+<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="zh-Hant" href="https://kaivo.byphil.eu/zh-tw/blog/bring-your-own-key.html"><link rel="canonical" href="https://kaivo.byphil.eu/zh-tw/blog/bring-your-own-key.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="zh_TW"><meta property="og:type" content="article"><meta property="og:title" content="你的 API Key。你的模型。你的資料。— AI Summary Helper"><meta property="og:description" content="「自備 API Key」對瀏覽器擴充功能到底意味著什麼：你的 API Key 存放在哪裡、網頁文字傳送到何處，以及使用本機模型時會有什麼不同。"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="你的 API Key。你的模型。你的資料。— AI Summary Helper"><meta name="twitter:description" content="「自備 API Key」對瀏覽器擴充功能到底意味著什麼：你的 API Key 存放在哪裡、網頁文字傳送到何處，以及使用本機模型時會有什麼不同。"><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://kaivo.byphil.eu/zh-tw/blog/bring-your-own-key.html#post","headline":"你的 API Key。你的模型。你的資料。","description":"「自備 API Key」對瀏覽器擴充功能到底意味著什麼：你的 API Key 存放在哪裡、網頁文字傳送到何處，以及使用本機模型時會有什麼不同。","inLanguage":"zh-Hant","image":"https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://kaivo.byphil.eu/zh-tw/blog/bring-your-own-key.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://kaivo.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://kaivo.byphil.eu/zh-tw/blog/"},{"@type":"ListItem","position":3,"name":"你的 API Key。你的模型。你的資料。","item":"https://kaivo.byphil.eu/zh-tw/blog/bring-your-own-key.html"}]}]}</script></head>
 <body>
 
 <a href="#main" class="skip-link">跳至主要內容</a>
@@ -33,12 +33,8 @@
       <img src="../../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
-    <nav class="pill" aria-label="主要">
-      <a href="../index.html#features" data-sec="features">功能特色</a>
-      <a href="../index.html#see-it" data-sec="see-it">功能展示</a>
-      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=zh-tw-blog-bring-your-own-key&amp;utm_campaign=nav" class="pill-cta" target="_blank" rel="noopener">新增至 Chrome</a>
-    </nav>
-    <div class="nav-island"><div class="nav-tools">
+    <div class="nav-island"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=zh-tw-blog-bring-your-own-key&amp;utm_campaign=nav" class="pill-cta nav-cta" target="_blank" rel="noopener">新增至 Chrome</a>
+    <div class="nav-tools">
       <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="將此頁面傳送到我的電腦" title="傳送到我的電腦"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="語言" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="切換為淺色模式">
@@ -50,6 +46,12 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
     </button></div>
   </div>
+    <nav class="pill" aria-label="主要">
+      <a href="../index.html" data-sec="hero">總覽</a>
+      <a href="../index.html#see-it" data-sec="see-it">介面預覽</a>
+      <a href="../index.html#features" data-sec="features">功能特色</a>
+      <a href="./" data-dock-blog="">部落格</a>
+    </nav>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="行動版">
@@ -146,6 +148,7 @@
           <li><strong>測試與探索：</strong> 新增多個提供商，並在同一篇文章上比較回答。這是了解哪款模型最適合哪類文本的最快途徑。</li>
         </ol>
         <p>重點不在於哪種配置才是唯一解答，而是選擇權始終掌握在你手中。</p>
+        <p>如果您使用選用的託管服務而非自己的金鑰，它提供歐盟模式： <a href="byphil-cloud-eu-models.html">byPhil Cloud 現在支援歐盟模式</a>。</p>
         <p><em>相關內容：全面了解誰能存取你的資料，以及該如何選擇： <a href="digital-sovereignty-for-individuals.html">個人數位主權</a>。</em></p>
 
         <div class="post-cta">

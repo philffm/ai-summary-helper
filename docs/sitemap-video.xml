@@ -622,7 +622,7 @@
     <loc>https://kaivo.byphil.eu/de/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-de.jpg</video:thumbnail_loc>
-      <video:title>AI Summary Helper in unter einer Minute</video:title>
+      <video:title>AI Summary Helper in zwei Minuten</video:title>
       <video:description>Alle Funktionen im schnellen Überblick: Zusammenfassungen, Quellen, Recherche-Modus, Bibliothek, Feeds, KI-Apps und mehr.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-de.mp4</video:content_loc>
       <video:duration>135</video:duration>
@@ -814,7 +814,7 @@
     <loc>https://kaivo.byphil.eu/es/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-es.jpg</video:thumbnail_loc>
-      <video:title>AI Summary Helper en menos de un minuto</video:title>
+      <video:title>AI Summary Helper en dos minutos</video:title>
       <video:description>Todas las funciones explicadas en un recorrido rápido: resúmenes, fuentes, modo de investigación, biblioteca, feeds, aplicaciones de IA y más.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-es.mp4</video:content_loc>
       <video:duration>133</video:duration>
@@ -1219,7 +1219,7 @@
     <loc>https://kaivo.byphil.eu/fr/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-fr.jpg</video:thumbnail_loc>
-      <video:title>AI Summary Helper en moins d'une minute</video:title>
+      <video:title>AI Summary Helper en deux minutes</video:title>
       <video:description>Toutes les fonctionnalités présentées en un clin d'œil : résumés, sources, mode recherche, bibliothèque, flux, applications IA et bien plus encore.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-fr.mp4</video:content_loc>
       <video:duration>131</video:duration>
@@ -1836,14 +1836,13 @@
   <url>
     <loc>https://kaivo.byphil.eu/it/</loc>
     <video:video>
-      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
-      <video:title>AI Summary Helper in meno di un minuto</video:title>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-it.jpg</video:thumbnail_loc>
+      <video:title>AI Summary Helper in due minuti</video:title>
       <video:description>Tutte le funzionalità in una rapida panoramica: riassunti, fonti, modalità ricerca, libreria, feed, app IA e molto altro.</video:description>
-      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
-      <video:duration>122</video:duration>
-      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-it.mp4</video:content_loc>
+      <video:duration>133</video:duration>
+      <video:publication_date>2026-11-24T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
-      <video:tag>English original</video:tag>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/quellen-en.jpg</video:thumbnail_loc>
@@ -2050,7 +2049,7 @@
     <loc>https://kaivo.byphil.eu/ja/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-ja.jpg</video:thumbnail_loc>
-      <video:title>1分でわかるAI Summary Helper</video:title>
+      <video:title>2分でわかるAI Summary Helper</video:title>
       <video:description>要約、情報源、リサーチモード、ライブラリ、フィード、AIアプリなど、すべての機能をスピーディーにご紹介します。</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-ja.mp4</video:content_loc>
       <video:duration>142</video:duration>
@@ -2241,14 +2240,13 @@
   <url>
     <loc>https://kaivo.byphil.eu/ko/</loc>
     <video:video>
-      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
-      <video:title>1분 만에 살펴보는 AI Summary Helper</video:title>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-ko.jpg</video:thumbnail_loc>
+      <video:title>2분 만에 보는 AI Summary Helper</video:title>
       <video:description>요약, 출처 확인, 리서치 모드, 라이브러리, 피드, AI 앱 등 모든 기능을 한눈에 빠르게 둘러보세요.</video:description>
-      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
-      <video:duration>122</video:duration>
-      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-ko.mp4</video:content_loc>
+      <video:duration>144</video:duration>
+      <video:publication_date>2026-11-24T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
-      <video:tag>English original</video:tag>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/quellen-ko.jpg</video:thumbnail_loc>
@@ -2439,14 +2437,13 @@
   <url>
     <loc>https://kaivo.byphil.eu/nl/</loc>
     <video:video>
-      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
-      <video:title>AI Summary Helper in minder dan een minuut</video:title>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-nl.jpg</video:thumbnail_loc>
+      <video:title>AI Summary Helper in twee minuten</video:title>
       <video:description>Elke functie kort en krachtig op een rij: samenvattingen, bronnen, researchmodus, een bibliotheek, feeds, AI-apps en meer.</video:description>
-      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
-      <video:duration>122</video:duration>
-      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-nl.mp4</video:content_loc>
+      <video:duration>127</video:duration>
+      <video:publication_date>2026-11-24T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
-      <video:tag>English original</video:tag>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/quellen-nl.jpg</video:thumbnail_loc>
@@ -3061,14 +3058,13 @@
   <url>
     <loc>https://kaivo.byphil.eu/pt/</loc>
     <video:video>
-      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
-      <video:title>AI Summary Helper em menos de um minuto</video:title>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-pt.jpg</video:thumbnail_loc>
+      <video:title>AI Summary Helper em dois minutos</video:title>
       <video:description>Todos os recursos apresentados em um tour rápido: resumos, fontes, modo de pesquisa, biblioteca, feeds, apps de IA e muito mais.</video:description>
-      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
-      <video:duration>122</video:duration>
-      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-pt.mp4</video:content_loc>
+      <video:duration>135</video:duration>
+      <video:publication_date>2026-11-24T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
-      <video:tag>English original</video:tag>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/quellen-pt.jpg</video:thumbnail_loc>
@@ -4519,7 +4515,7 @@
     <loc>https://kaivo.byphil.eu/zh/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-zh.jpg</video:thumbnail_loc>
-      <video:title>一分钟速览 AI Summary Helper</video:title>
+      <video:title>两分钟了解 AI Summary Helper</video:title>
       <video:description>核心功能一览无余：智能摘要、来源追溯、深度研究模式、个人知识库、信息流、AI 应用等诸多特性。</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-zh.mp4</video:content_loc>
       <video:duration>142</video:duration>
@@ -4758,14 +4754,13 @@
   <url>
     <loc>https://kaivo.byphil.eu/zh-tw/</loc>
     <video:video>
-      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
-      <video:title>一分鐘快速掌握 AI Summary Helper</video:title>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-zh-tw.jpg</video:thumbnail_loc>
+      <video:title>兩分鐘認識 AI Summary Helper</video:title>
       <video:description>一次快速瀏覽所有核心功能：內容摘要、引用來源、研究模式、收藏庫、訂閱源、AI 應用以及更多功能。</video:description>
-      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
-      <video:duration>122</video:duration>
-      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-zh-tw.mp4</video:content_loc>
+      <video:duration>142</video:duration>
+      <video:publication_date>2026-11-24T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
-      <video:tag>English original</video:tag>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/quellen-zh-tw.jpg</video:thumbnail_loc>
@@ -10209,14 +10204,13 @@
   <url>
     <loc>https://kaivo.byphil.eu/it/blog/videos.html</loc>
     <video:video>
-      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-it.jpg</video:thumbnail_loc>
       <video:title>AI Summary Helper in meno di un minuto</video:title>
       <video:description>Tutte le funzionalità in una rapida panoramica: riassunti, fonti, modalità ricerca, libreria, feed, app IA e molto altro.</video:description>
-      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
-      <video:duration>122</video:duration>
-      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-it.mp4</video:content_loc>
+      <video:duration>133</video:duration>
+      <video:publication_date>2026-11-24T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
-      <video:tag>English original</video:tag>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/quellen-en.jpg</video:thumbnail_loc>
@@ -10911,14 +10905,13 @@
   <url>
     <loc>https://kaivo.byphil.eu/ko/blog/videos.html</loc>
     <video:video>
-      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-ko.jpg</video:thumbnail_loc>
       <video:title>1분 만에 살펴보는 AI Summary Helper</video:title>
       <video:description>요약, 출처 확인, 리서치 모드, 라이브러리, 피드, AI 앱 등 모든 기능을 한눈에 빠르게 둘러보세요.</video:description>
-      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
-      <video:duration>122</video:duration>
-      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-ko.mp4</video:content_loc>
+      <video:duration>144</video:duration>
+      <video:publication_date>2026-11-24T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
-      <video:tag>English original</video:tag>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/quellen-ko.jpg</video:thumbnail_loc>
@@ -11256,14 +11249,13 @@
   <url>
     <loc>https://kaivo.byphil.eu/nl/blog/videos.html</loc>
     <video:video>
-      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-nl.jpg</video:thumbnail_loc>
       <video:title>AI Summary Helper in minder dan een minuut</video:title>
       <video:description>Elke functie kort en krachtig op een rij: samenvattingen, bronnen, researchmodus, een bibliotheek, feeds, AI-apps en meer.</video:description>
-      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
-      <video:duration>122</video:duration>
-      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-nl.mp4</video:content_loc>
+      <video:duration>127</video:duration>
+      <video:publication_date>2026-11-24T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
-      <video:tag>English original</video:tag>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/quellen-nl.jpg</video:thumbnail_loc>
@@ -11984,14 +11976,13 @@
   <url>
     <loc>https://kaivo.byphil.eu/pt/blog/videos.html</loc>
     <video:video>
-      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-pt.jpg</video:thumbnail_loc>
       <video:title>AI Summary Helper em menos de um minuto</video:title>
       <video:description>Todos os recursos apresentados em um tour rápido: resumos, fontes, modo de pesquisa, biblioteca, feeds, apps de IA e muito mais.</video:description>
-      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
-      <video:duration>122</video:duration>
-      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-pt.mp4</video:content_loc>
+      <video:duration>135</video:duration>
+      <video:publication_date>2026-11-24T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
-      <video:tag>English original</video:tag>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/quellen-pt.jpg</video:thumbnail_loc>
@@ -14486,14 +14477,13 @@
   <url>
     <loc>https://kaivo.byphil.eu/zh-tw/blog/videos.html</loc>
     <video:video>
-      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-zh-tw.jpg</video:thumbnail_loc>
       <video:title>一分鐘快速掌握 AI Summary Helper</video:title>
       <video:description>一次快速瀏覽所有核心功能：內容摘要、引用來源、研究模式、收藏庫、訂閱源、AI 應用以及更多功能。</video:description>
-      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
-      <video:duration>122</video:duration>
-      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-zh-tw.mp4</video:content_loc>
+      <video:duration>142</video:duration>
+      <video:publication_date>2026-11-24T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
-      <video:tag>English original</video:tag>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/quellen-zh-tw.jpg</video:thumbnail_loc>

@@ -69,16 +69,33 @@ npm run translate:dry-run
 npm run translate
 ```
 
-## GitHub Actions
+## Without OpenRouter (the default for now)
 
-`.github/workflows/translate.yml` runs on any push to `main` touching
-`site-src/**`, `docs/i18n/locales.json`, or `docs/i18n/slugs.json`. It runs
-`build-site.mjs` then `translate.mjs`, validates local links from sitemap
-pages and checks that every configured translation is present in the sitemap,
-and **opens a pull request** rather than committing
-directly — machine translation and market adaptation should get a human
-read-through before going live, at least until you've built up trust in a
-given locale's output quality.
+Translations can be written by hand or by an assistant such as Claude. No API key, no cost per string; the cache
+records who wrote each one.
+
+```bash
+node scripts/build-site.mjs                # not site:build: seo.mjs adds video transcripts, it runs after translating
+node scripts/translate.mjs --priority=2 --export-missing=pending.json   # { locale: { key: { en, kind, pages, registers } } }
+# translate: write done.json as { "<locale>": { "<key>": "<translation>" } }
+node scripts/translate.mjs --import=done.json --model=<who translated>  # checked first, all or nothing
+node scripts/translate.mjs --priority=2 --cache-only                    # writes the pages; exit 1 if a string is missing
+node scripts/seo.mjs && node scripts/tag-store-links.mjs && node scripts/build-site-brand.mjs
+```
+
+Rules for the translated text: follow `transcreation-brief.md` and the locale's `marketNotes` (for German, `registers`
+says whether a page uses "du" or "Sie"); keep "AI Summary Helper", URLs, code and numbers as they are. `--import`
+rejects text that changes URLs, backtick code or angle brackets, adds HTML entities, drops the product name or
+brings in "Kaivo" (`docs/` is the source brand; the brand build renames).
+
+## GitHub Actions (optional: OpenRouter)
+
+`.github/workflows/translate.yml` translates through OpenRouter. It does not run on its own: start it by hand (Actions
+tab → "Translate & localize website content" → "Run workflow"), or set the repository variable `OPENROUTER_AUTO` to
+`true` to also run it on every push to `main` that touches `site-src/**`, `docs/i18n/locales.json`,
+`docs/i18n/slugs.json` or a blog video. It runs `build-site.mjs` then `translate.mjs`, tags the store links, checks the
+sitemap and **opens a pull request** rather than committing directly: machine translation should get a human
+read-through before going live.
 
 ### One-time setup
 
@@ -100,7 +117,5 @@ website content" → "Run workflow") with the locale code in the input box.
 
 ### Cost note
 
-Every push that touches content triggers a full re-check, but only *stale*
-(file, locale) pairs actually call the API — untouched ones are skipped
-(you'll see `skip ... — up to date` in the log). A typical single-page edit
+A run re-checks every page, but only strings that are not in the cache are sent to the API. A typical single-page edit
 costs one API call per affected locale, not a full-site re-translation.

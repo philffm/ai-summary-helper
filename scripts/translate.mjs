@@ -34,9 +34,17 @@
 //   node scripts/translate.mjs --locale=fr      # only this locale
 //   node scripts/translate.mjs --priority=2    # selected translation priority (default: 1)
 //   node scripts/translate.mjs --file=index.html  # only this source file
+//
+// Without OpenRouter (translations written by hand or by an assistant such as Claude):
+//   node scripts/translate.mjs --priority=2 --export-missing=pending.json   # strings not in the cache yet; writes no pages
+//   node scripts/translate.mjs --import=done.json --model=<who translated>  # { locale: { key: text } } into the cache
+//   node scripts/translate.mjs --priority=2 --cache-only                    # build pages from the cache, no key, no API;
+//                                                                           # a page with a missing string is not written
+//                                                                           # and the run ends with exit code 1
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync, writeFileSync, appendFileSync } from 'node:fs';
+import { importTranslations } from './lib/translation-import.mjs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import * as cheerio from 'cheerio';
@@ -57,6 +65,11 @@ const DRY_RUN = args.includes('--dry-run');
 const ONLY_LOCALE = (args.find(a => a.startsWith('--locale=')) || '').split('=')[1] || null;
 const ONLY_FILE = (args.find(a => a.startsWith('--file=')) || '').split('=')[1] || null;
 const PRIORITY_ARG = (args.find(a => a.startsWith('--priority=')) || '').split('=')[1] || null;
+const CACHE_ONLY = args.includes('--cache-only');
+const EXPORT_FILE = (args.find(a => a.startsWith('--export-missing=')) || '').split('=')[1] || null;
+const IMPORT_FILE = (args.find(a => a.startsWith('--import=')) || '').split('=')[1] || null;
+const IMPORT_MODEL = (args.find(a => a.startsWith('--model=')) || '').split('=')[1] || null;
+const pending = {};   // locale -> key -> { en, kind, pages, registers }: strings the cache does not have
 
 // ── Utilities ────────────────────────────────────────────────────────
 
@@ -480,6 +493,20 @@ async function translateFile(relPath, config, targetLocales, manifest, apiKey, p
             }
         }
 
+        if (missing.length > 0 && (EXPORT_FILE || CACHE_ONLY)) {
+            const register = pageRegister(relPath, locale);
+            for (const u of missing) {
+                const entry = ((pending[code] ??= {})[stringKey(u.text)] ??= { en: u.text, kind: u.kind, pages: [], registers: [] });
+                if (!entry.pages.includes(relPath)) entry.pages.push(relPath);
+                if (register && !entry.registers.includes(register)) entry.registers.push(register);
+            }
+        }
+        if (EXPORT_FILE) continue;                       // collect only
+        if (CACHE_ONLY && missing.length > 0) {          // never publish a half translated page: keep the old one
+            console.warn(`missing    ${relPath} [${code}] — ${missing.length}/${units.length} string(s) not in the cache, page not written`);
+            continue;
+        }
+
         let fresh = {};
         if (missing.length > 0) {
             console.log(`translate  ${relPath} [${code}] — ${missing.length}/${units.length} new string(s)${DRY_RUN ? ' (dry run)' : ''}`);
@@ -574,9 +601,24 @@ async function main() {
     const manifest = existsSync(MANIFEST_PATH) ? await loadJson(MANIFEST_PATH) : { strings: {} };
     manifest.strings = manifest.strings || {};
 
+    if (IMPORT_FILE) {
+        const english = new Map();   // key -> English text, from the pages as they are now
+        for (const relPath of [...config.content, ...untrackedPages(ROOT, config)]) {
+            for (const u of extractUnits(cheerio.load(await readFile(path.join(ROOT, relPath), 'utf8'), { decodeEntities: false }))) english.set(stringKey(u.text), u.text);
+        }
+        const { added, errors } = importTranslations(manifest, await loadJson(IMPORT_FILE), { config, english, model: IMPORT_MODEL });
+        if (errors.length) {
+            console.error(`Nothing imported, ${errors.length} problem(s):\n  ${errors.slice(0, 60).join('\n  ')}`);
+            process.exit(1);
+        }
+        await saveJson(MANIFEST_PATH, manifest);
+        console.log(`Imported ${added} translation(s) into the cache (model: ${IMPORT_MODEL}).`);
+        return;
+    }
+
     const apiKey = process.env.OPENROUTER_API_KEY;
-    if (!DRY_RUN && !apiKey) {
-        console.error('OPENROUTER_API_KEY is not set. Use --dry-run to test the pipeline without it.');
+    if (!DRY_RUN && !CACHE_ONLY && !EXPORT_FILE && !apiKey) {
+        console.error('OPENROUTER_API_KEY is not set. Use --cache-only or --export-missing=<file> to work without OpenRouter, or --dry-run to test.');
         process.exit(1);
     }
 
@@ -627,6 +669,12 @@ async function main() {
         if (called && !DRY_RUN) await saveJson(MANIFEST_PATH, manifest);
     }
 
+    if (EXPORT_FILE) {
+        await saveJson(EXPORT_FILE, pending);
+        console.log(`\nExported ${Object.entries(pending).map(([c, m]) => `${c}: ${Object.keys(m).length}`).join(', ') || 'nothing'} → ${EXPORT_FILE}`);
+        return;
+    }
+
     await syncNavPostTitles(config, targetLocales, targetFiles);
 
     // Only persist the cache on a REAL run. Dry-runs are preview-only and
@@ -635,6 +683,10 @@ async function main() {
         await saveJson(MANIFEST_PATH, manifest);
     }
     console.log(`\nDone. Priority ${priority}: ${Object.keys(targetLocales).join(', ')}. ${filesWithApiCalls}/${targetFiles.length} file(s) needed new translation calls. ${Object.keys(manifest.strings).length} unique string(s) cached total.`);
+    if (CACHE_ONLY && Object.keys(pending).length) {
+        console.error(`Not in the cache: ${Object.entries(pending).map(([c, m]) => `${c}: ${Object.keys(m).length}`).join(', ')}. Translate them (--export-missing, --import) and run again.`);
+        process.exitCode = 1;
+    }
     // Signal to the Action whether there's anything to commit/PR.
     if (process.env.GITHUB_OUTPUT) {
         await writeFile(process.env.GITHUB_OUTPUT, `changed=${filesWithApiCalls > 0}\n`, { flag: 'a' });

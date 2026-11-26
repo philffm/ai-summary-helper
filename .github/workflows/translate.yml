@@ -1,5 +1,11 @@
 name: Translate & localize website content
 
+# Translating through OpenRouter is OPTIONAL. By default translations are written without it (see docs/i18n/README.md,
+# "Without OpenRouter") and committed with the change. This workflow runs
+#   - by hand: Actions → this workflow → "Run workflow", or
+#   - on pushes, only while the repository variable OPENROUTER_AUTO is "true"
+#     (Settings → Secrets and variables → Actions → Variables).
+
 on:
   push:
     branches: [main]
@@ -41,8 +47,8 @@ permissions:
 
 jobs:
   debounce:
-    # pushes only; a manual run ("Run workflow") starts straight away
-    if: ${{ github.event_name == 'push' }}
+    # pushes only, and only when switched on; a manual run ("Run workflow") starts straight away
+    if: ${{ github.event_name == 'push' && vars.OPENROUTER_AUTO == 'true' }}
     runs-on: ubuntu-latest
     concurrency:
       group: translate-debounce
@@ -53,8 +59,9 @@ jobs:
 
   translate:
     needs: debounce
-    # the debounce job is skipped for manual runs and cancelled by a newer push: then this run has nothing to do
-    if: ${{ !cancelled() && (needs.debounce.result == 'success' || needs.debounce.result == 'skipped') }}
+    # after a waited push, or started by hand. A push with OPENROUTER_AUTO off skips both jobs; a debounce cancelled by
+    # a newer push has nothing left to do
+    if: ${{ !cancelled() && (needs.debounce.result == 'success' || (github.event_name == 'workflow_dispatch' && needs.debounce.result == 'skipped')) }}
     concurrency:
       group: translate-site
       cancel-in-progress: false
@@ -115,9 +122,12 @@ jobs:
       - name: Regenerate SEO artefacts (sitemap, hreflang, llms.txt)
         run: |
           node scripts/seo.mjs
+          # build-site.mjs writes plain store links: without this the PR would strip their UTM parameters (CI checks them)
+          node scripts/tag-store-links.mjs
           node plugin/scripts/build-demo.mjs
           node --test scripts/tests/sitemap-links.test.mjs
           node scripts/check-sitemap.mjs
+          node scripts/tag-store-links.mjs --check
 
       # docs/ is generated (by build-site.mjs) and committed (GitHub Pages
       # serves it directly), so both the English pages AND the translated

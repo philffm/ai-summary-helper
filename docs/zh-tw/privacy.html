@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://kaivo.byphil.eu/zh-tw/privacy.html">
 <meta property="og:type" content="website">
 <script src="../assets/analytics.js" defer=""></script>
-<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="zh-Hant" href="https://kaivo.byphil.eu/zh-tw/privacy.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="zh_TW"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="隱私權政策 — AI Summary Helper"><meta name="twitter:description" content="AI Summary Helper 如何處理您的資料：您的 API Key 與文章歷史紀錄均保留在您的裝置本機。"><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://kaivo.byphil.eu/zh-tw/privacy.html"></head>
+<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="zh-Hant" href="https://kaivo.byphil.eu/zh-tw/privacy.html"><link rel="canonical" href="https://kaivo.byphil.eu/zh-tw/privacy.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="zh_TW"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="隱私權政策 — AI Summary Helper"><meta name="twitter:description" content="AI Summary Helper 如何處理您的資料：您的 API Key 與文章歷史紀錄均保留在您的裝置本機。"><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"></head>
 <body>
 
 <a href="#main" class="skip-link">跳至主要內容</a>
@@ -38,13 +38,8 @@
       <img src="../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
-    <nav class="pill" aria-label="主要">
-      <a href="index.html#use-cases" data-sec="use-cases">使用情境</a>
-      <a href="index.html#problem" data-sec="problem" data-slider-goto="problem">運作方式</a>
-      <a href="blog/">部落格</a>
-      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=zh-tw-privacy&amp;utm_campaign=nav" class="pill-cta" target="_blank" rel="noopener">新增至 Chrome</a>
-    </nav>
-    <div class="nav-island"><div class="nav-tools">
+    <div class="nav-island"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=zh-tw-privacy&amp;utm_campaign=nav" class="pill-cta nav-cta" target="_blank" rel="noopener">新增至 Chrome</a>
+    <div class="nav-tools">
       <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="將此頁面傳送到我的電腦" title="傳送到我的電腦"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="語言" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="切換為淺色模式">
@@ -56,6 +51,12 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
     </button></div>
   </div>
+    <nav class="pill" aria-label="主要">
+      <a href="index.html" data-sec="hero">總覽</a>
+      <a href="index.html#see-it" data-sec="see-it">介面預覽</a>
+      <a href="index.html#features" data-sec="features">功能特色</a>
+      <a href="blog/" data-dock-blog="">部落格</a>
+    </nav>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="行動版">
@@ -135,7 +136,7 @@
         <h3>您的 AI 服務商連線</h3>
         <p>由您決定摘要的生成方式：</p>
         <ul>
-          <li><strong>自備金鑰（BYOK）</strong> — OpenAI、Google Gemini、Mistral AI、DeepSeek 或自訂端點（Custom Endpoint）。您的 API Key 僅儲存於您的本機裝置（絕不同步，亦絕不會傳送給我們）。您選擇摘要的網頁內容會直接從您的瀏覽器發送至指定的服務商，使用您自己的金鑰並受該服務商的隱私權政策規範。我們無法查看、記錄或儲存這些內容。</li>
+          <li><strong>自備金鑰（BYOK）</strong> ——OpenAI、Anthropic（Claude）、Google Gemini、Mistral AI、DeepSeek、OpenRouter 或自訂端點。您的 API Key 只儲存在您的裝置本機（絕不同步，也絕不傳送給我們）。您選擇摘要的網頁內容，會使用您自己的金鑰從瀏覽器直接傳送給您選定的供應商，並適用該供應商本身的隱私權政策。我們不會查看、記錄或儲存這些內容。</li>
           <li><strong>透過 Ollama 運行本地模型</strong> — 若您在本地運行模型，網頁內容僅會發送至您自己的電腦。任何資料都不會離開您的裝置。</li>
           <li><strong>byphil Cloud（可選，付費方案）</strong> ——專為不想自行管理 API Key 的使用者提供的代管方案。如果您選擇此方案，您要求摘要的文字會經過我們的後端，由後端透過 OpenRouter 代表您將請求轉發至底層的模型提供商，並回傳摘要結果。這純粹屬於轉發傳輸：我們不會儲存任何網頁內容、網址或摘要。我們在每個帳號下記錄的僅有使用量詮釋資料（Metadata）：已完成的請求次數、Token 用量、上次請求的時間以及使用的模型。帳號本身為選用；無需帳號亦可使用所有其他功能。開啟「偏好歐盟伺服器」設定後，具備歐洲端點的模型將僅在該端點運行，且應用程式會標示哪些模型支援、哪些不支援。這僅限制了模型的運行位置，並未縮減傳輸路徑中的節點：您的文字仍會先經過我們的服務（運行於德國的伺服器），再透過美國公司 OpenRouter 傳送至模型端；此外，朗讀與語音轉文字功能目前不提供歐盟伺服器選項。</li>
         </ul>
@@ -165,10 +166,10 @@
           </tbody>
         </table>
         <p>標記為「同步」的項目採用與您的 Google 帳號繫結的 Chrome 內建同步功能 — 這些資料與您的書籤一樣，只會經過 Google 的基礎設施傳輸，絕不經過我們的伺服器，我們亦無法存取這些資料。</p>
-        <p>您可以隨時透過「設定 → 資料庫與資料 → 備份與還原」（Settings → Library &amp; Data → Backup &amp; restore）匯出資料。備份檔案預設會略過 API keys、登入資訊、授權金鑰與安裝識別碼；若要包含這些內容需手動確認啟用，系統亦會發出警告，因為任何取得該檔案的人都可以使用這些機密。請妥善保管匯出的檔案以確保隱私，並請留意較舊的備份檔案中可能包含機密資料。在相同位置的「危險區域」（Danger zone）可讓您依類別刪除資料，並會顯示即將清除的項目數量：摘要與封存、畫線醒目提示、訂閱來源 (feeds)、Podcast、API keys／登入資訊／授權、傳送目的地 (Kindle、LocalSend) 以及偏好設定。 <em>刪除所有資料</em> 會清除擴充功能儲存在裝置上的所有資料並將其重設為初始狀態。移除擴充功能亦會刪除其資料。這些操作僅會刪除本機資料。至於您的帳號以及我們在伺服器上保留的紀錄（詳見下方），您可以在 <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>進行管理：您可以在該處匯出資料並刪除帳號。擴充功能與 Android 應用程式均在帳號設定中提供了此頁面的連結。</p>
+        <p>您隨時可以透過「設定 → 備份與同步」匯出資料。備份預設不包含 API Key、登入資訊、授權金鑰與安裝識別碼；若要納入，必須明確選擇並會顯示警告，因為任何取得該檔案的人都能使用它們。請妥善保管匯出的檔案，並留意舊備份可能含有機密資訊。在同一處的「危險區域」，您可以依類別刪除資料，並看到將刪除的數量：摘要與封存、醒目標示、訂閱來源、Podcast、API Key／登入／授權、傳送目標（Kindle、LocalSend）以及偏好設定。 <em>刪除所有資料</em> 會清除擴充功能儲存在裝置上的所有資料並將其重設為初始狀態。移除擴充功能亦會刪除其資料。這些操作僅會刪除本機資料。至於您的帳號以及我們在伺服器上保留的紀錄（詳見下方），您可以在 <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>進行管理：您可以在該處匯出資料並刪除帳號。擴充功能與 Android 應用程式均在帳號設定中提供了此頁面的連結。</p>
 
         <h3>RSS 訂閱來源</h3>
-        <p>內建的 Feeds 閱讀器會將您的訂閱項目與擷取的內容儲存在本機瀏覽器中——絕不同步，也絕不會傳送給我們。當您新增或重新整理訂閱來源時，擴充功能會直接向發布者的伺服器請求該來源網址，就像您用瀏覽器造訪該網站一樣，因此發布者會看到此請求。我們不會代理、記錄或查看您的訂閱項目或閱讀清單。OPML 匯入作業完全在您的裝置上處理。若您開啟背景檢查功能（預設關閉），擴充功能只會依照您自訂的時間間隔重新請求訂閱來源，僅用於在工具列圖示上顯示計數。為摘要項目產生 AI 摘要的運作方式與摘要任何其他網頁相同：只有在您觸發摘要時，內容才會傳送至您選擇的 AI 提供者。選用的 AI 每日回顧與 AI 語氣評分也是如此：只有在您點擊時，擴充功能才會將文章標題、來源名稱與簡短摘要（非完整全文）傳送給您選擇的 AI 提供者，而產生的回顧內容則會快取在您的裝置上。摘要中的 Podcast 單集會在您按下 Play 時，直接從發布者的伺服器串流播放。</p>
+        <p>內建的訂閱閱讀器會將您的訂閱和擷取到的項目儲存在瀏覽器本機——絕不同步，也絕不傳送給我們。當您新增或重新整理訂閱來源時，擴充功能會像瀏覽器造訪網站一樣，直接向發布者的伺服器要求該訂閱網址，因此發布者看得到這項要求。我們不會代理、記錄或查看您的訂閱或閱讀清單。OPML 匯入完全在您的裝置上處理。背景檢查預設開啟，可在訂閱來源設定中關閉：瀏覽器開啟期間，擴充功能會依您選擇的間隔重新要求訂閱來源，僅用於在工具列圖示上顯示數量。摘要訂閱項目與摘要其他網頁的方式相同：內容只會傳送給您選擇的 AI 供應商，且僅在您啟動摘要時傳送。選用的每日 AI 回顧與 AI 語氣評分也是如此：只有當您點選時，擴充功能才會將項目標題、來源名稱和簡短摘錄（而非全文）傳送給您選擇的 AI 供應商，產生的回顧會快取在您的裝置上。當您按下播放時，訂閱來源中的 Podcast 單集會直接從發布者的伺服器串流播放。</p>
 
         <h3>傳送文章：Kindle、LocalSend 與系統分享面板</h3>
         <p>共有兩種傳送途徑，其中只有一種會經過我們的伺服器：</p>
@@ -178,7 +179,7 @@
         </ul>
 
         <h3>文庫同步、備份與發佈（選用）</h3>
-        <p>預設關閉，直到您在「設定 → 同步與備份」中新增位置。「位置」可以是您選擇的伺服器上的資料夾（Nextcloud 或其他 WebDAV 伺服器，或相容 S3 的儲存空間如 AWS S3、Cloudflare R2 或 Backblaze B2），也可以是您本機電腦上的資料夾。我們不營運這些伺服器，不參與傳輸過程，也絕不會看到您儲存的內容。</p>
+        <p>在「設定 → 備份與同步」中新增位置之前，此功能保持關閉。位置是指您自選伺服器上的資料夾（Nextcloud 或其他 WebDAV 伺服器，或相容 S3 的儲存貯體，例如 AWS S3、Cloudflare R2 或 Backblaze B2），或您自己電腦上的資料夾。這些伺服器並非由我們營運，我們不參與其中，也永遠看不到您放置的內容。</p>
         <ul>
           <li><strong>加密位置</strong> 讓所有裝置隨時同步你的完整資料庫，或建立安全備份：包含文章、摘要、全文、重點畫線、筆記、收藏集與標籤。所有內容在離開裝置前，都會先於瀏覽器端完成加密（採用 AES-256-GCM，金鑰由你的通行密碼衍生），且檔案名稱均會經過混淆處理。伺服器或同步資料夾僅能讀取加密檔案、檔案大小與變更時間。由通行密碼衍生的金鑰只會保留在此瀏覽器的本機儲存空間中，以便在背景持續同步。若你使用系統建議的隨機單字組合，這些單字也會儲存在本機，方便你隨時在該處的設定中查看；若為自行設定的通行密碼則絕不儲存。上述任何金鑰或密碼資訊皆不會被同步或納入備份。若遺失通行密碼，包含我們在內的任何人都無法讀取你的檔案。</li>
           <li><strong>明文讀取位置</strong> 發佈明文檔案（若有需要，也可包含輕量檢視頁面），供您自己的網站或工具使用。僅有符合您所設標籤篩選條件的文章才會發佈。除非您在危險區域（Danger Zone）手動啟用，否則筆記、提醒事項與文章全文絕不會被發佈；一旦啟用，任何能開啟該資料夾的人皆可閱讀這些內容。</li>
@@ -233,10 +234,13 @@
             <tr><td><code>offscreen</code>、 <code>tts</code></td><td>在彈出視窗關閉時，仍可在背景播放 Podcast 音訊與朗讀摘要內容</td></tr>
             <tr><td>檔案系統存取權限（所選資料夾）</td><td>僅在您選擇本機電腦上的資料夾作為同步或備份位置時使用；瀏覽器會請求您的授權，且僅有該資料夾可被存取</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>在本地端保存大量文章與重點標記封存，不受預設儲存空間配額限制</td></tr>
+            <tr><td><code>書籤</code> （選用）</td><td>僅當您在閱讀檢視中選擇「儲存到瀏覽器書籤」時；瀏覽器會先徵求許可。我們會在名為「AI Summary Helper」的資料夾中為該文章新增或更新一個書籤；我們只查找和更改自己的資料夾，不涉及您的其他書籤</td></tr>
+            <tr><td><code>搜尋</code> （選用）</td><td>僅當您在首頁搜尋框或指令面板中選擇「搜尋網頁」時；瀏覽器會先徵求許可。您輸入的文字會交給瀏覽器本身的預設搜尋引擎，就和您在網址列中輸入完全一樣。我們不會查看、儲存這些文字，也不會傳送到其他任何地方</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>讓您為造訪的任何頁面生成摘要 — 僅在您主動觸發摘要時才會讀取並傳輸內容，絕不被動收集。同時允許擴充功能連線至您輸入的同步伺服器或儲存空間（bucket），該位址可為任意位址</td></tr>
           </tbody>
         </table>
         <p>我們絕不會利用這些權限追蹤您的瀏覽紀錄、建立廣告畫像，或收集上述功能所需之外的任何資料。</p>
+        <p>對自 Google API 取得之資訊的使用，將遵守 <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq" target="_blank" rel="noopener">Chrome 線上應用程式商店使用者資料政策</a>，包括其中的「有限使用」規定。</p>
 
         <h2>我們絕不從事的事情</h2>
         <ul>
@@ -249,7 +253,7 @@
         <h2>第三方服務</h2>
         <p>視乎您的擴充功能設定，網頁內容可能會傳送至：</p>
         <ul>
-          <li>OpenAI、Google (Gemini)、Mistral AI 或 DeepSeek — 僅限於您已輸入該服務商的 API Key，且僅傳送您主動摘要的網頁。</li>
+          <li>OpenAI、Anthropic（Claude）、Google（Gemini）、Mistral AI、DeepSeek 或 OpenRouter（會轉送至您在該處選擇的模型）——僅限您已為該供應商輸入自己的 API Key，且僅限您主動摘要的網頁。</li>
           <li>我們的 byphil 後端及其資料庫，兩者皆託管於德國 IONOS SE——僅在您登入、使用 byphil Cloud 或 Send to Kindle 時適用。</li>
           <li>OpenRouter（byphil Cloud 藉此連線至各 AI 模型）及其所路由至的模型提供商——您要求摘要的文字僅會在該次請求中轉發給您所使用的模型。</li>
           <li>Stripe——作為登記名義商戶（Merchant of Record），處理付款與訂閱管理。</li>
