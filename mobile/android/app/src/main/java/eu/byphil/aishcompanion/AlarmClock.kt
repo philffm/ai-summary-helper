@@ -55,6 +55,8 @@ data class AlarmSettings(
     val sound: String = "",
     /** Fade the sound in over about 45 seconds, then read the briefing over the music at a lower volume. */
     val fadeIn: Boolean = false,
+    /** The briefing, an article from the reading list, or one of your highlights as a question. */
+    val wake: WakeMode = WakeMode.BRIEFING,
 ) {
     companion object { const val ALL_DAYS = 0b1111111 }
 }
@@ -155,13 +157,18 @@ class AlarmService : Service() {
         val stop = PendingIntent.getService(this, 1, Intent(this, AlarmService::class.java).setAction(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         val notification = NotificationCompat.Builder(this, CHANNEL)
             .setSmallIcon(android.R.drawable.ic_lock_idle_alarm)
-            .setContentTitle("Good morning").setContentText("Tap to stop the alarm and hear your briefing")
+            .setContentTitle("Good morning").setContentText("Tap to open and stop the alarm")
             .setCategory(NotificationCompat.CATEGORY_ALARM).setPriority(NotificationCompat.PRIORITY_MAX)
             .setOngoing(true).setContentIntent(open).setFullScreenIntent(open, true)
             .addAction(0, "Stop", stop).build()
         ServiceCompat.startForeground(this, NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
         handler.removeCallbacksAndMessages(null)
+        // What was prepared before the alarm is used as it is. Otherwise it is chosen while the sound already plays:
+        // a large reading list takes a moment, and the ring must not wait for it. The screen picks it up.
+        val ready = freshWake(this)
+        if (ready == null) Store(this).wakeJson = null
         startRinging()
+        if (ready == null) Thread { Store(this).wakeJson = buildWakeNow(this).toJson() }.start()
         Thread { refreshBeforeRinging(this) }.start()   // the ring screen picks the result up when it arrives
         handler.postDelayed({ stopRinging() }, 5 * 60_000)
         return START_NOT_STICKY
@@ -205,12 +212,15 @@ class AlarmService : Service() {
         }
     }
 
-    /** The briefing, read over the music, which is lowered while the voice speaks and comes back to a calm level afterwards. */
+    /** The briefing (or the article, or the question), read over the music, which is lowered while the voice speaks and comes back to a calm level afterwards. */
     private fun speakBriefing() {
         Thread {
-            val briefing = runCatching { loadBriefing(this) }.getOrNull()
-            val parts = briefing?.let { runCatching { it.spokenParts(java.time.LocalTime.now().hour) }.getOrNull() }.orEmpty()
-            val voice = if (briefing != null && briefing.narration.isNotBlank()) SummaryLangs.feedLocale(Store(this).summaryLang) else java.util.Locale.getDefault()
+            val wake = loadWake(this)
+            val (parts, voice) = if (wake.mode != WakeMode.BRIEFING) wake.parts to wakeLocale(wake) else {
+                val briefing = runCatching { loadBriefing(this) }.getOrNull()
+                briefing?.let { runCatching { it.spokenParts(java.time.LocalTime.now().hour) }.getOrNull() }.orEmpty() to
+                    if (briefing != null && briefing.narration.isNotBlank()) SummaryLangs.feedLocale(Store(this).summaryLang) else java.util.Locale.getDefault()
+            }
             handler.post { if (player != null && parts.isNotEmpty()) speak(parts, voice) }
         }.start()
     }
@@ -253,6 +263,9 @@ class AlarmService : Service() {
     }
 }
 
+/** The voice for an article or highlight: its own language, else the phone's. */
+fun wakeLocale(wake: Wake): java.util.Locale = if (wake.lang.isBlank()) java.util.Locale.getDefault() else java.util.Locale.forLanguageTag(wake.lang)
+
 /** Builds the briefing from what is on the phone now. */
 fun buildBriefingNow(context: Context, now: Long = System.currentTimeMillis()): Briefing {
     val app = context.applicationContext
@@ -261,6 +274,40 @@ fun buildBriefingNow(context: Context, now: Long = System.currentTimeMillis()): 
     val feedStore = FeedStore(File(app.filesDir, "feeds"))
     return BriefingBuilder.build(feedStore.everything(), unread, now, Store(app).alarm.newsMode, feedStore.feeds())
 }
+
+/** Your own highlights, from the browser and from this phone, of the articles in the reading list. */
+fun ownHighlights(articles: ArticleStore): List<Card> = articles.list().flatMap { meta ->
+    val sent = articles.load(meta.id)?.highlights?.filter { !it.ghost }?.map { it.text }.orEmpty()
+    (sent + articles.userHighlights(meta.id)).distinct().map { Card(meta.id, meta.title, it) }
+}
+
+/** Chooses what to wake with. An empty reading list, or no highlight that is due, gives the briefing. Never throws. */
+fun buildWakeNow(context: Context, seed: Int = kotlin.random.Random.nextInt(), now: Long = System.currentTimeMillis()): Wake {
+    val app = context.applicationContext
+    val store = Store(app)
+    val hour = Instant.ofEpochMilli(now).atZone(ZoneId.systemDefault()).hour
+    return runCatching {
+        val articles = ArticleStore(app)
+        when (store.alarm.wake) {
+            WakeMode.BRIEFING -> null
+            WakeMode.ARTICLE -> Wake.randomArticle(articles.list().filter { !articles.isArchived(it.id) }, { !articles.isRead(it.id) }, seed)
+                ?.let { articles.load(it.id) }?.let { Wake.article(it, hour, now) }
+            WakeMode.REMEMBER -> Recall.pick(ownHighlights(articles), store.memos, today(now), seed)
+                ?.let { Wake.remember(it, seed, articles.load(it.articleId)?.lang.orEmpty(), hour, now) }
+        }
+    }.getOrNull() ?: Wake.briefing(now)
+}
+
+fun today(now: Long = System.currentTimeMillis()): Long = Instant.ofEpochMilli(now).atZone(ZoneId.systemDefault()).toLocalDate().toEpochDay()
+
+/** The choice made for this ring (before it, or when it started), if it is recent and of the kind set now. */
+fun freshWake(context: Context, now: Long = System.currentTimeMillis()): Wake? {
+    val store = Store(context)
+    return Wake.fromJson(store.wakeJson)?.takeIf { now - it.builtAt in 0..30 * 60_000L && (it.mode == store.alarm.wake || it.mode == WakeMode.BRIEFING) }
+}
+
+/** The choice of the ring that is going on, else a new one. Reads the reading list: call from a background thread. */
+fun loadWake(context: Context, now: Long = System.currentTimeMillis()): Wake = freshWake(context, now) ?: buildWakeNow(context, now = now)
 
 /**
  * When the alarm rings and the prepared briefing is missing, stale or empty (the phone held back the preparation job in the night, as
@@ -290,6 +337,7 @@ class BriefingWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(c
     override suspend fun doWork(): Result {
         runCatching { withTimeoutOrNull(240_000) { AppModel(applicationContext).refreshAll(force = true) } }
         val store = Store(applicationContext)
+        if (store.alarm.wake != WakeMode.BRIEFING) store.wakeJson = buildWakeNow(applicationContext).toJson()
         var plain = runCatching { buildBriefingNow(applicationContext) }.getOrNull() ?: return Result.success()
         store.briefingJson = plain.toJson()   // saved first: the alarm has a briefing even if the model is slow or fails
         val settings = store.alarm

@@ -306,7 +306,21 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     androidx.compose.material3.Surface(Modifier.fillMaxSize(), color = look?.first ?: MaterialTheme.colorScheme.surface, contentColor = look?.second ?: MaterialTheme.colorScheme.onSurface) {
     ReadingColumn {
       Column(Modifier.fillMaxSize()) {
-        LazyColumn(Modifier.weight(1f).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp), contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 12.dp, bottom = 40.dp)) {
+        val list = androidx.compose.foundation.lazy.rememberLazyListState()
+        val spots = remember(article, placed) { DepthTrack.spots(article.blocks, placed) }
+        val leading = if (article.summary.isNotBlank()) 4 else 3   // the items above the first block: title, actions, summary, divider
+        val onScreen by remember(article) {
+            androidx.compose.runtime.derivedStateOf {
+                val info = list.layoutInfo
+                DepthTrack.window(article.blocks, info.visibleItemsInfo.filter { it.size > 0 }.map {
+                    Shown(it.index - leading, ((info.viewportStartOffset - it.offset).toFloat() / it.size).coerceIn(0f, 1f), ((info.viewportEndOffset - it.offset).toFloat() / it.size).coerceIn(0f, 1f))
+                })
+            }
+        }
+        val scroll = androidx.compose.runtime.rememberCoroutineScope()
+        val still = LocalReduceMotion.current
+        androidx.compose.foundation.layout.Box(Modifier.weight(1f).fillMaxWidth()) {
+        LazyColumn(Modifier.fillMaxSize(), state = list, verticalArrangement = Arrangement.spacedBy(12.dp), contentPadding = PaddingValues(start = 20.dp, end = if (spots.isEmpty()) 20.dp else 36.dp, top = 12.dp, bottom = 40.dp)) {
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(article.title.ifBlank { article.url }, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.semantics { heading() })
@@ -415,6 +429,14 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
             if (article.truncated) item { Text("This long article was shortened to fit. Tap Read original for the rest.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant) }
             if (allHighlights.isNotEmpty()) item { Highlights(allHighlights) }
             if (allHighlights.isEmpty() && article.blocks.isNotEmpty()) item { Text("Tip: press and hold a word, adjust the selection, then choose Highlight.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+        }
+        if (spots.isNotEmpty()) DepthRail(
+            spots, { onScreen },
+            // a third of the screen above the block, so that the highlight is not glued to the top edge
+            onSpot = { spot -> scroll.launch { val above = -list.layoutInfo.viewportSize.height / 3; if (still) list.scrollToItem(leading + spot.block, above) else list.animateScrollToItem(leading + spot.block, above) } },
+            onSeek = { fraction -> DepthTrack.blockAt(article.blocks, fraction)?.let { block -> scroll.launch { list.scrollToItem(leading + block) } } },
+            modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight().padding(vertical = 12.dp),
+        )
         }
         ActionBar(
             primary = BarAction(Icons.Filled.OpenInBrowser, "Read original") { onOpenWeb(article.url) },

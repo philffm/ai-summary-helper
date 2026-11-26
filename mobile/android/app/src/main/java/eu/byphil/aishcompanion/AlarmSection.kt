@@ -68,6 +68,7 @@ fun AlarmCard(model: AppModel) {
     val a = model.alarm
     var pickTime by remember { mutableStateOf(false) }
     var preview by remember { mutableStateOf<Briefing?>(null) }
+    var wakePreview by remember { mutableStateOf<Wake?>(null) }
     val notificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { }
     val fullScreenAllowed = Build.VERSION.SDK_INT < 34 || context.getSystemService(NotificationManager::class.java).canUseFullScreenIntent()
 
@@ -75,7 +76,7 @@ fun AlarmCard(model: AppModel) {
     androidx.compose.runtime.LaunchedEffect(a) { Guard.end(context, "alarm") }   // drawn fine with these settings
 
     SettingsGroup {
-        ToggleRow("Morning alarm", "Wakes you and reads your feed briefing. No AI needed, so it also works offline.", a.enabled, icon = Icons.Filled.Alarm) { on ->
+        ToggleRow("Morning alarm", "Wakes you with your feed briefing, an article or one of your highlights. No AI needed, so it also works offline.", a.enabled, icon = Icons.Filled.Alarm) { on ->
             update(a.copy(enabled = on))
             if (on && Build.VERSION.SDK_INT >= 33) notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
@@ -148,9 +149,23 @@ fun AlarmCard(model: AppModel) {
             ToggleRow("Fade in the sound", "Starts quietly and rises for about 45 seconds. Then the briefing is spoken while the music plays softer. Stop ends both.", a.fadeIn) { update(a.copy(fadeIn = it)) }
         }
 
-        SettingsCaption("Briefing")
+        SettingsCaption("Wake me with")
         SettingsGroup {
-            ToggleRow("Read the briefing aloud", "After Stop, or over the music when the sound fades in.", a.readAloud) { update(a.copy(readAloud = it)) }
+            ChoiceRow(
+                "Wake me with",
+                when (a.wake) {
+                    WakeMode.BRIEFING -> "The new stories from your feeds and how much waits in your reading list."
+                    WakeMode.ARTICLE -> "One unread article from your reading list, picked at random. With an empty list you get the briefing."
+                    WakeMode.REMEMBER -> "One of your highlights with a word missing. When none is due you get the briefing."
+                },
+                listOf(WakeMode.BRIEFING.name to "Briefing", WakeMode.ARTICLE.name to "Article", WakeMode.REMEMBER.name to "Remember?"),
+                a.wake.name,
+            ) { update(a.copy(wake = WakeMode.of(it))) }
+        }
+
+        SettingsCaption("Reading")
+        SettingsGroup {
+            ToggleRow("Read aloud", "After Stop, or over the music when the sound fades in.", a.readAloud) { update(a.copy(readAloud = it)) }
             if (a.fadeIn && !a.readAloud) Text("Switch on reading aloud to hear the briefing over the music.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
             ChoiceRow(
                 "News in the briefing",
@@ -163,7 +178,10 @@ fun AlarmCard(model: AppModel) {
                 a.newsMode.name,
             ) { update(a.copy(newsMode = NewsMode.of(it))) }
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedButton(onClick = { preview = buildBriefingNow(context) }) { Text("Preview briefing") }
+                OutlinedButton(onClick = {
+                    val w = buildWakeNow(context)
+                    if (w.mode == WakeMode.BRIEFING) preview = buildBriefingNow(context) else wakePreview = w
+                }) { Text("Preview") }
                 OutlinedButton(onClick = { AlarmScheduler.ringIn(context, 10); model.message = "The alarm will ring in 10 seconds." }) { Text("Test ring") }
             }
         }
@@ -185,6 +203,15 @@ fun AlarmCard(model: AppModel) {
                 }
             }
         }
+    }
+
+    wakePreview?.let { w ->
+        AlertDialog(
+            onDismissRequest = { wakePreview = null },
+            title = { Text(if (w.mode == WakeMode.REMEMBER) "Remember?" else w.title) },
+            text = { Text(w.cloze?.let { "${it.before}______${it.after}" } ?: w.lines.take(2).joinToString("\n\n")) },
+            confirmButton = { TextButton(onClick = { wakePreview = null }) { Text("Close") } },
+        )
     }
 
     preview?.let { b ->
