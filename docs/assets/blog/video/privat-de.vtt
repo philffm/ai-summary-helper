@@ -1,25 +1,25 @@
 WEBVTT
 
 1
-00:00:00.250 --> 00:00:03.001
+00:00:00.250 --> 00:00:02.178
 Datenschutz? Eine Abwägung.
 
 2
-00:00:03.101 --> 00:00:05.772
+00:00:02.278 --> 00:00:04.453
 Wer das Risiko kennt, teilt weniger.
 
 3
-00:00:05.772 --> 00:00:09.245
+00:00:04.453 --> 00:00:07.277
 Also wählst du: deinen eigenen API-Key, ein
 
 4
-00:00:09.245 --> 00:00:11.962
+00:00:07.277 --> 00:00:09.623
 lokales Modell mit Ollama oder byPhil Cloud
 
 5
-00:00:11.962 --> 00:00:12.958
+00:00:09.623 --> 00:00:10.688
 ohne Einrichtung.
 
 6
-00:00:12.958 --> 00:00:15.483
+00:00:10.688 --> 00:00:12.948
 Deine Bibliothek bleibt im Browser.
