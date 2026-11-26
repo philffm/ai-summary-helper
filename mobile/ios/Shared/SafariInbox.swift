@@ -19,12 +19,23 @@ struct InboxArticle: Codable, Equatable {
     var highlights: [Highlight]
 }
 
+/// A feed Safari subscribes to.
+struct InboxFeed: Codable, Equatable {
+    var url: String
+    var title: String
+    var tags: [String]
+}
+
 /// The hand-over folder in the shared container: the extension writes one file per article, the app reads and removes them.
 enum SafariInbox {
     static let maxBytes = 2_000_000
     static let maxImageBytes = 1_200_000
     private static let removedFile = "safari-removed.json"
     private static let folderFile = "safari-folder.json"
+    // beside the article folder: everything in there is read as an article
+    private static let feedsFile = "safari-feeds.json"
+    static var pendingFeeds: [InboxFeed] { SharedStore.read([InboxFeed].self, from: feedsFile) ?? [] }
+    static func clearFeeds() { SharedStore.write([InboxFeed](), to: feedsFile) }
 
     static var directory: URL {
         let dir = SharedStore.directory.appending(path: "safari", directoryHint: .isDirectory)
@@ -63,7 +74,10 @@ enum SafariInbox {
     static func handle(_ message: [String: Any]) -> [String: Any] {
         guard SharedStore.isShared else { return ["ok": false, "error": "no shared folder"] }
         switch message["type"] as? String {
+        case "model", "model-error":
+            return SafariModel.handle(message)
         case "hello":
+            SafariModel.noteContact()
             return ["ok": true, "folder": folderID]
         case "article":
             guard let object = message["article"], JSONSerialization.isValidJSONObject(object),
@@ -93,6 +107,14 @@ enum SafariInbox {
             } catch {
                 return ["ok": false, "error": "could not write"]
             }
+        case "feeds":
+            guard let object = message["feeds"], JSONSerialization.isValidJSONObject(object),
+                  let data = try? JSONSerialization.data(withJSONObject: object), data.count <= maxBytes,
+                  let feeds = try? JSONDecoder().decode([InboxFeed].self, from: data) else {
+                return ["ok": false, "error": "not a feed list"]
+            }
+            SharedStore.write(Array(feeds.prefix(500)), to: feedsFile)
+            return ["ok": true]
         default:
             return ["ok": false, "error": "unknown message"]
         }

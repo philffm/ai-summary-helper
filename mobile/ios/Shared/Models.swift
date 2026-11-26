@@ -21,6 +21,8 @@ struct FeedItem: Codable, Identifiable, Hashable {
     var author: String = ""
     var summary: String = ""
     var body: String = ""
+    /// The address of a podcast episode's sound; nil for everything else (and for items stored before podcasts were read).
+    var audio: String?
 }
 
 struct StoredItem: Codable, Hashable {
@@ -52,6 +54,10 @@ struct Article: Codable, Identifiable, Hashable {
     var link: String = ""
     /// The id the Safari extension knows it by, when it came from there.
     var safariID: String?
+    /// What a research paper says about itself.
+    var paper: Paper?
+    /// What the app still has to do for an article that was shared to it.
+    var pending: Pending?
 
     var minutes: Int { max(1, Int((Double(words) / 220).rounded(.up))) }
     var minutesLeft: Int { max(1, Int((Double(minutes) * (1 - progress)).rounded(.up))) }
@@ -72,6 +78,17 @@ struct Article: Codable, Identifiable, Hashable {
     }
 }
 
+struct Paper: Codable, Hashable {
+    var authors: [String] = []
+    var journal: String = ""
+    var doi: String = ""
+}
+
+struct Pending: Codable, Hashable {
+    var text: Bool
+    var summary: Bool
+}
+
 /// Marked words inside a paragraph. Positions count UTF-16 units, as the system's text views do.
 struct Mark: Codable, Identifiable, Hashable {
     var id = UUID()
@@ -90,14 +107,17 @@ struct Passage: Codable, Identifiable, Hashable {
     var text: String
     /// A picture: an https address, or a file in the shared folder.
     var image: String?
+    /// 1 to 3 for a heading, nil for running text.
+    var heading: Int?
     /// In reading order, never overlapping.
     var marks: [Mark] = []
 
-    init(kind: Kind = .text, text: String, image: String? = nil, marks: [Mark] = []) {
+    init(kind: Kind = .text, text: String, image: String? = nil, marks: [Mark] = [], heading: Int? = nil) {
         self.kind = kind
         self.text = text
         self.image = image
         self.marks = marks
+        self.heading = heading
     }
 
     /// A paragraph that is marked as a whole.
@@ -106,12 +126,13 @@ struct Passage: Codable, Identifiable, Hashable {
     }
 
     // libraries written before words could be marked had the kinds "highlight" and "ghost" for a whole paragraph
-    private enum CodingKeys: String, CodingKey { case id, kind, text, image, marks }
+    private enum CodingKeys: String, CodingKey { case id, kind, text, image, marks, heading }
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         id = try c.decodeIfPresent(UUID.self, forKey: .id) ?? UUID()
         text = try c.decode(String.self, forKey: .text)
         image = try c.decodeIfPresent(String.self, forKey: .image)
+        heading = try c.decodeIfPresent(Int.self, forKey: .heading)
         marks = try c.decodeIfPresent([Mark].self, forKey: .marks) ?? []
         let raw = try c.decode(String.self, forKey: .kind)
         kind = raw == Kind.image.rawValue ? .image : .text

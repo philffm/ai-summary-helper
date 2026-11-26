@@ -5,7 +5,7 @@ enum SafariImport {
     /// The article in the app. What the reader did here (further read, own highlights) is kept.
     static func article(_ inbox: InboxArticle, existing: Article?) -> Article {
         var passages = blocks(inbox.content, article: inbox.id)
-        if passages.isEmpty { passages = existing?.passages.map { Passage(kind: $0.kind, text: $0.text, image: $0.image) } ?? [] }
+        if passages.isEmpty { passages = existing?.passages.map { Passage(kind: $0.kind, text: $0.text, image: $0.image, heading: $0.heading) } ?? [] }
         let paragraphs = passages.filter { $0.kind != .image }.map(\.text)
         // the reader's own marks win over the AI's suggestions for the same words
         let here = existing?.passages.flatMap { passage in passage.marks.filter { !$0.ai }.map { passage.words(of: $0) } } ?? []
@@ -23,12 +23,14 @@ enum SafariImport {
                        passages: passages,
                        summary: HTMLText.plain(inbox.summary).components(separatedBy: "\n\n").filter { !$0.isEmpty },
                        link: inbox.url,
-                       safariID: inbox.id)
+                       safariID: inbox.id,
+                       paper: existing?.paper)
     }
 
-    /// Paragraphs and pictures in the order of the page.
+    /// Headings, paragraphs and pictures in the order of the page.
     static func blocks(_ html: String, article id: String) -> [Passage] {
-        guard let re = try? NSRegularExpression(pattern: "<img\\b[^>]*>", options: [.caseInsensitive]) else { return [] }
+        guard let re = try? NSRegularExpression(pattern: "<h([1-6])\\b[^>]*>(.*?)</h\\1\\s*>|<img\\b[^>]*>",
+                                                options: [.caseInsensitive, .dotMatchesLineSeparators]) else { return [] }
         var blocks: [Passage] = []
         var last = html.startIndex
         func addText(_ part: Substring) {
@@ -38,6 +40,11 @@ enum SafariImport {
             guard let range = Range(match.range, in: html) else { continue }
             addText(html[last..<range.lowerBound])
             last = range.upperBound
+            if let level = Range(match.range(at: 1), in: html).flatMap({ Int(html[$0]) }), let inner = Range(match.range(at: 2), in: html) {
+                let text = HTMLText.plain(String(html[inner])).split(whereSeparator: \.isNewline).joined(separator: " ")
+                if !text.isEmpty { blocks.append(Passage(text: text, heading: min(3, max(1, level - 1)))) }
+                continue
+            }
             let tag = String(html[range])
             let source = HTMLText.decodeEntities(FeedParser.firstGroup("\\ssrc\\s*=\\s*[\"']([^\"']+)[\"']", in: tag) ?? "")
             let alt = HTMLText.decodeEntities(FeedParser.firstGroup("\\salt\\s*=\\s*\"([^\"]*)\"", in: tag) ?? "")

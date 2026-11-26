@@ -91,4 +91,23 @@ final class FeedTests: XCTestCase {
         XCTAssertEqual(Library.words(in: "one two three"), 3)
         XCTAssertEqual(Library.words(in: "睡眠让今天读到的内容"), 5)
     }
+
+    func testPodcastSound() {
+        let rss = """
+        <rss version="2.0"><channel><title>Show</title>
+        <item><guid>1</guid><title>Episode</title><enclosure url="https://x.test/a.mp3" type="audio/mpeg" length="1"/></item>
+        <item><guid>2</guid><title>Picture</title><enclosure url="https://x.test/a.jpg" type="image/jpeg" length="1"/></item>
+        <item><guid>3</guid><title>Insecure</title><enclosure url="http://x.test/a.mp3" type="audio/mpeg" length="1"/></item>
+        </channel></rss>
+        """
+        let items = FeedParser.parse(Data(rss.utf8))?.items ?? []
+        XCTAssertEqual(items.map(\.audio), ["https://x.test/a.mp3", nil, nil])
+        let json = #"{"version":"https://jsonfeed.org/version/1.1","title":"S","items":[{"id":"1","title":"E","attachments":[{"url":"https://x.test/b.m4a","mime_type":"audio/mp4"}]}]}"#
+        XCTAssertEqual(FeedParser.parse(Data(json.utf8), contentType: "application/feed+json")?.items.first?.audio, "https://x.test/b.m4a")
+    }
+
+    func testSampleStoriesAreComplete() {
+        XCTAssertEqual(SampleData.stories.count, 5)
+        XCTAssertTrue(SampleData.stories.allSatisfy { !$0.passages.isEmpty && $0.firstHighlight != nil })
+    }
 }

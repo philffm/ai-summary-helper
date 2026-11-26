@@ -14,6 +14,12 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         synthesizer.delegate = self
     }
 
+    func stop() {
+        synthesizer.stopSpeaking(at: .immediate)
+        current = nil
+        utterance = nil
+    }
+
     func toggle(_ id: String, text: String) {
         let stopOnly = current == id
         synthesizer.stopSpeaking(at: .immediate)

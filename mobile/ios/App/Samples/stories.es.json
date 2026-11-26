@@ -1,0 +1,117 @@
+[
+ {
+  "id": "unread-tab",
+  "title": "La semivida de una pestaña sin leer: un estudio longitudinal",
+  "host": "applied-procrastination.example",
+  "link": "",
+  "tags": [
+   "ciencia",
+   "lectura"
+  ],
+  "passages": [
+   "Resumen. Seguimos 412 pestañas que sus dueños habían abierto «para leer luego». Al cabo de una semana se habían leído 9, 31 se habían cerrado sin querer y las demás seguían esperando con educación.",
+   "Método. Pedimos a los participantes que no cambiaran su conducta. Cumplieron con enorme entusiasmo. Una ayudante observó cada pestaña dos veces al día y hoy describe la experiencia como «larga».",
+   "Resultados. La probabilidad de que una pestaña se lea se reduce a la mitad cada 41 horas. Las que llevan «definitivo» en el título decaen antes. Una pestaña sobre gestión del tiempo sobrevivió las once semanas y fue presentada como prueba de constancia.",
+   "Discusión. Tener una pestaña abierta parece ofrecer casi toda la satisfacción de leerla sin ningún coste. Lo llamamos erudición ambiental. Desaparece al instante cuando se reinicia el portátil.",
+   "Limitaciones. Dos de los tres autores tuvieron el borrador abierto en una pestaña durante todo el estudio y no lo han leído."
+  ],
+  "mark": "Tener una pestaña abierta parece ofrecer casi toda la satisfacción de leerla sin ningún coste.",
+  "ai": "La probabilidad de que una pestaña se lea se reduce a la mitad cada 41 horas.",
+  "summary": [
+   "Una pestaña abierta parece lectura sin serlo.",
+   "A las 41 horas se ha perdido la mitad de las posibilidades."
+  ]
+ },
+ {
+  "id": "houseplants",
+  "title": "¿Juzgan las plantas de casa nuestras listas de lectura? Una investigación preliminar",
+  "host": "windowsill-science.example",
+  "link": "",
+  "tags": [
+   "ciencia",
+   "diseño"
+  ],
+  "passages": [
+   "Antecedentes. Mucha gente dice sentirse observada por un helecho mientras hace scroll. Ningún estudio controlado ha examinado si el helecho tiene motivos.",
+   "Método. Colocamos 24 plantas junto a lectores durante un mes. La mitad terminaba artículos largos; la otra mitad leía titulares y se formaba opiniones firmes. Cada mañana medimos el ángulo de las hojas con un transportador prestado por un niño.",
+   "Resultados. Las plantas del grupo de titulares se apartaron una media de 3,2 grados. Ese grupo además se sentaba más lejos de la ventana, cosa que mencionamos solo porque un revisor insistió.",
+   "Un ficus perdió una hoja durante un hilo de comentarios. El equipo no logró repetir el efecto, aunque lo intentó con varios hilos.",
+   "Conclusión. No podemos demostrar que las plantas juzguen a nadie. Recomendamos terminar el artículo de todos modos: cuesta poco y el helecho está ahí mismo."
+  ],
+  "mark": "Recomendamos terminar el artículo de todos modos: cuesta poco y el helecho está ahí mismo.",
+  "ai": "No podemos demostrar que las plantas juzguen a nadie.",
+  "summary": [
+   "Las plantas se apartaban de los lectores de titulares, quizá hacia la ventana.",
+   "Aun así, conviene terminar el artículo."
+  ]
+ },
+ {
+  "id": "woodpecker",
+  "title": "Por qué a los pájaros carpinteros no les duele la cabeza",
+  "host": "journals.plos.org",
+  "link": "https://doi.org/10.1371/journal.pone.0026490",
+  "tags": [
+   "ciencia",
+   "salud"
+  ],
+  "passages": [
+   "Un pájaro carpintero golpea los árboles a unos 6 o 7 metros por segundo y frena con unas mil veces la fuerza de la gravedad, miles de veces al día. Un equipo de ingenieros quiso saber por qué no se daña el cerebro.",
+   "Grabaron con cámaras de alta velocidad a picos picapinos y, para comparar, abubillas; examinaron los cráneos con un micro-TAC y reconstruyeron la cabeza como modelo informático.",
+   "El cráneo del carpintero tiene detrás más hueso esponjoso en forma de láminas. Un largo hueso de la lengua, como una eslinga, se adentra en la cabeza, y las dos mitades del pico miden distinto.",
+   "En el modelo, esas formas reducían la tensión sobre el cerebro. Los autores concluyen que la estructura fina del cráneo y del pico tiene un papel importante, y sugieren que puede inspirar mejores protecciones para la cabeza humana.",
+   "Fuente: Wang L, Cheung JT-M, Pu F, Li D, Zhang M, Fan Y (2011), Why Do Woodpeckers Resist Head Impact Injury: A Biomechanical Investigation, PLoS ONE 6(10): e26490, doi.org/10.1371/journal.pone.0026490, licencia CC BY. Resumen y traducción de Kaivo, no revisados por los autores."
+  ],
+  "mark": "Los autores concluyen que la estructura fina del cráneo y del pico tiene un papel importante",
+  "ai": "Un largo hueso de la lengua, como una eslinga, se adentra en la cabeza",
+  "summary": [
+   "Cráneo, hueso de la lengua y pico protegen juntos el cerebro.",
+   "El estudio puede inspirar mejores protecciones."
+  ]
+ },
+ {
+  "id": "toaster",
+  "title": "Mi tostadora tiene opiniones sobre los boletines",
+  "host": "kitchen-dispatch.example",
+  "link": "",
+  "tags": [
+   "medios",
+   "software"
+  ],
+  "passages": [
+   "Todo empezó con una actualización. El lunes la tostadora tostaba pan. El martes tostaba pan y preguntaba si había pensado en suscribirme a su resumen semanal de actualidad migajera.",
+   "Dije que no. La tostadora lo entendió y volvió a preguntar, esta vez con el «No» en un gris diminuto. He criado a dos hijos y conozco la jugada.",
+   "El jueves ya me había segmentado. Al parecer soy «entusiasta de la masa madre de fin de semana», novedad para quien come pan de molde de pie.",
+   "Quise darme de baja de una lista a la que nunca me apunté. Me pidió un motivo y ofreció cinco, ninguno de los cuales era «eres una tostadora».",
+   "Hemos llegado a un acuerdo. Envía una carta al mes, la leo mientras se hace el pan y ninguna menciona al lavavajillas, que quiere hacer un pódcast."
+  ],
+  "mark": "Envía una carta al mes, la leo mientras se hace el pan",
+  "ai": "Al parecer soy «entusiasta de la masa madre de fin de semana»",
+  "summary": [
+   "Un electrodoméstico descubre el marketing.",
+   "La tregua: una carta al mes."
+  ]
+ },
+ {
+  "id": "sock",
+  "title": "El calcetín que se fue: notas desde la lavandería",
+  "host": "laundry-review.example",
+  "link": "",
+  "tags": [
+   "lectura",
+   "ciudades"
+  ],
+  "passages": [
+   "Entraron siete pares. Salieron trece calcetines. Los he contado tres veces sobre la cama, con buena luz y la paciencia de quien evita otras tareas.",
+   "Falta el gris izquierdo. Dirán que los calcetines no tienen izquierda ni derecha. No han convivido con este.",
+   "Registré el tambor, la goma, la sábana bajera, que atesora cosas pequeñas, y el hueco detrás de la máquina, donde hallé un tique de otra década y un botón que no es de ninguna prenda mía.",
+   "Mi vecina sostiene que los calcetines no desaparecen, sino que se van adonde hacen falta. Lo dice con calma. También tiene un cajón solo de calcetines sueltos, ordenados por esperanza.",
+   "He decidido llevar el que queda con un compañero verde. De momento no se ha dado cuenta nadie, salvo el helecho."
+  ],
+  "mark": "Mi vecina sostiene que los calcetines no desaparecen, sino que se van adonde hacen falta.",
+  "ai": "Los he contado tres veces sobre la cama",
+  "summary": [
+   "Un calcetín gris no vuelve.",
+   "Uno verde ocupa su lugar."
+  ]
+ }
+]

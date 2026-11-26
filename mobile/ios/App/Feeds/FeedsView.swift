@@ -10,8 +10,8 @@ struct FeedsView: View {
 
     var body: some View {
         @Bindable var router = router
-        NavigationStack(path: $router.feedsPath) {
-            List {
+        ListAndDetail(path: $router.feedsPath, empty: "Choose an article", symbol: "dot.radiowaves.up.forward") { selection in
+            List(selection: selection) {
                 if feeds.feeds.isEmpty {
                     Section {
                         ContentUnavailableView("No feeds yet", systemImage: "dot.radiowaves.up.forward",
@@ -51,7 +51,6 @@ struct FeedsView: View {
                 }
             }
             .navigationTitle("Feeds")
-            .routes()
             .refreshable { await feeds.refresh() }
             .toolbar {
                 if !feeds.feeds.isEmpty {

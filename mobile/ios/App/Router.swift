@@ -29,11 +29,6 @@ final class Router {
 extension View {
     /// The screens a list in any tab can lead to.
     func routes() -> some View {
-        navigationDestination(for: Route.self) { route in
-            switch route {
-            case .article(let id): ReaderView(id: id)
-            case .item(let feed, let id): FeedItemView(feedURL: feed, itemID: id)
-            }
-        }
+        navigationDestination(for: Route.self) { RouteView(route: $0) }
     }
 }

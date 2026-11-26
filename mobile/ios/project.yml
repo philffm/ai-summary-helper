@@ -28,6 +28,7 @@ targets:
     dependencies:
       - target: KaivoExtension
       - target: KaivoWidgets
+      - target: KaivoShare
     entitlements:
       path: App/Kaivo.entitlements
       properties:
@@ -42,6 +43,13 @@ targets:
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         ITSAppUsesNonExemptEncryption: false
+        NSAlarmKitUsageDescription: Kaivo sets the wake alarm you switch on, so that it rings even when the phone is silent.
+        NSSupportsLiveActivities: true
+        UIBackgroundModes: [audio]
+        # summaries come from a model server in the reader's own network, which speaks plain http
+        NSLocalNetworkUsageDescription: Kaivo asks the model server you set up in your network to summarize articles.
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
         KaivoExtensionBundleId: $(KAIVO_BUNDLE_ID).extension
         KaivoAppGroup: $(KAIVO_APP_GROUP)
         CFBundleURLTypes:
@@ -80,6 +88,38 @@ targets:
     dependencies:
       - sdk: WidgetKit.framework
       - sdk: SwiftUI.framework
+  KaivoShare:
+    type: app-extension
+    platform: iOS
+    sources:
+      - ShareExtension
+      - path: Shared/SharedStore.swift
+        group: ShareExtension
+      - path: Shared/SharedLinks.swift
+        group: ShareExtension
+      - path: App/Localizable.xcstrings
+        group: ShareExtension
+    entitlements:
+      path: ShareExtension/KaivoShare.entitlements
+      properties:
+        com.apple.security.application-groups: [$(KAIVO_APP_GROUP)]
+    info:
+      path: ShareExtension/Info.plist
+      properties:
+        CFBundleDisplayName: Kaivo
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        KaivoAppGroup: $(KAIVO_APP_GROUP)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsWebURLWithMaxCount: 1
+              NSExtensionActivationSupportsText: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(KAIVO_BUNDLE_ID).share
   KaivoTests:
     type: bundle.unit-test
     platform: iOS
@@ -111,6 +151,8 @@ targets:
       - path: Shared/SharedStore.swift
         group: Extension
       - path: Shared/SafariInbox.swift
+        group: Extension
+      - path: Shared/SafariModel.swift
         group: Extension
     entitlements:
       path: Extension/KaivoExtension.entitlements

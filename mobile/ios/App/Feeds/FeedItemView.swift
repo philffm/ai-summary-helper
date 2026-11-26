@@ -18,7 +18,7 @@ struct FeedItemView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar(.hidden, for: .tabBar)
+        .readingFullScreen()
     }
 
     private func content(_ entry: FeedEntry) -> some View {
@@ -30,6 +30,9 @@ struct FeedItemView: View {
                 Text(verbatim: [entry.feed.name, item.published.map { Dates.relativeDay($0) }].compactMap { $0 }.joined(separator: " · "))
                     .font(.footnote).foregroundStyle(.secondary)
                 Text(verbatim: item.title).font(.title.weight(.semibold)).fontDesign(.serif).accessibilityAddTraits(.isHeader)
+                if let sound = item.audio.flatMap(URL.init(string:)) {
+                    EpisodePlayer(id: entry.id, url: sound, title: item.title, show: entry.feed.name)
+                }
                 Text(verbatim: item.body.isEmpty ? item.summary : item.body).fontDesign(.serif).lineSpacing(4).textSelection(.enabled)
                 if let link {
                     Link(destination: link) { Label("Read the full article in Safari", systemImage: "safari") }
@@ -45,6 +48,7 @@ struct FeedItemView: View {
             }
             ToolbarItemGroup(placement: .bottomBar) {
                 Button {
+                    AudioPlayer.shared.pause()   // one voice at a time
                     speaker.toggle(entry.id, text: [item.title, item.body.isEmpty ? item.summary : item.body].joined(separator: ". "))
                 } label: {
                     if speaker.current == entry.id {

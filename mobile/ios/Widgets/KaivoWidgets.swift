@@ -7,6 +7,7 @@ struct KaivoWidgets: WidgetBundle {
         BriefingWidget()
         QuoteWidget()
         ReadingWidget()
+        if #available(iOS 26.0, *) { WakeLiveActivity() }
     }
 }
 

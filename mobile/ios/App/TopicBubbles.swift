@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// The one control the system does not have: topics as a cluster of bubbles, larger and deeper in colour for the more
-/// used ones. Tapping one filters the list; tapping it again shows everything.
+/// used ones. Tapping one filters the list and leads on to the topic net.
 struct TopicBubbles: View {
     struct Topic: Identifiable, Equatable {
         var name: String
@@ -10,7 +10,7 @@ struct TopicBubbles: View {
     }
 
     let topics: [Topic]
-    @Binding var selection: String?
+    let pick: (String) -> Void
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shown = false
 
@@ -32,12 +32,9 @@ struct TopicBubbles: View {
     }
 
     private func bubble(_ topic: Topic, rank: Int) -> some View {
-        let selected = selection == topic.name
-        let strong = selected || (selection == nil && rank == 0)
+        let strong = rank == 0
         let depth = [1.0, 0.55, 0.34, 0.24, 0.18, 0.14][min(rank, 5)]
-        return Button {
-            withAnimation(reduceMotion ? nil : .snappy) { selection = selected ? nil : topic.name }
-        } label: {
+        return Button { pick(topic.name) } label: {
             Text(verbatim: topic.name)
                 .font(rank == 0 ? .headline : .footnote.weight(.semibold))
                 .multilineTextAlignment(.center)
@@ -47,18 +44,15 @@ struct TopicBubbles: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .foregroundStyle(strong ? Color(.systemBackground) : Color.primary)
                 .background(Circle().fill(KaivoTokens.accent.opacity(strong ? 1 : depth)))
-                .overlay(Circle().strokeBorder(KaivoTokens.accent, lineWidth: selected ? 3 : 0).padding(-5))
                 .contentShape(Circle())
         }
         .buttonStyle(PressedBubble(reduceMotion: reduceMotion))
-        .opacity(selection == nil || selected ? 1 : 0.45)
         .accessibilityLabel("Topic \(topic.name)")
         .accessibilityValue(Text(verbatim: topic.count.formatted()))
-        .accessibilityAddTraits(selected ? .isSelected : [])
     }
 }
 
-private struct PressedBubble: ButtonStyle {
+struct PressedBubble: ButtonStyle {
     let reduceMotion: Bool
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

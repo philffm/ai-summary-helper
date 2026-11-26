@@ -21,7 +21,7 @@ final class TourTests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["-KaivoScreenshots", "YES", "-KaivoTouches", "YES", "-KaivoStartTab", "library", "-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
         app.launch()
-        let climate = app.buttons["Topic climate"]
+        let climate = app.buttons["Topic software"]
         XCTAssertTrue(climate.waitForExistence(timeout: 30))
         mark("start")
         pause(2.2)
@@ -42,7 +42,13 @@ final class TourTests: XCTestCase {
         highlight.tap()
         pause(1.4)
         mark("keep")
-        app.buttons["Keep"].firstMatch.tap()
+        // a suggestion of the AI offers its actions where it is tapped
+        let suggested = app.textViews.matching(NSPredicate(format: "value CONTAINS 'A short review'")).firstMatch
+        if suggested.waitForExistence(timeout: 5) { suggested.coordinate(withNormalizedOffset: CGVector(dx: 0.4, dy: 0.2)).tap() }
+        let keep = app.menuItems["Keep"].firstMatch.waitForExistence(timeout: 3) ? app.menuItems["Keep"].firstMatch : app.buttons["Keep"].firstMatch
+        XCTAssertTrue(keep.waitForExistence(timeout: 8), "the suggestion offers Keep")
+        pause(0.8)
+        keep.tap()
         pause(1.6)
         mark("summary")
         app.buttons["Summary"].firstMatch.tap()

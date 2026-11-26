@@ -19,7 +19,7 @@ struct BriefingWidgetView: View {
             case .systemSmall:
                 VStack(alignment: .leading, spacing: 6) {
                     kicker("Briefing")
-                    Text(verbatim: first.title).font(.subheadline.weight(.medium)).fontDesign(.serif).lineLimit(4)
+                    Text(verbatim: first.title).font(.system(.subheadline, design: .serif).weight(.medium)).lineLimit(4)
                     Spacer(minLength: 0)
                     Text(verbatim: first.source).font(.caption2).foregroundStyle(.secondary).lineLimit(1)
                 }
@@ -32,7 +32,7 @@ struct BriefingWidgetView: View {
                         Link(destination: headline.link) {
                             VStack(alignment: .leading, spacing: 1) {
                                 // a link would otherwise colour its text with the tint and centre a second line
-                                Text(verbatim: headline.title).font(.subheadline.weight(.medium)).fontDesign(.serif).foregroundStyle(Color.primary).lineLimit(2)
+                                Text(verbatim: headline.title).font(.system(.subheadline, design: .serif).weight(.medium)).foregroundStyle(Color.primary).lineLimit(2)
                                 Text(verbatim: headline.source).font(.caption2).foregroundStyle(Color.secondary).lineLimit(1)
                             }
                             .multilineTextAlignment(.leading)
@@ -55,7 +55,7 @@ struct QuoteWidgetView: View {
     var body: some View {
         if let quote = snapshot.quote {
             VStack(alignment: .leading, spacing: 8) {
-                Text(verbatim: "“\(quote.text)”").font(.subheadline).fontDesign(.serif).italic().minimumScaleFactor(0.8)
+                Text(verbatim: "“\(quote.text)”").font(.system(.subheadline, design: .serif)).italic().minimumScaleFactor(0.8)
                 Spacer(minLength: 0)
                 Text(verbatim: quote.source).font(.caption2).lineLimit(1)
             }
@@ -75,7 +75,7 @@ struct ReadingWidgetView: View {
         if let reading = snapshot.reading {
             VStack(alignment: .leading, spacing: 6) {
                 kicker("Continue reading")
-                Text(verbatim: reading.title).font(.subheadline.weight(.medium)).fontDesign(.serif).lineLimit(3)
+                Text(verbatim: reading.title).font(.system(.subheadline, design: .serif).weight(.medium)).lineLimit(3)
                 Spacer(minLength: 0)
                 ProgressView(value: reading.progress).tint(KaivoTokens.accent)
             }

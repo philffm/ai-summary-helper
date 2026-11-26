@@ -62,8 +62,12 @@ enum FeedParser {
             if link.isEmpty, guid.hasPrefix("http") { link = resolve(guid, base: base)?.absoluteString ?? "" }
             let full = n.text("encoded").isEmpty ? n.text("content") : n.text("encoded")
             let author = n.text("creator", "author")
+            // RSS: <enclosure>; Atom: <link rel="enclosure">
+            let enclosures = n.all("enclosure").map { ($0.attributes["url"], $0.attributes["type"]) }
+                + n.all("link").filter { $0.attributes["rel"] == "enclosure" }.map { ($0.attributes["href"], $0.attributes["type"]) }
+            let audio = enclosures.compactMap { address, type in Self.audio(resolve(address ?? "", base: base), type: type) }.first
             return item(guid: guid, title: n.text("title"), link: link, date: n.text("pubdate", "date", "published", "updated"),
-                        author: author, summary: n.text("description", "summary"), full: full)
+                        author: author, summary: n.text("description", "summary"), full: full, audio: audio)
         }
         return Parsed(title: HTMLText.plain(head.text("title")), items: items)
     }
@@ -74,14 +78,21 @@ enum FeedParser {
         return resolve(pick?.attributes["href"] ?? "", base: base)?.absoluteString ?? ""
     }
 
-    private static func item(guid: String, title: String, link: String, date: String, author: String, summary: String, full: String) -> FeedItem? {
+    /// An attachment that is sound, over https.
+    private static func audio(_ url: URL?, type: String?) -> String? {
+        guard let url, url.scheme == "https",
+              type?.hasPrefix("audio/") == true || ["mp3", "m4a", "aac", "ogg"].contains(url.pathExtension.lowercased()) else { return nil }
+        return url.absoluteString
+    }
+
+    private static func item(guid: String, title: String, link: String, date: String, author: String, summary: String, full: String, audio: String? = nil) -> FeedItem? {
         let body = String(HTMLText.plain(full.isEmpty ? summary : full).prefix(maxBody))
         let short = String(HTMLText.plain(summary.isEmpty ? full : summary).split(whereSeparator: \.isWhitespace).joined(separator: " ").prefix(400))
         let shown = HTMLText.plain(title).isEmpty ? String(short.prefix(80)) : HTMLText.plain(title)
         if shown.isEmpty && link.isEmpty { return nil }
         let id = guid.isEmpty ? (link.isEmpty ? shown + date : link) : guid
         return FeedItem(id: String(id.prefix(300)), title: shown, link: link, published: parseDate(date),
-                        author: String(HTMLText.plain(author).prefix(120)), summary: short, body: body)
+                        author: String(HTMLText.plain(author).prefix(120)), summary: short, body: body, audio: audio)
     }
 
     // MARK: - JSON Feed
@@ -92,10 +103,13 @@ enum FeedParser {
         let items = list.prefix(maxItems).compactMap { entry -> FeedItem? in
             let s = { (key: String) in entry[key] as? String ?? "" }
             let authors = entry["authors"] as? [[String: Any]]
+            let sound = (entry["attachments"] as? [[String: Any]])?.compactMap { file in
+                Self.audio(resolve(file["url"] as? String ?? "", base: base), type: file["mime_type"] as? String)
+            }.first
             return item(guid: s("id"), title: s("title"), link: resolve(s("url"), base: base)?.absoluteString ?? "",
                         date: s("date_published"), author: authors?.first?["name"] as? String ?? "",
                         summary: s("summary").isEmpty ? s("content_text") : s("summary"),
-                        full: s("content_html").isEmpty ? s("content_text") : s("content_html"))
+                        full: s("content_html").isEmpty ? s("content_text") : s("content_html"), audio: sound)
         }
         return Parsed(title: HTMLText.plain(object["title"] as? String ?? ""), items: items)
     }

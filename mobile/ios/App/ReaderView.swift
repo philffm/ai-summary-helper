@@ -11,8 +11,16 @@ struct ReaderView: View {
     let id: Article.ID
     @Environment(Library.self) private var library
     @Environment(Speaker.self) private var speaker
+    @Environment(\.scenePhase) private var scenePhase
+    @Environment(Summaries.self) private var summaries
+    @State private var showReferences = false
+    @State private var showServer = false
     @AppStorage("readerTextSize") private var textSize = TextSize.standard
     @State private var showSummary = LaunchOptions.showSummary
+    @State private var position = ReadingPosition()
+    @State private var height: CGFloat = 0
+    /// Jumping along the rail is not reading: until then, paragraphs coming into view do not count.
+    @State private var jumpedAt = Date.distantPast
 
     var body: some View {
         Group {
@@ -23,32 +31,97 @@ struct ReaderView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar(.hidden, for: .tabBar)
+        .readingFullScreen()
     }
 
     private func content(_ article: Article) -> some View {
+        let paper = PaperSense.isPaper(article)
+        let abstract = paper ? PaperSense.abstract(article.passages) : nil
+        // a paper's list of sources stays folded until asked for; the rail and the progress count only what is on screen
+        let references = paper ? PaperSense.references(article.passages) : nil
+        let folded = showReferences ? nil : references
+        let shown = article.passages.enumerated().filter { !(folded?.contains($0.offset) ?? false) }.map(\.element)
+        let spots = DepthTrack.spots(shown)
+        let headings = article.passages.filter { $0.heading != nil }
+        return ScrollViewReader { proxy in
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 Text(verbatim: "\(article.host) · \(article.duration)").font(.footnote).foregroundStyle(.secondary)
                 Text(article.title).font(.title.weight(.semibold)).fontDesign(.serif).accessibilityAddTraits(.isHeader)
+                if paper { PaperHead(paper: article.paper, link: article.link) }
                 if article.passages.isEmpty {
                     Text("The text of this article is not on this device yet.").foregroundStyle(.secondary)
+                    if let url = article.url { Link(destination: url) { Label("Read the full article in Safari", systemImage: "safari") } }
                 }
                 // lazy, so that a paragraph appearing means the reader got that far
                 LazyVStack(alignment: .leading, spacing: 18) {
-                    ForEach(Array(article.passages.enumerated()), id: \.element.id) { index, passage in
-                        paragraph(passage)
-                            .onAppear { library.read(id, upTo: Double(index + 1) / Double(article.passages.count)) }
+                    ForEach(Array(shown.enumerated()), id: \.element.id) { index, passage in
+                        let at = article.passages.firstIndex { $0.id == passage.id } ?? index
+                        paragraph(passage, paper: paper, small: references?.contains(at) ?? false, hint: shown.first { $0.marks.contains(where: \.ai) }?.id)
+                            .modifier(AbstractBox(on: abstract?.contains(at) ?? false))
+                            .id(passage.id)
+                            .onGeometryChange(for: CGRect.self) { $0.frame(in: .named("reader")) } action: { frame in
+                                position.frames[index] = frame
+                                position.update(shown, height: height)
+                            }
+                            .onAppear {
+                                guard Date.now.timeIntervalSince(jumpedAt) > 1.5 else { return }
+                                position.reach(Double(index + 1) / Double(shown.count)) { library.read(id, upTo: $0) }
+                            }
+                            .onDisappear { position.frames[index] = nil }
                     }
+                }
+                if let references {
+                    Button { showReferences.toggle() } label: {
+                        if showReferences {
+                            Label("Hide the references", systemImage: "chevron.up")
+                        } else {
+                            Label("Show the references (\(references.count))", systemImage: "chevron.down")
+                        }
+                    }
+                    .buttonStyle(.bordered)
                 }
                 SampleNote()
             }
             .frame(maxWidth: 640, alignment: .leading)
             .padding(20)
+            .padding(.trailing, spots.isEmpty ? 0 : 14)   // room for the rail
             .frame(maxWidth: .infinity)
+        }
+        .scrollIndicators(spots.isEmpty ? .automatic : .hidden)   // the rail shows the position
+        .coordinateSpace(.named("reader"))
+        .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { value in
+            height = value
+            position.update(shown, height: value)
+        }
+        .overlay(alignment: .trailing) {
+            if !spots.isEmpty {
+                DepthRail(spots: spots, position: position) { spot in
+                    jumpedAt = .now
+                    withAnimation(.snappy) { proxy.scrollTo(spot.passage, anchor: .center) }
+                } seek: { fraction in
+                    jumpedAt = .now
+                    if let i = DepthTrack.index(shown, at: fraction) { proxy.scrollTo(shown[i].id, anchor: .top) }
+                }
+                .padding(.vertical, 24)
+                .padding(.trailing, 2)
+            }
+        }
+        .onDisappear { position.settle { library.read(id, upTo: $0) } }
+        .onChange(of: scenePhase) { _, phase in
+            if phase != .active { position.settle { library.read(id, upTo: $0) } }
         }
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
+                if headings.count > 1 {
+                    Menu {
+                        ForEach(headings) { heading in
+                            Button { go(to: heading.id, with: proxy) } label: { Text(verbatim: heading.text) }
+                        }
+                    } label: {
+                        Label("Contents", systemImage: "list.bullet")
+                    }
+                }
                 Menu {
                     Picker("Text size", selection: $textSize) {
                         ForEach(TextSize.allCases) { Text($0.title).tag($0) }
@@ -71,6 +144,17 @@ struct ReaderView: View {
                 Spacer()
                 if !article.summary.isEmpty {
                     Button { showSummary = true } label: { Label("Summary", systemImage: "text.alignleft") }
+                } else if summaries.isWaiting(article.id) {
+                    HStack(spacing: 6) {
+                        ProgressView()
+                        if summaries.running == article.id && summaries.step.of > 1 {
+                            Text("Part \(summaries.step.at) of \(summaries.step.of)").font(.footnote)
+                        }
+                    }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel("Summarizing")
+                } else if !article.passages.isEmpty {
+                    Button { summarize(article.id) } label: { Label("Summarize", systemImage: "sparkles") }
                 }
             }
         }
@@ -82,6 +166,14 @@ struct ReaderView: View {
                     } footer: {
                         SampleNote()
                     }
+                    if ModelEndpoint.current != nil {
+                        Section {
+                            Button("Summarize again") {
+                                showSummary = false
+                                summarize(article.id)
+                            }
+                        }
+                    }
                 }
                 .navigationTitle("Summary")
                 .navigationBarTitleDisplayMode(.inline)
@@ -89,31 +181,98 @@ struct ReaderView: View {
             }
             .presentationDetents([.medium, .large])
         }
+        .sheet(isPresented: $showServer) { NavigationStack { ModelServerView(closable: true) } }
+        .alert("Send text to an AI service?",
+               isPresented: Binding(get: { summaries.question?.article == article.id }, set: { if !$0 { summaries.question = nil } }),
+               presenting: summaries.question) { question in
+            Button("Allow") { summaries.answer(question, allow: true, in: library) }
+            Button("Not now", role: .cancel) { summaries.answer(question, allow: false, in: library) }
+        } message: { question in
+            Text("To write the summary, Kaivo sends the text of this article to \(question.endpoint.recipient). Nothing is sent before you allow it.")
+        }
+        // a summary asked for while sharing waits for the yes until the article is looked at
+        .task(id: article.passages.isEmpty) {
+            if article.pending?.summary == true && article.summary.isEmpty && !article.passages.isEmpty, ModelEndpoint.current != nil {
+                summaries.summarize(article.id, in: library)
+            }
+        }
+        .alert("No summary", isPresented: Binding(get: { summaries.failure != nil }, set: { if !$0 { summaries.failure = nil } })) {
+            Button("Model") { showServer = true }
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(verbatim: summaries.failure ?? "")
+        }
+        }
+    }
+
+    private func summarize(_ id: Article.ID) {
+        if ModelEndpoint.current != nil { summaries.summarize(id, in: library) } else { showServer = true }
+    }
+
+    /// From the contents: a heading among the references unfolds them first.
+    private func go(to passage: Passage.ID, with proxy: ScrollViewProxy) {
+        jumpedAt = .now
+        showReferences = true
+        Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(60))
+            withAnimation(.snappy) { proxy.scrollTo(passage, anchor: .top) }
+        }
+    }
+
+    private func style(of passage: Passage, small: Bool) -> UIFont.TextStyle {
+        if let level = passage.heading { return level == 1 ? .title2 : level == 2 ? .title3 : .headline }
+        return small ? .footnote : textSize.style
     }
 
     @ViewBuilder
-    private func paragraph(_ passage: Passage) -> some View {
+    private func paragraph(_ passage: Passage, paper: Bool, small: Bool, hint: Passage.ID?) -> some View {
         if passage.kind == .image {
             ArticleImage(source: passage.image ?? "", description: passage.text)
         } else {
             VStack(alignment: .leading, spacing: 10) {
-                PassageText(passage: passage, style: textSize.style,
+                PassageText(passage: passage, style: style(of: passage, small: small), citations: paper && !small,
                             highlight: { range in library.change(passage.id, in: id) { $0.highlight(range) } },
-                            unmark: { range in library.change(passage.id, in: id) { $0.unmark(range) } })
-                ForEach(passage.marks.filter(\.ai)) { suggestion in
-                    HStack {
-                        Text("Suggested by the AI").font(.footnote).foregroundStyle(.secondary)
-                        Spacer()
-                        Button { library.change(passage.id, in: id) { $0.resolve(suggestion: suggestion.id, keep: true) } } label: {
-                            Text("Keep").foregroundStyle(Color(.systemBackground))
-                        }
-                        .buttonStyle(.borderedProminent)
-                        Button("Dismiss") { library.change(passage.id, in: id) { $0.resolve(suggestion: suggestion.id, keep: false) } }
-                            .buttonStyle(.bordered)
-                    }
-                    .sensoryFeedback(.success, trigger: passage.marks.filter { !$0.ai }.count)
+                            unmark: { range in library.change(passage.id, in: id) { $0.unmark(range) } },
+                            resolve: { mark, keep in library.change(passage.id, in: id) { $0.resolve(suggestion: mark, keep: keep) } })
+                // said once, at the first suggestion: the actions are behind a tap
+                if passage.id == hint {
+                    Text("Tap a suggestion of the AI to keep or dismiss it.").font(.footnote).foregroundStyle(.secondary)
                 }
             }
+        }
+    }
+}
+
+/// Who wrote a paper, where it appeared, and its permanent address.
+struct PaperHead: View {
+    let paper: Paper?
+    let link: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Label("Research article", systemImage: "graduationcap").font(.footnote.weight(.semibold)).foregroundStyle(KaivoTokens.accent)
+            if let authors = paper?.authors, !authors.isEmpty {
+                Text(verbatim: authors.prefix(6).joined(separator: ", ") + (authors.count > 6 ? " …" : "")).font(.subheadline)
+            }
+            if let journal = paper?.journal, !journal.isEmpty { Text(verbatim: journal).font(.subheadline.italic()).foregroundStyle(.secondary) }
+            let doi = paper.map(\.doi).flatMap { $0.isEmpty ? nil : $0 } ?? PaperSense.doi(in: link)
+            if let doi, let url = URL(string: "https://doi.org/" + doi) {
+                Link(destination: url) { Text(verbatim: "doi.org/" + doi).font(.footnote) }
+            }
+        }
+    }
+}
+
+/// The abstract stands on its own ground.
+private struct AbstractBox: ViewModifier {
+    let on: Bool
+
+    func body(content: Content) -> some View {
+        if on {
+            content.padding(14).frame(maxWidth: .infinity, alignment: .leading)
+                .background(KaivoTokens.accent.opacity(0.09), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        } else {
+            content
         }
     }
 }

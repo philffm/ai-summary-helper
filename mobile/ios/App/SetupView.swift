@@ -42,6 +42,14 @@ struct SetupView: View {
                     feature("highlighter", "Highlights", "Mark a passage and find it again with its source.")
                     feature("books.vertical", "Library", "What you save stays on your device.")
                 }
+                Section("In the app") {
+                    NavigationLink { ModelServerView() } label: { Label("Model for summaries", systemImage: "cpu") }
+                }
+                Section {
+                    Text("Delete your account in Kaivo in Safari: More → Settings → Account.").font(.footnote)
+                } header: {
+                    Text("Your account")
+                }
                 Section {
                     if let url = URL(string: "https://kaivo.byphil.eu/privacy.html") { Link("Privacy policy", destination: url) }
                     if let url = URL(string: "https://kaivo.byphil.eu/") { Link(destination: url) { Text(verbatim: "kaivo.byphil.eu") } }

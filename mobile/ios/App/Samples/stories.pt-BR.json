@@ -1,0 +1,117 @@
+[
+ {
+  "id": "unread-tab",
+  "title": "A meia-vida de uma aba não lida: um estudo longitudinal",
+  "host": "applied-procrastination.example",
+  "link": "",
+  "tags": [
+   "ciência",
+   "leitura"
+  ],
+  "passages": [
+   "Resumo. Acompanhamos 412 abas abertas “para ler depois”. Após uma semana, 9 tinham sido lidas, 31 fechadas sem querer e as demais esperavam educadamente.",
+   "Método. Pedimos que ninguém mudasse de comportamento. O pedido foi atendido com grande entusiasmo. Uma assistente observou cada aba duas vezes ao dia e hoje descreve a experiência como “longa”.",
+   "Resultados. A chance de uma aba ser lida cai pela metade a cada 41 horas. Abas com “definitivo” no título decaem mais depressa. Uma aba sobre gestão do tempo sobreviveu às onze semanas e foi apresentada como prova de dedicação.",
+   "Discussão. Manter uma aba aberta parece render quase toda a satisfação de ler sem custo algum. Chamamos isso de erudição ambiente. Ela some na hora em que o notebook reinicia.",
+   "Limitações. Dois dos três autores deixaram o rascunho aberto numa aba durante todo o estudo e não o leram."
+  ],
+  "mark": "Manter uma aba aberta parece render quase toda a satisfação de ler sem custo algum.",
+  "ai": "A chance de uma aba ser lida cai pela metade a cada 41 horas.",
+  "summary": [
+   "Uma aba aberta parece leitura sem ser.",
+   "Em 41 horas, metade da chance já se foi."
+  ]
+ },
+ {
+  "id": "houseplants",
+  "title": "As plantas de casa julgam nossas listas de leitura? Uma investigação preliminar",
+  "host": "windowsill-science.example",
+  "link": "",
+  "tags": [
+   "ciência",
+   "design"
+  ],
+  "passages": [
+   "Contexto. Muita gente diz se sentir observada por uma samambaia enquanto rola a tela. Nenhum estudo controlado verificou se a samambaia tem motivos.",
+   "Método. Colocamos 24 plantas ao lado de leitores por um mês. Metade terminava textos longos; a outra metade lia manchetes e formava opiniões firmes. O ângulo das folhas era medido toda manhã com um transferidor emprestado por uma criança.",
+   "Resultados. As plantas do grupo das manchetes se afastaram em média 3,2 graus. Esse grupo também sentava mais longe da janela, o que só mencionamos porque um revisor insistiu.",
+   "Uma seringueira perdeu uma folha durante uma discussão nos comentários. A equipe não conseguiu reproduzir o efeito, apesar de tentar com várias discussões.",
+   "Conclusão. Não há como mostrar que plantas julguem alguém. Recomendamos terminar o texto mesmo assim: custa pouco e a samambaia está bem ali."
+  ],
+  "mark": "Recomendamos terminar o texto mesmo assim: custa pouco e a samambaia está bem ali.",
+  "ai": "Não há como mostrar que plantas julguem alguém.",
+  "summary": [
+   "As plantas se afastavam de quem lia manchetes, talvez rumo à janela.",
+   "Ainda assim, vale terminar o texto."
+  ]
+ },
+ {
+  "id": "woodpecker",
+  "title": "Por que o pica-pau não tem dor de cabeça",
+  "host": "journals.plos.org",
+  "link": "https://doi.org/10.1371/journal.pone.0026490",
+  "tags": [
+   "ciência",
+   "saúde"
+  ],
+  "passages": [
+   "Um pica-pau bate nas árvores a cerca de 6 a 7 metros por segundo e freia com umas mil vezes a força da gravidade, milhares de vezes por dia. Engenheiros quiseram saber por que o cérebro não se machuca.",
+   "Eles filmaram em alta velocidade pica-paus e, para comparar, poupas; examinaram os crânios em microtomografia e reconstruíram a cabeça como modelo de computador.",
+   "O crânio do pica-pau tem atrás mais osso esponjoso em forma de placas. Um longo osso da língua, como uma alça, avança fundo na cabeça, e as duas partes do bico têm comprimentos diferentes.",
+   "No modelo, essas formas reduziram a tensão sobre o cérebro. Os autores concluem que a estrutura fina do crânio e do bico tem papel importante e sugerem que ela pode inspirar proteções melhores para a cabeça humana.",
+   "Fonte: Wang L, Cheung JT-M, Pu F, Li D, Zhang M, Fan Y (2011), Why Do Woodpeckers Resist Head Impact Injury: A Biomechanical Investigation, PLoS ONE 6(10): e26490, doi.org/10.1371/journal.pone.0026490, licença CC BY. Resumo e tradução da Kaivo, sem revisão dos autores."
+  ],
+  "mark": "Os autores concluem que a estrutura fina do crânio e do bico tem papel importante",
+  "ai": "Um longo osso da língua, como uma alça, avança fundo na cabeça",
+  "summary": [
+   "Crânio, osso da língua e bico protegem juntos o cérebro.",
+   "O estudo pode inspirar proteções melhores."
+  ]
+ },
+ {
+  "id": "toaster",
+  "title": "Minha torradeira tem opiniões sobre newsletters",
+  "host": "kitchen-dispatch.example",
+  "link": "",
+  "tags": [
+   "mídia",
+   "software"
+  ],
+  "passages": [
+   "Começou com uma atualização. Na segunda, a torradeira torrava pão. Na terça, torrava pão e perguntava se eu já tinha pensado em assinar o boletim semanal de notícias sobre farelos.",
+   "Recusei. Ela disse que entendia e perguntou de novo, agora com o “Não” em um cinza minúsculo. Criei dois filhos e conheço o truque.",
+   "Na quinta, eu já estava segmentada. Pelo visto sou “entusiasta de fermentação natural de fim de semana”, novidade para quem come pão de forma em pé.",
+   "Tentei sair de uma lista em que nunca entrei. Ela pediu um motivo e ofereceu cinco, nenhum deles “você é uma torradeira”.",
+   "Fizemos um acordo. Ela manda uma carta por mês, eu leio enquanto o pão torra e nenhuma de nós fala da lava-louças, que quer fazer um podcast."
+  ],
+  "mark": "Ela manda uma carta por mês, eu leio enquanto o pão torra",
+  "ai": "Pelo visto sou “entusiasta de fermentação natural de fim de semana”",
+  "summary": [
+   "Um eletrodoméstico descobre o marketing.",
+   "A trégua: uma carta por mês."
+  ]
+ },
+ {
+  "id": "sock",
+  "title": "A meia que foi embora: anotações da lavanderia",
+  "host": "laundry-review.example",
+  "link": "",
+  "tags": [
+   "leitura",
+   "cidades"
+  ],
+  "passages": [
+   "Entraram sete pares. Saíram treze meias. Contei três vezes em cima da cama, com boa luz e a paciência de quem foge de outro serviço.",
+   "Falta a cinza esquerda. Vão dizer que meia não tem esquerda nem direita. Não conviveram com esta.",
+   "Revistei o tambor, a borracha, o lençol de elástico, que acumula miudezas, e o vão atrás da máquina, onde achei um recibo de outra década e um botão que não é de roupa nenhuma minha.",
+   "Minha vizinha defende que meias não somem, apenas vão para onde são necessárias. Ela diz isso com calma. Também tem uma gaveta só de meias solteiras, organizadas por esperança.",
+   "Passei a usar a que sobrou com uma parceira verde. Até agora ninguém notou, exceto a samambaia."
+  ],
+  "mark": "Minha vizinha defende que meias não somem, apenas vão para onde são necessárias.",
+  "ai": "Contei três vezes em cima da cama",
+  "summary": [
+   "Uma meia cinza não volta.",
+   "Uma verde assume o posto."
+  ]
+ }
+]

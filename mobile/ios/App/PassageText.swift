@@ -6,8 +6,12 @@ import UIKit
 struct PassageText: UIViewRepresentable {
     let passage: Passage
     let style: UIFont.TextStyle
+    /// In a research paper, numbers such as [3] step back behind the words.
+    var citations = false
     let highlight: (NSRange) -> Void
     let unmark: (NSRange) -> Void
+    /// Keeps (true) or dismisses a suggestion of the AI: offered where it is tapped.
+    let resolve: (Mark.ID, Bool) -> Void
 
     func makeCoordinator() -> Coordinator { Coordinator(self) }
 
@@ -20,6 +24,14 @@ struct PassageText: UIViewRepresentable {
         view.textContainer.lineFragmentPadding = 0
         view.adjustsFontForContentSizeCategory = true
         view.delegate = context.coordinator
+        let menu = UIEditMenuInteraction(delegate: context.coordinator)
+        view.addInteraction(menu)
+        context.coordinator.menu = menu
+        let tap = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.tapped))
+        tap.delegate = context.coordinator
+        // the text view keeps its own taps, for selecting words
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
         view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return view
     }
@@ -28,6 +40,18 @@ struct PassageText: UIViewRepresentable {
         context.coordinator.parent = self
         let text = attributed()
         if view.attributedText != text { view.attributedText = text }
+        // VoiceOver cannot point at a sentence: each suggestion is offered as actions of its paragraph
+        view.accessibilityCustomActions = passage.marks.filter(\.ai).flatMap { mark in
+            let words = String(passage.words(of: mark).prefix(60))
+            return [(String(localized: "Keep"), true), (String(localized: "Dismiss"), false)].map { name, keep in
+                UIAccessibilityCustomAction(name: name + ": " + words) { _ in
+                    context.coordinator.parent.resolve(mark.id, keep)
+                    return true
+                }
+            }
+        }
+        // added to what the text view already is: replacing its traits would take the selection away from VoiceOver
+        if passage.heading != nil { view.accessibilityTraits.insert(.header) }
     }
 
     func sizeThatFits(_ proposal: ProposedViewSize, uiView: UITextView, context: Context) -> CGSize? {
@@ -37,10 +61,14 @@ struct PassageText: UIViewRepresentable {
 
     func attributed() -> NSAttributedString {
         let base = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
-        let font = UIFont(descriptor: base.withDesign(.serif) ?? base, size: 0)
+        let serif = base.withDesign(.serif) ?? base
+        let font = UIFont(descriptor: passage.heading == nil ? serif : serif.withSymbolicTraits(.traitBold) ?? serif, size: 0)
         let lines = NSMutableParagraphStyle()
         lines.lineSpacing = 4
         let result = NSMutableAttributedString(string: passage.text, attributes: [.font: font, .foregroundColor: UIColor.label, .paragraphStyle: lines])
+        if citations {
+            for range in PaperSense.citations(in: passage.text) { result.addAttribute(.foregroundColor, value: UIColor.secondaryLabel, range: range) }
+        }
         for mark in passage.marks where mark.start >= 0 && mark.start + mark.length <= result.length {
             if mark.ai {
                 result.addAttributes([.backgroundColor: UIColor(KaivoTokens.savedNoteGhostBg), .foregroundColor: UIColor(KaivoTokens.savedNoteGhostFg),
@@ -53,9 +81,47 @@ struct PassageText: UIViewRepresentable {
         return result
     }
 
-    final class Coordinator: NSObject, UITextViewDelegate {
+    final class Coordinator: NSObject, UITextViewDelegate, UIGestureRecognizerDelegate, UIEditMenuInteractionDelegate {
         var parent: PassageText
+        weak var menu: UIEditMenuInteraction?
+        /// The suggestion the menu is about, and where its words lie.
+        private var asked: (id: Mark.ID, frame: CGRect)?
         init(_ parent: PassageText) { self.parent = parent }
+
+        @objc func tapped(_ tap: UITapGestureRecognizer) {
+            guard let view = tap.view as? UITextView, view.selectedRange.length == 0 else { return }
+            let point = tap.location(in: view)
+            let layout = view.layoutManager, container = view.textContainer
+            let glyph = layout.glyphIndex(for: point, in: container)
+            // the nearest glyph is not enough: a tap beside the words means nothing
+            guard layout.boundingRect(forGlyphRange: NSRange(location: glyph, length: 1), in: container).insetBy(dx: -6, dy: -6).contains(point) else { return }
+            let character = layout.characterIndexForGlyph(at: glyph)
+            guard let mark = parent.passage.marks.first(where: { $0.ai && NSLocationInRange(character, $0.range) }) else { return }
+            let words = layout.glyphRange(forCharacterRange: mark.range, actualCharacterRange: nil)
+            // the line that was tapped, so that the menu stands beside the finger, also for a long suggestion
+            var line = NSRange()
+            let lineFrame = layout.lineFragmentUsedRect(forGlyphAt: glyph, effectiveRange: &line)
+            let part = NSIntersectionRange(words, line)
+            asked = (mark.id, part.length > 0 ? layout.boundingRect(forGlyphRange: part, in: container) : lineFrame)
+            menu?.presentEditMenu(with: UIEditMenuConfiguration(identifier: nil, sourcePoint: point))
+        }
+
+        func gestureRecognizer(_ recognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith other: UIGestureRecognizer) -> Bool { true }
+
+        func editMenuInteraction(_ interaction: UIEditMenuInteraction, menuFor configuration: UIEditMenuConfiguration, suggestedActions: [UIMenuElement]) -> UIMenu? {
+            guard let id = asked?.id else { return nil }
+            return UIMenu(children: [
+                UIAction(title: String(localized: "Keep"), image: UIImage(systemName: "checkmark")) { [weak self] _ in
+                    self?.parent.resolve(id, true)
+                    UINotificationFeedbackGenerator().notificationOccurred(.success)
+                },
+                UIAction(title: String(localized: "Dismiss"), image: UIImage(systemName: "xmark")) { [weak self] _ in self?.parent.resolve(id, false) },
+            ])
+        }
+
+        func editMenuInteraction(_ interaction: UIEditMenuInteraction, targetRectFor configuration: UIEditMenuConfiguration) -> CGRect {
+            asked?.frame ?? .null
+        }
 
         func textView(_ view: UITextView, editMenuForTextIn range: NSRange, suggestedActions: [UIMenuElement]) -> UIMenu? {
             guard range.length > 0, parent.passage.wholeWords(range) != nil else { return UIMenu(children: suggestedActions) }

@@ -10,26 +10,45 @@ struct LibraryView: View {
     @Environment(Library.self) private var library
     @State private var search = ""
     @State private var filter = Filter.all
-    @State private var topic: String?
+    /// The topics narrowed down to, in the order they were chosen.
+    @State private var chosen: [String] = []
+    /// A topic held over the middle of the net.
+    @State private var preview: String?
     @Environment(Router.self) private var router
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    private var shown: [Article] {
+    /// What the filter and the search leave, before any topic.
+    private var matching: [Article] {
         library.articles.filter { article in
             (filter == .all || (filter == .unread ? article.isUnread : article.firstHighlight != nil))
-                && (topic == nil || article.tags.contains(topic!))
                 && (search.isEmpty || ([article.title, article.host] + article.tags).contains { $0.localizedStandardContains(search) })
         }
     }
 
     var body: some View {
         @Bindable var router = router
-        return NavigationStack(path: $router.libraryPath) {
-            List {
+        return ListAndDetail(path: $router.libraryPath, empty: "Choose an article", symbol: "books.vertical") { selection in
+            let matching = matching   // filtered once for the list and the net
+            let shown = matching.filter { article in chosen.allSatisfy(article.tags.contains) }
+            let listed = preview.map { topic in shown.filter { $0.tags.contains(topic) } } ?? shown
+            return List(selection: selection) {
                 if !library.articles.isEmpty {
                     Section {
-                        TopicBubbles(topics: Array(library.topics.prefix(6)), selection: $topic)
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
+                        Group {
+                            if chosen.isEmpty {
+                                TopicBubbles(topics: Array(library.topics.prefix(6))) { name in
+                                    withAnimation(reduceMotion ? nil : .snappy) { chosen = [name] }
+                                }
+                            } else {
+                                let related = Library.related(shown, to: chosen)
+                                TopicNet(chosen: $chosen, articles: shown.count, related: related,
+                                         // further out only from a single topic: with two, the way back would be lost
+                                         beyond: chosen.count == 1 ? Library.beyond(matching, from: chosen, through: Array(related.prefix(NetLayout.most)), most: NetLayout.outerMost) : [],
+                                         preview: $preview)
+                            }
+                        }
+                        .listRowInsets(EdgeInsets())
+                        .listRowBackground(Color.clear)
                         Picker("Show", selection: $filter) {
                             ForEach(Filter.allCases) { Text($0.title).tag($0) }
                         }
@@ -40,13 +59,13 @@ struct LibraryView: View {
                     .listRowSeparator(.hidden)
                 }
                 Section {
-                    ForEach(shown) { article in
+                    ForEach(listed) { article in
                         NavigationLink(value: Route.article(article.id)) { ArticleRow(article: article) }
                             .swipeActions {
                                 Button("Delete", systemImage: "trash", role: .destructive) { library.remove(article.id) }
                             }
                     }
-                    if shown.isEmpty {
+                    if listed.isEmpty {
                         if !search.isEmpty {
                             ContentUnavailableView.search(text: search)
                         } else {
@@ -54,12 +73,20 @@ struct LibraryView: View {
                                                    description: library.articles.isEmpty ? Text("Save articles from your feeds and they appear here.") : Text("Nothing matches this filter."))
                         }
                     }
+                } header: {
+                    if !chosen.isEmpty {
+                        let names = NetLayout.together(chosen + [preview].compactMap { $0 }).joined(separator: " + ")
+                        HStack(spacing: 4) {
+                            if preview != nil { Text("Preview"); Text(verbatim: "·") }
+                            Text(verbatim: "\(names) · \(listed.count.formatted())")
+                        }
+                        .textCase(nil)
+                    }
                 } footer: {
-                    if !shown.isEmpty { SampleNote() }
+                    if !listed.isEmpty { SampleNote() }
                 }
             }
             .navigationTitle("Library")
-            .routes()
             .searchable(text: $search, prompt: "Words, topics, sources")
         }
     }

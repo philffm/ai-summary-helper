@@ -9,13 +9,15 @@ checklist, not legal advice.
 
 ## Blockers
 
-| # | Guideline | Problem | What to do |
+| # | Guideline | State 2026-11-26 | What is left |
 | --- | --- | --- | --- |
-| 1 | 2.1 | What the Safari extension saves does not appear in the app yet. (The app is useful on its own: feeds, library, highlights, widgets.) | The extension sends saves to its native handler (`nativeMessaging`), which writes them into the App Group; the app picks them up. Later two-way, in the sync format. |
-| 2 | 3.1.1, 4.4 | The extension offers the Support Pass through a web checkout (`modules/supportPass.js`); extensions may not contain purchases or marketing. | Hide all purchase UI in the iOS build. Sell in the app with StoreKit (auto-renewable subscription); keep web purchases valid (3.1.3(b)). |
-| 3 | 5.1.2(i) (summary) | Page text goes to third-party AI providers; no explicit consent step was found. | Before the first request: say which provider receives what, ask, remember the answer, allow withdrawing. |
-| 4 | 5.1.1(v) (summary) | byPhil Cloud sign-in exists in the extension; no account deletion was found. | Offer deletion in the app (needs an API endpoint). |
-| 5 | Developer Program | Xcode only shows a free Personal Team. | Join the paid program; set `DEVELOPMENT_TEAM`. |
+| 1 | 2.1 | Done: what Safari saves arrives in the app (seen on a device). | Two-way sync later. |
+| 2 | 3.1.1, 4.4 | Done for the extension: the iOS build shows no prices, checkout, donation or license key field (`modules/storeBuild.js`, test294). A pass bought elsewhere keeps working. | Until the pass is also sold in the app (see Money), unlocking it here is a review risk (3.1.3(b)). |
+| 3 | 5.1.2(i) | Done: the extension (iOS build) and the app name the recipient and ask before the first request to a host on the internet; the local network needs no yes; withdraw under Models & API (extension) and Model (app). test295, ConsentTests. | The privacy policy already names byPhil Cloud, OpenRouter and the model provider (`plugin/src/privacy.md`); check the web copy before submitting. Desktop and Android do not ask. |
+| 4 | 5.1.1(v) | Done: Settings → Account → Delete account in the extension (also deletable on byphil.eu). The app says where. | The API change that cancels the Stripe subscription is on main: run `deploy.sh` on the server, then change the confirmation text in `authManager.js` (it still asks to cancel first). Apple's page asks for deletion to start in the app; whether the Safari extension counts is a review judgement: be ready to add it to the app. |
+| 5 | Developer Program | Active since 2026-11-26 (Individual, team `BZKS624HDA`; renews 2027-11-27). App record "Kaivo: Read Later & AI Summary", bundle ID `eu.byphil.kaivo`, SKU `kaivo-ios`. First TestFlight build 2.2.57 (20257) uploaded 2026-11-26, from uncommitted files on top of `3c4983b7`. Later uploads: `scripts/upload-testflight.sh`. | EU trader status with the Hamburg service address from philwornath.com/legal as the public address (phone and e-mail open; proof such as a bill; the membership address stays). A change of the member name to the full legal name is requested. |
+
+Review notes (draft): "Account: open Safari, open the Kaivo extension, More → Settings → Account. Delete account removes it."
 
 ## Before submission
 
@@ -33,9 +35,23 @@ checklist, not legal advice.
       the system's WebCrypto; confirm that this counts as exempt.
 * [ ] 4.4.2 Website access: the extension asks for `<all_urls>` and `file:///*`; drop `file:///*` on iOS, justify the rest.
 * [ ] 2.5.2 No downloaded code (none found outside the bundled libraries).
-* [ ] Bundle id decided (`Config/Base.xcconfig`).
+* [x] Bundle id decided (`Config/Base.xcconfig`).
 * [ ] App Store Small Business Program enrolled **before** selling (15 % instead of 26 % in the EU).
 * [ ] Ukrainian, Arabic and Finnish listings: supported by App Store Connect (summary).
+
+## Store listing
+
+Entered on 2026-11-26 for version 1.0 (draft): name, subtitle and keywords in 28 languages, as listed in
+<https://claude.ai/artifact/2VNE8SCcNvQMmkfujCNyap> (read back and compared). "Touch your knowledge" goes on the first
+screenshot. Before submitting:
+
+* [ ] Descriptions for all 28 languages are drafted in `store/descriptions.json` (`store/build.py` writes it; the twelve
+      languages without an app interface say so). Not yet entered in App Store Connect.
+* [ ] Screenshots (or the English ones as fallback).
+* [ ] Native speakers check names, subtitles and keywords outside German and English.
+* [ ] `pdf` is a keyword: PDF summaries are not yet tested on an iPhone.
+* [x] Availability: 174 countries and regions, China mainland left out (2026-11-26). TestFlight: internal group "Team".
+* [ ] Set the version number in App Store Connect to the version of the build to be released (it says 1.0).
 
 ## What does not work on iOS (extension features)
 
@@ -59,9 +75,19 @@ From reading the code; **not yet tested on a device**.
 
 ## Money
 
-In the app: StoreKit subscription. Everywhere else: Stripe. One entitlement in the byPhil API with its source
-(`apple` or `stripe`), StoreKit 2 with App Store Server Notifications, `appAccountToken` to tie a purchase to the account,
-"Restore purchases", and no second purchase offered to someone who already has the pass.
+Decided 2026-11-26: the Support Pass becomes an App Store subscription; until then the iOS build sells nothing.
+Planned, not built:
 
-Apple's cut (Apple pages read 2026-11-25): EU 26 %, with the Small Business Program 15 % (also after a subscriber's first
-year); outside the EU 15 % with the program.
+1. **App Store Connect**: paid apps agreement, tax and banking; a subscription group with monthly and yearly. Pick the
+   price points nearest €4.99 and €29.94 (check what Apple offers). Enrol in the Small Business Program before selling
+   (Apple pages read 2026-11-25: EU 26 %, with the program 15 %; outside the EU 15 % with it).
+2. **App** (StoreKit 2): buy and "Restore purchases" live in the app, never in the extension. A StoreKit configuration
+   file allows testing without App Store Connect. The app has no sign-in of its own: it needs the account to attach the
+   purchase to (the session the extension hands over, or its own e-mail code sign-in).
+3. **appAccountToken** must be a UUID, PocketBase ids are not: derive a UUIDv5 from the user id, or store one per user.
+4. **API**: `POST /v1/webhooks/appstore` for App Store Server Notifications v2 with signature (JWS) verification; the
+   entitlement gets a source (`apple` or `stripe`) and stays one record per account.
+5. **One pass, one payment**: whoever has an active pass is offered nothing again; the account screen says where it is
+   managed (Stripe receipt, or Apple's subscription settings).
+6. **Deleting an account** cancels Stripe (on main of byphilapi, deploy pending on 2026-11-26). Apple subscriptions can only be cancelled by the buyer:
+   say so in the confirmation once they exist.

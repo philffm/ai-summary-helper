@@ -64,6 +64,18 @@ final class FeedsModel {
         return file.feeds.filter { s in s.url.hasPrefix("https://") && !feeds.contains { $0.url == s.url } }
     }
 
+    /// Takes over the feeds Safari subscribes to: new ones are added, one removed here stays removed.
+    func importFromSafari() {
+        let waiting = SafariInbox.pendingFeeds
+        guard !samples, !waiting.isEmpty else { return }
+        var known = Set(all.map(\.url))
+        for feed in waiting where known.insert(feed.url).inserted {
+            all.append(Feed(url: feed.url, title: feed.title, tags: feed.tags, updatedAt: Self.now))
+        }
+        save()
+        SafariInbox.clearFeeds()
+    }
+
     /// Subscribes after a successful download, so a wrong address never ends up in the list.
     func add(_ input: String, title: String = "", tags: [String] = []) async throws {
         guard let url = FeedFetcher.normalize(input) else { throw FeedFetcher.Failure.address }
@@ -145,6 +157,13 @@ final class FeedsModel {
         SharedStore.write(Vault(feeds: all), to: Self.listFile)
         SharedStore.write(states, to: Self.stateFile)
     }
+
+    #if DEBUG
+    static func seed(_ feeds: [Feed], _ states: [String: FeedState]) {
+        SharedStore.write(Vault(feeds: feeds), to: listFile)
+        SharedStore.write(states, to: stateFile)
+    }
+    #endif
 
     private static var now: Int64 { Int64(Date.now.timeIntervalSince1970 * 1000) }
 }

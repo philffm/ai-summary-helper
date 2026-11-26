@@ -24,6 +24,14 @@ final class SafariTests: XCTestCase {
         XCTAssertEqual(SafariInbox.handle([:])["ok"] as? Bool, false)
     }
 
+    func testFeedsAreTaken() {
+        defer { SafariInbox.clearFeeds() }
+        XCTAssertEqual(SafariInbox.handle(["type": "feeds", "feeds": [["url": "https://example.com/feed", "title": "A", "tags": ["x"]]]])["ok"] as? Bool, true)
+        XCTAssertEqual(SafariInbox.pendingFeeds, [InboxFeed(url: "https://example.com/feed", title: "A", tags: ["x"])])
+        XCTAssertFalse(SafariInbox.pending().contains { $0.file.lastPathComponent.contains("feeds") })
+        XCTAssertEqual(SafariInbox.handle(["type": "feeds", "feeds": "text"])["ok"] as? Bool, false)
+    }
+
     func testPicturesAreTakenAndKeptInOrder() throws {
         let png = Data([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0, 0, 0, 0]).base64EncodedString()
         XCTAssertEqual(SafariInbox.handle(["type": "image", "id": "test_1", "name": "0", "data": png])["ok"] as? Bool, true)
