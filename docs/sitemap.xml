@@ -198,6 +198,8 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://kaivo.byphil.eu/ja/mcp/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://kaivo.byphil.eu/ko/mcp/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://kaivo.byphil.eu/pt/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/mcp/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://kaivo.byphil.eu/nl/mcp/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://kaivo.byphil.eu/it/mcp/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://kaivo.byphil.eu/ru/mcp/"/>
@@ -205,6 +207,8 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/mcp/"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://kaivo.byphil.eu/id/mcp/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/mcp/"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/mcp/"/>
     <xhtml:link rel="alternate" hreflang="da" href="https://kaivo.byphil.eu/da/mcp/"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/mcp/"/>
@@ -248,6 +252,13 @@
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://kaivo.byphil.eu/zh-tw/"/>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/ar/mcp/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/mcp/"/>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/da/mcp/</loc>
     <lastmod>2026-11-26</lastmod>
     <priority>0.5</priority>
@@ -281,6 +292,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/mcp/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://kaivo.byphil.eu/fr/mcp/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/hi/mcp/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/mcp/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/id/mcp/</loc>
@@ -353,6 +371,13 @@
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/mcp/"/>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/th/mcp/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/mcp/"/>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/tr/mcp/</loc>
     <lastmod>2026-11-26</lastmod>
     <priority>0.5</priority>
@@ -365,6 +390,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/mcp/"/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://kaivo.byphil.eu/uk/mcp/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/vi/mcp/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/mcp/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/mcp/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/zh/mcp/</loc>
@@ -541,6 +573,8 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://kaivo.byphil.eu/ja/e-reader/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://kaivo.byphil.eu/ko/e-reader/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://kaivo.byphil.eu/pt/e-reader/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/e-reader/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/e-reader/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://kaivo.byphil.eu/nl/e-reader/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://kaivo.byphil.eu/it/e-reader/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://kaivo.byphil.eu/ru/e-reader/"/>
@@ -548,6 +582,8 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/e-reader/"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://kaivo.byphil.eu/id/e-reader/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/e-reader/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/e-reader/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/e-reader/"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/e-reader/"/>
     <xhtml:link rel="alternate" hreflang="da" href="https://kaivo.byphil.eu/da/e-reader/"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/e-reader/"/>
@@ -567,6 +603,8 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://kaivo.byphil.eu/ja/local-ai/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://kaivo.byphil.eu/ko/local-ai/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://kaivo.byphil.eu/pt/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/local-ai/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://kaivo.byphil.eu/nl/local-ai/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://kaivo.byphil.eu/it/local-ai/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://kaivo.byphil.eu/ru/local-ai/"/>
@@ -574,6 +612,8 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/local-ai/"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://kaivo.byphil.eu/id/local-ai/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/local-ai/"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/local-ai/"/>
     <xhtml:link rel="alternate" hreflang="da" href="https://kaivo.byphil.eu/da/local-ai/"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/local-ai/"/>
@@ -593,6 +633,8 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://kaivo.byphil.eu/ja/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://kaivo.byphil.eu/ko/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://kaivo.byphil.eu/pt/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://kaivo.byphil.eu/nl/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://kaivo.byphil.eu/it/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://kaivo.byphil.eu/ru/rss-news/"/>
@@ -600,6 +642,8 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://kaivo.byphil.eu/id/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="da" href="https://kaivo.byphil.eu/da/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/rss-news/"/>
@@ -633,6 +677,27 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://kaivo.byphil.eu/zh-tw/blog/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/ar/e-reader/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/e-reader/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/e-reader/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/ar/local-ai/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/local-ai/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/ar/rss-news/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/rss-news/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/da/e-reader/</loc>
@@ -738,6 +803,27 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://kaivo.byphil.eu/fr/rss-news/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/hi/e-reader/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/e-reader/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/e-reader/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/hi/local-ai/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/local-ai/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/hi/rss-news/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/rss-news/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/id/e-reader/</loc>
@@ -980,6 +1066,27 @@
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/rss-news/"/>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/th/e-reader/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/e-reader/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/e-reader/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/th/local-ai/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/local-ai/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/th/rss-news/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/rss-news/"/>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/tr/e-reader/</loc>
     <lastmod>2026-11-26</lastmod>
     <priority>0.5</priority>
@@ -1020,6 +1127,27 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/rss-news/"/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://kaivo.byphil.eu/uk/rss-news/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/vi/e-reader/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/e-reader/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/e-reader/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/vi/local-ai/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/local-ai/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/local-ai/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/vi/rss-news/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/rss-news/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/rss-news/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/zh/e-reader/</loc>
@@ -1091,6 +1219,8 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://kaivo.byphil.eu/ja/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://kaivo.byphil.eu/ko/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://kaivo.byphil.eu/pt/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://kaivo.byphil.eu/nl/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://kaivo.byphil.eu/it/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://kaivo.byphil.eu/ru/pdf-summarizer/"/>
@@ -1098,6 +1228,8 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://kaivo.byphil.eu/id/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="da" href="https://kaivo.byphil.eu/da/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/pdf-summarizer/"/>
@@ -1203,6 +1335,8 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://kaivo.byphil.eu/ja/knowledge-graph/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://kaivo.byphil.eu/ko/knowledge-graph/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://kaivo.byphil.eu/pt/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/knowledge-graph/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://kaivo.byphil.eu/nl/knowledge-graph/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://kaivo.byphil.eu/it/knowledge-graph/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://kaivo.byphil.eu/ru/knowledge-graph/"/>
@@ -1210,6 +1344,8 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/knowledge-graph/"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://kaivo.byphil.eu/id/knowledge-graph/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/knowledge-graph/"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/knowledge-graph/"/>
     <xhtml:link rel="alternate" hreflang="da" href="https://kaivo.byphil.eu/da/knowledge-graph/"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/knowledge-graph/"/>
@@ -1229,6 +1365,8 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://kaivo.byphil.eu/ja/research-papers/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://kaivo.byphil.eu/ko/research-papers/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://kaivo.byphil.eu/pt/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/research-papers/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://kaivo.byphil.eu/nl/research-papers/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://kaivo.byphil.eu/it/research-papers/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://kaivo.byphil.eu/ru/research-papers/"/>
@@ -1236,6 +1374,8 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/research-papers/"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://kaivo.byphil.eu/id/research-papers/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/research-papers/"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/research-papers/"/>
     <xhtml:link rel="alternate" hreflang="da" href="https://kaivo.byphil.eu/da/research-papers/"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/research-papers/"/>
@@ -1254,6 +1394,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="da" href="https://kaivo.byphil.eu/da/privatliv.html"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/ar/pdf-summarizer/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/pdf-summarizer/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/da/pdf-summarizer/</loc>
@@ -1296,6 +1443,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://kaivo.byphil.eu/fr/pdf-summarizer/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/hi/pdf-summarizer/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/pdf-summarizer/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/id/pdf-summarizer/</loc>
@@ -1389,6 +1543,13 @@
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/pdf-summarizer/"/>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/th/pdf-summarizer/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/pdf-summarizer/"/>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/tr/pdf-summarizer/</loc>
     <lastmod>2026-11-26</lastmod>
     <priority>0.5</priority>
@@ -1401,6 +1562,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://kaivo.byphil.eu/uk/pdf-summarizer/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/vi/pdf-summarizer/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/pdf-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/pdf-summarizer/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/zh-tw/privacy.html</loc>
@@ -1422,6 +1590,20 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/videos.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/blog/videos.html"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/ar/knowledge-graph/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/knowledge-graph/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/ar/research-papers/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/research-papers/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/da/blog/videos.html</loc>
@@ -1548,6 +1730,20 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/videos.html"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/blog/videos.html"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/hi/knowledge-graph/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/knowledge-graph/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/hi/research-papers/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/research-papers/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/id/blog/videos.html</loc>
@@ -1781,6 +1977,20 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/blog/videos.html"/>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/th/knowledge-graph/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/knowledge-graph/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/th/research-papers/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/research-papers/"/>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/tr/blog/videos.html</loc>
     <lastmod>2026-11-26</lastmod>
     <priority>0.5</priority>
@@ -1830,6 +2040,20 @@
     <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/blog/videos.html"/>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/vi/knowledge-graph/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/knowledge-graph/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/knowledge-graph/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/vi/research-papers/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/research-papers/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/research-papers/"/>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/youtube-summarizer/</loc>
     <lastmod>2026-11-26</lastmod>
     <priority>0.8</priority>
@@ -1843,6 +2067,8 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://kaivo.byphil.eu/ja/youtube-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://kaivo.byphil.eu/ko/youtube-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://kaivo.byphil.eu/pt/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/youtube-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://kaivo.byphil.eu/nl/youtube-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://kaivo.byphil.eu/it/youtube-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://kaivo.byphil.eu/ru/youtube-summarizer/"/>
@@ -1850,6 +2076,8 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/youtube-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://kaivo.byphil.eu/id/youtube-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/youtube-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/youtube-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="da" href="https://kaivo.byphil.eu/da/youtube-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/youtube-summarizer/"/>
@@ -1950,6 +2178,8 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://kaivo.byphil.eu/ja/obsidian-integration/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://kaivo.byphil.eu/ko/obsidian-integration/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://kaivo.byphil.eu/pt/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/obsidian-integration/"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://kaivo.byphil.eu/nl/obsidian-integration/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://kaivo.byphil.eu/it/obsidian-integration/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://kaivo.byphil.eu/ru/obsidian-integration/"/>
@@ -1957,6 +2187,8 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/obsidian-integration/"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://kaivo.byphil.eu/id/obsidian-integration/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/obsidian-integration/"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/obsidian-integration/"/>
     <xhtml:link rel="alternate" hreflang="da" href="https://kaivo.byphil.eu/da/obsidian-integration/"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/obsidian-integration/"/>
@@ -1968,6 +2200,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/pdf-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://kaivo.byphil.eu/zh-tw/pdf-summarizer/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/ar/youtube-summarizer/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/youtube-summarizer/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/blog/unread-saves.html</loc>
@@ -2033,6 +2272,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/youtube-summarizer/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://kaivo.byphil.eu/fr/youtube-summarizer/"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/hi/youtube-summarizer/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/youtube-summarizer/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/id/youtube-summarizer/</loc>
@@ -2112,6 +2358,13 @@
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/youtube-summarizer/"/>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/th/youtube-summarizer/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/youtube-summarizer/"/>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/tr/youtube-summarizer/</loc>
     <lastmod>2026-11-26</lastmod>
     <priority>0.5</priority>
@@ -2131,6 +2384,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/quyen-rieng-tu.html"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/vi/youtube-summarizer/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/youtube-summarizer/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/youtube-summarizer/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/zh-tw/blog/videos.html</loc>
@@ -2180,6 +2440,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/feeds-recap.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/blog/feeds-recap.html"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/ar/obsidian-integration/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/obsidian-integration/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/da/blog/ai-apps-mcp.html</loc>
@@ -2264,6 +2531,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/feeds-recap.html"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/blog/feeds-recap.html"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/hi/obsidian-integration/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/obsidian-integration/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/id/blog/ai-apps-mcp.html</loc>
@@ -2441,6 +2715,13 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/blog/feeds-recap.html"/>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/th/obsidian-integration/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/obsidian-integration/"/>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/tr/blog/ai-apps-mcp.html</loc>
     <lastmod>2026-11-26</lastmod>
     <priority>0.5</priority>
@@ -2481,6 +2762,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/ai-apps-mcp.html"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/blog/ai-apps-mcp.html"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/vi/obsidian-integration/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/obsidian-integration/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/obsidian-integration/"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/zh/blog/ai-apps-mcp.html</loc>
@@ -3050,6 +3338,8 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://kaivo.byphil.eu/ja/blog/byphil-cloud-eu-models.html"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://kaivo.byphil.eu/ko/blog/byphil-cloud-eu-models.html"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://kaivo.byphil.eu/pt/blog/byphil-cloud-eu-models.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/blog/byphil-cloud-eu-models.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/blog/byphil-cloud-eu-models.html"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://kaivo.byphil.eu/nl/blog/byphil-cloud-eu-models.html"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://kaivo.byphil.eu/it/blog/byphil-cloud-eu-models.html"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://kaivo.byphil.eu/ru/blog/byphil-cloud-eu-models.html"/>
@@ -3057,6 +3347,8 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/blog/byphil-cloud-eu-models.html"/>
     <xhtml:link rel="alternate" hreflang="id" href="https://kaivo.byphil.eu/id/blog/byphil-cloud-eu-models.html"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://kaivo.byphil.eu/pl/blog/byphil-cloud-eu-models.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/blog/byphil-cloud-eu-models.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/blog/byphil-cloud-eu-models.html"/>
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/blog/byphil-cloud-eu-models.html"/>
     <xhtml:link rel="alternate" hreflang="da" href="https://kaivo.byphil.eu/da/blog/byphil-cloud-eu-models.html"/>
     <xhtml:link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/blog/byphil-cloud-eu-models.html"/>
@@ -3312,6 +3604,13 @@
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://kaivo.byphil.eu/zh/blog/from-bookmarklet-to-2.html"/>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/ar/blog/byphil-cloud-eu-models.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/byphil-cloud-eu-models.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://kaivo.byphil.eu/ar/blog/byphil-cloud-eu-models.html"/>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/ar/blog/highlighting-vs-asking.html</loc>
     <lastmod>2026-11-26</lastmod>
     <priority>0.5</priority>
@@ -3380,6 +3679,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/bring-your-own-key.html"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://kaivo.byphil.eu/fr/blog/votre-cle-votre-modele.html"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/hi/blog/byphil-cloud-eu-models.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/byphil-cloud-eu-models.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/blog/byphil-cloud-eu-models.html"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/hi/blog/highlighting-vs-asking.html</loc>
@@ -3536,6 +3842,13 @@
     <xhtml:link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/blog/sparat-men-aldrig-last.html"/>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/th/blog/byphil-cloud-eu-models.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/byphil-cloud-eu-models.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://kaivo.byphil.eu/th/blog/byphil-cloud-eu-models.html"/>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/th/blog/highlighting-vs-asking.html</loc>
     <lastmod>2026-11-26</lastmod>
     <priority>0.5</priority>
@@ -3576,6 +3889,13 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/on-device-architecture.html"/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://kaivo.byphil.eu/uk/blog/on-device-architecture.html"/>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/vi/blog/byphil-cloud-eu-models.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/byphil-cloud-eu-models.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://kaivo.byphil.eu/vi/blog/byphil-cloud-eu-models.html"/>
   </url>
   <url>
     <loc>https://kaivo.byphil.eu/vi/blog/tu-bookmarklet-den-2-0.html</loc>

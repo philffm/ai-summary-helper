@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
-<title>AI Summary Helper: web पेजों को summarize, save और search करें</title>
+<title>AI Summary Helper: पढ़ने और ज्ञान के लिए आपका private AI साथी</title>
 <script>
 // Old language links were /?lang=xx. GitHub Pages cannot 301 a query string, so send them to the language folder (canonical already points to /).
 (function () {
@@ -14,7 +14,7 @@
   location.replace('/' + (dir ? dir + '/' : '') + location.hash);
 })();
 </script>
-<meta name="description" content="Chrome extension जो AI से पेजों को summarize करता है, आपके RSS feeds पढ़ता है और searchable archive रखता है। Search और recommendations पूरी तरह on-device रन होते हैं।">
+<meta name="description" content="पढ़ी हुई चीज़ों को ऐसे ज्ञान में बदलें जो आपके साथ रहे। AI Summary Helper आर्टिकल, PDF और वीडियो के लिए एक private, local-first reading साथी है, जिसमें source से जुड़े जवाब और searchable archive मिलता है।">
 
 <script>
   (function(){
@@ -34,16 +34,21 @@
 <link rel="preload" href="../assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="preload" href="../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="stylesheet" href="../assets/styles.css">
 
 <meta property="og:title" content="AI Summary Helper">
-<meta property="og:description" content="वेब को on-device summarize, save और search करें। एक Chrome extension उन लोगों के लिए जो अपनी reading list फिर कभी खोना नहीं चाहते।">
+<meta property="og:description" content="source से जुड़े जवाबों, private searchable archive और local-first AI के साथ पढ़ी हुई चीज़ों को टिकने वाले ज्ञान में बदलें।">
 <meta property="og:url" content="https://kaivo.byphil.eu/hi/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="AI Summary Helper zeigt eine quellenverlinkte KI-Zusammenfassung neben dem Originalartikel.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Summary Helper: your private AI reading and knowledge companion">
+<meta name="twitter:description" content="Turn reading into knowledge you keep with source-linked answers, a private searchable archive and local-first AI.">
+<meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp">
+<meta name="twitter:image:alt" content="AI Summary Helper zeigt eine quellenverlinkte KI-Zusammenfassung neben dem Originalartikel.">
 
 <script src="../assets/analytics.js" defer=""></script>
-<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/"><link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="hi_IN"><meta name="twitter:title" content="AI Summary Helper"><meta name="twitter:description" content="वेब को on-device summarize, save और search करें। एक Chrome extension उन लोगों के लिए जो अपनी reading list फिर कभी खोना नहीं चाहते।"><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://kaivo.byphil.eu/hi/"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kaivo.byphil.eu/#website","url":"https://kaivo.byphil.eu/","name":"AI Summary Helper","inLanguage":"hi","publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"SoftwareApplication","@id":"https://kaivo.byphil.eu/#app","name":"AI Summary Helper","url":"https://kaivo.byphil.eu/hi/","description":"Chrome extension जो AI से पेजों को summarize करता है, आपके RSS feeds पढ़ता है और searchable archive रखता है। Search और recommendations पूरी तरह on-device रन होते हैं।","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Chromium browsers, Firefox, Android (beta companion app)","installUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","downloadUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","image":"https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp","inLanguage":"hi","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free; a donation (Support Pass) unlocks byphil Cloud with many AI models"},"author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"FAQPage","@id":"https://kaivo.byphil.eu/hi/#faq","inLanguage":"hi","mainEntity":[{"@type":"Question","name":"क्या इसका उपयोग करने के लिए मुझे अकाउंट की आवश्यकता है?","acceptedAnswer":{"@type":"Answer","text":"नहीं। बस install करें, अपनी AI provider key लगाएं (या local Ollama model इस्तेमाल करें), और save करना शुरू करें। Account की ज़रूरत केवल तब होती है जब आप byphil Cloud (बिना key के कई AI models) या ज़्यादा Kindle/LocalSend सेंड्स चाहते हों, जो donation से अनलॉक होते हैं।"}},{"@type":"Question","name":"मेरे ब्राउज़र से वास्तव में क्या डेटा बाहर जाता है?","acceptedAnswer":{"@type":"Answer","text":"सिर्फ summarization request — जो आपके configured AI provider को भेजी जाती है — इसके अलावा, अगर आप RSS reader use करते हैं, तो आपके subscribed feeds की requests, और सिर्फ तब जब आप AI recap पर click करते हैं, उस दिन की headlines और short snippets। Search, duplicate detection, tag cleanup, reading-level और sentiment scoring, और \"similar articles\" recommendations सब कुछ आपके अपने saved archive पर पूरी तरह locally run होते हैं।"}},{"@type":"Question","name":"क्या मैं इसे बिना किसी Cloud निर्भरता के (पूरी तरह offline) चला सकता हूँ?","acceptedAnswer":{"@type":"Answer","text":"हाँ — इसे local Ollama model से कनेक्ट करें और summarization भी आपके अपने कंप्यूटर पर ही रहेगा। बाकी सब कुछ तो पहले से ही on-device चलता है।"}},{"@type":"Question","name":"अगर मैं project को सपोर्ट करना बंद कर दूँ तो मेरे saves का क्या होगा?","acceptedAnswer":{"@type":"Answer","text":"आपका आर्काइव ठीक वहीं रहता है जहाँ वह हमेशा से था — आपके डिवाइस के ब्राउज़र लोकल स्टोरेज में। Support Pass केवल क्लाउड-आधारित एक्स्ट्रा फीचर्स (byphil Cloud AI एक्सेस, अनलिमिटेड Kindle/LocalSend सेंड्स) को कंट्रोल करता है, आपके पहले से सेव किए गए डेटा को कभी लॉक नहीं करता।"}},{"@type":"Question","name":"Android companion कैसे install करें?","acceptedAnswer":{"@type":"Answer","text":"ऊपर दिए गए लिंक (या latest release) से APK डाउनलोड करें, इसे open करें और Android द्वारा पूछे जाने पर browser से installs allow करें। फिर extension में Settings → Phone inbox में जाकर QR code scan करके pair करें। यह अभी Google Play पर उपलब्ध नहीं है।"}},{"@type":"Question","name":"क्या यह ओपन सोर्स है?","acceptedAnswer":{"@type":"Answer","text":"हाँ — इस एक्सटेंशन का सोर्स कोड उपलब्ध है GitHub, AGPL-3.0 license के तहत। यह personal, educational और non-profit use के लिए free है; जो companies इसे AGPL की terms के बाहर use करना चाहती हैं, वे commercial license ले सकती हैं।"}}]}]}</script><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"AI Summary Helper 1 मिनट से भी कम में","description":"हर feature, एक ही fast run में: summaries, sources, research mode, library, feeds, AI apps और भी बहुत कुछ।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT2M2S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4","inLanguage":"en","transcript":"Everything it can do in under a minute! Summarize any page! YouTube videos? Done! PDFs? Done! Every answer shows its source! The AI marks the key passages! Papers recognised by their DOI! Compare sources on one question! Forty-one languages! Read aloud while it writes! A library with search and stats! Your reading, as a report! Your reading as a knowledge graph: tap a topic and get the overview! RSS feeds with a daily recap! Only the good news, if you like! A digest to your e-reader: pick a few articles, and they get beamed straight over to you! Export to Obsidian, Word, PDF! Your library inside your AI apps! Sync and back up to Nextcloud, WebDAV, S3 or a folder! Your key, a local model, or cloud!","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Answer को उसके source से verify करें","description":"Follow-up सवाल पूछें और सीधे उस passage पर jump करें जहाँ से answer आया है।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/quellen-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/quellen-en.mp4","inLanguage":"en","transcript":"AI answers. With receipts. Ask follow-up questions. Every answer points to the passage it came from.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"अपने highlights से जुड़े सवाल पूछें","description":"किसी passage को highlight करें, सवाल पूछें, और source citation के साथ answer पाएं।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/highlights-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/highlights-en.mp4","inLanguage":"en","transcript":"Highlighting barely helps you learn. That is what a big review of learning techniques found. So do not stop at the highlight: ask about it, and the answer shows you where it comes from.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"40 feeds के चक्कर के बजाय सिर्फ एक recap","description":"पूरे दिन की feeds एक ही briefing में।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4","inLanguage":"en","transcript":"No algorithm. Your feed is yours. You pick your sources and curate them your way. One click, and you get a briefing of the whole day.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"आपकी reading एक knowledge graph के रूप में","description":"Topics से आपस में जुड़े articles, किसी भी टॉपिक पर तुरंत briefing के साथ।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4","inLanguage":"en","transcript":"What you read is connected. Your knowledge graph links articles through their topics. Tap one, and you get a briefing on everything you have read about it.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"ढेर सारे tabs के बजाय सिर्फ एक Digest","description":"तीन saved articles बन जाते हैं आपके Kindle के लिए एक single magazine।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/digest-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/digest-en.mp4","inLanguage":"en","transcript":"We save far more than we ever read. So turn the pile into one digest: pick a few saves, and they land on your Kindle as one magazine.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"आपकी key. आपका model. आपका data.","description":"आपकी अपनी API key, Ollama के साथ 100% offline local model, या byPhil Cloud।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M15S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4","inLanguage":"en","transcript":"Privacy is a trade-off. When the risk is clear, people share less. So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup. Your library stays in the browser.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"एक बेहतर Pocket alternative","description":"Save करें, summarize करें और सीधे अपने Kindle पर भेजें।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pocket-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pocket-en.mp4","inLanguage":"en","transcript":"Pocket is gone. Now what? Save any page with one click, with a summary on top. Your library has tags and search, and sends to your Kindle. Free, and it all stays on your device.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Summary से सीधे Kindle तक","description":"वही आदत जिससे इस project की शुरुआत हुई।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/senden-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/senden-en.mp4","inLanguage":"en","transcript":"From summary to Kindle. Summarize the page, open the menu, send it to your Kindle. Seconds later it is on your e-reader, ready for the couch.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"72-minute का lecture, summarized","description":"Video captions से summaries, साथ ही exact passage citations के साथ follow-ups।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.mp4","inLanguage":"en","transcript":"A 72-minute lecture. Who has the time? Open the video and tap Summarize. The extension reads the captions, and you get the key points in your language. Ask a follow-up, and every answer shows you the passage in the transcript.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"84-page की PDF, कुछ ही seconds में","description":"Browser में PDF open करें और अपनी भाषा में summarize करें।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pdf-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pdf-en.mp4","inLanguage":"en","transcript":"An 84-page PDF. Who reads that? Open a PDF in your browser and tap Summarize. Reports, studies, manuals: the key points in seconds, in your language. And you can see what the model read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"DOI से पहचाने जाने वाले research papers","description":"Trial, review या preprint एक नज़र में — key facts और DOI से direct citation।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/paper-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/paper-en.mp4","inLanguage":"en","transcript":"Preprint or peer-reviewed? Know before you cite. Summarize a paper and it is recognised by its DOI. Trial, review or preprint: you see it at a glance. Design, sample and limitations are pulled out, and the citation comes straight from the DOI registry.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"एक सवाल, पाँच sources","description":"Collections compare करते हैं कि आपके sources कहाँ agree करते हैं, कहाँ disagree, और क्या छूट गया है।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/recherche-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/recherche-en.mp4","inLanguage":"en","transcript":"One question, five sources. Where do they disagree? Bundle your saved articles under one question. Every source gets a type: peer-reviewed, preprint, news or opinion. One click compares them: where they agree, where they disagree, and what is missing.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ghost highlights","description":"AI article के key passages को mark करता है। जिसे चाहें रखें, या dismiss कर दें।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ghost-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ghost-en.mp4","inLanguage":"en","transcript":"The AI marks what matters while you read. After the summary, the AI marks the key passages right in the article, as ghost highlights. Tap one to keep it, or dismiss it. Skimming turns into reading on purpose.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"आपकी news diet का भी एक mood है","description":"Good-news filter और हफ़्तों भर का mood chart।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/stimmung-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/stimmung-en.mp4","inLanguage":"en","transcript":"Your news diet has a mood. The AI rates every headline from heavy to good. Tap the smile, and only the good news is left. And the mood chart shows how your reading has felt over the weeks.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Instant read","description":"AI summary लिख ही रहा होता है और audio playback शुरू हो जाता है।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/instant-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M27S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/instant-en.mp4","inLanguage":"en","transcript":"Why wait for the summary to finish? Switch on Instant read, and it is spoken while it is still being written.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"आपकी library, आपके AI apps में","description":"Claude Desktop, LM Studio और Cursor आपकी library search करते हैं, आपके highlights quote करते हैं और sources cite करते हैं।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M25S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4","inLanguage":"en","transcript":"Your AI app has never read what you read. Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights. Ask what is due, let it save the best from your feeds, or ask for your year, wrapped. Nothing goes through our server, and you choose what they may read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Obsidian और अन्य formats में export करें","description":"हर summary एक clean note के रूप में मिलती है: Obsidian, Markdown, Word, ODT या PDF।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/export-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/export-en.mp4","inLanguage":"en","transcript":"Your summaries belong in your notes. Every summary leaves as a clean note: to Obsidian, as Markdown, Word, OpenDocument or PDF. With the title, the source, your tags and your highlights, ready to keep.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"आपकी reading, एक report के रूप में","description":"Streak, time saved, activity और हफ़्तों भर के topics।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4","inLanguage":"en","transcript":"Where did your reading time go? Open Analytics and your library becomes a report: your streak, the time summaries saved you, your topics over the weeks and the words you keep coming back to.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"20+ भाषाएं, क्रॉस-प्लेटफ़ॉर्म","description":"अपनी पसंद की भाषा में पढ़ें और summarize करें। Extension, native side panel, या bookmarklet — हर उस जगह के लिए जहां browser extension नहीं पहुंच सकता।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M13S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4","inLanguage":"en","transcript":"You read slower in a second language. Eye-tracking studies show it, even for fluent readers. Summaries in 41 languages: search, tap, done.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Real search, सीधे on-device","description":"Titles, tags और article content में full-text search — आपके ब्राउज़र में बने TF-IDF index द्वारा संचालित। कोई सर्वर round-trip नहीं, कोई lag नहीं, और कोई डेटा बाहर नहीं जाता।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4","inLanguage":"en","transcript":"Your reading, finally findable. Everything you summarized stays on your device. With tags, search and stats.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head>
+<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/"><link rel="alternate" hreflang="hi" href="https://kaivo.byphil.eu/hi/"><link rel="canonical" href="https://kaivo.byphil.eu/hi/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="hi_IN"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kaivo.byphil.eu/#website","url":"https://kaivo.byphil.eu/","name":"AI Summary Helper","inLanguage":"hi","publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"SoftwareApplication","@id":"https://kaivo.byphil.eu/#app","name":"AI Summary Helper","url":"https://kaivo.byphil.eu/hi/","description":"पढ़ी हुई चीज़ों को ऐसे ज्ञान में बदलें जो आपके साथ रहे। AI Summary Helper आर्टिकल, PDF और वीडियो के लिए एक private, local-first reading साथी है, जिसमें source से जुड़े जवाब और searchable archive मिलता है।","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Chromium browsers, Firefox, Android (beta companion app)","installUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","downloadUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","image":"https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp","inLanguage":"hi","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free; a donation (Support Pass) unlocks byphil Cloud with many AI models"},"author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"FAQPage","@id":"https://kaivo.byphil.eu/hi/#faq","inLanguage":"hi","mainEntity":[{"@type":"Question","name":"क्या इसका उपयोग करने के लिए मुझे अकाउंट की आवश्यकता है?","acceptedAnswer":{"@type":"Answer","text":"नहीं। Install करें, अपनी AI provider key लाएँ या local Ollama model इस्तेमाल करें, और सेव करना शुरू करें। Account सिर्फ़ optional byphil Cloud access या अतिरिक्त Kindle/LocalSend sends के लिए चाहिए। Provider विकल्प देखें →"}},{"@type":"Question","name":"मेरे ब्राउज़र से वास्तव में क्या डेटा बाहर जाता है?","acceptedAnswer":{"@type":"Answer","text":"सिर्फ़ summary की request आपके चुने AI provider को जाती है। RSS के लिए आपकी subscribed feeds को requests भी जाती हैं; AI recap तभी headlines और छोटे snippets भेजता है जब आप माँगें। Search, duplicate detection, tags और recommendations local चलते हैं। On-device architecture देखें →"}},{"@type":"Question","name":"क्या मेरे pages या highlights से कोई model train होता है?","acceptedAnswer":{"@type":"Answer","text":"AI Summary Helper आपके content से अपना कोई model train नहीं करता। अपनी key के साथ आपके चुने provider की data policy लागू होती है। Ollama के साथ summary request आपके computer पर ही रहती है। Privacy model पढ़ें →"}},{"@type":"Question","name":"क्या मैं इसे बिना किसी Cloud निर्भरता के (पूरी तरह offline) चला सकता हूँ?","acceptedAnswer":{"@type":"Answer","text":"हाँ। इसे local Ollama model पर लगाएँ, तो summary वाला step भी आपके computer पर रहेगा। बाकी सब पहले से local चलता है। अपनी key और Ollama की तुलना करें →"}},{"@type":"Question","name":"मेरा reading archive कहाँ रहता है?","acceptedAnswer":{"@type":"Answer","text":"Default रूप से आपके डिवाइस के browser में। आप इसे Markdown में export कर सकते हैं या encrypted backup अपने Nextcloud, WebDAV server, S3 bucket या local folder में रख सकते हैं। Sync guide पढ़ें →"}},{"@type":"Question","name":"Browser data clear करने पर क्या होगा?","acceptedAnswer":{"@type":"Answer","text":"Backup न होने पर browser का local data हटाने से local archive भी जा सकता है। Data clear करने या profile बदलने से पहले library export करें या अपने storage पर encrypted sync set करें। Backup और sync guide पढ़ें →"}},{"@type":"Question","name":"कौन से AI providers और models supported हैं?","acceptedAnswer":{"@type":"Answer","text":"आप OpenAI, Gemini, Mistral, DeepSeek, कोई compatible custom endpoint या local Ollama model इस्तेमाल कर सकते हैं। अपनी key लाएँ, या optional byphil Cloud access लें। जानें BYOK कैसे काम करता है →"}},{"@type":"Question","name":"क्या मैं PDF, YouTube वीडियो और RSS items summarize कर सकता हूँ?","acceptedAnswer":{"@type":"Answer","text":"हाँ। Browser में खुले या disk से attach किए PDF, captions के ज़रिए YouTube वीडियो और built-in RSS reader के आर्टिकल summarize करें। Workflow वीडियो देखें → Feed digests के बारे में पढ़ें →"}},{"@type":"Question","name":"AI summaries कितनी भरोसेमंद हैं?","acceptedAnswer":{"@type":"Answer","text":"AI का output गलत हो सकता है और source जाँचने की जगह नहीं लेता। Follow-up जवाब वह हिस्सा दिखाते हैं जिस पर वे टिके हैं, ताकि आप summary को original page से मिला सकें। 10-second source check सीखें →"}},{"@type":"Question","name":"कौन से browsers और platforms supported हैं?","acceptedAnswer":{"@type":"Answer","text":"Browser extension, native side panel या bookmarklet इस्तेमाल करें। Android companion app आपके phone से links जोड़ता है; iOS अभी उपलब्ध नहीं है। Browser और capture workflow देखें →"}},{"@type":"Question","name":"Android companion कैसे install करें?","acceptedAnswer":{"@type":"Answer","text":"APK यहाँ से download करें: latest release, फिर Settings → Phone inbox में QR code scan करके pair करें। यह अभी Google Play पर नहीं है। पढ़ें कि capture workflow में कैसे फिट होता है →"}},{"@type":"Question","name":"Support Pass से क्या खुलता है?","acceptedAnswer":{"@type":"Answer","text":"Support Pass स्वतंत्र open-source development को fund करता है और optional byphil Cloud AI access या अतिरिक्त Kindle/LocalSend sends खोल सकता है। आपका local archive और local इस्तेमाल इसके पीछे बंद नहीं है। Optional cloud की सीमा समझें →"}},{"@type":"Question","name":"अगर मैं project को सपोर्ट करना बंद कर दूँ तो मेरे saves का क्या होगा?","acceptedAnswer":{"@type":"Answer","text":"आपका आर्काइव ठीक वहीं रहता है जहाँ वह हमेशा से था — आपके डिवाइस के ब्राउज़र लोकल स्टोरेज में। Support Pass केवल क्लाउड-आधारित एक्स्ट्रा फीचर्स (byphil Cloud AI एक्सेस, अनलिमिटेड Kindle/LocalSend सेंड्स) को कंट्रोल करता है, आपके पहले से सेव किए गए डेटा को कभी लॉक नहीं करता। देखें Digest सेव की हुई चीज़ों को फिर काम का कैसे बनाता है →"}},{"@type":"Question","name":"क्या यह ओपन सोर्स है?","acceptedAnswer":{"@type":"Answer","text":"हाँ — इस एक्सटेंशन का सोर्स कोड उपलब्ध है GitHub, AGPL-3.0 license के तहत। यह personal, educational और non-profit use के लिए free है; जो companies इसे AGPL की terms के बाहर use करना चाहती हैं, वे commercial license ले सकती हैं। Local architecture के बारे में पढ़ें →"}}]}]}</script><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"दो मिनट में AI Summary Helper","description":"हर feature, एक ही fast run में: summaries, sources, research mode, library, feeds, AI apps और भी बहुत कुछ।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT2M2S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4","inLanguage":"en","transcript":"Everything it can do in under a minute! Summarize any page! YouTube videos? Done! PDFs? Done! Every answer shows its source! The AI marks the key passages! Papers recognised by their DOI! Compare sources on one question! Forty-one languages! Read aloud while it writes! A library with search and stats! Your reading, as a report! Your reading as a knowledge graph: tap a topic and get the overview! RSS feeds with a daily recap! Only the good news, if you like! A digest to your e-reader: pick a few articles, and they get beamed straight over to you! Export to Obsidian, Word, PDF! Your library inside your AI apps! Sync and back up to Nextcloud, WebDAV, S3 or a folder! Your key, a local model, or cloud!","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Answer को उसके source से verify करें","description":"Follow-up सवाल पूछें और सीधे उस passage पर jump करें जहाँ से answer आया है।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/quellen-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/quellen-en.mp4","inLanguage":"en","transcript":"AI answers. With receipts. Ask follow-up questions. Every answer points to the passage it came from.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"अपने highlights से जुड़े सवाल पूछें","description":"किसी passage को highlight करें, सवाल पूछें, और source citation के साथ answer पाएं।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/highlights-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/highlights-en.mp4","inLanguage":"en","transcript":"Highlighting barely helps you learn. That is what a big review of learning techniques found. So do not stop at the highlight: ask about it, and the answer shows you where it comes from.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"40 feeds के चक्कर के बजाय सिर्फ एक recap","description":"पूरे दिन की feeds एक ही briefing में।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4","inLanguage":"en","transcript":"No algorithm. Your feed is yours. You pick your sources and curate them your way. One click, and you get a briefing of the whole day.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"आपकी reading एक knowledge graph के रूप में","description":"Topics से आपस में जुड़े articles, किसी भी टॉपिक पर तुरंत briefing के साथ।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4","inLanguage":"en","transcript":"What you read is connected. Your knowledge graph links articles through their topics. Tap one, and you get a briefing on everything you have read about it.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"ढेर सारे tabs के बजाय सिर्फ एक Digest","description":"तीन saved articles बन जाते हैं आपके Kindle के लिए एक single magazine।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/digest-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/digest-en.mp4","inLanguage":"en","transcript":"We save far more than we ever read. So turn the pile into one digest: pick a few saves, and they land on your Kindle as one magazine.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"आपकी key. आपका model. आपका data.","description":"आपकी अपनी API key, Ollama के साथ 100% offline local model, या byPhil Cloud।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M15S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4","inLanguage":"en","transcript":"Privacy is a trade-off. When the risk is clear, people share less. So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup. Your library stays in the browser.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"एक बेहतर Pocket alternative","description":"Save करें, summarize करें और सीधे अपने Kindle पर भेजें।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pocket-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pocket-en.mp4","inLanguage":"en","transcript":"Pocket is gone. Now what? Save any page with one click, with a summary on top. Your library has tags and search, and sends to your Kindle. Free, and it all stays on your device.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Summary से सीधे Kindle तक","description":"वही आदत जिससे इस project की शुरुआत हुई।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/senden-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/senden-en.mp4","inLanguage":"en","transcript":"From summary to Kindle. Summarize the page, open the menu, send it to your Kindle. Seconds later it is on your e-reader, ready for the couch.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"72-minute का lecture, summarized","description":"Video captions से summaries, साथ ही exact passage citations के साथ follow-ups।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.mp4","inLanguage":"en","transcript":"A 72-minute lecture. Who has the time? Open the video and tap Summarize. The extension reads the captions, and you get the key points in your language. Ask a follow-up, and every answer shows you the passage in the transcript.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"84-page की PDF, कुछ ही seconds में","description":"Browser में PDF open करें और अपनी भाषा में summarize करें।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pdf-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pdf-en.mp4","inLanguage":"en","transcript":"An 84-page PDF. Who reads that? Open a PDF in your browser and tap Summarize. Reports, studies, manuals: the key points in seconds, in your language. And you can see what the model read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"DOI से पहचाने जाने वाले research papers","description":"Trial, review या preprint एक नज़र में — key facts और DOI से direct citation।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/paper-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/paper-en.mp4","inLanguage":"en","transcript":"Preprint or peer-reviewed? Know before you cite. Summarize a paper and it is recognised by its DOI. Trial, review or preprint: you see it at a glance. Design, sample and limitations are pulled out, and the citation comes straight from the DOI registry.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"एक सवाल, पाँच sources","description":"Collections compare करते हैं कि आपके sources कहाँ agree करते हैं, कहाँ disagree, और क्या छूट गया है।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/recherche-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/recherche-en.mp4","inLanguage":"en","transcript":"One question, five sources. Where do they disagree? Bundle your saved articles under one question. Every source gets a type: peer-reviewed, preprint, news or opinion. One click compares them: where they agree, where they disagree, and what is missing.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ghost highlights","description":"AI article के key passages को mark करता है। जिसे चाहें रखें, या dismiss कर दें।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ghost-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ghost-en.mp4","inLanguage":"en","transcript":"The AI marks what matters while you read. After the summary, the AI marks the key passages right in the article, as ghost highlights. Tap one to keep it, or dismiss it. Skimming turns into reading on purpose.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"आपकी news diet का भी एक mood है","description":"Good-news filter और हफ़्तों भर का mood chart।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/stimmung-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/stimmung-en.mp4","inLanguage":"en","transcript":"Your news diet has a mood. The AI rates every headline from heavy to good. Tap the smile, and only the good news is left. And the mood chart shows how your reading has felt over the weeks.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Instant read","description":"AI summary लिख ही रहा होता है और audio playback शुरू हो जाता है।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/instant-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M27S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/instant-en.mp4","inLanguage":"en","transcript":"Why wait for the summary to finish? Switch on Instant read, and it is spoken while it is still being written.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"आपकी library, आपके AI apps में","description":"Claude Desktop, LM Studio और Cursor आपकी library search करते हैं, आपके highlights quote करते हैं और sources cite करते हैं।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M25S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4","inLanguage":"en","transcript":"Your AI app has never read what you read. Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights. Ask what is due, let it save the best from your feeds, or ask for your year, wrapped. Nothing goes through our server, and you choose what they may read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Obsidian और अन्य formats में export करें","description":"हर summary एक clean note के रूप में मिलती है: Obsidian, Markdown, Word, ODT या PDF।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/export-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/export-en.mp4","inLanguage":"en","transcript":"Your summaries belong in your notes. Every summary leaves as a clean note: to Obsidian, as Markdown, Word, OpenDocument or PDF. With the title, the source, your tags and your highlights, ready to keep.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"आपकी reading, एक report के रूप में","description":"Streak, time saved, activity और हफ़्तों भर के topics।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4","inLanguage":"en","transcript":"Where did your reading time go? Open Analytics and your library becomes a report: your streak, the time summaries saved you, your topics over the weeks and the words you keep coming back to.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"20+ भाषाएं, क्रॉस-प्लेटफ़ॉर्म","description":"20+ भाषाओं में पढ़ें और summarize करें: extension, native side panel या bookmarklet जब extension किसी page तक न पहुँच सके।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M13S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4","inLanguage":"en","transcript":"You read slower in a second language. Eye-tracking studies show it, even for fluent readers. Summaries in 41 languages: search, tap, done.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Real search, सीधे on-device","description":"Browser-based TF-IDF index से titles, tags और article content में search करें। Full-text search बिना किसी round-trip के डिवाइस पर ही रहती है।","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4","inLanguage":"en","transcript":"Your reading, finally findable. Everything you summarized stays on your device. With tags, search and stats.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head>
 <body>
 
 <a href="#main" class="skip-link">सीधे content पर जाएं</a>
@@ -54,12 +59,8 @@
       <img src="../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
-    <nav class="pill" aria-label="Primary">
-      <a href="index.html#features" data-sec="features">Features</a>
-      <a href="index.html#see-it" data-sec="see-it">Demo</a>
-      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=hi&amp;utm_campaign=nav" class="pill-cta" target="_blank" rel="noopener">Chrome में जोड़ें</a>
-    </nav>
-    <div class="nav-island"><div class="nav-tools">
+    <div class="nav-island"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=hi&amp;utm_campaign=nav" class="pill-cta nav-cta" target="_blank" rel="noopener">Chrome में जोड़ें</a>
+    <div class="nav-tools">
       <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="यह page मेरे computer पर भेजें" title="मेरे computer पर भेजें"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="भाषा" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Light mode में बदलें">
@@ -71,11 +72,17 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
     </button></div>
   </div>
+    <nav class="pill" aria-label="Primary">
+      <a href="index.html" data-sec="hero">Overview</a>
+      <a href="index.html#see-it" data-sec="see-it">इसे देखें</a>
+      <a href="index.html#features" data-sec="features">Features</a>
+      <a href="blog/" data-dock-blog="">Blog</a>
+    </nav>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="Mobile">
-        <a href="index.html#features"><span class="mm-n">01</span>Features</a>
-        <a href="index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="index.html#use-cases"><span class="mm-n">01</span>Use cases</a>
+        <a href="index.html#problem" data-slider-goto="problem"><span class="mm-n">02</span>यह कैसे काम करता है</a>
         <a href="../education/"><span class="mm-n">03</span>शिक्षा</a>
         <a href="blog/"><span class="mm-n">04</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket alternative: क्या चीज़ें मायने रखती हैं</a>
@@ -123,12 +130,12 @@
 <main id="main">
 
   <!-- ── Hero ────────────────────────────────────────────────────── -->
-  <section class="hero hero-scene hscene" data-hscene="">
+  <section id="hero" class="hero hero-scene hscene" data-hscene="">
   <div class="hs-grid">
     <div class="hs-text"><div class="hs-text-in">
       <div class="eyebrow"><span class="dash"></span> Chrome Extension · byphil का हिस्सा <span class="dash"></span></div>
-      <h1>वेब को Summarize करें।<br><em>जो काम का है, सिर्फ वही रखें।</em></h1>
-      <p class="sub">बस एक क्लिक में किसी भी पेज की शॉर्ट समरी आर्टिकल के ठीक बगल में पाएं। सब कुछ आपके browser में सुरक्षित रहता है, ताकि आप इसे कभी भी दोबारा ढूंढ सकें।</p>
+      <h1>पढ़ाई को बदलें<br><em>साथ रहने वाले ज्ञान में।</em></h1>
+      <p class="sub">आर्टिकल, PDF और वीडियो तेज़ी से समझें। जवाबों को उनके source से जाँचें। अपने ही डिवाइस पर private, searchable knowledge base बनाएँ।</p>
       <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=hi&amp;utm_campaign=cta" target="_blank" rel="noopener" class="btn-primary" data-desktop-cta="">Chrome में जोड़ें — बिल्कुल Free</a>
@@ -136,7 +143,7 @@
         </div>
         <p class="send-note" data-send-note="" hidden="">Phone पर Chrome extensions install नहीं कर सकता। Link को अपने computer पर भेजें और वहाँ add करें। <a href="#" data-send-mail="">मुझे Email करें</a> · <a href="#" data-send-copy="">Link copy करें</a></p>
         <p class="hero-proof"><a href="https://www.producthunt.com/products/ai-summary-helper/launches/ai-summary-helper-summarize-articles" target="_blank" rel="noopener" data-track="hero-producthunt">Product Hunt पर 139 upvotes</a> · <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">Open source</a> · Made in the EU</p>
-        <p class="hero-meta">किसी account की ज़रूरत नहीं · अपनी AI key इस्तेमाल करें, या Ollama के साथ पूरी तरह offline चलाएं</p>
+        <p class="hero-meta">कोई account नहीं · आपकी key या local Ollama · Open source · EU में बना</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>कोई भी page पढ़ें।</b><span>हमेशा की तरह कोई भी article खोलें। AISH browser में चुपचाप तैयार रहता है।</span></li>
@@ -188,9 +195,23 @@
         </div>
       </div>
       <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
-      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>वीडियो देखें</strong><small>सब कुछ 1 मिनट से भी कम में</small></span></a>
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>वीडियो देखें</strong><small>दो मिनट में पूरा tour</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="Walkthrough"><button type="button" class="hs-pp" aria-label="Walkthrough पॉज़ करें"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="Step 1"></button><button type="button" class="hs-dot" aria-label="Step 2"></button><button type="button" class="hs-dot" aria-label="Step 3"></button><button type="button" class="hs-dot" aria-label="Step 4"></button></div>
       <p class="sr-only">AI Summary Helper side panel में article की quick summary दिखाता है, source passage से linked follow-up सवाल पूछने देता है, और summaries को आपकी चुनी हुई भाषा में switch करता है।</p>
+    </div>
+  </div>
+</section>
+
+<section id="use-cases" class="use-case-section">
+  <div class="wrap">
+    <div class="section-head center reveal"><div class="eyebrow">आपके पढ़ने के तरीके के लिए बना</div><h2>अपना रास्ता चुनें</h2></div>
+    <div class="use-case-grid blog-grid reveal">
+      <a href="research-papers/" class="use-case-card blog-card"><span class="blog-date">Researchers और students के लिए</span><h3>Research और PDF<br>source खोए बिना</h3><span class="blog-read">Research mode देखें →</span></a>
+      <a href="youtube-summarizer/" class="use-case-card blog-card"><span class="blog-date">वीडियो से सीखने वालों के लिए</span><h3>लंबे वीडियो को बदलें<br>काम आने वाले ज्ञान में</h3><span class="blog-read">Video reading देखें →</span></a>
+      <a href="rss-news/" class="use-case-card blog-card"><span class="blog-date">अपनी news research के लिए</span><h3>खुद चुनें<br>ताज़ा घटनाएँ</h3><span class="blog-read">Local RSS देखें →</span></a>
+      <a href="e-reader/" class="use-case-card blog-card"><span class="blog-date">E-reader पढ़ने वालों के लिए</span><h3>एक बार archive करें,<br>Kindle पर पढ़ें</h3><span class="blog-read">E-reader workflow देखें →</span></a>
+      <a href="local-ai/" class="use-case-card blog-card"><span class="blog-date">Privacy को महत्व देने वालों के लिए</span><h3>आपकी reading रहती है<br>आपकी ही</h3><span class="blog-read">Local workflow देखें →</span></a>
+      <a href="mcp/" class="use-case-card blog-card"><span class="blog-date">Connected AI workflows के लिए</span><h3>जोड़ें<br>अपना knowledge</h3><span class="blog-read">MCP देखें →</span></a>
     </div>
   </div>
 </section>
@@ -204,35 +225,52 @@
         <div class="eyebrow">इसे देखें</div>
         <h2>Summary सीधे article के बगल में</h2>
         <p>Overview पढ़ें, follow-up सवाल पूछें, और देखें कि जवाब किस passage से आया है। Real interface, version 2.2।</p>
+        <nav class="slide-jumps" aria-label="यह कैसे काम करता है">
+          <a href="#problem" data-slider-goto="problem">समस्या</a>
+          <a href="#understand" data-slider-goto="understand">समझें</a>
+          <a href="#verify" data-slider-goto="verify">जाँचें</a>
+          <a href="#retain" data-slider-goto="retain">याद रखें</a>
+          <a href="#difference" data-slider-goto="difference">Summaries से आगे</a>
+          <a href="#privacy" data-slider-goto="privacy">Privacy</a>
+        </nav>
       </div>
       <div class="cx cx--fit reveal" data-carousel="" role="region" aria-roledescription="carousel" aria-label="Product स्क्रीनशॉट्स">
         <div class="cx-stage">
           <ul class="cx-track" tabindex="0">
-          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 5">
+          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 8" id="problem">
+            <figure><div class="cx-card" style="--img:url(photo/evening-sofa-ereader-1600.webp)"><span class="cx-big cx-big--text">Read-later का ढेर</span><strong class="cx-title">आप जितना पढ़ पाएंगे, उससे कहीं ज़्यादा सेव कर लेते हैं</strong><span class="cx-text">हम जो कुछ भी save करते हैं, उसमें से ज़्यादातर चीज़ें शायद ही दोबारा कभी खुलती हैं। Digest आपके लिए पाँच saves चुनता है और उन्हें offline पढ़ने के लिए भेजता है।</span><small class="cx-src">1. Digest पर tap करें · 2. Mood चुनें · 3. Offline पढ़ने के लिए भेजें</small><a class="cx-slide-link" href="blog/unread-saves.html">Guide पढ़ें →</a></div><figcaption><strong>बारह tabs में नहीं, शाम को पढ़ें</strong><span>Digest सेव किए links के ढेर को आपकी शाम, Kindle या सफ़र के लिए एक काम के bundle में बदलता है।</span></figcaption></figure>
+          </li>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 8" id="understand">
             <figure>
               <img src="../assets/shots/aish-inpage-detail-en.webp" srcset="../assets/shots/aish-inpage-detail-en-720.webp 720w, ../assets/shots/aish-inpage-detail-en.webp 1440w" sizes="(max-width: 820px) 92vw, 1100px" width="1440" height="900" loading="lazy" alt="Article के बगल में side panel में summary">
               <figcaption><strong>Article के बगल में summary</strong><span>बिना पेज छोड़े तुरंत overview पढ़ें।</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 8" id="verify">
             <figure>
               <img src="../assets/shots/aish-inpage-ask-en.webp" width="1440" height="900" loading="lazy" alt="Source marker और article में highlighted sentences के साथ follow-up answer">
               <figcaption><strong>Ask the page</strong><span>Answers सीधे उस passage को point करते हैं जहाँ से वे लिए गए हैं।</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 8">
             <figure>
               <img src="../assets/shots/aish-split-wide-en.webp" width="1280" height="800" loading="lazy" alt="Side by side list, knowledge graph और analytics के साथ split view">
               <figcaption><strong>2.2 में नया: split view</strong><span>बड़ी screens पर list, knowledge graph और analytics सब side by side।</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="5 / 8" id="retain">
             <figure>
               <img src="../assets/shots/aish-research-dark-en.webp" width="1280" height="800" loading="lazy" alt="Dark mode में research papers के collection के साथ research mode">
               <figcaption><strong>2.2 में नया: research mode</strong><span>Scientific papers के लिए study details, DOI citations और collections।</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="5 / 5" data-desktop-only="">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="6 / 8" id="difference">
+            <figure><div class="cx-card" style="--img:url(photo/scene-library-laptop-1200.webp)"><span class="cx-big cx-big--text">Summary से आगे</span><strong class="cx-title">एक बार वाली summary यहीं खत्म हो जाती है</strong><span class="cx-text">AISH जवाब को ऐसे source में बदलता है जिसे आप जाँच सकें, रख सकें और दोबारा खोल सकें।</span><div class="cx-compare" aria-label="एक बार वाली summary की तुलना में AISH"><div class="cx-compare-row"><span>AISH</span><strong>Source से जुड़े जवाब</strong></div><div class="cx-compare-row is-muted"><span>एक बार वाली summary</span><strong>बिना source trail की summary</strong></div><div class="cx-compare-row"><span>AISH</span><strong>Local searchable archive</strong></div><div class="cx-compare-row is-muted"><span>एक बार वाली summary</span><strong>पढ़ने का context नहीं बचता</strong></div><div class="cx-compare-row"><span>AISH</span><strong>DOI पहचानने वाला research mode</strong></div><div class="cx-compare-row is-muted"><span>एक बार वाली summary</span><strong>हर page के लिए एक जैसा workflow</strong></div></div><small class="cx-src">समझें · जाँचें · याद रखें</small></div><figcaption><strong>सिर्फ़ छोटा page नहीं</strong><span>Source, context और अगला सवाल साथ रखें।</span></figcaption></figure>
+          </li>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="7 / 8" id="privacy">
+            <figure><div class="cx-card" style="--img:url(photo/nas-shelf-laptop-phone-1600.webp)"><span class="cx-big cx-big--text">byphil के सिद्धांतों पर निर्मित</span><strong class="cx-title">आपका Archive हमेशा आपका ही रहता है</strong><span class="cx-text">Search, duplicate detection, tag cleanup और similar-article suggestions सब कुछ आपके browser में on-device चलता है—बिना किसी server या account के। सिर्फ summary request बाहर जाती है, वो भी आपके चुने हुए AI provider के पास। और local Ollama model के साथ, वो data भी पूरी तरह offline आपके पास ही रहता है।</span><small class="cx-src">Local archive · आपका provider · Account ज़रूरी नहीं</small><a class="cx-slide-link" href="privacy.html">Privacy model पढ़ें →</a></div><figcaption><strong>आपकी library आपके डिवाइस पर रहती है</strong><span>अपनी key, अपना model और reading archive की जगह खुद चुनें।</span></figcaption></figure>
+          </li>
+          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="8 / 8" data-desktop-only="">
             <figure>
               <div class="demo-frame" data-demo="" data-demo-scale="1180" data-src="../demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Live demo शुरू करें</span></button>
@@ -241,7 +279,7 @@
               <figcaption><strong>Real page पर Summarize पर क्लिक करें</strong><span>यह आपके browser में चल रहा actual extension interface है, एक sample article पर। आपका डेटा पूरी तरह सुरक्षित है और कहीं बाहर नहीं भेजा जाता।</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="5 / 5" data-mobile-only="">
+          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="8 / 8" data-mobile-only="">
             <figure>
               <div class="demo-frame demo-frame--phone" data-demo="" data-demo-fit="420x800" data-demo-params="chrome=0&amp;tour=0&amp;surface=sidepanel" data-src="../demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Side panel ट्राई करें</span></button>
@@ -253,20 +291,28 @@
           <button type="button" class="cx-nav cx-prev" aria-label="पिछली स्लाइड"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
           <button type="button" class="cx-nav cx-next" aria-label="अगली स्लाइड"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
         </div>
-        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Slide 1"></button><button type="button" class="cx-dot" aria-label="Slide 2"></button><button type="button" class="cx-dot" aria-label="Slide 3"></button><button type="button" class="cx-dot" aria-label="Slide 4"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="Slide 5: Live demo">Demo</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="Slide 5: Live demo">Demo</button></div>
+        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Reading list समस्या वाली slide पर जाएँ"></button><button type="button" class="cx-dot" aria-label="समझने वाली slide पर जाएँ"></button><button type="button" class="cx-dot" aria-label="जाँचने वाली slide पर जाएँ"></button><button type="button" class="cx-dot" aria-label="Knowledge graph वाली slide पर जाएँ"></button><button type="button" class="cx-dot" aria-label="याद रखने वाली slide पर जाएँ"></button><button type="button" class="cx-dot" aria-label="Privacy वाली slide पर जाएँ"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="Live demo वाली slide पर जाएँ">Demo</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="Live demo वाली slide पर जाएँ">Demo</button></div>
       </div>
     </div>
   </section>
 
-  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (../assets/main.js) ──
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
        Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
        when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="archive" class="outcome-section">
+    <div class="wrap">
+      <div class="section-head center reveal"><div class="eyebrow">Archive</div><h2>आपकी reading, सुरक्षित और portable</h2><p>सेव करना AI Summary Helper का मूल है। जो भी आप archive करते हैं, वह आपके डिवाइस पर रहता है और आपके साथ जा सकता है।</p></div>
+      <div class="outcome-grid reveal"><article class="outcome-card"><span class="outcome-kicker">रखें</span><h3>Images के साथ आर्टिकल</h3><p>सिर्फ़ link नहीं, पूरा आर्टिकल सेव करें। Images resize और compress होती हैं, इसलिए page पढ़ने लायक और छोटा रहता है।</p></article><article class="outcome-card"><span class="outcome-kicker">ढूँढें</span><h3>अपने डिवाइस पर search करें और जोड़ें</h3><p>Full-text search, tags और knowledge graph आपके browser में चलते हैं, library upload किए बिना।</p></article><article class="outcome-card"><span class="outcome-kicker">साथ ले जाएँ</span><h3>Kindle या LocalSend पर भेजें</h3><p>आर्टिकल या digest अपने Kindle पर, या सीधे KOReader या LocalSend डिवाइस पर भेजें और screen से दूर पढ़ें।</p></article></div>
+      <div class="hero-cta reveal" style="justify-content:center;margin-top:24px;"><a class="btn-secondary" href="e-reader/">Archive और e-reader →</a></div>
+    </div>
+  </section>
+
   <section id="videos">
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="eyebrow">देखें</div>
         <h2>हर feature 20 seconds से भी कम में</h2>
-        <p>रियल extension से रिकॉर्ड किए गए शॉर्ट क्लिप्स। एक पर tap करें और बाकी देखने के लिए swipe करें।</p>
+        <p>असली extension से record की गई छोटी clips। किसी पर tap करके यहीं चलाएँ और बाकी देखें।</p>
       </div>
       <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
       <div class="vfeed-labels" hidden="">
@@ -277,14 +323,14 @@
       </div>
       <div class="vstack reveal" data-vstack="">
         <figure class="vstack-item" data-blog-video="komplett" style="--i:0">
-          <button class="vstack-open" type="button" aria-label="Play: AI Summary Helper 1 मिनट से भी कम में">
+          <button class="vstack-open" type="button" aria-label="चलाएँ: दो मिनट में AI Summary Helper">
             <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/komplett-en.jpg">
               <source src="../assets/blog/video/komplett-en.mp4" type="video/mp4">
             </video>
             <span class="vstack-play" aria-hidden="true">▶</span>
           </button>
           <figcaption>
-            <strong>AI Summary Helper 1 मिनट से भी कम में</strong>
+            <strong>दो मिनट में AI Summary Helper</strong>
             <span>हर feature, एक ही fast run में: summaries, sources, research mode, library, feeds, AI apps और भी बहुत कुछ।</span>
             <a href="blog/videos.html">सारे videos →</a>
           </figcaption>
@@ -535,7 +581,7 @@
   </section>
 
   <!-- ── Features ────────────────────────────────────────────────── -->
-  <section id="features">
+  <section id="features" data-default-persona="all">
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="eyebrow">यह क्या करता है</div>
@@ -597,7 +643,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>एक built-in RSS reader</h3>
-          <p>Blogs और news sites को follow करें, source, tag, date या mood के हिसाब से filter करें, अपना OPML import करें, और बस एक click में किसी भी item को open या summarize करें। सीधे extension में ही podcast feeds play करें, और headlines से हर दिन का एक optional AI recap पाएं। Favorites आपके archive में save होते हैं, और feeds आपके device पर ही store रहती हैं।</p>
+          <p>Blogs और news sites follow करें, source, tag, date या mood से filter करें, OPML import करें और किसी भी item को एक click में summarize करें। Extension में podcast feeds सुनें और चाहें तो AI recap लें; feeds और favorites आपके डिवाइस पर रहते हैं।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -611,7 +657,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" stroke-width="1.7"></rect><path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="#fff"></path></svg></div>
           <h3>YouTube videos, उनके captions से</h3>
-          <p>कोई भी video open करें और summarize करें। यह extension captions को read करके आपकी भाषा में key points तैयार करता है, और follow-up answers में exact passage cite करता है।</p>
+          <p>YouTube वीडियो को captions से summarize करें, मुख्य बातें अपनी भाषा में पाएँ और source citations के साथ follow-up सवाल पूछें।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -625,7 +671,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M14 3v4h4M9.5 12h5M9.5 15.5h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>PDFs, किसी भी आम page की तरह</h3>
-          <p>Browser में PDF open करें या disk से attach करें, और किसी भी page की तरह summarize करें। “What I used” दिखाता है कि model ने क्या read किया: words, tokens और model।</p>
+          <p>Browser के PDF या disk की files को किसी भी page की तरह summarize करें। “What I used” दिखाता है कि AI ने कितने words और tokens किस model से पढ़े।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher feeds go">
@@ -639,7 +685,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>20+ भाषाएं, क्रॉस-प्लेटफ़ॉर्म</h3>
-          <p>अपनी पसंद की भाषा में पढ़ें और summarize करें। Extension, native side panel, या <a href="../bookmarklet.html">bookmarklet</a> — हर उस जगह के लिए जहां browser extension नहीं पहुंच सकता।</p>
+          <p>20+ भाषाओं में पढ़ें और summarize करें: extension, native side panel या <a href="../bookmarklet.html">bookmarklet</a> जब extension किसी page तक न पहुँच सके।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
@@ -653,7 +699,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI summaries, आपकी पसंद का model</h3>
-          <p>OpenAI, Gemini, Mistral, DeepSeek, या कोई custom endpoint — या इसे local Ollama model पर point करें और बिना किसी network usage या recurring cost के पूरी तरह offline चलाएं।</p>
+          <p>OpenAI, Gemini, Mistral, DeepSeek, custom endpoint या local Ollama चुनें, ताकि summaries को कभी आपका डिवाइस छोड़ना ही न पड़े।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="researcher go">
@@ -667,7 +713,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>Ghost highlights, सीधे पेज पर</h3>
-          <p>AI हल्के से highlight करता है <mark class="ai-ghost-highlight">सबसे महत्वपूर्ण verbatim passages को</mark> आर्टिकल में — ताकि आप <mark class="ai-ghost-highlight">key insights को एक नज़र में skim कर सकें</mark>, और ये summary के साथ Kindle, LocalSend, या Markdown पर भी चले जाते हैं।</p>
+          <p>AI highlight करता है <mark class="ai-ghost-highlight">ज़रूरी हिस्से शब्दशः</mark> ताकि आप मुख्य insights पर नज़र डाल सकें और उन्हें summary के साथ Kindle, LocalSend या Markdown में export कर सकें।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -681,7 +727,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6c3-1.4 5.5-1.4 8 0v13c-2.5-1.4-5-1.4-8 0V6ZM20 6c-3-1.4-5.5-1.4-8 0v13c2.5-1.4 5-1.4 8 0V6Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>Research mode: DOI से पहचाने जाने वाले papers</h3>
-          <p>Scientific papers को उनके DOI और citation metadata से पहचानकर trial, review या preprint के रूप में flag किया जाता है। Design, sample और limitations अलग से extract होते हैं, और citation सीधे DOI registry से बनती है, AI द्वारा नहीं।</p>
+          <p>DOI और citation metadata से research papers पहचानें, trial, review या preprint status flag करें, और design, sample, limitations व DOI registry citations निकालें।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -695,7 +741,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect><rect x="10" y="10" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect></svg></div>
           <h3>एक ही सवाल पर multiple sources compare करें</h3>
-          <p>Saved articles को collection में bundle करें, हर source का type चुनें (peer-reviewed, preprint, news, opinion), lateral-reading check run करें, और AI को summaries compare करने दें: वे कहाँ agree करते हैं, कहाँ disagree, और क्या miss हुआ है।</p>
+          <p>आर्टिकल bundle करें, sources को peer-reviewed, preprint, news या opinion label करें, lateral-reading check करें, और देखें कि summaries कहाँ सहमत हैं, कहाँ अलग हैं या context छोड़ती हैं।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="feeds go">
@@ -709,7 +755,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M5 10v4h3l4.5 3.5v-11L8 10H5Z" fill="#fff"></path><path d="M16 9c1.3 1.7 1.3 4.3 0 6M18.5 6.5c2.5 3 2.5 8 0 11" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Instant read: AI लिखते-लिखते सुनाता भी जाए</h3>
-          <p>Summary तैयार होने के दौरान ही audio में सुनाई देती है: पहले title, फिर sentence by sentence — pause, mute और speed controls के साथ। इसे किसी भी card से दोबारा सुनें।</p>
+          <p>Summary लिखे जाते समय ही सुनें: पहले title, फिर एक-एक वाक्य, pause, mute और speed controls के साथ। किसी भी card से दोबारा चलाएँ।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder">
@@ -723,7 +769,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Real search, सीधे on-device</h3>
-          <p>Titles, tags और article content में full-text search — आपके ब्राउज़र में बने TF-IDF index द्वारा संचालित। कोई सर्वर round-trip नहीं, कोई lag नहीं, और कोई डेटा बाहर नहीं जाता।</p>
+          <p>Browser-based TF-IDF index से titles, tags और article content में search करें। Full-text search बिना किसी round-trip के डिवाइस पर ही रहती है।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
@@ -737,7 +783,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>सिर्फ एक लिस्ट नहीं, एक Knowledge Graph</h3>
-          <p>देखें कि आपके सेव किए गए आर्टिकल्स कैसे जुड़े हैं — shared tags से, और टॉपिक सिमिलरिटी से भी भले ही उनमें कोई कॉमन टैग न हो।</p>
+          <p>देखें कि सेव किए आर्टिकल shared tags और topic similarity से कैसे जुड़ते हैं, चाहे कोई tag common न हो।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
@@ -751,7 +797,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>सोच-समझकर Save for later करें</h3>
-          <p>किसी सेव किए गए आर्टिकल को कारण और समय-सीमा के साथ "decision" मार्क करें और रिमाइंडर पाएं — न कि उसे ऐसी फाइलों के ढेर में खो जाने दें जिसे आप कभी नहीं खोलेंगे।</p>
+          <p>किसी decision को उसकी वजह और timeframe के साथ सेव करें, और अनपढ़े ढेर में खोने से पहले reminder पाएँ।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="hoarder go">
@@ -765,7 +811,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>एक Digest जो खुद आर्टिकल्स चुनता है</h3>
-          <p>एक टैप में आपके सेव किए गए आर्टिकल्स का एक छोटा, विविध सेट तैयार — एक ही कहानी के पांच वर्ज़न नहीं — Kindle या LocalSend के लिए एक ही फ़ाइल में बंडल।</p>
+          <p>एक tap में एक ही खबर के पाँच versions की जगह अलग-अलग विषयों का digest बनता है, Kindle या LocalSend के लिए तैयार।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -779,7 +825,7 @@
           </figure>
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#fff" stroke-width="1.7"></circle><path d="M8.5 14c1 1.6 2.2 2.3 3.5 2.3s2.5-.7 3.5-2.3M9 9.5h.01M15 9.5h.01" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>Mood filter और समय के साथ mood trends</h3>
-          <p>AI headlines को heavy से good के बीच rate करता है। Single tap में केवल good news देखें, और day, week व month के अनुसार अपनी reading के mood को track करें।</p>
+          <p>Headlines को heavy से good तक rate करें, अच्छी खबरें filter करें और दिन, हफ़्ते या महीने के हिसाब से अपना reading mood देखें।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher hoarder">
@@ -793,18 +839,18 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="11" rx="2.2" stroke="#fff" stroke-width="1.7"></rect><path d="M9 20h6M12 16v4M8.5 10.5l2 2 3.5-4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>आपकी library, Claude, LM Studio और Cursor के अंदर</h3>
-          <p>Settings में AI apps चालू करें, और आपके कंप्यूटर पर Claude Desktop, LM Studio, Cursor और अन्य MCP apps आपकी library search कर सकते हैं, आपके highlights quote कर सकते हैं और क्या due है यह बता सकते हैं। अगर आप allow करें, तो वे आपके लिए links भी save कर सकते हैं। हमारे server से कुछ भी नहीं जाता, और वे क्या read कर सकते हैं यह पूरी तरह आप तय करते हैं।</p>
+          <p>Claude Desktop, LM Studio, Cursor और दूसरे MCP apps आपकी library search कर सकते हैं, highlights quote कर सकते हैं और due items दिखा सकते हैं। Access आपके हाथ में है; कुछ भी हमारे server से नहीं गुज़रता।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>आपकी library आपके खुद के storage पर, पूरी तरह encrypted</h3>
-          <p>अपनी library को अपने खुद के Nextcloud, WebDAV server, S3 bucket या कंप्यूटर के किसी folder में sync और back up करें। सब कुछ पहले आपके browser में ही encrypt होता है, इसलिए server को सिर्फ scrambled files दिखती हैं। आप search, tag graph और 3D map के साथ अपनी website पर list भी publish कर सकते हैं। जब तक आप कोई location add नहीं करते यह off रहता है; हम कोई sync server नहीं चलाते और आपका data कभी नहीं देखते। <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">इसे set up कैसे करें</a> · <a href="blog/digital-sovereignty-for-individuals.html">यह क्यों ज़रूरी है</a></p>
+          <p>Encrypted library को अपने Nextcloud, WebDAV server, S3 bucket या local folder से sync करें। Tag graph और 3D map के साथ searchable list publish करें; हम कोई sync server नहीं चलाते। <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">इसे set up कैसे करें</a> · <a href="../demo/index.html?screen=settings&amp;panel=sync&amp;flow=sync-add" target="_blank" rel="noopener">Sync setup आज़माएँ</a></p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>किसी भी page पर Notes और comments</h3>
-          <p>Text select करें और choose करें: उसे highlight करें, comment करें या quote के साथ note save करें। सब कुछ Notes tab में आ जाता है — list या sticky notes के grid के रूप में, article या tag के हिसाब से, और आपकी बाकी library के साथ sync होता रहता है।</p>
+          <p>Text highlight करें, उस पर comment करें या quoted note सेव करें। Notes को article या tag के हिसाब से list या sticky-note grid में, अपनी library के साथ रखें।</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">
@@ -817,7 +863,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>Obsidian, Markdown, Word और PDF में export करें</h3>
-          <p>Summary को सीधे अपने Obsidian vault में भेजें, या title, source, tags और अपने highlights को एक ही note में Markdown, Word (DOCX), OpenDocument या PDF के रूप में export करें।</p>
+          <p>Summaries को title, source, tags और highlights के साथ एक ही note में Obsidian, Markdown, Word (DOCX), OpenDocument या PDF में export करें।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
         <div class="feature-card" data-personas="hoarder feeds">
@@ -831,7 +877,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V11M12 19V5M19 19v-6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path></svg></div>
           <h3>आपकी reading की एक analytics report</h3>
-          <p>Reading streak, summaries से time saved, activity, हफ़्तों भर के topics और एक word cloud — सीधे आपकी अपनी library से compute किया गया।</p>
+          <p>Reading streaks, summaries से बचा समय, activity, हफ़्ते के topics और आपकी अपनी library से बना word cloud देखें।</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Clip देखें</button>
         </div>
       </div>
@@ -868,6 +914,7 @@
         });
         if (blurb) blurb.textContent = text(name) || blurb.textContent;
         if (count) { count.hidden = name === 'all'; count.textContent = shown + ' / ' + cards.length; }
+        if (!fromUser && !/^#for=/.test(location.hash) && location.hash) return;   // a link to a clip (#v=...) keeps its hash for the player
         try {
           history.replaceState(null, '', name === 'all' ? location.pathname + location.search : location.pathname + location.search + '#for=' + name);
         } catch (e) {}
@@ -880,38 +927,10 @@
 
       // #for=<audience> in a link opens the page filtered
       var m = /^#for=([a-z]+)$/.exec(location.hash);
-      if (m && names[m[1]]) setPersona(m[1], false);
+      var initial = document.getElementById('features').getAttribute('data-default-persona') || 'all';
+      setPersona(m && names[m[1]] ? m[1] : initial, false);
     })();
   </script>
-
-  <!-- ── Digest spotlight ────────────────────────────────────────── -->
-  <section id="digest">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <div class="eyebrow">Read-later का ढेर</div>
-        <h2>आप जितना पढ़ पाएंगे, उससे कहीं ज़्यादा सेव कर लेते हैं</h2>
-        <p>हम जो कुछ भी save करते हैं, उसमें से ज़्यादातर चीज़ें शायद ही दोबारा कभी खुलती हैं। Digest आपके लिए पाँच saves चुनता है और उन्हें offline पढ़ने के लिए भेजता है।</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="../assets/photo/evening-sofa-ereader-600.webp" srcset="../assets/photo/evening-sofa-ereader-600.webp 600w, ../assets/photo/evening-sofa-ereader-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1600" height="1195" loading="lazy" decoding="async" alt="Illustration: शाम के समय सोफे पर कंबल में e-reader पर पढ़ता हुआ एक व्यक्ति">
-        <figcaption>इसे शाम को आराम से पढ़ें, 12 tabs में नहीं। Illustration, AI-generated.</figcaption>
-      </figure>
-      <div class="feature-grid digest-steps reveal">
-        <div class="feature-card">
-          <h3 style="margin-top:0;">1. Digest पर टैप करें</h3>
-          <p>आपके पाँच saved items, जो recency और variety के आधार पर चुने गए हैं।</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">2. चाहें तो अपना मूड सेट करें</h3>
-          <p>Upbeat, neutral या deep: चुनाव आपके mood के हिसाब से होता है।</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">3. इसे Offline भेजें</h3>
-          <p>आपकी Kindle या network device पर एक single bundle, flight या commute के दौरान पढ़ने के लिए तैयार।</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ── Phone companion ────────────────────────────────────────── -->
   <section id="phone">
@@ -942,28 +961,13 @@
     </div>
   </section>
 
-  <!-- ── Why on-device ──────────────────────────────────────────── -->
-  <section>
-    <div class="wrap wrap-narrow">
-      <div class="section-head center reveal">
-        <div class="eyebrow">byphil के सिद्धांतों पर निर्मित</div>
-        <h2>आपका Archive हमेशा आपका ही रहता है</h2>
-        <p>Search, duplicate detection, tag cleanup और similar-article suggestions सब कुछ आपके browser में on-device चलता है—बिना किसी server या account के। सिर्फ summary request बाहर जाती है, वो भी आपके चुने हुए AI provider के पास। और local Ollama model के साथ, वो data भी पूरी तरह offline आपके पास ही रहता है।</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="../assets/photo/scene-library-laptop-600.webp" srcset="../assets/photo/scene-library-laptop-600.webp 600w, ../assets/photo/scene-library-laptop-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1200" height="670" loading="lazy" decoding="async" alt="Illustration: एक साफ़-सुथरी लकड़ी की desk पर रखा laptop, पास में एक पौधा और notebooks का ढेर">
-        <figcaption>आपकी library आपके device पर ही रहती है। Illustration, AI-generated.</figcaption>
-      </figure>
-    </div>
-  </section>
-
   <!-- ── Pricing ─────────────────────────────────────────────────── -->
   <section id="pricing">
     <div class="wrap wrap-narrow">
       <div class="section-head center reveal">
         <div class="eyebrow">सबके लिए Free</div>
-        <h2>Free है। Donations से AI models अनलॉक होते हैं।</h2>
-        <p>आपकी अपनी AI key या local model के साथ सब कुछ एकदम free काम करता है। अगर आपको यह पसंद आए, तो आप donation देकर शुक्रिया कह सकते हैं। इससे आपको byphil Cloud भी मिलता है: एक ही जगह पर कई सारे AI models, बिना किसी key या setup के, और यह byphil के बनाए हर tool को सपोर्ट करता है।</p>
+        <h2>Project को support करें। बिना झंझट AI पाएँ।</h2>
+        <p>आपकी अपनी AI key या local model से सब कुछ मुफ़्त चलता है। Support Pass स्वतंत्र, local-first software को fund करता है और बिना झंझट AI व unlimited offline reading देता है, आपके archive को बंधक बनाए बिना।</p>
       </div>
 
       <div style="text-align:center;">
@@ -999,7 +1003,7 @@
           <ul>
             <li>byphil Cloud: कई सारे AI models, कोई API key ज़रूरी नहीं</li>
             <li>Digests सहित अनलिमिटेड Kindle और LocalSend sends</li>
-            <li>हर byphil tool को सपोर्ट करता है</li>
+            <li>स्वतंत्र, open-source development को support करता है</li>
           </ul>
           <a href="https://byphil.eu/#pass" class="tier-cta">Project को सपोर्ट करें</a>
         </div>
@@ -1016,31 +1020,77 @@
       <div class="section-head center reveal">
         <div class="eyebrow">अक्सर पूछे जाने वाले सवाल</div>
         <h2>इंस्टॉल करने से पहले</h2>
+        <p>Topic, provider, privacy, archive या platform से जवाब search करें।</p>
       </div>
-      <div class="faq reveal">
-        <details>
+      <div class="faq-tools reveal">
+        <label class="sr-only" for="faqSearch">अक्सर पूछे जाने वाले सवाल search करें</label>
+        <input id="faqSearch" type="search" data-faq-search="" placeholder="FAQ में search करें…" autocomplete="off" spellcheck="false" aria-controls="faqList">
+        <div class="faq-filters" role="group" aria-label="FAQ को topic से filter करें">
+          <button type="button" class="faq-filter is-active" data-faq-filter="all" aria-pressed="true">सभी</button>
+          <button type="button" class="faq-filter" data-faq-filter="basics" aria-pressed="false">बुनियादी बातें</button>
+          <button type="button" class="faq-filter" data-faq-filter="privacy" aria-pressed="false">Privacy</button>
+          <button type="button" class="faq-filter" data-faq-filter="ai" aria-pressed="false">AI और sources</button>
+          <button type="button" class="faq-filter" data-faq-filter="archive" aria-pressed="false">Archive</button>
+          <button type="button" class="faq-filter" data-faq-filter="platforms" aria-pressed="false">Platforms</button>
+        </div>
+        <p id="faqSearchStatus" class="faq-search-status" aria-live="polite"></p>
+      </div>
+      <div class="faq reveal" id="faqList">
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
           <summary>क्या इसका उपयोग करने के लिए मुझे अकाउंट की आवश्यकता है?</summary>
-          <p>नहीं। बस install करें, अपनी AI provider key लगाएं (या local Ollama model इस्तेमाल करें), और save करना शुरू करें। Account की ज़रूरत केवल तब होती है जब आप byphil Cloud (बिना key के कई AI models) या ज़्यादा Kindle/LocalSend सेंड्स चाहते हों, जो donation से अनलॉक होते हैं।</p>
+          <p>नहीं। Install करें, अपनी AI provider key लाएँ या local Ollama model इस्तेमाल करें, और सेव करना शुरू करें। Account सिर्फ़ optional byphil Cloud access या अतिरिक्त Kindle/LocalSend sends के लिए चाहिए। <a href="blog/bring-your-own-key.html">Provider विकल्प देखें →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="privacy">
           <summary>मेरे ब्राउज़र से वास्तव में क्या डेटा बाहर जाता है?</summary>
-          <p>सिर्फ summarization request — जो आपके configured AI provider को भेजी जाती है — इसके अलावा, अगर आप RSS reader use करते हैं, तो आपके subscribed feeds की requests, और सिर्फ तब जब आप AI recap पर click करते हैं, उस दिन की headlines और short snippets। Search, duplicate detection, tag cleanup, reading-level और sentiment scoring, और "similar articles" recommendations सब कुछ आपके अपने saved archive पर पूरी तरह locally run होते हैं।</p>
+          <p>सिर्फ़ summary की request आपके चुने AI provider को जाती है। RSS के लिए आपकी subscribed feeds को requests भी जाती हैं; AI recap तभी headlines और छोटे snippets भेजता है जब आप माँगें। Search, duplicate detection, tags और recommendations local चलते हैं। <a href="blog/on-device-architecture.html">On-device architecture देखें →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
+          <summary>क्या मेरे pages या highlights से कोई model train होता है?</summary>
+          <p>AI Summary Helper आपके content से अपना कोई model train नहीं करता। अपनी key के साथ आपके चुने provider की data policy लागू होती है। Ollama के साथ summary request आपके computer पर ही रहती है। <a href="privacy.html">Privacy model पढ़ें →</a></p>
+        </details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
           <summary>क्या मैं इसे बिना किसी Cloud निर्भरता के (पूरी तरह offline) चला सकता हूँ?</summary>
-          <p>हाँ — इसे local Ollama model से कनेक्ट करें और summarization भी आपके अपने कंप्यूटर पर ही रहेगा। बाकी सब कुछ तो पहले से ही on-device चलता है।</p>
+          <p>हाँ। इसे local Ollama model पर लगाएँ, तो summary वाला step भी आपके computer पर रहेगा। बाकी सब पहले से local चलता है। <a href="blog/bring-your-own-key.html">अपनी key और Ollama की तुलना करें →</a></p>
         </details>
-        <details>
-          <summary>अगर मैं project को सपोर्ट करना बंद कर दूँ तो मेरे saves का क्या होगा?</summary>
-          <p>आपका आर्काइव ठीक वहीं रहता है जहाँ वह हमेशा से था — आपके डिवाइस के ब्राउज़र लोकल स्टोरेज में। Support Pass केवल क्लाउड-आधारित एक्स्ट्रा फीचर्स (byphil Cloud AI एक्सेस, अनलिमिटेड Kindle/LocalSend सेंड्स) को कंट्रोल करता है, आपके पहले से सेव किए गए डेटा को कभी लॉक नहीं करता।</p>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive">
+          <summary>मेरा reading archive कहाँ रहता है?</summary>
+          <p>Default रूप से आपके डिवाइस के browser में। आप इसे Markdown में export कर सकते हैं या encrypted backup अपने Nextcloud, WebDAV server, S3 bucket या local folder में रख सकते हैं। <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Sync guide पढ़ें →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive privacy">
+          <summary>Browser data clear करने पर क्या होगा?</summary>
+          <p>Backup न होने पर browser का local data हटाने से local archive भी जा सकता है। Data clear करने या profile बदलने से पहले library export करें या अपने storage पर encrypted sync set करें। <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Backup और sync guide पढ़ें →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds" data-faq-category="ai">
+          <summary>कौन से AI providers और models supported हैं?</summary>
+          <p>आप OpenAI, Gemini, Mistral, DeepSeek, कोई compatible custom endpoint या local Ollama model इस्तेमाल कर सकते हैं। अपनी key लाएँ, या optional byphil Cloud access लें। <a href="blog/bring-your-own-key.html">जानें BYOK कैसे काम करता है →</a></p>
+        </details>
+        <details data-faq-personas="researcher feeds" data-faq-category="ai">
+          <summary>क्या मैं PDF, YouTube वीडियो और RSS items summarize कर सकता हूँ?</summary>
+          <p>हाँ। Browser में खुले या disk से attach किए PDF, captions के ज़रिए YouTube वीडियो और built-in RSS reader के आर्टिकल summarize करें। <a href="blog/videos.html">Workflow वीडियो देखें →</a> <a href="blog/feeds-recap.html">Feed digests के बारे में पढ़ें →</a></p>
+        </details>
+        <details data-faq-personas="researcher feeds" data-faq-category="ai">
+          <summary>AI summaries कितनी भरोसेमंद हैं?</summary>
+          <p>AI का output गलत हो सकता है और source जाँचने की जगह नहीं लेता। Follow-up जवाब वह हिस्सा दिखाते हैं जिस पर वे टिके हैं, ताकि आप summary को original page से मिला सकें। <a href="blog/verify-ai-summary.html">10-second source check सीखें →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="platforms">
+          <summary>कौन से browsers और platforms supported हैं?</summary>
+          <p>Browser extension, native side panel या bookmarklet इस्तेमाल करें। Android companion app आपके phone से links जोड़ता है; iOS अभी उपलब्ध नहीं है। <a href="blog/from-bookmarklet-to-2.html">Browser और capture workflow देखें →</a></p>
+        </details>
+        <details data-faq-personas="shared" data-faq-category="platforms">
           <summary>Android companion कैसे install करें?</summary>
-          <p>ऊपर दिए गए लिंक (या  <a href="https://github.com/philffm/kaivo/releases/latest" target="_blank" rel="noopener">latest release</a>) से APK डाउनलोड करें, इसे open करें और Android द्वारा पूछे जाने पर browser से installs allow करें। फिर extension में Settings → Phone inbox में जाकर QR code scan करके pair करें। यह अभी Google Play पर उपलब्ध नहीं है।</p>
+          <p>APK यहाँ से download करें: <a href="https://github.com/philffm/kaivo/releases/latest" target="_blank" rel="noopener">latest release</a>, फिर Settings → Phone inbox में QR code scan करके pair करें। यह अभी Google Play पर नहीं है। <a href="blog/from-bookmarklet-to-2.html">पढ़ें कि capture workflow में कैसे फिट होता है →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="shared" data-faq-category="basics">
+          <summary>Support Pass से क्या खुलता है?</summary>
+          <p>Support Pass स्वतंत्र open-source development को fund करता है और optional byphil Cloud AI access या अतिरिक्त Kindle/LocalSend sends खोल सकता है। आपका local archive और local इस्तेमाल इसके पीछे बंद नहीं है। <a href="blog/bring-your-own-key.html">Optional cloud की सीमा समझें →</a></p>
+        </details>
+        <details data-faq-personas="hoarder" data-faq-category="basics">
+          <summary>अगर मैं project को सपोर्ट करना बंद कर दूँ तो मेरे saves का क्या होगा?</summary>
+          <p>आपका आर्काइव ठीक वहीं रहता है जहाँ वह हमेशा से था — आपके डिवाइस के ब्राउज़र लोकल स्टोरेज में। Support Pass केवल क्लाउड-आधारित एक्स्ट्रा फीचर्स (byphil Cloud AI एक्सेस, अनलिमिटेड Kindle/LocalSend सेंड्स) को कंट्रोल करता है, आपके पहले से सेव किए गए डेटा को कभी लॉक नहीं करता। <a href="blog/unread-saves.html">देखें Digest सेव की हुई चीज़ों को फिर काम का कैसे बनाता है →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
           <summary>क्या यह ओपन सोर्स है?</summary>
-          <p>हाँ — इस एक्सटेंशन का सोर्स कोड उपलब्ध है <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">GitHub</a>, AGPL-3.0 license के तहत। यह personal, educational और non-profit use के लिए free है; जो companies इसे AGPL की terms के बाहर use करना चाहती हैं, वे commercial license ले सकती हैं।</p>
+          <p>हाँ — इस एक्सटेंशन का सोर्स कोड उपलब्ध है <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">GitHub</a>, AGPL-3.0 license के तहत। यह personal, educational और non-profit use के लिए free है; जो companies इसे AGPL की terms के बाहर use करना चाहती हैं, वे commercial license ले सकती हैं। <a href="blog/on-device-architecture.html">Local architecture के बारे में पढ़ें →</a></p>
         </details>
       </div>
     </div>
