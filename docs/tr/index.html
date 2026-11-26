@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
-<title>AI Summary Helper: Özetleyin, kaydedin, web'de arayın</title>
+<title>AI Summary Helper: okuma ve bilgi için özel yapay zekâ yardımcınız</title>
 <script>
 // Old language links were /?lang=xx. GitHub Pages cannot 301 a query string, so send them to the language folder (canonical already points to /).
 (function () {
@@ -14,7 +14,7 @@
   location.replace('/' + (dir ? dir + '/' : '') + location.hash);
 })();
 </script>
-<meta name="description" content="Web sayfalarını yapay zeka ile özetleyen, RSS akışlarınızı okuyan ve aranabilir bir arşiv tutan Chrome eklentisi. Arama ve öneriler tamamen cihazınızda çalışır.">
+<meta name="description" content="Okuduklarınızı kalıcı bilgiye dönüştürün. AI Summary Helper; makaleler, PDF'ler ve videolar için, kaynağa bağlı yanıtlar ve aranabilir bir arşiv sunan, gizliliği ve yerel çalışmayı önceleyen bir okuma yardımcısıdır.">
 
 <script>
   (function(){
@@ -34,16 +34,21 @@
 <link rel="preload" href="../assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="preload" href="../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="stylesheet" href="../assets/styles.css">
 
 <meta property="og:title" content="AI Summary Helper">
-<meta property="og:description" content="Web'i cihazınızda özetleyin, kaydedin ve arayın. Okuma listesini bir daha kaybetmek istemeyenler için geliştirilmiş Chrome eklentisi.">
+<meta property="og:description" content="Okuduklarınızı kalıcı bilgiye dönüştürün: kaynağa bağlı yanıtlar, özel ve aranabilir arşiv, yerel öncelikli yapay zekâ.">
 <meta property="og:url" content="https://kaivo.byphil.eu/tr/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="AI Summary Helper zeigt eine quellenverlinkte KI-Zusammenfassung neben dem Originalartikel.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Summary Helper: your private AI reading and knowledge companion">
+<meta name="twitter:description" content="Turn reading into knowledge you keep with source-linked answers, a private searchable archive and local-first AI.">
+<meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp">
+<meta name="twitter:image:alt" content="AI Summary Helper zeigt eine quellenverlinkte KI-Zusammenfassung neben dem Originalartikel.">
 
 <script src="../assets/analytics.js" defer=""></script>
-<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/"><link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="tr"><meta name="twitter:title" content="AI Summary Helper"><meta name="twitter:description" content="Web'i cihazınızda özetleyin, kaydedin ve arayın. Okuma listesini bir daha kaybetmek istemeyenler için geliştirilmiş Chrome eklentisi."><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://kaivo.byphil.eu/tr/"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kaivo.byphil.eu/#website","url":"https://kaivo.byphil.eu/","name":"AI Summary Helper","inLanguage":"tr","publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"SoftwareApplication","@id":"https://kaivo.byphil.eu/#app","name":"AI Summary Helper","url":"https://kaivo.byphil.eu/tr/","description":"Web sayfalarını yapay zeka ile özetleyen, RSS akışlarınızı okuyan ve aranabilir bir arşiv tutan Chrome eklentisi. Arama ve öneriler tamamen cihazınızda çalışır.","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Chromium browsers, Firefox, Android (beta companion app)","installUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","downloadUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","image":"https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp","inLanguage":"tr","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free; a donation (Support Pass) unlocks byphil Cloud with many AI models"},"author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"FAQPage","@id":"https://kaivo.byphil.eu/tr/#faq","inLanguage":"tr","mainEntity":[{"@type":"Question","name":"Kullanmak için hesaba ihtiyacım var mı?","acceptedAnswer":{"@type":"Answer","text":"Hayır. Yükleyin, kendi AI sağlayıcı anahtarınızı ekleyin (veya yerel bir Ollama modeli kullanın) ve kaydetmeye başlayın. Hesap yalnızca byphil Cloud (anahtarsız birçok AI modeli) veya bağışla açılan daha fazla Kindle/LocalSend gönderimi istiyorsanız gereklidir."}},{"@type":"Question","name":"Tarayıcımdan gerçekte hangi veriler çıkıyor?","acceptedAnswer":{"@type":"Answer","text":"Yalnızca özetleme isteği —yapılandırdığınız AI sağlayıcısına gönderilir— ayrıca RSS okuyucuyu kullanıyorsanız abone olduğunuz akışlara yapılan istekler ve yalnızca bir AI özetine tıkladığınızda o günün başlıkları ile kısa alıntıları. Arama, mükerrer içerik tespiti, etiket temizleme, okuma seviyesi ve duygu analizi ile \"benzer makaleler\" önerilerinin tümü tamamen kendi kayıtlı arşiviniz üzerinde yerel olarak çalışır."}},{"@type":"Question","name":"Bunu sıfır bulut bağımlılığıyla çalıştırabilir miyim?","acceptedAnswer":{"@type":"Answer","text":"Evet — yerel bir Ollama modeline yönlendirdiğinizde özetleme adımı da makinenizde kalır. Diğer her şey zaten yerel çalışır."}},{"@type":"Question","name":"Projeyi desteklemeyi bırakırsam kayıtlarıma ne olur?","acceptedAnswer":{"@type":"Answer","text":"Arşiviniz her zaman olduğu yerde —cihazınızdaki tarayıcınızın yerel depolama alanında— kalır. Support Pass yalnızca buluta bağlı ekstraları (byphil Cloud AI erişimi, sınırsız Kindle/LocalSend gönderimi) kısıtlar; kaydettiğiniz içeriklere erişiminizi asla engellemez."}},{"@type":"Question","name":"Android tamamlayıcı uygulamasını nasıl yüklerim?","acceptedAnswer":{"@type":"Answer","text":"APK'yı yukarıdaki bağlantıdan (veya en son sürümüzerinden) indirin, açın ve Android sorduğunda tarayıcınızdan yüklemelere izin verin. Ardından eklentide Ayarlar → Telefon gelen kutusu altındaki QR kodunu tarayarak eşleştirin. Henüz Google Play'de yer almamaktadır."}},{"@type":"Question","name":"Bu açık kaynaklı mı?","acceptedAnswer":{"@type":"Answer","text":"Evet — eklentinin kaynak kodları herkese açıktır: GitHub, AGPL-3.0 lisansı kapsamındadır. Kişisel, eğitim amaçlı ve kâr amacı gütmeyen kullanım için ücretsizdir; AGPL koşulları dışında kullanmak isteyen şirketler ticari bir lisans alabilir."}}]}]}</script><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"Bir dakikadan kısa sürede AI Summary Helper","description":"Tüm özellikler tek bir hızlı turda: özetler, kaynaklar, araştırma modu, kütüphane, akışlar, AI uygulamaları ve daha fazlası.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT2M2S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4","inLanguage":"en","transcript":"Everything it can do in under a minute! Summarize any page! YouTube videos? Done! PDFs? Done! Every answer shows its source! The AI marks the key passages! Papers recognised by their DOI! Compare sources on one question! Forty-one languages! Read aloud while it writes! A library with search and stats! Your reading, as a report! Your reading as a knowledge graph: tap a topic and get the overview! RSS feeds with a daily recap! Only the good news, if you like! A digest to your e-reader: pick a few articles, and they get beamed straight over to you! Export to Obsidian, Word, PDF! Your library inside your AI apps! Sync and back up to Nextcloud, WebDAV, S3 or a folder! Your key, a local model, or cloud!","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Yanıtı kaynağıyla doğrulayın","description":"Takip sorusu sorun ve yanıtın alındığı metin bölümüne doğrudan geçin.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/quellen-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/quellen-en.mp4","inLanguage":"en","transcript":"AI answers. With receipts. Ask follow-up questions. Every answer points to the passage it came from.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Vurguladıklarınız hakkında sorular sorun","description":"Bir metni vurgulayın, soru sorun ve doğrudan o kısımdan alıntı yapan yanıtı alın.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/highlights-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/highlights-en.mp4","inLanguage":"en","transcript":"Highlighting barely helps you learn. That is what a big review of learning techniques found. So do not stop at the highlight: ask about it, and the answer shows you where it comes from.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"40 akış yerine tek bir özet","description":"Tüm günün feed akışı tek bir brifingde.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4","inLanguage":"en","transcript":"No algorithm. Your feed is yours. You pick your sources and curate them your way. One click, and you get a briefing of the whole day.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Okumalarınız bir knowledge graph halinde","description":"Konularına göre birbirine bağlanan makaleler ve her konu hakkında kısa bir özet.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4","inLanguage":"en","transcript":"What you read is connected. Your knowledge graph links articles through their topics. Tap one, and you get a briefing on everything you have read about it.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Okuma yığını yerine tek bir digest","description":"Kaydettiğiniz üç makale, Kindle cihazınızda tek bir dergiye dönüşsün.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/digest-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/digest-en.mp4","inLanguage":"en","transcript":"We save far more than we ever read. So turn the pile into one digest: pick a few saves, and they land on your Kindle as one magazine.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Sizin anahtarınız. Sizin modeliniz. Sizin verileriniz.","description":"Kendi API key'iniz, Ollama ile yerel bir model veya byPhil Cloud.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M15S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4","inLanguage":"en","transcript":"Privacy is a trade-off. When the risk is clear, people share less. So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup. Your library stays in the browser.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Bir Pocket alternatifi","description":"Kaydedin, özetleyin ve Kindle'ınıza gönderin.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pocket-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pocket-en.mp4","inLanguage":"en","transcript":"Pocket is gone. Now what? Save any page with one click, with a summary on top. Your library has tags and search, and sends to your Kindle. Free, and it all stays on your device.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Özetten Kindle'a","description":"Bu projenin doğmasını sağlayan alışkanlık.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/senden-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/senden-en.mp4","inLanguage":"en","transcript":"From summary to Kindle. Summarize the page, open the menu, send it to your Kindle. Seconds later it is on your e-reader, ready for the couch.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"72 dakikalık bir ders, özetlendi","description":"Video altyazılarından özetler ve ilgili bölüme atıf yapan takip yanıtları.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.mp4","inLanguage":"en","transcript":"A 72-minute lecture. Who has the time? Open the video and tap Summarize. The extension reads the captions, and you get the key points in your language. Ask a follow-up, and every answer shows you the passage in the transcript.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Saniyeler içinde 84 sayfalık bir PDF","description":"Tarayıcıda bir PDF açın ve kendi dilinizde özetleyin.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pdf-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pdf-en.mp4","inLanguage":"en","transcript":"An 84-page PDF. Who reads that? Open a PDF in your browser and tap Summarize. Reports, studies, manuals: the key points in seconds, in your language. And you can see what the model read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"DOI ile tanınan akademik makaleler","description":"Klinik çalışma, derleme veya preprint bir bakışta karşınızda; temel bulgular ve DOI kaynaklı alıntı.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/paper-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/paper-en.mp4","inLanguage":"en","transcript":"Preprint or peer-reviewed? Know before you cite. Summarize a paper and it is recognised by its DOI. Trial, review or preprint: you see it at a glance. Design, sample and limitations are pulled out, and the citation comes straight from the DOI registry.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Tek bir soru, beş kaynak","description":"Koleksiyonlar kaynaklarınızın nerede uzlaştığını, nerede ayrıştığını ve neleri atladığını karşılaştırır.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/recherche-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/recherche-en.mp4","inLanguage":"en","transcript":"One question, five sources. Where do they disagree? Bundle your saved articles under one question. Every source gets a type: peer-reviewed, preprint, news or opinion. One click compares them: where they agree, where they disagree, and what is missing.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Hayalet vurgular","description":"Yapay zekâ makaledeki kilit noktaları işaretler. İster saklayın, ister göz ardı edin.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ghost-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ghost-en.mp4","inLanguage":"en","transcript":"The AI marks what matters while you read. After the summary, the AI marks the key passages right in the article, as ghost highlights. Tap one to keep it, or dismiss it. Skimming turns into reading on purpose.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Haber akışınızın bir modu var","description":"İyi haber filtresi ve haftalık duygu durumu grafiği.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/stimmung-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/stimmung-en.mp4","inLanguage":"en","transcript":"Your news diet has a mood. The AI rates every headline from heavy to good. Tap the smile, and only the good news is left. And the mood chart shows how your reading has felt over the weeks.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Anında okuma","description":"Yapay zekâ özeti yazmaya devam ederken sesli olarak okunur.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/instant-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M27S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/instant-en.mp4","inLanguage":"en","transcript":"Why wait for the summary to finish? Switch on Instant read, and it is spoken while it is still being written.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Kütüphaneniz AI uygulamalarınızda","description":"Claude Desktop, LM Studio ve Cursor kütüphanenizde arama yapar, vurgularınızdan alıntı yapar ve kaynaklarınızı belirtir.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M25S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4","inLanguage":"en","transcript":"Your AI app has never read what you read. Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights. Ask what is due, let it save the best from your feeds, or ask for your year, wrapped. Nothing goes through our server, and you choose what they may read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Obsidian ve daha fazlasına aktarın","description":"Her özet düzenli bir not olarak dışa aktarılır: Obsidian, Markdown, Word, ODT veya PDF.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/export-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/export-en.mp4","inLanguage":"en","transcript":"Your summaries belong in your notes. Every summary leaves as a clean note: to Obsidian, as Markdown, Word, OpenDocument or PDF. With the title, the source, your tags and your highlights, ready to keep.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Okumalarınız, rapor halinde","description":"Seri (streak), kazanılan zaman, aktivite ve haftalara göre konular.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4","inLanguage":"en","transcript":"Where did your reading time go? Open Analytics and your library becomes a report: your streak, the time summaries saved you, your topics over the weeks and the words you keep coming back to.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"20'den fazla dil, platformlar arası","description":"Dilediğiniz dilde okuyun ve özetleyin. Eklenti, yerel yan panel veya bookmarklet — tarayıcı eklentisinin ulaşamadığı her yer için.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M13S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4","inLanguage":"en","transcript":"You read slower in a second language. Eye-tracking studies show it, even for fluent readers. Summaries in 41 languages: search, tap, done.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Cihazınızda gerçek arama","description":"Başlıklar, etiketler ve makale içeriğinde tam metin arama — tarayıcınızda oluşturulan TF-IDF dizini ile desteklenir. Sunucu trafiği yok, gecikme yok, hiçbir yere veri gönderilmez.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4","inLanguage":"en","transcript":"Your reading, finally findable. Everything you summarized stays on your device. With tags, search and stats.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head>
+<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/"><link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/"><link rel="canonical" href="https://kaivo.byphil.eu/tr/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="tr"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kaivo.byphil.eu/#website","url":"https://kaivo.byphil.eu/","name":"AI Summary Helper","inLanguage":"tr","publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"SoftwareApplication","@id":"https://kaivo.byphil.eu/#app","name":"AI Summary Helper","url":"https://kaivo.byphil.eu/tr/","description":"Okuduklarınızı kalıcı bilgiye dönüştürün. AI Summary Helper; makaleler, PDF'ler ve videolar için, kaynağa bağlı yanıtlar ve aranabilir bir arşiv sunan, gizliliği ve yerel çalışmayı önceleyen bir okuma yardımcısıdır.","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Chromium browsers, Firefox, Android (beta companion app)","installUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","downloadUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","image":"https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp","inLanguage":"tr","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free; a donation (Support Pass) unlocks byphil Cloud with many AI models"},"author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"FAQPage","@id":"https://kaivo.byphil.eu/tr/#faq","inLanguage":"tr","mainEntity":[{"@type":"Question","name":"Kullanmak için hesaba ihtiyacım var mı?","acceptedAnswer":{"@type":"Answer","text":"Hayır. Kurun, kendi yapay zekâ sağlayıcı anahtarınızı girin veya yerel bir Ollama modeli kullanın ve kaydetmeye başlayın. Hesap yalnızca isteğe bağlı byphil Cloud erişimi veya ek Kindle/LocalSend gönderimleri için gerekir. Sağlayıcı seçeneklerini görün →"}},{"@type":"Question","name":"Tarayıcımdan gerçekte hangi veriler çıkıyor?","acceptedAnswer":{"@type":"Answer","text":"Ayarladığınız yapay zekâ sağlayıcısına yalnızca özetleme isteği gider. RSS ayrıca abone olduğunuz akışlara istek gerektirir; yapay zekâ özeti başlıkları ve kısa parçaları yalnızca siz istediğinizde gönderir. Arama, yinelenen tespiti, etiketler ve öneriler yerel çalışır. Cihaz üstü mimariyi görün →"}},{"@type":"Question","name":"Sayfalarım veya vurgularım bir modeli eğitmek için kullanılıyor mu?","acceptedAnswer":{"@type":"Answer","text":"AI Summary Helper içeriğinizi kendi modelini eğitmek için kullanmaz. Kendi anahtarınızda seçtiğiniz sağlayıcının veri politikası geçerlidir. Ollama ile özetleme isteği bilgisayarınızda kalır. Gizlilik modelini okuyun →"}},{"@type":"Question","name":"Bunu sıfır bulut bağımlılığıyla çalıştırabilir miyim?","acceptedAnswer":{"@type":"Answer","text":"Evet. Yerel bir Ollama modeline yönlendirin; özetleme adımı da bilgisayarınızda kalsın. Geri kalan her şey zaten yerel çalışıyor. Kendi anahtarınız ile Ollama'yı karşılaştırın →"}},{"@type":"Question","name":"Okuma arşivim nerede saklanıyor?","acceptedAnswer":{"@type":"Answer","text":"Varsayılan olarak cihazınızdaki tarayıcıda. Markdown olarak dışa aktarabilir veya kendi Nextcloud'unuza, WebDAV sunucunuza, S3 kovanıza ya da yerel klasöre şifreli yedekleyebilirsiniz. Eşitleme rehberini okuyun →"}},{"@type":"Question","name":"Tarayıcı verilerimi temizlersem ne olur?","acceptedAnswer":{"@type":"Answer","text":"Yedeğiniz yoksa yerel tarayıcı verilerini silmek yerel arşivi de kaldırabilir. Veri temizlemeden veya profil değiştirmeden önce kitaplığınızı dışa aktarın ya da kendi depolamanıza şifreli eşitleme kurun. Yedekleme ve eşitleme rehberini okuyun →"}},{"@type":"Question","name":"Hangi yapay zekâ sağlayıcıları ve modelleri destekleniyor?","acceptedAnswer":{"@type":"Answer","text":"OpenAI, Gemini, Mistral, DeepSeek, uyumlu özel bir uç nokta veya yerel Ollama modeli kullanabilirsiniz. Kendi anahtarınızı getirin ya da isteğe bağlı byphil Cloud erişimini kullanın. Kendi anahtarınız nasıl çalışır →"}},{"@type":"Question","name":"PDF'leri, YouTube videolarını ve RSS öğelerini özetleyebilir miyim?","acceptedAnswer":{"@type":"Answer","text":"Evet. Tarayıcıda açılan veya diskten eklenen PDF'leri, altyazıları üzerinden YouTube videolarını ve yerleşik RSS okuyucudaki makaleleri özetleyin. İş akışı videolarını izleyin → Akış derlemelerini okuyun →"}},{"@type":"Question","name":"Yapay zekâ özetleri ne kadar güvenilir?","acceptedAnswer":{"@type":"Answer","text":"Yapay zekâ çıktısı yanlış olabilir ve kaynağı kontrol etmenin yerini tutmaz. Takip yanıtları dayandıkları pasajı gösterir; böylece özeti özgün sayfayla karşılaştırabilirsiniz. 10 saniyelik kaynak kontrolünü öğrenin →"}},{"@type":"Question","name":"Hangi tarayıcılar ve platformlar destekleniyor?","acceptedAnswer":{"@type":"Answer","text":"Tarayıcı uzantısını, yerleşik yan paneli veya yer imi uygulamacığını kullanın. Android yardımcı uygulaması telefonunuzdan bağlantı ekler; iOS henüz yok. Tarayıcı ve yakalama akışını görün →"}},{"@type":"Question","name":"Android tamamlayıcı uygulamasını nasıl yüklerim?","acceptedAnswer":{"@type":"Answer","text":"APK'yi şuradan indirin: en son sürüm, ardından Ayarlar → Telefon gelen kutusu altındaki QR kodunu tarayarak eşleştirin. Henüz Google Play'de değil. Yakalamanın akışa nasıl uyduğunu okuyun →"}},{"@type":"Question","name":"Support Pass neyin kilidini açar?","acceptedAnswer":{"@type":"Answer","text":"Support Pass bağımsız açık kaynak geliştirmeyi finanse eder ve isteğe bağlı byphil Cloud yapay zekâ erişimi veya ek Kindle/LocalSend gönderimleri açabilir. Yerel arşiviniz ve yerel kullanım bunun arkasına kilitlenmez. İsteğe bağlı bulut sınırını anlayın →"}},{"@type":"Question","name":"Projeyi desteklemeyi bırakırsam kayıtlarıma ne olur?","acceptedAnswer":{"@type":"Answer","text":"Arşiviniz her zaman olduğu yerde —cihazınızdaki tarayıcınızın yerel depolama alanında— kalır. Support Pass yalnızca buluta bağlı ekstraları (byphil Cloud AI erişimi, sınırsız Kindle/LocalSend gönderimi) kısıtlar; kaydettiğiniz içeriklere erişiminizi asla engellemez. Digest'in kayıtları nasıl yeniden işe yarar kıldığını görün →"}},{"@type":"Question","name":"Bu açık kaynaklı mı?","acceptedAnswer":{"@type":"Answer","text":"Evet — eklentinin kaynak kodları herkese açıktır: GitHub, AGPL-3.0 lisansı kapsamındadır. Kişisel, eğitim amaçlı ve kâr amacı gütmeyen kullanım için ücretsizdir; AGPL koşulları dışında kullanmak isteyen şirketler ticari bir lisans alabilir. Yerel mimariyi okuyun →"}}]}]}</script><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"İki dakikada AI Summary Helper","description":"Tüm özellikler tek bir hızlı turda: özetler, kaynaklar, araştırma modu, kütüphane, akışlar, AI uygulamaları ve daha fazlası.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT2M2S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4","inLanguage":"en","transcript":"Everything it can do in under a minute! Summarize any page! YouTube videos? Done! PDFs? Done! Every answer shows its source! The AI marks the key passages! Papers recognised by their DOI! Compare sources on one question! Forty-one languages! Read aloud while it writes! A library with search and stats! Your reading, as a report! Your reading as a knowledge graph: tap a topic and get the overview! RSS feeds with a daily recap! Only the good news, if you like! A digest to your e-reader: pick a few articles, and they get beamed straight over to you! Export to Obsidian, Word, PDF! Your library inside your AI apps! Sync and back up to Nextcloud, WebDAV, S3 or a folder! Your key, a local model, or cloud!","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Yanıtı kaynağıyla doğrulayın","description":"Takip sorusu sorun ve yanıtın alındığı metin bölümüne doğrudan geçin.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/quellen-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/quellen-en.mp4","inLanguage":"en","transcript":"AI answers. With receipts. Ask follow-up questions. Every answer points to the passage it came from.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Vurguladıklarınız hakkında sorular sorun","description":"Bir metni vurgulayın, soru sorun ve doğrudan o kısımdan alıntı yapan yanıtı alın.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/highlights-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/highlights-en.mp4","inLanguage":"en","transcript":"Highlighting barely helps you learn. That is what a big review of learning techniques found. So do not stop at the highlight: ask about it, and the answer shows you where it comes from.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"40 akış yerine tek bir özet","description":"Tüm günün feed akışı tek bir brifingde.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4","inLanguage":"en","transcript":"No algorithm. Your feed is yours. You pick your sources and curate them your way. One click, and you get a briefing of the whole day.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Okumalarınız bir knowledge graph halinde","description":"Konularına göre birbirine bağlanan makaleler ve her konu hakkında kısa bir özet.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4","inLanguage":"en","transcript":"What you read is connected. Your knowledge graph links articles through their topics. Tap one, and you get a briefing on everything you have read about it.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Okuma yığını yerine tek bir digest","description":"Kaydettiğiniz üç makale, Kindle cihazınızda tek bir dergiye dönüşsün.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/digest-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/digest-en.mp4","inLanguage":"en","transcript":"We save far more than we ever read. So turn the pile into one digest: pick a few saves, and they land on your Kindle as one magazine.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Sizin anahtarınız. Sizin modeliniz. Sizin verileriniz.","description":"Kendi API key'iniz, Ollama ile yerel bir model veya byPhil Cloud.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M15S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4","inLanguage":"en","transcript":"Privacy is a trade-off. When the risk is clear, people share less. So you choose: your own API key, a local model with Ollama, or byPhil Cloud with no setup. Your library stays in the browser.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Bir Pocket alternatifi","description":"Kaydedin, özetleyin ve Kindle'ınıza gönderin.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pocket-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pocket-en.mp4","inLanguage":"en","transcript":"Pocket is gone. Now what? Save any page with one click, with a summary on top. Your library has tags and search, and sends to your Kindle. Free, and it all stays on your device.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Özetten Kindle'a","description":"Bu projenin doğmasını sağlayan alışkanlık.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/senden-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/senden-en.mp4","inLanguage":"en","transcript":"From summary to Kindle. Summarize the page, open the menu, send it to your Kindle. Seconds later it is on your e-reader, ready for the couch.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"72 dakikalık bir ders, özetlendi","description":"Video altyazılarından özetler ve ilgili bölüme atıf yapan takip yanıtları.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.mp4","inLanguage":"en","transcript":"A 72-minute lecture. Who has the time? Open the video and tap Summarize. The extension reads the captions, and you get the key points in your language. Ask a follow-up, and every answer shows you the passage in the transcript.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Saniyeler içinde 84 sayfalık bir PDF","description":"Tarayıcıda bir PDF açın ve kendi dilinizde özetleyin.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pdf-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pdf-en.mp4","inLanguage":"en","transcript":"An 84-page PDF. Who reads that? Open a PDF in your browser and tap Summarize. Reports, studies, manuals: the key points in seconds, in your language. And you can see what the model read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"DOI ile tanınan akademik makaleler","description":"Klinik çalışma, derleme veya preprint bir bakışta karşınızda; temel bulgular ve DOI kaynaklı alıntı.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/paper-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/paper-en.mp4","inLanguage":"en","transcript":"Preprint or peer-reviewed? Know before you cite. Summarize a paper and it is recognised by its DOI. Trial, review or preprint: you see it at a glance. Design, sample and limitations are pulled out, and the citation comes straight from the DOI registry.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Tek bir soru, beş kaynak","description":"Koleksiyonlar kaynaklarınızın nerede uzlaştığını, nerede ayrıştığını ve neleri atladığını karşılaştırır.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/recherche-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/recherche-en.mp4","inLanguage":"en","transcript":"One question, five sources. Where do they disagree? Bundle your saved articles under one question. Every source gets a type: peer-reviewed, preprint, news or opinion. One click compares them: where they agree, where they disagree, and what is missing.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Hayalet vurgular","description":"Yapay zekâ makaledeki kilit noktaları işaretler. İster saklayın, ister göz ardı edin.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ghost-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ghost-en.mp4","inLanguage":"en","transcript":"The AI marks what matters while you read. After the summary, the AI marks the key passages right in the article, as ghost highlights. Tap one to keep it, or dismiss it. Skimming turns into reading on purpose.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Haber akışınızın bir modu var","description":"İyi haber filtresi ve haftalık duygu durumu grafiği.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/stimmung-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/stimmung-en.mp4","inLanguage":"en","transcript":"Your news diet has a mood. The AI rates every headline from heavy to good. Tap the smile, and only the good news is left. And the mood chart shows how your reading has felt over the weeks.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Anında okuma","description":"Yapay zekâ özeti yazmaya devam ederken sesli olarak okunur.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/instant-en.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M27S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/instant-en.mp4","inLanguage":"en","transcript":"Why wait for the summary to finish? Switch on Instant read, and it is spoken while it is still being written.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Kütüphaneniz AI uygulamalarınızda","description":"Claude Desktop, LM Studio ve Cursor kütüphanenizde arama yapar, vurgularınızdan alıntı yapar ve kaynaklarınızı belirtir.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M25S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4","inLanguage":"en","transcript":"Your AI app has never read what you read. Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights. Ask what is due, let it save the best from your feeds, or ask for your year, wrapped. Nothing goes through our server, and you choose what they may read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Obsidian ve daha fazlasına aktarın","description":"Her özet düzenli bir not olarak dışa aktarılır: Obsidian, Markdown, Word, ODT veya PDF.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/export-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/export-en.mp4","inLanguage":"en","transcript":"Your summaries belong in your notes. Every summary leaves as a clean note: to Obsidian, as Markdown, Word, OpenDocument or PDF. With the title, the source, your tags and your highlights, ready to keep.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Okumalarınız, rapor halinde","description":"Seri (streak), kazanılan zaman, aktivite ve haftalara göre konular.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4","inLanguage":"en","transcript":"Where did your reading time go? Open Analytics and your library becomes a report: your streak, the time summaries saved you, your topics over the weeks and the words you keep coming back to.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"20'den fazla dil, platformlar arası","description":"20'den fazla dilde uzantıyla, yerleşik yan panelle veya bookmarklet uzantı bir sayfaya erişemediğinde okuyup özetleyin.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M13S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4","inLanguage":"en","transcript":"You read slower in a second language. Eye-tracking studies show it, even for fluent readers. Summaries in 41 languages: search, tap, done.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Cihazınızda gerçek arama","description":"Başlıklarda, etiketlerde ve makale içeriğinde tarayıcıda çalışan TF-IDF diziniyle arayın. Tam metin arama, sunucuya gidip gelmeden cihazda kalır.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg"],"uploadDate":"2026-10-20T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4","inLanguage":"en","transcript":"Your reading, finally findable. Everything you summarized stays on your device. With tags, search and stats.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head>
 <body>
 
 <a href="#main" class="skip-link">İçeriğe atla</a>
@@ -54,12 +59,8 @@
       <img src="../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
-    <nav class="pill" aria-label="Birincil">
-      <a href="index.html#features" data-sec="features">Özellikler</a>
-      <a href="index.html#see-it" data-sec="see-it">Demo</a>
-      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=tr&amp;utm_campaign=nav" class="pill-cta" target="_blank" rel="noopener">Chrome'a ekle</a>
-    </nav>
-    <div class="nav-island"><div class="nav-tools">
+    <div class="nav-island"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=tr&amp;utm_campaign=nav" class="pill-cta nav-cta" target="_blank" rel="noopener">Chrome'a ekle</a>
+    <div class="nav-tools">
       <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Bu sayfayı bilgisayarıma gönder" title="Bilgisayarıma gönder"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="Dil" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Açık temaya geç">
@@ -71,11 +72,17 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
     </button></div>
   </div>
+    <nav class="pill" aria-label="Birincil">
+      <a href="index.html" data-sec="hero">Genel bakış</a>
+      <a href="index.html#see-it" data-sec="see-it">İnceleyin</a>
+      <a href="index.html#features" data-sec="features">Özellikler</a>
+      <a href="blog/" data-dock-blog="">Blog</a>
+    </nav>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="Mobil">
-        <a href="index.html#features"><span class="mm-n">01</span>Özellikler</a>
-        <a href="index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="index.html#use-cases"><span class="mm-n">01</span>Kullanım alanları</a>
+        <a href="index.html#problem" data-slider-goto="problem"><span class="mm-n">02</span>Nasıl çalışır</a>
         <a href="../education/"><span class="mm-n">03</span>Eğitim</a>
         <a href="blog/"><span class="mm-n">04</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket alternatifi: Gerçekten önemli olanlar</a>
@@ -123,12 +130,12 @@
 <main id="main">
 
   <!-- ── Hero ────────────────────────────────────────────────────── -->
-  <section class="hero hero-scene hscene" data-hscene="">
+  <section id="hero" class="hero hero-scene hscene" data-hscene="">
   <div class="hs-grid">
     <div class="hs-text"><div class="hs-text-in">
       <div class="eyebrow"><span class="dash"></span> Chrome Eklentisi · byphil. parçasıdır <span class="dash"></span></div>
-      <h1>Web'i özetleyin.<br><em>Önemli olanları saklayın.</em></h1>
-      <p class="sub">Tek bir tıkla herhangi bir sayfayı makalenin yanında kısa bir özete dönüştürün. Her şey tarayıcınızda kalır, böylece daha sonra tekrar bulabilirsiniz.</p>
+      <h1>Okumayı<br><em>kalıcı bilgiye dönüştürün.</em></h1>
+      <p class="sub">Makaleleri, PDF'leri ve videoları daha hızlı anlayın. Yanıtları kaynaklarından kontrol edin. Kendi cihazınızda özel ve aranabilir bir bilgi tabanı kurun.</p>
       <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=tr&amp;utm_campaign=cta" target="_blank" rel="noopener" class="btn-primary" data-desktop-cta="">Chrome'a ekle — Ücretsiz</a>
@@ -136,7 +143,7 @@
         </div>
         <p class="send-note" data-send-note="" hidden="">Telefondaki Chrome uzantı yükleyemez. Bağlantıyı bilgisayarınıza gönderip oradan ekleyin. <a href="#" data-send-mail="">Bana e-posta ile gönder</a> · <a href="#" data-send-copy="">Bağlantıyı kopyala</a></p>
         <p class="hero-proof"><a href="https://www.producthunt.com/products/ai-summary-helper/launches/ai-summary-helper-summarize-articles" target="_blank" rel="noopener" data-track="hero-producthunt">Product Hunt'ta 139 upvote</a> · <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">Açık kaynak</a> · AB'de geliştirildi</p>
-        <p class="hero-meta">Hesap gerektirmez · Kendi AI anahtarınızı kullanın veya Ollama ile tamamen çevrimdışı çalıştırın</p>
+        <p class="hero-meta">Hesap yok · Kendi anahtarınız veya yerel Ollama · Açık kaynak · AB'de üretildi</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>İstediğiniz sayfayı okuyun.</b><span>Her zamanki gibi bir makale açın. AISH tarayıcınızda sessizce bekler.</span></li>
@@ -188,9 +195,23 @@
         </div>
       </div>
       <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
-      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>Videoyu izleyin</strong><small>Her şey bir dakikadan kısa sürede</small></span></a>
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>Videoyu izleyin</strong><small>İki dakikada tüm tur</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="Tanıtım turu"><button type="button" class="hs-pp" aria-label="Tanıtımı duraklat"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="1. Adım"></button><button type="button" class="hs-dot" aria-label="2. Adım"></button><button type="button" class="hs-dot" aria-label="3. Adım"></button><button type="button" class="hs-dot" aria-label="4. Adım"></button></div>
       <p class="sr-only">AI Summary Helper, makalenin kısa bir özetini yan panelde açar, kaynak paragrafa bağlanan devam soruları sormanıza olanak tanır ve özetleri seçtiğiniz dile çevirir.</p>
+    </div>
+  </div>
+</section>
+
+<section id="use-cases" class="use-case-section">
+  <div class="wrap">
+    <div class="section-head center reveal"><div class="eyebrow">Okuma biçiminize göre tasarlandı</div><h2>Yolunuzu seçin</h2></div>
+    <div class="use-case-grid blog-grid reveal">
+      <a href="research-papers/" class="use-case-card blog-card"><span class="blog-date">Araştırmacılar ve öğrenciler için</span><h3>Araştırma ve PDF'ler<br>kaynağı kaybetmeden</h3><span class="blog-read">Araştırma modunu keşfedin →</span></a>
+      <a href="youtube-summarizer/" class="use-case-card blog-card"><span class="blog-date">Videodan öğrenenler için</span><h3>Uzun videoları<br>kullanabileceğiniz bilgiye dönüştürün</h3><span class="blog-read">Video okumayı keşfedin →</span></a>
+      <a href="rss-news/" class="use-case-card blog-card"><span class="blog-date">Kişisel haber araştırması için</span><h3>Kendi gündeminizi<br>siz seçin</h3><span class="blog-read">Yerel RSS'i keşfedin →</span></a>
+      <a href="e-reader/" class="use-case-card blog-card"><span class="blog-date">E-okuyucu kullananlar için</span><h3>Bir kez arşivleyin,<br>Kindle'ınızda okuyun</h3><span class="blog-read">E-okuyucu akışını keşfedin →</span></a>
+      <a href="local-ai/" class="use-case-card blog-card"><span class="blog-date">Gizliliğe önem verenler için</span><h3>Okuduklarınız<br>sizde kalır</h3><span class="blog-read">Yerel iş akışını görün →</span></a>
+      <a href="mcp/" class="use-case-card blog-card"><span class="blog-date">Bağlantılı yapay zekâ akışları için</span><h3>Bilginizi<br>bağlayın</h3><span class="blog-read">MCP'yi keşfedin →</span></a>
     </div>
   </div>
 </section>
@@ -204,35 +225,52 @@
         <div class="eyebrow">İnceleyin</div>
         <h2>Özet makalenin hemen yanında yer alır</h2>
         <p>Genel bakışı okuyun, soru sorun ve yanıtın hangi paragraftan geldiğini görün. Gerçek arayüz, sürüm 2.2.</p>
+        <nav class="slide-jumps" aria-label="Nasıl çalışır">
+          <a href="#problem" data-slider-goto="problem">Sorun</a>
+          <a href="#understand" data-slider-goto="understand">Anlayın</a>
+          <a href="#verify" data-slider-goto="verify">Doğrulayın</a>
+          <a href="#retain" data-slider-goto="retain">Akılda tutun</a>
+          <a href="#difference" data-slider-goto="difference">Özetten fazlası</a>
+          <a href="#privacy" data-slider-goto="privacy">Gizlilik</a>
+        </nav>
       </div>
       <div class="cx cx--fit reveal" data-carousel="" role="region" aria-roledescription="carousel" aria-label="Ürün ekran görüntüleri">
         <div class="cx-stage">
           <ul class="cx-track" tabindex="0">
-          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 5">
+          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 8" id="problem">
+            <figure><div class="cx-card" style="--img:url(photo/evening-sofa-ereader-1600.webp)"><span class="cx-big cx-big--text">Sonra okunacaklar yığını</span><strong class="cx-title">Okuyabileceğinizden çok daha fazlasını kaydediyorsunuz</strong><span class="cx-text">Kaydettiğimiz içeriklerin çoğunu bir daha nadiren açarız. Digest sizin için beş kayıt seçer ve çevrimdışı okumanız için iletir.</span><small class="cx-src">1. Digest'e dokunun · 2. Havayı seçin · 3. Çevrimdışı okumaya gönderin</small><a class="cx-slide-link" href="blog/kaydedildi-ama-hic-okunmadi.html">Rehberi okuyun →</a></div><figcaption><strong>On iki sekmede değil, akşam okuyun</strong><span>Digest, kaydedilmiş bağlantı yığınını akşamınız, Kindle'ınız veya yolculuğunuz için anlamlı tek bir pakete dönüştürür.</span></figcaption></figure>
+          </li>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 8" id="understand">
             <figure>
               <img src="../assets/shots/aish-inpage-detail-en.webp" srcset="../assets/shots/aish-inpage-detail-en-720.webp 720w, ../assets/shots/aish-inpage-detail-en.webp 1440w" sizes="(max-width: 820px) 92vw, 1100px" width="1440" height="900" loading="lazy" alt="Makalenin yanındaki yan panelde özet">
               <figcaption><strong>Makalenin yanındaki özet</strong><span>Sayfadan ayrılmadan genel bakışı okuyun.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 8" id="verify">
             <figure>
               <img src="../assets/shots/aish-inpage-ask-en.webp" width="1440" height="900" loading="lazy" alt="Kaynak işareti ve makalede vurgulanan cümlelerle devam sorusu yanıtı">
               <figcaption><strong>Sayfaya sorun</strong><span>Yanıtlar, alındıkları metin bölümünü işaret eder.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 8">
             <figure>
               <img src="../assets/shots/aish-split-wide-en.webp" width="1280" height="800" loading="lazy" alt="Liste, bilgi grafiği ve analizlerin yan yana olduğu split view görünümü">
               <figcaption><strong>2.2 ile yeni: split view</strong><span>Geniş ekranlarda liste, bilgi grafiği ve analizler yan yana.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="5 / 8" id="retain">
             <figure>
               <img src="../assets/shots/aish-research-dark-en.webp" width="1280" height="800" loading="lazy" alt="Koyu modda makale koleksiyonu içeren research mode">
               <figcaption><strong>2.2 ile yeni: research mode</strong><span>Bilimsel makaleler için araştırma detayları, DOI atıfları ve koleksiyonlar.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="5 / 5" data-desktop-only="">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="6 / 8" id="difference">
+            <figure><div class="cx-card" style="--img:url(photo/scene-library-laptop-1200.webp)"><span class="cx-big cx-big--text">Bir özetten fazlası</span><strong class="cx-title">Tek seferlik özet burada biter</strong><span class="cx-text">AISH, bir yanıtı kontrol edebileceğiniz, saklayabileceğiniz ve geri dönebileceğiniz bir kaynağa dönüştürür.</span><div class="cx-compare" aria-label="Tek seferlik özetle karşılaştırıldığında AISH"><div class="cx-compare-row"><span>AISH</span><strong>Kaynağa bağlı yanıtlar</strong></div><div class="cx-compare-row is-muted"><span>Tek seferlik özet</span><strong>Kaynağa iz bırakmayan özet</strong></div><div class="cx-compare-row"><span>AISH</span><strong>Yerel, aranabilir arşiv</strong></div><div class="cx-compare-row is-muted"><span>Tek seferlik özet</span><strong>Kalıcı okuma bağlamı yok</strong></div><div class="cx-compare-row"><span>AISH</span><strong>DOI tanıyan araştırma modu</strong></div><div class="cx-compare-row is-muted"><span>Tek seferlik özet</span><strong>Her sayfa için aynı akış</strong></div></div><small class="cx-src">Anlayın · Doğrulayın · Akılda tutun</small></div><figcaption><strong>Yalnızca daha kısa bir sayfa değil</strong><span>Kaynağı, bağlamı ve sıradaki soruyu bir arada tutun.</span></figcaption></figure>
+          </li>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="7 / 8" id="privacy">
+            <figure><div class="cx-card" style="--img:url(photo/nas-shelf-laptop-phone-1600.webp)"><span class="cx-big cx-big--text">byphil felsefesiyle geliştirildi</span><strong class="cx-title">Arşiviniz tamamen size aittir</strong><span class="cx-text">Arama, mükerrer kayıt tespiti, etiket temizleme ve benzer makale önerileri; sunucusuz ve hesapsız olarak doğrudan tarayıcınızda çalışır. Tarayıcınızdan yalnızca özetleme istekleri çıkar ve o da sadece sizin seçtiğiniz AI sağlayıcısına iletilir. Yerel bir Ollama modeli kullandığınızda ise bu veriler bile cihazınızda kalır.</span><small class="cx-src">Yerel arşiv · Sizin sağlayıcınız · Hesap gerekmez</small><a class="cx-slide-link" href="gizlilik.html">Gizlilik modelini okuyun →</a></div><figcaption><strong>Kitaplığınız cihazınızda yaşar</strong><span>Anahtarınızı, modelinizi ve okuma arşivinizin nerede duracağını seçin.</span></figcaption></figure>
+          </li>
+          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="8 / 8" data-desktop-only="">
             <figure>
               <div class="demo-frame" data-demo="" data-demo-scale="1180" data-src="../demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Canlı demoyu başlat</span></button>
@@ -241,7 +279,7 @@
               <figcaption><strong>Gerçek bir sayfada Summarize butonuna tıklayın</strong><span>Bu, örnek bir makale üzerinde tarayıcınızda çalışan gerçek eklenti arayüzüdür. Hiçbir veri dışarı aktarılmaz.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="5 / 5" data-mobile-only="">
+          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="8 / 8" data-mobile-only="">
             <figure>
               <div class="demo-frame demo-frame--phone" data-demo="" data-demo-fit="420x800" data-demo-params="chrome=0&amp;tour=0&amp;surface=sidepanel" data-src="../demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Yan paneli deneyin</span></button>
@@ -253,20 +291,28 @@
           <button type="button" class="cx-nav cx-prev" aria-label="Önceki slayt"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
           <button type="button" class="cx-nav cx-next" aria-label="Sonraki slayt"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
         </div>
-        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="1. Slayt"></button><button type="button" class="cx-dot" aria-label="2. Slayt"></button><button type="button" class="cx-dot" aria-label="3. Slayt"></button><button type="button" class="cx-dot" aria-label="4. Slayt"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="Slayt 5: canlı demo">Demo</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="Slayt 5: canlı demo">Demo</button></div>
+        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Okuma listesi sorunu slaytına git"></button><button type="button" class="cx-dot" aria-label="Anlama slaytına git"></button><button type="button" class="cx-dot" aria-label="Doğrulama slaytına git"></button><button type="button" class="cx-dot" aria-label="Bilgi grafiği slaytına git"></button><button type="button" class="cx-dot" aria-label="Akılda tutma slaytına git"></button><button type="button" class="cx-dot" aria-label="Gizlilik slaytına git"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="Canlı demo slaytına git">Demo</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="Canlı demo slaytına git">Demo</button></div>
       </div>
     </div>
   </section>
 
-  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (../assets/main.js) ──
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
        Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
        when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="archive" class="outcome-section">
+    <div class="wrap">
+      <div class="section-head center reveal"><div class="eyebrow">Arşiv</div><h2>Okuduklarınız saklanır ve taşınabilir</h2><p>Kaydetmek, AI Summary Helper'ın özüdür. Arşivlediğiniz her şey cihazınızda kalır ve sizinle gelebilir.</p></div>
+      <div class="outcome-grid reveal"><article class="outcome-card"><span class="outcome-kicker">Saklayın</span><h3>Görselleriyle makaleler</h3><p>Yalnızca bağlantıyı değil, makalenin tamamını kaydedin. Görseller yeniden boyutlandırılıp sıkıştırılır; sayfa okunur ve küçük kalır.</p></article><article class="outcome-card"><span class="outcome-kicker">Bulun</span><h3>Cihazınızda arayın ve bağlayın</h3><p>Tam metin arama, etiketler ve bilgi grafiği, kitaplığınız yüklenmeden tarayıcınızda çalışır.</p></article><article class="outcome-card"><span class="outcome-kicker">Yanınıza alın</span><h3>Kindle'a veya LocalSend'e gönderin</h3><p>Bir makaleyi veya derlemeyi Kindle'ınıza ya da doğrudan bir KOReader veya LocalSend cihazına gönderin ve ekrandan uzakta okuyun.</p></article></div>
+      <div class="hero-cta reveal" style="justify-content:center;margin-top:24px;"><a class="btn-secondary" href="e-reader/">Arşiv ve e-okuyucu →</a></div>
+    </div>
+  </section>
+
   <section id="videos">
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="eyebrow">İzle</div>
         <h2>Her özellik 20 saniyeden kısa sürede</h2>
-        <p>Gerçek uzantıdan kaydedilmiş kısa klipler. Birine dokunun ve diğerlerini kaydırarak izleyin.</p>
+        <p>Gerçek uzantıdan kaydedilmiş kısa klipler. Birine dokunup burada oynatın, diğerlerine de göz atın.</p>
       </div>
       <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
       <div class="vfeed-labels" hidden="">
@@ -277,14 +323,14 @@
       </div>
       <div class="vstack reveal" data-vstack="">
         <figure class="vstack-item" data-blog-video="komplett" style="--i:0">
-          <button class="vstack-open" type="button" aria-label="Oynat: Bir dakikadan kısa sürede AI Summary Helper">
+          <button class="vstack-open" type="button" aria-label="Oynat: İki dakikada AI Summary Helper">
             <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/komplett-en.jpg">
               <source src="../assets/blog/video/komplett-en.mp4" type="video/mp4">
             </video>
             <span class="vstack-play" aria-hidden="true">▶</span>
           </button>
           <figcaption>
-            <strong>Bir dakikadan kısa sürede AI Summary Helper</strong>
+            <strong>İki dakikada AI Summary Helper</strong>
             <span>Tüm özellikler tek bir hızlı turda: özetler, kaynaklar, araştırma modu, kütüphane, akışlar, AI uygulamaları ve daha fazlası.</span>
             <a href="blog/videos.html">Tüm videolar →</a>
           </figcaption>
@@ -535,7 +581,7 @@
   </section>
 
   <!-- ── Features ────────────────────────────────────────────────── -->
-  <section id="features">
+  <section id="features" data-default-persona="all">
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="eyebrow">Neler yapar?</div>
@@ -597,7 +643,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>Yerleşik RSS okuyucu</h3>
-          <p>Blogları ve haber sitelerini takip edin; kaynak, etiket, tarih veya ruh haline göre filtreleyin; OPML dosyanızı içe aktarın ve herhangi bir içeriği tek tıkla açın ya da özetleyin. Podcast akışlarını doğrudan eklenti içinde dinleyin ve başlıklardan günlük isteğe bağlı AI özeti alın. Favoriler arşivinize eklenir, akışlar ise cihazınızda saklanır.</p>
+          <p>Blogları ve haber sitelerini takip edin; kaynağa, etikete, tarihe veya havaya göre süzün, OPML içe aktarın ve herhangi bir öğeyi tek tıkla özetleyin. Podcast akışlarını uzantıda oynatın ve isterseniz yapay zekâ özeti alın; akışlar ve favoriler cihazınızda kalır.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -611,7 +657,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" stroke-width="1.7"></rect><path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="#fff"></path></svg></div>
           <h3>Altyazılar üzerinden YouTube videoları</h3>
-          <p>Bir video açın ve özetleyin. Uzantı altyazıları okur, ana noktaları kendi dilinizde çıkarır ve takip sorularının yanıtlarında ilgili bölüme atıfta bulunur.</p>
+          <p>YouTube videolarını altyazılarından özetleyin, ana noktaları kendi dilinizde alın ve kaynak alıntılı takip soruları sorun.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -625,7 +671,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M14 3v4h4M9.5 12h5M9.5 15.5h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Tıpkı diğer sayfalar gibi PDF'ler</h3>
-          <p>Tarayıcıda bir PDF açın veya diskinizden yükleyin; sıradan bir web sayfası gibi özetleyin. “Kullanılanlar” bölümü modelin neleri okuduğunu gösterir: kelimeler, token'lar ve model.</p>
+          <p>Tarayıcıdaki PDF'leri veya diskteki dosyaları her sayfa gibi özetleyin. “Kullandıklarım”, yapay zekânın okuduğu sözcükleri, token'ları ve modeli gösterir.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher feeds go">
@@ -639,7 +685,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>20'den fazla dil, platformlar arası</h3>
-          <p>Dilediğiniz dilde okuyun ve özetleyin. Eklenti, yerel yan panel veya <a href="../bookmarklet.html">bookmarklet</a> — tarayıcı eklentisinin ulaşamadığı her yer için.</p>
+          <p>20'den fazla dilde uzantıyla, yerleşik yan panelle veya <a href="../bookmarklet.html">bookmarklet</a> uzantı bir sayfaya erişemediğinde okuyup özetleyin.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
@@ -653,7 +699,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI özetleri, sizin model tercihiniz</h3>
-          <p>OpenAI, Gemini, Mistral, DeepSeek veya özel bir endpoint — ya da yerel bir Ollama modeline bağlayın ve bu adımda ağ bağlantısına hiç dokunmayın.</p>
+          <p>OpenAI, Gemini, Mistral, DeepSeek, özel bir uç nokta ya da yerel Ollama seçin; özetleriniz cihazınızdan hiç çıkmak zorunda kalmaz.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="researcher go">
@@ -667,7 +713,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>Doğrudan sayfa üzerinde hayalet vurgular</h3>
-          <p>Yapay zeka makaledeki <mark class="ai-ghost-highlight">en önemli doğrudan alıntıları</mark> hafifçe vurgular — böylece <mark class="ai-ghost-highlight">ana fikirleri bir bakışta gözden geçirebilirsiniz</mark>, ayrıca bu vurgular özetle birlikte Kindle, LocalSend veya Markdown'a aktarılır.</p>
+          <p>Yapay zekâ <mark class="ai-ghost-highlight">önemli pasajları kelimesi kelimesine vurgular,</mark> böylece temel çıkarımlara göz atabilir ve bunları özetle birlikte Kindle, LocalSend veya Markdown'a aktarabilirsiniz.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -681,7 +727,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6c3-1.4 5.5-1.4 8 0v13c-2.5-1.4-5-1.4-8 0V6ZM20 6c-3-1.4-5.5-1.4-8 0v13c2.5-1.4 5-1.4 8 0V6Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>Araştırma modu: DOI ile tanınan makaleler</h3>
-          <p>Bilimsel makaleler DOI ve atıf meta verilerinden tanınarak klinik çalışma, derleme veya preprint olarak etiketlenir. Yöntem, örneklem ve kısıtlar ayıklanır; alıntı ise yapay zekâ tarafından değil, doğrudan DOI kaydından oluşturulur.</p>
+          <p>Araştırma makalelerini DOI ve atıf üst verisinden tanıyın; deney, derleme veya ön baskı durumunu işaretleyin; tasarımı, örneklemi, sınırlılıkları ve DOI kayıt sistemindeki atıfları çıkarın.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -695,7 +741,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect><rect x="10" y="10" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect></svg></div>
           <h3>Tek bir soruda kaynakları karşılaştırın</h3>
-          <p>Kaydedilen makaleleri bir koleksiyonda toplayın, kaynak türünü belirtin (peer-reviewed, preprint, haber, köşe yazısı), çapraz okuma denetimini çalıştırın ve yapay zekânın özetleri karşılaştırmasını sağlayın: nerede uzlaşıyorlar, nerede ayrışıyorlar ve eksik olan ne?</p>
+          <p>Makaleleri gruplayın, kaynakları hakemli, ön baskı, haber veya görüş olarak etiketleyin, yanal okuma kontrolü yapın ve özetlerin nerede uzlaştığını, ayrıştığını veya bağlamı kaçırdığını karşılaştırın.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="feeds go">
@@ -709,7 +755,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M5 10v4h3l4.5 3.5v-11L8 10H5Z" fill="#fff"></path><path d="M16 9c1.3 1.7 1.3 4.3 0 6M18.5 6.5c2.5 3 2.5 8 0 11" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Anında okuma: yazılırken dinleyin</h3>
-          <p>Özet henüz yazılırken seslendirilir: önce başlık, ardından cümle cümle. Duraklatma, sessize alma ve hız kontrolü ile. Dilediğiniz karttan tekrar dinleyin.</p>
+          <p>Özet yazılırken dinleyin: önce başlık, sonra cümle cümle; duraklatma, sessize alma ve hız ayarıyla. Herhangi bir karttan yeniden oynatın.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder">
@@ -723,7 +769,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Cihazınızda gerçek arama</h3>
-          <p>Başlıklar, etiketler ve makale içeriğinde tam metin arama — tarayıcınızda oluşturulan TF-IDF dizini ile desteklenir. Sunucu trafiği yok, gecikme yok, hiçbir yere veri gönderilmez.</p>
+          <p>Başlıklarda, etiketlerde ve makale içeriğinde tarayıcıda çalışan TF-IDF diziniyle arayın. Tam metin arama, sunucuya gidip gelmeden cihazda kalır.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
@@ -737,7 +783,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>Sadece bir liste değil, bir bilgi grafiği</h3>
-          <p>Kaydettiğiniz makalelerin ortak etiketler ve hiçbir etiket paylaşmasalar bile konu benzerliği üzerinden nasıl bağlandığını görün.</p>
+          <p>Kaydedilen makalelerin ortak etiketler ve konu benzerliğiyle nasıl bağlandığını, ortak etiketleri olmasa bile görün.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
@@ -751,7 +797,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>Daha sonra okumak için, bilinçli kaydedin</h3>
-          <p>Bir daha asla açmayacağınız bir yığına dönüşmesini izlemek yerine, gerekçe ve zaman dilimiyle bir "karar" olarak işaretleyin ve hatırlatıcı alın.</p>
+          <p>Bir kararı gerekçesi ve süresiyle kaydedin, okunmamış yığının içinde kaybolmadan önce hatırlatma alın.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="hoarder go">
@@ -765,7 +811,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Kendi kendini derleyen bir digest</h3>
-          <p>Tek bir dokunuşla, aynı haberin beş farklı versiyonu yerine kaydedilenlerinizden çeşitli ve küçük bir seçki oluşturulup Kindle veya LocalSend için tek dosyada toplanır.</p>
+          <p>Tek dokunuş, aynı haberin beş sürümü yerine çeşitli bir derleme hazırlar ve Kindle veya LocalSend için paketler.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -779,7 +825,7 @@
           </figure>
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#fff" stroke-width="1.7"></circle><path d="M8.5 14c1 1.6 2.2 2.3 3.5 2.3s2.5-.7 3.5-2.3M9 9.5h.01M15 9.5h.01" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>Duygu durumu filtresi ve zaman içindeki değişim</h3>
-          <p>Yapay zekâ başlıkları ağırlığına ve olumluluğuna göre derecelendirir. Tek dokunuşla sadece iyi haberleri görüntüleyin ve okumalarınızın duygu durumunu gün, hafta ve ay bazında takip edin.</p>
+          <p>Başlıkları ağırdan iyiye puanlayın, iyi haberleri süzün ve okuma havanızı gün, hafta veya ay bazında izleyin.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher hoarder">
@@ -793,18 +839,18 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="11" rx="2.2" stroke="#fff" stroke-width="1.7"></rect><path d="M9 20h6M12 16v4M8.5 10.5l2 2 3.5-4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>Kütüphaneniz Claude, LM Studio ve Cursor içinde</h3>
-          <p>Ayarlar'dan AI uygulamalarını etkinleştirin; bilgisayarınızdaki Claude Desktop, LM Studio, Cursor ve diğer MCP uygulamaları kütüphanenizde arama yapabilsin, vurgularınızdan alıntılayabilsin ve okunacakları listeleyebilsin. İzin verirseniz sizin için bağlantı da kaydedebilirler. Hiçbir veri sunucumuza gitmez; neyi okuyabileceklerini tamamen siz belirlersiniz.</p>
+          <p>Claude Desktop, LM Studio, Cursor ve diğer MCP uygulamaları kitaplığınızda arayabilir, vurgularınızı alıntılayabilir ve süresi gelenleri listeleyebilir. Erişimi siz yönetirsiniz; hiçbir şey sunucumuzdan geçmez.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Kütüphaneniz kendi depolama alanınızda, şifrelenmiş olarak</h3>
-          <p>Kütüphanenizi kendi Nextcloud, WebDAV sunucunuz, S3 bucket'ınız veya bilgisayarınızdaki bir klasörle eşitleyip yedekleyin. Her şey önce tarayıcınızda şifrelenir; bu sayede sunucu yalnızca şifrelenmiş dosyaları görür. Ayrıca arama, etiket grafiği ve 3D harita içeren bir listeyi kendi web sitenizde yayınlayabilirsiniz. Bir konum ekleyene kadar kapalıdır; hiçbir eşitleme sunucusu barındırmıyoruz ve verilerinizi kesinlikle görmüyoruz. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Nasıl kurulur</a> · <a href="blog/digital-sovereignty-for-individuals.html">Neden önemli</a></p>
+          <p>Şifreli kitaplığınızı Nextcloud'unuza, WebDAV sunucunuza, S3 kovanıza veya yerel klasöre eşitleyin. Etiket grafiği ve 3D harita içeren aranabilir bir liste yayımlayın; eşitleme sunucusu işletmiyoruz. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Nasıl kurulur</a> · <a href="../demo/index.html?screen=settings&amp;panel=sync&amp;flow=sync-add" target="_blank" rel="noopener">Eşitleme kurulumunu deneyin</a></p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Her sayfada notlar ve yorumlar</h3>
-          <p>Metni seçin ve tercihinizi yapın: vurgulayın, yorum ekleyin veya alıntıyla birlikte bir not kaydedin. Her şey Notes sekmesinde toplanır; makaleye veya etikete göre liste ya da yapışkan notlar ızgarası olarak görüntülenir ve kütüphanenizin geri kalanıyla senkronize edilir.</p>
+          <p>Metni vurgulayın, yorum ekleyin veya alıntılı not kaydedin. Notları, kitaplığınızın yanında makaleye veya etikete göre liste ya da yapışkan not ızgarası olarak düzenleyin.</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">
@@ -817,7 +863,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>Obsidian, Markdown, Word ve PDF olarak dışa aktarın</h3>
-          <p>Başlık, kaynak, etiketler ve vurgularınızı tek bir notta toplayarak özeti doğrudan Obsidian vault'unuza gönderin veya Markdown, Word (DOCX), OpenDocument ya da PDF olarak dışa aktarın.</p>
+          <p>Özetleri başlık, kaynak, etiketler ve vurgularla tek bir notta Obsidian, Markdown, Word (DOCX), OpenDocument veya PDF'e aktarın.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
         <div class="feature-card" data-personas="hoarder feeds">
@@ -831,7 +877,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V11M12 19V5M19 19v-6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path></svg></div>
           <h3>Okumalarınıza dair analitik raporu</h3>
-          <p>Tamamen kendi kütüphanenizden hesaplanan okuma serisi (streak), özetlerle kazanılan zaman, aktivite, haftalara göre konular ve kelime bulutu.</p>
+          <p>Okuma serilerini, özetlerin kazandırdığı zamanı, etkinliği, haftanın konularını ve kendi kitaplığınızdan hesaplanan sözcük bulutunu görün.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Klibi izleyin</button>
         </div>
       </div>
@@ -868,6 +914,7 @@
         });
         if (blurb) blurb.textContent = text(name) || blurb.textContent;
         if (count) { count.hidden = name === 'all'; count.textContent = shown + ' / ' + cards.length; }
+        if (!fromUser && !/^#for=/.test(location.hash) && location.hash) return;   // a link to a clip (#v=...) keeps its hash for the player
         try {
           history.replaceState(null, '', name === 'all' ? location.pathname + location.search : location.pathname + location.search + '#for=' + name);
         } catch (e) {}
@@ -880,38 +927,10 @@
 
       // #for=<audience> in a link opens the page filtered
       var m = /^#for=([a-z]+)$/.exec(location.hash);
-      if (m && names[m[1]]) setPersona(m[1], false);
+      var initial = document.getElementById('features').getAttribute('data-default-persona') || 'all';
+      setPersona(m && names[m[1]] ? m[1] : initial, false);
     })();
   </script>
-
-  <!-- ── Digest spotlight ────────────────────────────────────────── -->
-  <section id="digest">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <div class="eyebrow">Sonra okunacaklar yığını</div>
-        <h2>Okuyabileceğinizden çok daha fazlasını kaydediyorsunuz</h2>
-        <p>Kaydettiğimiz içeriklerin çoğunu bir daha nadiren açarız. Digest sizin için beş kayıt seçer ve çevrimdışı okumanız için iletir.</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="../assets/photo/evening-sofa-ereader-600.webp" srcset="../assets/photo/evening-sofa-ereader-600.webp 600w, ../assets/photo/evening-sofa-ereader-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1600" height="1195" loading="lazy" decoding="async" alt="İllüstrasyon: Akşam vakti koltukta, battaniyenin altında e-kitap okuyucusundan okuma yapan bir kişi">
-        <figcaption>On iki sekme arasında değil, akşam keyifle okuyun. İllüstrasyon, yapay zekâ ile oluşturulmuştur.</figcaption>
-      </figure>
-      <div class="feature-grid digest-steps reveal">
-        <div class="feature-card">
-          <h3 style="margin-top:0;">1. Digest'e tıklayın</h3>
-          <p>Güncellik ve çeşitliliğe göre özenle seçilmiş beş kaydınız.</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">2. İsterseniz modu belirleyin</h3>
-          <p>İster neşeli, ister tarafsız, ister derin: seçim tamamen ruh halinize ayak uydurur.</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">3. Çevrimdışı okumaya gönderin</h3>
-          <p>Uçuşta veya yolculukta okumak için hazır, Kindle'ınıza veya ağınızdaki bir cihaza tek bir paket halinde.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ── Phone companion ────────────────────────────────────────── -->
   <section id="phone">
@@ -942,28 +961,13 @@
     </div>
   </section>
 
-  <!-- ── Why on-device ──────────────────────────────────────────── -->
-  <section>
-    <div class="wrap wrap-narrow">
-      <div class="section-head center reveal">
-        <div class="eyebrow">byphil felsefesiyle geliştirildi</div>
-        <h2>Arşiviniz tamamen size aittir</h2>
-        <p>Arama, mükerrer kayıt tespiti, etiket temizleme ve benzer makale önerileri; sunucusuz ve hesapsız olarak doğrudan tarayıcınızda çalışır. Tarayıcınızdan yalnızca özetleme istekleri çıkar ve o da sadece sizin seçtiğiniz AI sağlayıcısına iletilir. Yerel bir Ollama modeli kullandığınızda ise bu veriler bile cihazınızda kalır.</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="../assets/photo/scene-library-laptop-600.webp" srcset="../assets/photo/scene-library-laptop-600.webp 600w, ../assets/photo/scene-library-laptop-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1200" height="670" loading="lazy" decoding="async" alt="İllüstrasyon: Düzenli ahşap bir masanın üzerinde, bir bitki ve not defterlerinin yanında duran bir dizüstü bilgisayar">
-        <figcaption>Kütüphaneniz tamamen cihazınızda barınır. İllüstrasyon, yapay zekâ ile oluşturulmuştur.</figcaption>
-      </figure>
-    </div>
-  </section>
-
   <!-- ── Pricing ─────────────────────────────────────────────────── -->
   <section id="pricing">
     <div class="wrap wrap-narrow">
       <div class="section-head center reveal">
         <div class="eyebrow">Herkes için ücretsiz</div>
-        <h2>Ücretsiz. Bağışlar AI modellerinin kilidini açar.</h2>
-        <p>Kendi AI anahtarınızla veya yerel bir modelle her şey ücretsiz çalışır. Beğendiyseniz, teşekkür etmenin en iyi yolu bir bağış yapmaktır. Bağış yaptığınızda ayrıca byphil Cloud'a erişirsiniz: Tek bir yerde birçok AI modeli, anahtar veya kurulum gerektirmez ve byphil tarafından geliştirilen tüm araçları destekler.</p>
+        <h2>Projeyi destekleyin. Zahmetsiz yapay zekâ edinin.</h2>
+        <p>Her şey kendi yapay zekâ anahtarınızla veya yerel bir modelle ücretsiz çalışır. Support Pass, bağımsız ve yerel öncelikli yazılımı finanse eder; arşivinizi rehin almadan zahmetsiz yapay zekâ ve sınırsız çevrimdışı okuma ekler.</p>
       </div>
 
       <div style="text-align:center;">
@@ -999,7 +1003,7 @@
           <ul>
             <li>byphil Cloud: Birçok AI modeli, API anahtarı gerekmez</li>
             <li>Digest'ler dahil sınırsız Kindle ve LocalSend gönderimi</li>
-            <li>Tüm byphil araçlarını destekler</li>
+            <li>Bağımsız, açık kaynak geliştirmeyi destekler</li>
           </ul>
           <a href="https://byphil.eu/#pass" class="tier-cta">Projeyi destekleyin</a>
         </div>
@@ -1016,31 +1020,77 @@
       <div class="section-head center reveal">
         <div class="eyebrow">Sorular</div>
         <h2>Yüklemeden önce</h2>
+        <p>Yanıtlarda konuya, sağlayıcıya, gizliliğe, arşive veya platforma göre arayın.</p>
       </div>
-      <div class="faq reveal">
-        <details>
+      <div class="faq-tools reveal">
+        <label class="sr-only" for="faqSearch">Sık sorulan sorularda arayın</label>
+        <input id="faqSearch" type="search" data-faq-search="" placeholder="SSS'de ara…" autocomplete="off" spellcheck="false" aria-controls="faqList">
+        <div class="faq-filters" role="group" aria-label="Soruları konuya göre süzün">
+          <button type="button" class="faq-filter is-active" data-faq-filter="all" aria-pressed="true">Tümü</button>
+          <button type="button" class="faq-filter" data-faq-filter="basics" aria-pressed="false">Temel bilgiler</button>
+          <button type="button" class="faq-filter" data-faq-filter="privacy" aria-pressed="false">Gizlilik</button>
+          <button type="button" class="faq-filter" data-faq-filter="ai" aria-pressed="false">Yapay zekâ ve kaynaklar</button>
+          <button type="button" class="faq-filter" data-faq-filter="archive" aria-pressed="false">Arşiv</button>
+          <button type="button" class="faq-filter" data-faq-filter="platforms" aria-pressed="false">Platformlar</button>
+        </div>
+        <p id="faqSearchStatus" class="faq-search-status" aria-live="polite"></p>
+      </div>
+      <div class="faq reveal" id="faqList">
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
           <summary>Kullanmak için hesaba ihtiyacım var mı?</summary>
-          <p>Hayır. Yükleyin, kendi AI sağlayıcı anahtarınızı ekleyin (veya yerel bir Ollama modeli kullanın) ve kaydetmeye başlayın. Hesap yalnızca byphil Cloud (anahtarsız birçok AI modeli) veya bağışla açılan daha fazla Kindle/LocalSend gönderimi istiyorsanız gereklidir.</p>
+          <p>Hayır. Kurun, kendi yapay zekâ sağlayıcı anahtarınızı girin veya yerel bir Ollama modeli kullanın ve kaydetmeye başlayın. Hesap yalnızca isteğe bağlı byphil Cloud erişimi veya ek Kindle/LocalSend gönderimleri için gerekir. <a href="blog/kendi-anahtarin-kendi-modelin.html">Sağlayıcı seçeneklerini görün →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="privacy">
           <summary>Tarayıcımdan gerçekte hangi veriler çıkıyor?</summary>
-          <p>Yalnızca özetleme isteği —yapılandırdığınız AI sağlayıcısına gönderilir— ayrıca RSS okuyucuyu kullanıyorsanız abone olduğunuz akışlara yapılan istekler ve yalnızca bir AI özetine tıkladığınızda o günün başlıkları ile kısa alıntıları. Arama, mükerrer içerik tespiti, etiket temizleme, okuma seviyesi ve duygu analizi ile "benzer makaleler" önerilerinin tümü tamamen kendi kayıtlı arşiviniz üzerinde yerel olarak çalışır.</p>
+          <p>Ayarladığınız yapay zekâ sağlayıcısına yalnızca özetleme isteği gider. RSS ayrıca abone olduğunuz akışlara istek gerektirir; yapay zekâ özeti başlıkları ve kısa parçaları yalnızca siz istediğinizde gönderir. Arama, yinelenen tespiti, etiketler ve öneriler yerel çalışır. <a href="blog/bulutsuz-arama-ve-etiketler.html">Cihaz üstü mimariyi görün →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
+          <summary>Sayfalarım veya vurgularım bir modeli eğitmek için kullanılıyor mu?</summary>
+          <p>AI Summary Helper içeriğinizi kendi modelini eğitmek için kullanmaz. Kendi anahtarınızda seçtiğiniz sağlayıcının veri politikası geçerlidir. Ollama ile özetleme isteği bilgisayarınızda kalır. <a href="gizlilik.html">Gizlilik modelini okuyun →</a></p>
+        </details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
           <summary>Bunu sıfır bulut bağımlılığıyla çalıştırabilir miyim?</summary>
-          <p>Evet — yerel bir Ollama modeline yönlendirdiğinizde özetleme adımı da makinenizde kalır. Diğer her şey zaten yerel çalışır.</p>
+          <p>Evet. Yerel bir Ollama modeline yönlendirin; özetleme adımı da bilgisayarınızda kalsın. Geri kalan her şey zaten yerel çalışıyor. <a href="blog/kendi-anahtarin-kendi-modelin.html">Kendi anahtarınız ile Ollama'yı karşılaştırın →</a></p>
         </details>
-        <details>
-          <summary>Projeyi desteklemeyi bırakırsam kayıtlarıma ne olur?</summary>
-          <p>Arşiviniz her zaman olduğu yerde —cihazınızdaki tarayıcınızın yerel depolama alanında— kalır. Support Pass yalnızca buluta bağlı ekstraları (byphil Cloud AI erişimi, sınırsız Kindle/LocalSend gönderimi) kısıtlar; kaydettiğiniz içeriklere erişiminizi asla engellemez.</p>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive">
+          <summary>Okuma arşivim nerede saklanıyor?</summary>
+          <p>Varsayılan olarak cihazınızdaki tarayıcıda. Markdown olarak dışa aktarabilir veya kendi Nextcloud'unuza, WebDAV sunucunuza, S3 kovanıza ya da yerel klasöre şifreli yedekleyebilirsiniz. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Eşitleme rehberini okuyun →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive privacy">
+          <summary>Tarayıcı verilerimi temizlersem ne olur?</summary>
+          <p>Yedeğiniz yoksa yerel tarayıcı verilerini silmek yerel arşivi de kaldırabilir. Veri temizlemeden veya profil değiştirmeden önce kitaplığınızı dışa aktarın ya da kendi depolamanıza şifreli eşitleme kurun. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Yedekleme ve eşitleme rehberini okuyun →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds" data-faq-category="ai">
+          <summary>Hangi yapay zekâ sağlayıcıları ve modelleri destekleniyor?</summary>
+          <p>OpenAI, Gemini, Mistral, DeepSeek, uyumlu özel bir uç nokta veya yerel Ollama modeli kullanabilirsiniz. Kendi anahtarınızı getirin ya da isteğe bağlı byphil Cloud erişimini kullanın. <a href="blog/kendi-anahtarin-kendi-modelin.html">Kendi anahtarınız nasıl çalışır →</a></p>
+        </details>
+        <details data-faq-personas="researcher feeds" data-faq-category="ai">
+          <summary>PDF'leri, YouTube videolarını ve RSS öğelerini özetleyebilir miyim?</summary>
+          <p>Evet. Tarayıcıda açılan veya diskten eklenen PDF'leri, altyazıları üzerinden YouTube videolarını ve yerleşik RSS okuyucudaki makaleleri özetleyin. <a href="blog/videos.html">İş akışı videolarını izleyin →</a> <a href="blog/40-akis-yerine-tek-ozet.html">Akış derlemelerini okuyun →</a></p>
+        </details>
+        <details data-faq-personas="researcher feeds" data-faq-category="ai">
+          <summary>Yapay zekâ özetleri ne kadar güvenilir?</summary>
+          <p>Yapay zekâ çıktısı yanlış olabilir ve kaynağı kontrol etmenin yerini tutmaz. Takip yanıtları dayandıkları pasajı gösterir; böylece özeti özgün sayfayla karşılaştırabilirsiniz. <a href="blog/yapay-zeka-ozetini-kaynakta-dogrula.html">10 saniyelik kaynak kontrolünü öğrenin →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="platforms">
+          <summary>Hangi tarayıcılar ve platformlar destekleniyor?</summary>
+          <p>Tarayıcı uzantısını, yerleşik yan paneli veya yer imi uygulamacığını kullanın. Android yardımcı uygulaması telefonunuzdan bağlantı ekler; iOS henüz yok. <a href="blog/bookmarklettan-2-0a.html">Tarayıcı ve yakalama akışını görün →</a></p>
+        </details>
+        <details data-faq-personas="shared" data-faq-category="platforms">
           <summary>Android tamamlayıcı uygulamasını nasıl yüklerim?</summary>
-          <p>APK'yı yukarıdaki bağlantıdan (veya <a href="https://github.com/philffm/kaivo/releases/latest" target="_blank" rel="noopener">en son sürüm</a>üzerinden) indirin, açın ve Android sorduğunda tarayıcınızdan yüklemelere izin verin. Ardından eklentide Ayarlar → Telefon gelen kutusu altındaki QR kodunu tarayarak eşleştirin. Henüz Google Play'de yer almamaktadır.</p>
+          <p>APK'yi şuradan indirin: <a href="https://github.com/philffm/kaivo/releases/latest" target="_blank" rel="noopener">en son sürüm</a>, ardından Ayarlar → Telefon gelen kutusu altındaki QR kodunu tarayarak eşleştirin. Henüz Google Play'de değil. <a href="blog/bookmarklettan-2-0a.html">Yakalamanın akışa nasıl uyduğunu okuyun →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="shared" data-faq-category="basics">
+          <summary>Support Pass neyin kilidini açar?</summary>
+          <p>Support Pass bağımsız açık kaynak geliştirmeyi finanse eder ve isteğe bağlı byphil Cloud yapay zekâ erişimi veya ek Kindle/LocalSend gönderimleri açabilir. Yerel arşiviniz ve yerel kullanım bunun arkasına kilitlenmez. <a href="blog/kendi-anahtarin-kendi-modelin.html">İsteğe bağlı bulut sınırını anlayın →</a></p>
+        </details>
+        <details data-faq-personas="hoarder" data-faq-category="basics">
+          <summary>Projeyi desteklemeyi bırakırsam kayıtlarıma ne olur?</summary>
+          <p>Arşiviniz her zaman olduğu yerde —cihazınızdaki tarayıcınızın yerel depolama alanında— kalır. Support Pass yalnızca buluta bağlı ekstraları (byphil Cloud AI erişimi, sınırsız Kindle/LocalSend gönderimi) kısıtlar; kaydettiğiniz içeriklere erişiminizi asla engellemez. <a href="blog/kaydedildi-ama-hic-okunmadi.html">Digest'in kayıtları nasıl yeniden işe yarar kıldığını görün →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
           <summary>Bu açık kaynaklı mı?</summary>
-          <p>Evet — eklentinin kaynak kodları herkese açıktır: <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">GitHub</a>, AGPL-3.0 lisansı kapsamındadır. Kişisel, eğitim amaçlı ve kâr amacı gütmeyen kullanım için ücretsizdir; AGPL koşulları dışında kullanmak isteyen şirketler ticari bir lisans alabilir.</p>
+          <p>Evet — eklentinin kaynak kodları herkese açıktır: <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">GitHub</a>, AGPL-3.0 lisansı kapsamındadır. Kişisel, eğitim amaçlı ve kâr amacı gütmeyen kullanım için ücretsizdir; AGPL koşulları dışında kullanmak isteyen şirketler ticari bir lisans alabilir. <a href="blog/bulutsuz-arama-ve-etiketler.html">Yerel mimariyi okuyun →</a></p>
         </details>
       </div>
     </div>

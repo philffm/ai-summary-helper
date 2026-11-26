@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://kaivo.byphil.eu/tr/gizlilik.html">
 <meta property="og:type" content="website">
 <script src="../assets/analytics.js" defer=""></script>
-<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/gizlilik.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="tr"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Gizlilik Politikası — AI Summary Helper"><meta name="twitter:description" content="AI Summary Helper verilerinizi nasıl işler: API key'leriniz ve makale geçmişiniz cihazınızda kalır."><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://kaivo.byphil.eu/tr/gizlilik.html"></head>
+<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="tr" href="https://kaivo.byphil.eu/tr/gizlilik.html"><link rel="canonical" href="https://kaivo.byphil.eu/tr/gizlilik.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="tr"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Gizlilik Politikası — AI Summary Helper"><meta name="twitter:description" content="AI Summary Helper verilerinizi nasıl işler: API key'leriniz ve makale geçmişiniz cihazınızda kalır."><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"></head>
 <body>
 
 <a href="#main" class="skip-link">İçeriğe atla</a>
@@ -38,12 +38,8 @@
       <img src="../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
-    <nav class="pill" aria-label="Birincil">
-      <a href="index.html#features" data-sec="features">Özellikler</a>
-      <a href="index.html#see-it" data-sec="see-it">Demo</a>
-      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=tr-gizlilik&amp;utm_campaign=nav" class="pill-cta" target="_blank" rel="noopener">Chrome'a ekle</a>
-    </nav>
-    <div class="nav-island"><div class="nav-tools">
+    <div class="nav-island"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=tr-gizlilik&amp;utm_campaign=nav" class="pill-cta nav-cta" target="_blank" rel="noopener">Chrome'a ekle</a>
+    <div class="nav-tools">
       <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Bu sayfayı bilgisayarıma gönder" title="Bilgisayarıma gönder"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="Dil" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Açık temaya geç">
@@ -55,11 +51,17 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
     </button></div>
   </div>
+    <nav class="pill" aria-label="Birincil">
+      <a href="index.html" data-sec="hero">Genel bakış</a>
+      <a href="index.html#see-it" data-sec="see-it">İnceleyin</a>
+      <a href="index.html#features" data-sec="features">Özellikler</a>
+      <a href="blog/" data-dock-blog="">Blog</a>
+    </nav>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="Mobil">
-        <a href="index.html#features"><span class="mm-n">01</span>Özellikler</a>
-        <a href="index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="index.html#use-cases"><span class="mm-n">01</span>Kullanım alanları</a>
+        <a href="index.html#problem" data-slider-goto="problem"><span class="mm-n">02</span>Nasıl çalışır</a>
         <a href="../education/"><span class="mm-n">03</span>Eğitim</a>
         <a href="blog/"><span class="mm-n">04</span>Blog</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket alternatifi: Gerçekten önemli olanlar</a>
@@ -134,7 +136,7 @@
         <h3>AI sağlayıcı bağlantınız</h3>
         <p>Özetlerin nasıl oluşturulacağını siz seçersiniz:</p>
         <ul>
-          <li><strong>Kendi key'inizi getirin (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek veya özel bir endpoint. API key'iniz yalnızca cihazınızda yerel olarak saklanır (asla senkronize edilmez, bize gönderilmez). Özetlemeyi seçtiğiniz sayfa içeriği, doğrudan tarayıcınızdan seçtiğiniz sağlayıcıya, kendi key'iniz kullanılarak ve ilgili sağlayıcının gizlilik politikasına tabi olarak iletilir. Bu içeriği görmeyiz, kaydetmeyiz veya saklamayız.</li>
+          <li><strong>Kendi key'inizi getirin (BYOK)</strong> — OpenAI, Anthropic (Claude), Google Gemini, Mistral AI, DeepSeek, OpenRouter veya özel bir uç nokta. API anahtarınız yalnızca cihazınızda yerel olarak saklanır (asla eşitlenmez, bize asla gönderilmez). Özetlemeyi seçtiğiniz sayfa içeriği, kendi anahtarınızla tarayıcınızdan doğrudan seçtiğiniz sağlayıcıya gönderilir ve o sağlayıcının kendi gizlilik politikasına tabidir. Bu içeriği görmeyiz, kaydetmeyiz ve saklamayız.</li>
           <li><strong>Ollama ile yerel model</strong> — yerel olarak bir model çalıştırıyorsanız sayfa içeriği yalnızca kendi makinenize gönderilir. Cihazınızdan hiçbir veri dışarı çıkmaz.</li>
           <li><strong>byphil Cloud (isteğe bağlı, ücretli)</strong> — API key yönetimiyle uğraşmak istemeyenler için barındırılan (hosted) bir seçenek. Bu planı seçerseniz, özetlenmesini istediğiniz metin backend sistemimizden geçer; sistemimiz isteği sizin adınıza OpenRouter aracılığıyla ilgili model sağlayıcısına iletir ve özeti döndürür. Veriler yalnızca aktarılır: sayfa içeriklerini, URL'leri veya özetleri saklamayız. Hesap başına kaydettiğimiz tek bilgi kullanım meta verileridir: tamamlanan istek sayısı, token kullanımı, son istek zamanı ve kullanılan model. Hesap açmak tamamen isteğe bağlıdır; diğer tüm özellikler hesapsız da çalışır. “Prefer EU servers” ayarı açık olduğunda, Avrupa'da bir endpoint'i bulunan modeller yalnızca bu endpoint'ler üzerinde çalıştırılır ve uygulama hangi modellerin buna sahip olup olmadığını gösterir. Bu durum modelin çalıştığı konumu sınırlar. Ancak aktarım yolundaki aracıları ortadan kaldırmaz: metniniz modele ulaşırken yine de servisimizden (Almanya'daki bir sunucuda çalışır) ve ardından ABD merkezli bir şirket olan OpenRouter üzerinden geçer; ayrıca sesli okuma ve speech-to-text özellikleri için AB seçeneği bulunmamaktadır.</li>
         </ul>
@@ -164,10 +166,10 @@
           </tbody>
         </table>
         <p>"Sync" olarak işaretlenen öğeler, Google hesabınıza bağlı Chrome yerleşik senkronizasyonunu kullanır; bu veriler tıpkı yer işaretleriniz gibi bizim değil, Google'ın altyapısından geçer. Bunlara harici bir erişimimiz yoktur.</p>
-        <p>Verilerinizi dilediğiniz zaman Ayarlar → Kütüphane ve Veri → Yedekleme ve geri yükleme adımlarını izleyerek dışa aktarabilirsiniz. Yedeklemeler varsayılan olarak API key'leri, oturum açma bilgilerini, lisans anahtarlarını ve yükleme tanımlayıcılarını hariç tutar; bunları dahil etmek açık bir onay ve uyarı gerektirir çünkü bu dosyaya sahip olan herkes bu bilgileri kullanabilir. Dışa aktarılan dosyaları gizli tutun ve eski yedeklerin gizli veriler içerebileceğini unutmayın. Aynı sayfadaki Tehlikeli bölge; özetler ve arşiv, vurgular, akışlar, podcast'ler, API key'ler / oturum / lisans, gönderim hedefleri (Kindle, LocalSend) ve tercihler gibi kategorileri silinecek öğe sayısıyla birlikte temizlemenize olanak tanır. <em>Tüm verileri sil</em> eklentinin cihazda sakladığı her şeyi kaldırır ve sıfırdan başlatır. Eklentiyi kaldırmak verilerini de siler. Bu işlemler yalnızca yerel verileri siler. Hesabınızı ve sunucumuzda tuttuğumuz kayıtları (aşağıya bakın) şu adresten yönetebilirsiniz: <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: oradan verilerinizi dışa aktarabilir ve hesabınızı silebilirsiniz. Eklenti ve Android uygulaması, hesap ayarlarından bu bağlantıyı sağlar.</p>
+        <p>Verilerinizi istediğiniz zaman Ayarlar → Yedekleme ve eşitleme üzerinden dışa aktarabilirsiniz. Yedekler varsayılan olarak API anahtarlarını, oturum bilgilerini, lisans anahtarlarını ve kurulum tanımlayıcılarını içermez; bunları dahil etmek, uyarılı ve açık bir seçimdir, çünkü o dosyaya sahip herkes bunları kullanabilir. Dışa aktarılan dosyaları gizli tutun ve eski yedeklerin sır içerebileceğini unutmayın. Aynı yerde Tehlikeli bölge, neyin gideceğinin sayısıyla birlikte kategoriye göre silmenizi sağlar: özetler ve arşiv, vurgular, akışlar, podcast'ler, API anahtarları / oturum / lisans, gönderim hedefleri (Kindle, LocalSend) ve tercihler. <em>Tüm verileri sil</em> eklentinin cihazda sakladığı her şeyi kaldırır ve sıfırdan başlatır. Eklentiyi kaldırmak verilerini de siler. Bu işlemler yalnızca yerel verileri siler. Hesabınızı ve sunucumuzda tuttuğumuz kayıtları (aşağıya bakın) şu adresten yönetebilirsiniz: <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: oradan verilerinizi dışa aktarabilir ve hesabınızı silebilirsiniz. Eklenti ve Android uygulaması, hesap ayarlarından bu bağlantıyı sağlar.</p>
 
         <h3>RSS feed'leri</h3>
-        <p>Yerleşik Akışlar (Feeds) okuyucusu, aboneliklerinizi ve çekilen akış öğelerini tarayıcınızda yerel olarak saklar; asla senkronize edilmez, bize gönderilmez. Bir akış eklediğinizde veya yenilediğinizde eklenti, doğrudan yayıncının sunucusundan ilgili akış adresini talep eder (tıpkı tarayıcınızın siteyi ziyaret ettiği gibi), bu nedenle yayıncı bu isteği görebilir. Aboneliklerinizi veya okuma listenizi proxy üzerinden iletmeyiz, kaydetmeyiz veya görmeyiz. OPML içe aktarma işlemi tamamen cihazınızda işlenir. Arka plan kontrollerini açarsanız (varsayılan olarak kapalıdır), eklenti yalnızca araç çubuğu simgesinde bir sayaç göstermek için seçtiğiniz aralıklarla akışlarınızı yeniden talep eder. Bir akış öğesini özetlemek, herhangi bir sayfayı özetlemekle aynı şekilde çalışır: içeriği yalnızca bir özet tetiklediğinizde ve yalnızca seçtiğiniz AI sağlayıcısına gönderilir. İsteğe bağlı AI günlük özet ve AI ton puanlaması da aynı şekilde çalışır: yalnızca tıkladığınızda eklenti, tam makaleleri değil; öğe başlıklarını, kaynak adlarını ve kısa alıntıları seçtiğiniz AI sağlayıcısına gönderir ve sonuç özeti cihazınızda önbelleğe alınır. Bir akıştaki podcast bölümleri, Oynat'a bastığınızda doğrudan yayıncının sunucusundan oynatılır.</p>
+        <p>Yerleşik Akış okuyucusu aboneliklerinizi ve indirilen akış öğelerini tarayıcınızda yerel olarak saklar; asla eşitlenmez, bize asla gönderilmez. Bir akış eklediğinizde veya yenilediğinizde uzantı, siteyi ziyaret ederken tarayıcınızın yapacağı gibi o akışın adresini doğrudan yayıncının sunucusundan ister; dolayısıyla yayıncı isteği görebilir. Aboneliklerinize veya okuma listenize aracılık etmeyiz, bunları kaydetmeyiz ve görmeyiz. OPML içe aktarma tamamen cihazınızda işlenir. Arka plan denetimleri varsayılan olarak açıktır ve Akış ayarlarından kapatılabilir: tarayıcı açıkken uzantı, yalnızca araç çubuğu simgesinde bir sayı göstermek için akışlarınızı seçtiğiniz aralıkta yeniden ister. Bir akış öğesini özetlemek başka bir sayfayı özetlemek gibidir: içeriği yalnızca seçtiğiniz yapay zekâ sağlayıcısına ve yalnızca siz özet başlattığınızda gönderilir. İsteğe bağlı günlük yapay zekâ özeti ve ton puanlaması da aynı şekilde çalışır: yalnızca tıkladığınızda uzantı, öğe başlıklarını, kaynak adlarını ve kısa parçaları (tam makaleleri değil) seçtiğiniz sağlayıcıya gönderir ve oluşan özet cihazınızda önbelleğe alınır. Bir akıştaki podcast bölümleri, Oynat'a bastığınızda doğrudan yayıncının sunucusundan akıtılır.</p>
 
         <h3>Makale gönderme: Kindle, LocalSend ve paylaşım menüsü</h3>
         <p>İki farklı yol vardır ve bunlardan yalnızca biri sunucumuza temas eder:</p>
@@ -177,7 +179,7 @@
         </ul>
 
         <h3>Kitaplık senkronizasyonu, yedekleme ve yayınlama (isteğe bağlı)</h3>
-        <p>Ayarlar → Senkronizasyon ve yedekleme bölümünden bir konum ekleyene kadar kapalıdır. Konum; seçtiğiniz bir sunucudaki klasör (Nextcloud ya da başka bir WebDAV sunucusu veya AWS S3, Cloudflare R2 ya da Backblaze B2 gibi S3 uyumlu bir bucket) veya kendi bilgisayarınızdaki bir klasördür. Bu sunucuları biz işletmiyoruz, sürece dahil değiliz ve oraya koyduğunuz hiçbir şeyi asla görmüyoruz.</p>
+        <p>Ayarlar → Yedekleme ve eşitleme altında bir konum ekleyene kadar kapalıdır. Konum, seçtiğiniz bir sunucudaki (Nextcloud veya başka bir WebDAV sunucusu ya da AWS S3, Cloudflare R2 veya Backblaze B2 gibi S3 uyumlu bir kova) bir klasör veya kendi bilgisayarınızdaki bir klasördür. Bu sunucuları biz işletmiyoruz, sürece dahil değiliz ve oraya ne koyduğunuzu asla görmüyoruz.</p>
         <ul>
           <li><strong>Şifrelenmiş konumlar</strong> Tüm kitaplığınızı cihazlarınız arasında senkronize tutun veya bir yedek bulundurun: makaleler, özetler, tam metinler, vurgular, notlar, koleksiyonlar ve etiketler. Her şey cihazınızdan çıkmadan önce tarayıcınızda şifrelenir (passphrase'inizden türetilen bir anahtarla AES-256-GCM) ve dosya adları karıştırılır. Sunucu veya klasör yalnızca şifrelenmiş dosyaları, boyutlarını ve değiştirilme tarihlerini görür. Passphrase'inizden türetilen anahtar, senkronizasyonun arka planda çalışabilmesi için bu tarayıcının local storage alanında tutulur. Önerilen rastgele kelimeleri kullanırsanız, bu kelimeler de orada saklanır; böylece bunları konum ayarlarından kontrol edebilirsiniz; kendi belirlediğiniz bir passphrase ise saklanmaz. Bunların hiçbiri asla senkronize edilmez veya yedeğe dahil edilmez. Passphrase'inizi kaybederseniz, biz dahil hiç kimse dosyaları okuyamaz.</li>
           <li><strong>Okunabilir konumlar</strong> kendi web siteniz veya araçlarınız için düz dosyalar (ve dilerseniz küçük bir görüntüleyici sayfası) yayınlayın. Yalnızca belirlediğiniz etiket filtresiyle eşleşen makaleler dışa aktarılır. Notlar, hatırlatıcılar ve makalenin tam metni; tehlikeli bölgeden siz bizzat etkinleştirmediğiniz sürece asla yayınlanmaz ve etkinleştirildiğinde bu klasörü açabilen herkes bunları okuyabilir.</li>
@@ -232,10 +234,13 @@
             <tr><td><code>offscreen</code>, <code>tts</code></td><td>Açılır pencere kapalıyken arka planda podcast sesini çalmak ve özetleri sesli okumak için</td></tr>
             <tr><td>File System Access (seçilen klasör)</td><td>Yalnızca bilgisayarınızdaki bir klasörü senkronizasyon veya yedekleme konumu olarak seçtiğinizde geçerlidir; tarayıcı izninizi ister ve yalnızca bu klasöre erişilebilir</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Varsayılan depolama kotasına takılmadan geniş bir yerel makale ve vurgu arşivi tutmak için</td></tr>
+            <tr><td><code>yer imleri</code> (isteğe bağlı)</td><td>Yalnızca okuma görünümünde “Tarayıcı yer imlerine kaydet” seçeneğini seçerseniz; tarayıcı önce izin ister. “AI Summary Helper” klasöründe o makale için tek bir yer imi ekler veya güncelleriz; yalnızca kendi klasörümüze bakar ve onu değiştiririz, diğer yer imlerinize dokunmayız</td></tr>
+            <tr><td><code>arama</code> (isteğe bağlı)</td><td>Yalnızca ana sayfanın arama kutusunda veya komut paletinde “Web'de ara” seçeneğini seçerseniz; tarayıcı önce izin ister. Yazdığınız sözcükler, adres çubuğuna yazmışsınız gibi tarayıcınızın varsayılan arama motoruna iletilir. Onları görmeyiz, saklamayız ve başka hiçbir yere göndermeyiz</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Ziyaret ettiğiniz herhangi bir sayfayı özetlemenizi sağlar — içerik yalnızca siz aktif olarak bir özetleme başlattığınızda okunur ve iletilir, asla pasif olarak aktarılmaz. Ayrıca uzantının, girdiğiniz herhangi bir adreste bulunabilecek senkronizasyon sunucusuna veya bucket'a erişmesine olanak tanır</td></tr>
           </tbody>
         </table>
         <p>Bu izinleri gezinmenizi izlemek, bir reklam profili oluşturmak veya yukarıda açıklanan özellikleri sunmanın ötesinde veri toplamak için kullanmayız.</p>
+        <p>Google API'lerinden alınan bilgilerin kullanımı, Sınırlı Kullanım gereklilikleri dahil olmak üzere <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq" target="_blank" rel="noopener">Chrome Web Mağazası Kullanıcı Verileri Politikası</a>belgesine uyacaktır.</p>
 
         <h2>Neleri Yapmıyoruz?</h2>
         <ul>
@@ -248,7 +253,7 @@
         <h2>Üçüncü Taraf Hizmetler</h2>
         <p>Eklentiyi nasıl yapılandırdığınıza bağlı olarak sayfa içeriğiniz şuralara gönderilebilir:</p>
         <ul>
-          <li>OpenAI, Google (Gemini), Mistral AI veya DeepSeek — yalnızca ilgili sağlayıcı için kendi API key'inizi girdiyseniz ve yalnızca aktif olarak özetlediğiniz sayfa için.</li>
+          <li>OpenAI, Anthropic (Claude), Google (Gemini), Mistral AI, DeepSeek veya OpenRouter (orada seçtiğiniz modele iletir): yalnızca o sağlayıcı için kendi API anahtarınızı girdiyseniz ve yalnızca bizzat özetlediğiniz sayfa için.</li>
           <li>Her ikisi de Almanya'da IONOS SE tarafından barındırılan byphil backend'imiz ve veritabanımız — yalnızca giriş yaptığınızda, byphil Cloud veya Send to Kindle kullandığınızda geçerlidir.</li>
           <li>byphil Cloud'un modellere bağlandığı OpenRouter ve yönlendirdiği model sağlayıcısı — özetlediğiniz metin yalnızca ilgili istek için kullandığınız modele iletilir.</li>
           <li>Stripe — Kayıtlı Satıcı (Merchant of Record) olarak ödemeler ve abonelik yönetimi.</li>
