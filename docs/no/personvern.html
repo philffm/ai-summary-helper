@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://kaivo.byphil.eu/no/personvern.html">
 <meta property="og:type" content="website">
 <script src="../assets/analytics.js" defer=""></script>
-<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/personvern.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="nb"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Personvernerklæring — AI Summary Helper"><meta name="twitter:description" content="Slik behandler AI Summary Helper dataene dine: API-nøklene og artikkelhistorikken din forblir på enheten din."><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://kaivo.byphil.eu/no/personvern.html"></head>
+<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/personvern.html"><link rel="canonical" href="https://kaivo.byphil.eu/no/personvern.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="nb"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Personvernerklæring — AI Summary Helper"><meta name="twitter:description" content="Slik behandler AI Summary Helper dataene dine: API-nøklene og artikkelhistorikken din forblir på enheten din."><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"></head>
 <body>
 
 <a href="#main" class="skip-link">Hopp til innholdet</a>
@@ -38,12 +38,8 @@
       <img src="../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
-    <nav class="pill" aria-label="Primær">
-      <a href="index.html#features" data-sec="features">Funksjoner</a>
-      <a href="index.html#see-it" data-sec="see-it">Demo</a>
-      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=no-personvern&amp;utm_campaign=nav" class="pill-cta" target="_blank" rel="noopener">Legg til i Chrome</a>
-    </nav>
-    <div class="nav-island"><div class="nav-tools">
+    <div class="nav-island"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=no-personvern&amp;utm_campaign=nav" class="pill-cta nav-cta" target="_blank" rel="noopener">Legg til i Chrome</a>
+    <div class="nav-tools">
       <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Send denne siden til datamaskinen min" title="Send til datamaskinen min"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="Språk" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Bytt til lys modus">
@@ -55,11 +51,17 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
     </button></div>
   </div>
+    <nav class="pill" aria-label="Primær">
+      <a href="index.html" data-sec="hero">Oversikt</a>
+      <a href="index.html#see-it" data-sec="see-it">Se hvordan det fungerer</a>
+      <a href="index.html#features" data-sec="features">Funksjoner</a>
+      <a href="blog/" data-dock-blog="">Blogg</a>
+    </nav>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="Mobil">
-        <a href="index.html#features"><span class="mm-n">01</span>Funksjoner</a>
-        <a href="index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="index.html#use-cases"><span class="mm-n">01</span>Bruksområder</a>
+        <a href="index.html#problem" data-slider-goto="problem"><span class="mm-n">02</span>Slik virker det</a>
         <a href="../education/"><span class="mm-n">03</span>Utdanning</a>
         <a href="blog/"><span class="mm-n">04</span>Blogg</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket-alternativ: hva som betyr noe</a>
@@ -134,7 +136,7 @@
         <h3>Tilkobling til AI-leverandør</h3>
         <p>Du velger selv hvordan oppsummeringer genereres:</p>
         <ul>
-          <li><strong>Bruk egen nøkkel (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek eller et egendefinert endepunkt. Din API-nøkkel lagres kun lokalt på enheten din (synkroniseres aldri, sendes aldri til oss). Sideinnhold du velger å oppsummere sendes direkte fra nettleseren din til den valgte leverandøren ved hjelp av din egen nøkkel, og er underlagt leverandørens egen personvernerklæring. Vi verken ser, logger eller lagrer dette innholdet.</li>
+          <li><strong>Bruk egen nøkkel (BYOK)</strong> — OpenAI, Anthropic (Claude), Google Gemini, Mistral AI, DeepSeek, OpenRouter eller et eget endepunkt. API-nøkkelen din lagres bare lokalt på enheten (synkroniseres aldri, sendes aldri til oss). Sideinnhold du velger å oppsummere, sendes direkte fra nettleseren til leverandøren du har valgt, med din egen nøkkel og underlagt leverandørens egen personvernerklæring. Vi ser, logger og lagrer ikke dette innholdet.</li>
           <li><strong>Lokal modell via Ollama</strong> — hvis du kjører en modell lokalt, sendes sideinnholdet kun til din egen maskin. Ingenting forlater enheten din.</li>
           <li><strong>byphil Cloud (valgfritt, betalt)</strong> — et driftet alternativ for deg som helst vil slippe å håndtere en egen API key. Hvis du velger dette nivået, sendes teksten du vil oppsummere gjennom vår backend, som videresender forespørselen via OpenRouter til en underliggende modell-leverandør på dine vegne og returnerer sammendraget. Dataene bare videresendes: vi lagrer verken sideinnhold, URL-er eller sammendrag. Det vi lagrer per konto er bruksmetadata: antall fullførte forespørsler, token-bruk, tidspunktet for siste forespørsel og hvilken modell som ble brukt. Selve kontoen er valgfri; alle andre funksjoner fungerer uten. Med innstillingen «Foretrekk EU-servere» aktivert, kjøres modeller med endepunkt i Europa utelukkende der, og appen markerer hvilke modeller som støtter dette og hvilke som ikke gjør det. Dette begrenser hvor modellen kjører, men fjerner ingen ledd fra kjeden: teksten din passerer fortsatt gjennom tjenesten vår (som kjører på en server i Tyskland) og deretter gjennom OpenRouter, et amerikansk selskap, på vei til modellen. Opplesing og tale-til-tekst har ingen EU-opsjon.</li>
         </ul>
@@ -164,10 +166,10 @@
           </tbody>
         </table>
         <p>Elementer merket "Sync" bruker Chromes innebygde synkronisering knyttet til Google-kontoen din — disse dataene går gjennom Googles infrastruktur, ikke vår, akkurat som bokmerkene dine. Vi har ingen tilgang til dette.</p>
-        <p>Du kan eksportere dataene dine når som helst via Innstillinger → Bibliotek og data → Sikkerhetskopi og gjenoppretting. Sikkerhetskopier utelater som standard API-nøkler, innloggingsdetaljer, lisensnøkler og installasjons-ID-er; å inkludere disse krever et eksplisitt samtykke med advarsel, ettersom alle med filen kan bruke dem. Hold eksporterte filer private, og husk at eldre sikkerhetskopier kan inneholde hemmeligheter. På samme sted lar Faresonen deg slette etter kategori med oversikt over hva som fjernes: oppsummeringer og arkiv, markeringer, feeder, podkaster, API-nøkler / innlogging / lisens, sendemål (Kindle, LocalSend) og innstillinger. <em>Slett alle data</em> fjerner alt utvidelsen lagrer på enheten og starter den på nytt. Å fjerne utvidelsen fjerner også dataene. Disse handlingene sletter kun lokale data. Kontoen din og oppføringene vi har på serveren vår (se nedenfor) administrerer du på <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: der kan du eksportere dataene dine og slette kontoen. Utvidelsen og Android-appen lenker dit fra kontoinnstillingene.</p>
+        <p>Du kan når som helst eksportere dataene dine via Innstillinger → Sikkerhetskopi og synk. Sikkerhetskopier utelater som standard API-nøkler, innloggingsopplysninger, lisensnøkler og installasjons-ID-er; å ta dem med er et uttrykkelig valg med en advarsel, fordi alle som har filen, kan bruke dem. Hold eksporterte filer private, og husk at eldre sikkerhetskopier kan inneholde hemmeligheter. På samme sted kan du i Faresonen slette per kategori, med antall for det som fjernes: sammendrag og arkiv, markeringer, strømmer, podkaster, API-nøkler / innlogging / lisens, sendemål (Kindle, LocalSend) og innstillinger. <em>Slett alle data</em> fjerner alt utvidelsen lagrer på enheten og starter den på nytt. Å fjerne utvidelsen fjerner også dataene. Disse handlingene sletter kun lokale data. Kontoen din og oppføringene vi har på serveren vår (se nedenfor) administrerer du på <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: der kan du eksportere dataene dine og slette kontoen. Utvidelsen og Android-appen lenker dit fra kontoinnstillingene.</p>
 
         <h3>RSS-feeder</h3>
-        <p>Den innebygde feed-leseren lagrer abonnementene dine og hentede artikler lokalt i nettleseren — aldri synkronisert, aldri sendt til oss. Når du legger til eller oppdaterer en feed, henter utvidelsen feed-adressen direkte fra utgiverens server, akkurat som nettleseren din gjør ved vanlige besøk, slik at utgiveren ser forespørselen. Vi verken mellomlagrer, logger eller ser abonnementene eller leselisten din. OPML-import behandles utelukkende på enheten din. Slår du på bakgrunnssjekker (av som standard), henter utvidelsen feedene med intervallet du velger, kun for å vise et tall på verktøylinjeikonet. Oppsummering av et feed-element fungerer som oppsummering av en hvilken som helst annen side: innholdet sendes kun til AI-leverandøren du har valgt, og kun når du starter en oppsummering. Valgfri AI-dagsoppsummering og AI-tonescore fungerer på samme måte: kun når du klikker på dem, sender utvidelsen titler, kildenavn og korte utdrag (ikke hele artikler) til den valgte AI-leverandøren, og resultatet mellomlagres på enheten din. Podkastepisoder i en feed strømmes direkte fra utgiverens server når du trykker Play.</p>
+        <p>Den innebygde strømleseren lagrer abonnementene og de hentede sakene lokalt i nettleseren; de synkroniseres aldri og sendes aldri til oss. Når du legger til eller oppdaterer en strøm, henter utvidelsen strømmens adresse direkte fra utgiverens server, akkurat som nettleseren gjør når du besøker siden, så utgiveren kan se forespørselen. Vi er ikke mellomledd for, logger ikke og ser ikke abonnementene eller leselisten din. OPML-import behandles helt på enheten din. Sjekker i bakgrunnen er på som standard og kan slås av i strøminnstillingene: mens nettleseren er åpen, henter utvidelsen strømmene på nytt med intervallet du velger, bare for å vise et antall på ikonet i verktøylinjen. Å oppsummere en sak fra en strøm virker som å oppsummere hvilken som helst side: innholdet sendes bare til AI-leverandøren du har valgt, og bare når du starter en oppsummering. Den valgfrie dagsoppsummeringen og AI-vurderingen av tonen virker på samme måte: bare når du klikker på dem, sender utvidelsen titler, kildenavn og korte utdrag (ikke hele artikler) til AI-leverandøren du har valgt, og oppsummeringen mellomlagres på enheten din. Podkastepisoder i en strøm strømmes direkte fra utgiverens server når du trykker Spill av.</p>
 
         <h3>Sending av artikler: Kindle, LocalSend og delingsmenyen</h3>
         <p>Det finnes to ulike måter, og bare én av dem er innom serveren vår:</p>
@@ -177,7 +179,7 @@
         </ul>
 
         <h3>Biblioteksynkronisering, sikkerhetskopi og publisering (valgfritt)</h3>
-        <p>Avslått til du legger til et sted i Innstillinger → Synkronisering og sikkerhetskopi. Et sted er en mappe på en server du velger selv (Nextcloud eller en annen WebDAV-server, eller en S3-kompatibel bucket som AWS S3, Cloudflare R2 eller Backblaze B2), eller en mappe på din egen datamaskin. Vi drifter ikke disse serverne, har ingen rolle her, og ser aldri hva du legger der.</p>
+        <p>Av til du legger til et sted i Innstillinger → Sikkerhetskopi og synk. Et sted er en mappe på en server du velger selv (Nextcloud eller en annen WebDAV-server, eller en S3-kompatibel bøtte som AWS S3, Cloudflare R2 eller Backblaze B2) eller en mappe på din egen maskin. Vi driver ikke disse serverne, vi er ikke involvert, og vi ser aldri hva du legger der.</p>
         <ul>
           <li><strong>Krypterte steder</strong> hold hele biblioteket ditt synkronisert mellom enhetene dine eller ta en sikkerhetskopi: artikler, sammendrag, fulltekster, markeringer, notater, samlinger og tagger. Alt krypteres i nettleseren din (AES-256-GCM, med en nøkkel avledet fra passordfrasen din) før det forlater enheten, og filnavnene gjøres uleselige. Serveren eller mappen ser bare krypterte filer, størrelsen på dem og når de ble endret. Nøkkelen avledet fra passordfrasen din blir værende i denne nettleserens lokale lagring, slik at synkroniseringen kan kjøre i bakgrunnen. Hvis du bruker de foreslåtte tilfeldige ordene, lagres ordene der også, slik at du kan slå dem opp i innstillingene for lagringsstedet; en passordfrase du har valgt selv, blir ikke lagret. Ingenting av dette blir noensinne synkronisert eller inkludert i en sikkerhetskopi. Hvis du mister passordfrasen, kan ingen lese filene – heller ikke vi.</li>
           <li><strong>Lesbare steder</strong> publiser rene filer (og eventuelt en enkel visningsside) for ditt eget nettsted eller verktøy. Bare artiklene som matcher tag-filteret du har valgt, blir sendt ut. Notater, påminnelser og full artikkeltekst publiseres aldri med mindre du aktiverer det selv under faresonen – og da kan alle som har tilgang til mappen lese dem.</li>
@@ -232,10 +234,13 @@
             <tr><td><code>offscreen</code>, <code>tts</code></td><td>Spille av podkastlyd og lese opp sammendrag i bakgrunnen når popup-vinduet er lukket</td></tr>
             <tr><td>Filsystemtilgang (valgt mappe)</td><td>Kun når du velger en mappe på datamaskinen din som sted for synkronisering eller sikkerhetskopi; nettleseren ber om tillatelse, og kun denne mappen blir tilgjengelig</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Beholde et stort lokalt arkiv med artikler og markeringer uten å nå standard lagringskvote</td></tr>
+            <tr><td><code>bokmerker</code> (valgfritt)</td><td>Bare hvis du velger «Lagre i nettleserens bokmerker» i lesevisningen; nettleseren spør først. Vi legger til eller oppdaterer ett bokmerke for artikkelen i mappen «AI Summary Helper»; vi leter bare i og endrer vår egen mappe, ikke resten av bokmerkene dine</td></tr>
+            <tr><td><code>søk</code> (valgfritt)</td><td>Bare hvis du velger «Søk på nettet» i søkefeltet på startsiden eller i kommandopaletten; nettleseren spør først. Ordene du skrev, leveres til nettleserens egen standardsøkemotor, akkurat som om du hadde skrevet dem i adressefeltet. Vi ser dem ikke, lagrer dem ikke og sender dem ingen andre steder</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Lar deg oppsummere hvilken som helst side du besøker – innhold leses og overføres kun når du aktivt ber om et sammendrag, aldri passivt. Lar også utvidelsen nå synkroniseringsserveren eller bucket-en du oppgir, uansett hvilken adresse den har</td></tr>
           </tbody>
         </table>
         <p>Vi bruker ikke disse tillatelsene til å spore surfingen din, bygge en reklameprofil eller samle inn data utover det som kreves for funksjonene beskrevet ovenfor.</p>
+        <p>Bruken av informasjon mottatt fra Googles API-er følger <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq" target="_blank" rel="noopener">Chrome Web Stores retningslinjer for brukerdata</a>, inkludert kravene om begrenset bruk.</p>
 
         <h2>Hva vi ikke gjør</h2>
         <ul>
@@ -248,7 +253,7 @@
         <h2>Tredjepartstjenester</h2>
         <p>Avhengig av hvordan du setter opp utvidelsen, kan sideinnholdet ditt sendes til:</p>
         <ul>
-          <li>OpenAI, Google (Gemini), Mistral AI eller DeepSeek — kun hvis du har lagt inn din egen API-nøkkel for den leverandøren, og kun for siden du aktivt oppsummerer.</li>
+          <li>OpenAI, Anthropic (Claude), Google (Gemini), Mistral AI, DeepSeek eller OpenRouter (som sender videre til modellen du velger der): bare hvis du har lagt inn din egen API-nøkkel for den leverandøren, og bare for siden du selv oppsummerer.</li>
           <li>Vår byphil-backend og databasen, begge driftet av IONOS SE i Tyskland – kun hvis du logger inn, bruker byphil Cloud eller Send to Kindle.</li>
           <li>OpenRouter, som byphil Cloud bruker for å koble til modellene, og den underliggende modell-leverandøren — teksten du oppsummerer videresendes til modellen du bruker, kun for den aktuelle forespørselen.</li>
           <li>Stripe — betalinger og abonnementsadministrasjon, som Merchant of Record.</li>

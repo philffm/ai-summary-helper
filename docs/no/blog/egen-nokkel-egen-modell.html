@@ -22,7 +22,7 @@
 <link rel="icon" type="image/svg+xml" href="../../assets/icon.svg">
 <link rel="preload" href="../../assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="stylesheet" href="../../assets/styles.css">
 <script src="../../assets/analytics.js" defer=""></script>
-<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/blog/egen-nokkel-egen-modell.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="nb"><meta property="og:type" content="article"><meta property="og:title" content="Din nøkkel. Din modell. Dine data. — AI Summary Helper"><meta property="og:description" content="Hva «bring your own API key» faktisk betyr for en nettleserutvidelse: hvor nøkkelen din lagres, hvor sideteksten sendes, og hva som endrer seg hvis du bruker en lokal modell."><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Din nøkkel. Din modell. Dine data. — AI Summary Helper"><meta name="twitter:description" content="Hva «bring your own API key» faktisk betyr for en nettleserutvidelse: hvor nøkkelen din lagres, hvor sideteksten sendes, og hva som endrer seg hvis du bruker en lokal modell."><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://kaivo.byphil.eu/no/blog/egen-nokkel-egen-modell.html"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://kaivo.byphil.eu/no/blog/egen-nokkel-egen-modell.html#post","headline":"Din nøkkel. Din modell. Dine data.","description":"Hva «bring your own API key» faktisk betyr for en nettleserutvidelse: hvor nøkkelen din lagres, hvor sideteksten sendes, og hva som endrer seg hvis du bruker en lokal modell.","datePublished":"2026-10","inLanguage":"nb","image":"https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://kaivo.byphil.eu/no/blog/egen-nokkel-egen-modell.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://kaivo.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://kaivo.byphil.eu/no/blog/"},{"@type":"ListItem","position":3,"name":"Din nøkkel. Din modell. Dine data.","item":"https://kaivo.byphil.eu/no/blog/egen-nokkel-egen-modell.html"}]}]}</script></head>
+<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/blog/bring-your-own-key.html"><link rel="alternate" hreflang="nb" href="https://kaivo.byphil.eu/no/blog/egen-nokkel-egen-modell.html"><link rel="canonical" href="https://kaivo.byphil.eu/no/blog/egen-nokkel-egen-modell.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="nb"><meta property="og:type" content="article"><meta property="og:title" content="Din nøkkel. Din modell. Dine data. — AI Summary Helper"><meta property="og:description" content="Hva «bring your own API key» faktisk betyr for en nettleserutvidelse: hvor nøkkelen din lagres, hvor sideteksten sendes, og hva som endrer seg hvis du bruker en lokal modell."><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Din nøkkel. Din modell. Dine data. — AI Summary Helper"><meta name="twitter:description" content="Hva «bring your own API key» faktisk betyr for en nettleserutvidelse: hvor nøkkelen din lagres, hvor sideteksten sendes, og hva som endrer seg hvis du bruker en lokal modell."><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://kaivo.byphil.eu/no/blog/egen-nokkel-egen-modell.html#post","headline":"Din nøkkel. Din modell. Dine data.","description":"Hva «bring your own API key» faktisk betyr for en nettleserutvidelse: hvor nøkkelen din lagres, hvor sideteksten sendes, og hva som endrer seg hvis du bruker en lokal modell.","datePublished":"2026-10","inLanguage":"nb","image":"https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp","mainEntityOfPage":"https://kaivo.byphil.eu/no/blog/egen-nokkel-egen-modell.html","author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Summary Helper","item":"https://kaivo.byphil.eu/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://kaivo.byphil.eu/no/blog/"},{"@type":"ListItem","position":3,"name":"Din nøkkel. Din modell. Dine data.","item":"https://kaivo.byphil.eu/no/blog/egen-nokkel-egen-modell.html"}]}]}</script></head>
 <body>
 
 <a href="#main" class="skip-link">Hopp til innholdet</a>
@@ -33,12 +33,8 @@
       <img src="../../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
-    <nav class="pill" aria-label="Primær">
-      <a href="../index.html#features" data-sec="features">Funksjoner</a>
-      <a href="../index.html#see-it" data-sec="see-it">Demo</a>
-      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=no-blog-egen-nokkel-egen-modell&amp;utm_campaign=nav" class="pill-cta" target="_blank" rel="noopener">Legg til i Chrome</a>
-    </nav>
-    <div class="nav-island"><div class="nav-tools">
+    <div class="nav-island"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=no-blog-egen-nokkel-egen-modell&amp;utm_campaign=nav" class="pill-cta nav-cta" target="_blank" rel="noopener">Legg til i Chrome</a>
+    <div class="nav-tools">
       <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Send denne siden til datamaskinen min" title="Send til datamaskinen min"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="Språk" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Bytt til lys modus">
@@ -50,6 +46,12 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
     </button></div>
   </div>
+    <nav class="pill" aria-label="Primær">
+      <a href="../index.html" data-sec="hero">Oversikt</a>
+      <a href="../index.html#see-it" data-sec="see-it">Se hvordan det fungerer</a>
+      <a href="../index.html#features" data-sec="features">Funksjoner</a>
+      <a href="./" data-dock-blog="">Blogg</a>
+    </nav>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="Mobil">
@@ -146,6 +148,7 @@
           <li><strong>Eksperimentering:</strong> legg til flere leverandører og sammenlign svarene på samme artikkel. Det er den raskeste måten å finne ut hvilken modell som takler hvilke typer tekst best.</li>
         </ol>
         <p>Poenget er ikke at ett oppsett er riktig for alle. Poenget er at valget forblir ditt.</p>
+        <p>Hvis du bruker den valgfrie vertsbaserte tjenesten i stedet for egen nøkkel, har den en EU-modus: <a href="byphil-cloud-eu-models.html">byPhil Cloud snakker nå EU</a>.</p>
         <p><em>Relatert: det større bildet av hvem som ser dataene dine, og hvordan du velger: <a href="digital-sovereignty-for-individuals.html">Digital suverenitet for enkeltpersoner</a>.</em></p>
 
         <div class="post-cta">

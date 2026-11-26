@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090C">
-<title>AI Summary Helper: sammanfatta, spara och sök på webben</title>
+<title>AI Summary Helper: din privata AI-följeslagare för läsning och kunskap</title>
 <script>
 // Old language links were /?lang=xx. GitHub Pages cannot 301 a query string, so send them to the language folder (canonical already points to /).
 (function () {
@@ -14,7 +14,7 @@
   location.replace('/' + (dir ? dir + '/' : '') + location.hash);
 })();
 </script>
-<meta name="description" content="Chrome-tillägg som sammanfattar sidor med AI, läser dina RSS-flöden och sparar ett sökbart arkiv. Sökning och rekommendationer körs lokalt på din enhet.">
+<meta name="description" content="Gör läsningen till kunskap du behåller. AI Summary Helper är en privat, local-first läshjälp för artiklar, PDF:er och videor med källänkade svar och ett sökbart arkiv.">
 
 <script>
   (function(){
@@ -34,16 +34,21 @@
 <link rel="preload" href="../assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="preload" href="../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin=""><link rel="stylesheet" href="../assets/styles.css">
 
 <meta property="og:title" content="AI Summary Helper">
-<meta property="og:description" content="Sammanfatta, spara och sök på webben lokalt på enheten. Ett Chrome-tillägg skapat för dig som aldrig mer vill tappa bort din läslista.">
+<meta property="og:description" content="Gör läsningen till kunskap du behåller, med källänkade svar, ett privat sökbart arkiv och local-first AI.">
 <meta property="og:url" content="https://kaivo.byphil.eu/sv/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="AI Summary Helper zeigt eine quellenverlinkte KI-Zusammenfassung neben dem Originalartikel.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Summary Helper: your private AI reading and knowledge companion">
+<meta name="twitter:description" content="Turn reading into knowledge you keep with source-linked answers, a private searchable archive and local-first AI.">
+<meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp">
+<meta name="twitter:image:alt" content="AI Summary Helper zeigt eine quellenverlinkte KI-Zusammenfassung neben dem Originalartikel.">
 
 <script src="../assets/analytics.js" defer=""></script>
-<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/"><link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="sv"><meta name="twitter:title" content="AI Summary Helper"><meta name="twitter:description" content="Sammanfatta, spara och sök på webben lokalt på enheten. Ett Chrome-tillägg skapat för dig som aldrig mer vill tappa bort din läslista."><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://kaivo.byphil.eu/sv/"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kaivo.byphil.eu/#website","url":"https://kaivo.byphil.eu/","name":"AI Summary Helper","inLanguage":"sv","publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"SoftwareApplication","@id":"https://kaivo.byphil.eu/#app","name":"AI Summary Helper","url":"https://kaivo.byphil.eu/sv/","description":"Chrome-tillägg som sammanfattar sidor med AI, läser dina RSS-flöden och sparar ett sökbart arkiv. Sökning och rekommendationer körs lokalt på din enhet.","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Chromium browsers, Firefox, Android (beta companion app)","installUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","downloadUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","image":"https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp","inLanguage":"sv","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free; a donation (Support Pass) unlocks byphil Cloud with many AI models"},"author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"FAQPage","@id":"https://kaivo.byphil.eu/sv/#faq","inLanguage":"sv","mainEntity":[{"@type":"Question","name":"Behöver jag ett konto för att använda det?","acceptedAnswer":{"@type":"Answer","text":"Nej. Installera, använd din egen nyckel från valfri AI-leverantör (eller använd en lokal Ollama-modell) och börja spara. Du behöver bara ett konto om du vill använda byphil Cloud (flera AI-modeller utan API key) eller skicka mer till Kindle/LocalSend, vilket låses upp med en donation."}},{"@type":"Question","name":"Vad lämnar egentligen min webbläsare?","acceptedAnswer":{"@type":"Answer","text":"Bara sammanfattningsanropet — som skickas till den AI-leverantör du valt — plus anrop till de RSS-flöden du prenumererar på, och (endast när du klickar på en AI-recap) dagens rubriker och korta utdrag. Sökning, dubblettkontroll, tagghantering, läsnivå, sentimentanalys och rekommendationer för \"liknande artiklar\" körs helt lokalt mot ditt eget sparade arkiv."}},{"@type":"Question","name":"Kan jag köra detta helt utan molntjänster?","acceptedAnswer":{"@type":"Answer","text":"Ja — koppla det till en lokal Ollama-modell så stannar även sammanfattningen på din dator. Allt annat körs redan lokalt."}},{"@type":"Question","name":"Vad händer med det jag sparat om jag slutar stötta projektet?","acceptedAnswer":{"@type":"Answer","text":"Ditt arkiv stannar precis där det alltid har varit — i webbläsarens lokala lagring på din enhet. Support Pass styr bara molnbaserade tillägg (byphil Cloud AI-åtkomst, obegränsade Kindle/LocalSend-utskick), aldrig åtkomsten till det du redan har sparat."}},{"@type":"Question","name":"Hur installerar jag Android-appen?","acceptedAnswer":{"@type":"Answer","text":"Ladda ner APK-filen från länken ovan (eller från senaste versionen), öppna den och tillåt installationer från webbläsaren när Android frågar. Parkoppla sedan genom att skanna QR-koden i tillägget under Inställningar → Telefoninkorg. Den finns inte på Google Play ännu."}},{"@type":"Question","name":"Är detta öppen källkod?","acceptedAnswer":{"@type":"Answer","text":"Ja — tilläggets källkod är öppen på GitHub, under AGPL-3.0-licensen. Det är gratis för personlig användning, utbildning och ideell verksamhet; företag som vill använda det utanför villkoren i AGPL kan teckna en kommersiell licens."}}]}]}</script><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"AI Summary Helper på under en minut","description":"Alla funktioner i en snabb genomgång: sammanfattningar, källor, research-läge, bibliotek, flöden, AI-appar och mycket mer.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT2M2S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4","inLanguage":"en","transcript":"Everything it can do in under a minute! Summarize any page! YouTube videos? Done! PDFs? Done! Every answer shows its source! The AI marks the key passages! Papers recognised by their DOI! Compare sources on one question! Forty-one languages! Read aloud while it writes! A library with search and stats! Your reading, as a report! Your reading as a knowledge graph: tap a topic and get the overview! RSS feeds with a daily recap! Only the good news, if you like! A digest to your e-reader: pick a few articles, and they get beamed straight over to you! Export to Obsidian, Word, PDF! Your library inside your AI apps! Sync and back up to Nextcloud, WebDAV, S3 or a folder! Your key, a local model, or cloud!","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Verifiera svaret mot källan","description":"Ställ en följdfråga och hoppa direkt till textavsnittet svaret baserades på.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/quellen-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/quellen-sv.mp4","inLanguage":"sv","transcript":"AI-svar. Med belägg. Ställ följdfrågor. Varje svar pekar ut stället i texten som det kommer från.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ställ frågor om dina markeringar","description":"Markera ett stycke, ställ en fråga och få ett svar med källhänvisning.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/highlights-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/highlights-sv.mp4","inLanguage":"sv","transcript":"Att bara stryka under hjälper knappt. Det visar en stor genomgång av inlärningsmetoder. Så sluta inte vid markeringen: fråga om den, så visar svaret var det kommer ifrån.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"En sammanfattning istället för 40 flöden","description":"Hela dagens flöden i en enda sammanfattning.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/feeds-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/feeds-sv.mp4","inLanguage":"sv","transcript":"En RSS-läsare som sammanfattar. Prenumerera på dina favoritkällor. Ett klick, så får du en briefing över hela dagen.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Din läsning som en kunskapsgraf","description":"Artiklar länkade via ämnen, med en sammanfattning för varje ämne.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/graph-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/graph-sv.mp4","inLanguage":"sv","transcript":"Det du läser hänger ihop. Din kunskapsgraf länkar artiklar via deras ämnen. Tryck på ett, så får du en briefing över allt du har läst om det.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ett sammandrag istället för en hög av flikar","description":"Tre sparade artiklar blir till ett magasin på din Kindle.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/digest-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/digest-sv.mp4","inLanguage":"sv","transcript":"Vi sparar långt mer än vi läser. Gör högen till en enda digest: välj några sparade artiklar, så landar de på din Kindle som en tidning.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Din nyckel. Din modell. Din data.","description":"Din egen API key, en lokal modell med Ollama, eller byPhil Cloud.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/privat-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/privat-sv.mp4","inLanguage":"sv","transcript":"Integritet är en avvägning. När risken är tydlig delar folk mindre. Så du väljer: din egen API-nyckel, en lokal modell med Ollama eller byPhil Cloud utan installation. Ditt bibliotek stannar i webbläsaren.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ett alternativ till Pocket","description":"Spara, sammanfatta och skicka till din Kindle.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pocket-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pocket-sv.mp4","inLanguage":"sv","transcript":"Pocket är borta. Och nu? Spara vilken sida som helst med ett klick, med en sammanfattning överst. Ditt bibliotek har taggar och sökning och skickar till din Kindle. Gratis, och allt stannar på din enhet.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Från sammanfattning till Kindle","description":"Vanemönstret som startade hela projektet.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/senden-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/senden-sv.mp4","inLanguage":"sv","transcript":"Från sammanfattning till Kindle. Sammanfatta sidan, öppna menyn, skicka den till din Kindle. Några sekunder senare ligger den på din e-läsare, redo för soffan.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"En 72-minuters föreläsning, sammanfattad","description":"Sammanfattningar direkt från undertexterna, med uppföljningsfrågor som hänvisar till rätt avsnitt.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ytvideo-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ytvideo-sv.mp4","inLanguage":"sv","transcript":"Ett föredrag på 72 minuter. Vem hinner det? Öppna videon och tryck på Sammanfatta. Tillägget läser undertexterna, och du får det viktigaste på ditt språk. Ställ en följdfråga, så visar varje svar stället i transkriptionen.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"En 84-sidig PDF på några sekunder","description":"Öppna en PDF i webbläsaren och sammanfatta den – på ditt eget språk.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pdf-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pdf-sv.mp4","inLanguage":"sv","transcript":"En PDF på 84 sidor. Vem läser den? Öppna en PDF i webbläsaren och tryck på Sammanfatta. Rapporter, studier, manualer: det viktigaste på sekunder, på ditt språk. Och du ser vad modellen har läst.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Forskningsartiklar identifieras via DOI","description":"Klinisk prövning, översiktsartikel eller preprint i ett ögonkast – med viktiga fakta och källhänvisning från DOI.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/paper-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/paper-sv.mp4","inLanguage":"sv","transcript":"Preprint eller granskad? Vet innan du citerar. Sammanfatta en forskningsartikel så känns den igen på sin DOI. Studie, översikt eller preprint: du ser det direkt. Upplägg, urval och begränsningar plockas fram, och källhänvisningen kommer rakt från DOI-registret.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"En fråga, fem källor","description":"Samlingar jämför vad dina källor är överens om, skiljer sig åt kring och utelämnar.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/recherche-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M24S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/recherche-sv.mp4","inLanguage":"sv","transcript":"En fråga, fem källor. Var säger de emot varandra? Samla dina sparade artiklar under en fråga. Varje källa får en typ: expertgranskad, preprint, nyhet eller åsikt. Ett klick jämför dem: var de är överens, var de inte är det och vad som saknas.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Spökmarkeringar","description":"AI:n markerar de viktigaste passagerna i artikeln. Spara en markering eller avfärda den.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ghost-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ghost-sv.mp4","inLanguage":"sv","transcript":"AI:n markerar det som räknas medan du läser. Efter sammanfattningen markerar AI:n de viktigaste styckena direkt i artikeln, som spökmarkeringar. Tryck på en för att behålla den, eller avfärda den. Så blir skumläsning till läsning med avsikt.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ditt nyhetsintag har en stämning","description":"Ett filter för goda nyheter och ett stämningsdiagram över veckorna.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/stimmung-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/stimmung-sv.mp4","inLanguage":"sv","transcript":"Dina nyheter har en stämning. AI:n betygsätter varje rubrik, från tung till bra. Tryck på smileyn, så blir bara de goda nyheterna kvar. Och stämningsdiagrammet visar hur din läsning har känts under veckorna.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Direktuppläsning","description":"Sammanfattningen läses upp medan AI:n fortfarande skriver den.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/instant-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M28S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/instant-sv.mp4","inLanguage":"sv","transcript":"Varför vänta tills sammanfattningen är klar? Slå på Snabbläsning, så läses den upp medan den fortfarande skrivs.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ditt bibliotek i dina AI-appar","description":"Claude Desktop, LM Studio och Cursor söker i ditt bibliotek, citerar dina markeringar och anger dina källor.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M25S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4","inLanguage":"en","transcript":"Your AI app has never read what you read. Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights. Ask what is due, let it save the best from your feeds, or ask for your year, wrapped. Nothing goes through our server, and you choose what they may read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Exportera till Obsidian och mer","description":"Varje sammanfattning exporteras som en ren anteckning: Obsidian, Markdown, Word, ODT eller PDF.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/export-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/export-en.mp4","inLanguage":"en","transcript":"Your summaries belong in your notes. Every summary leaves as a clean note: to Obsidian, as Markdown, Word, OpenDocument or PDF. With the title, the source, your tags and your highlights, ready to keep.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Din läsning som rapport","description":"Lässvit, sparad tid, aktivitet och ämnen över veckornas gång.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4","inLanguage":"en","transcript":"Where did your reading time go? Open Analytics and your library becomes a report: your streak, the time summaries saved you, your topics over the weeks and the words you keep coming back to.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"20+ språk, över alla plattformar","description":"Läs och sammanfatta på ditt favoritspråk. Tillägg, inbyggd sidopanel eller bookmarklet — för överallt där webbläsartillägget inte når.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/sprache-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/sprache-sv.mp4","inLanguage":"sv","transcript":"På ett främmande språk läser du långsammare. Ögonrörelsestudier visar det, även hos van läsare. Sammanfattningar på 41 språk: sök, tryck, klart.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Riktig sökning, direkt på enheten","description":"Fulltextsökning över titlar, taggar och artikelinnehåll — drivet av ett TF-IDF-index som byggs direkt i webbläsaren. Ingen serverfördröjning, inget lagg och ingenting skickas iväg.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.mp4","inLanguage":"sv","transcript":"Din läsning, äntligen lätt att hitta. Allt du har sammanfattat stannar på din enhet. Med taggar, sökning och statistik.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head>
+<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/"><link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/"><link rel="canonical" href="https://kaivo.byphil.eu/sv/"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="sv"><script type="application/ld+json" data-seo="ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kaivo.byphil.eu/#website","url":"https://kaivo.byphil.eu/","name":"AI Summary Helper","inLanguage":"sv","publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"SoftwareApplication","@id":"https://kaivo.byphil.eu/#app","name":"AI Summary Helper","url":"https://kaivo.byphil.eu/sv/","description":"Gör läsningen till kunskap du behåller. AI Summary Helper är en privat, local-first läshjälp för artiklar, PDF:er och videor med källänkade svar och ett sökbart arkiv.","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Chromium browsers, Firefox, Android (beta companion app)","installUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","downloadUrl":"https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb","image":"https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp","inLanguage":"sv","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","description":"Free; a donation (Support Pass) unlocks byphil Cloud with many AI models"},"author":{"@id":"https://byphil.eu/#org"},"publisher":{"@type":"Organization","@id":"https://byphil.eu/#org","name":"byphil","url":"https://byphil.eu/"}},{"@type":"FAQPage","@id":"https://kaivo.byphil.eu/sv/#faq","inLanguage":"sv","mainEntity":[{"@type":"Question","name":"Behöver jag ett konto för att använda det?","acceptedAnswer":{"@type":"Answer","text":"Nej. Installera, lägg in din egen nyckel hos en AI-leverantör eller använd en lokal Ollama-modell och börja spara. Ett konto behövs bara för valfri åtkomst till byphil Cloud eller extra utskick till Kindle/LocalSend. Se leverantörsalternativen →"}},{"@type":"Question","name":"Vad lämnar egentligen min webbläsare?","acceptedAnswer":{"@type":"Answer","text":"Bara själva sammanfattningsbegäran går till AI-leverantören du har ställt in. RSS kräver dessutom anrop till flödena du prenumererar på; en AI-översikt skickar rubriker och korta utdrag bara när du ber om det. Sökning, dubblettkontroll, taggar och rekommendationer körs lokalt. Se arkitekturen på enheten →"}},{"@type":"Question","name":"Används mina sidor eller markeringar för att träna en modell?","acceptedAnswer":{"@type":"Answer","text":"AI Summary Helper använder inte ditt innehåll för att träna någon egen modell. Med egen nyckel gäller datapolicyn hos leverantören du valt. Med Ollama stannar sammanfattningsbegäran på din dator. Läs om integritetsmodellen →"}},{"@type":"Question","name":"Kan jag köra detta helt utan molntjänster?","acceptedAnswer":{"@type":"Answer","text":"Ja. Peka den mot en lokal Ollama-modell så stannar även sammanfattningssteget på din dator. Allt annat körs redan lokalt. Jämför egen nyckel och Ollama →"}},{"@type":"Question","name":"Var lagras mitt läsarkiv?","acceptedAnswer":{"@type":"Answer","text":"Som standard i webbläsaren på din enhet. Du kan exportera det som Markdown eller säkerhetskopiera det krypterat till din egen Nextcloud, WebDAV-server, S3-bucket eller lokala mapp. Läs synkguiden →"}},{"@type":"Question","name":"Vad händer om jag rensar webbläsardata?","acceptedAnswer":{"@type":"Answer","text":"Rensar du webbläsarens lokala data kan ett lokalt arkiv försvinna om du saknar säkerhetskopia. Exportera biblioteket eller ställ in krypterad synk till egen lagring innan du rensar data eller byter profil. Läs guiden om säkerhetskopia och synk →"}},{"@type":"Question","name":"Vilka AI-leverantörer och modeller stöds?","acceptedAnswer":{"@type":"Answer","text":"Du kan använda OpenAI, Gemini, Mistral, DeepSeek, en kompatibel egen slutpunkt eller en lokal Ollama-modell. Ta med din egen nyckel eller använd byphil Cloud som tillval. Så fungerar egen nyckel →"}},{"@type":"Question","name":"Kan jag sammanfatta PDF:er, YouTube-videor och RSS-inlägg?","acceptedAnswer":{"@type":"Answer","text":"Ja. Sammanfatta PDF:er som är öppna i webbläsaren eller bifogade från datorn, YouTube-videor via undertexterna och artiklar från den inbyggda RSS-läsaren. Titta på videorna om arbetsflöden → Läs om flödessammandrag →"}},{"@type":"Question","name":"Hur pålitliga är AI-sammanfattningarna?","acceptedAnswer":{"@type":"Answer","text":"AI-resultat kan vara fel och ersätter inte att du kontrollerar källan. Svar på följdfrågor visar avsnittet de bygger på, så att du kan jämföra sammanfattningen med originalsidan. Lär dig källkontrollen på 10 sekunder →"}},{"@type":"Question","name":"Vilka webbläsare och plattformar stöds?","acceptedAnswer":{"@type":"Answer","text":"Använd webbläsartillägget, den inbyggda sidopanelen eller bokmärkesskriptet. En Android-app lägger till länkar från telefonen; iOS finns inte ännu. Se arbetsflödet för webbläsare och insamling →"}},{"@type":"Question","name":"Hur installerar jag Android-appen?","acceptedAnswer":{"@type":"Answer","text":"Ladda ned APK-filen från senaste versionenoch koppla sedan ihop den genom att skanna QR-koden under Inställningar → Mobilinkorg. Den finns inte på Google Play ännu. Läs hur insamlingen passar in i arbetsflödet →"}},{"@type":"Question","name":"Vad låser Support Pass upp?","acceptedAnswer":{"@type":"Answer","text":"Support Pass finansierar fristående utveckling med öppen källkod och kan låsa upp AI-åtkomst via byphil Cloud eller extra utskick till Kindle/LocalSend som tillval. Ditt lokala arkiv och lokal användning är inte låsta bakom det. Förstå gränsen mot det valfria molnet →"}},{"@type":"Question","name":"Vad händer med det jag sparat om jag slutar stötta projektet?","acceptedAnswer":{"@type":"Answer","text":"Ditt arkiv stannar precis där det alltid har varit — i webbläsarens lokala lagring på din enhet. Support Pass styr bara molnbaserade tillägg (byphil Cloud AI-åtkomst, obegränsade Kindle/LocalSend-utskick), aldrig åtkomsten till det du redan har sparat. Se hur Digest gör sparade artiklar nyttiga igen →"}},{"@type":"Question","name":"Är detta öppen källkod?","acceptedAnswer":{"@type":"Answer","text":"Ja — tilläggets källkod är öppen på GitHub, under AGPL-3.0-licensen. Det är gratis för personlig användning, utbildning och ideell verksamhet; företag som vill använda det utanför villkoren i AGPL kan teckna en kommersiell licens. Läs om den lokala arkitekturen →"}}]}]}</script><script type="application/ld+json" data-seo-video="">{"@context":"https://schema.org","@graph":[{"@type":"VideoObject","name":"AI Summary Helper på två minuter","description":"Alla funktioner i en snabb genomgång: sammanfattningar, källor, research-läge, bibliotek, flöden, AI-appar och mycket mer.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/komplett-sv.jpg"],"uploadDate":"2026-11-24T00:00:00+00:00","duration":"PT2M15S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/komplett-sv.mp4","inLanguage":"sv","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Verifiera svaret mot källan","description":"Ställ en följdfråga och hoppa direkt till textavsnittet svaret baserades på.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/quellen-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/quellen-sv.mp4","inLanguage":"sv","transcript":"AI-svar. Med belägg. Ställ följdfrågor. Varje svar pekar ut stället i texten som det kommer från.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ställ frågor om dina markeringar","description":"Markera ett stycke, ställ en fråga och få ett svar med källhänvisning.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/highlights-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/highlights-sv.mp4","inLanguage":"sv","transcript":"Att bara stryka under hjälper knappt. Det visar en stor genomgång av inlärningsmetoder. Så sluta inte vid markeringen: fråga om den, så visar svaret var det kommer ifrån.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"En sammanfattning istället för 40 flöden","description":"Hela dagens flöden i en enda sammanfattning.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/feeds-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/feeds-sv.mp4","inLanguage":"sv","transcript":"En RSS-läsare som sammanfattar. Prenumerera på dina favoritkällor. Ett klick, så får du en briefing över hela dagen.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Din läsning som en kunskapsgraf","description":"Artiklar länkade via ämnen, med en sammanfattning för varje ämne.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/graph-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/graph-sv.mp4","inLanguage":"sv","transcript":"Det du läser hänger ihop. Din kunskapsgraf länkar artiklar via deras ämnen. Tryck på ett, så får du en briefing över allt du har läst om det.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ett sammandrag istället för en hög av flikar","description":"Tre sparade artiklar blir till ett magasin på din Kindle.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/digest-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/digest-sv.mp4","inLanguage":"sv","transcript":"Vi sparar långt mer än vi läser. Gör högen till en enda digest: välj några sparade artiklar, så landar de på din Kindle som en tidning.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Din nyckel. Din modell. Din data.","description":"Din egen API key, en lokal modell med Ollama, eller byPhil Cloud.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/privat-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/privat-sv.mp4","inLanguage":"sv","transcript":"Integritet är en avvägning. När risken är tydlig delar folk mindre. Så du väljer: din egen API-nyckel, en lokal modell med Ollama eller byPhil Cloud utan installation. Ditt bibliotek stannar i webbläsaren.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ett alternativ till Pocket","description":"Spara, sammanfatta och skicka till din Kindle.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pocket-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M19S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pocket-sv.mp4","inLanguage":"sv","transcript":"Pocket är borta. Och nu? Spara vilken sida som helst med ett klick, med en sammanfattning överst. Ditt bibliotek har taggar och sökning och skickar till din Kindle. Gratis, och allt stannar på din enhet.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Från sammanfattning till Kindle","description":"Vanemönstret som startade hela projektet.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/senden-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/senden-sv.mp4","inLanguage":"sv","transcript":"Från sammanfattning till Kindle. Sammanfatta sidan, öppna menyn, skicka den till din Kindle. Några sekunder senare ligger den på din e-läsare, redo för soffan.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"En 72-minuters föreläsning, sammanfattad","description":"Sammanfattningar direkt från undertexterna, med uppföljningsfrågor som hänvisar till rätt avsnitt.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ytvideo-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ytvideo-sv.mp4","inLanguage":"sv","transcript":"Ett föredrag på 72 minuter. Vem hinner det? Öppna videon och tryck på Sammanfatta. Tillägget läser undertexterna, och du får det viktigaste på ditt språk. Ställ en följdfråga, så visar varje svar stället i transkriptionen.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"En 84-sidig PDF på några sekunder","description":"Öppna en PDF i webbläsaren och sammanfatta den – på ditt eget språk.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/pdf-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M20S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/pdf-sv.mp4","inLanguage":"sv","transcript":"En PDF på 84 sidor. Vem läser den? Öppna en PDF i webbläsaren och tryck på Sammanfatta. Rapporter, studier, manualer: det viktigaste på sekunder, på ditt språk. Och du ser vad modellen har läst.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Forskningsartiklar identifieras via DOI","description":"Klinisk prövning, översiktsartikel eller preprint i ett ögonkast – med viktiga fakta och källhänvisning från DOI.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/paper-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M23S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/paper-sv.mp4","inLanguage":"sv","transcript":"Preprint eller granskad? Vet innan du citerar. Sammanfatta en forskningsartikel så känns den igen på sin DOI. Studie, översikt eller preprint: du ser det direkt. Upplägg, urval och begränsningar plockas fram, och källhänvisningen kommer rakt från DOI-registret.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"En fråga, fem källor","description":"Samlingar jämför vad dina källor är överens om, skiljer sig åt kring och utelämnar.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/recherche-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M24S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/recherche-sv.mp4","inLanguage":"sv","transcript":"En fråga, fem källor. Var säger de emot varandra? Samla dina sparade artiklar under en fråga. Varje källa får en typ: expertgranskad, preprint, nyhet eller åsikt. Ett klick jämför dem: var de är överens, var de inte är det och vad som saknas.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Spökmarkeringar","description":"AI:n markerar de viktigaste passagerna i artikeln. Spara en markering eller avfärda den.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/ghost-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/ghost-sv.mp4","inLanguage":"sv","transcript":"AI:n markerar det som räknas medan du läser. Efter sammanfattningen markerar AI:n de viktigaste styckena direkt i artikeln, som spökmarkeringar. Tryck på en för att behålla den, eller avfärda den. Så blir skumläsning till läsning med avsikt.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ditt nyhetsintag har en stämning","description":"Ett filter för goda nyheter och ett stämningsdiagram över veckorna.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/stimmung-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/stimmung-sv.mp4","inLanguage":"sv","transcript":"Dina nyheter har en stämning. AI:n betygsätter varje rubrik, från tung till bra. Tryck på smileyn, så blir bara de goda nyheterna kvar. Och stämningsdiagrammet visar hur din läsning har känts under veckorna.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Direktuppläsning","description":"Sammanfattningen läses upp medan AI:n fortfarande skriver den.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/instant-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M28S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/instant-sv.mp4","inLanguage":"sv","transcript":"Varför vänta tills sammanfattningen är klar? Slå på Snabbläsning, så läses den upp medan den fortfarande skrivs.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Ditt bibliotek i dina AI-appar","description":"Claude Desktop, LM Studio och Cursor söker i ditt bibliotek, citerar dina markeringar och anger dina källor.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M25S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4","inLanguage":"en","transcript":"Your AI app has never read what you read. Claude Desktop, LM Studio or Cursor can now search your library and quote your highlights. Ask what is due, let it save the best from your feeds, or ask for your year, wrapped. Nothing goes through our server, and you choose what they may read.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Exportera till Obsidian och mer","description":"Varje sammanfattning exporteras som en ren anteckning: Obsidian, Markdown, Word, ODT eller PDF.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/export-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M21S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/export-en.mp4","inLanguage":"en","transcript":"Your summaries belong in your notes. Every summary leaves as a clean note: to Obsidian, as Markdown, Word, OpenDocument or PDF. With the title, the source, your tags and your highlights, ready to keep.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Din läsning som rapport","description":"Lässvit, sparad tid, aktivitet och ämnen över veckornas gång.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg"],"uploadDate":"2026-10-27T00:00:00+00:00","duration":"PT0M18S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4","inLanguage":"en","transcript":"Where did your reading time go? Open Analytics and your library becomes a report: your streak, the time summaries saved you, your topics over the weeks and the words you keep coming back to.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"20+ språk, över alla plattformar","description":"Läs och sammanfatta på över 20 språk med tillägget, den inbyggda sidopanelen eller bookmarklet när tillägget inte kommer åt en sida.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/sprache-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M16S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/sprache-sv.mp4","inLanguage":"sv","transcript":"På ett främmande språk läser du långsammare. Ögonrörelsestudier visar det, även hos van läsare. Sammanfattningar på 41 språk: sök, tryck, klart.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}},{"@type":"VideoObject","name":"Riktig sökning, direkt på enheten","description":"Sök i rubriker, taggar och artikeltext med ett TF-IDF-index i webbläsaren. Fulltextsökningen stannar på enheten utan någon rundtur.","thumbnailUrl":["https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.jpg"],"uploadDate":"2026-10-21T00:00:00+00:00","duration":"PT0M17S","contentUrl":"https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.mp4","inLanguage":"sv","transcript":"Din läsning, äntligen lätt att hitta. Allt du har sammanfattat stannar på din enhet. Med taggar, sökning och statistik.","isFamilyFriendly":true,"publisher":{"@id":"https://byphil.eu/#org"}}]}</script></head>
 <body>
 
 <a href="#main" class="skip-link">Hoppa till innehållet</a>
@@ -54,12 +59,8 @@
       <img src="../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
-    <nav class="pill" aria-label="Primär">
-      <a href="index.html#features" data-sec="features">Funktioner</a>
-      <a href="index.html#see-it" data-sec="see-it">Demo</a>
-      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=sv&amp;utm_campaign=nav" class="pill-cta" target="_blank" rel="noopener">Lägg till i Chrome</a>
-    </nav>
-    <div class="nav-island"><div class="nav-tools">
+    <div class="nav-island"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=sv&amp;utm_campaign=nav" class="pill-cta nav-cta" target="_blank" rel="noopener">Lägg till i Chrome</a>
+    <div class="nav-tools">
       <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Skicka den här sidan till min dator" title="Skicka till min dator"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="Språk" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Växla till ljust läge">
@@ -71,11 +72,17 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
     </button></div>
   </div>
+    <nav class="pill" aria-label="Primär">
+      <a href="index.html" data-sec="hero">Översikt</a>
+      <a href="index.html#see-it" data-sec="see-it">Se hur det fungerar</a>
+      <a href="index.html#features" data-sec="features">Funktioner</a>
+      <a href="blog/" data-dock-blog="">Blogg</a>
+    </nav>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="Mobil">
-        <a href="index.html#features"><span class="mm-n">01</span>Funktioner</a>
-        <a href="index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="index.html#use-cases"><span class="mm-n">01</span>Användningsområden</a>
+        <a href="index.html#problem" data-slider-goto="problem"><span class="mm-n">02</span>Så funkar det</a>
         <a href="../education/"><span class="mm-n">03</span>Utbildning</a>
         <a href="blog/"><span class="mm-n">04</span>Blogg</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket-alternativ: vad som spelar roll</a>
@@ -123,12 +130,12 @@
 <main id="main">
 
   <!-- ── Hero ────────────────────────────────────────────────────── -->
-  <section class="hero hero-scene hscene" data-hscene="">
+  <section id="hero" class="hero hero-scene hscene" data-hscene="">
   <div class="hs-grid">
     <div class="hs-text"><div class="hs-text-in">
       <div class="eyebrow"><span class="dash"></span> Chrome-tillägg · En del av byphil. <span class="dash"></span></div>
-      <h1>Sammanfatta webben.<br><em>Behåll det som räknas.</em></h1>
-      <p class="sub">Ett klick förvandlar vilken sida som helst till en kort sammanfattning bredvid artikeln. Allt stannar i din webbläsare, så att du enkelt hittar det igen.</p>
+      <h1>Gör läsningen till<br><em>kunskap du behåller.</em></h1>
+      <p class="sub">Förstå artiklar, PDF:er och videor snabbare. Kontrollera svaren mot källorna. Bygg en privat, sökbar kunskapsbas på din egen enhet.</p>
       <div class="hero-pane" id="heroPaneBrowser">
         <div class="hero-cta">
           <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=sv&amp;utm_campaign=cta" target="_blank" rel="noopener" class="btn-primary" data-desktop-cta="">Lägg till i Chrome — helt gratis</a>
@@ -136,7 +143,7 @@
         </div>
         <p class="send-note" data-send-note="" hidden="">Chrome på mobilen kan inte installera tillägg. Skicka länken till din dator och lägg till det där. <a href="#" data-send-mail="">Mejla den till mig</a> · <a href="#" data-send-copy="">Kopiera länk</a></p>
         <p class="hero-proof"><a href="https://www.producthunt.com/products/ai-summary-helper/launches/ai-summary-helper-summarize-articles" target="_blank" rel="noopener" data-track="hero-producthunt">139 upvotes på Product Hunt</a> · <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">Öppen källkod</a> · Utvecklat inom EU</p>
-        <p class="hero-meta">Inget konto krävs · Använd din egen AI-nyckel, eller kör helt offline med Ollama</p>
+        <p class="hero-meta">Inget konto · Din nyckel eller lokal Ollama · Öppen källkod · Byggd i EU</p>
       </div>
       <ol class="hs-steps" data-stage-pane="browser">
   <li class="is-on" data-step="0" role="button" tabindex="0"><b>Läs vilken sida som helst.</b><span>Öppna en artikel som vanligt. AISH ligger diskret i webbläsaren.</span></li>
@@ -188,9 +195,23 @@
         </div>
       </div>
       <!-- The animated demo is nice, but the video shows it better: this opens the full video (komplett-<lang>.mp4, the first clip of #videos) in the player. Without JavaScript it jumps to the clips. -->
-      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>Se videon</strong><small>Allt på under en minut</small></span></a>
+      <a class="hs-watch" href="#videos" data-open-video="komplett"><span class="hs-watch-ico" aria-hidden="true">▶</span><span class="hs-watch-txt"><strong>Se videon</strong><small>Hela rundturen på två minuter</small></span></a>
       <div class="hs-ctrl" role="group" aria-label="Genomgång"><button type="button" class="hs-pp" aria-label="Pausa genomgång"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="pp-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"></path><path class="pp-play" d="M8 5l11 7-11 7z" fill="currentColor"></path></svg></button><button type="button" class="hs-dot is-on" aria-label="Steg 1"></button><button type="button" class="hs-dot" aria-label="Steg 2"></button><button type="button" class="hs-dot" aria-label="Steg 3"></button><button type="button" class="hs-dot" aria-label="Steg 4"></button></div>
       <p class="sr-only">AI Summary Helper visar en kort sammanfattning i en sidopanel, låter dig ställa följdfrågor med källhänvisning till texten och översätter sammanfattningen till det språk du väljer.</p>
+    </div>
+  </div>
+</section>
+
+<section id="use-cases" class="use-case-section">
+  <div class="wrap">
+    <div class="section-head center reveal"><div class="eyebrow">Byggd för hur du läser</div><h2>Välj din väg</h2></div>
+    <div class="use-case-grid blog-grid reveal">
+      <a href="research-papers/" class="use-case-card blog-card"><span class="blog-date">För forskare och studenter</span><h3>Forskning och PDF:er<br>utan att tappa källan</h3><span class="blog-read">Utforska forskningsläget →</span></a>
+      <a href="youtube-summarizer/" class="use-case-card blog-card"><span class="blog-date">För dig som lär dig med video</span><h3>Gör långa videor till<br>kunskap du kan använda</h3><span class="blog-read">Utforska videoläsning →</span></a>
+      <a href="rss-news/" class="use-case-card blog-card"><span class="blog-date">För egen nyhetsbevakning</span><h3>Kurera dina egna<br>aktuella händelser</h3><span class="blog-read">Utforska lokal RSS →</span></a>
+      <a href="e-reader/" class="use-case-card blog-card"><span class="blog-date">För dig med läsplatta</span><h3>Arkivera en gång,<br>läs på din Kindle</h3><span class="blog-read">Utforska flödet för läsplattor →</span></a>
+      <a href="local-ai/" class="use-case-card blog-card"><span class="blog-date">För dig som värnar integriteten</span><h3>Din läsning förblir<br>din</h3><span class="blog-read">Se det lokala arbetsflödet →</span></a>
+      <a href="mcp/" class="use-case-card blog-card"><span class="blog-date">För uppkopplade AI-flöden</span><h3>Koppla ihop din<br>kunskap</h3><span class="blog-read">Utforska MCP →</span></a>
     </div>
   </div>
 </section>
@@ -204,35 +225,52 @@
         <div class="eyebrow">Se hur det fungerar</div>
         <h2>Sammanfattningen ligger bredvid artikeln</h2>
         <p>Läs översikten, ställ en följdfråga och se exakt vilket stycke svaret kommer från. Verkligt gränssnitt, version 2.2.</p>
+        <nav class="slide-jumps" aria-label="Så funkar det">
+          <a href="#problem" data-slider-goto="problem">Problemet</a>
+          <a href="#understand" data-slider-goto="understand">Förstå</a>
+          <a href="#verify" data-slider-goto="verify">Verifiera</a>
+          <a href="#retain" data-slider-goto="retain">Bevara</a>
+          <a href="#difference" data-slider-goto="difference">Mer än sammanfattningar</a>
+          <a href="#privacy" data-slider-goto="privacy">Integritetspolicy</a>
+        </nav>
       </div>
       <div class="cx cx--fit reveal" data-carousel="" role="region" aria-roledescription="carousel" aria-label="Skärmdumpar av produkten">
         <div class="cx-stage">
           <ul class="cx-track" tabindex="0">
-          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 5">
+          <li class="cx-slide is-active" aria-roledescription="slide" aria-label="1 / 8" id="problem">
+            <figure><div class="cx-card" style="--img:url(photo/evening-sofa-ereader-1600.webp)"><span class="cx-big cx-big--text">Läs senare-högen</span><strong class="cx-title">Du sparar mer än du någonsin kommer att läsa</strong><span class="cx-text">Mycket av det vi sparar öppnas sällan igen. Digest väljer ut fem sparade artiklar åt dig och skickar dem så att du kan läsa offline.</span><small class="cx-src">1. Tryck på Digest · 2. Välj stämning · 3. Skicka för offlineläsning</small><a class="cx-slide-link" href="blog/sparat-men-aldrig-last.html">Läs guiden →</a></div><figcaption><strong>Läs det på kvällen, inte i tolv flikar</strong><span>Digest gör en hög sparade länkar till ett genomtänkt paket för kvällen, Kindle eller pendlingen.</span></figcaption></figure>
+          </li>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 8" id="understand">
             <figure>
               <img src="../assets/shots/aish-inpage-detail-en.webp" srcset="../assets/shots/aish-inpage-detail-en-720.webp 720w, ../assets/shots/aish-inpage-detail-en.webp 1440w" sizes="(max-width: 820px) 92vw, 1100px" width="1440" height="900" loading="lazy" alt="Sammanfattning i sidopanelen bredvid artikeln">
               <figcaption><strong>Sammanfattningen bredvid artikeln</strong><span>Läs översikten utan att lämna sidan.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="2 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 8" id="verify">
             <figure>
               <img src="../assets/shots/aish-inpage-ask-en.webp" width="1440" height="900" loading="lazy" alt="Svar på följdfråga med källmarkör och markerade meningar i artikeln">
               <figcaption><strong>Fråga sidan</strong><span>Svaren visar exakt vilket textavsnitt de baseras på.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="3 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 8">
             <figure>
               <img src="../assets/shots/aish-split-wide-en.webp" width="1280" height="800" loading="lazy" alt="Delad vy med lista, kunskapsgraf och analys sida vid sida">
               <figcaption><strong>Nytt i 2.2: delad vy</strong><span>Lista, kunskapsgraf och statistik sida vid sida på större skärmar.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide" aria-roledescription="slide" aria-label="4 / 5">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="5 / 8" id="retain">
             <figure>
               <img src="../assets/shots/aish-research-dark-en.webp" width="1280" height="800" loading="lazy" alt="Forskningsläge med en samling vetenskapliga artiklar, i mörkt läge">
               <figcaption><strong>Nytt i 2.2: forskningsläge</strong><span>Studiedetaljer, DOI-citeringar och samlingar för vetenskapliga artiklar.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="5 / 5" data-desktop-only="">
+          <li class="cx-slide" aria-roledescription="slide" aria-label="6 / 8" id="difference">
+            <figure><div class="cx-card" style="--img:url(photo/scene-library-laptop-1200.webp)"><span class="cx-big cx-big--text">Mer än en sammanfattning</span><strong class="cx-title">En engångssammanfattning tar slut här</strong><span class="cx-text">AISH gör ett svar till en källa du kan kontrollera, spara och återvända till.</span><div class="cx-compare" aria-label="AISH jämfört med en engångssammanfattning"><div class="cx-compare-row"><span>AISH</span><strong>Källänkade svar</strong></div><div class="cx-compare-row is-muted"><span>Engångssammanfattning</span><strong>Sammanfattning utan spår till källan</strong></div><div class="cx-compare-row"><span>AISH</span><strong>Lokalt sökbart arkiv</strong></div><div class="cx-compare-row is-muted"><span>Engångssammanfattning</span><strong>Ingen bestående läskontext</strong></div><div class="cx-compare-row"><span>AISH</span><strong>Forskningsläge med DOI-stöd</strong></div><div class="cx-compare-row is-muted"><span>Engångssammanfattning</span><strong>Samma arbetsflöde för alla sidor</strong></div></div><small class="cx-src">Förstå · Verifiera · Bevara</small></div><figcaption><strong>Inte bara en kortare sida</strong><span>Håll ihop källan, sammanhanget och nästa fråga.</span></figcaption></figure>
+          </li>
+          <li class="cx-slide" aria-roledescription="slide" aria-label="7 / 8" id="privacy">
+            <figure><div class="cx-card" style="--img:url(photo/nas-shelf-laptop-phone-1600.webp)"><span class="cx-big cx-big--text">Byggt på byphil-viset</span><strong class="cx-title">Ditt arkiv förblir ditt</strong><span class="cx-text">Sökning, dubblettkontroll, tagghantering och förslag på liknande artiklar körs direkt i din webbläsare, helt utan server och utan konto. Endast sammanfattningsförfrågan skickas vidare, och bara till den AI-leverantör du själv valt. Med en lokal Ollama-modell stannar även den lokalt.</span><small class="cx-src">Lokalt arkiv · Din leverantör · Inget konto krävs</small><a class="cx-slide-link" href="integritet.html">Läs om integritetsmodellen →</a></div><figcaption><strong>Ditt bibliotek bor på din enhet</strong><span>Välj din nyckel, din modell och var ditt läsarkiv finns.</span></figcaption></figure>
+          </li>
+          <li class="cx-slide cx-slide--demo" aria-roledescription="slide" aria-label="8 / 8" data-desktop-only="">
             <figure>
               <div class="demo-frame" data-demo="" data-demo-scale="1180" data-src="../demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Starta livedemon</span></button>
@@ -241,7 +279,7 @@
               <figcaption><strong>Klicka på Sammanfatta på en riktig sida</strong><span>Det här är tilläggets faktiska gränssnitt som körs i din webbläsare på en exempelartikel. Ingenting skickas vidare.</span></figcaption>
             </figure>
           </li>
-          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="5 / 5" data-mobile-only="">
+          <li class="cx-slide cx-slide--demo-m" aria-roledescription="slide" aria-label="8 / 8" data-mobile-only="">
             <figure>
               <div class="demo-frame demo-frame--phone" data-demo="" data-demo-fit="420x800" data-demo-params="chrome=0&amp;tour=0&amp;surface=sidepanel" data-src="../demo/index.html">
                 <button class="demo-start" type="button"><span class="demo-play" aria-hidden="true">▶</span><span>Testa sidopanelen</span></button>
@@ -253,20 +291,28 @@
           <button type="button" class="cx-nav cx-prev" aria-label="Föregående bild"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
           <button type="button" class="cx-nav cx-next" aria-label="Nästa bild"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
         </div>
-        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Bild 1"></button><button type="button" class="cx-dot" aria-label="Bild 2"></button><button type="button" class="cx-dot" aria-label="Bild 3"></button><button type="button" class="cx-dot" aria-label="Bild 4"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="Slide 5: live demo">Demo</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="Slide 5: live demo">Demo</button></div>
+        <div class="cx-dots"><button type="button" class="cx-dot is-active" aria-label="Gå till bilden om läslistan"></button><button type="button" class="cx-dot" aria-label="Gå till bilden om att förstå"></button><button type="button" class="cx-dot" aria-label="Gå till bilden om att verifiera"></button><button type="button" class="cx-dot" aria-label="Gå till bilden om kunskapsgrafen"></button><button type="button" class="cx-dot" aria-label="Gå till bilden om att bevara"></button><button type="button" class="cx-dot" aria-label="Gå till bilden om integritet"></button><button type="button" class="cx-dot cx-dot--demo" aria-label="Gå till bilden med livedemo">Demo</button><button type="button" class="cx-dot cx-dot--demo-m" aria-label="Gå till bilden med livedemo">Demo</button></div>
       </div>
     </div>
   </section>
 
-  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (../assets/main.js) ──
+  <!-- ── Videos: a stack of short clips; tapping one opens a swipeable full-screen player (assets/main.js) ──
        Videos are localized by scripts/translate.mjs like the blog ones: "<clip>-en.mp4" becomes "<clip>-<locale>.mp4"
        when docs/assets/blog/video/ has it, else it stays English. -->
+  <section id="archive" class="outcome-section">
+    <div class="wrap">
+      <div class="section-head center reveal"><div class="eyebrow">Arkiv</div><h2>Din läsning, bevarad och flyttbar</h2><p>Att spara är kärnan i AI Summary Helper. Allt du arkiverar stannar på din enhet och kan följa med dig.</p></div>
+      <div class="outcome-grid reveal"><article class="outcome-card"><span class="outcome-kicker">Behåll</span><h3>Artiklar med sina bilder</h3><p>Spara hela artikeln, inte bara en länk. Bilderna skalas ned och komprimeras så att sidan förblir läsbar och liten.</p></article><article class="outcome-card"><span class="outcome-kicker">Hitta</span><h3>Sök och koppla ihop på din enhet</h3><p>Fulltextsökning, taggar och en kunskapsgraf körs i webbläsaren utan att ditt bibliotek laddas upp.</p></article><article class="outcome-card"><span class="outcome-kicker">Ta med</span><h3>Skicka till Kindle eller LocalSend</h3><p>Skicka en artikel eller en digest till din Kindle, eller direkt till en KOReader- eller LocalSend-enhet, och läs bort från skärmen.</p></article></div>
+      <div class="hero-cta reveal" style="justify-content:center;margin-top:24px;"><a class="btn-secondary" href="e-reader/">Arkiv och läsplatta →</a></div>
+    </div>
+  </section>
+
   <section id="videos">
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="eyebrow">Titta</div>
         <h2>Varje funktion på under 20 sekunder</h2>
-        <p>Korta klipp inspelade direkt i tillägget. Tryck på ett och svep genom resten.</p>
+        <p>Korta klipp inspelade med det riktiga tillägget. Tryck på ett för att spela upp det direkt här och bläddra bland resten.</p>
       </div>
       <!-- labels for the full-screen player (text here, so the translation pipeline translates them) -->
       <div class="vfeed-labels" hidden="">
@@ -277,14 +323,14 @@
       </div>
       <div class="vstack reveal" data-vstack="">
         <figure class="vstack-item" data-blog-video="komplett" style="--i:0">
-          <button class="vstack-open" type="button" aria-label="Spela upp: AI Summary Helper på under en minut">
-            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/komplett-en.jpg">
-              <source src="../assets/blog/video/komplett-en.mp4" type="video/mp4">
+          <button class="vstack-open" type="button" aria-label="Spela upp: AI Summary Helper på två minuter">
+            <video muted="" playsinline="" preload="none" width="360" height="520" poster="../assets/blog/video/komplett-sv.jpg">
+              <source src="../assets/blog/video/komplett-sv.mp4" type="video/mp4">
             </video>
             <span class="vstack-play" aria-hidden="true">▶</span>
           </button>
           <figcaption>
-            <strong>AI Summary Helper på under en minut</strong>
+            <strong>AI Summary Helper på två minuter</strong>
             <span>Alla funktioner i en snabb genomgång: sammanfattningar, källor, research-läge, bibliotek, flöden, AI-appar och mycket mer.</span>
             <a href="blog/videos.html">Alla videor →</a>
           </figcaption>
@@ -535,7 +581,7 @@
   </section>
 
   <!-- ── Features ────────────────────────────────────────────────── -->
-  <section id="features">
+  <section id="features" data-default-persona="all">
     <div class="wrap">
       <div class="section-head center reveal">
         <div class="eyebrow">Funktioner</div>
@@ -597,7 +643,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="1.8" fill="#fff"></circle><path d="M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>Inbyggd RSS-läsare</h3>
-          <p>Följ bloggar och nyhetssajter, filtrera efter källa, tagg, datum eller stämning, importera din OPML och öppna eller sammanfatta valfri artikel med ett klick. Spela upp podcast-flöden direkt i tillägget och få en valfri AI-sammanfattning av dagens rubriker. Favoriter sparas i ditt arkiv och alla flöden lagras lokalt på din enhet.</p>
+          <p>Följ bloggar och nyhetssajter, filtrera på källa, tagg, datum eller stämning, importera OPML och sammanfatta valfritt inlägg med ett klick. Spela poddflöden i tillägget och få en valfri AI-översikt; flöden och favoriter stannar på din enhet.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -611,7 +657,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" stroke-width="1.7"></rect><path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="#fff"></path></svg></div>
           <h3>YouTube-videor, direkt från undertexterna</h3>
-          <p>Öppna en video och sammanfatta den. Tillägget läser undertexterna, sammanfattar huvudpunkterna på ditt språk, och uppföljande svar källhänvisar till rätt ställe i videon.</p>
+          <p>Sammanfatta YouTube-videor utifrån undertexterna, få huvudpunkterna på ditt språk och ställ följdfrågor med källhänvisningar.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -625,7 +671,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M14 3v4h4M9.5 12h5M9.5 15.5h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>PDF:er, precis som vilken webbsida som helst</h3>
-          <p>Öppna en PDF i webbläsaren eller bifoga en från hårddisken och sammanfatta den som en vanlig sida. ”Vad som användes” visar vad modellen läste: ord, tokens och modell.</p>
+          <p>Sammanfatta PDF:er i webbläsaren eller filer från datorn som vilken sida som helst. ”Vad jag använde” visar orden, token och modellen som AI:n läste med.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher feeds go">
@@ -639,7 +685,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4c2.8 2.6 4.2 5.2 4.2 8s-1.4 5.4-4.2 8c-2.8-2.6-4.2-5.2-4.2-8s1.4-5.4 4.2-8Z" stroke="#fff" stroke-width="1.5"></path></svg></div>
           <h3>20+ språk, över alla plattformar</h3>
-          <p>Läs och sammanfatta på ditt favoritspråk. Tillägg, inbyggd sidopanel eller <a href="../bookmarklet.html">bookmarklet</a> — för överallt där webbläsartillägget inte når.</p>
+          <p>Läs och sammanfatta på över 20 språk med tillägget, den inbyggda sidopanelen eller <a href="../bookmarklet.html">bookmarklet</a> när tillägget inte kommer åt en sida.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher">
@@ -653,7 +699,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.6" fill="#fff"></circle><circle cx="6" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="17" r="2.2" fill="#fff" opacity="0.85"></circle><path d="M12 8.6 L6.8 14.8 M12 8.6 L17.2 14.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.7"></path></svg></div>
           <h3>AI-sammanfattningar med valfri modell</h3>
-          <p>OpenAI, Gemini, Mistral, DeepSeek eller en anpassad endpoint — eller kör en lokal Ollama-modell och rör inte nätverket alls för detta steg.</p>
+          <p>Välj OpenAI, Gemini, Mistral, DeepSeek, en egen slutpunkt eller lokal Ollama för sammanfattningar som aldrig behöver lämna din enhet.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="researcher go">
@@ -667,7 +713,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 9h14M5 13h14M5 17h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path><path d="M5 5l14 0M5 9l14 0M5 13l14 0M5 17l14 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.35"></path></svg></div>
           <h3>Spökmarkeringar direkt på sidan</h3>
-          <p>AI:n markerar diskret de <mark class="ai-ghost-highlight">viktigaste ordagranna styckena</mark> i artikeln — så att du kan <mark class="ai-ghost-highlight">skumma igenom huvuddragen på ett ögonblick</mark>, och de följer med sammanfattningen till Kindle, LocalSend eller Markdown.</p>
+          <p>AI:n markerar <mark class="ai-ghost-highlight">viktiga ordagranna avsnitt</mark> så att du kan skumma de viktigaste insikterna och exportera dem tillsammans med sammanfattningen till Kindle, LocalSend eller Markdown.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -681,7 +727,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6c3-1.4 5.5-1.4 8 0v13c-2.5-1.4-5-1.4-8 0V6ZM20 6c-3-1.4-5.5-1.4-8 0v13c2.5-1.4 5-1.4 8 0V6Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>Forskningsläge: artiklar identifieras via DOI</h3>
-          <p>Vetenskapliga artiklar identifieras via sin DOI och metadata, och kategoriseras som studie, översikt eller preprint. Studiedesign, urval och begränsningar lyfts fram, och källhänvisningen hämtas direkt från DOI-registret – inte från AI:n.</p>
+          <p>Känn igen forskningsartiklar via DOI och citeringsmetadata, markera studie, översikt eller preprint och få fram design, urval, begränsningar och citeringar från DOI-registret.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="researcher">
@@ -695,7 +741,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect><rect x="10" y="10" width="10" height="10" rx="2" stroke="#fff" stroke-width="1.7"></rect></svg></div>
           <h3>Jämför källor kring en fråga</h3>
-          <p>Samla sparade artiklar i en samling, ange typ av källa (sakkunniggranskad, preprint, nyhet, debatt), gör en källkritisk jämförelse och låt AI:n visa var källorna överensstämmer, skiljer sig åt och vad som saknas.</p>
+          <p>Samla artiklar, märk källor som fackgranskade, preprint, nyhet eller åsikt, gör en lateral läskontroll och jämför var sammanfattningarna är överens, går isär eller saknar sammanhang.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="feeds go">
@@ -709,7 +755,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M5 10v4h3l4.5 3.5v-11L8 10H5Z" fill="#fff"></path><path d="M16 9c1.3 1.7 1.3 4.3 0 6M18.5 6.5c2.5 3 2.5 8 0 11" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>Direktuppläsning: lyssna medan den skriver</h3>
-          <p>Sammanfattningen läses upp medan den skapas: titeln först, sedan mening för mening, med full kontroll över paus, ljud och hastighet. Lyssna igen från vilket kort som helst.</p>
+          <p>Lyssna medan sammanfattningen skrivs: först rubriken, sedan mening för mening, med paus, ljud av och hastighetsreglage. Spela upp den igen från vilket kort som helst.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder">
@@ -723,7 +769,7 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12.1l4.6 4.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Riktig sökning, direkt på enheten</h3>
-          <p>Fulltextsökning över titlar, taggar och artikelinnehåll — drivet av ett TF-IDF-index som byggs direkt i webbläsaren. Ingen serverfördröjning, inget lagg och ingenting skickas iväg.</p>
+          <p>Sök i rubriker, taggar och artikeltext med ett TF-IDF-index i webbläsaren. Fulltextsökningen stannar på enheten utan någon rundtur.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
@@ -737,7 +783,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.8" fill="#fff"></circle><circle cx="19" cy="6" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="12" cy="12" r="2.1" fill="#fff"></circle><circle cx="6" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><circle cx="18" cy="18" r="1.8" fill="#fff" opacity="0.85"></circle><path d="M5 6 12 12M19 6 12 12M12 12 6 18M12 12 18 18" stroke="#fff" stroke-width="1.1" opacity="0.55"></path></svg></div>
           <h3>En kunskapsgraf, inte bara en lista</h3>
-          <p>Se hur dina sparade artiklar hänger ihop — via delade taggar och ämneslikhet, även när de inte delar några taggar alls.</p>
+          <p>Se hur sparade artiklar hänger ihop genom gemensamma taggar och ämneslikhet, även när de saknar gemensam tagg.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="hoarder">
@@ -751,7 +797,7 @@
           </figure>
           <div class="f-icon icon-indigo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4-6 4V3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
           <h3>Spara till senare, med ett syfte</h3>
-          <p>Märk ett "beslut" med en motivering och tidsram, och få en påminnelse — istället för att låta det försvinna i en hög du aldrig öppnar igen.</p>
+          <p>Spara ett beslut med skäl och tidsram och få en påminnelse innan det försvinner i en oläst hög.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="hoarder go">
@@ -765,7 +811,7 @@
           </figure>
           <div class="f-icon icon-gold"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#fff" stroke-width="1.6"></rect><path d="M8 9h8M8 13h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
           <h3>En digest som väljer själv</h3>
-          <p>Ett tryck sätter ihop ett litet, varierat urval av dina sparade artiklar — inte fem versioner av samma nyhet — paketerat i en fil för Kindle eller LocalSend.</p>
+          <p>Ett tryck sätter ihop en varierad digest i stället för fem versioner av samma nyhet och paketerar den för Kindle eller LocalSend.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="feeds">
@@ -779,7 +825,7 @@
           </figure>
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#fff" stroke-width="1.7"></circle><path d="M8.5 14c1 1.6 2.2 2.3 3.5 2.3s2.5-.7 3.5-2.3M9 9.5h.01M15 9.5h.01" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
           <h3>Stämningsfilter och trend över tid</h3>
-          <p>AI:n graderar rubriker från tunga till positiva. Visa enbart goda nyheter med ett klick och följ tonläget i din läsning per dag, vecka och månad.</p>
+          <p>Betygsätt rubriker från tunga till goda, filtrera fram goda nyheter och följ din lässtämning per dag, vecka eller månad.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="privacy researcher hoarder">
@@ -793,18 +839,18 @@
           </figure>
           <div class="f-icon icon-violet"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="11" rx="2.2" stroke="#fff" stroke-width="1.7"></rect><path d="M9 20h6M12 16v4M8.5 10.5l2 2 3.5-4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>Ditt bibliotek direkt i Claude, LM Studio och Cursor</h3>
-          <p>Aktivera AI-appar i Inställningar, så kan Claude Desktop, LM Studio, Cursor och andra MCP-appar på din dator söka i ditt bibliotek, citera dina markeringar och visa vad som är aktuellt. Om du tillåter det kan de även spara länkar åt dig. Inget passerar våra servrar, och du väljer själv vad de får läsa.</p>
+          <p>Claude Desktop, LM Studio, Cursor och andra MCP-appar kan söka i ditt bibliotek, citera markeringar och lista det som förfaller. Du styr åtkomsten; inget går via vår server.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="privacy hoarder researcher">
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h9.5a3.5 3.5 0 0 0 .6-6.95A5 5 0 0 0 7.4 10.6 4 4 0 0 0 7 18.5Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M12 12.5v3M10.8 13.8h2.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Ditt bibliotek på din egen lagring, krypterat</h3>
-          <p>Synka och säkerhetskopiera ditt bibliotek till din egen Nextcloud, WebDAV-server, S3-bucket eller en mapp på datorn. Allt krypteras direkt i din webbläsare först, så servern ser bara oläsliga filer. Du kan även publicera en lista på din egen webbplats, komplett med sökning, taggraf och en 3D-karta. Avstängt tills du lägger till en plats – vi har ingen synkserver och ser ingenting. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Så ställer du in det</a> · <a href="blog/digital-sovereignty-for-individuals.html">Varför det är viktigt</a></p>
+          <p>Synka ett krypterat bibliotek till din Nextcloud, WebDAV-server, S3-bucket eller lokala mapp. Publicera en sökbar lista med tagg-graf och 3D-karta; vi driver ingen synkserver. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Så ställer du in det</a> · <a href="../demo/index.html?screen=settings&amp;panel=sync&amp;flow=sync-add" target="_blank" rel="noopener">Prova synkinställningen</a></p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <div class="f-icon icon-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4.5h9l3 3V19a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8.5 11h7M8.5 14.5h4.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg></div>
           <h3>Anteckningar och kommentarer på valfri sida</h3>
-          <p>Markera text och välj: färgmarkera, kommentera eller spara en anteckning med citatet. Allt samlas under fliken Anteckningar – som en lista eller ett rutnät med kom-ihåg-lappar, sorterat efter artikel eller tagg – och synkas med resten av ditt bibliotek.</p>
+          <p>Markera text, kommentera den eller spara en citerad anteckning. Ordna anteckningar som lista eller rutnät med lappar efter artikel eller tagg, bredvid ditt bibliotek.</p>
         </div>
         <div class="feature-card" data-personas="hoarder researcher">
           <figure class="fvideo" data-blog-video="export">
@@ -817,7 +863,7 @@
           </figure>
           <div class="f-icon icon-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>Exportera till Obsidian, Markdown, Word och PDF</h3>
-          <p>Skicka en sammanfattning direkt till ditt Obsidian-valv, eller exportera som Markdown, Word (DOCX), OpenDocument eller PDF – med titel, källa, taggar och dina markeringar samlade i en anteckning.</p>
+          <p>Exportera sammanfattningar till Obsidian, Markdown, Word (DOCX), OpenDocument eller PDF med rubrik, källa, taggar och markeringar i en anteckning.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
         <div class="feature-card" data-personas="hoarder feeds">
@@ -831,7 +877,7 @@
           </figure>
           <div class="f-icon icon-cyan"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V11M12 19V5M19 19v-6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path></svg></div>
           <h3>En analysrapport över din läsning</h3>
-          <p>Lässvit, tid sparad genom sammanfattningar, aktivitet, ämnen över veckorna och ett ordmoln – genererat lokalt från ditt eget bibliotek.</p>
+          <p>Se lässviter, tid som sammanfattningarna sparat, aktivitet, veckans ämnen och ett ordmoln beräknat från ditt eget bibliotek.</p>
           <button class="fvideo-cta" type="button" tabindex="-1" aria-hidden="true"><span class="fvideo-cta-play">▶</span>Se klippet</button>
         </div>
       </div>
@@ -868,6 +914,7 @@
         });
         if (blurb) blurb.textContent = text(name) || blurb.textContent;
         if (count) { count.hidden = name === 'all'; count.textContent = shown + ' / ' + cards.length; }
+        if (!fromUser && !/^#for=/.test(location.hash) && location.hash) return;   // a link to a clip (#v=...) keeps its hash for the player
         try {
           history.replaceState(null, '', name === 'all' ? location.pathname + location.search : location.pathname + location.search + '#for=' + name);
         } catch (e) {}
@@ -880,38 +927,10 @@
 
       // #for=<audience> in a link opens the page filtered
       var m = /^#for=([a-z]+)$/.exec(location.hash);
-      if (m && names[m[1]]) setPersona(m[1], false);
+      var initial = document.getElementById('features').getAttribute('data-default-persona') || 'all';
+      setPersona(m && names[m[1]] ? m[1] : initial, false);
     })();
   </script>
-
-  <!-- ── Digest spotlight ────────────────────────────────────────── -->
-  <section id="digest">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <div class="eyebrow">Läs senare-högen</div>
-        <h2>Du sparar mer än du någonsin kommer att läsa</h2>
-        <p>Mycket av det vi sparar öppnas sällan igen. Digest väljer ut fem sparade artiklar åt dig och skickar dem så att du kan läsa offline.</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="../assets/photo/evening-sofa-ereader-600.webp" srcset="../assets/photo/evening-sofa-ereader-600.webp 600w, ../assets/photo/evening-sofa-ereader-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1600" height="1195" loading="lazy" decoding="async" alt="Illustration: en person i en soffa på kvällen som läser på en läsplatta under en filt">
-        <figcaption>Läs på kvällen, inte i tolv flikar. Illustration, AI-genererad.</figcaption>
-      </figure>
-      <div class="feature-grid digest-steps reveal">
-        <div class="feature-card">
-          <h3 style="margin-top:0;">1. Klicka på Digest</h3>
-          <p>Fem av dina sparade länkar, utvalda efter aktualitet och variation.</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">2. Välj stämning om du vill</h3>
-          <p>Upplyftande, neutralt eller fördjupande: urvalet anpassas efter ditt humör.</p>
-        </div>
-        <div class="feature-card">
-          <h3 style="margin-top:0;">3. Skicka offline</h3>
-          <p>Ett samlat paket till din Kindle eller en enhet på ditt lokala nätverk – redo för flygresan eller pendlingen.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ── Phone companion ────────────────────────────────────────── -->
   <section id="phone">
@@ -942,28 +961,13 @@
     </div>
   </section>
 
-  <!-- ── Why on-device ──────────────────────────────────────────── -->
-  <section>
-    <div class="wrap wrap-narrow">
-      <div class="section-head center reveal">
-        <div class="eyebrow">Byggt på byphil-viset</div>
-        <h2>Ditt arkiv förblir ditt</h2>
-        <p>Sökning, dubblettkontroll, tagghantering och förslag på liknande artiklar körs direkt i din webbläsare, helt utan server och utan konto. Endast sammanfattningsförfrågan skickas vidare, och bara till den AI-leverantör du själv valt. Med en lokal Ollama-modell stannar även den lokalt.</p>
-      </div>
-      <figure class="section-photo reveal">
-        <img src="../assets/photo/scene-library-laptop-600.webp" srcset="../assets/photo/scene-library-laptop-600.webp 600w, ../assets/photo/scene-library-laptop-1200.webp 1200w" sizes="(max-width: 640px) 92vw, 520px" width="1200" height="670" loading="lazy" decoding="async" alt="Illustration: en laptop på ett prydligt träskrivbord bredvid en växt och en trave anteckningsböcker">
-        <figcaption>Ditt bibliotek finns på din enhet. Illustration, AI-genererad.</figcaption>
-      </figure>
-    </div>
-  </section>
-
   <!-- ── Pricing ─────────────────────────────────────────────────── -->
   <section id="pricing">
     <div class="wrap wrap-narrow">
       <div class="section-head center reveal">
         <div class="eyebrow">Gratis för alla</div>
-        <h2>Gratis. Donationer låser upp AI-modellerna.</h2>
-        <p>Allt fungerar gratis med din egen AI-nyckel eller en lokal modell. Om du gillar verktyget är en donation ett fint sätt att säga tack. Det ger dig också byphil Cloud: massor av AI-modeller på ett ställe, utan API key eller installation, samtidigt som du stöttar alla verktyg som byphil bygger.</p>
+        <h2>Stöd projektet. Få smidig AI.</h2>
+        <p>Allt fungerar gratis med din egen AI-nyckel eller en lokal modell. Support Pass finansierar fristående local-first-programvara och ger smidig AI och obegränsad offlineläsning, utan att hålla ditt arkiv som gisslan.</p>
       </div>
 
       <div style="text-align:center;">
@@ -999,7 +1003,7 @@
           <ul>
             <li>byphil Cloud: flera AI-modeller, ingen API key behövs</li>
             <li>Obegränsat med utskick till Kindle och LocalSend, inklusive digests</li>
-            <li>Stöttar alla byphil-verktyg</li>
+            <li>Stöder fristående utveckling med öppen källkod</li>
           </ul>
           <a href="https://byphil.eu/#pass" class="tier-cta">Stötta projektet</a>
         </div>
@@ -1016,31 +1020,77 @@
       <div class="section-head center reveal">
         <div class="eyebrow">Frågor &amp; svar</div>
         <h2>Innan du installerar</h2>
+        <p>Sök bland svaren efter ämne, leverantör, integritet, arkiv eller plattform.</p>
       </div>
-      <div class="faq reveal">
-        <details>
+      <div class="faq-tools reveal">
+        <label class="sr-only" for="faqSearch">Sök bland vanliga frågor</label>
+        <input id="faqSearch" type="search" data-faq-search="" placeholder="Sök i vanliga frågor…" autocomplete="off" spellcheck="false" aria-controls="faqList">
+        <div class="faq-filters" role="group" aria-label="Filtrera frågorna efter ämne">
+          <button type="button" class="faq-filter is-active" data-faq-filter="all" aria-pressed="true">Alla</button>
+          <button type="button" class="faq-filter" data-faq-filter="basics" aria-pressed="false">Grunder</button>
+          <button type="button" class="faq-filter" data-faq-filter="privacy" aria-pressed="false">Integritetspolicy</button>
+          <button type="button" class="faq-filter" data-faq-filter="ai" aria-pressed="false">AI och källor</button>
+          <button type="button" class="faq-filter" data-faq-filter="archive" aria-pressed="false">Arkiv</button>
+          <button type="button" class="faq-filter" data-faq-filter="platforms" aria-pressed="false">Plattformar</button>
+        </div>
+        <p id="faqSearchStatus" class="faq-search-status" aria-live="polite"></p>
+      </div>
+      <div class="faq reveal" id="faqList">
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
           <summary>Behöver jag ett konto för att använda det?</summary>
-          <p>Nej. Installera, använd din egen nyckel från valfri AI-leverantör (eller använd en lokal Ollama-modell) och börja spara. Du behöver bara ett konto om du vill använda byphil Cloud (flera AI-modeller utan API key) eller skicka mer till Kindle/LocalSend, vilket låses upp med en donation.</p>
+          <p>Nej. Installera, lägg in din egen nyckel hos en AI-leverantör eller använd en lokal Ollama-modell och börja spara. Ett konto behövs bara för valfri åtkomst till byphil Cloud eller extra utskick till Kindle/LocalSend. <a href="blog/egen-nyckel-egen-modell.html">Se leverantörsalternativen →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="privacy">
           <summary>Vad lämnar egentligen min webbläsare?</summary>
-          <p>Bara sammanfattningsanropet — som skickas till den AI-leverantör du valt — plus anrop till de RSS-flöden du prenumererar på, och (endast när du klickar på en AI-recap) dagens rubriker och korta utdrag. Sökning, dubblettkontroll, tagghantering, läsnivå, sentimentanalys och rekommendationer för "liknande artiklar" körs helt lokalt mot ditt eget sparade arkiv.</p>
+          <p>Bara själva sammanfattningsbegäran går till AI-leverantören du har ställt in. RSS kräver dessutom anrop till flödena du prenumererar på; en AI-översikt skickar rubriker och korta utdrag bara när du ber om det. Sökning, dubblettkontroll, taggar och rekommendationer körs lokalt. <a href="blog/sok-och-taggar-utan-moln.html">Se arkitekturen på enheten →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
+          <summary>Används mina sidor eller markeringar för att träna en modell?</summary>
+          <p>AI Summary Helper använder inte ditt innehåll för att träna någon egen modell. Med egen nyckel gäller datapolicyn hos leverantören du valt. Med Ollama stannar sammanfattningsbegäran på din dator. <a href="integritet.html">Läs om integritetsmodellen →</a></p>
+        </details>
+        <details data-faq-personas="privacy" data-faq-category="privacy">
           <summary>Kan jag köra detta helt utan molntjänster?</summary>
-          <p>Ja — koppla det till en lokal Ollama-modell så stannar även sammanfattningen på din dator. Allt annat körs redan lokalt.</p>
+          <p>Ja. Peka den mot en lokal Ollama-modell så stannar även sammanfattningssteget på din dator. Allt annat körs redan lokalt. <a href="blog/egen-nyckel-egen-modell.html">Jämför egen nyckel och Ollama →</a></p>
         </details>
-        <details>
-          <summary>Vad händer med det jag sparat om jag slutar stötta projektet?</summary>
-          <p>Ditt arkiv stannar precis där det alltid har varit — i webbläsarens lokala lagring på din enhet. Support Pass styr bara molnbaserade tillägg (byphil Cloud AI-åtkomst, obegränsade Kindle/LocalSend-utskick), aldrig åtkomsten till det du redan har sparat.</p>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive">
+          <summary>Var lagras mitt läsarkiv?</summary>
+          <p>Som standard i webbläsaren på din enhet. Du kan exportera det som Markdown eller säkerhetskopiera det krypterat till din egen Nextcloud, WebDAV-server, S3-bucket eller lokala mapp. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Läs synkguiden →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="privacy hoarder researcher" data-faq-category="archive privacy">
+          <summary>Vad händer om jag rensar webbläsardata?</summary>
+          <p>Rensar du webbläsarens lokala data kan ett lokalt arkiv försvinna om du saknar säkerhetskopia. Exportera biblioteket eller ställ in krypterad synk till egen lagring innan du rensar data eller byter profil. <a href="blog/sync-to-nextcloud-s3-or-a-folder.html">Läs guiden om säkerhetskopia och synk →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds" data-faq-category="ai">
+          <summary>Vilka AI-leverantörer och modeller stöds?</summary>
+          <p>Du kan använda OpenAI, Gemini, Mistral, DeepSeek, en kompatibel egen slutpunkt eller en lokal Ollama-modell. Ta med din egen nyckel eller använd byphil Cloud som tillval. <a href="blog/egen-nyckel-egen-modell.html">Så fungerar egen nyckel →</a></p>
+        </details>
+        <details data-faq-personas="researcher feeds" data-faq-category="ai">
+          <summary>Kan jag sammanfatta PDF:er, YouTube-videor och RSS-inlägg?</summary>
+          <p>Ja. Sammanfatta PDF:er som är öppna i webbläsaren eller bifogade från datorn, YouTube-videor via undertexterna och artiklar från den inbyggda RSS-läsaren. <a href="blog/videos.html">Titta på videorna om arbetsflöden →</a> <a href="blog/en-sammanfattning-i-stallet-for-40-floden.html">Läs om flödessammandrag →</a></p>
+        </details>
+        <details data-faq-personas="researcher feeds" data-faq-category="ai">
+          <summary>Hur pålitliga är AI-sammanfattningarna?</summary>
+          <p>AI-resultat kan vara fel och ersätter inte att du kontrollerar källan. Svar på följdfrågor visar avsnittet de bygger på, så att du kan jämföra sammanfattningen med originalsidan. <a href="blog/kontrollera-en-ai-sammanfattning-vid-kallan.html">Lär dig källkontrollen på 10 sekunder →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="platforms">
+          <summary>Vilka webbläsare och plattformar stöds?</summary>
+          <p>Använd webbläsartillägget, den inbyggda sidopanelen eller bokmärkesskriptet. En Android-app lägger till länkar från telefonen; iOS finns inte ännu. <a href="blog/fran-bookmarklet-till-2-0.html">Se arbetsflödet för webbläsare och insamling →</a></p>
+        </details>
+        <details data-faq-personas="shared" data-faq-category="platforms">
           <summary>Hur installerar jag Android-appen?</summary>
-          <p>Ladda ner APK-filen från länken ovan (eller från <a href="https://github.com/philffm/kaivo/releases/latest" target="_blank" rel="noopener">senaste versionen</a>), öppna den och tillåt installationer från webbläsaren när Android frågar. Parkoppla sedan genom att skanna QR-koden i tillägget under Inställningar → Telefoninkorg. Den finns inte på Google Play ännu.</p>
+          <p>Ladda ned APK-filen från <a href="https://github.com/philffm/kaivo/releases/latest" target="_blank" rel="noopener">senaste versionen</a>och koppla sedan ihop den genom att skanna QR-koden under Inställningar → Mobilinkorg. Den finns inte på Google Play ännu. <a href="blog/fran-bookmarklet-till-2-0.html">Läs hur insamlingen passar in i arbetsflödet →</a></p>
         </details>
-        <details>
+        <details data-faq-personas="shared" data-faq-category="basics">
+          <summary>Vad låser Support Pass upp?</summary>
+          <p>Support Pass finansierar fristående utveckling med öppen källkod och kan låsa upp AI-åtkomst via byphil Cloud eller extra utskick till Kindle/LocalSend som tillval. Ditt lokala arkiv och lokal användning är inte låsta bakom det. <a href="blog/egen-nyckel-egen-modell.html">Förstå gränsen mot det valfria molnet →</a></p>
+        </details>
+        <details data-faq-personas="hoarder" data-faq-category="basics">
+          <summary>Vad händer med det jag sparat om jag slutar stötta projektet?</summary>
+          <p>Ditt arkiv stannar precis där det alltid har varit — i webbläsarens lokala lagring på din enhet. Support Pass styr bara molnbaserade tillägg (byphil Cloud AI-åtkomst, obegränsade Kindle/LocalSend-utskick), aldrig åtkomsten till det du redan har sparat. <a href="blog/sparat-men-aldrig-last.html">Se hur Digest gör sparade artiklar nyttiga igen →</a></p>
+        </details>
+        <details data-faq-personas="privacy researcher feeds hoarder" data-faq-category="basics">
           <summary>Är detta öppen källkod?</summary>
-          <p>Ja — tilläggets källkod är öppen på <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">GitHub</a>, under AGPL-3.0-licensen. Det är gratis för personlig användning, utbildning och ideell verksamhet; företag som vill använda det utanför villkoren i AGPL kan teckna en kommersiell licens.</p>
+          <p>Ja — tilläggets källkod är öppen på <a href="https://github.com/philffm/kaivo/" target="_blank" rel="noopener">GitHub</a>, under AGPL-3.0-licensen. Det är gratis för personlig användning, utbildning och ideell verksamhet; företag som vill använda det utanför villkoren i AGPL kan teckna en kommersiell licens. <a href="blog/sok-och-taggar-utan-moln.html">Läs om den lokala arkitekturen →</a></p>
         </details>
       </div>
     </div>

@@ -409,7 +409,7 @@
     <loc>https://kaivo.byphil.eu/da/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
-      <video:title>AI Summary Helper på under et minut</video:title>
+      <video:title>AI Summary Helper på to minutter</video:title>
       <video:description>Alle funktioner lynhurtigt gennemgået: resuméer, kilder, research-tilstand, bibliotek, feeds, AI-apps og meget mere.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
       <video:duration>122</video:duration>
@@ -600,7 +600,7 @@
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20+ sprog, på tværs af platforme</video:title>
-      <video:description>Læs og opsummer på dit foretrukne sprog. Browserudvidelse, integreret sidepanel eller bookmarklet — til alle de steder, browserudvidelsen ikke kan nå.</video:description>
+      <video:description>Læs og opsummér på over 20 sprog med udvidelsen, det indbyggede sidepanel eller bookmarklet når udvidelsen ikke kan nå en side.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>13</video:duration>
       <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
@@ -610,7 +610,7 @@
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
       <video:title>Rigtig søgning, lokalt på enheden</video:title>
-      <video:description>Fuldtekstsøgning på tværs af titler, tags og artikelindhold — drevet af et TF-IDF-indeks bygget i din browser. Ingen ventetid, ingen forsinkelse, intet sendes ud af huset.</video:description>
+      <video:description>Søg i titler, tags og artikelindhold med et browserbaseret TF-IDF-indeks. Fuldtekstsøgningen bliver på enheden uden rundtur.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
       <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
@@ -2633,7 +2633,7 @@
     <loc>https://kaivo.byphil.eu/no/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
-      <video:title>AI Summary Helper på under ett minutt</video:title>
+      <video:title>AI Summary Helper på to minutter</video:title>
       <video:description>Alle funksjoner i en rask gjennomgang: sammendrag, kilder, research-modus, bibliotek, feeder, AI-apper og mer.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
       <video:duration>122</video:duration>
@@ -2824,7 +2824,7 @@
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
       <video:title>20+ språk, på tvers av plattformer</video:title>
-      <video:description>Les og oppsummer på språket du ønsker. Utvidelse, innebygd sidepanel, eller bookmarklet – for overalt der nettleserutvidelsen ikke når til.</video:description>
+      <video:description>Les og oppsummer på over 20 språk med utvidelsen, det innebygde sidepanelet eller bookmarklet når utvidelsen ikke når en side.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
       <video:duration>13</video:duration>
       <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
@@ -2834,7 +2834,7 @@
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
       <video:title>Ekte søk, lokalt på enheten</video:title>
-      <video:description>Fulltekstsøk i titler, tagger og artikkelinnhold – drevet av en TF-IDF-indeks bygget i nettleseren din. Ingen ventetid mot server, ingen forsinkelse, ingenting sendes bort.</video:description>
+      <video:description>Søk i titler, tagger og artikkelinnhold med en nettleserbasert TF-IDF-indeks. Fulltekstsøket blir på enheten uten noen rundtur.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
       <video:duration>16</video:duration>
       <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
@@ -3466,14 +3466,13 @@
   <url>
     <loc>https://kaivo.byphil.eu/sv/</loc>
     <video:video>
-      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
-      <video:title>AI Summary Helper på under en minut</video:title>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-sv.jpg</video:thumbnail_loc>
+      <video:title>AI Summary Helper på två minuter</video:title>
       <video:description>Alla funktioner i en snabb genomgång: sammanfattningar, källor, research-läge, bibliotek, flöden, AI-appar och mycket mer.</video:description>
-      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
-      <video:duration>122</video:duration>
-      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-sv.mp4</video:content_loc>
+      <video:duration>135</video:duration>
+      <video:publication_date>2026-11-24T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
-      <video:tag>English original</video:tag>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/quellen-sv.jpg</video:thumbnail_loc>
@@ -3643,7 +3642,7 @@
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.jpg</video:thumbnail_loc>
       <video:title>20+ språk, över alla plattformar</video:title>
-      <video:description>Läs och sammanfatta på ditt favoritspråk. Tillägg, inbyggd sidopanel eller bookmarklet — för överallt där webbläsartillägget inte når.</video:description>
+      <video:description>Läs och sammanfatta på över 20 språk med tillägget, den inbyggda sidopanelen eller bookmarklet när tillägget inte kommer åt en sida.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.mp4</video:content_loc>
       <video:duration>16</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
@@ -3652,7 +3651,7 @@
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.jpg</video:thumbnail_loc>
       <video:title>Riktig sökning, direkt på enheten</video:title>
-      <video:description>Fulltextsökning över titlar, taggar och artikelinnehåll — drivet av ett TF-IDF-index som byggs direkt i webbläsaren. Ingen serverfördröjning, inget lagg och ingenting skickas iväg.</video:description>
+      <video:description>Sök i rubriker, taggar och artikeltext med ett TF-IDF-index i webbläsaren. Fulltextsökningen stannar på enheten utan någon rundtur.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.mp4</video:content_loc>
       <video:duration>17</video:duration>
       <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
@@ -4947,6 +4946,59 @@
     </video:video>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/da/mcp/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg</video:thumbnail_loc>
+      <video:title>En indbygget RSS-læser</video:title>
+      <video:description>Følg blogs og nyhedssider, filtrér efter kilde, tag, dato eller stemning, importér OPML, og opsummér et hvilket som helst indlæg med ét klik. Afspil podcastfeeds i udvidelsen, og få en valgfri AI-opsamling; feeds og favoritter bliver på din enhed.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ sprog, på tværs af platforme</video:title>
+      <video:description>Læs og opsummér på over 20 sprog med udvidelsen, det indbyggede sidepanel eller bookmarklet når udvidelsen ikke kan nå en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg</video:thumbnail_loc>
+      <video:title>AI-resuméer, frit modelvalg</video:title>
+      <video:description>Vælg OpenAI, Gemini, Mistral, DeepSeek, et brugerdefineret endpoint eller lokal Ollama til resuméer, der aldrig behøver forlade din enhed.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4</video:content_loc>
+      <video:duration>15</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Rigtig søgning, lokalt på enheden</video:title>
+      <video:description>Søg i titler, tags og artikelindhold med et browserbaseret TF-IDF-indeks. Fuldtekstsøgningen bliver på enheden uden rundtur.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Dit bibliotek direkte i Claude, LM Studio og Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor og andre MCP-apps kan søge i dit bibliotek, citere markeringer og vise, hvad der forfalder. Du styrer adgangen; intet går gennem vores server.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/de/mcp/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-de.jpg</video:thumbnail_loc>
@@ -5292,6 +5344,59 @@
     </video:video>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/no/mcp/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg</video:thumbnail_loc>
+      <video:title>En innebygd RSS-leser</video:title>
+      <video:description>Følg blogger og nyhetssider, filtrer etter kilde, tagg, dato eller stemning, importer OPML og oppsummer et hvilket som helst innlegg med ett klikk. Spill podkaststrømmer i utvidelsen og få en valgfri AI-oppsummering; strømmer og favoritter blir på enheten din.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, på tvers av plattformer</video:title>
+      <video:description>Les og oppsummer på over 20 språk med utvidelsen, det innebygde sidepanelet eller bookmarklet når utvidelsen ikke når en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg</video:thumbnail_loc>
+      <video:title>AI-sammendrag med modellen du foretrekker</video:title>
+      <video:description>Velg OpenAI, Gemini, Mistral, DeepSeek, et eget endepunkt eller lokal Ollama for sammendrag som aldri trenger å forlate enheten din.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4</video:content_loc>
+      <video:duration>15</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Ekte søk, lokalt på enheten</video:title>
+      <video:description>Søk i titler, tagger og artikkelinnhold med en nettleserbasert TF-IDF-indeks. Fulltekstsøket blir på enheten uten noen rundtur.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Biblioteket ditt i Claude, LM Studio og Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor og andre MCP-apper kan søke i biblioteket ditt, sitere markeringer og vise hva som forfaller. Du styrer tilgangen; ingenting går gjennom serveren vår.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/pt/mcp/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-pt.jpg</video:thumbnail_loc>
@@ -5333,6 +5438,55 @@
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
       <video:title>Sua biblioteca dentro do Claude, LM Studio e Cursor</video:title>
       <video:description>Claude Desktop, LM Studio, Cursor e outros apps MCP podem pesquisar sua biblioteca, citar destaques e listar o que está pendente. Você controla o acesso; nada passa pelo nosso servidor.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/sv/mcp/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-sv.jpg</video:thumbnail_loc>
+      <video:title>Inbyggd RSS-läsare</video:title>
+      <video:description>Följ bloggar och nyhetssajter, filtrera på källa, tagg, datum eller stämning, importera OPML och sammanfatta valfritt inlägg med ett klick. Spela poddflöden i tillägget och få en valfri AI-översikt; flöden och favoriter stannar på din enhet.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-sv.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, över alla plattformar</video:title>
+      <video:description>Läs och sammanfatta på över 20 språk med tillägget, den inbyggda sidopanelen eller bookmarklet när tillägget inte kommer åt en sida.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/privat-sv.jpg</video:thumbnail_loc>
+      <video:title>AI-sammanfattningar med valfri modell</video:title>
+      <video:description>Välj OpenAI, Gemini, Mistral, DeepSeek, en egen slutpunkt eller lokal Ollama för sammanfattningar som aldrig behöver lämna din enhet.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/privat-sv.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.jpg</video:thumbnail_loc>
+      <video:title>Riktig sökning, direkt på enheten</video:title>
+      <video:description>Sök i rubriker, taggar och artikeltext med ett TF-IDF-index i webbläsaren. Fulltextsökningen stannar på enheten utan någon rundtur.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Ditt bibliotek direkt i Claude, LM Studio och Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor och andra MCP-appar kan söka i ditt bibliotek, citera markeringar och lista det som förfaller. Du styr åtkomsten; inget går via vår server.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
       <video:duration>25</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
@@ -5576,6 +5730,165 @@
       <video:description>Claude Desktop、LM Studio、Cursor 及其他 MCP 應用程式可以搜尋你的藏書庫、引用標示內容並列出待辦項目。存取權由你掌控；不會經過我們的伺服器。</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
       <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/da/e-reader/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ sprog, på tværs af platforme</video:title>
+      <video:description>Læs og opsummér på over 20 sprog med udvidelsen, det indbyggede sidepanel eller bookmarklet når udvidelsen ikke kan nå en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-en.jpg</video:thumbnail_loc>
+      <video:title>Spøgelsesmarkeringer direkte på siden</video:title>
+      <video:description>AI'en markerer vigtige ordrette passager så du kan skimme de vigtigste indsigter og eksportere dem sammen med resuméet til Kindle, LocalSend eller Markdown.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/instant-en.jpg</video:thumbnail_loc>
+      <video:title>Lyt straks: Lyt, mens der skrives</video:title>
+      <video:description>Lyt, mens resuméet skrives: først titlen, så sætning for sætning, med pause, lyd fra og hastighedsstyring. Afspil det igen fra et hvilket som helst kort.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/digest-en.jpg</video:thumbnail_loc>
+      <video:title>Et digest, der udvælger sig selv</video:title>
+      <video:description>Ét tryk sammensætter en varieret digest i stedet for fem udgaver af samme historie og pakker den til Kindle eller LocalSend.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/digest-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/da/local-ai/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg</video:thumbnail_loc>
+      <video:title>En indbygget RSS-læser</video:title>
+      <video:description>Følg blogs og nyhedssider, filtrér efter kilde, tag, dato eller stemning, importér OPML, og opsummér et hvilket som helst indlæg med ét klik. Afspil podcastfeeds i udvidelsen, og få en valgfri AI-opsamling; feeds og favoritter bliver på din enhed.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ sprog, på tværs af platforme</video:title>
+      <video:description>Læs og opsummér på over 20 sprog med udvidelsen, det indbyggede sidepanel eller bookmarklet når udvidelsen ikke kan nå en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg</video:thumbnail_loc>
+      <video:title>AI-resuméer, frit modelvalg</video:title>
+      <video:description>Vælg OpenAI, Gemini, Mistral, DeepSeek, et brugerdefineret endpoint eller lokal Ollama til resuméer, der aldrig behøver forlade din enhed.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4</video:content_loc>
+      <video:duration>15</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Rigtig søgning, lokalt på enheden</video:title>
+      <video:description>Søg i titler, tags og artikelindhold med et browserbaseret TF-IDF-indeks. Fuldtekstsøgningen bliver på enheden uden rundtur.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Dit bibliotek direkte i Claude, LM Studio og Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor og andre MCP-apps kan søge i dit bibliotek, citere markeringer og vise, hvad der forfalder. Du styrer adgangen; intet går gennem vores server.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/da/rss-news/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg</video:thumbnail_loc>
+      <video:title>En indbygget RSS-læser</video:title>
+      <video:description>Følg blogs og nyhedssider, filtrér efter kilde, tag, dato eller stemning, importér OPML, og opsummér et hvilket som helst indlæg med ét klik. Afspil podcastfeeds i udvidelsen, og få en valgfri AI-opsamling; feeds og favoritter bliver på din enhed.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.jpg</video:thumbnail_loc>
+      <video:title>YouTube-videoer direkte fra underteksterne</video:title>
+      <video:description>Opsummér YouTube-videoer ud fra underteksterne, få hovedpointerne på dit sprog, og stil opfølgende spørgsmål med kildehenvisninger.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ sprog, på tværs af platforme</video:title>
+      <video:description>Læs og opsummér på over 20 sprog med udvidelsen, det indbyggede sidepanel eller bookmarklet når udvidelsen ikke kan nå en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/instant-en.jpg</video:thumbnail_loc>
+      <video:title>Lyt straks: Lyt, mens der skrives</video:title>
+      <video:description>Lyt, mens resuméet skrives: først titlen, så sætning for sætning, med pause, lyd fra og hastighedsstyring. Afspil det igen fra et hvilket som helst kort.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/stimmung-en.jpg</video:thumbnail_loc>
+      <video:title>Stemningsfilter og udvikling over tid</video:title>
+      <video:description>Bedøm overskrifter fra tunge til gode, filtrér efter gode nyheder, og følg din læsestemning pr. dag, uge eller måned.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/stimmung-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>En analyserapport over din læsning</video:title>
+      <video:description>Se læsestimer, tid sparet med resuméer, aktivitet, ugens emner og en ordsky beregnet ud fra dit eget bibliotek.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
       <video:tag>English original</video:tag>
@@ -6613,6 +6926,165 @@
     </video:video>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/no/e-reader/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, på tvers av plattformer</video:title>
+      <video:description>Les og oppsummer på over 20 språk med utvidelsen, det innebygde sidepanelet eller bookmarklet når utvidelsen ikke når en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-en.jpg</video:thumbnail_loc>
+      <video:title>Diskret fremheving, rett på siden</video:title>
+      <video:description>AI-en markerer viktige ordrette avsnitt så du kan skumme de viktigste innsiktene og eksportere dem sammen med sammendraget til Kindle, LocalSend eller Markdown.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/instant-en.jpg</video:thumbnail_loc>
+      <video:title>Direktelesing: lytt mens det skrives</video:title>
+      <video:description>Lytt mens sammendraget skrives: først tittelen, så setning for setning, med pause, demping og fartskontroll. Spill det av igjen fra et hvilket som helst kort.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/digest-en.jpg</video:thumbnail_loc>
+      <video:title>Et digest som velger ut for deg</video:title>
+      <video:description>Ett trykk setter sammen en variert digest i stedet for fem versjoner av samme sak, og pakker den til Kindle eller LocalSend.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/digest-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/no/local-ai/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg</video:thumbnail_loc>
+      <video:title>En innebygd RSS-leser</video:title>
+      <video:description>Følg blogger og nyhetssider, filtrer etter kilde, tagg, dato eller stemning, importer OPML og oppsummer et hvilket som helst innlegg med ett klikk. Spill podkaststrømmer i utvidelsen og få en valgfri AI-oppsummering; strømmer og favoritter blir på enheten din.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, på tvers av plattformer</video:title>
+      <video:description>Les og oppsummer på over 20 språk med utvidelsen, det innebygde sidepanelet eller bookmarklet når utvidelsen ikke når en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg</video:thumbnail_loc>
+      <video:title>AI-sammendrag med modellen du foretrekker</video:title>
+      <video:description>Velg OpenAI, Gemini, Mistral, DeepSeek, et eget endepunkt eller lokal Ollama for sammendrag som aldri trenger å forlate enheten din.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4</video:content_loc>
+      <video:duration>15</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Ekte søk, lokalt på enheten</video:title>
+      <video:description>Søk i titler, tagger og artikkelinnhold med en nettleserbasert TF-IDF-indeks. Fulltekstsøket blir på enheten uten noen rundtur.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Biblioteket ditt i Claude, LM Studio og Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor og andre MCP-apper kan søke i biblioteket ditt, sitere markeringer og vise hva som forfaller. Du styrer tilgangen; ingenting går gjennom serveren vår.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/no/rss-news/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg</video:thumbnail_loc>
+      <video:title>En innebygd RSS-leser</video:title>
+      <video:description>Følg blogger og nyhetssider, filtrer etter kilde, tagg, dato eller stemning, importer OPML og oppsummer et hvilket som helst innlegg med ett klikk. Spill podkaststrømmer i utvidelsen og få en valgfri AI-oppsummering; strømmer og favoritter blir på enheten din.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.jpg</video:thumbnail_loc>
+      <video:title>YouTube-videoer, direkte fra undertekstene</video:title>
+      <video:description>Oppsummer YouTube-videoer fra undertekstene, få hovedpoengene på ditt språk, og still oppfølgingsspørsmål med kildehenvisninger.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, på tvers av plattformer</video:title>
+      <video:description>Les og oppsummer på over 20 språk med utvidelsen, det innebygde sidepanelet eller bookmarklet når utvidelsen ikke når en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/instant-en.jpg</video:thumbnail_loc>
+      <video:title>Direktelesing: lytt mens det skrives</video:title>
+      <video:description>Lytt mens sammendraget skrives: først tittelen, så setning for setning, med pause, demping og fartskontroll. Spill det av igjen fra et hvilket som helst kort.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/stimmung-en.jpg</video:thumbnail_loc>
+      <video:title>Stemningsfilter og stemning over tid</video:title>
+      <video:description>Vurder overskrifter fra tunge til gode, filtrer fram gode nyheter og følg lesestemningen din per dag, uke eller måned.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/stimmung-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>En analyserapport over lesingen din</video:title>
+      <video:description>Se leserekker, tid spart med sammendrag, aktivitet, ukens temaer og en ordsky beregnet fra ditt eget bibliotek.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/pt/e-reader/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-pt.jpg</video:thumbnail_loc>
@@ -6751,6 +7223,152 @@
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
       <video:title>Um relatório analítico dos seus hábitos de leitura</video:title>
       <video:description>Veja sequências de leitura, tempo economizado com resumos, atividade, temas da semana e uma nuvem de palavras calculada a partir da sua própria biblioteca.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/sv/e-reader/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, över alla plattformar</video:title>
+      <video:description>Läs och sammanfatta på över 20 språk med tillägget, den inbyggda sidopanelen eller bookmarklet när tillägget inte kommer åt en sida.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-sv.jpg</video:thumbnail_loc>
+      <video:title>Spökmarkeringar direkt på sidan</video:title>
+      <video:description>AI:n markerar viktiga ordagranna avsnitt så att du kan skumma de viktigaste insikterna och exportera dem tillsammans med sammanfattningen till Kindle, LocalSend eller Markdown.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-sv.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/instant-sv.jpg</video:thumbnail_loc>
+      <video:title>Direktuppläsning: lyssna medan den skriver</video:title>
+      <video:description>Lyssna medan sammanfattningen skrivs: först rubriken, sedan mening för mening, med paus, ljud av och hastighetsreglage. Spela upp den igen från vilket kort som helst.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/instant-sv.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/digest-sv.jpg</video:thumbnail_loc>
+      <video:title>En digest som väljer själv</video:title>
+      <video:description>Ett tryck sätter ihop en varierad digest i stället för fem versioner av samma nyhet och paketerar den för Kindle eller LocalSend.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/digest-sv.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/sv/local-ai/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-sv.jpg</video:thumbnail_loc>
+      <video:title>Inbyggd RSS-läsare</video:title>
+      <video:description>Följ bloggar och nyhetssajter, filtrera på källa, tagg, datum eller stämning, importera OPML och sammanfatta valfritt inlägg med ett klick. Spela poddflöden i tillägget och få en valfri AI-översikt; flöden och favoriter stannar på din enhet.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-sv.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, över alla plattformar</video:title>
+      <video:description>Läs och sammanfatta på över 20 språk med tillägget, den inbyggda sidopanelen eller bookmarklet när tillägget inte kommer åt en sida.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/privat-sv.jpg</video:thumbnail_loc>
+      <video:title>AI-sammanfattningar med valfri modell</video:title>
+      <video:description>Välj OpenAI, Gemini, Mistral, DeepSeek, en egen slutpunkt eller lokal Ollama för sammanfattningar som aldrig behöver lämna din enhet.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/privat-sv.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.jpg</video:thumbnail_loc>
+      <video:title>Riktig sökning, direkt på enheten</video:title>
+      <video:description>Sök i rubriker, taggar och artikeltext med ett TF-IDF-index i webbläsaren. Fulltextsökningen stannar på enheten utan någon rundtur.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Ditt bibliotek direkt i Claude, LM Studio och Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor och andra MCP-appar kan söka i ditt bibliotek, citera markeringar och lista det som förfaller. Du styr åtkomsten; inget går via vår server.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/sv/rss-news/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-sv.jpg</video:thumbnail_loc>
+      <video:title>Inbyggd RSS-läsare</video:title>
+      <video:description>Följ bloggar och nyhetssajter, filtrera på källa, tagg, datum eller stämning, importera OPML och sammanfatta valfritt inlägg med ett klick. Spela poddflöden i tillägget och få en valfri AI-översikt; flöden och favoriter stannar på din enhet.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-sv.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ytvideo-sv.jpg</video:thumbnail_loc>
+      <video:title>YouTube-videor, direkt från undertexterna</video:title>
+      <video:description>Sammanfatta YouTube-videor utifrån undertexterna, få huvudpunkterna på ditt språk och ställ följdfrågor med källhänvisningar.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ytvideo-sv.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, över alla plattformar</video:title>
+      <video:description>Läs och sammanfatta på över 20 språk med tillägget, den inbyggda sidopanelen eller bookmarklet när tillägget inte kommer åt en sida.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/instant-sv.jpg</video:thumbnail_loc>
+      <video:title>Direktuppläsning: lyssna medan den skriver</video:title>
+      <video:description>Lyssna medan sammanfattningen skrivs: först rubriken, sedan mening för mening, med paus, ljud av och hastighetsreglage. Spela upp den igen från vilket kort som helst.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/instant-sv.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/stimmung-sv.jpg</video:thumbnail_loc>
+      <video:title>Stämningsfilter och trend över tid</video:title>
+      <video:description>Betygsätt rubriker från tunga till goda, filtrera fram goda nyheter och följ din lässtämning per dag, vecka eller månad.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/stimmung-sv.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>En analysrapport över din läsning</video:title>
+      <video:description>Se lässviter, tid som sammanfattningarna sparat, aktivitet, veckans ämnen och ett ordmoln beräknat från ditt eget bibliotek.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
       <video:duration>18</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
@@ -7466,6 +8084,99 @@
     </video:video>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/da/pdf-summarizer/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-en.jpg</video:thumbnail_loc>
+      <video:title>PDF'er – præcis som enhver anden side</video:title>
+      <video:description>Opsummér PDF'er i browseren eller filer fra disken som enhver anden side. “Det brugte jeg” viser ordene, tokens og modellen, som AI'en læste med.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-en.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ sprog, på tværs af platforme</video:title>
+      <video:description>Læs og opsummér på over 20 sprog med udvidelsen, det indbyggede sidepanel eller bookmarklet når udvidelsen ikke kan nå en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg</video:thumbnail_loc>
+      <video:title>AI-resuméer, frit modelvalg</video:title>
+      <video:description>Vælg OpenAI, Gemini, Mistral, DeepSeek, et brugerdefineret endpoint eller lokal Ollama til resuméer, der aldrig behøver forlade din enhed.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4</video:content_loc>
+      <video:duration>15</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-en.jpg</video:thumbnail_loc>
+      <video:title>Spøgelsesmarkeringer direkte på siden</video:title>
+      <video:description>AI'en markerer vigtige ordrette passager så du kan skimme de vigtigste indsigter og eksportere dem sammen med resuméet til Kindle, LocalSend eller Markdown.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/paper-en.jpg</video:thumbnail_loc>
+      <video:title>Forskningsfunktion: Artikler genkendes på deres DOI</video:title>
+      <video:description>Genkend forskningsartikler via DOI og citationsmetadata, markér forsøg, review eller preprint, og træk design, stikprøve, begrænsninger og citationer fra DOI-registret ud.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/paper-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/recherche-en.jpg</video:thumbnail_loc>
+      <video:title>Sammenlign kilder om ét emne</video:title>
+      <video:description>Saml artikler, mærk kilder som fagfællebedømte, preprint, nyhed eller holdning, lav et lateralt læsetjek, og sammenlign, hvor resuméerne er enige, uenige eller mangler kontekst.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/recherche-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg</video:thumbnail_loc>
+      <video:title>En vidensgraf, ikke blot en liste</video:title>
+      <video:description>Se, hvordan gemte artikler hænger sammen gennem fælles tags og emnelighed, selv når de ikke har et tag til fælles.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Dit bibliotek direkte i Claude, LM Studio og Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor og andre MCP-apps kan søge i dit bibliotek, citere markeringer og vise, hvad der forfalder. Du styrer adgangen; intet går gennem vores server.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksportér til Obsidian, Markdown, Word og PDF</video:title>
+      <video:description>Eksportér resuméer til Obsidian, Markdown, Word (DOCX), OpenDocument eller PDF med titel, kilde, tags og markeringer i én note.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/de/pdf-summarizer/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-de.jpg</video:thumbnail_loc>
@@ -8068,6 +8779,99 @@
     </video:video>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/no/pdf-summarizer/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-en.jpg</video:thumbnail_loc>
+      <video:title>PDF-er, akkurat som vanlige nettsider</video:title>
+      <video:description>Oppsummer PDF-er i nettleseren eller filer fra disken som hvilken som helst side. «Hva jeg brukte» viser ordene, tokenene og modellen AI-en leste med.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-en.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, på tvers av plattformer</video:title>
+      <video:description>Les og oppsummer på over 20 språk med utvidelsen, det innebygde sidepanelet eller bookmarklet når utvidelsen ikke når en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg</video:thumbnail_loc>
+      <video:title>AI-sammendrag med modellen du foretrekker</video:title>
+      <video:description>Velg OpenAI, Gemini, Mistral, DeepSeek, et eget endepunkt eller lokal Ollama for sammendrag som aldri trenger å forlate enheten din.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4</video:content_loc>
+      <video:duration>15</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-en.jpg</video:thumbnail_loc>
+      <video:title>Diskret fremheving, rett på siden</video:title>
+      <video:description>AI-en markerer viktige ordrette avsnitt så du kan skumme de viktigste innsiktene og eksportere dem sammen med sammendraget til Kindle, LocalSend eller Markdown.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/paper-en.jpg</video:thumbnail_loc>
+      <video:title>Forskningsmodus: artikler gjenkjennes via DOI</video:title>
+      <video:description>Kjenn igjen forskningsartikler via DOI og siteringsmetadata, merk studie, oversikt eller preprint, og hent ut design, utvalg, begrensninger og siteringer fra DOI-registeret.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/paper-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/recherche-en.jpg</video:thumbnail_loc>
+      <video:title>Sammenlign kilder om samme spørsmål</video:title>
+      <video:description>Samle artikler, merk kilder som fagfellevurderte, preprint, nyhet eller mening, kjør en lateral lesesjekk, og sammenlign hvor sammendragene er enige, uenige eller mangler kontekst.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/recherche-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg</video:thumbnail_loc>
+      <video:title>En kunnskapsgraf, ikke bare en liste</video:title>
+      <video:description>Se hvordan lagrede artikler henger sammen gjennom felles tagger og temalikhet, selv når de ikke har noen tagg felles.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Biblioteket ditt i Claude, LM Studio og Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor og andre MCP-apper kan søke i biblioteket ditt, sitere markeringer og vise hva som forfaller. Du styrer tilgangen; ingenting går gjennom serveren vår.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksporter til Obsidian, Markdown, Word og PDF</video:title>
+      <video:description>Eksporter sammendrag til Obsidian, Markdown, Word (DOCX), OpenDocument eller PDF med tittel, kilde, tagger og markeringer i ett notat.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/pt/pdf-summarizer/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-pt.jpg</video:thumbnail_loc>
@@ -8146,6 +8950,92 @@
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
       <video:title>Exporte para o Obsidian, Markdown, Word e PDF</video:title>
       <video:description>Exporte resumos para Obsidian, Markdown, Word (DOCX), OpenDocument ou PDF com título, fonte, tags e destaques em uma única nota.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/sv/pdf-summarizer/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-sv.jpg</video:thumbnail_loc>
+      <video:title>PDF:er, precis som vilken webbsida som helst</video:title>
+      <video:description>Sammanfatta PDF:er i webbläsaren eller filer från datorn som vilken sida som helst. ”Vad jag använde” visar orden, token och modellen som AI:n läste med.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-sv.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, över alla plattformar</video:title>
+      <video:description>Läs och sammanfatta på över 20 språk med tillägget, den inbyggda sidopanelen eller bookmarklet när tillägget inte kommer åt en sida.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/privat-sv.jpg</video:thumbnail_loc>
+      <video:title>AI-sammanfattningar med valfri modell</video:title>
+      <video:description>Välj OpenAI, Gemini, Mistral, DeepSeek, en egen slutpunkt eller lokal Ollama för sammanfattningar som aldrig behöver lämna din enhet.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/privat-sv.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-sv.jpg</video:thumbnail_loc>
+      <video:title>Spökmarkeringar direkt på sidan</video:title>
+      <video:description>AI:n markerar viktiga ordagranna avsnitt så att du kan skumma de viktigaste insikterna och exportera dem tillsammans med sammanfattningen till Kindle, LocalSend eller Markdown.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-sv.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/paper-sv.jpg</video:thumbnail_loc>
+      <video:title>Forskningsläge: artiklar identifieras via DOI</video:title>
+      <video:description>Känn igen forskningsartiklar via DOI och citeringsmetadata, markera studie, översikt eller preprint och få fram design, urval, begränsningar och citeringar från DOI-registret.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/paper-sv.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/recherche-sv.jpg</video:thumbnail_loc>
+      <video:title>Jämför källor kring en fråga</video:title>
+      <video:description>Samla artiklar, märk källor som fackgranskade, preprint, nyhet eller åsikt, gör en lateral läskontroll och jämför var sammanfattningarna är överens, går isär eller saknar sammanhang.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/recherche-sv.mp4</video:content_loc>
+      <video:duration>24</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/graph-sv.jpg</video:thumbnail_loc>
+      <video:title>En kunskapsgraf, inte bara en lista</video:title>
+      <video:description>Se hur sparade artiklar hänger ihop genom gemensamma taggar och ämneslikhet, även när de saknar gemensam tagg.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/graph-sv.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Ditt bibliotek direkt i Claude, LM Studio och Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor och andra MCP-appar kan söka i ditt bibliotek, citera markeringar och lista det som förfaller. Du styr åtkomsten; inget går via vår server.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Exportera till Obsidian, Markdown, Word och PDF</video:title>
+      <video:description>Exportera sammanfattningar till Obsidian, Markdown, Word (DOCX), OpenDocument eller PDF med rubrik, källa, taggar och markeringar i en anteckning.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
       <video:duration>21</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
@@ -8618,6 +9508,182 @@
       <video:description>Streak, sparet tid, aktivitet og emner uge for uge.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
       <video:duration>18</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/da/knowledge-graph/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ sprog, på tværs af platforme</video:title>
+      <video:description>Læs og opsummér på over 20 sprog med udvidelsen, det indbyggede sidepanel eller bookmarklet når udvidelsen ikke kan nå en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Rigtig søgning, lokalt på enheden</video:title>
+      <video:description>Søg i titler, tags og artikelindhold med et browserbaseret TF-IDF-indeks. Fuldtekstsøgningen bliver på enheden uden rundtur.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg</video:thumbnail_loc>
+      <video:title>En vidensgraf, ikke blot en liste</video:title>
+      <video:description>Se, hvordan gemte artikler hænger sammen gennem fælles tags og emnelighed, selv når de ikke har et tag til fælles.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pocket-en.jpg</video:thumbnail_loc>
+      <video:title>Gem til senere — med vilje</video:title>
+      <video:description>Gem en beslutning med begrundelse og tidsramme, og få en påmindelse, før den forsvinder i en ulæst bunke.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/pocket-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/digest-en.jpg</video:thumbnail_loc>
+      <video:title>Et digest, der udvælger sig selv</video:title>
+      <video:description>Ét tryk sammensætter en varieret digest i stedet for fem udgaver af samme historie og pakker den til Kindle eller LocalSend.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/digest-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Dit bibliotek direkte i Claude, LM Studio og Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor og andre MCP-apps kan søge i dit bibliotek, citere markeringer og vise, hvad der forfalder. Du styrer adgangen; intet går gennem vores server.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksportér til Obsidian, Markdown, Word og PDF</video:title>
+      <video:description>Eksportér resuméer til Obsidian, Markdown, Word (DOCX), OpenDocument eller PDF med titel, kilde, tags og markeringer i én note.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>En analyserapport over din læsning</video:title>
+      <video:description>Se læsestimer, tid sparet med resuméer, aktivitet, ugens emner og en ordsky beregnet ud fra dit eget bibliotek.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/da/research-papers/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-en.jpg</video:thumbnail_loc>
+      <video:title>PDF'er – præcis som enhver anden side</video:title>
+      <video:description>Opsummér PDF'er i browseren eller filer fra disken som enhver anden side. “Det brugte jeg” viser ordene, tokens og modellen, som AI'en læste med.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-en.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ sprog, på tværs af platforme</video:title>
+      <video:description>Læs og opsummér på over 20 sprog med udvidelsen, det indbyggede sidepanel eller bookmarklet når udvidelsen ikke kan nå en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg</video:thumbnail_loc>
+      <video:title>AI-resuméer, frit modelvalg</video:title>
+      <video:description>Vælg OpenAI, Gemini, Mistral, DeepSeek, et brugerdefineret endpoint eller lokal Ollama til resuméer, der aldrig behøver forlade din enhed.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4</video:content_loc>
+      <video:duration>15</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-en.jpg</video:thumbnail_loc>
+      <video:title>Spøgelsesmarkeringer direkte på siden</video:title>
+      <video:description>AI'en markerer vigtige ordrette passager så du kan skimme de vigtigste indsigter og eksportere dem sammen med resuméet til Kindle, LocalSend eller Markdown.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/paper-en.jpg</video:thumbnail_loc>
+      <video:title>Forskningsfunktion: Artikler genkendes på deres DOI</video:title>
+      <video:description>Genkend forskningsartikler via DOI og citationsmetadata, markér forsøg, review eller preprint, og træk design, stikprøve, begrænsninger og citationer fra DOI-registret ud.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/paper-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/recherche-en.jpg</video:thumbnail_loc>
+      <video:title>Sammenlign kilder om ét emne</video:title>
+      <video:description>Saml artikler, mærk kilder som fagfællebedømte, preprint, nyhed eller holdning, lav et lateralt læsetjek, og sammenlign, hvor resuméerne er enige, uenige eller mangler kontekst.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/recherche-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg</video:thumbnail_loc>
+      <video:title>En vidensgraf, ikke blot en liste</video:title>
+      <video:description>Se, hvordan gemte artikler hænger sammen gennem fælles tags og emnelighed, selv når de ikke har et tag til fælles.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Dit bibliotek direkte i Claude, LM Studio og Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor og andre MCP-apps kan søge i dit bibliotek, citere markeringer og vise, hvad der forfalder. Du styrer adgangen; intet går gennem vores server.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksportér til Obsidian, Markdown, Word og PDF</video:title>
+      <video:description>Eksportér resuméer til Obsidian, Markdown, Word (DOCX), OpenDocument eller PDF med titel, kilde, tags og markeringer i én note.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
       <video:tag>English original</video:tag>
@@ -11781,6 +12847,182 @@
     </video:video>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/no/knowledge-graph/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, på tvers av plattformer</video:title>
+      <video:description>Les og oppsummer på over 20 språk med utvidelsen, det innebygde sidepanelet eller bookmarklet når utvidelsen ikke når en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Ekte søk, lokalt på enheten</video:title>
+      <video:description>Søk i titler, tagger og artikkelinnhold med en nettleserbasert TF-IDF-indeks. Fulltekstsøket blir på enheten uten noen rundtur.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg</video:thumbnail_loc>
+      <video:title>En kunnskapsgraf, ikke bare en liste</video:title>
+      <video:description>Se hvordan lagrede artikler henger sammen gjennom felles tagger og temalikhet, selv når de ikke har noen tagg felles.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pocket-en.jpg</video:thumbnail_loc>
+      <video:title>Lagre til senere, med en plan</video:title>
+      <video:description>Lagre en beslutning med begrunnelse og tidsramme, og få en påminnelse før den forsvinner i en ulest haug.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/pocket-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/digest-en.jpg</video:thumbnail_loc>
+      <video:title>Et digest som velger ut for deg</video:title>
+      <video:description>Ett trykk setter sammen en variert digest i stedet for fem versjoner av samme sak, og pakker den til Kindle eller LocalSend.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/digest-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Biblioteket ditt i Claude, LM Studio og Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor og andre MCP-apper kan søke i biblioteket ditt, sitere markeringer og vise hva som forfaller. Du styrer tilgangen; ingenting går gjennom serveren vår.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksporter til Obsidian, Markdown, Word og PDF</video:title>
+      <video:description>Eksporter sammendrag til Obsidian, Markdown, Word (DOCX), OpenDocument eller PDF med tittel, kilde, tagger og markeringer i ett notat.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>En analyserapport over lesingen din</video:title>
+      <video:description>Se leserekker, tid spart med sammendrag, aktivitet, ukens temaer og en ordsky beregnet fra ditt eget bibliotek.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/no/research-papers/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-en.jpg</video:thumbnail_loc>
+      <video:title>PDF-er, akkurat som vanlige nettsider</video:title>
+      <video:description>Oppsummer PDF-er i nettleseren eller filer fra disken som hvilken som helst side. «Hva jeg brukte» viser ordene, tokenene og modellen AI-en leste med.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-en.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, på tvers av plattformer</video:title>
+      <video:description>Les og oppsummer på over 20 språk med utvidelsen, det innebygde sidepanelet eller bookmarklet når utvidelsen ikke når en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.jpg</video:thumbnail_loc>
+      <video:title>AI-sammendrag med modellen du foretrekker</video:title>
+      <video:description>Velg OpenAI, Gemini, Mistral, DeepSeek, et eget endepunkt eller lokal Ollama for sammendrag som aldri trenger å forlate enheten din.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/privat-en.mp4</video:content_loc>
+      <video:duration>15</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-en.jpg</video:thumbnail_loc>
+      <video:title>Diskret fremheving, rett på siden</video:title>
+      <video:description>AI-en markerer viktige ordrette avsnitt så du kan skumme de viktigste innsiktene og eksportere dem sammen med sammendraget til Kindle, LocalSend eller Markdown.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/paper-en.jpg</video:thumbnail_loc>
+      <video:title>Forskningsmodus: artikler gjenkjennes via DOI</video:title>
+      <video:description>Kjenn igjen forskningsartikler via DOI og siteringsmetadata, merk studie, oversikt eller preprint, og hent ut design, utvalg, begrensninger og siteringer fra DOI-registeret.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/paper-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/recherche-en.jpg</video:thumbnail_loc>
+      <video:title>Sammenlign kilder om samme spørsmål</video:title>
+      <video:description>Samle artikler, merk kilder som fagfellevurderte, preprint, nyhet eller mening, kjør en lateral lesesjekk, og sammenlign hvor sammendragene er enige, uenige eller mangler kontekst.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/recherche-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg</video:thumbnail_loc>
+      <video:title>En kunnskapsgraf, ikke bare en liste</video:title>
+      <video:description>Se hvordan lagrede artikler henger sammen gjennom felles tagger og temalikhet, selv når de ikke har noen tagg felles.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Biblioteket ditt i Claude, LM Studio og Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor og andre MCP-apper kan søke i biblioteket ditt, sitere markeringer og vise hva som forfaller. Du styrer tilgangen; ingenting går gjennom serveren vår.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksporter til Obsidian, Markdown, Word og PDF</video:title>
+      <video:description>Eksporter sammendrag til Obsidian, Markdown, Word (DOCX), OpenDocument eller PDF med tittel, kilde, tagger og markeringer i ett notat.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/pl/blog/videos.html</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
@@ -12510,14 +13752,13 @@
   <url>
     <loc>https://kaivo.byphil.eu/sv/blog/videos.html</loc>
     <video:video>
-      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-sv.jpg</video:thumbnail_loc>
       <video:title>AI Summary Helper på under en minut</video:title>
       <video:description>Alla funktioner i en snabb genomgång: sammanfattningar, källor, research-läge, bibliotek, flöden, AI-appar och mycket mer.</video:description>
-      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-en.mp4</video:content_loc>
-      <video:duration>122</video:duration>
-      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/komplett-sv.mp4</video:content_loc>
+      <video:duration>135</video:duration>
+      <video:publication_date>2026-11-24T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
-      <video:tag>English original</video:tag>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/quellen-sv.jpg</video:thumbnail_loc>
@@ -12680,6 +13921,170 @@
       <video:description>Lässvit, sparad tid, aktivitet och ämnen över veckornas gång.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
       <video:duration>18</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/sv/knowledge-graph/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, över alla plattformar</video:title>
+      <video:description>Läs och sammanfatta på över 20 språk med tillägget, den inbyggda sidopanelen eller bookmarklet när tillägget inte kommer åt en sida.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.jpg</video:thumbnail_loc>
+      <video:title>Riktig sökning, direkt på enheten</video:title>
+      <video:description>Sök i rubriker, taggar och artikeltext med ett TF-IDF-index i webbläsaren. Fulltextsökningen stannar på enheten utan någon rundtur.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/graph-sv.jpg</video:thumbnail_loc>
+      <video:title>En kunskapsgraf, inte bara en lista</video:title>
+      <video:description>Se hur sparade artiklar hänger ihop genom gemensamma taggar och ämneslikhet, även när de saknar gemensam tagg.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/graph-sv.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pocket-sv.jpg</video:thumbnail_loc>
+      <video:title>Spara till senare, med ett syfte</video:title>
+      <video:description>Spara ett beslut med skäl och tidsram och få en påminnelse innan det försvinner i en oläst hög.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/pocket-sv.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/digest-sv.jpg</video:thumbnail_loc>
+      <video:title>En digest som väljer själv</video:title>
+      <video:description>Ett tryck sätter ihop en varierad digest i stället för fem versioner av samma nyhet och paketerar den för Kindle eller LocalSend.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/digest-sv.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Ditt bibliotek direkt i Claude, LM Studio och Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor och andra MCP-appar kan söka i ditt bibliotek, citera markeringar och lista det som förfaller. Du styr åtkomsten; inget går via vår server.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Exportera till Obsidian, Markdown, Word och PDF</video:title>
+      <video:description>Exportera sammanfattningar till Obsidian, Markdown, Word (DOCX), OpenDocument eller PDF med rubrik, källa, taggar och markeringar i en anteckning.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>En analysrapport över din läsning</video:title>
+      <video:description>Se lässviter, tid som sammanfattningarna sparat, aktivitet, veckans ämnen och ett ordmoln beräknat från ditt eget bibliotek.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/sv/research-papers/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-sv.jpg</video:thumbnail_loc>
+      <video:title>PDF:er, precis som vilken webbsida som helst</video:title>
+      <video:description>Sammanfatta PDF:er i webbläsaren eller filer från datorn som vilken sida som helst. ”Vad jag använde” visar orden, token och modellen som AI:n läste med.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/pdf-sv.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, över alla plattformar</video:title>
+      <video:description>Läs och sammanfatta på över 20 språk med tillägget, den inbyggda sidopanelen eller bookmarklet när tillägget inte kommer åt en sida.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/privat-sv.jpg</video:thumbnail_loc>
+      <video:title>AI-sammanfattningar med valfri modell</video:title>
+      <video:description>Välj OpenAI, Gemini, Mistral, DeepSeek, en egen slutpunkt eller lokal Ollama för sammanfattningar som aldrig behöver lämna din enhet.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/privat-sv.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-sv.jpg</video:thumbnail_loc>
+      <video:title>Spökmarkeringar direkt på sidan</video:title>
+      <video:description>AI:n markerar viktiga ordagranna avsnitt så att du kan skumma de viktigaste insikterna och exportera dem tillsammans med sammanfattningen till Kindle, LocalSend eller Markdown.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ghost-sv.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/paper-sv.jpg</video:thumbnail_loc>
+      <video:title>Forskningsläge: artiklar identifieras via DOI</video:title>
+      <video:description>Känn igen forskningsartiklar via DOI och citeringsmetadata, markera studie, översikt eller preprint och få fram design, urval, begränsningar och citeringar från DOI-registret.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/paper-sv.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/recherche-sv.jpg</video:thumbnail_loc>
+      <video:title>Jämför källor kring en fråga</video:title>
+      <video:description>Samla artiklar, märk källor som fackgranskade, preprint, nyhet eller åsikt, gör en lateral läskontroll och jämför var sammanfattningarna är överens, går isär eller saknar sammanhang.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/recherche-sv.mp4</video:content_loc>
+      <video:duration>24</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/graph-sv.jpg</video:thumbnail_loc>
+      <video:title>En kunskapsgraf, inte bara en lista</video:title>
+      <video:description>Se hur sparade artiklar hänger ihop genom gemensamma taggar och ämneslikhet, även när de saknar gemensam tagg.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/graph-sv.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Ditt bibliotek direkt i Claude, LM Studio och Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor och andra MCP-appar kan söka i ditt bibliotek, citera markeringar och lista det som förfaller. Du styr åtkomsten; inget går via vår server.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Exportera till Obsidian, Markdown, Word och PDF</video:title>
+      <video:description>Exportera sammanfattningar till Obsidian, Markdown, Word (DOCX), OpenDocument eller PDF med rubrik, källa, taggar och markeringar i en anteckning.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
       <video:tag>English original</video:tag>
@@ -14009,6 +15414,69 @@
     </video:video>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/da/youtube-summarizer/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg</video:thumbnail_loc>
+      <video:title>En indbygget RSS-læser</video:title>
+      <video:description>Følg blogs og nyhedssider, filtrér efter kilde, tag, dato eller stemning, importér OPML, og opsummér et hvilket som helst indlæg med ét klik. Afspil podcastfeeds i udvidelsen, og få en valgfri AI-opsamling; feeds og favoritter bliver på din enhed.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.jpg</video:thumbnail_loc>
+      <video:title>YouTube-videoer direkte fra underteksterne</video:title>
+      <video:description>Opsummér YouTube-videoer ud fra underteksterne, få hovedpointerne på dit sprog, og stil opfølgende spørgsmål med kildehenvisninger.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ sprog, på tværs af platforme</video:title>
+      <video:description>Læs og opsummér på over 20 sprog med udvidelsen, det indbyggede sidepanel eller bookmarklet når udvidelsen ikke kan nå en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/instant-en.jpg</video:thumbnail_loc>
+      <video:title>Lyt straks: Lyt, mens der skrives</video:title>
+      <video:description>Lyt, mens resuméet skrives: først titlen, så sætning for sætning, med pause, lyd fra og hastighedsstyring. Afspil det igen fra et hvilket som helst kort.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/stimmung-en.jpg</video:thumbnail_loc>
+      <video:title>Stemningsfilter og udvikling over tid</video:title>
+      <video:description>Bedøm overskrifter fra tunge til gode, filtrér efter gode nyheder, og følg din læsestemning pr. dag, uge eller måned.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/stimmung-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>En analyserapport over din læsning</video:title>
+      <video:description>Se læsestimer, tid sparet med resuméer, aktivitet, ugens emner og en ordsky beregnet ud fra dit eget bibliotek.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/de/youtube-summarizer/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-de.jpg</video:thumbnail_loc>
@@ -14417,6 +15885,69 @@
     </video:video>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/no/youtube-summarizer/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.jpg</video:thumbnail_loc>
+      <video:title>En innebygd RSS-leser</video:title>
+      <video:description>Følg blogger og nyhetssider, filtrer etter kilde, tagg, dato eller stemning, importer OPML og oppsummer et hvilket som helst innlegg med ett klikk. Spill podkaststrømmer i utvidelsen og få en valgfri AI-oppsummering; strømmer og favoritter blir på enheten din.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.jpg</video:thumbnail_loc>
+      <video:title>YouTube-videoer, direkte fra undertekstene</video:title>
+      <video:description>Oppsummer YouTube-videoer fra undertekstene, få hovedpoengene på ditt språk, og still oppfølgingsspørsmål med kildehenvisninger.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ytvideo-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, på tvers av plattformer</video:title>
+      <video:description>Les og oppsummer på over 20 språk med utvidelsen, det innebygde sidepanelet eller bookmarklet når utvidelsen ikke når en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/instant-en.jpg</video:thumbnail_loc>
+      <video:title>Direktelesing: lytt mens det skrives</video:title>
+      <video:description>Lytt mens sammendraget skrives: først tittelen, så setning for setning, med pause, demping og fartskontroll. Spill det av igjen fra et hvilket som helst kort.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/instant-en.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/stimmung-en.jpg</video:thumbnail_loc>
+      <video:title>Stemningsfilter og stemning over tid</video:title>
+      <video:description>Vurder overskrifter fra tunge til gode, filtrer fram gode nyheter og følg lesestemningen din per dag, uke eller måned.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/stimmung-en.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>En analyserapport over lesingen din</video:title>
+      <video:description>Se leserekker, tid spart med sammendrag, aktivitet, ukens temaer og en ordsky beregnet fra ditt eget bibliotek.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/pt/youtube-summarizer/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-pt.jpg</video:thumbnail_loc>
@@ -14467,6 +15998,64 @@
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
       <video:title>Um relatório analítico dos seus hábitos de leitura</video:title>
       <video:description>Veja sequências de leitura, tempo economizado com resumos, atividade, temas da semana e uma nuvem de palavras calculada a partir da sua própria biblioteca.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/sv/youtube-summarizer/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-sv.jpg</video:thumbnail_loc>
+      <video:title>Inbyggd RSS-läsare</video:title>
+      <video:description>Följ bloggar och nyhetssajter, filtrera på källa, tagg, datum eller stämning, importera OPML och sammanfatta valfritt inlägg med ett klick. Spela poddflöden i tillägget och få en valfri AI-översikt; flöden och favoriter stannar på din enhet.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/feeds-sv.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/ytvideo-sv.jpg</video:thumbnail_loc>
+      <video:title>YouTube-videor, direkt från undertexterna</video:title>
+      <video:description>Sammanfatta YouTube-videor utifrån undertexterna, få huvudpunkterna på ditt språk och ställ följdfrågor med källhänvisningar.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/ytvideo-sv.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, över alla plattformar</video:title>
+      <video:description>Läs och sammanfatta på över 20 språk med tillägget, den inbyggda sidopanelen eller bookmarklet när tillägget inte kommer åt en sida.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/instant-sv.jpg</video:thumbnail_loc>
+      <video:title>Direktuppläsning: lyssna medan den skriver</video:title>
+      <video:description>Lyssna medan sammanfattningen skrivs: först rubriken, sedan mening för mening, med paus, ljud av och hastighetsreglage. Spela upp den igen från vilket kort som helst.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/instant-sv.mp4</video:content_loc>
+      <video:duration>28</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/stimmung-sv.jpg</video:thumbnail_loc>
+      <video:title>Stämningsfilter och trend över tid</video:title>
+      <video:description>Betygsätt rubriker från tunga till goda, filtrera fram goda nyheter och följ din lässtämning per dag, vecka eller månad.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/stimmung-sv.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>En analysrapport över din läsning</video:title>
+      <video:description>Se lässviter, tid som sammanfattningarna sparat, aktivitet, veckans ämnen och ett ordmoln beräknat från ditt eget bibliotek.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
       <video:duration>18</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
@@ -14870,6 +16459,89 @@
       <video:duration>18</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/da/obsidian-integration/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ sprog, på tværs af platforme</video:title>
+      <video:description>Læs og opsummér på over 20 sprog med udvidelsen, det indbyggede sidepanel eller bookmarklet når udvidelsen ikke kan nå en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Rigtig søgning, lokalt på enheden</video:title>
+      <video:description>Søg i titler, tags og artikelindhold med et browserbaseret TF-IDF-indeks. Fuldtekstsøgningen bliver på enheden uden rundtur.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg</video:thumbnail_loc>
+      <video:title>En vidensgraf, ikke blot en liste</video:title>
+      <video:description>Se, hvordan gemte artikler hænger sammen gennem fælles tags og emnelighed, selv når de ikke har et tag til fælles.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pocket-en.jpg</video:thumbnail_loc>
+      <video:title>Gem til senere — med vilje</video:title>
+      <video:description>Gem en beslutning med begrundelse og tidsramme, og få en påmindelse, før den forsvinder i en ulæst bunke.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/pocket-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/digest-en.jpg</video:thumbnail_loc>
+      <video:title>Et digest, der udvælger sig selv</video:title>
+      <video:description>Ét tryk sammensætter en varieret digest i stedet for fem udgaver af samme historie og pakker den til Kindle eller LocalSend.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/digest-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Dit bibliotek direkte i Claude, LM Studio og Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor og andre MCP-apps kan søge i dit bibliotek, citere markeringer og vise, hvad der forfalder. Du styrer adgangen; intet går gennem vores server.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksportér til Obsidian, Markdown, Word og PDF</video:title>
+      <video:description>Eksportér resuméer til Obsidian, Markdown, Word (DOCX), OpenDocument eller PDF med titel, kilde, tags og markeringer i én note.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>En analyserapport over din læsning</video:title>
+      <video:description>Se læsestimer, tid sparet med resuméer, aktivitet, ugens emner og en ordsky beregnet ud fra dit eget bibliotek.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
     </video:video>
   </url>
   <url>
@@ -15414,6 +17086,89 @@
     </video:video>
   </url>
   <url>
+    <loc>https://kaivo.byphil.eu/no/obsidian-integration/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, på tvers av plattformer</video:title>
+      <video:description>Les og oppsummer på over 20 språk med utvidelsen, det innebygde sidepanelet eller bookmarklet når utvidelsen ikke når en side.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-en.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.jpg</video:thumbnail_loc>
+      <video:title>Ekte søk, lokalt på enheten</video:title>
+      <video:description>Søk i titler, tagger og artikkelinnhold med en nettleserbasert TF-IDF-indeks. Fulltekstsøket blir på enheten uten noen rundtur.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-en.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.jpg</video:thumbnail_loc>
+      <video:title>En kunnskapsgraf, ikke bare en liste</video:title>
+      <video:description>Se hvordan lagrede artikler henger sammen gjennom felles tagger og temalikhet, selv når de ikke har noen tagg felles.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/graph-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pocket-en.jpg</video:thumbnail_loc>
+      <video:title>Lagre til senere, med en plan</video:title>
+      <video:description>Lagre en beslutning med begrunnelse og tidsramme, og få en påminnelse før den forsvinner i en ulest haug.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/pocket-en.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/digest-en.jpg</video:thumbnail_loc>
+      <video:title>Et digest som velger ut for deg</video:title>
+      <video:description>Ett trykk setter sammen en variert digest i stedet for fem versjoner av samme sak, og pakker den til Kindle eller LocalSend.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/digest-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-20T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Biblioteket ditt i Claude, LM Studio og Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor og andre MCP-apper kan søke i biblioteket ditt, sitere markeringer og vise hva som forfaller. Du styrer tilgangen; ingenting går gjennom serveren vår.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Eksporter til Obsidian, Markdown, Word og PDF</video:title>
+      <video:description>Eksporter sammendrag til Obsidian, Markdown, Word (DOCX), OpenDocument eller PDF med tittel, kilde, tagger og markeringer i ett notat.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>En analyserapport over lesingen din</video:title>
+      <video:description>Se leserekker, tid spart med sammendrag, aktivitet, ukens temaer og en ordsky beregnet fra ditt eget bibliotek.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
     <loc>https://kaivo.byphil.eu/pt/obsidian-integration/</loc>
     <video:video>
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-pt.jpg</video:thumbnail_loc>
@@ -15484,6 +17239,84 @@
       <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
       <video:title>Um relatório analítico dos seus hábitos de leitura</video:title>
       <video:description>Veja sequências de leitura, tempo economizado com resumos, atividade, temas da semana e uma nuvem de palavras calculada a partir da sua própria biblioteca.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://kaivo.byphil.eu/sv/obsidian-integration/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.jpg</video:thumbnail_loc>
+      <video:title>20+ språk, över alla plattformar</video:title>
+      <video:description>Läs och sammanfatta på över 20 språk med tillägget, den inbyggda sidopanelen eller bookmarklet när tillägget inte kommer åt en sida.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/sprache-sv.mp4</video:content_loc>
+      <video:duration>16</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.jpg</video:thumbnail_loc>
+      <video:title>Riktig sökning, direkt på enheten</video:title>
+      <video:description>Sök i rubriker, taggar och artikeltext med ett TF-IDF-index i webbläsaren. Fulltextsökningen stannar på enheten utan någon rundtur.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/bibliothek-sv.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/graph-sv.jpg</video:thumbnail_loc>
+      <video:title>En kunskapsgraf, inte bara en lista</video:title>
+      <video:description>Se hur sparade artiklar hänger ihop genom gemensamma taggar och ämneslikhet, även när de saknar gemensam tagg.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/graph-sv.mp4</video:content_loc>
+      <video:duration>18</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/pocket-sv.jpg</video:thumbnail_loc>
+      <video:title>Spara till senare, med ett syfte</video:title>
+      <video:description>Spara ett beslut med skäl och tidsram och få en påminnelse innan det försvinner i en oläst hög.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/pocket-sv.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/digest-sv.jpg</video:thumbnail_loc>
+      <video:title>En digest som väljer själv</video:title>
+      <video:description>Ett tryck sätter ihop en varierad digest i stället för fem versioner av samma nyhet och paketerar den för Kindle eller LocalSend.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/digest-sv.mp4</video:content_loc>
+      <video:duration>19</video:duration>
+      <video:publication_date>2026-10-21T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.jpg</video:thumbnail_loc>
+      <video:title>Ditt bibliotek direkt i Claude, LM Studio och Cursor</video:title>
+      <video:description>Claude Desktop, LM Studio, Cursor och andra MCP-appar kan söka i ditt bibliotek, citera markeringar och lista det som förfaller. Du styr åtkomsten; inget går via vår server.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/mcp-en.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.jpg</video:thumbnail_loc>
+      <video:title>Exportera till Obsidian, Markdown, Word och PDF</video:title>
+      <video:description>Exportera sammanfattningar till Obsidian, Markdown, Word (DOCX), OpenDocument eller PDF med rubrik, källa, taggar och markeringar i en anteckning.</video:description>
+      <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/export-en.mp4</video:content_loc>
+      <video:duration>21</video:duration>
+      <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>English original</video:tag>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.jpg</video:thumbnail_loc>
+      <video:title>En analysrapport över din läsning</video:title>
+      <video:description>Se lässviter, tid som sammanfattningarna sparat, aktivitet, veckans ämnen och ett ordmoln beräknat från ditt eget bibliotek.</video:description>
       <video:content_loc>https://kaivo.byphil.eu/assets/blog/video/analytics-en.mp4</video:content_loc>
       <video:duration>18</video:duration>
       <video:publication_date>2026-10-27T00:00:00+00:00</video:publication_date>

@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://kaivo.byphil.eu/sv/integritet.html">
 <meta property="og:type" content="website">
 <script src="../assets/analytics.js" defer=""></script>
-<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/integritet.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="sv"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Integritetspolicy — AI Summary Helper"><meta name="twitter:description" content="Hur AI Summary Helper hanterar din data: dina API-nycklar och artikelhistorik stannar på din enhet."><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><link rel="canonical" href="https://kaivo.byphil.eu/sv/integritet.html"></head>
+<link rel="alternate" hreflang="en" href="https://kaivo.byphil.eu/privacy.html"><link rel="alternate" hreflang="sv" href="https://kaivo.byphil.eu/sv/integritet.html"><link rel="canonical" href="https://kaivo.byphil.eu/sv/integritet.html"><meta property="og:site_name" content="AI Summary Helper"><meta property="og:locale" content="sv"><meta property="og:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Integritetspolicy — AI Summary Helper"><meta name="twitter:description" content="Hur AI Summary Helper hanterar din data: dina API-nycklar och artikelhistorik stannar på din enhet."><meta name="twitter:image" content="https://kaivo.byphil.eu/assets/shots/aish-hero-en.webp"></head>
 <body>
 
 <a href="#main" class="skip-link">Hoppa till innehållet</a>
@@ -38,12 +38,8 @@
       <img src="../assets/icon.svg" alt="">
       AI Summary Helper
     </a>
-    <nav class="pill" aria-label="Primär">
-      <a href="index.html#features" data-sec="features">Funktioner</a>
-      <a href="index.html#see-it" data-sec="see-it">Demo</a>
-      <a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=sv-integritet&amp;utm_campaign=nav" class="pill-cta" target="_blank" rel="noopener">Lägg till i Chrome</a>
-    </nav>
-    <div class="nav-island"><div class="nav-tools">
+    <div class="nav-island"><a href="https://chromewebstore.google.com/detail/ai-summary-helper-openai/hldbejcjaedipeegjcinmhejdndchkmb?utm_source=website&amp;utm_medium=sv-integritet&amp;utm_campaign=nav" class="pill-cta nav-cta" target="_blank" rel="noopener">Lägg till i Chrome</a>
+    <div class="nav-tools">
       <button type="button" class="tool-btn" id="sendBtn" data-send="" hidden="" aria-label="Skicka den här sidan till min dator" title="Skicka till min dator"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M8 20h8M12 16.5V20M12 13V8m0 0-2.2 2.2M12 8l2.2 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="tool-btn" id="langBtn" aria-label="Språk" aria-controls="mobileMenu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Växla till ljust läge">
@@ -55,11 +51,17 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
     </button></div>
   </div>
+    <nav class="pill" aria-label="Primär">
+      <a href="index.html" data-sec="hero">Översikt</a>
+      <a href="index.html#see-it" data-sec="see-it">Se hur det fungerar</a>
+      <a href="index.html#features" data-sec="features">Funktioner</a>
+      <a href="blog/" data-dock-blog="">Blogg</a>
+    </nav>
   <div class="mobile-menu" id="mobileMenu" hidden="">
     <div class="wrap mm-inner">
       <nav class="mm-links" aria-label="Mobil">
-        <a href="index.html#features"><span class="mm-n">01</span>Funktioner</a>
-        <a href="index.html#see-it"><span class="mm-n">02</span>Demo</a>
+        <a href="index.html#use-cases"><span class="mm-n">01</span>Användningsområden</a>
+        <a href="index.html#problem" data-slider-goto="problem"><span class="mm-n">02</span>Så funkar det</a>
         <a href="../education/"><span class="mm-n">03</span>Utbildning</a>
         <a href="blog/"><span class="mm-n">04</span>Blogg</a>
           <a href="blog/pocket-alternative.html" class="mm-sub">Pocket-alternativ: vad som spelar roll</a>
@@ -134,7 +136,7 @@
         <h3>Din anslutning till AI-leverantörer</h3>
         <p>Du väljer själv hur sammanfattningar genereras:</p>
         <ul>
-          <li><strong>Egen API-nyckel (BYOK)</strong> — OpenAI, Google Gemini, Mistral AI, DeepSeek eller en anpassad slutpunkt (custom endpoint). Din API-nyckel sparas enbart lokalt på din enhet (synkas aldrig, skickas aldrig till oss). Sidinnehåll som du väljer att sammanfatta skickas direkt från din webbläsare till vald leverantör med din egen nyckel och regleras av den leverantörens integritetspolicy. Vi varken ser, loggar eller sparar detta innehåll.</li>
+          <li><strong>Egen API-nyckel (BYOK)</strong> — OpenAI, Anthropic (Claude), Google Gemini, Mistral AI, DeepSeek, OpenRouter eller en egen slutpunkt. Din API-nyckel lagras endast lokalt på din enhet (synkas aldrig, skickas aldrig till oss). Sidinnehåll som du väljer att sammanfatta skickas direkt från din webbläsare till den leverantör du valt, med din egen nyckel och enligt den leverantörens egen integritetspolicy. Vi ser, loggar och lagrar inte detta innehåll.</li>
           <li><strong>Lokal modell via Ollama</strong> — om du kör en modell lokalt skickas sidinnehållet endast till din egen dator. Ingenting lämnar din enhet.</li>
           <li><strong>byphil Cloud (valfritt, betalt)</strong> — ett hostat alternativ för dig som föredrar att slippa hantera en egen API key. Om du väljer den här nivån skickas texten du vill sammanfatta via vår backend, som vidarebefordrar anropet via OpenRouter till en underliggande modell-leverantör åt dig och returnerar sammanfattningen. Den vidarebefordras enbart: vi sparar varken sidinnehåll, URL:er eller sammanfattningar. Det vi sparar per konto är användningsmetadata: antal slutförda anrop, tokenanvändning, tidpunkt för senaste anrop och vilken modell som användes. Kontot i sig är valfritt; alla andra funktioner fungerar utan konto. Med inställningen ”Föredra EU-servrar” aktiverad körs modeller som har en slutpunkt i Europa uteslutande på dessa, och appen markerar vilka modeller som har stöd för detta och vilka som inte har det. Detta begränsar var modellen körs. Det utesluter dock inga parter i kedjan: din text passerar fortfarande vår tjänst (som körs på en server i Tyskland) och sedan OpenRouter, ett amerikanskt bolag, på väg till modellen. För uppläsning och tal-till-text finns inget EU-alternativ.</li>
         </ul>
@@ -164,10 +166,10 @@
           </tbody>
         </table>
         <p>Objekt märkta med "Synk" använder Chromes inbyggda synkronisering kopplad till ditt Google-konto — denna data passerar Googles infrastruktur, inte vår, precis som dina bokmärken. Vi har ingen åtkomst till den.</p>
-        <p>Du kan exportera din data när som helst via Inställningar → Bibliotek &amp; data → Säkerhetskopiering &amp; återställning. Säkerhetskopior exkluderar API-nycklar, inloggningsuppgifter, licensnycklar och installationsidentifierare som standard; att inkludera dem kräver ett aktivt val med en varning eftersom vem som helst med filen kan använda dem. Håll exporterade filer hemliga, och tänk på att äldre säkerhetskopior kan innehålla känsliga uppgifter. På samma ställe låter Farozonen dig radera per kategori (med antal som raderas): sammanfattningar och arkiv, markeringar, flöden, poddar, API-nycklar / inloggning / licens, sändmål (Kindle, LocalSend) och inställningar. <em>Radera all data</em> tar bort allt som tillägget sparar på enheten och återställer det helt. Att avinstallera tillägget tar också bort dess data. Dessa åtgärder raderar endast lokal data. Ditt konto och de uppgifter vi har på vår server (se nedan) hanterar du på <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: där kan du exportera din data och radera ditt konto. Tillägget och Android-appen länkar dit från kontoinställningarna.</p>
+        <p>Du kan när som helst exportera dina data via Inställningar → Säkerhetskopia och synk. Säkerhetskopior utelämnar som standard API-nycklar, inloggningsuppgifter, licensnycklar och installations-ID:n; att ta med dem är ett uttryckligt val med en varning, eftersom vem som helst med filen kan använda dem. Håll exporterade filer privata och kom ihåg att äldre säkerhetskopior kan innehålla hemligheter. På samma ställe kan du i Farozonen radera per kategori, med antal på det som tas bort: sammanfattningar och arkiv, markeringar, flöden, poddar, API-nycklar / inloggning / licens, sändningsmål (Kindle, LocalSend) och inställningar. <em>Radera all data</em> tar bort allt som tillägget sparar på enheten och återställer det helt. Att avinstallera tillägget tar också bort dess data. Dessa åtgärder raderar endast lokal data. Ditt konto och de uppgifter vi har på vår server (se nedan) hanterar du på <a href="https://byphil.eu/#account" target="_blank" rel="noopener">byphil.eu/#account</a>: där kan du exportera din data och radera ditt konto. Tillägget och Android-appen länkar dit från kontoinställningarna.</p>
 
         <h3>RSS-flöden</h3>
-        <p>Den inbyggda flödesläsaren sparar dina prenumerationer och hämtade flödesartiklar lokalt i din webbläsare — synkas aldrig, skickas aldrig till oss. När du lägger till eller uppdaterar ett flöde hämtar tillägget flödets adress direkt från utgivarens server, precis som din webbläsare gör vid ett vanligt besök, vilket innebär att utgivaren ser anropet. Vi varken mellanlagrar (proxy), loggar eller ser dina prenumerationer eller din läslista. OPML-import hanteras helt på din enhet. Om du slår på bakgrundskontroller (avstängt som standard) hämtar tillägget dina flöden med det intervall du valt, enbart för att visa en räknare på verktygsfältsikonen. Att sammanfatta ett flödesinlägg fungerar precis som vilken annan sida som helst: innehållet skickas enbart till den AI-leverantör du valt, och först när du startar en sammanfattning. Den valfria AI-dagsöversikten och AI-tonanalysen fungerar på samma sätt: först när du klickar på dem skickar tillägget rubriker, källnamn och korta utdrag (inte hela artiklar) till din valda AI-leverantör, och resultatet sparas i cachen på din enhet. Podcastavsnitt i ett flöde streamas direkt från utgivarens server när du trycker på Play.</p>
+        <p>Den inbyggda flödesläsaren lagrar dina prenumerationer och hämtade inlägg lokalt i webbläsaren; de synkas aldrig och skickas aldrig till oss. När du lägger till eller uppdaterar ett flöde begär tillägget flödets adress direkt från utgivarens server, precis som webbläsaren gör när du besöker sajten, så utgivaren kan se begäran. Vi är inte mellanhand för, loggar inte och ser inte dina prenumerationer eller din läslista. OPML-import sker helt på din enhet. Bakgrundskontroller är påslagna som standard och kan stängas av i flödesinställningarna: medan webbläsaren är öppen hämtar tillägget dina flöden på nytt med det intervall du väljer, enbart för att visa en räknare på ikonen i verktygsfältet. Att sammanfatta ett flödesinlägg fungerar som att sammanfatta vilken sida som helst: innehållet skickas bara till AI-leverantören du valt, och bara när du startar en sammanfattning. Den valfria dagsöversikten och tonbedömningen med AI fungerar likadant: bara när du klickar på dem skickar tillägget inläggens rubriker, källnamn och korta utdrag (inte hela artiklar) till AI-leverantören du valt, och översikten sparas i cache på din enhet. Poddavsnitt i ett flöde strömmas direkt från utgivarens server när du trycker på Spela upp.</p>
 
         <h3>Skicka artiklar: Kindle, LocalSend och delningsmenyn</h3>
         <p>Det finns två olika vägar, och bara en av dem passerar vår server:</p>
@@ -177,7 +179,7 @@
         </ul>
 
         <h3>Bibliotekssynk, säkerhetskopiering och publicering (valfritt)</h3>
-        <p>Inaktiverat tills du lägger till en plats under Inställningar → Synk och säkerhetskopiering. En plats är en mapp på en server du väljer själv (Nextcloud eller en annan WebDAV-server, eller en S3-kompatibel bucket som AWS S3, Cloudflare R2 eller Backblaze B2) eller en mapp på din egen dator. Vi driver inte dessa servrar, har ingen insyn och kan aldrig se vad du sparar där.</p>
+        <p>Avstängt tills du lägger till en plats i Inställningar → Säkerhetskopia och synk. En plats är en mapp på en server du själv väljer (Nextcloud eller en annan WebDAV-server, eller en S3-kompatibel bucket som AWS S3, Cloudflare R2 eller Backblaze B2) eller en mapp på din egen dator. Vi driver inte dessa servrar, vi är inte inblandade och vi ser aldrig vad du lägger där.</p>
         <ul>
           <li><strong>Krypterade platser</strong> Håll hela ditt bibliotek synkroniserat mellan dina enheter eller spara en säkerhetskopia: artiklar, sammanfattningar, fulltexter, markeringar, anteckningar, samlingar och taggar. Allt krypteras i din webbläsare (AES-256-GCM, med en nyckel som härleds från din lösenfras) innan det lämnar enheten, och filnamnen förvrängs. Servern eller mappen ser bara krypterade filer, deras storlek och när de ändrades. Nyckeln som härleds från din lösenfras stannar i webbläsarens lokala lagring, så att synkningen kan köras i bakgrunden. Om du använder de föreslagna slumpmässiga orden sparas de också där, så att du kan se dem i platsens inställningar. En lösenfras du har valt själv sparas inte. Inget av detta synkas någonsin eller ingår i en säkerhetskopia. Om du tappar bort lösenfrasen kan ingen läsa filerna – inte ens vi.</li>
           <li><strong>Läsbara platser</strong> publicera vanliga textfiler (och, om du vill, en enkel visningssida) för din egen webbplats eller andra verktyg. Endast artiklar som matchar det taggfilter du ställt in exporteras. Anteckningar, påminnelser och fullständiga artikeltexter publiceras aldrig om du inte själv aktiverar det i riskzonen – och då kan alla som har åtkomst till mappen läsa dem.</li>
@@ -232,10 +234,13 @@
             <tr><td><code>offscreen</code>, <code>tts</code></td><td>Spela podcastljud och läsa upp sammanfattningar i bakgrunden även när popup-fönstret är stängt</td></tr>
             <tr><td>Filsystemsåtkomst (vald mapp)</td><td>Endast när du väljer en mapp på din dator som plats för synk eller säkerhetskopiering; webbläsaren ber om ditt tillstånd och endast den specifika mappen är åtkomlig</td></tr>
             <tr><td><code>unlimitedStorage</code></td><td>Spara ett stort lokalt arkiv med artiklar och markeringar utan att slå i standardlagringsgränsen</td></tr>
+            <tr><td><code>bokmärken</code> (valfritt)</td><td>Endast om du väljer ”Spara i webbläsarens bokmärken” i läsvyn; webbläsaren frågar först. Vi lägger till eller uppdaterar ett bokmärke för artikeln i mappen ”AI Summary Helper”; vi letar bara i och ändrar vår egen mapp, inte resten av dina bokmärken</td></tr>
+            <tr><td><code>sökning</code> (valfritt)</td><td>Endast om du väljer ”Sök på webben” i startsidans sökruta eller i kommandopaletten; webbläsaren frågar först. Orden du skrivit lämnas till webbläsarens egen standardsökmotor, precis som om du hade skrivit dem i adressfältet. Vi ser inte, lagrar inte och skickar dem ingen annanstans</td></tr>
             <tr><td><code>host_permissions (&lt;all_urls&gt;)</code></td><td>Låter dig sammanfatta alla sidor du besöker – innehållet läses och överförs endast när du aktivt startar en sammanfattning, aldrig i bakgrunden. Gör det också möjligt för tillägget att nå den synkserver eller bucket du anger, oavsett adress</td></tr>
           </tbody>
         </table>
         <p>Vi använder inte dessa behörigheter för att spåra ditt surfande, bygga en annonsprofil eller samla in data utöver att tillhandahålla funktionerna som beskrivs ovan.</p>
+        <p>Användningen av information från Googles API:er följer <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq" target="_blank" rel="noopener">Chrome Web Stores policy för användardata</a>, inklusive kraven på begränsad användning.</p>
 
         <h2>Vad vi inte gör</h2>
         <ul>
@@ -248,7 +253,7 @@
         <h2>Tredjepartstjänster</h2>
         <p>Beroende på hur du konfigurerar tillägget kan ditt sidinnehåll skickas till:</p>
         <ul>
-          <li>OpenAI, Google (Gemini), Mistral AI eller DeepSeek — endast om du angett din egen API-nyckel för den leverantören, och endast för sidan du aktivt sammanfattar.</li>
+          <li>OpenAI, Anthropic (Claude), Google (Gemini), Mistral AI, DeepSeek eller OpenRouter (som skickar vidare till modellen du väljer där): endast om du har angett din egen API-nyckel för den leverantören, och endast för den sida du själv sammanfattar.</li>
           <li>Vår byphil-backend och dess databas, båda driftade av IONOS SE i Tyskland — endast om du loggar in, använder byphil Cloud eller Send to Kindle.</li>
           <li>OpenRouter, genom vilken byphil Cloud ansluter till modellerna, och modelloperatören den dirigerar till — texten du sammanfattar vidarebefordras till modellen du använder, enbart för den specifika förfrågan.</li>
           <li>Stripe — betalningar och hantering av prenumerationer, som Merchant of Record.</li>
