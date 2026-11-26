@@ -8125,5 +8125,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud, que o reencaminha para a OpenRouter e para a empresa do modelo escolhido"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "Uma página inicial tranquila num separador próprio: continuar a ler, artigos novos, os seus feeds e uma pesquisa (⌘K / Ctrl+K). Não substitui a página de novo separador do navegador."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "A subscrição ativa é cancelada juntamente com a sua conta."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome e Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "Copiar endereço"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "Botão de página inicial: Definições › Aspeto › Mostrar botão Página inicial e cole o endereço."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "No Safari do iPhone e do iPad não é possível defini-la como página inicial. Abra-a com o botão acima ou use o separador Hoje da app AISH."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "No Safari ainda não é possível defini-la como página inicial. Abra-a com o botão acima."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "Abrir ou definir como página inicial"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari no Mac"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "Definir como página inicial"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "Definições › No arranque › Abrir uma página específica ou um conjunto de páginas › Adicionar uma nova página e cole o endereço."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "Definições › Início, página inicial e novo separador › Quando o Edge é iniciado › Abrir estas páginas › Adicionar uma nova página e cole o endereço."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone e iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (este navegador)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "Artigos em Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "Cópias e sincronização"
+  },
+  "f_bring_back_4fde": {
+    "message": "Recuperar"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "De um ficheiro…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "De um local: abra-o acima e escolha “Restaurar a partir daqui…”."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "Manter uma cópia num local"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "Mantenha a biblioteca igual nos seus dispositivos ou guarde uma cópia algures. Nada sai deste dispositivo antes de adicionar um local."
+  },
+  "f_last_full_copy_4175": {
+    "message": "Última cópia completa: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "Ainda não há cópia completa"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "Uma vez, como ficheiro"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "Só as definições ou também os artigos. As chaves ficam de fora, a menos que as escolha."
+  },
+  "f_pass_on_78d1": {
+    "message": "Partilhar"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "Guarde um ficheiro ou adicione um local que conserve uma cópia."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "Guardar em ficheiro"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "Guardada como ficheiro"
+  },
+  "f_storage_df06": {
+    "message": "Armazenamento"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "Armazenamento · etiquetas · eliminar"
+  },
+  "f_ago_dfc8": {
+    "message": "há {t}"
   }
 }

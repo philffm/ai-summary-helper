@@ -8407,5 +8407,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud, som skickar det vidare till OpenRouter och företaget bakom den valda modellen"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "En lugn startsida i en egen flik: läs vidare, nya artiklar, dina flöden och en sökning (⌘K / Ctrl+K). Den ersätter inte webbläsarens sida för ny flik."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "Ett pågående abonnemang sägs upp tillsammans med kontot."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome och Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "Kopiera adressen"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "Startsidesknapp: Inställningar › Utseende › Visa startsidesknappen och klistra in adressen."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "Sidan kan inte anges som startsida i Safari på iPhone och iPad. Öppna den med knappen ovan eller använd fliken I dag i AISH-appen."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "Sidan kan ännu inte anges som startsida i Safari. Öppna den med knappen ovan."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "Öppna den eller gör den till startsida"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari på Mac"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "Gör den till startsida"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "Inställningar › Vid start › Öppna en viss sida eller en uppsättning sidor › Lägg till en ny sida och klistra in adressen."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "Inställningar › Start, startsida och ny flik › När Edge startar › Öppna de här sidorna › Lägg till en ny sida och klistra in adressen."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone och iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (den här webbläsaren)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "Artiklar som Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "Säkerhetskopia och synk"
+  },
+  "f_bring_back_4fde": {
+    "message": "Hämta tillbaka"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "Från en fil…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "Från en plats: öppna den ovan och välj ”Återställ härifrån…”."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "Behåll en kopia på en plats"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "Håll biblioteket lika på dina enheter eller spara en kopia någonstans. Inget lämnar enheten förrän du lägger till en plats."
+  },
+  "f_last_full_copy_4175": {
+    "message": "Senaste fullständiga kopian: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "Ingen fullständig kopia än"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "En gång, som fil"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "Bara inställningarna eller även artiklarna. Nycklar utelämnas om du inte väljer dem."
+  },
+  "f_pass_on_78d1": {
+    "message": "Skicka vidare"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "Spara en fil eller lägg till en plats som behåller en kopia."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "Spara till fil"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "Sparad som fil"
+  },
+  "f_storage_df06": {
+    "message": "Lagring"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "Lagring · taggar · radera"
+  },
+  "f_ago_dfc8": {
+    "message": "för {t} sedan"
   }
 }

@@ -240,6 +240,8 @@ async function render() {
     // one header per screen (WCAG 2.4.6): the panel's own "‹ Settings / Sync & backup" only on the list, the others bring theirs
     const panelHead = root.closest('.settings-panel') && root.closest('.settings-panel').querySelector(':scope > .settings-panel-head');
     if (panelHead) panelHead.hidden = view !== 'list';
+    // what else the panel offers (the newest copy, files, passing on) belongs to the list
+    root.closest('.settings-panel')?.querySelectorAll('[data-list-only]').forEach((e) => { e.hidden = view !== 'list'; });
     if (focusField && $(focusField)) { $(focusField).focus(); focusField = ''; }
     updateRowSub(places, status);
     // The folder check can be slow (a handle whose folder is gone never answers): the list is already on screen, the notice follows.
@@ -335,17 +337,16 @@ function placeRow(p, s, c) {
 
 /** No place yet: start from what the person wants, not from the kind of server (Figma A4). */
 function emptyScreen() {
-    const out = [el('p', 'setting-note', T('Keep your library in step across your devices, back it up, or publish part of it for others. Nothing leaves this device until you add one. Pick what you want to do:'))];
+    const out = [el('p', 'setting-note', T('Keep your library in step across your devices, or keep a copy somewhere. Nothing leaves this device until you add a place.'))];
     const pick = (g) => () => { goal = g; view = 'add'; render(); };
     out.push(listRow('lock', T('Sync my devices'), T('The same library on laptop and phone. Encrypted.'), pick({ mode: 'encrypted', direction: 'twoway' })),
-        listRow('archive', T('Back up'), T('A copy only this device writes. Encrypted.'), pick({ mode: 'encrypted', direction: 'push' })),
-        listRow('globe', T('Publish a reading list'), T('Plain files for your website. Readable.'), pick({ mode: 'readable', direction: 'publish' })));
+        listRow('archive', T('Keep a copy in a place'), T('A copy only this device writes. Encrypted.'), pick({ mode: 'encrypted', direction: 'push' })));
     out.push(callout('info', T('Works with Nextcloud / WebDAV, S3-compatible storage or a folder on this computer.')));
     return out;
 }
 
 function addScreen() {
-    const out = [head(T('Add a place'), { label: '‹ ' + T('Sync & backup'), fn: () => { view = 'list'; render(); } })];
+    const out = [head(T('Add a place'), { label: '‹ ' + T('Backup & sync'), fn: () => { view = 'list'; render(); } })];
     if (goal) out.push(el('p', 'setting-note', goal.mode === 'readable' ? T('Where should the reading list live?') : goal.direction === 'push' ? T('Where should the backup live?') : T('Where should your library live?')));
     out.push(listRow('server', T('Nextcloud / WebDAV'), T('Nextcloud, ownCloud, Synology, most NAS boxes'), () => openForm('')));
     out.push(listRow('cloud', T('S3-compatible'), T('AWS, Cloudflare R2, Backblaze, MinIO, Wasabi'), () => openForm('', { service: 's3' })));
@@ -599,7 +600,7 @@ function formScreen(place, st, count, connections = [], places = []) {
     const isFolder = !!draft.folderId || !!(connNow && connNow.service === 'folder');
     const encrypted = draft.mode === 'encrypted';
     const isS3 = (connNow ? connNow.service : serverDraft.service) === 's3';
-    const out = [head(editing ? draft.name : isFolder ? T('A folder on this computer') : isS3 ? T('S3-compatible') : T('Nextcloud / WebDAV'), { label: '‹ ' + T('Sync & backup'), fn: () => { view = 'list'; render(); } })];
+    const out = [head(editing ? draft.name : isFolder ? T('A folder on this computer') : isS3 ? T('S3-compatible') : T('Nextcloud / WebDAV'), { label: '‹ ' + T('Backup & sync'), fn: () => { view = 'list'; render(); } })];
     if (editing) out.push(heroNode(place, st, count));
     // editing: the settings fold into sections (title + current value), so the place leads with its status and stays short
     const secs = [];
@@ -715,7 +716,7 @@ function formScreen(place, st, count, connections = [], places = []) {
             if (existingFlag) {
                 if (draft.direction === 'twoway') {
                     out.push(el('div', 'explanatory-card sync-warn', T('Joining merges this device with the library in the folder: where both differ, the folder wins. Make a backup of this device first.')));
-                    out.push(button(T('Make a backup now'), 'button-secondary btn-sm', () => { const b = document.getElementById('exportSettingsButton'); if (b) b.click(); }));
+                    out.push(button(T('Make a backup now'), 'button-secondary btn-sm', () => { const b = document.getElementById('exportFullBackup'); if (b) b.click(); }));
                     out.push(switchRow(T('I made a backup of this device'), '', draft.ackBackup, (on) => { draft.ackBackup = on; }));
                 }
             }
@@ -886,7 +887,11 @@ async function refreshPreview() {
     } catch (_) { /* an incomplete form has no preview yet */ }
 }
 
+/** “Publish a reading list” sits under “Pass on”: it opens the form for a new place with that goal. */
+function startPublish() { goal = { mode: 'readable', direction: 'publish' }; view = 'add'; render(); }
+
 export function initSyncView() {
+    document.getElementById('publishListButton')?.addEventListener('click', startPublish);
     render();
     chrome.storage.onChanged.addListener((changes, area) => {
         if (area !== 'local') return;

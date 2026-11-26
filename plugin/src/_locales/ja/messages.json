@@ -8125,5 +8125,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud（OpenRouterと選択したモデルの提供会社に転送されます）"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "専用タブの落ち着いたスタートページ：読書の続き、新着記事、フィード、検索（⌘K / Ctrl+K）。ブラウザの新しいタブページは置き換えません。"
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "継続中の定期購入はアカウントと一緒に解約されます。"
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "ChromeとBrave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "アドレスをコピー"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "ホームボタン：設定 › デザイン › ホームボタンを表示する、を選んでアドレスを貼り付けます。"
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "iPhoneとiPadのSafariではスタートページに設定できません。上のボタンで開くか、AISHアプリの「今日」タブをお使いください。"
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "Safariではまだスタートページに設定できません。上のボタンで開いてください。"
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "開く、またはスタートページに設定"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "MacのSafari"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "スタートページに設定する"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "設定 › 起動時 › 特定のページまたはページセットを開く › 新しいページを追加、でアドレスを貼り付けます。"
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "設定 › [スタート]、[ホーム]、および [新規タブ] ページ › Edge の起動時 › これらのページを開く › 新しいページを追加、でアドレスを貼り付けます。"
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhoneとiPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser}（このブラウザ）"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "記事をMarkdownで（.zip）"
+  },
+  "f_backup_sync_f954": {
+    "message": "バックアップと同期"
+  },
+  "f_bring_back_4fde": {
+    "message": "戻す"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "ファイルから…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "保存先から：上で開いて「ここから復元…」を選びます。"
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "保存先にコピーを置く"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "デバイス間でライブラリを揃えるか、どこかにコピーを保管します。保存先を追加するまで、このデバイスから何も出ません。"
+  },
+  "f_last_full_copy_4175": {
+    "message": "最後の完全なコピー：{when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "完全なコピーはまだありません"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "一度だけ、ファイルで"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "設定のみ、または記事も含めて。キーは選ばない限り含まれません。"
+  },
+  "f_pass_on_78d1": {
+    "message": "渡す"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "ファイルに保存するか、コピーを保管する保存先を追加してください。"
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "ファイルに保存"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "ファイルとして保存"
+  },
+  "f_storage_df06": {
+    "message": "ストレージ"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "ストレージ・タグ・削除"
+  },
+  "f_ago_dfc8": {
+    "message": "{t}前"
   }
 }

@@ -4270,6 +4270,7 @@ i.tp-s3 { background: var(--chart-3); } i.tp-s4 { background: var(--chart-4); } 
 .settings-card .setting-group { margin-bottom: 0; }
 .setting-group.is-disabled { opacity: .5; pointer-events: none; }
 .settings-btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.settings-btn-row > button { display: inline-flex; align-items: center; gap: 6px; }   /* icon and word */
 .settings-action-row { display: flex; align-items: center; gap: 16px; }
 .settings-action-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .settings-action-text strong { font-size: var(--fs-base); font-weight: 600; }

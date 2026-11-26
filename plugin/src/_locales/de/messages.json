@@ -8206,5 +8206,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud, die ihn an OpenRouter und den Anbieter des gewählten Modells weitergibt"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "Eine ruhige Startseite in einem eigenen Tab: weiterlesen, neue Artikel, deine Feeds und eine Suche (⌘K / Strg+K). Sie ersetzt nicht die „Neuer Tab“-Seite deines Browsers."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "Ein laufendes Abo wird zusammen mit deinem Konto gekündigt."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome und Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "Adresse kopieren"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "Startseiten-Schaltfläche: Einstellungen › Darstellung › Schaltfläche „Startseite“ anzeigen, dann die Adresse einfügen."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "In Safari auf iPhone und iPad lässt sie sich nicht als Startseite festlegen. Öffne sie mit der Schaltfläche oben oder nutze den Tab „Heute“ der AISH-App."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "In Safari lässt sie sich noch nicht als Startseite festlegen. Öffne sie mit der Schaltfläche oben."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "Öffnen oder als Startseite festlegen"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari auf dem Mac"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "Als Startseite festlegen"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "Einstellungen › Beim Start › Bestimmte Seite oder Seiten öffnen › Neue Seite hinzufügen, dann die Adresse einfügen."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "Einstellungen › Start, Startseite und neue Registerkarten › Beim Start von Edge › Diese Seiten öffnen › Neue Seite hinzufügen, dann die Adresse einfügen."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone und iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (dieser Browser)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "Artikel als Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "Sichern & Synchronisieren"
+  },
+  "f_bring_back_4fde": {
+    "message": "Zurückholen"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "Aus einer Datei…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "Von einem Ort: öffne ihn oben und wähle „Von hier wiederherstellen …“."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "Kopie an einem Ort"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "Halte deine Bibliothek auf deinen Geräten gleich oder bewahre irgendwo eine Kopie auf. Nichts verlässt dieses Gerät, bevor du einen Ort hinzufügst."
+  },
+  "f_last_full_copy_4175": {
+    "message": "Letzte vollständige Kopie: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "Noch keine vollständige Kopie"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "Einmal, als Datei"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "Nur deine Einstellungen oder mit Artikeln. Schlüssel bleiben draußen, außer du wählst sie."
+  },
+  "f_pass_on_78d1": {
+    "message": "Weitergeben"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "Speichere eine Datei oder füge einen Ort hinzu, der eine Kopie aufbewahrt."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "Als Datei speichern"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "Als Datei gespeichert"
+  },
+  "f_storage_df06": {
+    "message": "Speicher"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "Speicher · Tags · Löschen"
+  },
+  "f_ago_dfc8": {
+    "message": "vor {t}"
   }
 }

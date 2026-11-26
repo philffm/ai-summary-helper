@@ -8407,5 +8407,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud, який передає його в OpenRouter і компанії вибраної моделі"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "Спокійна стартова сторінка в окремій вкладці: продовжити читання, нові статті, ваші стрічки та пошук (⌘K / Ctrl+K). Вона не замінює сторінку нової вкладки браузера."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "Чинну підписку буде скасовано разом з обліковим записом."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome і Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "Копіювати адресу"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "Кнопка «Домашня сторінка»: Налаштування › Вигляд › Показувати кнопку «Домашня сторінка», потім вставте адресу."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "У Safari на iPhone та iPad зробити її стартовою не можна. Відкрийте кнопкою вище або скористайтеся вкладкою «Сьогодні» в застосунку AISH."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "У Safari поки не можна зробити її стартовою. Відкрийте кнопкою вище."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "Відкрити або зробити стартовою"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari на Mac"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "Зробити стартовою сторінкою"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "Налаштування › Під час запуску › Відкрити певну сторінку або набір сторінок › Додати сторінку, потім вставте адресу."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "Налаштування › Запуск, домашня сторінка та нова вкладка › Під час запуску Edge › Відкривати ці сторінки › Додати сторінку, потім вставте адресу."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone та iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (цей браузер)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "Статті в Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "Копії та синхронізація"
+  },
+  "f_bring_back_4fde": {
+    "message": "Повернути"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "З файлу…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "З місця: відкрийте його вище та виберіть «Відновити звідси…»."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "Зберігати копію в місці"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "Тримайте бібліотеку однаковою на своїх пристроях або зберігайте десь копію. Нічого не залишає пристрій, доки ви не додасте місце."
+  },
+  "f_last_full_copy_4175": {
+    "message": "Остання повна копія: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "Повної копії ще немає"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "Один раз, файлом"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "Лише налаштування або разом зі статтями. Ключі не додаються, якщо ви їх не виберете."
+  },
+  "f_pass_on_78d1": {
+    "message": "Передати"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "Збережіть файл або додайте місце, де буде копія."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "Зберегти у файл"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "Збережена файлом"
+  },
+  "f_storage_df06": {
+    "message": "Сховище"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "Сховище · теги · видалення"
+  },
+  "f_ago_dfc8": {
+    "message": "{t} тому"
   }
 }

@@ -8407,5 +8407,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud, joka välittää sen OpenRouterille ja valitun mallin tarjoajalle"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "Rauhallinen aloitussivu omassa välilehdessään: jatka lukemista, uudet artikkelit, syötteesi ja haku (⌘K / Ctrl+K). Se ei korvaa selaimen uuden välilehden sivua."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "Voimassa oleva tilaus perutaan tilin mukana."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome ja Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "Kopioi osoite"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "Aloitussivupainike: Asetukset › Ulkoasu › Näytä aloitussivupainike ja liitä osoite."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "Sivua ei voi asettaa aloitussivuksi iPhonen ja iPadin Safarissa. Avaa se yllä olevalla painikkeella tai käytä AISH-sovelluksen Tänään-välilehteä."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "Sivua ei voi vielä asettaa aloitussivuksi Safarissa. Avaa se yllä olevalla painikkeella."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "Avaa tai aseta aloitussivuksi"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari Macissa"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "Aseta aloitussivuksi"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "Asetukset › Käynnistettäessä › Avaa tietty sivu tai sivut › Lisää uusi sivu ja liitä osoite."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "Asetukset › Aloitus, aloitussivu ja uusi välilehti › Kun Edge käynnistyy › Avaa nämä sivut › Lisää uusi sivu ja liitä osoite."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone ja iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (tämä selain)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "Artikkelit Markdownina (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "Varmuuskopiot ja synkronointi"
+  },
+  "f_bring_back_4fde": {
+    "message": "Palauta"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "Tiedostosta…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "Paikasta: avaa se yllä ja valitse ”Palauta täältä…”."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "Säilytä kopio paikassa"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "Pidä kirjastosi samana laitteillasi tai säilytä kopio jossakin. Mitään ei lähde laitteelta ennen kuin lisäät paikan."
+  },
+  "f_last_full_copy_4175": {
+    "message": "Viimeisin täysi kopio: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "Ei vielä täyttä kopiota"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "Kerran, tiedostona"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "Vain asetukset tai myös artikkelit. Avaimet jäävät pois, ellet valitse niitä."
+  },
+  "f_pass_on_78d1": {
+    "message": "Jaa eteenpäin"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "Tallenna tiedosto tai lisää paikka, joka säilyttää kopion."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "Tallenna tiedostoon"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "Tallennettu tiedostona"
+  },
+  "f_storage_df06": {
+    "message": "Tallennustila"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "Tallennustila · tunnisteet · poisto"
+  },
+  "f_ago_dfc8": {
+    "message": "{t} sitten"
   }
 }

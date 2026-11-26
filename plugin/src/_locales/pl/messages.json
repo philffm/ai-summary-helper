@@ -8407,5 +8407,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud, która przekazuje go do OpenRouter i firmy stojącej za wybranym modelem"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "Spokojna strona startowa w osobnej karcie: czytaj dalej, nowe artykuły, twoje kanały i wyszukiwanie (⌘K / Ctrl+K). Nie zastępuje strony nowej karty przeglądarki."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "Trwająca subskrypcja zostanie anulowana razem z kontem."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome i Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "Kopiuj adres"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "Przycisk strony głównej: Ustawienia › Wygląd › Pokaż przycisk strony głównej i wklej adres."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "W Safari na iPhonie i iPadzie nie można ustawić jej jako strony startowej. Otwórz ją przyciskiem powyżej albo użyj karty Dziś w aplikacji AISH."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "W Safari nie można jeszcze ustawić jej jako strony startowej. Otwórz ją przyciskiem powyżej."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "Otwórz lub ustaw jako stronę startową"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari na Macu"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "Ustaw jako stronę startową"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "Ustawienia › Po uruchomieniu › Otwórz konkretną stronę lub zestaw stron › Dodaj nową stronę i wklej adres."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "Ustawienia › Start, strona główna i nowa karta › Po uruchomieniu przeglądarki Edge › Otwórz te strony › Dodaj nową stronę i wklej adres."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone i iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (ta przeglądarka)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "Artykuły jako Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "Kopie i synchronizacja"
+  },
+  "f_bring_back_4fde": {
+    "message": "Przywracanie"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "Z pliku…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "Z miejsca: otwórz je powyżej i wybierz „Przywróć stąd…”."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "Trzymaj kopię w miejscu"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "Utrzymuj tę samą bibliotekę na urządzeniach albo trzymaj gdzieś kopię. Nic nie opuści urządzenia, dopóki nie dodasz miejsca."
+  },
+  "f_last_full_copy_4175": {
+    "message": "Ostatnia pełna kopia: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "Nie ma jeszcze pełnej kopii"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "Jednorazowo, jako plik"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "Same ustawienia albo także artykuły. Klucze są pomijane, chyba że je wybierzesz."
+  },
+  "f_pass_on_78d1": {
+    "message": "Udostępnianie"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "Zapisz plik lub dodaj miejsce, które przechowa kopię."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "Zapisz do pliku"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "Zapisana jako plik"
+  },
+  "f_storage_df06": {
+    "message": "Pamięć"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "Pamięć · tagi · usuwanie"
+  },
+  "f_ago_dfc8": {
+    "message": "{t} temu"
   }
 }

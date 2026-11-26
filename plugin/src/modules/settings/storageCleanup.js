@@ -12,7 +12,7 @@ export function initStorageCleanup(storageData = {}) {
     if (!root) return;
     const $ = (id) => document.getElementById(id);
     const texts = {
-        title: T('Storage & cleanup'),
+        title: T('Storage'),
         saveImages: T('Save images with articles'),
         saveImagesNote: T('Off: new articles keep only the text. Pictures are what makes saved pages large.'),
         imgTitle: T('Remove images from saved articles'), imgBtn: T('Remove images'),

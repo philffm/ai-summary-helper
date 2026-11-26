@@ -8125,5 +8125,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud, который передаёт его в OpenRouter и компании выбранной модели"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "Спокойная стартовая страница в отдельной вкладке: продолжить чтение, новые статьи, ваши ленты и поиск (⌘K / Ctrl+K). Она не заменяет страницу новой вкладки браузера."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "Действующая подписка отменяется вместе с аккаунтом."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome и Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "Копировать адрес"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "Кнопка «Главная страница»: Настройки › Внешний вид › Показывать кнопку «Главная страница», затем вставьте адрес."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "В Safari на iPhone и iPad сделать её стартовой нельзя. Откройте кнопкой выше или используйте вкладку «Сегодня» в приложении AISH."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "В Safari пока нельзя сделать её стартовой. Откройте кнопкой выше."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "Открыть или сделать стартовой"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari на Mac"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "Сделать стартовой страницей"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "Настройки › Запуск Chrome › Заданные страницы › Добавить страницу, затем вставьте адрес."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "Настройки › Запуск, главная страница и новая вкладка › При запуске Edge › Открывать эти страницы › Добавить страницу, затем вставьте адрес."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone и iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (этот браузер)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "Статьи в Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "Копии и синхронизация"
+  },
+  "f_bring_back_4fde": {
+    "message": "Вернуть"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "Из файла…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "Из места: откройте его выше и выберите «Восстановить отсюда…»."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "Хранить копию в месте"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "Держите библиотеку одинаковой на своих устройствах или храните где-нибудь копию. Ничего не покидает устройство, пока вы не добавите место."
+  },
+  "f_last_full_copy_4175": {
+    "message": "Последняя полная копия: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "Полной копии пока нет"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "Один раз, файлом"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "Только настройки или вместе со статьями. Ключи не включаются, если вы их не выберете."
+  },
+  "f_pass_on_78d1": {
+    "message": "Передать"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "Сохраните файл или добавьте место, где будет копия."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "Сохранить в файл"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "Сохранена файлом"
+  },
+  "f_storage_df06": {
+    "message": "Хранилище"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "Хранилище · теги · удаление"
+  },
+  "f_ago_dfc8": {
+    "message": "{t} назад"
   }
 }

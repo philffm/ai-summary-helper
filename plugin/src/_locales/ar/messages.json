@@ -8125,5 +8125,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud، التي تمرّره إلى OpenRouter وإلى الشركة المطوّرة للنموذج المختار"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "صفحة بداية هادئة في علامة تبويب خاصة: متابعة القراءة، المقالات الجديدة، خلاصاتك وبحث (⌘K / Ctrl+K). لا تحلّ محل صفحة علامة التبويب الجديدة في متصفحك."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "يُلغى أي اشتراك جارٍ مع حذف حسابك."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome وBrave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "نسخ العنوان"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "زر الصفحة الرئيسية: الإعدادات › المظهر › إظهار زر الصفحة الرئيسية، ثم الصق العنوان."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "لا يمكن تعيينها صفحة بداية في Safari على iPhone وiPad. افتحها بالزر أعلاه، أو استخدم تبويب «اليوم» في تطبيق AISH."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "لا يمكن بعد تعيينها صفحة بداية في Safari. افتحها بالزر أعلاه."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "افتحها أو اجعلها صفحة البداية"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari على Mac"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "اجعلها صفحة البداية"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "الإعدادات › عند بدء التشغيل › فتح صفحة معينة أو مجموعة صفحات › إضافة صفحة جديدة، ثم الصق العنوان."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "الإعدادات › البدء والصفحة الرئيسية وعلامة التبويب الجديدة › عند بدء Edge › فتح هذه الصفحات › إضافة صفحة جديدة، ثم الصق العنوان."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone وiPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (هذا المتصفح)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "المقالات بصيغة Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "النسخ والمزامنة"
+  },
+  "f_bring_back_4fde": {
+    "message": "الاسترجاع"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "من ملف…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "من مكان: افتحه أعلاه واختر «استعادة من هنا…»."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "احتفظ بنسخة في مكان"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "أبقِ مكتبتك متطابقة بين أجهزتك أو احتفظ بنسخة في مكان ما. لا يغادر شيء هذا الجهاز قبل أن تضيف مكانًا."
+  },
+  "f_last_full_copy_4175": {
+    "message": "آخر نسخة كاملة: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "لا توجد نسخة كاملة بعد"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "مرة واحدة، كملف"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "إعداداتك فقط أو مع مقالاتك. تبقى المفاتيح خارجها ما لم تخترها."
+  },
+  "f_pass_on_78d1": {
+    "message": "المشاركة"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "احفظ ملفًا أو أضف مكانًا يحتفظ بنسخة."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "حفظ في ملف"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "محفوظة كملف"
+  },
+  "f_storage_df06": {
+    "message": "التخزين"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "التخزين · الوسوم · الحذف"
+  },
+  "f_ago_dfc8": {
+    "message": "قبل {t}"
   }
 }

@@ -8568,5 +8568,104 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud, which passes it on to OpenRouter and the company behind the chosen model"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "A calm start page in its own tab: continue reading, new articles, your feeds and a search (⌘K / Ctrl+K). It does not replace your browser's new tab page."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "A running subscription is cancelled together with your account."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome and Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "Copy address"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "Home button: Settings › Appearance › Show home button, then paste the address."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "Home cannot be set as the start page in Safari on iPhone and iPad. Open it with the button above, or use the Today tab of the AISH app."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "Home cannot be set as the start page in Safari yet. Open it with the button above."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "Open it, or make it your start page"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari on Mac"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "Set it as your start page"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "Settings › On startup › Open a specific page or set of pages › Add a new page, then paste the address."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "Settings › Start, home, and new tab page › When Edge starts › Open these pages › Add a new page, then paste the address."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone and iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (this browser)",
+    "description": "Placeholders: {browser} (keep as is)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "Articles as Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "Backup & sync"
+  },
+  "f_bring_back_4fde": {
+    "message": "Bring back"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "From a file…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "From a place: open it above and choose “Restore from here…”."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "Keep a copy in a place"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "Keep your library in step across your devices, or keep a copy somewhere. Nothing leaves this device until you add a place."
+  },
+  "f_last_full_copy_4175": {
+    "message": "Last full copy: {when}",
+    "description": "Placeholders: {when} (keep as is)"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "No full copy yet"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "Once, as a file"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "Only your settings, or with your articles. Keys stay out unless you choose them."
+  },
+  "f_pass_on_78d1": {
+    "message": "Pass on"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "Save a file or add a place that keeps a copy."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "Save to a file"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "Saved as a file"
+  },
+  "f_storage_df06": {
+    "message": "Storage"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "Storage · tags · delete"
+  },
+  "f_ago_dfc8": {
+    "message": "{t} ago",
+    "description": "Placeholders: {t} (keep as is)"
   }
 }

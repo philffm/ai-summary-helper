@@ -394,6 +394,11 @@
   <span class="settings-row-chev"><span class="ic"><svg class="icon icon-chevron-right" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg><span class="ic-e" aria-hidden="true">›</span></span></span>
 </button>
 <p class="settings-caption" data-i18n="settingsCapApp">APP</p>
+<button type="button" class="settings-row" data-panel="home">
+  <span class="settings-row-icon"><span class="ic"><svg class="icon icon-globe icon--lg" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg><span class="ic-e" aria-hidden="true">🌐</span></span></span>
+  <span class="settings-row-text"><span class="settings-row-title" data-i18n="f_home_page_0a91">Home page</span><span class="settings-row-sub" data-sub="home" data-i18n="f_open_it_or_make_it_your_star_e532">Open it, or make it your start page</span></span>
+  <span class="settings-row-chev"><span class="ic"><svg class="icon icon-chevron-right" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg><span class="ic-e" aria-hidden="true">›</span></span></span>
+</button>
 <button type="button" class="settings-row" data-panel="appearance">
   <span class="settings-row-icon"><span class="ic"><svg class="icon icon-palette icon--lg" aria-hidden="true" focusable="false"><use href="#i-palette"/></svg><span class="ic-e" aria-hidden="true">🎨</span></span></span>
   <span class="settings-row-text"><span class="settings-row-title" data-i18n="settingsAppearance">Appearance &amp; Language</span><span class="settings-row-sub" data-sub="appearance">Theme · language · side panel</span></span>
@@ -404,14 +409,14 @@
   <span class="settings-row-text"><span class="settings-row-title" data-i18n="f_accessibility_d09f">Accessibility</span><span class="settings-row-sub" data-sub="accessibility" data-i18n="f_profile_text_size_motion_83ac">Profile · text size · motion</span></span>
   <span class="settings-row-chev"><span class="ic"><svg class="icon icon-chevron-right" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg><span class="ic-e" aria-hidden="true">›</span></span></span>
 </button>
-<button type="button" class="settings-row" data-panel="library">
-  <span class="settings-row-icon"><span class="ic"><svg class="icon icon-folders icon--lg" aria-hidden="true" focusable="false"><use href="#i-folders"/></svg><span class="ic-e" aria-hidden="true">🗂️</span></span></span>
-  <span class="settings-row-text"><span class="settings-row-title" data-i18n="settingsLibrary">Library &amp; Data</span><span class="settings-row-sub" data-sub="library" data-i18n="f_backup_tags_delete_5af9">Backup · tags · delete</span></span>
-  <span class="settings-row-chev"><span class="ic"><svg class="icon icon-chevron-right" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg><span class="ic-e" aria-hidden="true">›</span></span></span>
-</button>
 <button type="button" class="settings-row" data-panel="sync">
   <span class="settings-row-icon"><span class="ic"><svg class="icon icon-cloud icon--lg" aria-hidden="true" focusable="false"><use href="#i-cloud"/></svg><span class="ic-e" aria-hidden="true">☁️</span></span></span>
-  <span class="settings-row-text"><span class="settings-row-title">Sync &amp; backup</span><span class="settings-row-sub" data-sub="sync">Off</span></span>
+  <span class="settings-row-text"><span class="settings-row-title" data-i18n="f_backup_sync_f954">Backup &amp; sync</span><span class="settings-row-sub" data-sub="sync">Off</span></span>
+  <span class="settings-row-chev"><span class="ic"><svg class="icon icon-chevron-right" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg><span class="ic-e" aria-hidden="true">›</span></span></span>
+</button>
+<button type="button" class="settings-row" data-panel="library">
+  <span class="settings-row-icon"><span class="ic"><svg class="icon icon-folders icon--lg" aria-hidden="true" focusable="false"><use href="#i-folders"/></svg><span class="ic-e" aria-hidden="true">🗂️</span></span></span>
+  <span class="settings-row-text"><span class="settings-row-title" data-i18n="f_storage_cleanup_e0d8">Storage &amp; cleanup</span><span class="settings-row-sub" data-sub="library" data-i18n="f_storage_tags_delete_8274">Storage · tags · delete</span></span>
   <span class="settings-row-chev"><span class="ic"><svg class="icon icon-chevron-right" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg><span class="ic-e" aria-hidden="true">›</span></span></span>
 </button>
 <button type="button" class="settings-row" data-panel="mcp">
@@ -698,23 +703,29 @@
   </div>
   <div id="phoneInboxSettings" class="setting-group mb-3"></div>
 </section>
+<section class="settings-panel" id="settingsPanel-home" data-panel="home" hidden>
+  <div class="settings-panel-head">
+    <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
+    <h2><span data-i18n="f_home_page_0a91">Home page</span></h2>
+  </div>
+                <div class="a11y-block">
+                  <p class="a11y-hint" data-i18n="f_a_calm_start_page_in_its_own_142c">A calm start page in its own tab: continue reading, new articles, your feeds and a search (⌘K / Ctrl+K). It does not replace your browser's new tab page.</p>
+                  <div class="setting-group flex align-center" style="gap:8px">
+                    <button type="button" class="button-primary btn-sm" id="openHomeButton" data-i18n="f_open_10e9">Open</button>
+                    <button type="button" class="button-secondary btn-sm" id="copyHomeAddressButton" data-i18n="f_copy_address_a1bc">Copy address</button>
+                  </div>
+                </div>
+                <div class="a11y-block">
+                  <h3 data-i18n="f_set_it_as_your_start_page_b95e">Set it as your start page</h3>
+                  <div id="homeGuide"></div>
+                </div>
+</section>
 <section class="settings-panel" id="settingsPanel-appearance" data-panel="appearance" hidden>
   <div class="settings-panel-head">
     <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
     <h2><span data-i18n="settingsAppearance">Appearance &amp; Language</span></h2>
   </div>
                 <div class="a11y-block dock-editor" id="dockEditor"></div>
-                <div class="a11y-block">
-                  <div class="setting-group flex justify-between align-center">
-                    <span class="setting-label-inline">Home page</span>
-                    <span class="flex align-center" style="gap:8px">
-                      <button type="button" class="button-secondary btn-sm" id="copyHomeAddressButton">Copy address</button>
-                      <button type="button" class="button-secondary btn-sm" id="openHomeButton">Open</button>
-                    </span>
-                  </div>
-                  <p class="a11y-hint">A calm start page in its own tab: continue reading, new articles, your feeds and a search (⌘K / Ctrl+K). It does not replace your browser's new tab page.</p>
-                  <p class="a11y-hint" id="homeAddressHint"></p>
-                </div>
                 <div class="a11y-block">
                   <div class="setting-group flex justify-between align-center">
                     <label class="setting-label-inline" for="nativeSidePanelToggle" data-i18n="f_use_native_chrome_side_panel_1544">Use Native Chrome Side Panel</label>
@@ -846,16 +857,7 @@
 <section class="settings-panel" id="settingsPanel-library" data-panel="library" hidden>
   <div class="settings-panel-head">
     <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
-    <h2><span data-i18n="settingsLibrary">Library &amp; Data</span></h2>
-  </div>
-                <div class="settings-card backup-restore" id="libBackup">
-    <div class="settings-card-head"><h3 data-i18n="f_backup_restore_4d14"><span class="ic"><svg class="icon icon-save" aria-hidden="true" focusable="false"><use href="#i-save"/></svg><span class="ic-e" aria-hidden="true">💾</span></span> Backup & restore</h3><p data-i18n="f_export_or_restore_all_settin_1745">Export or restore all settings as a JSON file.</p></div>
-    <div class="settings-btn-row">
-      <button type="button" id="exportSettingsButton" class="button-secondary btn-sm" data-i18n="f_export_6eba"><span class="ic"><svg class="icon icon-upload" aria-hidden="true" focusable="false"><use href="#i-upload"/></svg><span class="ic-e" aria-hidden="true">📤</span></span> Export</button>
-      <button type="button" id="importSettingsButton" class="button-secondary btn-sm" data-i18n="f_import_d884"><span class="ic"><svg class="icon icon-download" aria-hidden="true" focusable="false"><use href="#i-download"/></svg><span class="ic-e" aria-hidden="true">📥</span></span> Import</button>
-      <input type="file" id="importSettingsFile" accept=".json" style="display:none" />
-      <button type="button" id="exportMarkdownButton" class="button-secondary btn-sm"><span class="ic"><svg class="icon icon-file-text" aria-hidden="true" focusable="false"><use href="#i-file-text"/></svg><span class="ic-e" aria-hidden="true">📄</span></span> Export history as Markdown (.zip)</button>
-    </div>
+    <h2><span data-i18n="f_storage_cleanup_e0d8">Storage &amp; cleanup</span></h2>
   </div>
   <div class="settings-card storage-card" id="libStorage">
     <div class="settings-card-head"><h3><span class="ic-e" aria-hidden="true">🧹</span> <span data-t="title">Storage &amp; cleanup</span></h3><p id="storageUsage" aria-live="polite">…</p></div>
@@ -919,6 +921,7 @@
   </div>
   <div class="settings-card settings-card--danger danger-zone">
     <div class="settings-card-head"><h3 data-i18n="f_danger_zone_01e3"><span class="ic"><svg class="icon icon-circle-alert" aria-hidden="true" focusable="false"><use href="#i-circle-alert"/></svg><span class="ic-e" aria-hidden="true">⚠️</span></span> Danger zone</h3></div>
+    <button type="button" class="settings-row" id="lastCopyLink"><span class="settings-row-text"><span class="settings-row-title" data-i18n="f_backup_sync_f954">Backup &amp; sync</span></span></button>
     <div class="settings-action-row">
       <div class="settings-action-text"><strong data-i18n="f_delete_settings_448b">Delete settings</strong><span data-i18n="f_resets_preferences_prompts_a_aab7">Resets preferences, prompts, API keys, sign-in and send targets on this device. Summaries, highlights and feeds stay.</span></div>
       <button type="button" id="deleteSettingsButton" class="button-danger-outline btn-sm" data-i18n="f_delete_settings_7c57">Delete settings…</button>
@@ -938,9 +941,34 @@
 <section class="settings-panel" id="settingsPanel-sync" data-panel="sync" hidden>
   <div class="settings-panel-head">
     <button type="button" class="settings-back" data-back data-i18n="settingsBack">‹ Settings</button>
-    <h2><span>Sync &amp; backup</span></h2>
+    <h2><span data-i18n="f_backup_sync_f954">Backup &amp; sync</span></h2>
   </div>
+  <div id="lastCopy" class="settings-card" data-list-only></div>
   <div id="syncSettings" class="setting-group mb-3"></div>
+  <div id="copyExtras" data-list-only>
+    <h3 class="settings-caption" data-i18n="f_once_as_a_file_8b27">Once, as a file</h3>
+    <div class="settings-card backup-restore" id="libBackup">
+      <div class="settings-btn-row">
+        <button type="button" id="exportSettingsButton" class="button-primary btn-sm"><span class="ic"><svg class="icon icon-upload" aria-hidden="true" focusable="false"><use href="#i-upload"/></svg><span class="ic-e" aria-hidden="true">📤</span></span> <span data-i18n="f_save_to_a_file_27d4">Save to a file</span></button>
+      </div>
+      <p class="settings-card-note" data-i18n="f_only_your_settings_or_with_y_5d5d">Only your settings, or with your articles. Keys stay out unless you choose them.</p>
+    </div>
+    <h3 class="settings-caption" data-i18n="f_bring_back_4fde">Bring back</h3>
+    <div class="settings-card">
+      <div class="settings-btn-row">
+        <button type="button" id="importSettingsButton" class="button-secondary btn-sm"><span class="ic"><svg class="icon icon-download" aria-hidden="true" focusable="false"><use href="#i-download"/></svg><span class="ic-e" aria-hidden="true">📥</span></span> <span data-i18n="f_from_a_file_aa1a">From a file…</span></button>
+        <input type="file" id="importSettingsFile" accept=".json" style="display:none" />
+      </div>
+      <p class="settings-card-note" data-i18n="f_from_a_place_open_it_above_a_ad54">From a place: open it above and choose “Restore from here…”.</p>
+    </div>
+    <h3 class="settings-caption" data-i18n="f_pass_on_78d1">Pass on</h3>
+    <div class="settings-card">
+      <div class="settings-btn-row">
+        <button type="button" id="publishListButton" class="button-secondary btn-sm"><span class="ic"><svg class="icon icon-globe" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg><span class="ic-e" aria-hidden="true">🌐</span></span> <span data-i18n="f_publish_a_reading_list_c489">Publish a reading list</span></button>
+        <button type="button" id="exportMarkdownButton" class="button-secondary btn-sm"><span class="ic"><svg class="icon icon-file-text" aria-hidden="true" focusable="false"><use href="#i-file-text"/></svg><span class="ic-e" aria-hidden="true">📄</span></span> <span data-i18n="f_articles_as_markdown_zip_b679">Articles as Markdown (.zip)</span></button>
+      </div>
+    </div>
+  </div>
 </section>
 <section class="settings-panel" id="settingsPanel-mcp" data-panel="mcp" hidden>
   <div class="settings-panel-head">

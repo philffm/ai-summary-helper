@@ -8125,5 +8125,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud, जो इसे OpenRouter और चुने गए मॉडल की कंपनी को आगे भेजता है"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "अलग टैब में एक शांत शुरुआती पेज: पढ़ना जारी रखें, नए लेख, आपकी फ़ीड और खोज (⌘K / Ctrl+K)। यह आपके ब्राउज़र के नए टैब पेज की जगह नहीं लेता।"
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "चालू सदस्यता आपके खाते के साथ रद्द हो जाती है।"
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome और Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "पता कॉपी करें"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "होम बटन: सेटिंग › दिखावट › होम बटन दिखाएँ, फिर पता चिपकाएँ।"
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "iPhone और iPad के Safari में इसे शुरुआती पेज नहीं बनाया जा सकता। ऊपर के बटन से खोलें, या AISH ऐप का 'आज' टैब इस्तेमाल करें।"
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "Safari में इसे अभी शुरुआती पेज नहीं बनाया जा सकता। ऊपर के बटन से खोलें।"
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "इसे खोलें या शुरुआती पेज बनाएँ"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Mac पर Safari"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "इसे शुरुआती पेज बनाएँ"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "सेटिंग › शुरू होने पर › कोई खास पेज या पेजों का सेट खोलें › नया पेज जोड़ें, फिर पता चिपकाएँ।"
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "सेटिंग › शुरू, होम और नया टैब पेज › Edge शुरू होने पर › ये पेज खोलें › नया पेज जोड़ें, फिर पता चिपकाएँ।"
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone और iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (यह ब्राउज़र)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "लेख Markdown के रूप में (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "बैकअप और सिंक"
+  },
+  "f_bring_back_4fde": {
+    "message": "वापस लाएँ"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "फ़ाइल से…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "किसी जगह से: ऊपर उसे खोलें और “यहाँ से रीस्टोर करें…” चुनें।"
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "किसी जगह पर कॉपी रखें"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "अपनी लाइब्रेरी सभी डिवाइस पर एक जैसी रखें या कहीं एक कॉपी रखें। जगह जोड़ने तक कुछ भी इस डिवाइस से बाहर नहीं जाता।"
+  },
+  "f_last_full_copy_4175": {
+    "message": "पिछली पूरी कॉपी: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "अभी कोई पूरी कॉपी नहीं"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "एक बार, फ़ाइल के रूप में"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "सिर्फ़ सेटिंग्स या लेखों के साथ। कुंजियाँ तब तक शामिल नहीं जब तक आप न चुनें।"
+  },
+  "f_pass_on_78d1": {
+    "message": "आगे भेजें"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "फ़ाइल सेव करें या कॉपी रखने वाली जगह जोड़ें।"
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "फ़ाइल में सेव करें"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "फ़ाइल के रूप में सेव"
+  },
+  "f_storage_df06": {
+    "message": "स्टोरेज"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "स्टोरेज · टैग · मिटाएँ"
+  },
+  "f_ago_dfc8": {
+    "message": "{t} पहले"
   }
 }

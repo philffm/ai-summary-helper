@@ -8107,5 +8107,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud(OpenRouter와 선택한 모델의 제공 회사로 전달됨)"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "별도 탭의 차분한 시작 페이지: 이어 읽기, 새 글, 내 피드와 검색(⌘K / Ctrl+K). 브라우저의 새 탭 페이지를 대체하지 않습니다."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "진행 중인 구독은 계정과 함께 해지됩니다."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome 및 Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "주소 복사"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "홈 버튼: 설정 › 모양 › 홈 버튼 표시를 켠 뒤 주소를 붙여넣으세요."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "iPhone과 iPad의 Safari에서는 시작 페이지로 설정할 수 없습니다. 위 버튼으로 열거나 AISH 앱의 '오늘' 탭을 사용하세요."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "Safari에서는 아직 시작 페이지로 설정할 수 없습니다. 위 버튼으로 여세요."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "열기 또는 시작 페이지로 설정"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Mac의 Safari"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "시작 페이지로 설정하기"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "설정 › 시작 그룹 › 특정 페이지 또는 페이지 모음 열기 › 새 페이지 추가에서 주소를 붙여넣으세요."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "설정 › 시작, 홈 및 새 탭 페이지 › Edge가 시작될 때 › 다음 페이지 열기 › 새 페이지 추가에서 주소를 붙여넣으세요."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone 및 iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser}(현재 브라우저)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "글을 Markdown으로 (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "백업 및 동기화"
+  },
+  "f_bring_back_4fde": {
+    "message": "되돌리기"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "파일에서…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "저장 위치에서: 위에서 열고 ‘여기서 복원…’을(를) 선택하세요."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "위치에 사본 보관"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "여러 기기의 라이브러리를 맞추거나 어딘가에 사본을 보관하세요. 위치를 추가하기 전에는 아무것도 기기를 벗어나지 않습니다."
+  },
+  "f_last_full_copy_4175": {
+    "message": "마지막 전체 사본: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "아직 전체 사본이 없습니다"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "한 번, 파일로"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "설정만 또는 글까지 포함. 키는 선택하지 않으면 제외됩니다."
+  },
+  "f_pass_on_78d1": {
+    "message": "전달하기"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "파일로 저장하거나 사본을 보관할 위치를 추가하세요."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "파일로 저장"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "파일로 저장됨"
+  },
+  "f_storage_df06": {
+    "message": "저장 공간"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "저장 공간 · 태그 · 삭제"
+  },
+  "f_ago_dfc8": {
+    "message": "{t} 전"
   }
 }

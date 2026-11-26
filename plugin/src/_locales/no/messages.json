@@ -8407,5 +8407,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud, som sender det videre til OpenRouter og selskapet bak den valgte modellen"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "En rolig startside i sin egen fane: les videre, nye artikler, strømmene dine og et søk (⌘K / Ctrl+K). Den erstatter ikke nettleserens side for ny fane."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "Et løpende abonnement sies opp sammen med kontoen din."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome og Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "Kopier adressen"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "Startsideknapp: Innstillinger › Utseende › Vis startsideknappen, og lim inn adressen."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "Siden kan ikke settes som startside i Safari på iPhone og iPad. Åpne den med knappen over, eller bruk fanen I dag i AISH-appen."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "Siden kan ennå ikke settes som startside i Safari. Åpne den med knappen over."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "Åpne den, eller gjør den til startside"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari på Mac"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "Gjør den til startside"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "Innstillinger › Ved oppstart › Åpne en bestemt side eller et sett med sider › Legg til en ny side, og lim inn adressen."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "Innstillinger › Start, startside og ny fane › Når Edge starter › Åpne disse sidene › Legg til en ny side, og lim inn adressen."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone og iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (denne nettleseren)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "Artikler som Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "Sikkerhetskopi og synk"
+  },
+  "f_bring_back_4fde": {
+    "message": "Hent tilbake"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "Fra en fil…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "Fra et sted: åpne det over, og velg «Gjenopprett herfra…»."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "Behold en kopi et sted"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "Hold biblioteket likt på enhetene dine, eller ta vare på en kopi et sted. Ingenting forlater enheten før du legger til et sted."
+  },
+  "f_last_full_copy_4175": {
+    "message": "Siste fulle kopi: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "Ingen full kopi ennå"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "Én gang, som fil"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "Bare innstillingene eller også artiklene. Nøkler holdes utenfor med mindre du velger dem."
+  },
+  "f_pass_on_78d1": {
+    "message": "Gi videre"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "Lagre en fil, eller legg til et sted som oppbevarer en kopi."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "Lagre til fil"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "Lagret som fil"
+  },
+  "f_storage_df06": {
+    "message": "Lagring"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "Lagring · tagger · slett"
+  },
+  "f_ago_dfc8": {
+    "message": "for {t} siden"
   }
 }

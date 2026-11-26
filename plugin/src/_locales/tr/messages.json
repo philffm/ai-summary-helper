@@ -8407,5 +8407,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud (metni OpenRouter’a ve seçilen modelin şirketine iletir)"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "Kendi sekmesinde sade bir başlangıç sayfası: okumaya devam, yeni makaleler, akışlarınız ve arama (⌘K / Ctrl+K). Tarayıcınızın yeni sekme sayfasının yerini almaz."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "Devam eden abonelik hesabınızla birlikte iptal edilir."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome ve Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "Adresi kopyala"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "Ana sayfa düğmesi: Ayarlar › Görünüm › Ana sayfa düğmesini göster, ardından adresi yapıştırın."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "iPhone ve iPad’deki Safari’de başlangıç sayfası yapılamaz. Yukarıdaki düğmeyle açın veya AISH uygulamasının Bugün sekmesini kullanın."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "Safari’de henüz başlangıç sayfası yapılamıyor. Yukarıdaki düğmeyle açın."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "Açın veya başlangıç sayfanız yapın"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Mac’te Safari"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "Başlangıç sayfanız yapın"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "Ayarlar › Başlangıçta › Belirli bir sayfayı veya sayfa grubunu aç › Yeni sayfa ekle, ardından adresi yapıştırın."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "Ayarlar › Başlangıç, giriş ve yeni sekme › Edge başlatıldığında › Bu sayfaları aç › Yeni sayfa ekle, ardından adresi yapıştırın."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone ve iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (bu tarayıcı)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "Makaleler Markdown olarak (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "Yedekleme ve eşitleme"
+  },
+  "f_bring_back_4fde": {
+    "message": "Geri getir"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "Dosyadan…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "Bir yerden: yukarıdan açıp “Buradan geri yükle…” seçeneğini seçin."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "Bir yerde kopya tut"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "Kitaplığınızı cihazlarınızda aynı tutun veya bir yerde kopyasını saklayın. Siz bir yer eklemeden bu cihazdan hiçbir şey çıkmaz."
+  },
+  "f_last_full_copy_4175": {
+    "message": "Son tam kopya: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "Henüz tam kopya yok"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "Bir kez, dosya olarak"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "Yalnızca ayarlar veya makalelerle birlikte. Siz seçmedikçe anahtarlar dahil edilmez."
+  },
+  "f_pass_on_78d1": {
+    "message": "Paylaş"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "Bir dosya kaydedin veya kopya tutacak bir yer ekleyin."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "Dosyaya kaydet"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "Dosya olarak kaydedildi"
+  },
+  "f_storage_df06": {
+    "message": "Depolama"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "Depolama · etiketler · silme"
+  },
+  "f_ago_dfc8": {
+    "message": "{t} önce"
   }
 }

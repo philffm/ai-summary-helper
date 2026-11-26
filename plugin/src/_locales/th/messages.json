@@ -8407,5 +8407,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud ซึ่งส่งต่อไปยัง OpenRouter และบริษัทผู้พัฒนาโมเดลที่เลือก"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "หน้าเริ่มต้นเรียบง่ายในแท็บของตัวเอง: อ่านต่อ บทความใหม่ ฟีดของคุณ และการค้นหา (⌘K / Ctrl+K) ไม่ได้แทนที่หน้าแท็บใหม่ของเบราว์เซอร์"
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "การสมัครสมาชิกที่ใช้งานอยู่จะถูกยกเลิกพร้อมกับบัญชีของคุณ"
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome และ Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "คัดลอกที่อยู่"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "ปุ่มหน้าแรก: การตั้งค่า › รูปลักษณ์ › แสดงปุ่มหน้าแรก แล้ววางที่อยู่"
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "ใน Safari บน iPhone และ iPad ตั้งเป็นหน้าเริ่มต้นไม่ได้ เปิดด้วยปุ่มด้านบน หรือใช้แท็บ วันนี้ ในแอป AISH"
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "ใน Safari ยังตั้งเป็นหน้าเริ่มต้นไม่ได้ เปิดด้วยปุ่มด้านบน"
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "เปิด หรือตั้งเป็นหน้าเริ่มต้น"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari บน Mac"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "ตั้งเป็นหน้าเริ่มต้น"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "การตั้งค่า › เมื่อเริ่มต้น › เปิดหน้าเว็บที่ระบุหรือชุดของหน้าเว็บ › เพิ่มหน้าใหม่ แล้ววางที่อยู่"
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "การตั้งค่า › เริ่ม หน้าแรก และแท็บใหม่ › เมื่อ Edge เริ่มทำงาน › เปิดหน้าเหล่านี้ › เพิ่มหน้าใหม่ แล้ววางที่อยู่"
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone และ iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (เบราว์เซอร์นี้)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "บทความเป็น Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "สำรองและซิงค์"
+  },
+  "f_bring_back_4fde": {
+    "message": "นำกลับมา"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "จากไฟล์…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "จากที่เก็บ: เปิดด้านบนแล้วเลือก “กู้คืนจากที่นี่…”"
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "เก็บสำเนาไว้ในที่เก็บ"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "ให้คลังตรงกันทุกอุปกรณ์ หรือเก็บสำเนาไว้ที่ใดที่หนึ่ง จะไม่มีอะไรออกจากอุปกรณ์นี้จนกว่าคุณจะเพิ่มที่เก็บ"
+  },
+  "f_last_full_copy_4175": {
+    "message": "สำเนาครบถ้วนล่าสุด: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "ยังไม่มีสำเนาครบถ้วน"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "ครั้งเดียว เป็นไฟล์"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "เฉพาะการตั้งค่า หรือรวมบทความ คีย์จะไม่ถูกรวมเว้นแต่คุณเลือก"
+  },
+  "f_pass_on_78d1": {
+    "message": "ส่งต่อ"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "บันทึกไฟล์ หรือเพิ่มที่เก็บสำหรับสำเนา"
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "บันทึกเป็นไฟล์"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "บันทึกเป็นไฟล์แล้ว"
+  },
+  "f_storage_df06": {
+    "message": "พื้นที่จัดเก็บ"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "พื้นที่ · แท็ก · ลบ"
+  },
+  "f_ago_dfc8": {
+    "message": "{t} ที่แล้ว"
   }
 }

@@ -6,7 +6,7 @@ import { storeBuild } from './storeBuild.js';
 // Search index: one entry per control. `target` is the element id to scroll to
 // and flash after jumping to its panel; `kw` are extra match words.
 export const INDEX = [
-    ['appearance', N_('Home page'), 'openHomeButton', 'start page new tab dashboard widgets overview'],
+    ['home', N_('Home page'), 'openHomeButton', 'start page new tab dashboard widgets overview homepage startup chrome firefox safari edge brave'],
     ['account', N_('Account sync · sign in / log out'), 'otpEmail', 'login log in email magic code logout log out account'],
     ['account', N_('Pro license key'), 'licenseKey', 'activate plan upgrade pass pro subscription'],
     ['models', N_('Connection path'), 'modeCloud', 'cloud byphil own key bring your own'],
@@ -47,8 +47,10 @@ export const INDEX = [
     ['accessibility', N_('Reduce motion'), 'reduceMotionToggle', 'animation motion vestibular calm'],
     ['appearance', N_('Bottom dock'), 'dockEditor', 'dock tabs bottom navigation order hide reorder feeds notes history'],
     ['appearance', N_('Native Chrome side panel'), 'nativeSidePanelToggle', 'sidebar side panel popup window'],
-    ['library', N_('Export settings'), 'exportSettingsButton', 'backup export download json'],
-    ['library', N_('Import settings'), 'importSettingsButton', 'restore import backup json'],
+    ['sync', N_('Save to a file'), 'exportSettingsButton', 'backup export download json settings library copy'],
+    ['sync', N_('From a file…'), 'importSettingsButton', 'restore import backup json bring back'],
+    ['sync', N_('Articles as Markdown (.zip)'), 'exportMarkdownButton', 'markdown obsidian logseq export zip share'],
+    ['sync', N_('Publish a reading list'), 'publishListButton', 'publish share website readable list'],
     ['library', N_('Clean up & merge tags'), 'cleanupTagsButton', 'tags duplicates merge clean on-device'],
     ['library', N_('Storage & cleanup'), 'libStorage', 'storage space free memory size images pictures cleanup large old lag slow'],
     ['library', N_('Save images with articles'), 'saveImagesToggle', 'images pictures photos save storage text only'],
@@ -64,7 +66,7 @@ export const INDEX = [
 
 export const PANEL_TITLES = {
     account: N_('Account & Plan'), models: N_('Models & API'), prompts: N_('Prompts'), feeds: N_('Sources'), feedprefs: N_('Feed preferences'), reading: N_('Reading & Highlighting'),
-    send: N_('Send & Share'), appearance: N_('Appearance & Language'), accessibility: N_('Accessibility'), library: N_('Library & Data'), sync: N_('Sync & backup'), mcp: N_('AI apps (MCP)'), about: N_('About & Tools')
+    send: N_('Send & Share'), home: N_('Home page'), appearance: N_('Appearance & Language'), accessibility: N_('Accessibility'), library: N_('Storage & cleanup'), sync: N_('Backup & sync'), mcp: N_('AI apps (MCP)'), about: N_('About & Tools')
 };
 
 /** For the command palette: every panel and every searchable control as { panel, title, target, kw }. */

@@ -5,7 +5,7 @@ State 2026-11-25. Guideline references are to Apple's
 and the screenshot sizes were only read as a summary: check them on the live pages before submitting. This is a working
 checklist, not legal advice.
 
-**The app is not ready to submit yet.** The blockers are below.
+**The app is not ready to submit yet.** The open points are below.
 
 ## Blockers
 
@@ -14,8 +14,8 @@ checklist, not legal advice.
 | 1 | 2.1 | Done: what Safari saves arrives in the app (seen on a device). | Two-way sync later. |
 | 2 | 3.1.1, 4.4 | Done for the extension: the iOS build shows no prices, checkout, donation or license key field (`modules/storeBuild.js`, test294). A pass bought elsewhere keeps working. | Until the pass is also sold in the app (see Money), unlocking it here is a review risk (3.1.3(b)). |
 | 3 | 5.1.2(i) | Done: the extension (iOS build) and the app name the recipient and ask before the first request to a host on the internet; the local network needs no yes; withdraw under Models & API (extension) and Model (app). test295, ConsentTests. | The privacy policy already names byPhil Cloud, OpenRouter and the model provider (`plugin/src/privacy.md`); check the web copy before submitting. Desktop and Android do not ask. |
-| 4 | 5.1.1(v) | Done: Settings → Account → Delete account in the extension (also deletable on byphil.eu). The app says where. | The API change that cancels the Stripe subscription is on main: run `deploy.sh` on the server, then change the confirmation text in `authManager.js` (it still asks to cancel first). Apple's page asks for deletion to start in the app; whether the Safari extension counts is a review judgement: be ready to add it to the app. |
-| 5 | Developer Program | Active since 2026-11-26 (Individual, team `BZKS624HDA`; renews 2027-11-27). App record "Kaivo: Read Later & AI Summary", bundle ID `eu.byphil.kaivo`, SKU `kaivo-ios`. First TestFlight build 2.2.57 (20257) uploaded 2026-11-26, from uncommitted files on top of `3c4983b7`. Later uploads: `scripts/upload-testflight.sh`. | EU trader status with the Hamburg service address from philwornath.com/legal as the public address (phone and e-mail open; proof such as a bill; the membership address stays). A change of the member name to the full legal name is requested. |
+| 4 | 5.1.1(v) | Done: Settings → Account → Delete account in the extension (also deletable on byphil.eu). The app says where. | The API cancels the Stripe subscription (deployed on 2026-11-26, as reported by the owner); the confirmation says so. Apple's page asks for deletion to start in the app; whether the Safari extension counts is a review judgement: be ready to add it to the app. |
+| 5 | Developer Program | Active since 2026-11-26 (Individual, team `BZKS624HDA`; renews 2027-11-27). App record "Kaivo: Read Later & AI Summary", bundle ID `eu.byphil.kaivo`, SKU `kaivo-ios`. First TestFlight build 2.2.57 (20257) uploaded 2026-11-26, from uncommitted files on top of `3c4983b7`. Later uploads: `scripts/upload-testflight.sh`. | EU trader status entered (Hamburg service address, public phone and info@byphil.eu); e-mail verified, supporting documents to be uploaded by the owner. Trader details: Hamburg service address from philwornath.com/legal as the public address (phone and e-mail open; proof such as a bill; the membership address stays). A change of the member name to the full legal name is requested. |
 
 Review notes (draft): "Account: open Safari, open the Kaivo extension, More → Settings → Account. Delete account removes it."
 
@@ -46,7 +46,8 @@ Entered on 2026-11-26 for version 1.0 (draft): name, subtitle and keywords in 28
 screenshot. Before submitting:
 
 * [ ] Descriptions for all 28 languages are drafted in `store/descriptions.json` (`store/build.py` writes it; the twelve
-      languages without an app interface say so). Not yet entered in App Store Connect.
+      languages without an app interface say so). Entered in App Store Connect on 2026-11-26 and read back; native speakers
+      have not checked them.
 * [ ] Screenshots (or the English ones as fallback).
 * [ ] Native speakers check names, subtitles and keywords outside German and English.
 * [ ] `pdf` is a keyword: PDF summaries are not yet tested on an iPhone.

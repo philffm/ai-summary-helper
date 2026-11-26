@@ -8125,5 +8125,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud（它会转发给 OpenRouter 和所选模型的提供公司）"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "在独立标签页中的简洁起始页：继续阅读、新文章、订阅源和搜索（⌘K / Ctrl+K）。它不会替换浏览器的新标签页。"
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "进行中的订阅会随账户一起取消。"
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome 和 Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "复制地址"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "主页按钮：设置 › 外观 › 显示“主页”按钮，然后粘贴地址。"
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "在 iPhone 和 iPad 的 Safari 中无法将其设为起始页。请用上方按钮打开，或使用 AISH 应用的“今天”标签。"
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "在 Safari 中暂时无法将其设为起始页。请用上方按钮打开。"
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "打开，或设为起始页"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Mac 上的 Safari"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "设为起始页"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "设置 › 启动时 › 打开特定网页或一组网页 › 添加新网页，然后粘贴地址。"
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "设置 › 开始、主页和新建标签页 › Edge 启动时 › 打开这些页面 › 添加新页面，然后粘贴地址。"
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone 和 iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser}（当前浏览器）"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "文章导出为 Markdown（.zip）"
+  },
+  "f_backup_sync_f954": {
+    "message": "备份与同步"
+  },
+  "f_bring_back_4fde": {
+    "message": "取回"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "从文件…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "从某个位置：在上方打开它，然后选择“从此处恢复…”。"
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "在某个位置保留副本"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "让各设备上的资料库保持一致，或在某处保留副本。在你添加位置之前，任何内容都不会离开本设备。"
+  },
+  "f_last_full_copy_4175": {
+    "message": "上次完整副本：{when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "还没有完整副本"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "一次性，存为文件"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "仅设置，或连同文章。除非你选择，否则不包含密钥。"
+  },
+  "f_pass_on_78d1": {
+    "message": "分享出去"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "保存文件，或添加一个保留副本的位置。"
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "保存到文件"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "已存为文件"
+  },
+  "f_storage_df06": {
+    "message": "存储空间"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "存储 · 标签 · 删除"
+  },
+  "f_ago_dfc8": {
+    "message": "{t}前"
   }
 }

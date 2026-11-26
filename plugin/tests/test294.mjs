@@ -44,7 +44,7 @@ const answer = (ok, body) => async (url, init) => { calls.push({ url, init }); r
 const renew = async () => {};
 signIn();
 assert.equal(await auth.deleteAccount({ confirm: async (o) => { asked.push(o); return false; }, request: answer(true, { success: true }), renew }), false);
-assert.ok(calls.length === 0 && asked[0].text.includes('Cancel a running subscription first'), 'asked first, and warned about a running subscription');
+assert.ok(calls.length === 0 && asked[0].text.includes('subscription is cancelled together'), 'asked first, and told what happens to a running subscription');
 assert.equal(await auth.deleteAccount({ confirm: async () => true, request: answer(false, { success: false, error: 'kept' }), renew }), false);
 assert.ok(store['account:token'] === live && store['account:licenseKey'] === 'KEY', 'a refusal keeps everything');
 signIn(jwt(1000));

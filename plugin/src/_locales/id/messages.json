@@ -8407,5 +8407,101 @@
   },
   "f_byphil_cloud_which_passes_it_b809": {
     "message": "byPhil Cloud, yang meneruskannya ke OpenRouter dan perusahaan di balik model yang dipilih"
+  },
+  "f_a_calm_start_page_in_its_own_142c": {
+    "message": "Halaman awal yang tenang di tab tersendiri: lanjut membaca, artikel baru, feed Anda, dan pencarian (⌘K / Ctrl+K). Halaman ini tidak mengganti halaman tab baru browser."
+  },
+  "f_a_running_subscription_is_ca_7277": {
+    "message": "Langganan yang berjalan dibatalkan bersama akun Anda."
+  },
+  "f_chrome_and_brave_6e60": {
+    "message": "Chrome dan Brave"
+  },
+  "f_copy_address_a1bc": {
+    "message": "Salin alamat"
+  },
+  "f_home_button_settings_appeara_937e": {
+    "message": "Tombol beranda: Setelan › Tampilan › Tampilkan tombol beranda, lalu tempel alamatnya."
+  },
+  "f_home_cannot_be_set_as_the_st_d458": {
+    "message": "Di Safari iPhone dan iPad halaman ini tidak bisa dijadikan halaman awal. Buka dengan tombol di atas, atau gunakan tab Hari Ini di aplikasi AISH."
+  },
+  "f_home_cannot_be_set_as_the_st_00cc": {
+    "message": "Di Safari halaman ini belum bisa dijadikan halaman awal. Buka dengan tombol di atas."
+  },
+  "f_open_it_or_make_it_your_star_e532": {
+    "message": "Buka, atau jadikan halaman awal"
+  },
+  "f_safari_on_mac_9e0d": {
+    "message": "Safari di Mac"
+  },
+  "f_set_it_as_your_start_page_b95e": {
+    "message": "Jadikan halaman awal"
+  },
+  "f_settings_on_startup_open_a_s_3888": {
+    "message": "Setelan › Saat memulai › Buka halaman atau kumpulan halaman tertentu › Tambahkan halaman baru, lalu tempel alamatnya."
+  },
+  "f_settings_start_home_and_new__1c89": {
+    "message": "Setelan › Mulai, beranda, dan tab baru › Saat Edge dimulai › Buka halaman ini › Tambahkan halaman baru, lalu tempel alamatnya."
+  },
+  "f_iphone_and_ipad_cc97": {
+    "message": "iPhone dan iPad"
+  },
+  "f_this_browser_f10c": {
+    "message": "{browser} (browser ini)"
+  },
+  "f_articles_as_markdown_zip_b679": {
+    "message": "Artikel sebagai Markdown (.zip)"
+  },
+  "f_backup_sync_f954": {
+    "message": "Cadangan & sinkron"
+  },
+  "f_bring_back_4fde": {
+    "message": "Ambil kembali"
+  },
+  "f_from_a_file_aa1a": {
+    "message": "Dari berkas…"
+  },
+  "f_from_a_place_open_it_above_a_ad54": {
+    "message": "Dari suatu tempat: buka di atas lalu pilih “Pulihkan dari sini…”."
+  },
+  "f_keep_a_copy_in_a_place_672f": {
+    "message": "Simpan salinan di suatu tempat"
+  },
+  "f_keep_your_library_in_step_ac_aac4": {
+    "message": "Jaga pustaka tetap sama di semua perangkat, atau simpan salinan di suatu tempat. Tidak ada yang keluar dari perangkat ini sebelum Anda menambah tempat."
+  },
+  "f_last_full_copy_4175": {
+    "message": "Salinan lengkap terakhir: {when}"
+  },
+  "f_no_full_copy_yet_4fae": {
+    "message": "Belum ada salinan lengkap"
+  },
+  "f_once_as_a_file_8b27": {
+    "message": "Sekali, sebagai berkas"
+  },
+  "f_only_your_settings_or_with_y_5d5d": {
+    "message": "Hanya setelan atau beserta artikel. Kunci tidak disertakan kecuali Anda memilihnya."
+  },
+  "f_pass_on_78d1": {
+    "message": "Teruskan"
+  },
+  "f_save_a_file_or_add_a_place_t_2f48": {
+    "message": "Simpan berkas atau tambahkan tempat yang menyimpan salinan."
+  },
+  "f_save_to_a_file_27d4": {
+    "message": "Simpan ke berkas"
+  },
+  "f_saved_as_a_file_2a0b": {
+    "message": "Disimpan sebagai berkas"
+  },
+  "f_storage_df06": {
+    "message": "Penyimpanan"
+  },
+  "f_storage_tags_delete_8274": {
+    "message": "Penyimpanan · tag · hapus"
+  },
+  "f_ago_dfc8": {
+    "message": "{t} lalu"
   }
 }

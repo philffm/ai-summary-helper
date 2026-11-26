@@ -618,7 +618,7 @@ export async function deleteAccount({ confirm = confirmSheet, request = fetch, r
     if (!before[SK.token]) return false;
     const active = isPassActive(before[SK.user]);
     const text = [T('Your account and any pass on it are removed for good. This cannot be undone.'),
-        active ? T('Cancel a running subscription first, with the link in your payment receipt.') : ''].filter(Boolean).join(' ');
+        active ? T('A running subscription is cancelled together with your account.') : ''].filter(Boolean).join(' ');
     if (!(await confirm({ title: T('Delete your account?'), text, confirmLabel: T('Delete account') }))) return false;
     const say = (message) => (uiManagerRef ? uiManagerRef.showToast(message) : alert(message));
     try {

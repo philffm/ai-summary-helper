@@ -11,13 +11,15 @@ import { exportHistoryMarkdown } from '../markdownArchive.js';
 // ── Section: Backup & Restore ────────────────────────────────────────
 export function initBackupRestore() {
     const btnExport = document.getElementById('exportSettingsButton');
+    if (btnExport && btnExport.dataset.bound) return;   // opened from the delete dialog and loaded with the panel
+    if (btnExport) btnExport.dataset.bound = '1';
     const btnImport = document.getElementById('importSettingsButton');
     const fileInput = document.getElementById('importSettingsFile');
     const btnMd = document.getElementById('exportMarkdownButton');
 
     // ── Export history as Markdown (Obsidian / Logseq friendly .zip) ──
     if (btnMd) {
-        const mdLabel = '📝 ' + T('Export history as Markdown (.zip)');
+        const mdLabel = '📝 ' + T('Articles as Markdown (.zip)');
         btnMd.textContent = mdLabel;
         btnMd.addEventListener('click', async () => {
             btnMd.disabled = true;
@@ -49,12 +51,12 @@ export function initBackupRestore() {
 
         btnExport.addEventListener('click', () => {
             choicePanel.hidden = !choicePanel.hidden;
-            btnExport.textContent = choicePanel.hidden ? '📤 ' + T('Export') : '📤 ' + T('Export') + ' ▲';
+            btnExport.textContent = choicePanel.hidden ? '📤 ' + T('Save to a file') : '📤 ' + T('Save to a file') + ' ▲';
         });
 
         const doExport = async (includeContent) => {
             choicePanel.hidden = true;
-            btnExport.textContent = '📤 ' + T('Export');
+            btnExport.textContent = '📤 ' + T('Save to a file');
             try {
                 const includeSecrets = document.getElementById('includeBackupSecrets')?.checked === true;
                 if (includeSecrets && !(await confirmSheet({ title: T('Export with secrets?'), text: T('This backup will contain API keys, sign-in details, license keys, and an install identifier. Anyone with the file could use its keys or identify this install. Continue?'), confirmLabel: T('Export'), danger: false }))) return;
@@ -104,6 +106,7 @@ export function initBackupRestore() {
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
+                if (includeContent) await chrome.storage.local.set({ [SK.lastFileBackup]: new Date().toISOString() });   // a full copy
 
                 const origNodes = [...btnExport.childNodes].map(n => n.cloneNode(true));   // nodes, not text: keeps the icon
                 setLabel(btnExport, includeContent
