@@ -1411,7 +1411,7 @@ html.is-handheld .nav--pill .mm-cta--secondary{background:var(--accent-fill);bor
 .vstack-open video{ display:block; width:100%; height:auto; aspect-ratio:1080/1560; object-fit:cover; background:var(--media-video); }
 .vstack-play{ position:absolute; left:50%; top:50%; width:52px; height:52px; margin:-26px 0 0 -26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:var(--fs-3xl); color:var(--on-media-strong); background:color-mix(in srgb, var(--media-night) 55%, transparent); backdrop-filter:blur(6px); border:1px solid color-mix(in srgb, var(--on-media-strong) 35%, transparent); opacity:0; transition:opacity var(--duration-base); pointer-events:none; }
 .vstack-item:hover .vstack-play, .vstack-open:focus-visible .vstack-play{ opacity:1; }
-.vstack-item.is-playing .vstack-play, .fvideo.is-playing .fvideo-play, figure.is-playing .vstack-play{ display:none; }
+.vstack-item.is-playing .vstack-play, .fvideo.is-playing .fvideo-play, figure.is-playing .vstack-play, figure.is-playing .post-video-play{ display:none; }
 .vstack-item.is-playing figcaption{ opacity:0; pointer-events:none; }
 .vstack-item.is-playing:hover{ transform:none; }
 .vstack-share{ position:absolute; top:10px; right:10px; z-index:3; width:36px; height:36px; border-radius:50%; border:0; display:none; align-items:center; justify-content:center; cursor:pointer; color:var(--on-accent); background:color-mix(in srgb, var(--media-ink) 62%, transparent); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
