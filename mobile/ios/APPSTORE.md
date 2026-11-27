@@ -15,7 +15,7 @@ checklist, not legal advice.
 | 2 | 3.1.1, 4.4 | Done for the extension: the iOS build shows no prices, checkout, donation or license key field (`modules/storeBuild.js`, test294). A pass bought elsewhere keeps working. | Until the pass is also sold in the app (see Money), unlocking it here is a review risk (3.1.3(b)). |
 | 3 | 5.1.2(i) | Done: the extension (iOS build) and the app name the recipient and ask before the first request to a host on the internet; the local network needs no yes; withdraw under Models & API (extension) and Model (app). test295, ConsentTests. | The privacy policy already names byPhil Cloud, OpenRouter and the model provider (`plugin/src/privacy.md`); check the web copy before submitting. Desktop and Android do not ask. |
 | 4 | 5.1.1(v) | Done: Settings → Account → Delete account in the extension (also deletable on byphil.eu). The app says where. | The API cancels the Stripe subscription (deployed on 2026-11-26, as reported by the owner); the confirmation says so. Apple's page asks for deletion to start in the app; whether the Safari extension counts is a review judgement: be ready to add it to the app. |
-| 5 | Developer Program | Active since 2026-11-26 (Individual, team `BZKS624HDA`; renews 2027-11-27). App record "Kaivo: Read Later & AI Summary", bundle ID `eu.byphil.kaivo`, SKU `kaivo-ios`. First TestFlight build 2.2.57 (20257) uploaded 2026-11-26, from uncommitted files on top of `3c4983b7`. Later uploads: `scripts/upload-testflight.sh`. | EU trader status entered (Hamburg service address, public phone and info@byphil.eu); e-mail verified, supporting documents to be uploaded by the owner. Trader details: Hamburg service address from philwornath.com/legal as the public address (phone and e-mail open; proof such as a bill; the membership address stays). A change of the member name to the full legal name is requested. |
+| 5 | Developer Program | Active since 2026-11-26 (Individual, team `BZKS624HDA`; renews 2027-11-27). App record "Kaivo: Save & Read Later" (until 2026-11-27 "Kaivo: Read Later & AI Summary"), bundle ID `eu.byphil.kaivo`, SKU `kaivo-ios`. First TestFlight build 2.2.57 (20257) uploaded 2026-11-26, from uncommitted files on top of `3c4983b7`. Later uploads: `scripts/upload-testflight.sh`; latest 2.2.57 (20257.2611271404) on 2026-11-27, from uncommitted files on top of `5d0e8d8b`, with the reader's Appearance sheet. | EU trader status entered (Hamburg service address, public phone and info@byphil.eu); e-mail verified, supporting documents to be uploaded by the owner. Trader details: Hamburg service address from philwornath.com/legal as the public address (phone and e-mail open; proof such as a bill; the membership address stays). A change of the member name to the full legal name is requested. |
 
 Review notes (draft): "Account: open Safari, open the Kaivo extension, More → Settings → Account. Delete account removes it."
 
@@ -43,7 +43,9 @@ Review notes (draft): "Account: open Safari, open the Kaivo extension, More → 
 
 Entered on 2026-11-26 for version 1.0 (draft): name, subtitle and keywords in 28 languages, as listed in
 <https://claude.ai/artifact/2VNE8SCcNvQMmkfujCNyap> (read back and compared). "Touch your knowledge" goes on the first
-screenshot. Before submitting:
+screenshot. Changed on 2026-11-27 for en-US, en-GB and en-AU (read back): name "Kaivo: Save & Read Later", subtitle
+"AI summaries, highlights, RSS", and new keywords in en-US and en-GB with "pkm" and "knowledge". The other 25 languages
+keep their texts. Before submitting:
 
 * [ ] Descriptions for all 28 languages are drafted in `store/descriptions.json` (`store/build.py` writes it; the twelve
       languages without an app interface say so). Entered in App Store Connect on 2026-11-26 and read back; native speakers
