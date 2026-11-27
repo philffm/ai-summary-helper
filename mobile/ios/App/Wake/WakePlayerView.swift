@@ -54,6 +54,8 @@ struct WakePlayerView: View {
     }
 
     private func load() async {
+        // right after the alarm the library may still be on its way
+        await library.settled()
         var next = build()
         // yesterday's feeds make a poor morning: fetch them first when the briefing is what is wanted
         if case .briefing = next {

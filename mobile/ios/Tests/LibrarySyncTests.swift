@@ -129,7 +129,8 @@ final class LibrarySyncTests: XCTestCase {
         guard let file = ProcessInfo.processInfo.environment["KAIVO_SYNC_SERVER"] else { throw XCTSkip("only with the test server") }
         let info = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: URL(fileURLWithPath: file))) as? [String: Any])
         let expect = try XCTUnwrap(info["expect"] as? [String: Any])
-        let library = try LibrarySync(folder: folder, vault: vault)
+        let shown = try LibraryStore(folder: folder, shared: folder, vault: vault)
+        let library = shown.sync
         let began = Date()
         try await library.join(code: try XCTUnwrap(info["code"] as? String), passphrase: try XCTUnwrap(info["passphrase"] as? String))
         let joined = Date()
@@ -150,6 +151,20 @@ final class LibrarySyncTests: XCTestCase {
         XCTAssertEqual(again.pulled, 0)
         print(String(format: "KaivoSync: %d records, join %.2f s, first fetch %.2f s, run with nothing new %.2f s",
                      run.pulled, joined.timeIntervalSince(began), fetched.timeIntervalSince(joined), Date().timeIntervalSince(before)))
+        // what the app does at its start: read it all for the screens
+        let listing = Date()
+        let list = try await shown.listing()
+        print(String(format: "KaivoSync: the list of %d alone in %.2f s", list.count, Date().timeIntervalSince(listing)))
+        let reading = Date()
+        let articles = try await shown.articles()
+        let read = Date()
+        _ = try await shown.articles()
+        XCTAssertEqual(articles.count, got["articles"] as? Int)
+        XCTAssertFalse(articles.contains { $0.passages.isEmpty })
+        let changing = Date()
+        try await shown.change(articles[0].id, entry: ["progress": 0.99])
+        print(String(format: "KaivoSync: %d articles read for the screens in %.2f s, again in %.2f s; one change written in %.2f s",
+                     articles.count, read.timeIntervalSince(reading), changing.timeIntervalSince(read), Date().timeIntervalSince(changing)))
         let url = try XCTUnwrap(URL(string: try XCTUnwrap(info["stats"] as? String)))
         let (answer, _) = try await URLSession.shared.data(from: url)
         let asked = try XCTUnwrap(JSONSerialization.jsonObject(with: answer) as? [String: Int])

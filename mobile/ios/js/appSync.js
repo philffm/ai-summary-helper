@@ -13,9 +13,11 @@ import { mergeRecord } from '../../../plugin/src/modules/syncMerge.js';
 import { deriveMaster, subKeys, nameOf, encryptJson, decryptJson, openMeta, toHex, toB64, fromB64 } from '../../../plugin/src/modules/syncCrypto.js';
 import { canonicalPassphrase } from '../../../plugin/src/modules/syncPassphrase.js';
 import { parsePhoneCode } from '../../../plugin/src/modules/syncPhoneCode.js';
-import { SK } from '../../../plugin/src/modules/storageKeys.js';
+import { SK, articleRecKey } from '../../../plugin/src/modules/storageKeys.js';
 import { signV4 } from '../../../plugin/src/modules/syncS3.js';
 import { pageKeyForUrl } from '../../../plugin/src/modules/pageKey.js';
+import { articleKey } from '../../../plugin/src/modules/syncIdentity.js';
+import { withLock } from '../../../plugin/src/modules/articleLock.js';
 
 // as in the extension's background (modules/syncBackgroundBundle.js)
 const dataHooks = { count: countWords, compose: (base, turns) => withQuestions(base, turns, { all: false }) };
@@ -84,7 +86,139 @@ function createSync({ storage, log = () => {}, engine = {} }) {
         for (const place of await service.placesNow()) await service.remove(place.id);
     }
 
-    return { service, stampStore, highlights: createHighlightStore({ storage }), join, run, state, leave };
+    /** What a code says, to be looked at before joining. No password. */
+    function look(code) {
+        const given = parsePhoneCode(code);
+        if (!given) return null;
+        let host = given.url;
+        try { host = new URL(given.url).host; } catch (_) { /* shown as written */ }
+        return { service: given.kind, server: host, folder: given.kind === 's3' ? `${given.bucket}/${given.root}` : given.root, words: !!given.words, plain: /^http:/i.test(given.url) };
+    }
+
+    return { service, stampStore, highlights: createHighlightStore({ storage }), join, run, state, leave, look, library: createLibrary({ storage }) };
+}
+
+/**
+ * What the app reads and writes of the library, in the extension's shapes and through its modules, so that every change is
+ * stamped like one made in the browser. Single fields only: the app never writes an article back as a whole.
+ */
+function createLibrary({ storage }) {
+    const highlights = createHighlightStore({ storage });
+    const read = async (key, empty) => (await storage.get({ [key]: empty }))[key];
+
+    /** A store that is new starts as an extension does today: highlights filed by page. */
+    async function prepare() {
+        const keys = await storage.getKeys();
+        if (!keys.some((k) => k === SK.articlesIndex || k === SK.hlSchema)) await storage.set({ [SK.hlSchema]: 2 });
+    }
+
+    /** What the index and the records do not tell: every highlight, and the page each article's highlights are filed under. */
+    async function marks() {
+        const index = await read(SK.articlesIndex, []);
+        const pages = {}, same = {};
+        for (const e of index) { pages[e.id] = pageKeyForUrl(e.url || ''); same[e.id] = articleKey(e.url || ''); }
+        return { pages, same, highlights: await highlights.all({ dismissed: true }) };
+    }
+
+    const plainHighlight = (page, h) => ({ id: h.id, url: page, text: h.text, type: h.ai ? 'ghost' : 'user', timestamp: h.timestamp,
+        ...(h.prefix || h.suffix ? { quote: { exact: h.text, prefix: h.prefix || '', suffix: h.suffix || '' } } : {}) });
+    const words = (text) => String(text || '').replace(/\s+/g, ' ').trim();
+    /** The same words of the same page, already here (also turned down); with surroundings given, the same place. */
+    const known = (list, page, h) => list.find((x) => x.url === page && x.text === words(h.text)
+        && ((!h.prefix && !h.suffix) || (((x.quote && x.quote.prefix) || '') === (h.prefix || '') && ((x.quote && x.quote.suffix) || '') === (h.suffix || ''))));
+
+    /**
+     * Takes articles over (saved or shared in the app, handed over by Safari, or from the library the app kept before).
+     * One that is here already, by its id or its page, only gains: further read, text and summary that arrived, highlights
+     * that are not here yet (one the reader turned down stays turned down). Answers with the id each one has now.
+     */
+    async function take({ articles }) {
+        await prepare();
+        const ids = [], wanted = [], here = await highlights.all({ dismissed: true });
+        await withLock('aish-articles', async () => {
+            const index = (await read(SK.articlesIndex, [])).slice();
+            const writes = {};
+            for (const a of articles) {
+                const page = articleKey(a.entry.url || '');
+                const at = index.findIndex((e) => e.id === a.entry.id || (page && articleKey(e.url || '') === page));
+                const id = at < 0 ? a.entry.id : index[at].id;
+                const old = writes[articleRecKey(id)] || (await read(articleRecKey(id), null)) || {};
+                const record = { ...old };
+                // `fill`: only what is missing here (the library the app kept before holds its texts simplified)
+                for (const k of ['content', 'summary']) {
+                    if (!a.record || !a.record[k] || (a.fill && record[k])) continue;
+                    record[k] = a.record[k];
+                    if (k === 'summary') record.summaryBase = a.record.summary;
+                }
+                const entry = at < 0 ? { archived: false, ...a.entry } : { ...index[at] };
+                if (at >= 0) {
+                    entry.progress = Math.max(Number(entry.progress) || 0, Number(a.entry.progress) || 0);
+                    if (a.fresher) { if (a.entry.title) entry.title = a.entry.title; if (a.entry.tags && a.entry.tags.length) entry.tags = a.entry.tags; }
+                    if (a.entry.contentWordCount) entry.contentWordCount = a.entry.contentWordCount;
+                }
+                if (record.summary) entry.summary = record.summary;
+                if (at < 0) index.unshift(entry); else index[at] = entry;
+                writes[articleRecKey(id)] = record;
+                ids.push(id);
+                const url = pageKeyForUrl(entry.url || '');
+                for (const h of a.highlights || []) {
+                    const same = known(here, url, h);
+                    if (!same) wanted.push({ op: 'add', hl: plainHighlight(url, h) });
+                    else if (!h.ai && same.type === 'ghost' && !same.dismissed) wanted.push({ op: 'patch', page: url, id: same.id, patch: { type: 'user' } });
+                }
+            }
+            await storage.set(writes);
+            await storage.set({ [SK.articlesIndex]: index });
+        });
+        if (wanted.length) await highlights.apply(wanted);
+        return ids;
+    }
+
+    /** Fields of one article: of the list entry, and of its record (text, summary). */
+    async function change({ id, entry = {}, record = null }) {
+        await withLock('aish-articles', async () => {
+            const index = (await read(SK.articlesIndex, [])).slice();
+            const at = index.findIndex((e) => e.id === id);
+            if (at < 0) return;
+            const next = { ...index[at], ...entry };
+            if ('progress' in entry) next.progress = Math.max(Number(index[at].progress) || 0, Number(entry.progress) || 0);   // reading only moves forward
+            if (record) {
+                const rec = { ...((await read(articleRecKey(id), null)) || {}), ...record };
+                if (record.summary !== undefined) { rec.summaryBase = record.summary; next.summary = record.summary; }
+                await storage.set({ [articleRecKey(id)]: rec });
+            }
+            index[at] = next;
+            await storage.set({ [SK.articlesIndex]: index });
+        });
+    }
+
+    /** Changes to the highlights of one article's page: add, keep a suggestion, turn one down, remove. */
+    async function mark({ url, add = [], keep = [], dismiss = [], remove = [] }) {
+        await prepare();
+        const page = pageKeyForUrl(url || '');
+        await highlights.apply([
+            ...remove.map((id) => ({ op: 'removeId', id })),
+            ...dismiss.map((id) => ({ op: 'dismiss', page, id })),
+            ...keep.map((id) => ({ op: 'patch', page, id, patch: { type: 'user' } })),
+            ...add.map((h) => ({ op: 'add', hl: plainHighlight(page, h) })),
+        ]);
+    }
+
+    const REMOVED = 'app:removed';
+    /** The ids of every article of the same page as this one. */
+    async function twins(id) {
+        const index = await read(SK.articlesIndex, []);
+        const page = articleKey((index.find((e) => e.id === id) || {}).url || '');
+        return [id, ...(page ? index.filter((e) => articleKey(e.url || '') === page).map((e) => e.id) : [])];
+    }
+    /** Gone from this device, or (`gone` false) back again. Nothing is marked as deleted for the other devices. */
+    async function hide({ id, gone }) {
+        const all = new Set(await twins(id)), removed = await read(REMOVED, []);
+        const rest = removed.filter((x) => !all.has(x));
+        await storage.set({ [REMOVED]: gone ? [...rest, ...all] : rest });
+    }
+
+    return { prepare, marks, take, change, mark, hide };
 }
 
 export const API = {

@@ -70,6 +70,9 @@ targets:
         CFBundleURLTypes:
           - CFBundleURLName: $(KAIVO_BUNDLE_ID)
             CFBundleURLSchemes: [kaivo]
+          # the code the browser shows for a phone (plugin/src/modules/syncPhoneCode.js), scanned with the camera
+          - CFBundleURLName: $(KAIVO_BUNDLE_ID).library
+            CFBundleURLSchemes: [aish-library]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(KAIVO_BUNDLE_ID)

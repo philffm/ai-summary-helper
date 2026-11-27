@@ -69,6 +69,10 @@ final class GuardedStorage: SyncStoring {
         return out
     }
 
+    func data(_ keys: [String]) throws -> [String: Data] { try library.data(keys.filter { !Self.secretKeys.contains($0) }) }
+
+    func versions(_ keys: [String]) throws -> [String: Int64] { try library.versions(keys.filter { !Self.secretKeys.contains($0) }) }
+
     func keys() throws -> [String] {
         try library.keys() + Self.secretKeys.filter { try vault.read($0) != nil }
     }

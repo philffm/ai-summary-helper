@@ -79,6 +79,13 @@ final class SyncHost: @unchecked Sendable {
         }
     }
 
+    /// Looks at the library on the sync's own queue, so that no write is half done.
+    func read<Value>(_ body: @escaping (SyncStoring) throws -> Value) async throws -> Value {
+        try await withCheckedThrowingContinuation { continuation in
+            queue.async { [self] in continuation.resume(with: Result { try body(storage) }) }
+        }
+    }
+
     // MARK: - What host.js asks of Swift
 
     private static func data(_ value: JSValue) -> Data? {

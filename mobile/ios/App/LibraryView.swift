@@ -68,7 +68,11 @@ struct LibraryView: View {
                     if listed.isEmpty {
                         if !search.isEmpty {
                             ContentUnavailableView.search(text: search)
-                        } else {
+                        } else if library.articles.isEmpty, let failure = library.failure {
+                            // an empty list must not pass for an empty library
+                            ContentUnavailableView("The library could not be read.", systemImage: "exclamationmark.triangle",
+                                                   description: Text(verbatim: failure))
+                        } else if library.loaded {
                             ContentUnavailableView("No articles", systemImage: "books.vertical",
                                                    description: library.articles.isEmpty ? Text("Save articles from your feeds and they appear here.") : Text("Nothing matches this filter."))
                         }

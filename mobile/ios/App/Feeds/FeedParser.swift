@@ -1,4 +1,5 @@
 import Foundation
+import os
 
 /// A small, tolerant reader for RSS 2.0, RSS 1.0 (RDF), Atom and JSON Feed, after the Android app's FeedXml.kt: nothing is
 /// ever fetched while parsing (the DOCTYPE is dropped, external entities are off), and size and depth are limited.
@@ -160,8 +161,19 @@ enum FeedParser {
 
     // MARK: - regex helpers
 
+    /// Compiled once: a large library asks for the same few patterns many thousand times.
+    private static let compiled = OSAllocatedUnfairLock(initialState: [String: NSRegularExpression]())
+    private static func pattern(_ pattern: String) -> NSRegularExpression? {
+        compiled.withLock { known in
+            if let re = known[pattern] { return re }
+            let re = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive, .dotMatchesLineSeparators])
+            known[pattern] = re
+            return re
+        }
+    }
+
     static func replace(_ pattern: String, in text: String, with template: String) -> String {
-        guard let re = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive, .dotMatchesLineSeparators]) else { return text }
+        guard let re = Self.pattern(pattern) else { return text }
         return re.stringByReplacingMatches(in: text, range: NSRange(text.startIndex..., in: text), withTemplate: template)
     }
     private static func matches(_ pattern: String, in text: String) -> [String] {

@@ -43,6 +43,7 @@ struct SetupView: View {
                     feature("books.vertical", "Library", "What you save stays on your device.")
                 }
                 Section("In the app") {
+                    NavigationLink { LibrarySyncView() } label: { Label("Sync", systemImage: "arrow.triangle.2.circlepath") }
                     NavigationLink { ModelServerView() } label: { Label("Model for summaries", systemImage: "cpu") }
                 }
                 Section {

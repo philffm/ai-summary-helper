@@ -5,7 +5,8 @@ import WidgetKit
 /// Do not give bars or lists a background of their own: that switches the system material off.
 struct RootView: View {
     @Environment(\.scenePhase) private var scenePhase
-    @State private var library = Library()
+    @State private var library: Library
+    @State private var sync: SyncModel
     @State private var feeds = FeedsModel()
     @State private var status = ExtensionStatus()
     @State private var speaker = Speaker()
@@ -14,8 +15,15 @@ struct RootView: View {
     @State private var fetching = false
     @Environment(\.horizontalSizeClass) private var width
 
+    init() {
+        let library = Library()
+        _library = State(initialValue: library)
+        _sync = State(initialValue: SyncModel(library: library))
+    }
+
     var body: some View {
-        tabs
+        @Bindable var sync = sync
+        return tabs
             .environment(\.tabsStay, width == .regular)
             .environment(library)
             .environment(feeds)
@@ -23,6 +31,14 @@ struct RootView: View {
             .environment(speaker)
             .environment(router)
             .environment(summaries)
+            .environment(sync)
+            // a scanned library code leads straight to the screen that asks before it connects
+            .sheet(isPresented: $sync.shown) {
+                NavigationStack {
+                    LibrarySyncView().toolbar { Button("Done") { sync.shown = false } }
+                }
+                .environment(sync)
+            }
             .fullScreenCover(item: Binding(get: { WakeCenter.shared.playing }, set: { WakeCenter.shared.playing = $0 })) { request in
                 WakePlayerView(request: request)
                     .environment(library)
@@ -46,20 +62,29 @@ struct RootView: View {
                 #if DEBUG
                 if url.host() == "wake-preview" { WakeCenter.shared.playing = WakeRequest(mode: .briefing, noBadNews: false); return }
                 #endif
+                if url.scheme == "aish-library" {
+                    sync.shown = true
+                    Task { await sync.read(url.absoluteString) }
+                    return
+                }
                 if let link = DeepLink(url) { router.open(link) }
             }
             .onChange(of: scenePhase, initial: true) { _, phase in
                 if phase == .active {
                     status.refresh()
                     library.importFromSafari()
-                    library.takeShared()
-                    Task { await finishShared() }
+                    Task {
+                        await library.takeShared()
+                        await finishShared()
+                    }
+                    Task { await sync.fetch() }
                     feeds.importFromSafari()
                     Task { await feeds.refresh(ifOlderThan: 15 * 60) }
                 }
             }
-            .onChange(of: snapshot, initial: true) { _, value in
-                guard !LaunchOptions.samples else { return }
+            // not before the library is read: the widgets would show an empty one
+            .onChange(of: library.loaded ? snapshot : nil, initial: true) { _, value in
+                guard !LaunchOptions.samples, let value else { return }
                 SharedStore.write(value, to: Snapshot.file)
                 WidgetCenter.shared.reloadAllTimelines()
             }

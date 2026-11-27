@@ -5,8 +5,14 @@ import Foundation
 struct LibrarySync {
     struct State: Decodable {
         struct Last: Decodable {
+            struct Progress: Decodable {
+                let done: Int
+                let total: Int
+            }
             let at: String?
             let ok: Bool?
+            /// Set while a run is going.
+            let running: Progress?
         }
         let id: String
         let service: String?
@@ -23,18 +29,40 @@ struct LibrarySync {
         let errors: [String]
     }
 
-    let host: SyncHost
+    /// What a code says, to be looked at before joining.
+    struct Code: Decodable, Equatable {
+        let service: String
+        let server: String
+        let folder: String
+        /// The passphrase is part of the code.
+        let words: Bool
+        /// Plain http, allowed only inside one's own network.
+        let plain: Bool
+    }
 
-    init(host: SyncHost) { self.host = host }
+    let host: SyncHost
+    private let storage: SyncStorage
+    private let folder: URL
 
     /// The library in this folder, its secrets in the Keychain.
     init(folder: URL, vault: SyncVault, network: URLSessionConfiguration = .ephemeral) throws {
-        let storage = try GuardedStorage(try SyncStorage(url: folder.appending(path: "library.sqlite")), vault: vault)
-        host = try SyncHost(storage: storage, pullOnly: true, network: network)
+        self.folder = folder
+        storage = try SyncStorage(url: folder.appending(path: "library.sqlite"))
+        host = try SyncHost(storage: try GuardedStorage(storage, vault: vault), pullOnly: true, network: network)
     }
+
+    /// nil when this is no code of a library.
+    func look(_ code: String) async throws -> Code? {
+        try JSONDecoder().decode(Code?.self, from: try await host.run("return sync.look(input.code);", input: ["code": code]))
+    }
+
+    /// The library as it was before the last join: where it and the server differ, the server's values win.
+    var backupBeforeJoin: URL { folder.appending(path: "library.before-join.sqlite") }
 
     /// `code`: what the browser shows for a phone (aish-library://…). The passphrase may be part of it.
     func join(code: String, passphrase: String = "") async throws {
+        let target = backupBeforeJoin, storage = storage
+        try await host.read { _ in try storage.backup(to: target) }
         _ = try await host.run("return sync.join(input);", input: ["code": code, "passphrase": passphrase])
     }
 

@@ -2,29 +2,23 @@ import Foundation
 
 /// Turns what Safari handed over into library articles.
 enum SafariImport {
-    /// The article in the app. What the reader did here (further read, own highlights) is kept.
-    static func article(_ inbox: InboxArticle, existing: Article?) -> Article {
-        var passages = blocks(inbox.content, article: inbox.id)
-        if passages.isEmpty { passages = existing?.passages.map { Passage(kind: $0.kind, text: $0.text, image: $0.image, heading: $0.heading) } ?? [] }
-        let paragraphs = passages.filter { $0.kind != .image }.map(\.text)
-        // the reader's own marks win over the AI's suggestions for the same words
-        let here = existing?.passages.flatMap { passage in passage.marks.filter { !$0.ai }.map { passage.words(of: $0) } } ?? []
-        for text in inbox.highlights.filter({ !$0.ai }).map(\.text) + here { mark(text, ai: false, in: &passages) }
-        for suggestion in inbox.highlights where suggestion.ai { mark(suggestion.text, ai: true, in: &passages) }
-
-        let words = inbox.words > 0 ? inbox.words : Library.words(in: paragraphs.joined(separator: " "))
-        return Article(id: existing?.id ?? "safari-" + inbox.id,
-                       title: inbox.title,
-                       host: URL(string: inbox.url)?.host() ?? inbox.url,
-                       tags: inbox.tags.isEmpty ? existing?.tags ?? [] : inbox.tags.filter { !$0.hasPrefix("🌐") },   // the language mark is no topic
-                       words: words,
-                       savedAt: FeedParser.parseDate(inbox.savedAt) ?? existing?.savedAt ?? .now,
-                       progress: max(inbox.progress, existing?.progress ?? 0),
-                       passages: passages,
-                       summary: HTMLText.plain(inbox.summary).components(separatedBy: "\n\n").filter { !$0.isEmpty },
-                       link: inbox.url,
-                       safariID: inbox.id,
-                       paper: existing?.paper)
+    /// What Safari handed over, as the library takes it: text and summary as they came, under the extension's own id.
+    static func package(_ inbox: InboxArticle, pictures: URL = SafariInbox.directory) -> [String: Any] {
+        var entry: [String: Any] = ["id": inbox.id, "url": inbox.url, "title": inbox.title, "tags": inbox.tags,
+                                    "timestamp": inbox.savedAt, "progress": min(1, max(0, inbox.progress))]
+        if inbox.words > 0 { entry["contentWordCount"] = inbox.words }
+        // the pictures came beside the text: back into it, where the extension keeps them
+        var content = inbox.content
+        let folder = pictures.appending(path: "images/\(inbox.id)")
+        let files = (try? FileManager.default.contentsOfDirectory(atPath: folder.path)) ?? []
+        for number in files.compactMap(Int.init).sorted(by: >) {
+            guard let picture = LibraryRecords.inline(folder.appending(path: String(number))) else { continue }
+            content = content.replacingOccurrences(of: "kaivo-image:\(number)", with: picture)
+        }
+        let marks = inbox.highlights.map { highlight in
+            ["id": LibraryRecords.newHighlightID(), "text": highlight.text, "ai": highlight.ai, "timestamp": inbox.savedAt] as [String: Any]
+        }
+        return ["entry": entry, "record": ["content": content, "summary": inbox.summary], "highlights": marks, "fresher": true]
     }
 
     /// Headings, paragraphs and pictures in the order of the page.

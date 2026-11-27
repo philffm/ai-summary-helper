@@ -208,8 +208,11 @@ final class ConsentTests: XCTestCase {
     }
 
     @MainActor
-    func testNothingStartsWithoutTheYes() {
-        let summaries = Summaries(), library = Library()
+    func testNothingStartsWithoutTheYes() throws {
+        // a library of its own, not the one of the app on this device
+        let folder = FileManager.default.temporaryDirectory.appending(path: "yes-" + UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let summaries = Summaries(), library = Library(samples: false, store: try LibraryStore(folder: folder, shared: folder, vault: SyncVault(scope: "yes")))
         summaries.consent = AIConsent(store: store)
         let outside = endpoint("https://api.deepseek.com/v1")
         summaries.endpoint = { outside }

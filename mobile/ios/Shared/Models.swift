@@ -96,6 +96,8 @@ struct Mark: Codable, Identifiable, Hashable {
     var length: Int
     /// Suggested by the AI and not yet kept.
     var ai: Bool = false
+    /// The id the library stores it under.
+    var highlight: String?
     var range: NSRange { NSRange(location: start, length: length) }
 }
 

@@ -20,8 +20,11 @@ struct ReaderView: View {
 
     var body: some View {
         Group {
-            if let article = library.article(id) {
+            // until the library is read, an article without text is one whose text is still on its way
+            if let article = library.article(id), library.loaded || !article.passages.isEmpty {
                 content(article)
+            } else if !library.loaded {
+                ProgressView()
             } else {
                 ContentUnavailableView("Article removed", systemImage: "trash")
             }
