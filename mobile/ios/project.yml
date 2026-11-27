@@ -25,6 +25,16 @@ targets:
       # the starter feeds, shared with the extension and the Android app
       - path: ../../shared/suggested-feeds.json
         group: Shared
+      # the reader's typefaces and their licence, shared with the Android app
+      - path: ../android/app/src/main/res/font/atkinson_hyperlegible.ttf
+        group: Fonts
+      - path: ../android/app/src/main/res/font/atkinson_hyperlegible_bold.ttf
+        group: Fonts
+      - path: ../android/app/src/main/res/font/hanken_grotesk.ttf
+        group: Fonts
+      - path: ../android/FONT-LICENSES.txt
+        group: Fonts
+        buildPhase: resources
     dependencies:
       - target: KaivoExtension
       - target: KaivoWidgets
@@ -40,6 +50,7 @@ targets:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         UILaunchScreen: {}
+        UIAppFonts: [atkinson_hyperlegible.ttf, atkinson_hyperlegible_bold.ttf, hanken_grotesk.ttf]
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         ITSAppUsesNonExemptEncryption: false

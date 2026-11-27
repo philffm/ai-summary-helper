@@ -6,6 +6,9 @@ import UIKit
 struct PassageText: UIViewRepresentable {
     let passage: Passage
     let style: UIFont.TextStyle
+    var look = ReaderLook()
+    /// The system's text size; the look moves from there.
+    var textSize = DynamicTypeSize.large
     /// In a research paper, numbers such as [3] step back behind the words.
     var citations = false
     let highlight: (NSRange) -> Void
@@ -22,7 +25,8 @@ struct PassageText: UIViewRepresentable {
         view.backgroundColor = .clear
         view.textContainerInset = .zero
         view.textContainer.lineFragmentPadding = 0
-        view.adjustsFontForContentSizeCategory = true
+        // the size comes with the font: the view must not set it back to the system's
+        view.adjustsFontForContentSizeCategory = false
         view.delegate = context.coordinator
         let menu = UIEditMenuInteraction(delegate: context.coordinator)
         view.addInteraction(menu)
@@ -38,6 +42,8 @@ struct PassageText: UIViewRepresentable {
 
     func updateUIView(_ view: UITextView, context: Context) {
         context.coordinator.parent = self
+        // highlights and system colours resolve for the page they lie on
+        view.overrideUserInterfaceStyle = look.ground.scheme.map { $0 == .dark ? .dark : .light } ?? .unspecified
         let text = attributed()
         if view.attributedText != text { view.attributedText = text }
         // VoiceOver cannot point at a sentence: each suggestion is offered as actions of its paragraph
@@ -60,14 +66,13 @@ struct PassageText: UIViewRepresentable {
     }
 
     func attributed() -> NSAttributedString {
-        let base = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
-        let serif = base.withDesign(.serif) ?? base
-        let font = UIFont(descriptor: passage.heading == nil ? serif : serif.withSymbolicTraits(.traitBold) ?? serif, size: 0)
+        let font = look.font(style, bold: passage.heading != nil, system: textSize)
         let lines = NSMutableParagraphStyle()
-        lines.lineSpacing = 4
-        let result = NSMutableAttributedString(string: passage.text, attributes: [.font: font, .foregroundColor: UIColor.label, .paragraphStyle: lines])
+        lines.lineSpacing = look.lineSpacing(for: font.pointSize)
+        let result = NSMutableAttributedString(string: passage.text, attributes: [.font: font, .foregroundColor: look.ground.ink, .paragraphStyle: lines])
         if citations {
-            for range in PaperSense.citations(in: passage.text) { result.addAttribute(.foregroundColor, value: UIColor.secondaryLabel, range: range) }
+            let quiet = look.ground.page == nil ? UIColor.secondaryLabel : look.ground.ink.withAlphaComponent(0.6)
+            for range in PaperSense.citations(in: passage.text) { result.addAttribute(.foregroundColor, value: quiet, range: range) }
         }
         for mark in passage.marks where mark.start >= 0 && mark.start + mark.length <= result.length {
             if mark.ai {

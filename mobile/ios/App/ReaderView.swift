@@ -1,13 +1,6 @@
 import SwiftUI
 
 struct ReaderView: View {
-    private enum TextSize: String, CaseIterable, Identifiable {
-        case small = "Small", standard = "Default", large = "Large"   // the stored values
-        var id: Self { self }
-        var title: LocalizedStringKey { LocalizedStringKey(rawValue) }
-        var style: UIFont.TextStyle { self == .small ? .callout : self == .large ? .title3 : .body }
-    }
-
     let id: Article.ID
     @Environment(Library.self) private var library
     @Environment(Speaker.self) private var speaker
@@ -15,12 +8,15 @@ struct ReaderView: View {
     @Environment(Summaries.self) private var summaries
     @State private var showReferences = false
     @State private var showServer = false
-    @AppStorage("readerTextSize") private var textSize = TextSize.standard
+    private var stored = StoredReaderLook()
+    @Environment(\.dynamicTypeSize) private var systemTextSize
     @State private var showSummary = LaunchOptions.showSummary
     @State private var position = ReadingPosition()
     @State private var height: CGFloat = 0
     /// Jumping along the rail is not reading: until then, paragraphs coming into view do not count.
     @State private var jumpedAt = Date.distantPast
+
+    init(id: Article.ID) { self.id = id }
 
     var body: some View {
         Group {
@@ -36,6 +32,7 @@ struct ReaderView: View {
 
     private func content(_ article: Article) -> some View {
         let paper = PaperSense.isPaper(article)
+        let look = stored.look
         let abstract = paper ? PaperSense.abstract(article.passages) : nil
         // a paper's list of sources stays folded until asked for; the rail and the progress count only what is on screen
         let references = paper ? PaperSense.references(article.passages) : nil
@@ -47,7 +44,7 @@ struct ReaderView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 Text(verbatim: "\(article.host) · \(article.duration)").font(.footnote).foregroundStyle(.secondary)
-                Text(article.title).font(.title.weight(.semibold)).fontDesign(.serif).accessibilityAddTraits(.isHeader)
+                Text(article.title).readerText(look, title: true).accessibilityAddTraits(.isHeader)
                 if paper { PaperHead(paper: article.paper, link: article.link) }
                 if article.passages.isEmpty {
                     Text("The text of this article is not on this device yet.").foregroundStyle(.secondary)
@@ -57,7 +54,7 @@ struct ReaderView: View {
                 LazyVStack(alignment: .leading, spacing: 18) {
                     ForEach(Array(shown.enumerated()), id: \.element.id) { index, passage in
                         let at = article.passages.firstIndex { $0.id == passage.id } ?? index
-                        paragraph(passage, paper: paper, small: references?.contains(at) ?? false, hint: shown.first { $0.marks.contains(where: \.ai) }?.id)
+                        paragraph(passage, look: look, paper: paper, small: references?.contains(at) ?? false, hint: shown.first { $0.marks.contains(where: \.ai) }?.id)
                             .modifier(AbstractBox(on: abstract?.contains(at) ?? false))
                             .id(passage.id)
                             .onGeometryChange(for: CGRect.self) { $0.frame(in: .named("reader")) } action: { frame in
@@ -107,6 +104,7 @@ struct ReaderView: View {
                 .padding(.trailing, 2)
             }
         }
+        .readerPage(look.ground)
         .onDisappear { position.settle { library.read(id, upTo: $0) } }
         .onChange(of: scenePhase) { _, phase in
             if phase != .active { position.settle { library.read(id, upTo: $0) } }
@@ -122,13 +120,7 @@ struct ReaderView: View {
                         Label("Contents", systemImage: "list.bullet")
                     }
                 }
-                Menu {
-                    Picker("Text size", selection: $textSize) {
-                        ForEach(TextSize.allCases) { Text($0.title).tag($0) }
-                    }
-                } label: {
-                    Label("Text size", systemImage: "textformat.size")
-                }
+                ReaderDisplayButton()
                 if let url = article.url { ShareLink(item: url, subject: Text(article.title)) }
             }
             ToolbarItemGroup(placement: .bottomBar) {
@@ -221,16 +213,17 @@ struct ReaderView: View {
 
     private func style(of passage: Passage, small: Bool) -> UIFont.TextStyle {
         if let level = passage.heading { return level == 1 ? .title2 : level == 2 ? .title3 : .headline }
-        return small ? .footnote : textSize.style
+        return small ? .footnote : .body
     }
 
     @ViewBuilder
-    private func paragraph(_ passage: Passage, paper: Bool, small: Bool, hint: Passage.ID?) -> some View {
+    private func paragraph(_ passage: Passage, look: ReaderLook, paper: Bool, small: Bool, hint: Passage.ID?) -> some View {
         if passage.kind == .image {
             ArticleImage(source: passage.image ?? "", description: passage.text)
         } else {
             VStack(alignment: .leading, spacing: 10) {
-                PassageText(passage: passage, style: style(of: passage, small: small), citations: paper && !small,
+                PassageText(passage: passage, style: style(of: passage, small: small), look: look, textSize: systemTextSize,
+                            citations: paper && !small,
                             highlight: { range in library.change(passage.id, in: id) { $0.highlight(range) } },
                             unmark: { range in library.change(passage.id, in: id) { $0.unmark(range) } },
                             resolve: { mark, keep in library.change(passage.id, in: id) { $0.resolve(suggestion: mark, keep: keep) } })
