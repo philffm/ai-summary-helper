@@ -381,6 +381,14 @@ final class LibraryStoreTests: XCTestCase {
         XCTAssertEqual(changesOnTheServer, 0)
         let again = try await start()
         XCTAssertEqual(again.article("x1")?.progress, 0.99, "kept here")
+        // a new start tidies up; with a library joined, that library stays where it is
+        let held = try await again.store!.sync.host.run("""
+            const ids = async (k) => ((await storage.get(k))[k] || []).map((e) => e.id);
+            return { theirs: await ids('articles:index'), ours: await ids('local:articles:index') };
+            """)
+        XCTAssertEqual(try JSONDecoder().decode([String: [String]].self, from: held), ["theirs": ["x1"], "ours": []])
+        let state = try await again.store!.sync.state()
+        XCTAssertEqual(state?.articles, 1)
     }
 
     func testJoiningBringsTheBrowsersArticlesAndKeepsTheAppsOwn() async throws {
