@@ -9,16 +9,20 @@ final class LibraryStore: @unchecked Sendable {
     /// Where pictures taken out of the text are kept, and where the app kept its library before.
     let shared: URL
 
-    init(folder: URL, shared: URL = SharedStore.directory, vault: SyncVault, network: URLSessionConfiguration = .ephemeral) throws {
+    init(folder: URL, shared: URL = SharedStore.directory, vault: SyncVault, writeBack: Bool = false,
+         network: URLSessionConfiguration = .ephemeral) throws {
         self.shared = shared
-        sync = try LibrarySync(folder: folder, vault: vault, network: network)
+        sync = try LibrarySync(folder: folder, vault: vault, writeBack: writeBack, network: network)
     }
 
     /// The app's own. The database stays outside the shared container: only the app reads it, and the system ends an app
     /// that holds a lock on a shared file while it is suspended.
     static var folder: URL { URL.applicationSupportDirectory.appending(path: "kaivo-library", directoryHint: .isDirectory) }
 
-    static func standard() throws -> LibraryStore { try LibraryStore(folder: folder, vault: SyncVault(scope: "library")) }
+    /// Writing back is not switched on for anyone yet: only a debug build asked to (`-KaivoWriteBack YES`) does it.
+    static func standard() throws -> LibraryStore {
+        try LibraryStore(folder: folder, vault: SyncVault(scope: "library"), writeBack: LaunchOptions.writeBack)
+    }
 
     private var host: SyncHost { sync.host }
 
@@ -31,6 +35,7 @@ final class LibraryStore: @unchecked Sendable {
     /// finds its library; should that version change it, the changes are taken over at the next start. The first state of
     /// the file is also copied aside, and that copy is never replaced. If anything fails, it is tried again.
     func convert() async throws {
+        _ = try await host.run("return sync.library.tidy();")
         let old = shared.appending(path: Self.oldFile)
         guard FileManager.default.fileExists(atPath: old.path) else { return }
         let data = try Data(contentsOf: old)
@@ -56,9 +61,14 @@ final class LibraryStore: @unchecked Sendable {
             return package
         })
         for (article, id) in zip(articles, ids) {
-            var extra = LibraryRecords.Extra(paper: article.paper, pending: article.pending, safari: article.safariID != nil ? true : nil)
-            if article.host != URL(string: article.link)?.host() { extra.host = article.host }
-            if extra != LibraryRecords.Extra() { try await setExtra(id, extra) }
+            // what is noted about it already stays, where nothing new is said
+            let before = try await extra(id)
+            var after = before
+            after.paper = article.paper ?? before.paper
+            after.pending = article.pending ?? before.pending
+            if article.safariID != nil { after.safari = true }
+            if article.host != URL(string: article.link)?.host() { after.host = article.host }
+            if after != before { try await setExtra(id, after) }
         }
         return ids
     }
@@ -97,11 +107,17 @@ final class LibraryStore: @unchecked Sendable {
 
     private static func json(_ data: Data?) -> Any? { data.flatMap { try? JSONSerialization.jsonObject(with: $0, options: .fragmentsAllowed) } }
 
-    private static func listed(_ storage: SyncStoring) throws -> [[String: Any]] {
-        let stored = try storage.data(["articles:index", removedKey])
+    /// The synced library under the extension's keys, and what is only on this device (js/appSync.js).
+    private static let areas = ["", "local:"]
+
+    private static func listed(_ storage: SyncStoring) throws -> [(area: String, entry: [String: Any])] {
+        let stored = try storage.data(areas.map { $0 + "articles:index" } + [removedKey])
         let removed = Set(json(stored[removedKey]) as? [String] ?? [])
-        return (json(stored["articles:index"]) as? [[String: Any]] ?? []).filter { entry in
-            (entry["id"] as? String).map { !removed.contains($0) } ?? false
+        return areas.flatMap { area in
+            (json(stored[area + "articles:index"]) as? [[String: Any]] ?? []).compactMap { entry in
+                guard let id = entry["id"] as? String, !removed.contains(id) else { return nil }
+                return (area, entry)
+            }
         }
     }
 
@@ -109,7 +125,7 @@ final class LibraryStore: @unchecked Sendable {
     func listing() async throws -> [Article] {
         let pictures = shared
         let entries = try await host.read { try Self.listed($0) }
-        return entries.compactMap { LibraryRecords.article(entry: $0, record: [:], highlights: [], extra: nil, pictures: pictures) }
+        return entries.compactMap { LibraryRecords.article(entry: $0.entry, record: [:], highlights: [], extra: nil, pictures: pictures) }
             .sorted { $0.savedAt > $1.savedAt }
     }
 
@@ -120,12 +136,13 @@ final class LibraryStore: @unchecked Sendable {
         let stored = try await host.read { storage -> [Stored] in
             let byPage = Dictionary(grouping: marks.highlights, by: \.url)
             let entries = try Self.listed(storage)
-            let keys = entries.map { entry in
+            let keys = entries.map { area, entry in
                 let id = entry["id"] as? String ?? ""
-                return ["articles:rec:" + id, Self.extraPrefix + id]
+                return [area + "articles:rec:" + id, Self.extraPrefix + id]
             }
             let versions = try storage.versions(keys.flatMap { $0 })
-            return try zip(entries, keys).map { entry, keys in
+            return try zip(entries, keys).map { found, keys in
+                let entry = found.entry
                 let id = entry["id"] as? String ?? ""
                 var parts = Stored(id: id, entry: entry, versions: keys.map { versions[$0] }, highlights: byPage[marks.pages[id] ?? ""] ?? [],
                                    page: marks.same[id] ?? "", before: nil)

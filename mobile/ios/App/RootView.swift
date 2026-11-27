@@ -190,6 +190,8 @@ enum LaunchOptions {
     static var wake: Bool { debugValue("KaivoWake") != nil }
     /// App Store screenshots: samples without the "sample" notes and the setup reminder.
     static var screenshots: Bool { debugValue("KaivoScreenshots") != nil }
+    /// `-KaivoWriteBack YES`: runs of the library also write back. For trying it against a test place.
+    static var writeBack: Bool { debugValue("KaivoWriteBack") != nil }
     /// Made-up feeds and articles instead of the real ones (never in a release build).
     static var samples: Bool { screenshots || debugValue("KaivoSamples") != nil }
 

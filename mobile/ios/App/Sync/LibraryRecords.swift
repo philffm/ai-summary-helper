@@ -27,6 +27,8 @@ enum LibraryRecords {
         var safari: Bool?
         /// The source shown, where it is not the one of the address.
         var host: String?
+        /// A summary written here for an article of the synced library, which does not take it yet.
+        var summary: String?
     }
 
     static let context = 32   // characters around a highlight, as plugin/src/content/anchor.js keeps them
@@ -50,7 +52,7 @@ enum LibraryRecords {
         for index in passages.indices { passages[index].id = uuid("\(id)/\(index)") }
         mark(highlights, in: &passages)
         let counted = (entry["contentWordCount"] as? NSNumber)?.intValue ?? 0
-        let summary = record["summary"] as? String ?? entry["summary"] as? String ?? ""
+        let summary = extra?.summary ?? record["summary"] as? String ?? entry["summary"] as? String ?? ""
         return Article(id: id,
                        title: entry["title"] as? String ?? link,
                        host: extra?.host ?? URL(string: link)?.host() ?? link,

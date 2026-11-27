@@ -182,7 +182,7 @@ final class SyncTests: XCTestCase {
     private static let join = """
     const place = await sync.service.add({ connection: { service: 'webdav', url: 'https://dav.test/files/', username: 'u' }, secret: { password: 'p' },
         place: { mode: 'encrypted', direction: 'twoway', root: 'kaivo-test', passphrase: input.passphrase, ackBackup: true } });
-    const run = (await sync.service.syncNow(place.id))[place.id];
+    const run = (await sync.writing.syncNow(place.id))[place.id];
     """
 
     func testJoinsAPlaceTheExtensionWrote() async throws {
@@ -196,8 +196,10 @@ final class SyncTests: XCTestCase {
         const entry = got['articles:index'][0], bad = [];
         for (const k of ['id', 'url', 'title', 'tags', 'timestamp', 'progress', 'favorite']) if (h(entry[k]) !== h(expect.index[k])) bad.push(k);
         if (got['articles:rec:x1'].content !== expect.record.content) bad.push('content');
+        // in whatever order they arrived
+        const sorted = (list) => list.slice().sort((a, b) => a.id.localeCompare(b.id));
         const marks = await sync.highlights.all({ dismissed: true });
-        if (h(marks) !== h(expect.highlights)) bad.push('highlights ' + JSON.stringify(marks));
+        if (h(sorted(marks)) !== h(sorted(expect.highlights))) bad.push('highlights ' + JSON.stringify(marks));
         return { run, bad, checked: 9 };
         """, ["passphrase": try XCTUnwrap(made["passphrase"] as? String),
               "expect": String(decoding: try JSONSerialization.data(withJSONObject: try XCTUnwrap(made["expect"])), as: UTF8.self)])
@@ -234,7 +236,7 @@ final class SyncTests: XCTestCase {
         XCTAssertEqual(joined["content"] as? String, "<h2>One</h2><p>Words that stay. Grüße 🌍</p><p>A suggestion of the AI.</p>")
         XCTAssertEqual(joined["marks"] as? [String], ["hl_ai", "hl_mine"])
         let secondPlace = try XCTUnwrap(joined["id"] as? String), firstPlace = try XCTUnwrap(began["id"] as? String)
-        let again = "const run = (await sync.service.syncNow(input.id))[input.id];"
+        let again = "const run = (await sync.writing.syncNow(input.id))[input.id];"
 
         let written = FakeDAV.count("PUT")
         let quiet = try await answer(second, again + "return run;", ["id": secondPlace])

@@ -20,8 +20,8 @@ final class SyncHost: @unchecked Sendable {
     private static let logger = Logger(subsystem: "eu.byphil.kaivo", category: "sync")
     private static let maxAnswer = 25 * 1024 * 1024
 
-    /// `pullOnly`: runs only fetch; nothing on the server changes.
-    init(storage: SyncStoring, pullOnly: Bool = false, bundle: Bundle = .main, network: URLSessionConfiguration = .ephemeral) throws {
+    /// Without `writeBack` runs only fetch; nothing on the server changes.
+    init(storage: SyncStoring, writeBack: Bool = false, bundle: Bundle = .main, network: URLSessionConfiguration = .ephemeral) throws {
         self.storage = storage
         guard let context = JSContext() else { throw Failure(description: "JavaScript is not available.") }
         self.context = context
@@ -44,7 +44,7 @@ final class SyncHost: @unchecked Sendable {
             }
             context.setObject(makeHost(), forKeyedSubscript: "__host" as NSString)
             for (source, url) in sources { context.evaluateScript(source, withSourceURL: url) }
-            context.evaluateScript("var storage = __createStorage(); var sync = AISH_APP.createSync({ storage: storage, log: console.log, engine: { pullOnly: \(pullOnly) } });")
+            context.evaluateScript("var storage = __createStorage(); var sync = AISH_APP.createSync({ storage: storage, log: console.log, writeBack: \(writeBack) });")
             if let thrown { throw Failure(description: thrown) }
         }
     }

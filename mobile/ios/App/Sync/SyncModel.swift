@@ -105,7 +105,7 @@ final class SyncModel {
         var brought = true
         do {
             let run = try await sync.run()
-            brought = run.applied > 0
+            brought = run.applied > 0 || (run.moved ?? 0) > 0
             if let first = run.errors.first { problem = .other(first) }
         } catch {
             problem = Problem(error)

@@ -84,7 +84,7 @@ final class LibraryStoreTests: XCTestCase {
         let second = try await start()
         XCTAssertEqual(second.articles.count, 1)
         XCTAssertEqual(second.article("twice")?.passages.map(\.marks.count), [0, 1])
-        let stored = try await second.store!.sync.host.run("return (await sync.highlights.all({ dismissed: true })).length;")
+        let stored = try await second.store!.sync.host.run("return (await sync.library.marks()).highlights.length;")
         XCTAssertEqual(String(decoding: stored, as: UTF8.self), "1")
     }
 
@@ -209,8 +209,178 @@ final class LibraryStoreTests: XCTestCase {
         XCTAssertEqual(article.passages.map(\.kind), [.text, .image, .text])
         let path = try XCTUnwrap(article.passages[1].image)
         XCTAssertEqual(try Data(contentsOf: shared.appending(path: path)), png)
-        let kept = try await one.sync.host.run("return (await storage.get('articles:rec:p'))['articles:rec:p'].content;")
+        let kept = try await one.sync.host.run("return (await storage.get('local:articles:rec:p'))['local:articles:rec:p'].content;")
         XCTAssertEqual(try JSONDecoder().decode(String.self, from: kept), content, "the stored text is not touched")
+    }
+
+    private func serveTheBrowsersPlace() throws -> [String: Any] {
+        let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "sync-place", withExtension: "json"))
+        let made = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: url)) as? [String: Any])
+        for (path, text) in try XCTUnwrap(made["files"] as? [String: String]) {
+            FakeDAV.put("/files/kaivo-test/" + path, try XCTUnwrap(Data(base64Encoded: text)))
+        }
+        return made
+    }
+
+    private var changesOnTheServer: Int { FakeDAV.count("PUT") + FakeDAV.count("MKCOL") + FakeDAV.count("DELETE") }
+
+    /// Writing back, as far as it goes: how far an article of the library was read, and its highlights. The result is read
+    /// by the extension's own code (TEST_RUNNER_KAIVO_SYNC_BACK=<folder>/place, then scripts/sync-compat.mjs back <folder>).
+    func testWritesBackReadingAndHighlightsAndNothingElse() async throws {
+        let made = try serveTheBrowsersPlace()
+        // before joining: an article only this phone has, and a copy of the browser's own, saved here earlier and read further
+        var copy = Passage(text: "Grüße aus dem Browser 🌍, with a \"quote\" & more.")
+        copy.highlight((copy.text as NSString).range(of: "Grüße aus dem Browser"))
+        var mine = Passage(text: "Only my words.")
+        mine.highlight((mine.text as NSString).range(of: "my words"))
+        var more = Passage(text: "Marked on the phone before joining.")
+        more.highlight((more.text as NSString).range(of: "before joining"))
+        try saveAsBefore([
+            Article(id: "mine", title: "Only on this phone", host: "example.org", tags: [], words: 3, savedAt: .now,
+                    passages: [mine], link: "https://example.org/mine"),
+            Article(id: "copy", title: "Saved here first", host: "example.org", tags: [], words: 12,
+                    savedAt: Date(timeIntervalSince1970: 1_700_000_000), progress: 0.9, passages: [copy, more], link: "https://example.org/from-the-browser"),
+            Article(id: "nowhere", title: "No address", host: "A feed", tags: [], words: 2, savedAt: .now, passages: [Passage(text: "No link.")]),
+        ])
+        let network = URLSessionConfiguration.ephemeral
+        network.protocolClasses = [FakeDAV.self]
+        let store = try LibraryStore(folder: root.appending(path: "library"), shared: shared, vault: vault, writeBack: true, network: network)
+        let library = Library(samples: false, store: store)
+        await library.settled()
+        let model = SyncModel(library: library)
+        await model.read("aish-library://v1?k=webdav&u=https%3A%2F%2Fdav.test%2Ffiles%2F&n=u&p=p&r=kaivo-test")
+        model.passphrase = try XCTUnwrap(made["passphrase"] as? String)
+        await model.connect()
+        XCTAssertNil(model.problem)
+        XCTAssertEqual(Set(library.articles.map(\.title)), ["Only on this phone", "No address", "Written in the browser"],
+                       "the copy saved here is folded into the library's article")
+        var browser = try XCTUnwrap(library.article("x1"))
+        XCTAssertEqual(browser.progress, 0.9)
+
+        // read on, keep a suggestion, turn one down, remove a mark, mark something new, and ask for a summary
+        func paragraph(_ start: String) throws -> Passage { try XCTUnwrap(browser.passages.first { $0.text.hasPrefix(start) }, start) }
+        library.read("x1", upTo: 0.95)
+        library.change(try paragraph("Keep this").id, in: "x1") { $0.resolve(suggestion: $0.marks[0].id, keep: true) }
+        library.change(try paragraph("Turn this").id, in: "x1") { $0.resolve(suggestion: $0.marks[0].id, keep: false) }
+        library.change(try paragraph("Remove this").id, in: "x1") { $0.unmark(NSRange(location: 0, length: 6)) }
+        library.change(try paragraph("Grüße").id, in: "x1") { $0.highlight(($0.text as NSString).range(of: "quote")) }
+        library.setSummary("x1", ["Written on the phone."], marking: [])
+        // Safari on this phone hands the same page over, with its own title and text
+        try await store.take([["entry": ["id": "safari1", "url": "https://example.org/from-the-browser", "title": "Another title", "progress": 0.1],
+                               "record": ["content": "<p>Other text.</p>", "summary": "<p>Other summary.</p>"], "fresher": true]])
+        await library.settled()
+        await model.fetch()
+        XCTAssertNil(model.problem)
+        browser = try XCTUnwrap(library.article("x1"))
+        XCTAssertEqual(browser.summary, ["Written on the phone."], "kept by the app")
+        XCTAssertEqual(browser.title, "Written in the browser")
+
+        let written = changesOnTheServer
+        XCTAssertGreaterThan(FakeDAV.count("PUT"), 0)
+        XCTAssertEqual(FakeDAV.count("DELETE"), 0)
+        await model.fetch()
+        XCTAssertEqual(changesOnTheServer, written, "a run with nothing new writes nothing")
+
+        if let folder = ProcessInfo.processInfo.environment["KAIVO_SYNC_BACK"] {
+            try FakeDAV.write(below: "/files/kaivo-test/", to: URL(fileURLWithPath: folder))
+        }
+    }
+
+    func testTheSameWordsElsewhereAreAnotherMark() async throws {
+        let store = try store()
+        let result = try await store.sync.host.run("""
+            const page = 'https://example.org/p';
+            const one = { entry: { id: 'p', url: page, title: 'P', timestamp: '2026-11-01T10:00:00.000Z' }, record: {} };
+            const mark = (id, prefix, suffix) => ({ id, text: 'the same', ai: false, timestamp: '2026-11-01T10:00:00.000Z', prefix, suffix });
+            await sync.library.take({ articles: [{ ...one, highlights: [mark('a', 'First: ', ' words.')] }] });
+            await sync.library.take({ articles: [{ ...one, highlights: [mark('b', 'Second: ', ' words.')] }] });
+            await sync.library.take({ articles: [{ ...one, highlights: [mark('c', 'Longer. First: ', ' words. And more.')] }] });
+            return (await sync.library.marks()).highlights.map((h) => h.id).sort();
+            """)
+        XCTAssertEqual(try JSONDecoder().decode([String].self, from: result), ["a", "b"])
+    }
+
+    /// A large library must not be written again for every article.
+    func testALargeLibraryMovesWithAHandfulOfWrites() async throws {
+        let store = try store()
+        let result = try await store.sync.host.run("""
+            const writes = {}, set = storage.set;
+            storage.set = (items) => { for (const k of Object.keys(items)) if (k.endsWith('articles:index')) writes[k] = (writes[k] || 0) + 1; return set(items); };
+            const count = () => { const c = { ...writes }; for (const k of Object.keys(writes)) delete writes[k]; return c; };
+            const article = (id, n, progress) => ({ entry: { id, url: 'https://example.org/' + n, title: id, timestamp: '2026-11-01T10:00:00.000Z', progress },
+                record: { content: '<p>Words of ' + n + '.</p>' }, highlights: [{ id: 'hl_app_' + id, text: 'Words of ' + n, ai: false, timestamp: '2026-11-01T10:00:00.000Z' }] });
+            const ids = await sync.library.take({ articles: Array.from({ length: 700 }, (_, i) => article('own' + i, i, 0.5)) });
+            const taking = count();
+            // a library of 300 of the same pages arrives: its articles and what the server knows of them
+            const theirs = Array.from({ length: 300 }, (_, i) => ({ id: 'srv' + i, url: 'https://example.org/' + i, title: 'srv' + i, timestamp: '2026-11-02T10:00:00.000Z', progress: 0.1 }));
+            await storage.set({ 'articles:index': theirs, 'hl:schema': 2,
+                ...Object.fromEntries(theirs.map((e, i) => ['articles:rec:' + e.id, { content: '<p>Words of ' + i + '.</p>' }])),
+                'sync:ledger:p': { items: Object.fromEntries(theirs.map((e) => ['article:' + e.id, {}])) } });
+            count();
+            const moved = await sync.library.settle('p');
+            const settling = count();
+            const index = (await storage.get('articles:index'))['articles:index'];
+            const rest = (await storage.get('local:articles:index'))['local:articles:index'];
+            const marks = (await sync.library.marks()).highlights;
+            return { first: ids[0], taking, settling, moved, theirs: index.length, ours: rest.length,
+                     further: index.every((e) => e.progress === 0.5), marks: marks.length };
+            """)
+        let got = try XCTUnwrap(JSONSerialization.jsonObject(with: result) as? [String: Any])
+        XCTAssertEqual(got["first"] as? String, "own0")
+        XCTAssertEqual(got["taking"] as? [String: Int], ["local:articles:index": 1])
+        XCTAssertEqual(got["settling"] as? [String: Int], ["articles:index": 1, "local:articles:index": 1])
+        XCTAssertEqual(got["moved"] as? Int, 300)
+        XCTAssertEqual(got["theirs"] as? Int, 300)
+        XCTAssertEqual(got["ours"] as? Int, 400)
+        XCTAssertEqual(got["further"] as? Bool, true, "how far each was read came along")
+        XCTAssertEqual(got["marks"] as? Int, 700, "no highlight lost, none doubled")
+    }
+
+    /// The build before this one kept the app's own articles under the extension's keys, beside a joined library.
+    func testWhatAnEarlierBuildLeftBesideTheLibraryStaysHere() async throws {
+        let made = try serveTheBrowsersPlace()
+        let network = URLSessionConfiguration.ephemeral
+        network.protocolClasses = [FakeDAV.self]
+        let store = try LibraryStore(folder: root.appending(path: "library"), shared: shared, vault: vault, writeBack: true, network: network)
+        let library = Library(samples: false, store: store)
+        await library.settled()
+        let model = SyncModel(library: library)
+        await model.read("aish-library://v1?k=webdav&u=https%3A%2F%2Fdav.test%2Ffiles%2F&n=u&p=p&r=kaivo-test")
+        model.passphrase = try XCTUnwrap(made["passphrase"] as? String)
+        await model.connect()
+        XCTAssertNil(model.problem)
+        XCTAssertEqual(changesOnTheServer, 0)
+        _ = try await store.sync.host.run("""
+            const index = (await storage.get('articles:index'))['articles:index'];
+            const old = (id, url, progress) => ({ id, url, title: id, timestamp: '2026-10-01T10:00:00.000Z', progress, archived: false });
+            await storage.set({ 'articles:rec:alone': { content: '<p>Alone here.</p>' }, 'articles:rec:twin': { content: '<p>quote</p>' } });
+            await storage.set({ 'articles:index': [old('alone', 'https://example.org/alone', 0.4), old('twin', 'https://example.org/from-the-browser', 0.99), ...index] });
+            await sync.highlights.apply([{ op: 'add', hl: { id: 'hl_app_alone', url: 'https://example.org/alone', text: 'Alone here', type: 'user', timestamp: '2026-10-01T10:00:00.000Z' } }]);
+            await new Promise((resolve) => setTimeout(resolve, 100));
+            """)
+        await model.fetch()
+        XCTAssertNil(model.problem)
+        XCTAssertEqual(FakeDAV.count("PUT"), 1, "only how far the library's article was read")
+        XCTAssertEqual(FakeDAV.count("DELETE"), 0)
+        XCTAssertEqual(Set(library.articles.map(\.id)), ["alone", "x1"], "the screen shows what is there now")
+        XCTAssertEqual(library.article("x1")?.progress, 0.99)
+        XCTAssertEqual(library.article("alone")?.passages.first?.marks.count, 1)
+    }
+
+    func testWithoutTheSwitchNothingIsWritten() async throws {
+        let made = try serveTheBrowsersPlace()
+        let library = try await start()
+        let model = SyncModel(library: library)
+        await model.read("aish-library://v1?k=webdav&u=https%3A%2F%2Fdav.test%2Ffiles%2F&n=u&p=p&r=kaivo-test")
+        model.passphrase = try XCTUnwrap(made["passphrase"] as? String)
+        await model.connect()
+        XCTAssertEqual(model.state?.writesBack, false)
+        library.read("x1", upTo: 0.99)
+        await library.settled()
+        await model.fetch()
+        XCTAssertEqual(changesOnTheServer, 0)
+        let again = try await start()
+        XCTAssertEqual(again.article("x1")?.progress, 0.99, "kept here")
     }
 
     func testJoiningBringsTheBrowsersArticlesAndKeepsTheAppsOwn() async throws {
@@ -233,11 +403,12 @@ final class LibraryStoreTests: XCTestCase {
         await model.connect()
         XCTAssertNil(model.problem)
         XCTAssertNil(model.offer)
-        XCTAssertEqual(model.state?.articles, 2)
+        XCTAssertEqual(model.state?.articles, 1, "what came from the library")
         XCTAssertEqual(Set(library.articles.map(\.title)), ["Only on this phone", "Written in the browser"])
         let browser = try XCTUnwrap(library.article("x1"))
         XCTAssertEqual(browser.progress, 0.35)
-        XCTAssertEqual(browser.passages.flatMap { passage in passage.marks.map { passage.words(of: $0) } }, ["Grüße aus dem Browser"])
+        XCTAssertEqual(browser.passages.flatMap { passage in passage.marks.map { passage.words(of: $0) } },
+                       ["Grüße aus dem Browser", "Keep this suggestion.", "Turn this down.", "Remove this mark."])
         XCTAssertTrue(FileManager.default.fileExists(atPath: library.store!.sync.backupBeforeJoin.path))
         XCTAssertEqual(FakeDAV.count("PUT") + FakeDAV.count("MKCOL") + FakeDAV.count("DELETE"), 0)
         await model.leave()

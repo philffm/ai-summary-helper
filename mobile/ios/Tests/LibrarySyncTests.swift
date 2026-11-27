@@ -57,7 +57,7 @@ final class LibrarySyncTests: XCTestCase {
 
         try await library.join(code: code(), passphrase: passphrase)
         let first = try await library.run()
-        XCTAssertEqual(first.pulled, 2)
+        XCTAssertEqual(first.pulled, 5, "one article and its highlights")
         XCTAssertEqual(first.pushed, 0)
         XCTAssertEqual(first.errors, [])
         let joined = try await library.state()

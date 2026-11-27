@@ -1,7 +1,7 @@
 import Foundation
 
-/// The app's end of a synced library: join it, fetch it, leave it. The work is done by the extension's modules (SyncHost).
-/// Until the app also writes back, runs only fetch.
+/// The app's end of a synced library: join it, run it, leave it. The work is done by the extension's modules (SyncHost).
+/// Runs only fetch unless writing back is switched on: how far articles were read and their highlights, nothing else.
 struct LibrarySync {
     struct State: Decodable {
         struct Last: Decodable {
@@ -19,6 +19,7 @@ struct LibrarySync {
         let server: String?
         let root: String
         let articles: Int
+        let writesBack: Bool
         let last: Last?
     }
 
@@ -26,6 +27,8 @@ struct LibrarySync {
         let pulled: Int
         let applied: Int
         let pushed: Int
+        /// What was told apart or folded together after the fetch; nil when the fetch did not get that far.
+        var moved: Int?
         let errors: [String]
     }
 
@@ -45,10 +48,10 @@ struct LibrarySync {
     private let folder: URL
 
     /// The library in this folder, its secrets in the Keychain.
-    init(folder: URL, vault: SyncVault, network: URLSessionConfiguration = .ephemeral) throws {
+    init(folder: URL, vault: SyncVault, writeBack: Bool = false, network: URLSessionConfiguration = .ephemeral) throws {
         self.folder = folder
         storage = try SyncStorage(url: folder.appending(path: "library.sqlite"))
-        host = try SyncHost(storage: try GuardedStorage(storage, vault: vault), pullOnly: true, network: network)
+        host = try SyncHost(storage: try GuardedStorage(storage, vault: vault), writeBack: writeBack, network: network)
     }
 
     /// nil when this is no code of a library.
