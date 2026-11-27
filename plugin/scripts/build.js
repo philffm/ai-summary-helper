@@ -308,6 +308,27 @@ function buildPlatform(name, manifestPath) {
 
 async function main() {
     const args = process.argv.slice(2);
+    // One module graph as a classic script that sets self.<global> to the entry's `API`, written where asked. The iOS app
+    // bundles the sync modules this way (mobile/ios/js/appSync.js). Usage: --module-bundle <entry> <global> <out file>
+    const graphIdx = args.indexOf('--module-bundle');
+    if (graphIdx !== -1) {
+        const [entry, global, out] = args.slice(graphIdx + 1, graphIdx + 4);
+        if (!entry || !global || !out) {
+            console.error('Usage: node scripts/build.js --module-bundle <entry> <global> <out file>');
+            process.exit(1);
+        }
+        try {
+            const code = bundleModuleGraph(path.resolve(entry), global);
+            fs.mkdirSync(path.dirname(path.resolve(out)), { recursive: true });
+            fs.writeFileSync(path.resolve(out), code);
+            console.log(`  ✓ bundled ${path.basename(out)} (${code.length} bytes)`);
+        } catch (err) {
+            console.error(`✗ ${err.message}`);
+            process.exit(1);
+        }
+        return;
+    }
+
     // Design tokens must be up to date and WCAG AA in every brand × theme (and every stylesheet colour pair, see design-system/build.mjs): a build with an unreadable pair does not ship.
     execFileSync(process.execPath, [path.join(ROOT, '..', 'design-system', 'build.mjs'), '--check'], { stdio: 'inherit' });
     const clean = args.includes('--clean');
