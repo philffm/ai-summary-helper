@@ -151,8 +151,9 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
         if (recommendation != null) {
             var keptAs by rememberSaveable { mutableStateOf("") }
             var keeping by remember { mutableStateOf(false) }
-            Column(Modifier.fillMaxWidth().heightIn(max = 260.dp).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                RecommendationCard(recommendation, withMarks = true)
+            // the words scroll, the button below them stays in sight
+            Column(Modifier.fillMaxWidth().heightIn(max = 300.dp).padding(horizontal = 12.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Column(Modifier.weight(1f, fill = false).verticalScroll(rememberScrollState())) { RecommendationCard(recommendation, withMarks = true) }
                 if (keptAs.isNotEmpty()) FilledTonalButton(onClick = { onOpenReading(keptAs) }, modifier = Modifier.fillMaxWidth()) { Text("Saved. Open in reading list") }
                 else FilledTonalButton(enabled = !keeping && progress >= 1f, modifier = Modifier.fillMaxWidth(), onClick = {
                     val view = web ?: return@FilledTonalButton
