@@ -15,3 +15,8 @@
 - Every new semantic token gets a `$description` (what it is for, not its value).
 - UI components: look them up in `design-system/dist/components.md` (purpose, selectors, states, tokens, a11y) before building a new one; a new or changed component gets an entry in `design-system/components.json`.
 - Before finishing: `npm run tokens:check` (tier rules, token-clean CSS, WCAG AA for every brand × theme, component manifest).
+
+## Videos (`videos/`): rendering without stutter
+- Every clip with a live demo is rendered in 4 parallel browser tabs; anything that runs on the browser's real clock (CSS animations, `content-visibility`, async loads) looks slightly different per tab and shows up as jitter in every 4th frame.
+- Read `videos/RENDER-DETERMINISM.md` before touching `videos/src/Composition.tsx`, the clip steps in `videos/src/clips.ts` or the `?clock=manual` part of `plugin/demo/demo-shim.js`. After rendering, run `videos/scripts/check-jitter.py` on the output (reversals above 6 = visible stutter).
+- Do not rebuild the demo or run a second `batch-render` while a render is running; do not `pkill -f remotion`.
