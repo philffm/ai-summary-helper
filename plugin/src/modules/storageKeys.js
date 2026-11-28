@@ -157,6 +157,9 @@ export const isSyncStampsKey = (k) => typeof k === 'string' && k.startsWith(SYNC
 export const SYNC_LEDGER = 'sync:ledger:';
 export const syncLedgerKey = (placeId) => SYNC_LEDGER + placeId;
 export const isSyncLedgerKey = (k) => typeof k === 'string' && k.startsWith(SYNC_LEDGER);
+/** Prefix of the feed list as a place last had it: sync:feedlist:<placeId> (syncFeedList.js). Per device. */
+export const SYNC_FEEDLIST = 'sync:feedlist:';
+export const feedListKey = (placeId) => SYNC_FEEDLIST + placeId;
 
 /** old (pre-registry) key → new key. Used by the migration and by backup import. */
 export const SK_LEGACY = {

@@ -12,6 +12,7 @@ import { createSyncService } from '../src/modules/syncService.js';
 import { hashValue } from '../src/modules/syncStamps.js';
 import { TargetError } from '../src/modules/targets/targetError.js';
 import { withQuestions } from '../src/modules/conversation.js';
+import { feedSyncAdapter } from '../src/modules/feedSyncStore.js';
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const released = fs.mkdtempSync(path.join(os.tmpdir(), 'kaivo-released-'));
@@ -50,7 +51,8 @@ const server = () => ({
 async function device(older = false) {
     const storage = memoryStorage(), stampStore = (older ? oldStamps : createStampStore)({ storage });
     storage.onChanged.addListener((c) => stampStore.onChanged(c));
-    const service = (older ? oldService : createSyncService)({ storage, makeStore: async () => server(), stampStore, dataHooks: { compose: (base, turns) => withQuestions(base, turns, { all: false }) } });
+    // the new one also puts its feed list beside the records, where the released one must not mind it
+    const service = (older ? oldService : createSyncService)({ storage, makeStore: async () => server(), stampStore, ...(older ? {} : { feeds: feedSyncAdapter(storage) }), dataHooks: { compose: (base, turns) => withQuestions(base, turns, { all: false }) } });
     let id = '';
     const sync = async () => {
         if (!id) id = (await service.add({ connection: { service: 'webdav', url: 'https://dav.test/f/', username: 'u' }, secret: { password: 'p' },
@@ -69,7 +71,9 @@ async function device(older = false) {
 const young = await device(), old = await device(true);
 await young.storage.set({ 'hl:schema': 2, 'articles:index': [{ id: 'a1', url: 'https://example.org/a', title: 'A', timestamp: '2026-11-28T09:00:00.000Z', archived: false }],
     'articles:rec:a1': { content: '<p>Text.</p>', summary: '<p>Short.</p>', summaryBase: '<p>Short.</p>', conversation: [{ id: 'q0', q: 'first?', a: 'a', sources: [], pinned: false, ts: '2026-11-28T09:30:00.000Z' }] } });
+await young.storage.set({ 'feeds:subs': [{ id: 'f', url: 'https://example.org/feed', title: 'F', tags: ['news'] }] });
 await young.sync(); await old.sync();
+assert.ok(files.has('feeds.bin'), 'the feed list is there');
 const settle = async () => { for (const d of [young, old, young, old]) await d.sync(); };
 // the old one asks later (its list wins on the server for a moment)
 await young.ask('n1', '01'); await young.sync(); await old.ask('o1', '02'); await old.sync(); await settle();

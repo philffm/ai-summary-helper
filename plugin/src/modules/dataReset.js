@@ -3,7 +3,7 @@
 // Every key the extension owns belongs to one category here; test104 fails when a key in storageKeys.js (SK) is in none of them,
 // so a key added later can never be forgotten by a delete button. The functions take the storage areas as arguments (default:
 // the real chrome ones) so they can be tested with plain objects.
-import { SK, SK_LEGACY, SK_DEAD, ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC, TARGET_LEDGER, SYNC_STAMPS, SYNC_LEDGER, HL_PAGE, isHlPageKey } from './storageKeys.js';
+import { SK, SK_LEGACY, SK_DEAD, ARTICLE_REC, ARTICLE_REC_LEGACY, COLL_REC, TARGET_LEDGER, SYNC_STAMPS, SYNC_LEDGER, SYNC_FEEDLIST, HL_PAGE, isHlPageKey } from './storageKeys.js';
 import { FEED_BODY, FEED_BODY_INDEX } from './feedBodies.js';
 
 export const CATEGORY_IDS = ['articles', 'highlights', 'feeds', 'podcasts', 'keys', 'send', 'prefs'];
@@ -16,7 +16,7 @@ export const SECRET_KEYS = [
 /** Never part of a backup, in either direction: restoring them on another device would repeat what was already done there. */
 export const TRANSIENT_KEYS = [SK.nativeSent, SK.graphSim, SK.targetOutbox, SK.mcpLog, SK.syncDeviceId, SK.syncStatus, SK.syncClock, SK.cloudRoute, SK.aiConsent, SK.lastFileBackup];
 /** Key prefixes that are per device and never leave it (sync stamps describe this device's view of the library). */
-export const TRANSIENT_PREFIXES = [SYNC_STAMPS, SYNC_LEDGER];
+export const TRANSIENT_PREFIXES = [SYNC_STAMPS, SYNC_LEDGER, SYNC_FEEDLIST];
 
 export const CATEGORIES = {
     // the summaries and everything attached to them
@@ -24,7 +24,7 @@ export const CATEGORIES = {
     // yellow highlights and AI ghost highlights, all pages (one key per page + the index; hl:all is the old single list)
     highlights: { keys: [SK.hlIndex, SK.annotations], prefixes: [HL_PAGE], extra: [...SK_DEAD.filter((k) => k !== 'articleHistory'), 'annotations'] },
     // RSS: subscriptions, fetched items, recaps, mood snapshots, listening position, background processing state
-    feeds: { keys: [SK.feedSubs, SK.feedItems, SK.feedRecaps, SK.feedMood, SK.feedAudioPos, SK.feedBackground, SK.feedBgSeen, SK.feedPending, SK.feedSync, FEED_BODY_INDEX], prefixes: [FEED_BODY] },
+    feeds: { keys: [SK.feedSubs, SK.feedItems, SK.feedRecaps, SK.feedMood, SK.feedAudioPos, SK.feedBackground, SK.feedBgSeen, SK.feedPending, SK.feedSync, FEED_BODY_INDEX], prefixes: [FEED_BODY, SYNC_FEEDLIST] },
     podcasts: { keys: [SK.podcasts] },
     // API keys and endpoints, sign-in, license
     keys: { keys: SECRET_KEYS, extra: ['servicesConfig'] },

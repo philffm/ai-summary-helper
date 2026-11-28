@@ -2,7 +2,7 @@
 import { createHighlightStore } from '../highlightStore.js';
 import { confirmSheet } from '../confirmSheet.js';
 import { SK } from '../storageKeys.js';
-import { filterBackupSecrets, hasBackupSecrets, prepareImportedData, writeRestored, backupStamps, restoreStamps, SETTINGS_LOCAL_KEYS } from '../backupUtils.js';
+import { filterBackupSecrets, hasBackupSecrets, prepareImportedData, writeRestored, backupStamps, restoreStamps, forgetFeedLists, SETTINGS_LOCAL_KEYS } from '../backupUtils.js';
 import StorageManager from '../storageManager.js';
 import { T } from '../feedI18n.js';
 import { setLabel } from '../icons.js';
@@ -167,6 +167,8 @@ export function initBackupRestore() {
                             }
                             // when what was changed, before the records themselves
                             await restoreStamps(importedData.local, rows);
+                            // a restored feed list is compared with each library anew: restoring removes no feed elsewhere
+                            if (rows[SK.feedSubs]) await forgetFeedLists();
                             // in pieces, straight into local storage, showing how far it is
                             const label = [...btnImport.childNodes].map((n) => n.cloneNode(true));
                             try { await writeRestored(rows, { onProgress: (i, n) => setLabel(btnImport, `${Math.round(i / n * 100)} %`) }); }

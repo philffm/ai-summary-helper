@@ -1,4 +1,4 @@
-import { SK, SK_LEGACY, SYNC_STAMPS, renameKeys, isHlPageKey, syncStampsKey, syncLedgerKey } from './storageKeys.js';
+import { SK, SK_LEGACY, SYNC_STAMPS, renameKeys, isHlPageKey, syncStampsKey, syncLedgerKey, feedListKey } from './storageKeys.js';
 import { withStampLock, shardOf } from './syncStampStore.js';
 import { SECRET_KEYS, TRANSIENT_KEYS, TRANSIENT_PREFIXES } from './dataReset.js';
 import { cleanConnection, cleanPlace } from './syncService.js';
@@ -135,6 +135,13 @@ export async function restoreStamps(file, data, { area = chrome.storage.local } 
         if (taken) await writeRestored({ ...out, [SK.syncClock]: { t: top } }, { area });
         return taken;
     });
+}
+
+/** Forgets what each place last had of the feed list (syncFeedList.js): the next run joins the lists instead of removing. */
+export async function forgetFeedLists({ area = chrome.storage.local } = {}) {
+    const places = (await new Promise((resolve) => { const r = area.get({ [SK.syncPlaces]: [] }, resolve); if (r && r.then) r.then(resolve); }))[SK.syncPlaces];
+    const keys = (Array.isArray(places) ? places : []).map((p) => feedListKey(p.id));
+    if (keys.length) await area.remove(keys);
 }
 
 /**

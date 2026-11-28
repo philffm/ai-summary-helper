@@ -10,7 +10,8 @@ import { countWords } from './textUtils.js';
 import { withQuestions } from './conversation.js';
 import { createHighlightStore } from './highlightStore.js';
 import { createHighlightMessages } from './highlightMessages.js';
+import { feedSyncAdapter } from './feedSyncStore.js';
 
 // how a pulled article's displayed summary and word counts are made on this device (the same functions the popup uses)
 const dataHooks = { count: countWords, compose: (base, turns) => withQuestions(base, turns, { all: false }) };
-export const API = { dataHooks, createStampStore, createSyncService, makeStore, renderViewer, loadViewerTemplates, createNotesStore, createNotesMessages, createHighlightStore, createHighlightMessages };
+export const API = { dataHooks, createStampStore, createSyncService, makeStore, renderViewer, loadViewerTemplates, createNotesStore, createNotesMessages, createHighlightStore, createHighlightMessages, feedSyncAdapter };
