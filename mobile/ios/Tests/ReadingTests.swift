@@ -76,6 +76,13 @@ final class ReadingTests: XCTestCase {
         let (summary, copied) = SummaryPrompt.split("About sleep.\n- one\n**KEY SENTENCES:**\n1. \"Sleep moves what you read into memory.\"\n- invented sentence that is nowhere at all")
         XCTAssertEqual(SummaryPrompt.lines(summary), ["About sleep.", "one"])
         XCTAssertEqual(SummaryPrompt.sentences(copied, in: ["Sleep moves what you read into memory. More."]), ["Sleep moves what you read into memory."])
+        // the questions come last and are taken off before the rest is read
+        let (rest, listed) = SummaryPrompt.cutQuestions("About sleep.\n- one\nKEY SENTENCES:\nSleep moves it.\n**QUESTIONS:** [{\"q\":\"Why?\",\"a\":\"Because.\"}]")
+        XCTAssertFalse(rest.contains("QUESTIONS") || rest.contains("Because."))
+        XCTAssertTrue(listed.contains("\"q\":\"Why?\""))
+        XCTAssertEqual(SummaryPrompt.cutQuestions("Open questions: nobody knows.\n- one").1, "", "a sentence of the summary is no marker")
+        let fenced = SummaryPrompt.cutQuestions("Text.\nQUESTIONS:\n```json\n[{\"q\":\"Why?\"}]\n```")
+        XCTAssertTrue(fenced.0.hasPrefix("Text.") && fenced.1.contains("Why?"))
         let inline = SummaryPrompt.split("KEY SENTENCES: Sleep moves what you read into memory. A short review keeps more than a second reading.")
         XCTAssertEqual(inline.0, "")
         XCTAssertEqual(SummaryPrompt.sentences(inline.1, in: ["Sleep moves what you read into memory.", "A short review keeps more than a second reading."]).count, 2, "taken apart when they stand apart")

@@ -95,10 +95,17 @@ final class SyncModel {
         fetching = true
         problem = nil
         let watch = Task { [weak self] in
+            var shown = 0, at = ContinuousClock.now
             while !Task.isCancelled {
                 try? await Task.sleep(for: .milliseconds(400))
                 guard !Task.isCancelled, let running = try? await sync.state()?.last?.running else { continue }
                 self?.progress = (running.done, running.total)
+                // what has arrived shows while the rest is on its way; what was read before is not read again
+                if running.done != shown, ContinuousClock.now - at >= .seconds(2) {
+                    shown = running.done
+                    at = .now
+                    self?.library.reload()
+                }
             }
         }
         // a run that broke off may have brought a part

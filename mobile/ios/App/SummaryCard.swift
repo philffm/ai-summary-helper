@@ -10,6 +10,8 @@ struct SummaryCard: View {
     let step: (at: Int, of: Int)
     /// A model is set up, so one can be written again.
     let again: Bool
+    /// In the reader's menu the summary stands open, without a head to fold it by.
+    var plain = false
     let summarize: () -> Void
 
     var body: some View {
@@ -23,21 +25,11 @@ struct SummaryCard: View {
 
     @ViewBuilder
     private var content: some View {
-        if !article.summary.isEmpty {
+        if !article.summary.isEmpty && plain {
+            text.padding(.vertical, 8)
+        } else if !article.summary.isEmpty {
             DisclosureGroup(isExpanded: $open) {
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(blocks) { row($0) }
-                    if article.summaryOnDevice == true { Text("Created on this device").font(.footnote).foregroundStyle(.secondary) }
-                    if waiting {
-                        progress
-                    } else if again {
-                        Button("Summarize again", action: summarize).frame(minHeight: 44)
-                    }
-                    SampleNote()
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 8)
-                .padding(.bottom, 4)
+                text.padding(.top, 8).padding(.bottom, 4)
             } label: {
                 // the group's own head opens and closes it
                 Label("Summary", systemImage: "sparkles")
@@ -58,6 +50,20 @@ struct SummaryCard: View {
             .buttonStyle(.plain)
             .foregroundStyle(KaivoTokens.accent)
         }
+    }
+
+    private var text: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            ForEach(blocks) { row($0) }
+            if article.summaryOnDevice == true { Text("Created on this device").font(.footnote).foregroundStyle(.secondary) }
+            if waiting {
+                progress
+            } else if again {
+                Button("Summarize again", action: summarize).frame(minHeight: 44)
+            }
+            SampleNote()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var blocks: [SummaryText.Block] {

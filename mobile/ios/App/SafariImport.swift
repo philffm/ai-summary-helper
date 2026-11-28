@@ -18,7 +18,12 @@ enum SafariImport {
         let marks = inbox.highlights.map { highlight in
             ["id": LibraryRecords.newHighlightID(), "text": highlight.text, "ai": highlight.ai, "timestamp": inbox.savedAt] as [String: Any]
         }
-        return ["entry": entry, "record": ["content": content, "summary": inbox.summary], "highlights": marks, "fresher": true]
+        var record: [String: Any] = ["content": content, "summary": inbox.summary]
+        if let questions = inbox.questions, !questions.isEmpty {
+            record["suggested"] = questions.map(\.q)
+            record["suggestedAnswers"] = Dictionary(questions.filter { !$0.a.isEmpty }.map { ($0.q, $0.a) }, uniquingKeysWith: { first, _ in first })
+        }
+        return ["entry": entry, "record": record, "highlights": marks, "fresher": true]
     }
 
     /// Headings, paragraphs and pictures in the order of the page.

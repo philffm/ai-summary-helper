@@ -12,6 +12,8 @@ struct RootView: View {
     @State private var speaker = Speaker()
     @State private var router = Router()
     @State private var summaries = Summaries()
+    @State private var questions = Questions()
+    @State private var inbox = InboxWatch()
     @State private var fetching = false
     @Environment(\.horizontalSizeClass) private var width
 
@@ -31,6 +33,7 @@ struct RootView: View {
             .environment(speaker)
             .environment(router)
             .environment(summaries)
+            .environment(questions)
             .environment(sync)
             // a scanned library code leads straight to the screen that asks before it connects
             .sheet(isPresented: $sync.shown) {
@@ -72,14 +75,13 @@ struct RootView: View {
             .onChange(of: scenePhase, initial: true) { _, phase in
                 if phase == .active {
                     status.refresh()
-                    library.importFromSafari()
-                    Task {
-                        await library.takeShared()
-                        await finishShared()
-                    }
+                    takeHandedOver()
                     Task { await sync.fetch() }
-                    feeds.importFromSafari()
                     Task { await feeds.refresh(ifOlderThan: 15 * 60) }
+                    // what arrives while the app is in front shows at once
+                    inbox.start([SafariInbox.directory, SharedLinks.directory]) { takeHandedOver() }
+                } else if phase == .background {
+                    inbox.stop()
                 }
             }
             // not before the library is read: the widgets would show an empty one
@@ -88,6 +90,16 @@ struct RootView: View {
                 SharedStore.write(value, to: Snapshot.file)
                 WidgetCenter.shared.reloadAllTimelines()
             }
+    }
+
+    /// What Safari and the share sheet have left for the app.
+    private func takeHandedOver() {
+        library.importFromSafari()
+        Task {
+            await library.takeShared()
+            await finishShared()
+        }
+        feeds.importFromSafari()
     }
 
     /// Fetches the text of shared links, one after the other, and starts the summaries asked for with them. A page that

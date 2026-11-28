@@ -234,7 +234,7 @@ extension ModelEndpoint {
     }
 }
 
-/// The same instructions and limits as the Android app (PageSummary.kt).
+/// The same instructions and limits as the Android app (PageSummary.kt), plus the prepared questions asked here.
 enum SummaryPrompt {
     static let chunk = 6000, maxChunks = 5, minText = 200, maxPassages = 5
     static let marker = "KEY SENTENCES:"
@@ -261,6 +261,15 @@ enum SummaryPrompt {
             rest = rest[cut...]
         }
         return out
+    }
+
+    /// Asked along with a summary: questions to offer under it, as the extension prepares them.
+    static let more = " As the very last line write QUESTIONS: followed by JSON like [{\"q\":\"…\",\"a\":\"…\"}]: 3 short follow-up questions (3 to 8 words, in the language of the page), each with a 2-sentence answer taken from the text."
+
+    /// The reply without the line of questions, and that list.
+    static func cutQuestions(_ reply: String) -> (String, String) {
+        guard let marker = reply.range(of: "(?im)^[\\s*#>_-]*questions[\\s*_]*:[\\s*_]*(?=\\[|```|\\n|$)", options: .regularExpression) else { return (reply, "") }
+        return (String(reply[..<marker.lowerBound]), String(reply[marker.upperBound...]))
     }
 
     /// The summary, and the copied sentences after the marker line.
@@ -301,14 +310,17 @@ enum SummaryPrompt {
     /// One request for a short text; for a long one a request per part and one to join the notes.
     static func summarize(title: String, paragraphs: [String], size: Int = chunk, most: Int = maxChunks,
                           ask: (String, String) async throws -> String,
-                          progress: (Int, Int) async -> Void) async throws -> (lines: [String], sentences: [String]) {
+                          followUps: Bool = false,
+                          progress: (Int, Int) async -> Void) async throws -> (lines: [String], sentences: [String], questions: String) {
         let body = paragraphs.joined(separator: "\n")
         guard body.count >= minText else { throw SummaryError.empty }
         let parts = parts(title + "\n\n" + body, size: size, most: most)
-        var copied = "", summary = ""
+        var copied = "", summary = "", questions = ""
         if parts.count == 1 {
             await progress(1, 1)
-            (summary, copied) = split(try await ask(system, parts[0]))
+            let reply = cutQuestions(try await ask(followUps ? system + more : system, parts[0]))
+            questions = reply.1
+            (summary, copied) = split(reply.0)
             // a model that skipped the summary and only copied sentences is asked again for the summary alone
             if self.lines(summary).joined().count < 20 { summary = split(try await ask(plain, parts[0])).0 }
         } else {
@@ -320,11 +332,13 @@ enum SummaryPrompt {
                 copied += "\n" + sentences
             }
             await progress(parts.count + 1, parts.count + 1)
-            summary = split(try await ask(join, notes.joined(separator: "\n"))).0
+            let reply = cutQuestions(try await ask(followUps ? join + more : join, notes.joined(separator: "\n")))
+            questions = reply.1
+            summary = split(reply.0).0
         }
         let lines = lines(summary)
         guard lines.joined().count >= 20 else { throw SummaryError.empty }
-        return (lines, sentences(copied, in: paragraphs))
+        return (lines, sentences(copied, in: paragraphs), questions)
     }
 }
 
@@ -390,12 +404,14 @@ final class Summaries {
                 }
                 let onDevice = endpoint.format == .device
                 var cut = onDevice ? DeviceModel.parts(for: paragraphs.joined(separator: "\n")) : (size: SummaryPrompt.chunk, most: SummaryPrompt.maxChunks)
-                func write() async throws -> (lines: [String], sentences: [String]) {
+                func write() async throws -> (lines: [String], sentences: [String], questions: String) {
                     try await SummaryPrompt.summarize(title: article.title, paragraphs: paragraphs, size: cut.size, most: cut.most,
                                                       ask: { try await client.ask(endpoint, system: $0, user: $1) },
+                                                      // the small model on the device is asked for the summary alone
+                                                      followUps: !onDevice,
                                                       progress: { at, of in await MainActor.run { self.step = (at, of) } })
                 }
-                let result: (lines: [String], sentences: [String])
+                let result: (lines: [String], sentences: [String], questions: String)
                 do {
                     result = try await write()
                 } catch DeviceModel.Failure.tooLong {
@@ -403,7 +419,7 @@ final class Summaries {
                     cut = (cut.size / 2, cut.most * 2)
                     result = try await write()
                 }
-                library.setSummary(id, result.lines, marking: result.sentences, onDevice: onDevice)
+                library.setSummary(id, result.lines, marking: result.sentences, onDevice: onDevice, questions: result.questions)
             } catch {
                 failure = error.localizedDescription
             }

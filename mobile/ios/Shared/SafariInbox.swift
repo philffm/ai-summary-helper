@@ -7,6 +7,10 @@ struct InboxArticle: Codable, Equatable {
         /// Suggested by the AI (a "ghost" highlight), not marked by the reader.
         var ai: Bool
     }
+    struct Question: Codable, Equatable {
+        var q: String
+        var a: String
+    }
     var id: String
     var url: String
     var title: String
@@ -17,6 +21,8 @@ struct InboxArticle: Codable, Equatable {
     var summary: String
     var content: String
     var highlights: [Highlight]
+    /// The questions prepared with the summary.
+    var questions: [Question]?
 }
 
 /// A feed Safari subscribes to.
@@ -120,11 +126,15 @@ enum SafariInbox {
         }
     }
 
+    static func read(_ file: URL) -> InboxArticle? {
+        (try? Data(contentsOf: file)).flatMap { try? JSONDecoder().decode(InboxArticle.self, from: $0) }
+    }
+
     /// The waiting articles; unreadable files are removed.
-    static func pending() -> [(file: URL, article: InboxArticle)] {
-        let files = (try? FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)) ?? []
+    static func pending(in folder: URL = directory) -> [(file: URL, article: InboxArticle)] {
+        let files = (try? FileManager.default.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil)) ?? []
         return files.filter { $0.pathExtension == "json" }.compactMap { file in
-            guard let data = try? Data(contentsOf: file), let article = try? JSONDecoder().decode(InboxArticle.self, from: data) else {
+            guard let article = read(file) else {
                 try? FileManager.default.removeItem(at: file)
                 return nil
             }

@@ -181,7 +181,7 @@ struct LibrarySyncView: View {
                 .accessibilityIdentifier("write-back")
             } footer: {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Off: the app only fetches. On: reading progress, highlights, comments and notes of your library go to your place too, also what you changed before.")
+                    Text("Off: the app only fetches. On: reading progress, highlights, comments, notes and questions of your library go to your place too, also what you changed before.")
                     Text("What is only saved on this iPhone stays here.")
                 }
             }

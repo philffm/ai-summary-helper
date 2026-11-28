@@ -51,6 +51,100 @@ final class LibraryStoreTests: XCTestCase {
             }
     }
 
+    /// Safari writes into the folder while the app is open: the page shows without leaving the app.
+    func testWhatSafariLeavesWhileTheAppIsOpenShows() async throws {
+        let library = try await start()
+        let inbox = root.appending(path: "inbox")
+        try FileManager.default.createDirectory(at: inbox, withIntermediateDirectories: true)
+        let watch = InboxWatch(quiet: .milliseconds(100))
+        watch.start([inbox]) { library.importFromSafari(from: inbox) }
+        defer { watch.stop() }
+        func hand(_ id: String, _ title: String) throws {
+            let article = InboxArticle(id: id, url: "https://example.org/\(id)", title: title, tags: [], words: 3, savedAt: "2026-11-28T10:00:00.000Z",
+                                       progress: 0, summary: "<p>Short.</p>", content: "<p>Some words here.</p>", highlights: [])
+            try JSONEncoder().encode(article).write(to: inbox.appending(path: id + ".json"), options: .atomic)
+        }
+        func arrived(_ count: Int) async throws {
+            for _ in 0..<150 {
+                await library.settled()
+                if library.articles.count == count, SafariInbox.pending(in: inbox).isEmpty { return }
+                try await Task.sleep(for: .milliseconds(20))
+            }
+            XCTFail("\(library.articles.count) of \(count) articles, \(SafariInbox.pending(in: inbox).count) files left")
+        }
+        try hand("article_1_a", "First")
+        try await arrived(1)
+        try hand("article_2_b", "Second")
+        // asked twice at once: still one article
+        library.importFromSafari(from: inbox)
+        library.importFromSafari(from: inbox)
+        try await arrived(2)
+        XCTAssertEqual(Set(library.articles.map(\.title)), ["First", "Second"])
+        watch.stop()
+        try hand("article_3_c", "Third")
+        try await Task.sleep(for: .milliseconds(500))
+        XCTAssertEqual(library.articles.count, 2, "nothing is watched after the app has gone")
+    }
+
+    /// The questions the browser's model prepared come with the article; one with its answer needs no model.
+    func testPreparedQuestionsAnswerWithoutAModelAndCanGoFurther() async throws {
+        let library = try await start()
+        let inbox = root.appending(path: "inbox")
+        try FileManager.default.createDirectory(at: inbox, withIntermediateDirectories: true)
+        var article = InboxArticle(id: "article_1_q", url: "https://example.org/q", title: "Asked", tags: [], words: 12, savedAt: "2026-11-28T10:00:00.000Z",
+                                   progress: 0, summary: "<p>Short.</p>", content: "<p>Sleep moves what you read into lasting memory overnight.</p>", highlights: [])
+        article.questions = [.init(q: "Why sleep?", a: "It moves what was read into memory."), .init(q: "Without an answer?", a: ""), .init(q: "How long?", a: "One night is what the page says.")]
+        try JSONEncoder().encode(article).write(to: inbox.appending(path: article.id + ".json"))
+        library.importFromSafari(from: inbox)
+        await library.settled()
+        XCTAssertEqual(library.article(article.id)?.openSuggestions.map(\.question), ["Why sleep?", "Without an answer?", "How long?"])
+
+        let questions = Questions()
+        questions.consent = AIConsent(store: UserDefaults(suiteName: "tests-" + UUID().uuidString)!)
+        var asked: [String] = []
+        questions.ask = { _, _, user in
+            asked.append(user)
+            return "And it does so in deep sleep.\nQUESTIONS: [{\"q\":\"What is deep sleep?\",\"a\":\"The stage the brain repeats the day in.\"}]"
+        }
+        // no model at all: the prepared answer is there all the same
+        questions.endpoint = { nil }
+        XCTAssertTrue(questions.send("Why sleep?", about: article.id, in: library))
+        for _ in 0..<200 where questions.short[article.id] == nil { try await Task.sleep(for: .milliseconds(20)) }
+        let short = try XCTUnwrap(library.article(article.id)?.questions?.last)
+        XCTAssertEqual(short.answer, "It moves what was read into memory.")
+        XCTAssertEqual(short.pinned, true, "the first one stands with the summary, as in the browser")
+        XCTAssertEqual(questions.short[article.id], short.id)
+        XCTAssertNil(questions.consentFor)
+        XCTAssertEqual(asked, [])
+        XCTAssertEqual(library.article(article.id)?.openSuggestions.map(\.question), ["Without an answer?", "How long?"])
+        XCTAssertFalse(questions.send("Without an answer?", about: article.id, in: library), "this one needs a model")
+
+        // further, with a model: the same question goes on
+        library.setQuestion(article.id, turn: short.id, noted: true)
+        questions.endpoint = { ModelEndpoint.own(ModelServer(address: "192.168.1.20:11434", model: "m")) }
+        XCTAssertTrue(questions.send(short.question, about: article.id, in: library, turn: short.id))
+        for _ in 0..<200 where !questions.asking.isEmpty { try await Task.sleep(for: .milliseconds(20)) }
+        XCTAssertNil(questions.failure)
+        XCTAssertEqual(asked.count, 1)
+        XCTAssertTrue(asked[0].contains("It moves what was read into memory."), "the model is told what stands there")
+        let longer = try XCTUnwrap(library.article(article.id)?.questions)
+        XCTAssertEqual(longer.map(\.id), [short.id])
+        XCTAssertEqual(longer[0].date, short.date)
+        XCTAssertEqual(longer[0].noted, true)
+        XCTAssertTrue(longer[0].answer.hasPrefix("It moves what was read into memory.") && longer[0].answer.contains("deep sleep"), longer[0].answer)
+        XCTAssertNil(questions.short[article.id])
+        // the question that came with the answer is offered first
+        XCTAssertEqual(library.article(article.id)?.openSuggestions.map(\.question), ["What is deep sleep?", "Without an answer?", "How long?"])
+
+        // a summary written here brings its own
+        library.setSummary(article.id, ["Written on the phone, a longer line."], marking: [], questions: " [{\"q\":\"Asked by the phone?\",\"a\":\"Yes, along with its summary.\"}]")
+        await library.settled()
+        for _ in 0..<100 where library.article(article.id)?.openSuggestions.first?.question != "Asked by the phone?" { try await Task.sleep(for: .milliseconds(20)) }
+        XCTAssertEqual(library.article(article.id)?.openSuggestions.first, Suggestion(question: "Asked by the phone?", answer: "Yes, along with its summary."))
+        let again = try await start()
+        XCTAssertEqual(again.article(article.id)?.openSuggestions.first?.question, "Asked by the phone?")
+    }
+
     func testTheSampleLibraryComesOverWhole() async throws {
         let before = SampleData.articles
         try saveAsBefore(before)
@@ -278,6 +372,24 @@ final class LibraryStoreTests: XCTestCase {
         library.change(try paragraph("Grüße").id, in: "x1") { $0.highlight(($0.text as NSString).range(of: "quote")) }
         library.setSummary("x1", ["Written on the phone."], marking: [])
         library.addNote("From the phone #idea")
+        // a question asked on the phone, with a model that answers as the extension asks it to
+        let questions = Questions()
+        questions.endpoint = { ModelEndpoint.own(ModelServer(address: "192.168.1.20:11434", model: "m")) }
+        var sent = ""
+        questions.ask = { _, _, user in
+            sent = user
+            return "Because of the words.\nSOURCES: \"A sentence that repeats. A sentence that repeats.\" | \"never on this page at all, ever\""
+        }
+        XCTAssertTrue(questions.send("Why on the phone?", about: "x1", in: library))
+        for _ in 0..<200 where !questions.asking.isEmpty { try await Task.sleep(for: .milliseconds(50)) }
+        XCTAssertNil(questions.failure)
+        XCTAssertTrue(sent.contains("Written in the browser") && sent.contains("Why on the phone?") && sent.contains("Why does sleep help?"), "title, question, the earlier ones")
+        let new = try XCTUnwrap(library.article("x1")?.questions?.last)
+        XCTAssertEqual(new.answer, "Because of the words.")
+        XCTAssertEqual(new.sources, ["A sentence that repeats. A sentence that repeats."], "only quotes the page holds")
+        XCTAssertEqual(library.article("x1")?.questions?.map(\.id).prefix(2), ["q_saved", "q_other"])
+        library.setQuestion("x1", turn: new.id, noted: true)
+        XCTAssertTrue(library.entries.contains { $0.kind == .question && $0.text == "Why on the phone?" })
         library.write("Said on the phone", on: try entry("Keep this suggestion."))
         library.delete(try entry("A note from the browser"))
         // Safari on this phone hands the same page over, with its own title and text

@@ -7,7 +7,8 @@ import { createSyncService, cleanPlace, cleanConnection } from '../../../plugin/
 import { makeStore } from '../../../plugin/src/modules/syncStores.js';
 import { createHighlightStore } from '../../../plugin/src/modules/highlightStore.js';
 import { countWords } from '../../../plugin/src/modules/textUtils.js';
-import { withQuestions } from '../../../plugin/src/modules/conversation.js';
+import { withQuestions, buildPrompt, parseAnswer, newTurn, joinContinuation } from '../../../plugin/src/modules/conversation.js';
+import { parseSuggestionList } from '../../../plugin/src/modules/suggestions.js';
 import { hashValue } from '../../../plugin/src/modules/syncStamps.js';
 import { mergeRecord } from '../../../plugin/src/modules/syncMerge.js';
 import { deriveMaster, subKeys, nameOf, encryptJson, decryptJson, openMeta, toHex, toB64, fromB64 } from '../../../plugin/src/modules/syncCrypto.js';
@@ -308,6 +309,12 @@ function createLibrary({ storage, stampStore }) {
         const theirs = [], ours = [];
         articles.forEach((a, number) => (library.find(a.entry.id, a.entry.url) ? theirs : ours).push({ a, number }));
         // one pass for each area: a large library is taken over with a handful of writes
+        // prepared questions of a page that is in the library already: kept here, where the record has none
+        for (const { a, number } of theirs) {
+            if (!a.record || !(a.record.suggested || []).length) continue;
+            const found = library.find(a.entry.id, a.entry.url), record = found && (await shared.record(found.id));
+            if (found && !((record && record.suggested) || []).length) await keepExtra(found.id, { suggested: a.record.suggested, suggestedAnswers: a.record.suggestedAnswers });
+        }
         for (const [area, group] of [[shared, theirs], [own, ours]]) {
             if (!group.length) continue;
             const synced = area === shared, highlights = [];
@@ -327,6 +334,10 @@ function createLibrary({ storage, stampStore }) {
                             if (!a.record || !a.record[k] || (a.fill && record[k])) continue;
                             record[k] = a.record[k];
                             if (k === 'summary') record.summaryBase = a.record.summary;
+                        }
+                        if (a.record && (a.record.suggested || []).length && !(a.fill && record.suggested)) {
+                            record.suggested = a.record.suggested;
+                            record.suggestedAnswers = a.record.suggestedAnswers || {};
                         }
                         if (found && a.fresher) { if (a.entry.title) entry.title = a.entry.title; if (a.entry.tags && a.entry.tags.length) entry.tags = a.entry.tags; }
                         if (a.entry.contentWordCount) entry.contentWordCount = a.entry.contentWordCount;
@@ -456,6 +467,13 @@ function createLibrary({ storage, stampStore }) {
             folded.push(e);
             progress.set(twin.id, Math.max(progress.get(twin.id) || 0, Number(e.progress) || 0));
             if (mine.summary && !theirs.summary) await keepExtra(twin.id, { summary: mine.summary });
+            // what was asked here joins what was asked elsewhere
+            const known = new Set((theirs.conversation || []).map((t) => t.id));
+            const more = (mine.conversation || []).filter((t) => t && !known.has(t.id));
+            if (more.length) {
+                const all = [...(theirs.conversation || []), ...more].sort((a, b) => String(a.ts || '').localeCompare(String(b.ts || '')));
+                await saveQuestions(shared, twin.id, all);
+            }
             pages.set(pageKeyForUrl(e.url || ''), pageKeyForUrl(twin.url || ''));
         }
         if (!folded.length) return 0;
@@ -582,7 +600,120 @@ function createLibrary({ storage, stampStore }) {
         return out.sort((a, b) => String(b.when).localeCompare(String(a.when)));
     }
 
-    return { marks, take, change, mark, hide, enter, settle, tidy, note, editNote, removeNote, comment, stream };
+    // ── questions about an article ──
+    const areaOfArticle = async (id) => ((await shared.index()).some((e) => e.id === id) ? shared : own);
+    const wordsOf = (html) => String(html || '').replace(/<(script|style)\b[\s\S]*?<\/\1\s*>/gi, ' ').replace(/<img\b[^>]*>/gi, ' ')
+        .replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+    async function asked(id) {
+        const area = await areaOfArticle(id);
+        const entry = (await area.index()).find((e) => e.id === id);
+        if (!entry) throw new Error('This article is gone.');
+        const record = (await area.record(id)) || {};
+        return { area, entry, record, turns: Array.isArray(record.conversation) ? record.conversation : [] };
+    }
+
+    /**
+     * What to ask a model for one question, in the extension's own words (conversation.js). `chars`: how much of the page goes
+     * along; `earlier`: how many of the questions before. A small model takes less of both.
+     */
+    async function askPrompt({ id, question, turn = '', chars = 20000, earlier = 6 }) {
+        const { entry, record, turns: all } = await asked(id);
+        // "dig deeper": the model goes on from the short answer on screen
+        const prev = turn ? all.find((t) => t.id === turn) : null;
+        const turns = prev ? all.filter((t) => t !== prev) : all;
+        const text = wordsOf(record.content);
+        if (!text) throw new Error('The text of this article is not on this device yet.');
+        const summary = (await extra(id)).summary || record.summaryBase || record.summary || '';
+        const draft = prev ? prev.a : '';
+        return { ...buildPrompt({ title: entry.title, content: text.slice(0, chars), summary, turns: earlier ? turns.slice(-earlier) : [], question, draft }), cut: text.length > chars };
+    }
+
+    const sameQuestion = (q) => String(q).trim().toLowerCase();
+    /** Prepared questions and their short answers: what was written here first, then what the record holds. */
+    function prepared(here, record) {
+        const seen = new Set(), questions = [];
+        for (const q of [...(here.suggested || []), ...(record.suggested || [])]) {
+            if (typeof q === 'string' && q.trim() && !seen.has(sameQuestion(q))) { seen.add(sameQuestion(q)); questions.push(q); }
+        }
+        return { questions, quick: { ...(record.suggestedAnswers || {}), ...(here.suggestedAnswers || {}) } };
+    }
+
+    /**
+     * Writes the questions of an article as the extension does (storageManager.saveConversation): the list on the record, and
+     * the summary shown with the pinned ones after it. An article without a summary gets no summary field from this: an empty
+     * one written here could replace the summary another device has written meanwhile.
+     */
+    async function saveQuestions(area, id, turns, pool = null) {
+        await area.edit(async (list) => {
+            const at = list.findIndex((e) => e.id === id);
+            if (at < 0) return null;
+            const record = (await area.record(id)) || {};
+            const base = record.summaryBase !== undefined ? record.summaryBase : record.summary;
+            const next = { ...record, conversation: turns };
+            if (pool) {
+                next.suggested = pool.questions.slice(0, 8);
+                next.suggestedAnswers = Object.fromEntries(next.suggested.filter((q) => typeof pool.quick[q] === 'string').map((q) => [q, pool.quick[q]]));
+            }
+            list[at] = { ...list[at], qaCount: turns.length };
+            if (base !== undefined) {
+                next.summaryBase = base;
+                next.summary = withQuestions(base, turns, { all: false });
+                list[at].summary = next.summary;
+                list[at].summaryWordCount = countWords(next.summary);
+            }
+            return { [articleRecKey(id)]: next };
+        });
+    }
+
+    /** A model's reply to a question becomes the article's next one; its quotes are only kept where the page holds them. */
+    async function answer({ id, question, reply, turn: continued = '' }) {
+        const { area, record, turns } = await asked(id);
+        const parsed = parseAnswer(reply, record.content);
+        const prev = continued ? turns.find((t) => t.id === continued) : null;
+        const words = prev ? joinContinuation(prev.a, parsed.a) : parsed.a;
+        if (!words) throw new Error('The model gave no answer.');
+        // a continued answer stays the same question, with its place and what was chosen for it
+        const turn = prev ? { ...prev, a: words, sources: parsed.sources } : newTurn(turns, { q: question, a: words, sources: parsed.sources });
+        // "shown with the summary" means nothing where there is none
+        if (!prev && record.summaryBase === undefined && record.summary === undefined) turn.pinned = false;
+        // fresh questions come with the answer: they go in front of the unused ones, as in the browser
+        const old = prepared(await extra(id), record);
+        const pool = parsed.questions.length ? prepared({ suggested: parsed.questions, suggestedAnswers: parsed.quick }, { suggested: old.questions, suggestedAnswers: old.quick }) : null;
+        await saveQuestions(area, id, prev ? turns.map((t) => (t === prev ? turn : t)) : [...turns, turn], pool);
+        if (pool) await keepExtra(id, { suggested: undefined, suggestedAnswers: undefined });   // all on the record now
+        return turn.id;
+    }
+
+    /** A prepared question with its short answer: asked and answered without a model. '' where there is no answer ready. */
+    async function quick({ id, question }) {
+        const { area, record, turns } = await asked(id);
+        const ready = prepared(await extra(id), record).quick[question];
+        if (!ready) return '';
+        const turn = newTurn(turns, { q: question, a: ready });
+        if (record.summaryBase === undefined && record.summary === undefined) turn.pinned = false;
+        await saveQuestions(area, id, [...turns, turn]);
+        return turn.id;
+    }
+
+    /** The questions a model wrote after a summary of this app. They stay on this device, like that summary. */
+    async function setSuggestions({ id, raw }) {
+        const { questions, quick: answers } = parseSuggestionList(raw);
+        await keepExtra(id, { suggested: questions, suggestedAnswers: answers });
+    }
+
+    /** Saved to the notes (`noted`), shown with the summary (`pinned`). */
+    async function setQuestion({ id, turn, noted, pinned }) {
+        const { area, turns } = await asked(id);
+        await saveQuestions(area, id, turns.map((t) => {
+            if (t.id !== turn) return t;
+            const next = { ...t };
+            if (noted !== undefined) { if (noted) next.noted = true; else delete next.noted; }
+            if (pinned !== undefined) next.pinned = !!pinned;
+            return next;
+        }));
+    }
+
+    return { marks, take, change, mark, hide, enter, settle, tidy, note, editNote, removeNote, comment, stream, askPrompt, answer, quick, setSuggestions, setQuestion };
 }
 
 export const API = {

@@ -248,6 +248,42 @@ final class LibraryStore: @unchecked Sendable {
         _ = try await host.run("return sync.library.comment(input);", input: ["highlightId": highlight, "text": text, "url": url])
     }
 
+    /// What to ask a model for one question about an article.
+    struct Prompt: Decodable, Equatable {
+        var system: String
+        var user: String
+        /// Only the beginning of the article went along.
+        var cut: Bool
+    }
+
+    /// `turn`: the short answer that is to be continued.
+    func askPrompt(_ id: String, question: String, turn: String?, chars: Int, earlier: Int) async throws -> Prompt {
+        try JSONDecoder().decode(Prompt.self, from: try await host.run("return sync.library.askPrompt(input);",
+                                                                       input: ["id": id, "question": question, "turn": turn ?? "", "chars": chars, "earlier": earlier]))
+    }
+
+    /// The id of the question the reply went to.
+    func answer(_ id: String, question: String, reply: String, turn: String?) async throws -> String {
+        try JSONDecoder().decode(String.self, from: try await host.run("return sync.library.answer(input);",
+                                                                       input: ["id": id, "question": question, "reply": reply, "turn": turn ?? ""]))
+    }
+
+    /// A prepared question with its short answer, without a model. "" where no answer is ready.
+    func quick(_ id: String, question: String) async throws -> String {
+        try JSONDecoder().decode(String.self, from: try await host.run("return sync.library.quick(input);", input: ["id": id, "question": question]))
+    }
+
+    func setSuggestions(_ id: String, raw: String) async throws {
+        _ = try await host.run("return sync.library.setSuggestions(input);", input: ["id": id, "raw": raw])
+    }
+
+    func setQuestion(_ id: String, turn: String, noted: Bool? = nil, pinned: Bool? = nil) async throws {
+        var input: [String: Any] = ["id": id, "turn": turn]
+        if let noted { input["noted"] = noted }
+        if let pinned { input["pinned"] = pinned }
+        _ = try await host.run("return sync.library.setQuestion(input);", input: input)
+    }
+
     func hide(_ id: String, gone: Bool = true) async throws {
         _ = try await host.run("return sync.library.hide(input);", input: ["id": id, "gone": gone])
     }

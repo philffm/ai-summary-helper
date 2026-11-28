@@ -23,6 +23,8 @@ final class Library {
     /// The samples' notes, which live only as long as the app.
     private var sampleNotes: [NoteItem] = []
     private var sampleComments: [String: String] = [:]
+    /// Files of Safari's hand-over that are being taken over.
+    @ObservationIgnored private var taking: Set<URL> = []
     /// Counts the changes, so that a reading that started before one of them is repeated.
     @ObservationIgnored private var changes = 0
     private static let logger = Logger(subsystem: "eu.byphil.kaivo", category: "library")
@@ -84,7 +86,7 @@ final class Library {
     /// Everything "Notes" lists: notes, highlights and the saved questions, newest first.
     var entries: [NoteItem] {
         let questions = articles.flatMap { article in
-            (article.questions ?? []).map { question in
+            (article.questions ?? []).filter { $0.noted == true }.map { question in
                 NoteItem(kind: .question, id: question.id, text: question.question, when: question.date, answer: question.answer,
                          article: article.id, title: article.title)
             }
@@ -192,6 +194,61 @@ final class Library {
         reloadNotes()
     }
 
+    // MARK: - Questions about an article
+
+    func askPrompt(_ id: Article.ID, question: String, turn: String? = nil, chars: Int, earlier: Int) async throws -> LibraryStore.Prompt {
+        await settled()
+        if let store { return try await store.askPrompt(id, question: question, turn: turn, chars: chars, earlier: earlier) }
+        // the samples have no library behind them
+        let text = article(id)?.passages.map(\.text).joined(separator: " ") ?? ""
+        return LibraryStore.Prompt(system: "Answer questions about the text.", user: String(text.prefix(chars)) + "\n\n" + question, cut: text.count > chars)
+    }
+
+    /// A model's reply becomes the article's next question, or goes on from the short answer `turn`. → that question's id
+    @discardableResult
+    func answer(_ id: Article.ID, question: String, reply: String, turn: String? = nil) async throws -> String {
+        guard let store else {
+            guard let turn, let i = articles.firstIndex(where: { $0.id == id }),
+                  let t = articles[i].questions?.firstIndex(where: { $0.id == turn }) else { return sample(id, question, reply) }
+            articles[i].questions?[t].answer += " " + reply
+            return turn
+        }
+        await settled()
+        changes += 1
+        let written = try await store.answer(id, question: question, reply: reply, turn: turn)
+        reload()
+        await settled()
+        return written
+    }
+
+    /// A prepared question with its short answer: there at once, without a model. → its id, nil where none is ready
+    func quickAnswer(_ id: Article.ID, question: String) async throws -> String? {
+        guard let store else {
+            guard let ready = article(id)?.openSuggestions.first(where: { $0.question == question })?.answer else { return nil }
+            return sample(id, question, ready)
+        }
+        await settled()
+        changes += 1
+        let written = try await store.quick(id, question: question)
+        reload()
+        await settled()
+        return written.isEmpty ? nil : written
+    }
+
+    private func sample(_ id: Article.ID, _ question: String, _ answer: String) -> String {
+        let turn = Question(id: "sample-" + UUID().uuidString, question: question, answer: answer, date: LibraryRecords.timestamp(.now))
+        if let i = articles.firstIndex(where: { $0.id == id }) { articles[i].questions = (articles[i].questions ?? []) + [turn] }
+        return turn.id
+    }
+
+    /// Saved to the notes, or shown with the summary on the other devices.
+    func setQuestion(_ id: Article.ID, turn: String, noted: Bool? = nil, pinned: Bool? = nil) {
+        guard let a = articles.firstIndex(where: { $0.id == id }), let t = articles[a].questions?.firstIndex(where: { $0.id == turn }) else { return }
+        if let noted { articles[a].questions?[t].noted = noted ? true : nil }
+        if let pinned { articles[a].questions?[t].pinned = pinned ? true : nil }
+        changed { try await $0.setQuestion(id, turn: turn, noted: noted, pinned: pinned) }
+    }
+
     private func then(_ work: @escaping @MainActor (LibraryStore) async throws -> Void) {
         guard let store else { return }
         let previous = tail
@@ -260,14 +317,17 @@ final class Library {
     }
 
     /// Takes over what Safari saved since the last time. An article already saved here (same page) gains, it is not doubled.
-    func importFromSafari() {
+    func importFromSafari(from folder: URL = SafariInbox.directory) {
         guard !samples else { return }
-        let waiting = SafariInbox.pending()
+        // what is being taken over already is not taken a second time
+        let waiting = SafariInbox.pending(in: folder).filter { !taking.contains($0.file) }
         guard !waiting.isEmpty else { return }
-        changed { store in
+        taking.formUnion(waiting.map(\.file))
+        changed { [weak self] store in
+            defer { self?.taking.subtract(waiting.map(\.file)) }
             let removed = SafariInbox.removed
             let wanted = waiting.filter { !removed.contains($0.article.id) }
-            let ids = try await store.take(wanted.map { SafariImport.package($0.article) })
+            let ids = try await store.take(wanted.map { SafariImport.package($0.article, pictures: folder) })
             for id in ids {
                 var extra = try await store.extra(id)
                 extra.safari = true
@@ -275,8 +335,10 @@ final class Library {
             }
             // the files go only after the library is on disk
             for item in waiting {
+                // written again meanwhile: that version is still to be taken
+                guard SafariInbox.read(item.file) == item.article else { continue }
                 try? FileManager.default.removeItem(at: item.file)
-                try? FileManager.default.removeItem(at: SafariInbox.images(of: item.article.id))
+                try? FileManager.default.removeItem(at: folder.appending(path: "images/\(item.article.id)"))
             }
         }
         reload()
@@ -362,7 +424,7 @@ final class Library {
     }
 
     /// A finished summary; the sentences the model copied become its suggested highlights.
-    func setSummary(_ id: Article.ID, _ lines: [String], marking sentences: [String], onDevice: Bool = false) {
+    func setSummary(_ id: Article.ID, _ lines: [String], marking sentences: [String], onDevice: Bool = false, questions: String = "") {
         guard let i = articles.firstIndex(where: { $0.id == id }) else { return }
         articles[i].summary = lines
         articles[i].summaryHTML = LibraryRecords.summaryHTML(lines)
@@ -385,7 +447,10 @@ final class Library {
             extra.pending = nil
             extra.deviceSummary = onDevice ? LibraryRecords.summaryHTML(lines) : nil
             try await store.setExtra(id, extra)
+            if !questions.isEmpty { try await store.setSuggestions(id, raw: questions) }
         }
+        // the questions show once they are stored
+        if !questions.isEmpty { reload() }
     }
 
     /// Reading only ever moves forward.

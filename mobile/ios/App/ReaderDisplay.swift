@@ -4,7 +4,7 @@ import SwiftUI
 /// on a wide window it is a popover beside the button.
 struct ReaderDisplayButton: View {
     @State private var shown = false
-    private static let height: CGFloat = 500
+    private static let height: CGFloat = 420
 
     var body: some View {
         Button { shown.toggle() } label: { Label("Appearance", systemImage: "textformat.size") }
@@ -21,48 +21,74 @@ struct ReaderDisplayButton: View {
 }
 
 struct ReaderDisplayPanel: View {
-    let close: () -> Void
+    /// nil inside the reader's menu, which has its own head and is closed by its own means.
+    let close: (() -> Void)?
     private var stored = StoredReaderLook()
 
-    init(close: @escaping () -> Void) { self.close = close }
+    init(close: (() -> Void)? = nil) { self.close = close }
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 12) {
-                Text("Appearance").font(.headline).accessibilityAddTraits(.isHeader)
-                Spacer()
-                Button("Reset") { stored.reset() }
-                    .font(.body.weight(.semibold))
-                    .disabled(stored.look == ReaderLook())
-                Button(action: close) {
-                    Image(systemName: "xmark").font(.body.weight(.semibold)).frame(width: 44, height: 44)
-                        .background(Color(.tertiarySystemFill), in: Circle())
-                }
-                .buttonStyle(.plain)
-                .accessibilityLabel("Close")
-            }
-            .padding(.horizontal, 20)
-            .padding(.top, 16)
-            .padding(.bottom, 8)
-            ScrollView {
-                VStack(alignment: .leading, spacing: 12) {
-                    heading("Text size")
-                    TextSizeRuler(step: stored.$step).padding(.horizontal, 20)
-                    heading("Font")
-                    faces
-                    heading("Line spacing")
-                    Picker("Line spacing", selection: stored.$spacing) {
-                        ForEach(ReaderLook.Spacing.allCases) { Text($0.title).tag($0) }
+            if let close {
+                HStack(spacing: 12) {
+                    Text("Appearance").font(.headline).accessibilityAddTraits(.isHeader)
+                    Spacer()
+                    reset
+                    Button(action: close) {
+                        Image(systemName: "xmark").font(.body.weight(.semibold)).frame(width: 44, height: 44)
+                            .background(Color(.tertiarySystemFill), in: Circle())
                     }
-                    .pickerStyle(.segmented)
-                    .padding(.horizontal, 20)
-                    heading("Background")
-                    grounds
+                    .buttonStyle(.plain)
+                    .accessibilityLabel("Close")
                 }
-                .padding(.bottom, 20)
+                .padding(.horizontal, 20)
+                .padding(.top, 16)
+                .padding(.bottom, 4)
+            }
+            // everything in view at half height on a small phone
+            ScrollView {
+                VStack(alignment: .leading, spacing: 10) {
+                    group {
+                        HStack {
+                            heading("Text size")
+                            Spacer()
+                            // the menu has no head of its own for it
+                            if close == nil { reset.padding(.trailing, 20) }
+                        }
+                        TextSizeRuler(step: stored.$step).padding(.horizontal, 20)
+                    }
+                    group {
+                        heading("Font")
+                        faces
+                    }
+                    group {
+                        heading("Line spacing")
+                        Picker("Line spacing", selection: stored.$spacing) {
+                            ForEach(ReaderLook.Spacing.allCases) { Text($0.title).tag($0) }
+                        }
+                        .pickerStyle(.segmented)
+                        .padding(.horizontal, 20)
+                    }
+                    group {
+                        heading("Background")
+                        grounds
+                    }
+                }
+                .padding(.top, 4)
+                .padding(.bottom, 8)
             }
             .scrollBounceBehavior(.basedOnSize)
         }
+    }
+
+    private var reset: some View {
+        Button("Reset") { stored.reset() }
+            .font(.subheadline.weight(.semibold))
+            .disabled(stored.look == ReaderLook())
+    }
+
+    private func group(@ViewBuilder _ content: () -> some View) -> some View {
+        VStack(alignment: .leading, spacing: 6, content: content)
     }
 
     private func heading(_ title: LocalizedStringKey) -> some View {
@@ -76,19 +102,19 @@ struct ReaderDisplayPanel: View {
                 ForEach(ReaderLook.Face.allCases) { face in
                     let on = stored.face == face
                     Button { stored.face = face } label: {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(verbatim: "Aa").font(face.sample(30)).accessibilityHidden(true)
-                            VStack(alignment: .leading, spacing: 1) {
+                        HStack(spacing: 8) {
+                            Text(verbatim: "Aa").font(face.sample(21)).accessibilityHidden(true)
+                            VStack(alignment: .leading, spacing: 0) {
                                 Text(verbatim: face.name).font(.footnote.weight(.bold))
-                                Text(face.kind).font(.caption).foregroundStyle(.secondary)
+                                Text(face.kind).font(.caption2).foregroundStyle(.secondary)
                             }
                             .lineLimit(1)
                         }
-                        .padding(12)
-                        .frame(minWidth: 112, alignment: .leading)
-                        .background(on ? Color(.tertiarySystemFill) : .clear, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                        .padding(.horizontal, 12)
+                        .frame(minHeight: 44)
+                        .background(on ? Color(.tertiarySystemFill) : .clear, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
                         .overlay {
-                            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
                                 .strokeBorder(on ? KaivoTokens.accent : Color(.separator), lineWidth: on ? 2 : 1)
                         }
                         .contentShape(Rectangle())
@@ -116,10 +142,10 @@ struct ReaderDisplayPanel: View {
                     Text(ground.title).font(.footnote.weight(.semibold)).lineLimit(1).minimumScaleFactor(0.7)
                         .foregroundStyle(Color(uiColor: ground.ink))
                         .padding(.horizontal, 4)
-                        .frame(maxWidth: .infinity, minHeight: 48)
-                        .background(ground.page ?? Color(.systemBackground), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                        .frame(maxWidth: .infinity, minHeight: 40)
+                        .background(ground.page ?? Color(.systemBackground), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
                         .overlay {
-                            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
                                 .strokeBorder(on ? KaivoTokens.accent : Color(.separator), lineWidth: on ? 2 : 1)
                         }
                 }
@@ -139,14 +165,14 @@ struct TextSizeRuler: View {
     private static let spacing: CGFloat = 40
 
     var body: some View {
-        VStack(spacing: 6) {
-            Text(verbatim: ReaderLook.label(of: step)).font(.subheadline.weight(.bold)).monospacedDigit()
+        VStack(spacing: 0) {
+            Text(verbatim: ReaderLook.label(of: step)).font(.caption.weight(.bold)).monospacedDigit()
             ZStack(alignment: .bottom) {
                 Ticks(position: CGFloat(step), inside: true, spacing: Self.spacing).fill(Color.secondary)
                 Ticks(position: CGFloat(step), inside: false, spacing: Self.spacing).fill(Color.secondary.opacity(0.35))
-                Capsule().fill(KaivoTokens.accent).frame(width: 3, height: 30)
+                Capsule().fill(KaivoTokens.accent).frame(width: 3, height: 22)
             }
-            .frame(height: 32)
+            .frame(height: 24)
             .mask {
                 LinearGradient(stops: [.init(color: .clear, location: 0), .init(color: .black, location: 0.22),
                                        .init(color: .black, location: 0.78), .init(color: .clear, location: 1)],
@@ -196,7 +222,7 @@ struct TextSizeRuler: View {
             for mark in -40...(span * 5 + 40) where (0...span * 5).contains(mark) == inside {
                 let x = rect.midX + (CGFloat(first) + CGFloat(mark) / 5 - position) * spacing
                 guard x >= rect.minX, x <= rect.maxX else { continue }
-                let height: CGFloat = inside && mark % 5 == 0 ? 20 : 10
+                let height: CGFloat = inside && mark % 5 == 0 ? 14 : 7
                 path.addRect(CGRect(x: x - 0.75, y: rect.maxY - 4 - height, width: 1.5, height: height))
             }
             return path

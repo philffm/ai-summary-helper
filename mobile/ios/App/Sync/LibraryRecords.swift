@@ -31,6 +31,9 @@ enum LibraryRecords {
         var summary: String?
         /// The summary the model on this device wrote; compared with the one shown, which another may have replaced.
         var deviceSummary: String?
+        /// Questions prepared here (or handed over for a page the library had already), with their short answers.
+        var suggested: [String]?
+        var suggestedAnswers: [String: String]?
     }
 
     static let context = 32   // characters around a highlight, as plugin/src/content/anchor.js keeps them
@@ -54,7 +57,8 @@ enum LibraryRecords {
         for index in passages.indices { passages[index].id = uuid("\(id)/\(index)") }
         mark(highlights, in: &passages)
         let counted = (entry["contentWordCount"] as? NSNumber)?.intValue ?? 0
-        let summary = extra?.summary ?? record["summary"] as? String ?? entry["summary"] as? String ?? ""
+        // without the questions shown with it: they stand below it here
+        let summary = extra?.summary ?? record["summaryBase"] as? String ?? record["summary"] as? String ?? entry["summary"] as? String ?? ""
         return Article(id: id,
                        title: entry["title"] as? String ?? link,
                        host: extra?.host ?? URL(string: link)?.host() ?? link,
@@ -70,16 +74,27 @@ enum LibraryRecords {
                        safariID: extra?.safari == true ? id : nil,
                        paper: extra?.paper,
                        pending: extra?.pending,
-                       questions: saved(record["conversation"]),
-                       summaryOnDevice: !summary.isEmpty && extra?.deviceSummary == summary ? true : nil)
+                       questions: questions(record["conversation"]),
+                       summaryOnDevice: !summary.isEmpty && extra?.deviceSummary == summary ? true : nil,
+                       suggestions: suggestions(record, extra))
     }
 
-    /// Of the questions asked about an article, those saved to the notes (`noted`).
-    static func saved(_ conversation: Any?) -> [Question]? {
-        let turns = (conversation as? [[String: Any]] ?? []).filter { flag($0["noted"]) }
-        let questions = turns.compactMap { turn -> Question? in
+    /// The prepared questions: those written here first, then those of the record.
+    static func suggestions(_ record: [String: Any], _ extra: Extra?) -> [Suggestion]? {
+        let kept = record["suggestedAnswers"] as? [String: Any] ?? [:]
+        var seen = Set<String>()
+        let all = ((extra?.suggested ?? []) + (record["suggested"] as? [Any] ?? []).compactMap { $0 as? String })
+            .filter { !Suggestion.key($0).isEmpty && seen.insert(Suggestion.key($0)).inserted }
+            .map { Suggestion(question: $0, answer: extra?.suggestedAnswers?[$0] ?? kept[$0] as? String) }
+        return all.isEmpty ? nil : all
+    }
+
+    /// The questions asked about an article.
+    static func questions(_ conversation: Any?) -> [Question]? {
+        let questions = (conversation as? [[String: Any]] ?? []).compactMap { turn -> Question? in
             guard let id = turn["id"] as? String, let question = turn["q"] as? String, let answer = turn["a"] as? String else { return nil }
-            return Question(id: id, question: question, answer: answer, date: turn["ts"] as? String ?? "")
+            return Question(id: id, question: question, answer: answer, date: turn["ts"] as? String ?? "",
+                            sources: turn["sources"] as? [String], noted: flag(turn["noted"]) ? true : nil, pinned: flag(turn["pinned"]) ? true : nil)
         }
         return questions.isEmpty ? nil : questions
     }
@@ -218,6 +233,10 @@ enum LibraryRecords {
         var record: [String: Any] = [:]
         if !article.passages.isEmpty { record["content"] = html(article.passages, pictures: pictures) }
         if !article.summary.isEmpty { record["summary"] = summaryHTML(article.summary) }
+        if let prepared = article.suggestions, !prepared.isEmpty {
+            record["suggested"] = prepared.map(\.question)
+            record["suggestedAnswers"] = Dictionary(prepared.compactMap { one in one.answer.map { (one.question, $0) } }, uniquingKeysWith: { first, _ in first })
+        }
         let marks = article.passages.flatMap { passage in
             passage.marks.map { new($0, in: passage, id: $0.highlight ?? newHighlightID(), at: article.savedAt) }
         }

@@ -63,12 +63,14 @@ final class DuoPreviewTests: XCTestCase {
         let woodpecker = app.staticTexts["Why woodpeckers do not get headaches"].firstMatch
         XCTAssertTrue(woodpecker.waitForExistence(timeout: 10), "the study is in the list")
         woodpecker.tap()
-        let summary = app.buttons["summary-jump"].firstMatch
+        let summary = app.buttons["reader-menu"].firstMatch
         XCTAssertTrue(summary.waitForExistence(timeout: 10))
         pause(1.8)
         mark("summary")
         summary.tap()
         pause(3.6)
+        closeMenu(app)
+        pause(0.6)
         mark("today")
         app.buttons["Today"].firstMatch.tap()
         pause(2.6)

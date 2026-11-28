@@ -134,6 +134,9 @@ if (mode === 'make') {
         ['before joining', 'user', false],
         ['quote', 'user', false],
     ].sort());
+    const turns = (await b.storage.get('articles:rec:x1'))['articles:rec:x1'].conversation;
+    assert.deepEqual(turns.map((t) => [t.q, !!t.noted]), [['Why does sleep help?', true], ['Asked, not saved', false], ['Why on the phone?', true]], 'the question asked on the phone arrived, the others are as they were');
+    assert.equal((await b.storage.get('articles:index'))['articles:index'][0].qaCount, 3);
     const kept = createNotesStore({ storage: b.storage, mark: async () => 0 });
     const listed = await kept.list();
     assert.deepEqual(listed.notes.map((n) => [n.text, n.tags]), [['From the phone', ['idea']]], 'the note written on the phone, and only that one');

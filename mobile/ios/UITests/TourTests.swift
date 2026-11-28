@@ -52,8 +52,10 @@ final class TourTests: XCTestCase {
         keep.tap()
         pause(1.4)
         mark("summary")
-        app.buttons["summary-jump"].firstMatch.tap()
+        app.buttons["reader-menu"].firstMatch.tap()
         pause(3.4)
+        closeMenu(app)
+        pause(0.6)
         app.navigationBars.buttons.element(boundBy: 0).tap()
         pause(0.6)
         mark("today")
@@ -69,5 +71,17 @@ final class TourTests: XCTestCase {
         mark("home")
         XCUIDevice.shared.press(.home)
         pause(2.0)
+    }
+}
+
+extension XCTestCase {
+    /// The menu is a sheet: pulled down on a phone, left with a tap elsewhere where it stands beside its button.
+    @MainActor
+    func closeMenu(_ app: XCUIApplication) {
+        let pages = app.descendants(matching: .any)["menu-pages"].firstMatch
+        let grab = pages.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: -0.4))
+        grab.press(forDuration: 0.05, thenDragTo: grab.withOffset(CGVector(dx: 0, dy: 520)), withVelocity: .fast, thenHoldForDuration: 0)
+        if !pages.waitForNonExistence(timeout: 2) { app.coordinate(withNormalizedOffset: CGVector(dx: 0.08, dy: 0.2)).tap() }
+        XCTAssertTrue(pages.waitForNonExistence(timeout: 5), "the menu stays open")
     }
 }

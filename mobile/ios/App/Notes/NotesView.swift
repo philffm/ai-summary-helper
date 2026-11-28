@@ -81,9 +81,11 @@ struct NotesView: View {
                 open: item.article.flatMap { library.article($0) }.map { article in { router.notesPath.append(.article(article.id)) } },
                 keep: { library.keep(item) }, dismiss: { library.delete(item) })
             .swipeActions {
-                // a question belongs to its article in the browser: it is taken out of the notes there
                 if item.kind != .question {
                     Button("Delete", systemImage: "trash", role: .destructive) { library.delete(item) }
+                } else if let article = item.article {
+                    // the question stays with its article; it only leaves the notes
+                    Button("Remove from notes", systemImage: "minus.circle") { library.setQuestion(article, turn: item.id, noted: false) }
                 }
             }
             .contextMenu {
@@ -135,7 +137,7 @@ private struct ComposerGround: ViewModifier {
     }
 }
 
-private struct NoteRow: View {
+struct NoteRow: View {
     let item: NoteItem
     /// To the article, where it is in the app.
     let open: (() -> Void)?

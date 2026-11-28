@@ -1,6 +1,6 @@
 import XCTest
 
-/// The reader's "Appearance" sheet, tried by hand: every choice made through it, with a picture of each state.
+/// The look of the text, under "Text" in the reader's menu, tried by hand: every choice made through it, with a picture of each state.
 /// Skipped unless TEST_RUNNER_KAIVO_DISPLAY names a folder; TEST_RUNNER_KAIVO_LANG chooses the language.
 final class DisplayTests: XCTestCase {
     @MainActor
@@ -23,10 +23,16 @@ final class DisplayTests: XCTestCase {
             XCTAssertNoThrow(try XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "\(folder)/\(name).png")))
         }
         func openSheet() -> XCUIElement {
-            // the button's label is translated; it is the one with this symbol's place in the bar
             let ruler = app.descendants(matching: .any)["textSizeRuler"].firstMatch
-            let names = ["Appearance", "Darstellung", "المظهر"]
-            for name in names where !ruler.exists && app.buttons[name].firstMatch.exists { app.buttons[name].firstMatch.tap() }
+            if !ruler.exists && !app.buttons["reader-menu"].firstMatch.waitForExistence(timeout: 3) {
+                // an item of a feed keeps the button in its bar
+                for name in ["Appearance", "Darstellung", "المظهر"] where !ruler.exists && app.buttons[name].firstMatch.exists { app.buttons[name].firstMatch.tap() }
+            } else if !ruler.exists {
+                app.buttons["reader-menu"].firstMatch.tap()
+                let text = app.buttons[language == "ar" ? "النص" : "Text"].firstMatch
+                XCTAssertTrue(text.waitForExistence(timeout: 10), "the menu did not open")
+                text.tap()
+            }
             XCTAssertTrue(ruler.waitForExistence(timeout: 10), "the sheet did not open")
             return ruler
         }
@@ -62,7 +68,7 @@ final class DisplayTests: XCTestCase {
         tap("face-hanken")
         tap("ground-dark")
         shot("4-dark-page-in-light")
-        app.buttons[language == "de" ? "Schließen" : language == "ar" ? "إغلاق" : "Close"].firstMatch.tap()
+        closeMenu(app)
         shot("5-dark-page-closed")
         // and back again: nothing stays dark that was not chosen so
         ruler = openSheet()
@@ -70,7 +76,7 @@ final class DisplayTests: XCTestCase {
         shot("5b-auto-after-dark")
         tap("ground-dark")
         let today = app.buttons[language == "de" ? "Heute" : language == "ar" ? "اليوم" : "Today"].firstMatch
-        app.buttons[language == "de" ? "Schließen" : language == "ar" ? "إغلاق" : "Close"].firstMatch.tap()
+        closeMenu(app)
         if UIDevice.current.userInterfaceIdiom == .pad && today.exists {
             today.tap()
             shot("5c-another-tab")

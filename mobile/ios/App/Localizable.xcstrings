@@ -457,6 +457,82 @@
         }
       }
     },
+    "A new speed applies from the next start.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تُطبَّق السرعة الجديدة عند البدء التالي."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ein neues Tempo gilt ab dem nächsten Start."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "La nueva velocidad se aplica al volver a empezar."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Uusi nopeus tulee voimaan seuraavasta käynnistyksestä."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "La nouvelle vitesse s’applique au prochain démarrage."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "新しい速度は次の再生から適用されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "새 속도는 다음 재생부터 적용됩니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A nova velocidade vale a partir do próximo início."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Новая скорость применится при следующем запуске."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Нова швидкість застосується під час наступного запуску."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "新语速从下次开始播放时生效。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "新語速從下次開始播放時生效。"
+          }
+        }
+      }
+    },
     "A random article": {
       "localizations": {
         "ar": {
@@ -1137,6 +1213,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "加入訂閱來源"
+          }
+        }
+      }
+    },
+    "Add to article": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "أضف إلى المقال"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zum Artikel"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Añadir al artículo"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lisää artikkeliin"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajouter à l’article"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "記事に追加"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "글에 추가"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Adicionar ao artigo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Добавить в статью"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Додати до статті"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "添加到文章"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "加到文章"
           }
         }
       }
@@ -2585,6 +2737,158 @@
         }
       }
     },
+    "Ask": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "اسأل"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fragen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Preguntar"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kysy"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Demander"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "質問"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "질문"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Perguntar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Спросить"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Запитати"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "提问"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "提問"
+          }
+        }
+      }
+    },
+    "Ask about this article…": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "اسأل عن هذه المقالة…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Frage zu diesem Artikel …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pregunta sobre este artículo…"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kysy tästä artikkelista…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Poser une question sur cet article…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "この記事について質問…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "이 글에 대해 질문하세요…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pergunte sobre este artigo…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Спросите об этой статье…"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Запитайте про цю статтю…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "就这篇文章提问…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "詢問這篇文章…"
+          }
+        }
+      }
+    },
     "Auto": {
       "localizations": {
         "ar": {
@@ -3573,6 +3877,82 @@
         }
       }
     },
+    "Collapsed": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مطوي"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zugeklappt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Plegado"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Suljettu"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Réduit"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "折りたたみ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "접힘"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Recolhido"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Свёрнуто"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Згорнуто"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已折叠"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已收合"
+          }
+        }
+      }
+    },
     "Comment": {
       "localizations": {
         "ar": {
@@ -4181,6 +4561,82 @@
         }
       }
     },
+    "Copy link": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نسخ الرابط"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Link kopieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Copiar enlace"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kopioi linkki"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Copier le lien"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "リンクをコピー"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "링크 복사"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Copiar link"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Скопировать ссылку"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Копіювати посилання"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "拷贝链接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "拷貝連結"
+          }
+        }
+      }
+    },
     "Could not be loaded": {
       "localizations": {
         "ar": {
@@ -4713,6 +5169,82 @@
         }
       }
     },
+    "Dig deeper": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تعمّق أكثر"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mehr dazu"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Profundizar"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kerro lisää"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Approfondir"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "さらに詳しく"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "더 알아보기"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aprofundar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Подробнее"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Докладніше"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "深入了解"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "深入了解"
+          }
+        }
+      }
+    },
     "Disconnect": {
       "localizations": {
         "ar": {
@@ -5241,6 +5773,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "編輯"
+          }
+        }
+      }
+    },
+    "Expanded": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "موسّع"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aufgeklappt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Desplegado"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Avattu"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Développé"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "展開"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "펼쳐짐"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Expandido"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Развёрнуто"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Розгорнуто"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已展开"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已展開"
           }
         }
       }
@@ -6913,6 +7521,158 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "在 Safari 中"
+          }
+        }
+      }
+    },
+    "In article": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "في المقال"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Im Artikel"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "En el artículo"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artikkelissa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dans l’article"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "記事内"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "글에 표시"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "No artigo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "В статье"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "У статті"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在文章中"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在文章中"
+          }
+        }
+      }
+    },
+    "In notes": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "في الملاحظات"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "In Notizen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "En notas"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Muistiinpanoissa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dans les notes"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ノートに保存済み"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "노트에 있음"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nas notas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "В заметках"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "У нотатках"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已在笔记中"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已在筆記中"
           }
         }
       }
@@ -8817,6 +9577,82 @@
         }
       }
     },
+    "More": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المزيد"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mehr"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Más"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lisää"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Plus"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "その他"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "더보기"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mais"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ещё"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ще"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "更多"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "更多"
+          }
+        }
+      }
+    },
     "New stories from your feeds": {
       "localizations": {
         "ar": {
@@ -8965,6 +9801,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "下一則"
+          }
+        }
+      }
+    },
+    "No answer": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "لا إجابة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Keine Antwort"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sin respuesta"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ei vastausta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pas de réponse"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "回答がありません"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "답변 없음"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sem resposta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Нет ответа"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Немає відповіді"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "没有回答"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "沒有回答"
           }
         }
       }
@@ -10489,6 +11401,82 @@
         }
       }
     },
+    "Off: the app only fetches. On: reading progress, highlights, comments, notes and questions of your library go to your place too, also what you changed before.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "متوقفة: يجلب التطبيق فقط. مشغّلة: يذهب تقدّم القراءة والتظليلات والتعليقات والملاحظات والأسئلة في مكتبتك إلى مكانك أيضًا، بما في ذلك ما غيّرته سابقًا."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aus: Die App holt nur. Ein: Lesestand, Markierungen, Kommentare, Notizen und Fragen deiner Bibliothek gehen auch an deine Ablage, auch frühere Änderungen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Desactivado: la app solo descarga. Activado: el progreso, los destacados, comentarios, notas y preguntas de tu biblioteca también van a tu almacén, incluidos los cambios anteriores."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pois: sovellus vain hakee. Päällä: kirjastosi lukukohta, korostukset, kommentit, muistiinpanot ja kysymykset menevät myös tallennuspaikkaasi, myös aiemmat muutokset."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désactivé : l’app ne fait que récupérer. Activé : la progression, les surlignages, commentaires, notes et questions de votre bibliothèque vont aussi vers votre espace, y compris vos changements antérieurs."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "オフ：アプリは取得のみ。オン：ライブラリの読書位置、ハイライト、コメント、メモ、質問も保存先に送られます。以前の変更も含みます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "끔: 앱은 가져오기만 합니다. 켬: 보관함의 읽기 위치, 하이라이트, 댓글, 메모, 질문도 저장소로 보냅니다. 이전 변경도 포함됩니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Desligado: o app só busca. Ligado: progresso, destaques, comentários, notas e perguntas da sua biblioteca também vão para o seu local, inclusive mudanças anteriores."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Выкл.: приложение только загружает. Вкл.: прогресс чтения, выделения, комментарии, заметки и вопросы вашей библиотеки отправляются и в ваше хранилище, включая прежние изменения."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Вимк.: застосунок лише завантажує. Увімк.: прогрес читання, виділення, коментарі, нотатки та запитання вашої бібліотеки надсилаються й у ваше сховище, зокрема попередні зміни."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "关闭：应用只获取。开启：资料库的阅读进度、高亮、评论、笔记和提问也会发送到你的存储位置，包括之前的更改。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "關閉：App 只取得。開啟：資料庫的閱讀進度、重點、評論、筆記和提問也會傳到你的儲存位置，包括之前的變更。"
+          }
+        }
+      }
+    },
     "Ollama or LM Studio on a computer in your network. Ollama must be started with OLLAMA_HOST=0.0.0.0; then everyone in that network can use it.": {
       "localizations": {
         "ar": {
@@ -11397,6 +12385,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "打開延伸功能設定"
+          }
+        }
+      }
+    },
+    "Open in Safari": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الفتح في Safari"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "In Safari öffnen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Abrir en Safari"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Avaa Safarissa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ouvrir dans Safari"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Safariで開く"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Safari에서 열기"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Abrir no Safari"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Открыть в Safari"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Відкрити в Safari"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在 Safari 中打开"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在 Safari 中打開"
           }
         }
       }
@@ -12617,6 +13681,82 @@
         }
       }
     },
+    "Read the article aloud": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "اقرأ المقال بصوت عالٍ"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artikel vorlesen lassen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Leer el artículo en voz alta"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lue artikkeli ääneen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lire l’article à voix haute"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "記事を読み上げる"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "글 읽어 주기"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ler o artigo em voz alta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Прочитать статью вслух"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Прочитати статтю вголос"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "朗读文章"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "朗讀文章"
+          }
+        }
+      }
+    },
     "Read the full article in Safari": {
       "localizations": {
         "ar": {
@@ -12689,6 +13829,158 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "在 Safari 中閱讀全文"
+          }
+        }
+      }
+    },
+    "Reader menu": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "قائمة القراءة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lesemenü"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Menú de lectura"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lukuvalikko"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Menu de lecture"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "読書メニュー"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "읽기 메뉴"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Menu de leitura"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Меню чтения"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Меню читання"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "阅读菜单"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "閱讀選單"
+          }
+        }
+      }
+    },
+    "Reading aloud…": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تتم القراءة…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Liest vor …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Leyendo en voz alta…"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Luetaan ääneen…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lecture en cours…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "読み上げ中…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "읽어 주는 중…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lendo em voz alta…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Читаю вслух…"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Читаю вголос…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "正在朗读…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "正在朗讀…"
           }
         }
       }
@@ -12993,6 +14285,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "還記得嗎？"
+          }
+        }
+      }
+    },
+    "Remove from notes": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إزالة من الملاحظات"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aus Notizen entfernen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Quitar de las notas"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Poista muistiinpanoista"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Retirer des notes"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ノートから削除"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "노트에서 제거"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Remover das notas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Убрать из заметок"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Прибрати з нотаток"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "从笔记中移除"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "從筆記中移除"
           }
         }
       }
@@ -14061,6 +15429,82 @@
         }
       }
     },
+    "Save to notes": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "حفظ في الملاحظات"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "In Notizen speichern"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Guardar en notas"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tallenna muistiinpanoihin"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Garder dans les notes"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ノートに保存"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "노트에 저장"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Salvar nas notas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Сохранить в заметки"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Зберегти в нотатки"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "保存到笔记"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "儲存到筆記"
+          }
+        }
+      }
+    },
     "Saved": {
       "localizations": {
         "ar": {
@@ -14589,6 +16033,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "設定"
+          }
+        }
+      }
+    },
+    "Share…": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مشاركة…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Teilen …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Compartir…"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Jaa…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Partager…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "共有…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "공유…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Compartilhar…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Поделиться…"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Поділитися…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "分享…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "分享…"
           }
         }
       }
@@ -15653,6 +17173,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "聲音"
+          }
+        }
+      }
+    },
+    "Speed": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "السرعة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tempo"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Velocidad"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nopeus"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vitesse"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "速度"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "속도"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Velocidade"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Скорость"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Швидкість"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "语速"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "語速"
           }
         }
       }
@@ -16949,6 +18545,82 @@
         }
       }
     },
+    "Text": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "النص"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Text"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Texto"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Teksti"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Texte"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "テキスト"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "텍스트"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Texto"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Текст"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Текст"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "文字"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "文字"
+          }
+        }
+      }
+    },
     "Text size": {
       "localizations": {
         "ar": {
@@ -17401,6 +19073,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "鬧鐘顯示「停止」和另一個按鈕：「播放」打開 Kaivo 並朗讀，「稍後提醒」稍後再次響鈴。"
+          }
+        }
+      }
+    },
+    "The article is long: the answer comes from its beginning.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المقال طويل: الجواب مأخوذ من بدايته."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Der Artikel ist lang: Die Antwort stammt aus seinem Anfang."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "El artículo es largo: la respuesta sale de su comienzo."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artikkeli on pitkä: vastaus perustuu sen alkuun."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "L’article est long : la réponse vient de son début."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "記事が長いため、回答は冒頭部分に基づいています。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "글이 길어 답변은 앞부분을 바탕으로 합니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "O artigo é longo: a resposta vem do começo dele."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Статья длинная: ответ основан на её начале."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Стаття довга: відповідь ґрунтується на її початку."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "文章较长：回答基于开头部分。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "文章較長：回答根據開頭部分。"
           }
         }
       }
@@ -19381,6 +21129,82 @@
         }
       }
     },
+    "Thinking…": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "جارٍ التفكير…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Denke nach …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pensando…"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajatellaan…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Réflexion…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "考え中…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "생각 중…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pensando…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Думаю…"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Думаю…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "思考中…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "思考中…"
+          }
+        }
+      }
+    },
     "This address needs https.": {
       "localizations": {
         "ar": {
@@ -20061,6 +21885,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "時間"
+          }
+        }
+      }
+    },
+    "To answer, Kaivo sends the text of this article and your question to %@. Nothing is sent before you allow it.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "للإجابة يرسل Kaivo نص هذا المقال وسؤالك إلى %@. لا يُرسل شيء قبل موافقتك."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zum Antworten sendet Kaivo den Text dieses Artikels und deine Frage an %@. Vorher wird nichts gesendet."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Para responder, Kaivo envía el texto de este artículo y tu pregunta a %@. No se envía nada antes de que lo permitas."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vastatakseen Kaivo lähettää artikkelin tekstin ja kysymyksesi vastaanottajalle %@. Mitään ei lähetetä ennen lupaasi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pour répondre, Kaivo envoie le texte de cet article et votre question à %@. Rien n’est envoyé sans votre accord."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "回答するために、Kaivoはこの記事の本文とあなたの質問を%@に送信します。許可するまで何も送信されません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "답변하기 위해 Kaivo는 이 글의 본문과 질문을 %@에 보냅니다. 허용하기 전에는 아무것도 보내지 않습니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Para responder, o Kaivo envia o texto deste artigo e sua pergunta para %@. Nada é enviado antes de você permitir."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Чтобы ответить, Kaivo отправит текст статьи и ваш вопрос получателю: %@. Без вашего разрешения ничего не отправляется."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Щоб відповісти, Kaivo надсилає текст статті та ваше запитання отримувачу: %@. Без вашого дозволу нічого не надсилається."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "为了回答，Kaivo 会将本文内容和你的问题发送给 %@。在你允许之前不会发送任何内容。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "為了回答，Kaivo 會將本文內容和你的問題傳送給 %@。在你允許之前不會傳送任何內容。"
           }
         }
       }
@@ -21053,6 +22953,82 @@
         }
       }
     },
+    "What are the key points?": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ما أبرز النقاط؟"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Was sind die Kernpunkte?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "¿Cuáles son los puntos clave?"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mitkä ovat pääkohdat?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Quels sont les points clés ?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "要点は何ですか？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "핵심 내용은 무엇인가요?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Quais são os pontos principais?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Каковы основные мысли?"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Які головні думки?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "要点是什么？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "重點是什麼？"
+          }
+        }
+      }
+    },
     "What is only saved on this iPhone stays here.": {
       "localizations": {
         "ar": {
@@ -21505,6 +23481,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "白色"
+          }
+        }
+      }
+    },
+    "Who is this for, and what does it assume?": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "لمن هذا، وماذا يفترض؟"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Für wen ist das, und was wird vorausgesetzt?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "¿A quién va dirigido y qué da por supuesto?"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kenelle tämä on ja mitä se olettaa?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "À qui s’adresse-t-il, et que suppose-t-il ?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "誰向けで、何を前提としていますか？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "누구를 위한 글이며 무엇을 전제하나요?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Para quem é isto e o que pressupõe?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Для кого это и что предполагается?"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Для кого це і що передбачається?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "这是写给谁的，它预设了什么？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "這是寫給誰的，它預設了什麼？"
           }
         }
       }
