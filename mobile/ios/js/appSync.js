@@ -5,6 +5,7 @@
 import { createStampStore } from '../../../plugin/src/modules/syncStampStore.js';
 import { createSyncService, cleanPlace, cleanConnection } from '../../../plugin/src/modules/syncService.js';
 import { makeStore } from '../../../plugin/src/modules/syncStores.js';
+import { createPlaceFolderStore } from './placeFolder.js';
 import { createHighlightStore } from '../../../plugin/src/modules/highlightStore.js';
 import { countWords } from '../../../plugin/src/modules/textUtils.js';
 import { withQuestions, buildPrompt, parseAnswer, newTurn, joinContinuation } from '../../../plugin/src/modules/conversation.js';
@@ -30,17 +31,22 @@ const dataHooks = { count: countWords, compose: (base, turns) => withQuestions(b
  * here, as the extension's background does. Runs only fetch, unless writing back is switched on: kept with the library
  * (`setWriteBack`), or forced by `writeBack` for tests. `engine`: further options for the runs.
  */
-function createSync({ storage, log = () => {}, writeBack = false, engine = {} }) {
+function createSync({ storage, log = () => {}, writeBack = false, engine = {}, folder = null }) {
     const stampStore = createStampStore({ storage });
     storage.onChanged.addListener((changes) => stampStore.onChanged(changes));
-    const serviceWith = (options) => createSyncService({ storage, makeStore, stampStore, dataHooks, log, engine: { ...engine, ...options } });
+    // a place in a folder of Files is read by Swift; servers are reached as in the browser
+    const stores = (connection, place, secret) => (connection && connection.service === 'folder'
+        ? createPlaceFolderStore(folder, place ? place.root : '') : makeStore(connection, place, secret));
+    const serviceWith = (options) => createSyncService({ storage, makeStore: async (...a) => stores(...a), stampStore, dataHooks, log, engine: { ...engine, ...options } });
     const service = serviceWith({ pullOnly: true });
     const writing = serviceWith({});
     const WRITE = 'app:writeBack';
     // What writing back covers has grown (summaries, the articles saved here): a yes given to less does not cover it, so
     // the number says which yes was given.
     const SCOPE = 2;
-    const writes = async () => writeBack || (await storage.get({ [WRITE]: false }))[WRITE] === SCOPE;
+    // a folder is only read
+    const inFolder = async () => (await service.connectionsNow()).some((c) => c.service === 'folder');
+    const writes = async () => !(await inFolder()) && (writeBack || (await storage.get({ [WRITE]: false }))[WRITE] === SCOPE);
     const setWriteBack = ({ on }) => storage.set({ [WRITE]: on === true ? SCOPE : false });
     const library = createLibrary({ storage, stampStore, writes });
 
@@ -70,6 +76,22 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
         await setWriteBack({ on: false });
         // what another library brought stays on this device: it must never travel into this one
         await library.enter([connection.service, connection.url, connection.bucket || '', place.root].join('|'));
+        return { id: place.id, root: place.root };
+    }
+
+    /**
+     * Joins the library that lies in the chosen folder of Files, at `root` below it ('.' for the folder itself), with its
+     * passphrase. The folder is only read.
+     */
+    async function joinFolder({ root, name, passphrase }) {
+        if (!passphrase) throw new Error('Enter the passphrase of the library.');
+        const connection = cleanConnection({ service: 'folder', name });
+        if (!(await createPlaceFolderStore(folder, root).get('meta.json'))) throw new Error('There is no Kaivo library in that folder yet.');
+        const before = await service.placesNow();
+        const place = await service.add({ connection, secret: {}, place: { mode: 'encrypted', direction: 'twoway', root, passphrase, ackBackup: true } });
+        for (const old of before) await service.remove(old.id);
+        await setWriteBack({ on: false });
+        await library.enter(['folder', name, place.root].join('|'));
         return { id: place.id, root: place.root };
     }
 
@@ -160,7 +182,7 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
         return place ? library.waiting() : { articles: 0, summaries: 0 };
     }
 
-    return { service, writing, stampStore, highlights: createHighlightStore({ storage }), join, run, stop, state, leave, look, setWriteBack, waiting, library };
+    return { service, writing, stampStore, highlights: createHighlightStore({ storage }), join, joinFolder, run, stop, state, leave, look, setWriteBack, waiting, library };
 }
 
 /** The extension's storage under names of its own, which none of its modules reads. */

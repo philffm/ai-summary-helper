@@ -11,6 +11,10 @@ final class SyncHost: @unchecked Sendable {
     }
 
     private let storage: SyncStoring
+    /// The chosen folder of a library in Files; nil where none can be.
+    private let folder: PlaceFolder?
+    /// Reading waits for the file system and iCloud: not on the sync's own queue.
+    private let files = DispatchQueue(label: "kaivo.sync.files", qos: .utility, attributes: .concurrent)
     private let queue = DispatchQueue(label: "kaivo.sync", qos: .utility)
     private let context: JSContext
     private let session: URLSession
@@ -21,8 +25,9 @@ final class SyncHost: @unchecked Sendable {
     private static let maxAnswer = 25 * 1024 * 1024
 
     /// Without `writeBack` runs only fetch; nothing on the server changes.
-    init(storage: SyncStoring, writeBack: Bool = false, bundle: Bundle = .main, network: URLSessionConfiguration = .ephemeral) throws {
+    init(storage: SyncStoring, writeBack: Bool = false, folder: PlaceFolder? = nil, bundle: Bundle = .main, network: URLSessionConfiguration = .ephemeral) throws {
         self.storage = storage
+        self.folder = folder
         guard let context = JSContext() else { throw Failure(description: "JavaScript is not available.") }
         self.context = context
         // nothing of the system comes along with a request: no cookies, no cache, no saved logins
@@ -44,7 +49,7 @@ final class SyncHost: @unchecked Sendable {
             }
             context.setObject(makeHost(), forKeyedSubscript: "__host" as NSString)
             for (source, url) in sources { context.evaluateScript(source, withSourceURL: url) }
-            context.evaluateScript("var storage = __createStorage(); var sync = AISH_APP.createSync({ storage: storage, log: console.log, writeBack: \(writeBack) });")
+            context.evaluateScript("var storage = __createStorage(); var sync = AISH_APP.createSync({ storage: storage, log: console.log, writeBack: \(writeBack), folder: __placeFolder() });")
             if let thrown { throw Failure(description: thrown) }
         }
     }
@@ -221,6 +226,20 @@ final class SyncHost: @unchecked Sendable {
             requests[id]?.cancel()
         }
         offer("abort", abort)
+
+        let folderRead: @convention(block) (String, JSValue) -> Void = { [unowned self] path, answer in
+            inFiles(answer, { try $0.read(path) }) { [unowned self] file in
+                guard let file else { return [NSNull(), 0, NSNull()] }
+                return [NSNull(), file.modified, Self.array(file.bytes, in: context)]
+            }
+        }
+        offer("folderRead", folderRead)
+        let folderList: @convention(block) (String, JSValue) -> Void = { [unowned self] path, answer in
+            inFiles(answer, { try $0.list(path) }) { entries in
+                [NSNull(), entries.map { ["name": $0.name, "modified": $0.modified, "size": $0.size] }]
+            }
+        }
+        offer("folderList", folderList)
         return host
     }
 
@@ -229,6 +248,22 @@ final class SyncHost: @unchecked Sendable {
         let context = JSContext.current()!
         context.exception = JSValue(newErrorFromMessage: "The library could not be read: \(error)", in: context)
         return value
+    }
+
+    /// Work with the folder, off the sync's queue; its answer comes back there.
+    private func inFiles<Value>(_ answer: JSValue, _ work: @escaping (PlaceFolder) throws -> Value, _ arguments: @escaping (Value) -> [Any]) {
+        files.async { [weak self, folder] in
+            let result = Result { () -> Value in
+                guard let folder else { throw PlaceFolder.Failure.noFolder }
+                return try work(folder)
+            }
+            self?.queue.async {
+                switch result {
+                case .success(let value): answer.call(withArguments: arguments(value))
+                case .failure(let error): answer.call(withArguments: ["\(error)"])
+                }
+            }
+        }
     }
 
     private func request(_ id: Int, url: String, method: String, headers: [String: String], body: Data?, answer: JSValue) {

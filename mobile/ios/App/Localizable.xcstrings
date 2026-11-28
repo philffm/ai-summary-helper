@@ -533,6 +533,82 @@
         }
       }
     },
+    "A place in a folder, for example in iCloud Drive? Choose that folder. This iPhone only reads it.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مكتبة في مجلد، مثلًا في iCloud Drive؟ اختر ذلك المجلد. هذا الـ iPhone يقرأه فقط."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ein Speicherort in einem Ordner, etwa in iCloud Drive? Wähle diesen Ordner. Dieses iPhone liest ihn nur."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "¿Tu biblioteca está en una carpeta, por ejemplo en iCloud Drive? Elige esa carpeta. Este iPhone solo la lee."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Onko paikka kansiossa, esimerkiksi iCloud Drivessa? Valitse se kansio. Tämä iPhone vain lukee sitä."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Un emplacement dans un dossier, par exemple dans iCloud Drive ? Choisissez ce dossier. Cet iPhone ne fait que le lire."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "保存先がフォルダ（iCloud Driveなど）の場合は、そのフォルダを選んでください。このiPhoneは読み取りのみです。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "저장 위치가 폴더(예: iCloud Drive)에 있나요? 그 폴더를 선택하세요. 이 iPhone은 읽기만 합니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Um local em uma pasta, por exemplo no iCloud Drive? Escolha essa pasta. Este iPhone apenas a lê."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Хранилище в папке, например в iCloud Drive? Выберите эту папку. Этот iPhone только читает её."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Сховище в теці, наприклад в iCloud Drive? Виберіть цю теку. Цей iPhone лише читає її."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "存放位置是某个文件夹（例如 iCloud 云盘）？选择该文件夹。此 iPhone 只读取。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "儲存位置是某個資料夾（例如 iCloud 雲碟）？選擇該資料夾。此 iPhone 只會讀取。"
+          }
+        }
+      }
+    },
     "A random article": {
       "localizations": {
         "ar": {
@@ -3797,6 +3873,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "取消"
+          }
+        }
+      }
+    },
+    "Choose a folder": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "اختيار مجلد"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ordner wählen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Elegir una carpeta"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Valitse kansio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Choisir un dossier"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "フォルダを選択"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "폴더 선택"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Escolher uma pasta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Выбрать папку"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Вибрати теку"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "选择文件夹"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "選擇資料夾"
           }
         }
       }
@@ -7217,6 +7369,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "快轉30秒"
+          }
+        }
+      }
+    },
+    "From Files": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "من «الملفات»"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aus „Dateien“"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Desde Archivos"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tiedostot-apista"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Depuis Fichiers"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "「ファイル」から"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "‘파일’에서"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Do app Arquivos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Из «Файлов»"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "З «Файлів»"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "来自“文件”"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "來自「檔案」"
           }
         }
       }
@@ -14133,6 +14361,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "在此裝置上"
+          }
+        }
+      }
+    },
+    "On your computer in Kaivo, open your place and choose “Show passphrase”.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "على حاسوبك في Kaivo، افتح مكان المزامنة واختر «إظهار عبارة المرور»."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Öffne am Rechner in Kaivo deinen Speicherort und wähle „Passphrase anzeigen“."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "En tu ordenador, en Kaivo, abre tu ubicación y elige «Mostrar frase de contraseña»."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Avaa tietokoneen Kaivossa tallennuspaikkasi ja valitse ”Näytä salalause”."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sur votre ordinateur, dans Kaivo, ouvrez votre emplacement et choisissez « Afficher la phrase secrète »."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "パソコンのKaivoで保存先を開き、「パスフレーズを表示」を選びます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "컴퓨터의 Kaivo에서 저장 위치를 열고 ‘암호문 보기’를 선택하세요."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "No computador, no Kaivo, abra seu local e escolha “Mostrar frase secreta”."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "На компьютере в Kaivo откройте хранилище и выберите «Показать парольную фразу»."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "На комп’ютері в Kaivo відкрийте сховище й виберіть «Показати парольну фразу»."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在电脑的 Kaivo 中打开该存放位置，选择“显示密码短语”。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在電腦的 Kaivo 中打開該儲存位置，選擇「顯示通關密語」。"
           }
         }
       }
@@ -27057,6 +27361,82 @@
         }
       }
     },
+    "This iPhone only reads this folder.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "هذا الـ iPhone يقرأ هذا المجلد فقط."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dieses iPhone liest diesen Ordner nur."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Este iPhone solo lee esta carpeta."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tämä iPhone vain lukee tätä kansiota."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cet iPhone ne fait que lire ce dossier."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "このiPhoneはこのフォルダを読み取るだけです。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "이 iPhone은 이 폴더를 읽기만 합니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Este iPhone apenas lê esta pasta."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Этот iPhone только читает эту папку."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Цей iPhone лише читає цю теку."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "此 iPhone 只读取该文件夹。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "此 iPhone 只會讀取這個資料夾。"
+          }
+        }
+      }
+    },
     "This is not a Kaivo library code.": {
       "localizations": {
         "ar": {
@@ -31461,6 +31841,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "健康"
+          }
+        }
+      }
+    },
+    "iCloud is still downloading files. Sync again in a moment.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "لا يزال iCloud ينزّل الملفات. زامن مرة أخرى بعد قليل."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iCloud lädt noch Dateien. Synchronisiere gleich noch einmal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iCloud todavía está descargando archivos. Vuelve a sincronizar en un momento."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iCloud lataa vielä tiedostoja. Synkronoi hetken kuluttua uudelleen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iCloud télécharge encore des fichiers. Synchronisez à nouveau dans un instant."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iCloudがまだファイルをダウンロード中です。少し待ってからもう一度同期してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iCloud가 아직 파일을 내려받는 중입니다. 잠시 후 다시 동기화하세요."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "O iCloud ainda está baixando arquivos. Sincronize de novo daqui a pouco."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iCloud ещё загружает файлы. Синхронизируйте снова чуть позже."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iCloud ще завантажує файли. Синхронізуйте знову трохи згодом."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iCloud 仍在下载文件，请稍后再同步。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "iCloud 仍在下載檔案，請稍後再同步。"
           }
         }
       }

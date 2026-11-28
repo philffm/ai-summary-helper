@@ -7,6 +7,7 @@ struct LibrarySyncView: View {
     @State private var asking = false
     /// Before writing back is switched on, the backup is asked for.
     @State private var backup = false
+    @State private var picking = false
 
     var body: some View {
         Group {
@@ -24,6 +25,9 @@ struct LibrarySyncView: View {
         .navigationBarTitleDisplayMode(.inline)
         .task { await sync.refresh() }
         .sheet(isPresented: $backup) { BackupFirst { Task { await sync.setWriteBack(true) } } }
+        .fileImporter(isPresented: $picking, allowedContentTypes: [.folder]) { result in
+            if case .success(let folder) = result { Task { await sync.read(folder: folder) } }
+        }
     }
 
     // MARK: - Not connected
@@ -52,6 +56,13 @@ struct LibrarySyncView: View {
             } footer: {
                 problem
             }
+            Section {
+                Button { picking = true } label: { Label("Choose a folder", systemImage: "folder") }
+                    .disabled(!sync.available)
+                    .accessibilityIdentifier("choose-folder")
+            } footer: {
+                Text("A place in a folder, for example in iCloud Drive? Choose that folder. This iPhone only reads it.")
+            }
         }
         .safeAreaInset(edge: .bottom) {
             VStack(spacing: 8) {
@@ -68,10 +79,16 @@ struct LibrarySyncView: View {
     private func found(_ offer: SyncModel.Offer) -> some View {
         @Bindable var sync = sync
         return List {
-            Section("From the code") {
-                LabeledContent("Server") { Text(verbatim: offer.info.server) }
-                LabeledContent("Type") { Text(verbatim: offer.info.service == "s3" ? "S3" : "Nextcloud / WebDAV") }
-                LabeledContent("Folder") { Text(verbatim: offer.info.folder) }
+            if offer.info.service == "folder" {
+                Section("From Files") {
+                    LabeledContent("Folder") { Text(verbatim: offer.info.folder == "." ? offer.info.server : offer.info.server + "/" + offer.info.folder) }
+                }
+            } else {
+                Section("From the code") {
+                    LabeledContent("Server") { Text(verbatim: offer.info.server) }
+                    LabeledContent("Type") { Text(verbatim: offer.info.service == "s3" ? "S3" : "Nextcloud / WebDAV") }
+                    LabeledContent("Folder") { Text(verbatim: offer.info.folder) }
+                }
             }
             if offer.info.words {
                 Section { Label("The passphrase is part of the code.", systemImage: "key") } footer: { problem }
@@ -89,6 +106,7 @@ struct LibrarySyncView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         problem
                         Text("The words Kaivo showed you when the place was made. Spaces or dashes both work.")
+                        if offer.info.service == "folder" { Text("On your computer in Kaivo, open your place and choose “Show passphrase”.") }
                     }
                 }
             }
@@ -98,7 +116,7 @@ struct LibrarySyncView: View {
         }
         .safeAreaInset(edge: .bottom) {
             VStack(spacing: 8) {
-                Text("Connecting only fetches. Writing back stays off until you switch it on.")
+                Text(offer.info.service == "folder" ? "This iPhone only reads this folder." : "Connecting only fetches. Writing back stays off until you switch it on.")
                     .font(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.center)
                 primary("Connect") { Task { await sync.connect() } }
                     .disabled(!offer.info.words && sync.passphrase.trimmingCharacters(in: .whitespaces).isEmpty)
@@ -165,8 +183,12 @@ struct LibrarySyncView: View {
             }
             Section {
                 LabeledContent("Articles") { Text(verbatim: state.articles.formatted()) }
-                LabeledContent("Server") { Text(verbatim: state.server ?? "") }
-                LabeledContent("Folder") { Text(verbatim: state.root) }
+                if state.service == "folder" {
+                    LabeledContent("Folder") { Text(verbatim: state.root == "." ? state.server ?? "" : (state.server ?? "") + "/" + state.root) }
+                } else {
+                    LabeledContent("Server") { Text(verbatim: state.server ?? "") }
+                    LabeledContent("Folder") { Text(verbatim: state.root) }
+                }
             }
             Section {
                 Button {
@@ -178,6 +200,9 @@ struct LibrarySyncView: View {
             } footer: {
                 problem
             }
+            if state.service == "folder" {
+                Section { Text("This iPhone only reads this folder.").font(.footnote) }
+            } else {
             Section {
                 Toggle("Write back", isOn: Binding(get: { state.writesBack }, set: { on in
                     if on { backup = true } else { Task { await sync.setWriteBack(false) } }
@@ -188,6 +213,7 @@ struct LibrarySyncView: View {
                     Text("Off: the app only fetches. On: reading progress, highlights, comments, notes, questions and summaries go to your place too, and the articles saved on this iPhone join your library, also those from before.")
                     Text("Deleting on this iPhone does not delete anything in your library yet.")
                 }
+            }
             }
             Section {
                 Button("Disconnect…", role: .destructive) { asking = true }
@@ -210,6 +236,7 @@ struct LibrarySyncView: View {
                 case .notACode: Text("This is not a Kaivo library code.")
                 case .wrongWords: Text("The passphrase does not fit this place. Nothing was changed.")
                 case .noLibrary: Text("There is no Kaivo library in that folder yet. Set up sync on your computer first.")
+                case .onItsWay: Text("iCloud is still downloading files. Sync again in a moment.")
                 case .login: Text("The server did not accept the login.")
                 case .needsHTTPS: Text("This address needs https.")
                 case .other(let said): Text(verbatim: said)

@@ -60,11 +60,29 @@ struct LibrarySync {
     private let storage: SyncStorage
     private let folder: URL
 
+    /// The chosen folder of a library in Files.
+    let place: PlaceFolder
+
     /// The library in this folder, its secrets in the Keychain.
     init(folder: URL, vault: SyncVault, writeBack: Bool = false, network: URLSessionConfiguration = .ephemeral) throws {
         self.folder = folder
         storage = try SyncStorage(url: folder.appending(path: "library.sqlite"))
-        host = try SyncHost(storage: try GuardedStorage(storage, vault: vault), writeBack: writeBack, network: network)
+        place = PlaceFolder(bookmark: folder.appending(path: "place.bookmark"))
+        host = try SyncHost(storage: try GuardedStorage(storage, vault: vault), writeBack: writeBack, folder: place, network: network)
+    }
+
+    /// Joins the library in a folder of Files. `bookmark` remembers the folder, `root` says where in it the library lies.
+    /// Where joining fails, the folder remembered before stays.
+    func joinFolder(bookmark: Data, root: String, name: String, passphrase: String) async throws {
+        let target = backupBeforeJoin, storage = storage, before = place.remembered
+        try await host.read { _ in try storage.backup(to: target) }
+        try place.remember(bookmark)
+        do {
+            _ = try await host.run("return sync.joinFolder(input);", input: ["root": root, "name": name, "passphrase": passphrase])
+        } catch {
+            try? place.remember(before)
+            throw error
+        }
     }
 
     /// nil when this is no code of a library.

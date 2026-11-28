@@ -272,6 +272,17 @@
         });
     });
 
+    // ── the folder of a library in Files (App/Sync/PlaceFolder.swift) ─────
+    g.__placeFolder = () => ({
+        read: (path) => new Promise((resolve, reject) => host.folderRead(path, (error, modified, bytes) => {
+            if (error) reject(new Error(error));
+            else resolve(bytes === null || bytes === undefined ? null : { bytes: own(bytes), modified });
+        })),
+        list: (path) => new Promise((resolve, reject) => host.folderList(path, (error, entries) => {
+            if (error) reject(new Error(error)); else resolve(entries);
+        })),
+    });
+
     // ── storage, like the extension's local storage ───────────────────────
     g.__createStorage = () => {
         const listeners = [];

@@ -7,12 +7,16 @@ import Observation
 final class SyncModel {
     enum Problem: Equatable {
         case notACode, wrongWords, noLibrary, login, needsHTTPS
+        /// A folder in iCloud Drive whose files are not all here yet.
+        case onItsWay
         /// Whatever else, in the words it came in.
         case other(String)
 
-        init(_ error: Error) {
-            let said = "\(error)"
-            if said.contains("not a Kaivo library code") { self = .notACode }
+        init(_ error: Error) { self.init(said: "\(error)") }
+
+        init(said: String) {
+            if said.contains("still downloading") { self = .onItsWay }
+            else if said.contains("not a Kaivo library code") { self = .notACode }
             else if said.contains("Wrong passphrase") { self = .wrongWords }
             else if said.contains("no Kaivo library") { self = .noLibrary }
             else if said.contains("401") || said.contains("403") || said.contains("username and password") { self = .login }
@@ -30,6 +34,8 @@ final class SyncModel {
     private(set) var state: LibrarySync.State?
     var offer: Offer?
     var passphrase = ""
+    /// A chosen folder that waits for the passphrase.
+    @ObservationIgnored private var chosen: Data?
     /// While a library is joined and fetched for the first time.
     private(set) var joining = false
     private(set) var fetching = false
@@ -70,7 +76,22 @@ final class SyncModel {
         }
     }
 
+    /// A folder chosen in Files: shown, like a code, before anything is joined.
+    func read(folder: URL) async {
+        guard sync != nil else { return }
+        problem = nil
+        offer = nil
+        passphrase = ""
+        guard let root = PlaceFolder.root(in: folder), let bookmark = try? PlaceFolder.bookmark(for: folder) else {
+            problem = .noLibrary
+            return
+        }
+        chosen = bookmark
+        offer = Offer(code: "", info: LibrarySync.Code(service: "folder", server: folder.lastPathComponent, folder: root, words: false, plain: false))
+    }
+
     func back() {
+        chosen = nil
         offer = nil
         passphrase = ""
         problem = nil
@@ -84,7 +105,11 @@ final class SyncModel {
         do {
             // everything the app has so far is in the library before the server's values meet it
             await library.settled()
-            try await sync.join(code: offer.code, passphrase: passphrase)
+            if offer.info.service == "folder", let chosen {
+                try await sync.joinFolder(bookmark: chosen, root: offer.info.folder, name: offer.info.server, passphrase: passphrase)
+            } else {
+                try await sync.join(code: offer.code, passphrase: passphrase)
+            }
         } catch {
             problem = Problem(error)
             return
@@ -135,7 +160,7 @@ final class SyncModel {
             }
             brought = run.applied > 0 || (run.moved ?? 0) > 0
             if let list = run.feeds, !list.isEmpty { takeFeeds?(list) }
-            if let first = run.errors.first { problem = .other(first) }
+            if let first = run.errors.first { problem = Problem(said: first) }
         } catch {
             problem = Problem(error)
         }

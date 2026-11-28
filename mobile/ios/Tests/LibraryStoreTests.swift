@@ -394,6 +394,94 @@ final class LibraryStoreTests: XCTestCase {
         XCTAssertEqual(changesOnTheServer, 0)
     }
 
+    /// The files of the browser's place in a folder, as one finds them in iCloud Drive: with a subfolder, stray files beside
+    /// the records, and one record still on its way.
+    private func placeInFolder(_ made: [String: Any]) throws -> (chosen: URL, place: URL) {
+        let chosen = root.appending(path: "Drive-" + UUID().uuidString)
+        let place = chosen.appending(path: "aish-sync")
+        for (path, text) in try XCTUnwrap(made["files"] as? [String: String]) {
+            let file = place.appending(path: path)
+            try FileManager.default.createDirectory(at: file.deletingLastPathComponent(), withIntermediateDirectories: true)
+            try XCTUnwrap(Data(base64Encoded: text)).write(to: file)
+        }
+        try Data("x".utf8).write(to: place.appending(path: "r/.DS_Store"))
+        let one = try XCTUnwrap(FileManager.default.contentsOfDirectory(atPath: place.appending(path: "r").path).filter { $0.count == 64 }.first)
+        try Data("x".utf8).write(to: place.appending(path: "r/" + one + " 2"))
+        return (chosen, place)
+    }
+
+    private func everything(below folder: URL) throws -> [String: Data] {
+        var out: [String: Data] = [:]
+        for path in try FileManager.default.subpathsOfDirectory(atPath: folder.path) {
+            if let data = FileManager.default.contents(atPath: folder.appending(path: path).path) { out[path] = data }
+        }
+        return out
+    }
+
+    /// A library in a folder of Files is joined with its passphrase, read, and never written.
+    func testALibraryInAFolderIsReadAndNeverWritten() async throws {
+        let made = try serveTheBrowsersPlace(folder: "elsewhere")
+        let drive = try placeInFolder(made)
+        let before = try everything(below: drive.chosen)
+        let library = try await start()
+        let model = SyncModel(library: library)
+        var feeds: [LibrarySync.FeedEntry] = []
+        model.takeFeeds = { feeds = $0 }
+        await model.read(folder: drive.chosen)
+        XCTAssertEqual(model.offer?.info.service, "folder")
+        XCTAssertEqual(model.offer?.info.folder, "aish-sync")
+        model.passphrase = "wrong words entirely here now"
+        await model.connect()
+        XCTAssertNotNil(model.problem)
+        XCTAssertNil(model.state)
+        model.passphrase = try XCTUnwrap(made["passphrase"] as? String)
+        await model.connect()
+        await library.settled()
+        XCTAssertNil(model.problem)
+        XCTAssertEqual(model.state?.service, "folder")
+        XCTAssertEqual(library.article("x1")?.title, "Written in the browser")
+        XCTAssertEqual(feeds.count, 3)
+        // switched on by force, still nothing is written
+        await model.setWriteBack(true)
+        XCTAssertEqual(model.state?.writesBack, false)
+        library.read("x1", upTo: 0.9)
+        await library.settled()
+        await model.fetch()
+        XCTAssertNil(model.problem)
+        XCTAssertEqual(try everything(below: drive.chosen), before)
+    }
+
+    /// A file iCloud has not brought yet is not taken for gone: the run says so, and the next one has it.
+    func testAFileStillInICloudIsWaitedFor() async throws {
+        let made = try serveTheBrowsersPlace(folder: "elsewhere")
+        let drive = try placeInFolder(made)
+        let records = drive.place.appending(path: "r")
+        let names = try FileManager.default.contentsOfDirectory(atPath: records.path).filter { $0.count == 64 }
+        let held = records.appending(path: try XCTUnwrap(names.first)), away = records.appending(path: "." + held.lastPathComponent + ".icloud")
+        try FileManager.default.moveItem(at: held, to: away)
+        let library = try await start()
+        let model = SyncModel(library: library)
+        await model.read(folder: drive.chosen)
+        model.passphrase = try XCTUnwrap(made["passphrase"] as? String)
+        await model.connect()
+        XCTAssertEqual(model.problem, .onItsWay)
+        try FileManager.default.moveItem(at: away, to: held)
+        await model.fetch()
+        await library.settled()
+        XCTAssertNil(model.problem)
+        XCTAssertNotNil(library.article("x1"))
+    }
+
+    func testAFolderWithoutALibraryIsRefused() async throws {
+        let library = try await start()
+        let model = SyncModel(library: library)
+        let empty = root.appending(path: "empty-" + UUID().uuidString)
+        try FileManager.default.createDirectory(at: empty, withIntermediateDirectories: true)
+        await model.read(folder: empty)
+        XCTAssertEqual(model.problem, .noLibrary)
+        XCTAssertNil(model.offer)
+    }
+
     func testWhatWasSavedHereJoinsTheLibraryOnceSwitchedOn() async throws {
         let made = try serveTheBrowsersPlace()
         var mine = Passage(text: "Only my words.")
