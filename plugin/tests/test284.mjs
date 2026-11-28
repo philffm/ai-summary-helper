@@ -75,6 +75,8 @@ const log = []; const both = N.createSender({ storage: box, send: async (m) => {
 await both();
 assert.deepEqual(log, ['hello', [{ url: 'https://a.test/feed', title: 'Mine', tags: ['x'] }, { url: 'https://b.test/rss', title: 'B', tags: [] }], 'new', 'old']);
 log.length = 0; await both(); assert.deepEqual(log, ['hello'], 'unchanged feeds are not sent again');
+// the AI's topics are categories too, each once
+assert.deepEqual(plain(N.toFeeds([{ url: 'https://c.test/f', title: 'C', tags: ['Tech'], topics: ['tech', 'Design', ''] }]))[0].tags, ['Tech', 'Design']);
 lib['feeds:subs'] = lib['feeds:subs'].slice(0, 1); log.length = 0; await both(); assert.equal(log[1].length, 1, 'a changed list is');
 // the wake-up alarm covers a run that is cut off; one that ends, even refused, removes it again
 {

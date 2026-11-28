@@ -61,10 +61,14 @@
         };
     }
 
-    /** What the app gets of the subscriptions: address, name and tags of every web feed. */
+    /** What the app gets of the subscriptions: address, name, and the categories of every web feed (the reader's tags and the AI's topics). */
     function toFeeds(subs) {
         return (Array.isArray(subs) ? subs : []).filter((f) => f && /^https?:/i.test(f.url || '')).slice(0, MAX_FEEDS)
-            .map((f) => ({ url: str(f.url, 2048), title: str(f.customTitle || f.title, 500), tags: (Array.isArray(f.tags) ? f.tags : []).filter((t) => typeof t === 'string').slice(0, 12) }));
+            .map((f) => {
+                const all = [...(Array.isArray(f.tags) ? f.tags : []), ...(Array.isArray(f.topics) ? f.topics : [])].filter((t) => typeof t === 'string' && t.trim());
+                const tags = all.filter((t, i) => all.findIndex((x) => x.trim().toLowerCase() === t.trim().toLowerCase()) === i).slice(0, 12);
+                return { url: str(f.url, 2048), title: str(f.customTitle || f.title, 500), tags };
+            });
     }
 
     /**
