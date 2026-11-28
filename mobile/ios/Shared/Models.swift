@@ -23,6 +23,8 @@ struct FeedItem: Codable, Identifiable, Hashable {
     var body: String = ""
     /// The address of a podcast episode's sound; nil for everything else (and for items stored before podcasts were read).
     var audio: String?
+    /// The size of that file as the feed gives it, where it is believable.
+    var audioBytes: Int?
 }
 
 struct StoredItem: Codable, Hashable {

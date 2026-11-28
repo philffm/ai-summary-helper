@@ -39,7 +39,7 @@ struct FeedItemView: View {
                     .font(.footnote).foregroundStyle(.secondary)
                 Text(verbatim: item.title).readerText(look, title: true).accessibilityAddTraits(.isHeader)
                 if let sound = item.audio.flatMap(URL.init(string:)) {
-                    EpisodePlayer(id: entry.id, url: sound, title: item.title, show: entry.feed.name)
+                    EpisodePlayer(id: entry.id, url: sound, title: item.title, show: entry.feed.name, bytes: item.audioBytes.map(Int64.init))
                 }
                 Text(verbatim: item.body.isEmpty ? item.summary : item.body)
                     .readerText(look)

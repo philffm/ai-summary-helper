@@ -86,6 +86,7 @@ struct RootView: View {
                     inbox.start([SafariInbox.directory, SharedLinks.directory]) { takeHandedOver() }
                 } else if phase == .background {
                     inbox.stop()
+                    AudioPlayer.shared.note()
                 }
             }
             // not before the library is read: the widgets would show an empty one

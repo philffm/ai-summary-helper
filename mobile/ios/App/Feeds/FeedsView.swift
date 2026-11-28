@@ -5,6 +5,11 @@ struct FeedsView: View {
     @Environment(Router.self) private var router
     @Environment(SyncModel.self) private var sync
     @State private var filter = FeedFilter.all
+    /// Only the feeds of this category; nil for all of them.
+    @State private var category: String?
+    /// Among the podcasts: the loaded ones only.
+    @State private var loadedOnly = false
+    @State private var podcastStore = PodcastStore.shared
     @State private var sheet: Sheet?
 
     private enum Sheet: String, Identifiable { case add, manage; var id: String { rawValue } }
@@ -33,10 +38,42 @@ struct FeedsView: View {
                     .pickerStyle(.segmented)
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                    let categories = feeds.categories
+                    // one that no feed has any more counts as none
+                    let narrowed = category.flatMap { categories.contains($0) ? $0 : nil }
+                    if !categories.isEmpty {
+                        ScrollView(.horizontal) {
+                            HStack(spacing: 8) {
+                                ForEach(categories, id: \.self) { name in
+                                    let on = narrowed == name
+                                    let unread = entries.filter { !$0.stored.read && $0.feed.has(category: name) && (chosen != .podcasts || $0.isPodcast) }.count
+                                    chip(Text(verbatim: unread > 0 ? "\(name)  \(unread)" : name), on: on) { category = on ? nil : name }
+                                }
+                            }
+                            .padding(.vertical, 1)
+                        }
+                        .scrollIndicators(.hidden)
+                        .listRowInsets(EdgeInsets())
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                        .accessibilityIdentifier("categories")
+                    }
+                    let inCategory = narrowed.map { name in entries.filter { $0.feed.has(category: name) } } ?? entries
+                    let loaded = inCategory.filter { if case .loaded = podcastStore.state($0.id) { true } else { false } }
+                    if chosen == .podcasts && !loaded.isEmpty {
+                        HStack(spacing: 8) {
+                            chip(Text("All episodes"), on: !loadedOnly) { loadedOnly = false }
+                            chip(Text("Loaded · \(loaded.count)"), on: loadedOnly) { loadedOnly = true }
+                        }
+                        .listRowInsets(EdgeInsets())
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                    }
                     Section {
-                        let shown = entries.filter(chosen.shows)
+                        let shown = chosen == .podcasts && loadedOnly && !loaded.isEmpty ? loaded : inCategory.filter(chosen.shows)
                         ForEach(shown) { entry in
-                            NavigationLink(value: Route.item(feed: entry.feed.url, id: entry.stored.item.id)) { EntryRow(entry: entry) }
+                            NavigationLink(value: Route.item(feed: entry.feed.url, id: entry.stored.item.id)) { EntryRow(entry: entry, episode: chosen == .podcasts) }
                                 .swipeActions(edge: .leading) {
                                     Button { feeds.setRead(entry, !entry.stored.read) } label: {
                                         if entry.stored.read {
@@ -74,10 +111,23 @@ struct FeedsView: View {
             }
         }
     }
+
+    private func chip(_ title: Text, on: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            title.font(.subheadline.weight(.semibold)).padding(.horizontal, 16).frame(minHeight: 36)
+                .foregroundStyle(on ? Color(.systemBackground) : KaivoTokens.accent)
+                .background(on ? KaivoTokens.accent : Color(.secondarySystemGroupedBackground), in: Capsule())
+        }
+        .buttonStyle(.plain)
+        .accessibilityAddTraits(on ? .isSelected : [])
+    }
 }
 
 struct EntryRow: View {
     let entry: FeedEntry
+    /// Shown as an episode: how far it was heard, and whether it is loaded.
+    var episode = false
+    @State private var podcasts = PodcastStore.shared
 
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 10) {
@@ -86,10 +136,39 @@ struct EntryRow: View {
                 Text(verbatim: entry.stored.item.title).font(.body.weight(entry.stored.read ? .regular : .medium)).fontDesign(.serif).lineLimit(3)
                 Text(verbatim: [entry.feed.name, entry.stored.item.published.map { Dates.relativeDay($0) }].compactMap { $0 }.joined(separator: " · "))
                     .font(.footnote).foregroundStyle(.secondary)
+                if episode, let at = podcasts.resumeAt(entry.id), podcasts.listening(entry.id).of > 0 {
+                    ProgressView(value: min(at, podcasts.listening(entry.id).of), total: podcasts.listening(entry.id).of).frame(maxWidth: 110)
+                }
+            }
+            if episode, let sound = entry.stored.item.audio.flatMap(URL.init(string:)) {
+                Spacer(minLength: 0)
+                mark(sound)
             }
         }
         .accessibilityElement(children: .combine)
         .accessibilityValue(entry.stored.read ? Text(verbatim: "") : Text("Unread"))
+        .accessibilityActions {
+            if episode, let sound = entry.stored.item.audio.flatMap(URL.init(string:)), [.none, .failed].contains(podcasts.state(entry.id)) {
+                Button("Load episode") { podcasts.load(entry.id, title: entry.stored.item.title, show: entry.feed.name, url: sound) }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func mark(_ sound: URL) -> some View {
+        switch podcasts.state(entry.id) {
+        case .loaded:
+            Image(systemName: "checkmark.circle.fill").foregroundStyle(KaivoTokens.accent).frame(width: 36, height: 36)
+                .accessibilityLabel("On this device")
+        case .loading, .waiting:
+            ProgressView().frame(width: 36, height: 36)
+        case .none, .failed:
+            Button { podcasts.load(entry.id, title: entry.stored.item.title, show: entry.feed.name, url: sound) } label: {
+                Image(systemName: "arrow.down.circle").font(.title3).frame(width: 36, height: 36)
+            }
+            .buttonStyle(.borderless)
+            .accessibilityLabel("Load episode")
+        }
     }
 }
 
@@ -182,6 +261,9 @@ struct ManageFeedsView: View {
                 ForEach(feeds.feeds) { feed in
                     VStack(alignment: .leading, spacing: 2) {
                         Text(verbatim: feed.name)
+                        if !feed.tags.isEmpty {
+                            Text(verbatim: feed.tags.joined(separator: " · ")).font(.footnote).foregroundStyle(KaivoTokens.accent)
+                        }
                         if feeds.states[feed.url]?.failed == true {
                             Label("Could not be loaded", systemImage: "exclamationmark.triangle").font(.footnote).foregroundStyle(.secondary)
                         } else {
@@ -189,6 +271,7 @@ struct ManageFeedsView: View {
                         }
                     }
                     .swipeActions { Button("Delete", systemImage: "trash", role: .destructive) { feeds.remove(feed.url) } }
+                    .accessibilityElement(children: .combine)
                 }
             }
             .navigationTitle("Your feeds")

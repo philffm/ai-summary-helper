@@ -64,11 +64,13 @@ enum FeedParser {
             let full = n.text("encoded").isEmpty ? n.text("content") : n.text("encoded")
             let author = n.text("creator", "author")
             // RSS: <enclosure>; Atom: <link rel="enclosure">
-            let enclosures = n.all("enclosure").map { ($0.attributes["url"], $0.attributes["type"]) }
-                + n.all("link").filter { $0.attributes["rel"] == "enclosure" }.map { ($0.attributes["href"], $0.attributes["type"]) }
-            let audio = enclosures.compactMap { address, type in Self.audio(resolve(address ?? "", base: base), type: type) }.first
+            let enclosures = n.all("enclosure").map { ($0.attributes["url"], $0.attributes["type"], $0.attributes["length"]) }
+                + n.all("link").filter { $0.attributes["rel"] == "enclosure" }.map { ($0.attributes["href"], $0.attributes["type"], $0.attributes["length"]) }
+            let sound = enclosures.compactMap { address, type, length in
+                Self.audio(resolve(address ?? "", base: base), type: type).map { ($0, Self.size(length.flatMap { Int($0) })) }
+            }.first
             return item(guid: guid, title: n.text("title"), link: link, date: n.text("pubdate", "date", "published", "updated"),
-                        author: author, summary: n.text("description", "summary"), full: full, audio: audio)
+                        author: author, summary: n.text("description", "summary"), full: full, audio: sound?.0, audioBytes: sound?.1)
         }
         return Parsed(title: HTMLText.plain(head.text("title")), items: items)
     }
@@ -79,6 +81,9 @@ enum FeedParser {
         return resolve(pick?.attributes["href"] ?? "", base: base)?.absoluteString ?? ""
     }
 
+    /// A size a feed gives for a sound file, where it can be one: many say 0 or 1.
+    private static func size(_ bytes: Int?) -> Int? { bytes.flatMap { $0 >= 100_000 ? $0 : nil } }
+
     /// An attachment that is sound, over https.
     private static func audio(_ url: URL?, type: String?) -> String? {
         guard let url, url.scheme == "https",
@@ -86,14 +91,15 @@ enum FeedParser {
         return url.absoluteString
     }
 
-    private static func item(guid: String, title: String, link: String, date: String, author: String, summary: String, full: String, audio: String? = nil) -> FeedItem? {
+    private static func item(guid: String, title: String, link: String, date: String, author: String, summary: String, full: String,
+                             audio: String? = nil, audioBytes: Int? = nil) -> FeedItem? {
         let body = String(HTMLText.plain(full.isEmpty ? summary : full).prefix(maxBody))
         let short = String(HTMLText.plain(summary.isEmpty ? full : summary).split(whereSeparator: \.isWhitespace).joined(separator: " ").prefix(400))
         let shown = HTMLText.plain(title).isEmpty ? String(short.prefix(80)) : HTMLText.plain(title)
         if shown.isEmpty && link.isEmpty { return nil }
         let id = guid.isEmpty ? (link.isEmpty ? shown + date : link) : guid
         return FeedItem(id: String(id.prefix(300)), title: shown, link: link, published: parseDate(date),
-                        author: String(HTMLText.plain(author).prefix(120)), summary: short, body: body, audio: audio)
+                        author: String(HTMLText.plain(author).prefix(120)), summary: short, body: body, audio: audio, audioBytes: audioBytes)
     }
 
     // MARK: - JSON Feed
@@ -106,11 +112,12 @@ enum FeedParser {
             let authors = entry["authors"] as? [[String: Any]]
             let sound = (entry["attachments"] as? [[String: Any]])?.compactMap { file in
                 Self.audio(resolve(file["url"] as? String ?? "", base: base), type: file["mime_type"] as? String)
+                    .map { ($0, Self.size((file["size_in_bytes"] as? NSNumber)?.intValue)) }
             }.first
             return item(guid: s("id"), title: s("title"), link: resolve(s("url"), base: base)?.absoluteString ?? "",
                         date: s("date_published"), author: authors?.first?["name"] as? String ?? "",
                         summary: s("summary").isEmpty ? s("content_text") : s("summary"),
-                        full: s("content_html").isEmpty ? s("content_text") : s("content_html"), audio: sound)
+                        full: s("content_html").isEmpty ? s("content_text") : s("content_html"), audio: sound?.0, audioBytes: sound?.1)
         }
         return Parsed(title: HTMLText.plain(object["title"] as? String ?? ""), items: items)
     }

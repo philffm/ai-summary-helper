@@ -2,6 +2,10 @@ import Foundation
 import Observation
 import WidgetKit
 
+extension Feed {
+    func has(category: String) -> Bool { tags.contains { $0.caseInsensitiveCompare(category) == .orderedSame } }
+}
+
 struct FeedEntry: Identifiable, Hashable {
     var feed: Feed
     var stored: StoredItem
@@ -43,6 +47,8 @@ final class FeedsModel {
     private struct Vault: Codable { var v = 1; var feeds: [Feed] }
 
     private var all: [Feed] = []
+    /// Entries that stay however old they get: the loaded episodes.
+    @ObservationIgnored var keeps: (String) -> Bool = { PodcastStore.shared.keeps($0) }
     private(set) var states: [String: FeedState] = [:]
     private(set) var refreshing = false
     /// Sample feeds are shown in memory only and never written.
@@ -65,6 +71,14 @@ final class FeedsModel {
             .sorted { ($0.stored.item.published ?? .distantPast) > ($1.stored.item.published ?? .distantPast) }
     }
 
+    /// The categories of the feeds that are subscribed to: their tags, each once, in the order of the alphabet (as the
+    /// extension lists them).
+    var categories: [String] {
+        var seen: [String: String] = [:]
+        for feed in feeds { for tag in feed.tags where seen[tag.lowercased()] == nil { seen[tag.lowercased()] = tag } }
+        return seen.values.sorted { $0.localizedStandardCompare($1) == .orderedAscending }
+    }
+
     var newest: [FeedEntry] { Array(entries.filter { !$0.stored.read }.prefix(5)) }
 
     func entry(feed url: String, id: String) -> FeedEntry? {
@@ -83,12 +97,22 @@ final class FeedsModel {
     func importFromSafari() {
         let waiting = SafariInbox.pendingFeeds
         guard !samples, !waiting.isEmpty else { return }
-        var known = Set(all.map(\.url))
-        for feed in waiting where known.insert(feed.url).inserted {
-            all.append(Feed(url: feed.url, title: feed.title, tags: feed.tags, updatedAt: Self.now))
-        }
+        take(waiting)
         save()
         SafariInbox.clearFeeds()
+    }
+
+    /// The categories are the extension's: where it names some for a feed that is here, they are taken.
+    func take(_ handed: [InboxFeed]) {
+        for feed in handed {
+            if let i = all.firstIndex(where: { $0.url == feed.url }) {
+                guard !all[i].removed, !feed.tags.isEmpty, all[i].tags != feed.tags else { continue }
+                all[i].tags = feed.tags
+                all[i].updatedAt = Self.now
+            } else {
+                all.append(Feed(url: feed.url, title: feed.title, tags: feed.tags, updatedAt: Self.now))
+            }
+        }
     }
 
     /// Subscribes after a successful download, so a wrong address never ends up in the list.
@@ -144,8 +168,9 @@ final class FeedsModel {
         save()
     }
 
-    /// New items first; read marks stay; items that left the feed are kept for two weeks.
-    private func apply(_ result: FeedFetcher.Result, to url: String) {
+    /// New items first; read marks stay; items that left the feed are kept for two weeks, loaded episodes for as long
+    /// as they are loaded.
+    func apply(_ result: FeedFetcher.Result, to url: String) {
         var state = states[url] ?? FeedState()
         state.failed = false
         state.lastFetched = .now
@@ -160,9 +185,10 @@ final class FeedsModel {
                 return StoredItem(item: fresh, read: known[item.id]?.read ?? false)
             }
             let cutoff = Date.now.addingTimeInterval(-Self.keep)
-            items += state.items.filter { !seen.contains($0.item.id) && ($0.item.published ?? .distantPast) > cutoff }
-                .map { var old = $0; old.item.body = ""; return old }
-            state.items = Array(items.prefix(Self.maxStored))
+            let kept = { (item: StoredItem) in self.keeps(url + "\n" + item.item.id) }
+            items += state.items.filter { !seen.contains($0.item.id) && (($0.item.published ?? .distantPast) > cutoff || kept($0)) }
+                .map { var old = $0; if !kept($0) { old.item.body = "" }; return old }
+            state.items = Array(items.prefix(Self.maxStored)) + items.dropFirst(Self.maxStored).filter(kept)
         }
         states[url] = state
     }

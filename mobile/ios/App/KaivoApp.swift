@@ -2,6 +2,8 @@ import SwiftUI
 
 @main
 struct KaivoApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var delegate
+
     init() {
         ReaderLook.migrate()
         #if DEBUG

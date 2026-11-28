@@ -2,7 +2,7 @@ import SwiftUI
 
 /// "Settings": the synced library first, then the model, then Kaivo in Safari. Shown as a sheet.
 struct SettingsView: View {
-    enum Page: Hashable { case sync, model, safari }
+    enum Page: Hashable { case sync, model, safari, storage }
 
     @Environment(\.dismiss) private var dismiss
     @Environment(ExtensionStatus.self) private var status
@@ -28,6 +28,17 @@ struct SettingsView: View {
                     }
                     .accessibilityIdentifier("settings-sync")
                     NavigationLink(value: Page.model) { Label("Model for summaries", systemImage: "cpu") }
+                    NavigationLink(value: Page.storage) {
+                        Label {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Storage")
+                                Text(verbatim: PodcastStore.shared.totalBytes.fileSize).font(.footnote).foregroundStyle(.secondary)
+                            }
+                        } icon: {
+                            Image(systemName: "internaldrive")
+                        }
+                    }
+                    .accessibilityIdentifier("settings-storage")
                 }
                 Section {
                     NavigationLink(value: Page.safari) {
@@ -64,6 +75,7 @@ struct SettingsView: View {
                 case .sync: LibrarySyncView()
                 case .model: ModelServerView()
                 case .safari: SafariSetupView()
+                case .storage: StorageView()
                 }
             }
             .task { await sync.refresh() }
