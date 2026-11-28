@@ -357,6 +357,29 @@ final class LibraryStoreTests: XCTestCase {
         XCTAssertNotNil(library.article("x1"))
     }
 
+    /// A run with a time limit writes under the same switch as any other: not while it is off, and once while it is on.
+    func testARunInTheBackgroundWritesOnlyWhatIsSwitchedOn() async throws {
+        let made = try serveTheBrowsersPlace()
+        try saveAsBefore([Article(id: "mine", title: "Saved on the phone", host: "example.org", tags: [], words: 3, savedAt: .now,
+                                  passages: [Passage(text: "Only my words.")], link: "https://example.org/mine")])
+        let library = try await start()
+        let model = SyncModel(library: library)
+        try await join(model, made)
+        await model.fetch(seconds: 30)
+        XCTAssertEqual(changesOnTheServer, 0, "not switched on")
+
+        // switched on without the run that the switch in Settings starts at once
+        _ = try await library.store!.sync.host.run("await storage.set({ 'app:writeBack': 2 });")
+        await model.fetch(seconds: 30)
+        XCTAssertNil(model.problem)
+        XCTAssertGreaterThan(changesOnTheServer, 0)
+        let there = try await otherDevice(made)
+        XCTAssertEqual(Set(there.articles.map(\.title)), ["Written in the browser", "Saved on the phone"])
+        let written = changesOnTheServer
+        await model.fetch(seconds: 30)
+        XCTAssertEqual(changesOnTheServer, written, "nothing moves back and forth")
+    }
+
     func testWhatWasSavedHereJoinsTheLibraryOnceSwitchedOn() async throws {
         let made = try serveTheBrowsersPlace()
         var mine = Passage(text: "Only my words.")

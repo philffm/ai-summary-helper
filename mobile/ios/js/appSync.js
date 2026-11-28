@@ -82,15 +82,21 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
             for (const k of ['pulled', 'applied', 'pushed']) total[k] += result[k] || 0;
             total.errors.push(...result.errors);
             if (!result.more) return true;
-            if (Date.now() >= until) return false;
+            if (Date.now() >= until || (until < Infinity && stopped)) return false;
         }
         return false;
     }
 
     let going = null;
+    // the system asks a run in the background to end: it takes up no further step, what is under way is finished
+    let stopped = false;
+    const stop = () => { stopped = true; };
     /** One run at a time: a second one asked for meanwhile is the same run. */
     function run({ seconds } = {}) {
-        if (!going) going = once(seconds).finally(() => { going = null; });
+        if (!going) {
+            stopped = false;
+            going = once(seconds).finally(() => { going = null; });
+        }
         return going;
     }
 
@@ -102,7 +108,9 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
         // a run with little time (in the background) stops at a package's end and goes on the next time
         const timed = seconds !== undefined;
         const until = timed ? Date.now() + seconds * 1000 : Infinity;
-        const fetching = timed ? serviceWith({ pullOnly: true, budgetMs: seconds * 1000 }) : service;
+        // small packages, so that the time is looked at often
+        const within = (options) => serviceWith({ chunk: 10, ...options });
+        const fetching = timed ? within({ pullOnly: true, budgetMs: seconds * 1000 }) : service;
         const [place] = await service.placesNow();
         if (!place) throw new Error('No library is connected.');
         const total = { pulled: 0, applied: 0, pushed: 0, moved: 0, errors: [] };
@@ -112,7 +120,8 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
         if (await writes()) {
             // what was saved here joins the library after everything of the library is known, and goes out at once
             total.moved += await library.promote(place.id);
-            if (Date.now() < until) await toTheEnd(timed ? serviceWith({ budgetMs: Math.max(1, until - Date.now()) }) : writing, place.id, total, until);
+            if (!timed) await toTheEnd(writing, place.id, total);
+            else if (Date.now() < until && !stopped) await toTheEnd(within({ budgetMs: until - Date.now() }), place.id, total, until);
         }
         return total;
     }
@@ -148,7 +157,7 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
         return place ? library.waiting() : { articles: 0, summaries: 0 };
     }
 
-    return { service, writing, stampStore, highlights: createHighlightStore({ storage }), join, run, state, leave, look, setWriteBack, waiting, library };
+    return { service, writing, stampStore, highlights: createHighlightStore({ storage }), join, run, stop, state, leave, look, setWriteBack, waiting, library };
 }
 
 /** The extension's storage under names of its own, which none of its modules reads. */

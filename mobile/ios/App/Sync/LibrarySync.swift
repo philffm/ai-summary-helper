@@ -71,6 +71,11 @@ struct LibrarySync {
         _ = try await host.run("return sync.join(input);", input: ["code": code, "passphrase": passphrase])
     }
 
+    /// Ends a run that has a time limit after its current step.
+    func stop() async {
+        _ = try? await host.run("return sync.stop();")
+    }
+
     /// `seconds`: no longer than about this; what is left comes with the next run.
     func run(seconds: Double? = nil) async throws -> Run {
         let input: [String: Any] = seconds.map { ["seconds": $0] } ?? [:]

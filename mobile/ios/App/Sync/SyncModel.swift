@@ -38,6 +38,7 @@ final class SyncModel {
     private(set) var sending = false
     /// Something changed here while a run was going: another one follows.
     @ObservationIgnored private var again = false
+    @ObservationIgnored private var limited = false
     var problem: Problem?
     /// The screen is asked for from outside (a scanned code).
     var shown = false
@@ -95,10 +96,17 @@ final class SyncModel {
     /// rest comes with the next run.
     func fetch(seconds: Double? = nil) async {
         guard let sync else { return }
-        guard !fetching else { return }
+        guard !fetching else {
+            // asked without a limit while a short run is going: the rest follows it
+            if seconds == nil && limited { again = true }
+            return
+        }
         await refresh()
         guard state != nil else { return }
+        // the system has already taken its time back
+        guard seconds == nil || !Task.isCancelled else { return }
         fetching = true
+        limited = seconds != nil
         problem = nil
         let watch = Task { [weak self] in
             var shown = 0, at = ContinuousClock.now
@@ -118,7 +126,11 @@ final class SyncModel {
         // a run that broke off may have brought a part
         var brought = true
         do {
-            let run = try await sync.run(seconds: seconds)
+            let run = try await withTaskCancellationHandler {
+                try await sync.run(seconds: seconds)
+            } onCancel: {
+                Task { await sync.stop() }
+            }
             brought = run.applied > 0 || (run.moved ?? 0) > 0
             if let first = run.errors.first { problem = .other(first) }
         } catch {
@@ -134,7 +146,8 @@ final class SyncModel {
         fetching = false
         if again {
             again = false
-            await fetch()
+            // after a short run nothing waits for it: the system counts that run's time
+            if seconds == nil { await fetch() } else if !Task.isCancelled { Task { await fetch() } }
         }
     }
 
