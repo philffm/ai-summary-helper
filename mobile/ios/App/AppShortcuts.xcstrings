@@ -1,0 +1,438 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "Continue reading in ${applicationName}": {
+      "localizations": {
+        "ar": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "تابع القراءة في ${applicationName}"
+            ]
+          }
+        },
+        "de": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Weiterlesen in ${applicationName}"
+            ]
+          }
+        },
+        "es": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Seguir leyendo en ${applicationName}"
+            ]
+          }
+        },
+        "fi": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Jatka lukemista sovelluksessa ${applicationName}"
+            ]
+          }
+        },
+        "fr": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Continuer la lecture dans ${applicationName}"
+            ]
+          }
+        },
+        "ja": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "${applicationName}で続きを読む"
+            ]
+          }
+        },
+        "ko": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "${applicationName}에서 이어 읽기"
+            ]
+          }
+        },
+        "pt-BR": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Continuar lendo no ${applicationName}"
+            ]
+          }
+        },
+        "ru": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Продолжить чтение в ${applicationName}"
+            ]
+          }
+        },
+        "uk": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Продовжити читання в ${applicationName}"
+            ]
+          }
+        },
+        "zh-Hans": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "在${applicationName}中继续阅读"
+            ]
+          }
+        },
+        "zh-Hant": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "在${applicationName}中繼續閱讀"
+            ]
+          }
+        },
+        "en": {
+          "stringSet": {
+            "state": "translated",
+            "values": [
+              "Continue reading in ${applicationName}"
+            ]
+          }
+        }
+      }
+    },
+    "Play my ${applicationName} briefing": {
+      "localizations": {
+        "ar": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "شغّل موجز ${applicationName}"
+            ]
+          }
+        },
+        "de": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Spiel mein ${applicationName} Briefing ab"
+            ]
+          }
+        },
+        "es": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Reproduce mi resumen de ${applicationName}"
+            ]
+          }
+        },
+        "fi": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Toista ${applicationName}-katsaus"
+            ]
+          }
+        },
+        "fr": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Lis mon briefing ${applicationName}"
+            ]
+          }
+        },
+        "ja": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "${applicationName}のブリーフィングを再生"
+            ]
+          }
+        },
+        "ko": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "${applicationName} 브리핑 재생"
+            ]
+          }
+        },
+        "pt-BR": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Tocar meu briefing do ${applicationName}"
+            ]
+          }
+        },
+        "ru": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Включи мою сводку ${applicationName}"
+            ]
+          }
+        },
+        "uk": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Увімкни мій огляд ${applicationName}"
+            ]
+          }
+        },
+        "zh-Hans": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "播放我的${applicationName}简报"
+            ]
+          }
+        },
+        "zh-Hant": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "播放我的${applicationName}簡報"
+            ]
+          }
+        },
+        "en": {
+          "stringSet": {
+            "state": "translated",
+            "values": [
+              "Play my ${applicationName} briefing"
+            ]
+          }
+        }
+      }
+    },
+    "Continue my episode in ${applicationName}": {
+      "localizations": {
+        "ar": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "تابع حلقتي في ${applicationName}"
+            ]
+          }
+        },
+        "de": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Folge weiterhören in ${applicationName}"
+            ]
+          }
+        },
+        "es": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Continuar mi episodio en ${applicationName}"
+            ]
+          }
+        },
+        "fi": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Jatka jaksoa sovelluksessa ${applicationName}"
+            ]
+          }
+        },
+        "fr": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Reprendre mon épisode dans ${applicationName}"
+            ]
+          }
+        },
+        "ja": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "${applicationName}でエピソードの続きを再生"
+            ]
+          }
+        },
+        "ko": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "${applicationName}에서 에피소드 이어 듣기"
+            ]
+          }
+        },
+        "pt-BR": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Continuar meu episódio no ${applicationName}"
+            ]
+          }
+        },
+        "ru": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Продолжить выпуск в ${applicationName}"
+            ]
+          }
+        },
+        "uk": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Продовжити випуск у ${applicationName}"
+            ]
+          }
+        },
+        "zh-Hans": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "在${applicationName}中继续收听节目"
+            ]
+          }
+        },
+        "zh-Hant": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "在${applicationName}中繼續收聽節目"
+            ]
+          }
+        },
+        "en": {
+          "stringSet": {
+            "state": "translated",
+            "values": [
+              "Continue my episode in ${applicationName}"
+            ]
+          }
+        }
+      }
+    },
+    "Save a link to ${applicationName}": {
+      "localizations": {
+        "ar": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "احفظ رابطًا في ${applicationName}"
+            ]
+          }
+        },
+        "de": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Link in ${applicationName} speichern"
+            ]
+          }
+        },
+        "es": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Guardar un enlace en ${applicationName}"
+            ]
+          }
+        },
+        "fi": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Tallenna linkki sovellukseen ${applicationName}"
+            ]
+          }
+        },
+        "fr": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Enregistrer un lien dans ${applicationName}"
+            ]
+          }
+        },
+        "ja": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "${applicationName}にリンクを保存"
+            ]
+          }
+        },
+        "ko": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "${applicationName}에 링크 저장"
+            ]
+          }
+        },
+        "pt-BR": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Salvar um link no ${applicationName}"
+            ]
+          }
+        },
+        "ru": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Сохранить ссылку в ${applicationName}"
+            ]
+          }
+        },
+        "uk": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "Зберегти посилання в ${applicationName}"
+            ]
+          }
+        },
+        "zh-Hans": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "将链接保存到${applicationName}"
+            ]
+          }
+        },
+        "zh-Hant": {
+          "stringSet": {
+            "state": "needs_review",
+            "values": [
+              "將連結儲存到${applicationName}"
+            ]
+          }
+        },
+        "en": {
+          "stringSet": {
+            "state": "translated",
+            "values": [
+              "Save a link to ${applicationName}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

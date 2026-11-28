@@ -72,6 +72,9 @@ struct RootView: View {
                 }
                 if let link = DeepLink(url) { router.open(link) }
             }
+            // asked for by Siri or a shortcut: acted on once the library is there
+            .onChange(of: AppRequests.shared.pending, initial: true) { _, _ in answerRequest() }
+            .onChange(of: library.loaded) { _, _ in answerRequest() }
             // a summary that has just been written goes to the library
             .onChange(of: summaries.running) { before, now in
                 if before != nil && now == nil { Task { await sync.changedHere() } }
@@ -95,6 +98,39 @@ struct RootView: View {
                 SharedStore.write(value, to: Snapshot.file)
                 WidgetCenter.shared.reloadAllTimelines()
             }
+    }
+
+    private func answerRequest() {
+        guard library.loaded, let request = AppRequests.shared.pending else { return }
+        AppRequests.shared.pending = nil
+        switch request {
+        case .continueReading:
+            // the first started article, as "Today" and the widget show it
+            if let article = library.articles.first(where: { $0.progress > 0 && $0.progress < 1 }) ?? library.articles.first {
+                router.open(.article(article.id))
+            }
+        case .briefing:
+            router.open(.today)
+            let text = feeds.briefingText
+            if !text.isEmpty && speaker.current != "briefing" { speaker.toggle("briefing", text: text, title: String(localized: "Briefing")) }
+        case .continueEpisode:
+            guard let (id, sound, title, show) = Self.episodeToContinue(PodcastStore.shared, feeds) else { return router.open(.today) }
+            if let entry = feeds.entries.first(where: { $0.id == id }) { router.open(.item(feed: entry.feed.url, id: entry.stored.item.id)) }
+            speaker.stop()
+            if AudioPlayer.shared.current != id || !AudioPlayer.shared.playing { AudioPlayer.shared.toggle(id, url: sound, title: title, show: show) }
+        }
+    }
+
+    /// The episode listened to last that is not finished and can still be played.
+    static func episodeToContinue(_ podcasts: PodcastStore, _ feeds: FeedsModel) -> (String, URL, String, String)? {
+        let entries = feeds.entries
+        for id in podcasts.started {
+            if let entry = entries.first(where: { $0.id == id }), let sound = entry.stored.item.audio.flatMap(URL.init(string:)) {
+                return (id, sound, entry.stored.item.title, entry.feed.name)
+            }
+            if podcasts.file(id) != nil, let kept = podcasts.episode(id), let sound = URL(string: kept.address) { return (id, sound, kept.title, kept.show) }
+        }
+        return nil
     }
 
     /// What Safari and the share sheet have left for the app.

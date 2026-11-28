@@ -20,6 +20,8 @@ struct Listening: Codable, Equatable {
     var at: Double = 0
     var of: Double = 0
     var heard = false
+    /// When it was last listened to.
+    var when: Date?
 }
 
 /// The episodes kept on this device and how far each was heard. Both stay here: not synced, not in a backup.
@@ -140,6 +142,7 @@ final class PodcastStore {
     func heard(_ id: String, at: Double, of: Double) {
         var l = listening(id)
         l.at = at
+        l.when = .now
         if of > 0 { l.of = of }
         // the last half minute is mostly goodbyes
         if l.of > 60 && at >= l.of - 30 { l.heard = true }
@@ -157,6 +160,14 @@ final class PodcastStore {
         save()
         return removesHeard && file(id) != nil
     }
+
+    /// The episodes that were started and not finished, the one listened to last first.
+    var started: [String] {
+        saved.listening.keys.filter { resumeAt($0) != nil }.sorted { (listening($0).when ?? .distantPast) > (listening($1).when ?? .distantPast) }
+    }
+
+    /// The title and show of a loaded episode, for one whose feed no longer names it.
+    func episode(_ id: String) -> Episode? { saved.episodes[id] }
 
     // MARK: - Downloads
 

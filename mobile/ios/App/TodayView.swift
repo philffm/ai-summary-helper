@@ -85,7 +85,7 @@ struct TodayView: View {
                     NavigationLink(value: Route.item(feed: entry.feed.url, id: entry.stored.item.id)) { EntryRow(entry: entry) }
                 }
                 Button {
-                    speaker.toggle("briefing", text: briefing.map { String(localized: "\($0.stored.item.title). From \($0.feed.name).") }.joined(separator: " "))
+                    speaker.toggle("briefing", text: feeds.briefingText, title: String(localized: "Briefing"))
                 } label: {
                     if speaker.current == "briefing" {
                         Label("Stop", systemImage: "stop.fill")

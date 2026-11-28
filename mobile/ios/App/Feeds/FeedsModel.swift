@@ -79,6 +79,11 @@ final class FeedsModel {
         return seen.values.sorted { $0.localizedStandardCompare($1) == .orderedAscending }
     }
 
+    /// What "Today" reads aloud: the newest unread titles and where they come from.
+    var briefingText: String {
+        newest.prefix(3).map { String(localized: "\($0.stored.item.title). From \($0.feed.name).") }.joined(separator: " ")
+    }
+
     var newest: [FeedEntry] { Array(entries.filter { !$0.stored.read }.prefix(5)) }
 
     func entry(feed url: String, id: String) -> FeedEntry? {
