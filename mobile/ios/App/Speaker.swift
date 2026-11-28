@@ -1,7 +1,7 @@
 import AVFoundation
 import Observation
 
-/// Reads text aloud with the system voice.
+/// Reads text aloud with a voice of the text's language.
 @Observable
 final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
     /// What is being read (an id chosen by the caller), or nil.
@@ -31,6 +31,7 @@ final class Speaker: NSObject, AVSpeechSynthesizerDelegate {
         utterance = nil
         guard !stopOnly else { return }
         let next = AVSpeechUtterance(string: text)
+        next.voice = Voices.voice(for: text)
         let chosen = UserDefaults.standard.object(forKey: Self.paceKey) as? Double ?? 1
         next.rate = Self.paces.first { $0.factor == chosen }?.rate ?? AVSpeechUtteranceDefaultSpeechRate
         utterance = next
