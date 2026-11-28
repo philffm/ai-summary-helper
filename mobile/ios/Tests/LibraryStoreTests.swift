@@ -472,6 +472,27 @@ final class LibraryStoreTests: XCTestCase {
         XCTAssertNotNil(library.article("x1"))
     }
 
+    /// While a file is on its way, the app tries again by itself.
+    func testItTriesAgainByItselfWhileICloudDownloads() async throws {
+        let made = try serveTheBrowsersPlace(folder: "elsewhere")
+        let drive = try placeInFolder(made)
+        let records = drive.place.appending(path: "r")
+        let names = try FileManager.default.contentsOfDirectory(atPath: records.path).filter { $0.count == 64 }
+        let held = records.appending(path: try XCTUnwrap(names.first)), away = records.appending(path: "." + held.lastPathComponent + ".icloud")
+        try FileManager.default.moveItem(at: held, to: away)
+        let library = try await start()
+        let model = SyncModel(library: library)
+        model.firstWait = .milliseconds(100)
+        await model.read(folder: drive.chosen)
+        model.passphrase = try XCTUnwrap(made["passphrase"] as? String)
+        await model.connect()
+        XCTAssertEqual(model.problem, .onItsWay)
+        try FileManager.default.moveItem(at: away, to: held)
+        for _ in 0..<100 where model.problem != nil || library.article("x1") == nil { try await Task.sleep(for: .milliseconds(100)) }
+        XCTAssertNil(model.problem)
+        XCTAssertNotNil(library.article("x1"))
+    }
+
     func testAFolderWithoutALibraryIsRefused() async throws {
         let library = try await start()
         let model = SyncModel(library: library)

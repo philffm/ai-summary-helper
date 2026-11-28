@@ -79,12 +79,19 @@ final class PlaceFolder: @unchecked Sendable {
         url.deletingLastPathComponent().appending(path: "." + url.lastPathComponent + ".icloud")
     }
 
+    /// What a placeholder says its file weighs; 0 where it does not say.
+    private static func size(inPlaceholder url: URL) -> Int {
+        guard let data = try? Data(contentsOf: url), data.count < 100_000,
+              let said = try? PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any] else { return 0 }
+        return (said["NSURLFileSizeKey"] as? NSNumber)?.intValue ?? 0
+    }
+
     /// The files of a folder, those still in iCloud under their own names; empty where there is no such folder.
     func list(_ path: String) throws -> [Entry] {
         try within { folder in
             let directory = try url(path, below: folder)
             guard FileManager.default.fileExists(atPath: directory.path) else { return [] }
-            let keys: [URLResourceKey] = [.contentModificationDateKey, .fileSizeKey, .isDirectoryKey]
+            let keys: [URLResourceKey] = [.contentModificationDateKey, .fileSizeKey, .isDirectoryKey, .ubiquitousItemDownloadingStatusKey]
             let found: [URL]
             do { found = try FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: keys) } catch { throw Failure.unreadable(error.localizedDescription) }
             var entries: [String: Entry] = [:]
@@ -96,8 +103,12 @@ final class PlaceFolder: @unchecked Sendable {
                 if waiting { name = String(name.dropFirst().dropLast(".icloud".count)) } else if name.hasPrefix(".") { continue }
                 // a file that is here counts before its placeholder
                 if waiting && entries[name] != nil { continue }
+                // everything that is not here yet is asked for at once, not file by file as the run comes to it
+                if waiting || values?.ubiquitousItemDownloadingStatus == .notDownloaded {
+                    try? FileManager.default.startDownloadingUbiquitousItem(at: directory.appending(path: name))
+                }
                 let modified = Int64((values?.contentModificationDate?.timeIntervalSince1970 ?? 0) * 1000)
-                entries[name] = Entry(name: name, modified: modified, size: waiting ? 0 : values?.fileSize ?? 0)
+                entries[name] = Entry(name: name, modified: modified, size: waiting ? Self.size(inPlaceholder: file) : values?.fileSize ?? 0)
             }
             return entries.values.sorted { $0.name < $1.name }
         }

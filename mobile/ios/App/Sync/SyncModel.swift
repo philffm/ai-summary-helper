@@ -45,6 +45,10 @@ final class SyncModel {
     /// Something changed here while a run was going: another one follows.
     @ObservationIgnored private var again = false
     @ObservationIgnored private var limited = false
+    /// While files are on their way from iCloud, a run follows by itself: soon at first, then less often.
+    @ObservationIgnored var firstWait: Duration = .seconds(10)
+    @ObservationIgnored private var wait: Duration?
+    @ObservationIgnored private var later: Task<Void, Never>?
     /// Takes the library's feed list, after a run that read it.
     @ObservationIgnored var takeFeeds: (([LibrarySync.FeedEntry]) -> Void)?
     var problem: Problem?
@@ -132,6 +136,7 @@ final class SyncModel {
         guard state != nil else { return }
         // the system has already taken its time back
         guard seconds == nil || !Task.isCancelled else { return }
+        later?.cancel()
         fetching = true
         limited = seconds != nil
         problem = nil
@@ -172,6 +177,7 @@ final class SyncModel {
         await library.settled()
         await refresh()
         fetching = false
+        if seconds == nil { followUp() }
         if again {
             again = false
             // after a short run nothing waits for it: the system counts that run's time
@@ -202,7 +208,22 @@ final class SyncModel {
         if on { await fetch() }
     }
 
+    private func followUp() {
+        guard problem == .onItsWay else {
+            wait = nil
+            return
+        }
+        let pause = wait ?? firstWait
+        wait = min(pause * 2, .seconds(60))
+        later = Task { [weak self] in
+            try? await Task.sleep(for: pause)
+            guard !Task.isCancelled else { return }
+            await self?.fetch()
+        }
+    }
+
     func leave() async {
+        later?.cancel()
         guard let sync else { return }
         // a run that is going on ends first: the tap must not get lost
         while fetching { try? await Task.sleep(for: .milliseconds(200)) }
