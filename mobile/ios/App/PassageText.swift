@@ -11,6 +11,8 @@ struct PassageText: UIViewRepresentable {
     var textSize = DynamicTypeSize.large
     /// In a research paper, numbers such as [3] step back behind the words.
     var citations = false
+    /// The sentence being read aloud.
+    var spoken: NSRange?
     let highlight: (NSRange) -> Void
     let unmark: (NSRange) -> Void
     /// Keeps (true) or dismisses a suggestion of the AI: offered where it is tapped.
@@ -84,6 +86,9 @@ struct PassageText: UIViewRepresentable {
             } else {
                 result.addAttributes([.backgroundColor: UIColor(KaivoTokens.savedNoteUserBg), .foregroundColor: UIColor(KaivoTokens.savedNoteUserFg)], range: mark.range)
             }
+        }
+        if let spoken, spoken.location >= 0, NSMaxRange(spoken) <= result.length {
+            result.addAttribute(.backgroundColor, value: UIColor(KaivoTokens.accent).withAlphaComponent(0.22), range: spoken)
         }
         return result
     }

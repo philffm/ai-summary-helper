@@ -6,7 +6,7 @@ import SwiftUI
 /// Plays podcast episodes: goes on with the screen locked, and the lock screen and headphones control it.
 @MainActor
 @Observable
-final class AudioPlayer {
+final class AudioPlayer: Listenable {
     static let shared = AudioPlayer()
 
     private(set) var current: String?
@@ -17,7 +17,6 @@ final class AudioPlayer {
     @ObservationIgnored private var clock: Any?
     @ObservationIgnored private var title = ""
     @ObservationIgnored private var show = ""
-    @ObservationIgnored private var wired = false
     @ObservationIgnored private var ready: NSKeyValueObservation?
     /// Where to go on once the episode can be played from there; nothing is noted before.
     @ObservationIgnored private var resumeFrom: Double?
@@ -48,7 +47,6 @@ final class AudioPlayer {
         clock = next.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: 600), queue: .main) { [weak self] time in
             MainActor.assumeIsolated { self?.tick(time) }
         }
-        wireControls()
         resume()
     }
 
@@ -56,6 +54,7 @@ final class AudioPlayer {
         guard let player else { return }
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio)
         try? AVAudioSession.sharedInstance().setActive(true)
+        NowPlaying.shared.claim(self)
         player.play()
         playing = true
         publish()
@@ -106,7 +105,7 @@ final class AudioPlayer {
         playing = false
         position = 0
         duration = 0
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
+        NowPlaying.shared.release(self)
     }
 
     private func tick(_ time: CMTime) {
@@ -133,30 +132,16 @@ final class AudioPlayer {
         }
     }
 
-    private func publish() {
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = [
-            MPMediaItemPropertyTitle: title, MPMediaItemPropertyArtist: show, MPMediaItemPropertyPlaybackDuration: duration,
-            MPNowPlayingInfoPropertyElapsedPlaybackTime: position, MPNowPlayingInfoPropertyPlaybackRate: playing ? 1.0 : 0.0,
-        ]
-    }
+    private func publish() { NowPlaying.shared.show(self, title: title, artist: show, duration: duration, position: position) }
 
-    private func wireControls() {
-        guard !wired else { return }
-        wired = true
-        let center = MPRemoteCommandCenter.shared()
-        center.playCommand.addTarget { [weak self] _ in MainActor.assumeIsolated { self?.resume() }; return .success }
-        center.pauseCommand.addTarget { [weak self] _ in MainActor.assumeIsolated { self?.pause() }; return .success }
-        center.skipBackwardCommand.preferredIntervals = [15]
-        center.skipBackwardCommand.addTarget { [weak self] _ in MainActor.assumeIsolated { self?.skip(-15) }; return .success }
-        center.skipForwardCommand.preferredIntervals = [30]
-        center.skipForwardCommand.addTarget { [weak self] _ in MainActor.assumeIsolated { self?.skip(30) }; return .success }
-        center.changePlaybackPositionCommand.addTarget { [weak self] event in
-            guard let event = event as? MPChangePlaybackPositionCommandEvent else { return .commandFailed }
-            let time = event.positionTime
-            MainActor.assumeIsolated { self?.seek(to: time) }
-            return .success
-        }
-    }
+    // MARK: - From outside
+
+    var seeks: Bool { true }
+    var isPlaying: Bool { playing }
+    func remotePlay() { resume() }
+    func remotePause() { if playing { pause() } }
+    func remoteSkip(_ seconds: Double) { skip(seconds) }
+    func remoteSeek(_ seconds: Double) { seek(to: seconds) }
 }
 
 /// The controls of an episode, shown in its feed item.

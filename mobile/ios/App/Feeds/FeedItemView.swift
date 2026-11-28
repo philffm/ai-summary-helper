@@ -62,7 +62,7 @@ struct FeedItemView: View {
             ToolbarItemGroup(placement: .bottomBar) {
                 Button {
                     AudioPlayer.shared.pause()   // one voice at a time
-                    speaker.toggle(entry.id, text: [item.title, item.body.isEmpty ? item.summary : item.body].joined(separator: ". "))
+                    speaker.toggle(entry.id, text: [item.title, item.body.isEmpty ? item.summary : item.body].joined(separator: ". "), title: item.title)
                 } label: {
                     if speaker.current == entry.id {
                         Label("Stop", systemImage: "stop.fill")

@@ -222,7 +222,9 @@ struct ReaderView: View {
     }
 
     private func listen(_ article: Article) {
-        speaker.toggle(article.id, text: ([article.title] + article.passages.filter { $0.kind != .image }.map(\.text)).joined(separator: " "))
+        let parts = [Speaker.Part(passage: nil, text: article.title)]
+            + article.passages.filter { $0.kind != .image }.map { Speaker.Part(passage: $0.id, text: $0.text) }
+        speaker.toggle(article.id, parts: parts, title: article.title)
     }
 
     /// To a passage from the menu or from an answer. Whoever was somewhere else gets the way back.
@@ -267,6 +269,7 @@ struct ReaderView: View {
             VStack(alignment: .leading, spacing: 10) {
                 PassageText(passage: passage, style: style(of: passage, small: small), look: look, textSize: systemTextSize,
                             citations: paper && !small,
+                            spoken: speaker.spoken.flatMap { $0.id == id && $0.passage == passage.id ? $0.sentence : nil },
                             highlight: { range in library.change(passage.id, in: id) { $0.highlight(range) } },
                             unmark: { range in library.change(passage.id, in: id) { $0.unmark(range) } },
                             resolve: { mark, keep in library.change(passage.id, in: id) { $0.resolve(suggestion: mark, keep: keep) } },
