@@ -2,7 +2,7 @@
 import { createHighlightStore } from '../highlightStore.js';
 import { confirmSheet } from '../confirmSheet.js';
 import { SK } from '../storageKeys.js';
-import { filterBackupSecrets, hasBackupSecrets, prepareImportedData, writeRestored, SETTINGS_LOCAL_KEYS } from '../backupUtils.js';
+import { filterBackupSecrets, hasBackupSecrets, prepareImportedData, writeRestored, backupStamps, restoreStamps, SETTINGS_LOCAL_KEYS } from '../backupUtils.js';
 import StorageManager from '../storageManager.js';
 import { T } from '../feedI18n.js';
 import { setLabel } from '../icons.js';
@@ -83,7 +83,8 @@ export function initBackupRestore() {
                         _article_count: count,
                         _contains_secrets: includeSecrets,
                         settings: safeSyncData,
-                        local: safeLocalData
+                        // with the sync stamps, so that a restored library knows when what was changed
+                        local: { ...safeLocalData, ...backupStamps(localData) }
                     };
                     filename = `aish_backup_${date}_${count}articles.json`;
                 } else {
@@ -164,6 +165,8 @@ export function initBackupRestore() {
                                 const { articles: _old, ...rest } = local;
                                 rows = { ...rest, ...records, [SK.articlesIndex]: index };
                             }
+                            // when what was changed, before the records themselves
+                            await restoreStamps(importedData.local, rows);
                             // in pieces, straight into local storage, showing how far it is
                             const label = [...btnImport.childNodes].map((n) => n.cloneNode(true));
                             try { await writeRestored(rows, { onProgress: (i, n) => setLabel(btnImport, `${Math.round(i / n * 100)} %`) }); }

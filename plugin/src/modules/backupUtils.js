@@ -1,4 +1,5 @@
-import { SK, SK_LEGACY, renameKeys } from './storageKeys.js';
+import { SK, SK_LEGACY, SYNC_STAMPS, renameKeys, isHlPageKey, syncStampsKey, syncLedgerKey } from './storageKeys.js';
+import { withStampLock, shardOf } from './syncStampStore.js';
 import { SECRET_KEYS, TRANSIENT_KEYS, TRANSIENT_PREFIXES } from './dataReset.js';
 import { cleanConnection, cleanPlace } from './syncService.js';
 
@@ -72,6 +73,68 @@ function mergeSync(imported, current) {
         imported[SK.syncSecrets] = { ...(secrets && typeof secrets === 'object' ? secrets : {}), ...(current?.[SK.syncSecrets] || {}) };
     }
     return imported;
+}
+
+// ── when what was changed ──
+// The sync stamps say when each field of a record was last changed. A full backup carries them, so that a restored
+// library still knows: without them every record counts as changed just now, the first sync sends all of it again, and
+// what was deleted since the backup comes back. The ledger of a place (what the server holds) and the device's id are
+// never carried.
+
+const liveStamp = (e) => !!(e && !e.deleted && e.rev && Number.isFinite(e.rev.t) && e.f && typeof e.f === 'object');
+
+/** The stamps for a full backup, as they are stored. No deletion markers: the server holds those. */
+export function backupStamps(local) {
+    const out = {};
+    for (const [key, shard] of Object.entries(local || {})) {
+        if (!key.startsWith(SYNC_STAMPS) || !shard || typeof shard !== 'object') continue;
+        const kept = Object.entries(shard).filter(([, e]) => liveStamp(e));
+        if (kept.length) out[key] = Object.fromEntries(kept);
+    }
+    return out;
+}
+
+/** The records a restore writes, by the names the stamps know them by. */
+function restoredRecords(data) {
+    const out = new Set();
+    const add = (type, list) => { for (const x of Array.isArray(list) ? list : []) if (x && x.id) out.add(type + ':' + x.id); };
+    add('article', data[SK.articlesIndex]);
+    add('coll', data[SK.collIndex]);
+    add('note', data[SK.notesIndex]);
+    for (const [key, value] of Object.entries(data)) if (isHlPageKey(key) || key === SK.annotations) add('hl', value);
+    return out;
+}
+
+/**
+ * Takes the backup's stamps over for the records about to be written (`data`, as writeRestored gets it); call it first,
+ * so that no write is taken for a change. Where this profile syncs with a place already, nothing is taken: there a
+ * restore counts as a change made now, which is what brings the restored state to the other devices.
+ * Returns how many stamps were taken.
+ */
+export async function restoreStamps(file, data, { area = chrome.storage.local } = {}) {
+    const stamps = backupStamps(file);
+    if (!Object.keys(stamps).length) return 0;
+    const get = (keys) => new Promise((resolve) => { const r = area.get(keys, resolve); if (r && r.then) r.then(resolve); });
+    const places = (await get({ [SK.syncPlaces]: [] }))[SK.syncPlaces];
+    const ledgers = (Array.isArray(places) ? places : []).map((p) => syncLedgerKey(p.id));
+    if (ledgers.length && Object.values(await get(ledgers)).some((l) => l && (l.joined || Object.keys(l.items || {}).length))) return 0;
+    const written = restoredRecords(data);
+    return withStampLock(async () => {
+        const clock = (await get({ [SK.syncClock]: { t: 0 } }))[SK.syncClock];
+        let top = (clock && clock.t) || 0, taken = 0;
+        const here = await get(Object.keys(stamps)), out = {};
+        for (const [shardKey, shard] of Object.entries(stamps)) {
+            const next = { ...(here[shardKey] || {}) };
+            for (const [key, entry] of Object.entries(shard)) {
+                if (!written.has(key) || syncStampsKey(shardOf(key)) !== shardKey) continue;
+                next[key] = entry; taken++;
+                top = Math.max(top, entry.rev.t, ...Object.values(entry.f).map((x) => (x && x.t) || 0));
+            }
+            out[shardKey] = next;
+        }
+        if (taken) await writeRestored({ ...out, [SK.syncClock]: { t: top } }, { area });
+        return taken;
+    });
 }
 
 /**

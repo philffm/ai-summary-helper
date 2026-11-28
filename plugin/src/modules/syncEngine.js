@@ -19,6 +19,7 @@ import { SK, syncLedgerKey } from './storageKeys.js';
 import { mergeRecord } from './syncMerge.js';
 import { keepAllQuestions } from './syncQuestions.js';
 import { decryptJson, encryptJson, nameOf } from './syncCrypto.js';
+import { hashValue } from './syncStamps.js';
 import { typeOf, idOf } from './syncDataAdapter.js';
 import { canonicalOrder, IDENTITY_FIELDS } from './syncIdentity.js';
 
@@ -115,14 +116,20 @@ export async function syncEncryptedPlace(o) {
                     else if (joining && rec.f[n] && rec.f[n].h !== f[n].h) f[n].t = 0;   // joining: the server's value wins where the two differ
                 }
                 local = { rev: st.rev, f, values };
+                // joining: the server wins here too, over a copy that is older than its deletion but was stamped just now
+                // (a restored backup, a place joined again). A restore from the place deletes nothing.
+                if (joining && !forceFirst && rec.deleted) local.rev = { ...st.rev, t: 0 };
             }
             // two devices that each asked something about an article keep both (syncQuestions.js)
-            const r = key.startsWith('article:') ? keepAllQuestions(local, rec, mergeRecord(local, rec), { device, now: now() }) : mergeRecord(local, rec);
+            let r = key.startsWith('article:') ? keepAllQuestions(local, rec, mergeRecord(local, rec), { device, now: now() }) : mergeRecord(local, rec);
+            // joining with nothing the server lacks: its record is taken as it is, and nothing is sent
+            if (joining && local && !local.deleted && !rec.deleted && !r.merged.deleted && hashValue([r.merged.f, r.merged.values]) === hashValue([rec.f, rec.values || {}])) r = { merged: clone(rec), changedLocal: true, changedRemote: false };
             if (r.merged.deleted && d && r.changedLocal && !confirmDeletes && !removeSet.has(key)) {   // another device deleted something that is here: a few are normal, a lot is asked about first
-                if (keepSet.has(key)) { toKeep.set(key, (rec.rev && rec.rev.t) || 0); continue; }   // the person said keep it: not adopted, stamped again below
+                if (keepSet.has(key)) { toKeep.set(key, (rec.rev && rec.rev.t) || 0); unread.delete(name); continue; }   // the person said keep it: not adopted, stamped again below
                 if (deletesApplied >= deleteBudget) {   // left alone: not adopted, not in the ledger, seen again next run
                     out.needsConfirm++;
                     if (out.pending.length < PENDING_MAX) out.pending.push({ key, at: (rec.rev && rec.rev.t) || 0 });
+                    if (joining) { unread.add(name); known.set(name, key); }   // still to be joined: asked again, not sent over the marker
                     continue;
                 }
                 deletesApplied++;
