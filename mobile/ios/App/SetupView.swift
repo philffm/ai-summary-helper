@@ -64,7 +64,9 @@ struct SettingsView: View {
                 }
                 Section {
                     if let url = URL(string: "https://kaivo.byphil.eu/privacy.html") { Link("Privacy policy", destination: url) }
-                    if let url = URL(string: "https://kaivo.byphil.eu/") { Link(destination: url) { Text(verbatim: "kaivo.byphil.eu") } }
+                    if let url = URL(string: "https://kaivo.byphil.eu/") {
+                        Link(destination: url) { Text(verbatim: "kaivo.byphil.eu") }.accessibilityLabel("Kaivo website")
+                    }
                 }
             }
             .navigationTitle("Settings")

@@ -128,12 +128,13 @@ struct EntryRow: View {
     /// Shown as an episode: how far it was heard, and whether it is loaded.
     var episode = false
     @State private var podcasts = PodcastStore.shared
+    @Environment(\.dynamicTypeSize) private var textSize
 
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 10) {
             Circle().fill(entry.stored.read ? Color.clear : KaivoTokens.accent).frame(width: 8, height: 8).accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 4) {
-                Text(verbatim: entry.stored.item.title).font(.body.weight(entry.stored.read ? .regular : .medium)).fontDesign(.serif).lineLimit(3)
+                Text(verbatim: entry.stored.item.title).font(.body.weight(entry.stored.read ? .regular : .medium)).fontDesign(.serif).lineLimit(textSize.isAccessibilitySize ? nil : 3)
                 Text(verbatim: [entry.feed.name, entry.stored.item.published.map { Dates.relativeDay($0) }].compactMap { $0 }.joined(separator: " · "))
                     .font(.footnote).foregroundStyle(.secondary)
                 if episode, let at = podcasts.resumeAt(entry.id), podcasts.listening(entry.id).of > 0 {

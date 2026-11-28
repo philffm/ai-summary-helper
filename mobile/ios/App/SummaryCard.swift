@@ -59,7 +59,9 @@ struct SummaryCard: View {
             if waiting {
                 progress
             } else if again {
-                Button("Summarize again", action: summarize).frame(minHeight: 44)
+                Button(action: summarize) {
+                    Text("Summarize again").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
+                }
             }
             SampleNote()
         }

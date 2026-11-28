@@ -2,6 +2,7 @@ import SwiftUI
 
 /// What follows the alarm: the briefing or an article read aloud, or one of your highlights as a question.
 struct WakePlayerView: View {
+    @ScaledMetric(relativeTo: .largeTitle) private var clockSize: CGFloat = 76
     let request: WakeRequest
     @Environment(\.dismiss) private var dismiss
     @Environment(Library.self) private var library
@@ -123,7 +124,7 @@ struct WakePlayerView: View {
             TwoParts {
                 // two parts are also what a half-open device shows: read from the upper or left one, like a bedside clock
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(clock, style: .time).font(.system(size: 76, weight: .light)).accessibilityAddTraits(.isHeader)
+                    Text(clock, style: .time).font(.system(size: min(clockSize, 120), weight: .light)).minimumScaleFactor(0.5).lineLimit(1).accessibilityAddTraits(.isHeader)
                     text()
                 }
                 .padding(.horizontal, Gutter.half / 2)

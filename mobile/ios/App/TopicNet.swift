@@ -228,7 +228,7 @@ struct TopicNet: View {
     private var backButton: some View {
         Button { choose(Array(chosen.dropLast())) } label: {
             Image(systemName: "chevron.backward")
-                .font(.system(size: 14, weight: .bold))
+                .font(.footnote.weight(.bold))
                 .foregroundStyle(KaivoTokens.accent)
                 .frame(width: NetLayout.back, height: NetLayout.back)
                 .modifier(FloatingButton())

@@ -49,11 +49,18 @@ struct ReaderDisplayPanel: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     group {
-                        HStack {
-                            heading("Text size")
-                            Spacer()
-                            // the menu has no head of its own for it
-                            if close == nil { reset.padding(.trailing, 20) }
+                        // side by side where both fit, else one below the other
+                        ViewThatFits(in: .horizontal) {
+                            HStack {
+                                heading("Text size").fixedSize()
+                                Spacer()
+                                // the menu has no head of its own for it
+                                if close == nil { reset.fixedSize().padding(.trailing, 20) }
+                            }
+                            VStack(alignment: .leading, spacing: 8) {
+                                heading("Text size")
+                                if close == nil { reset.padding(.horizontal, 20) }
+                            }
                         }
                         TextSizeRuler(step: stored.$step).padding(.horizontal, 20)
                     }

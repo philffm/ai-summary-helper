@@ -31,15 +31,20 @@ struct ReaderMenu: View {
 
     @Environment(Summaries.self) private var summaries
     @Environment(Speaker.self) private var speaker
+    @Environment(\.dynamicTypeSize) private var textSize
     @AppStorage(Speaker.paceKey) private var pace = 1.0
 
     var body: some View {
         VStack(spacing: 8) {
             // closed like any sheet: pulled down (beside the button: a tap elsewhere)
-            Picker("Reader menu", selection: $page) {
-                ForEach(Page.allCases) { Text($0.title).tag($0) }
+            // the row of tabs does not grow with the text: at very large sizes a menu stands in its place
+            Group {
+                if textSize.isAccessibilitySize {
+                    pages.pickerStyle(.menu).font(.headline).frame(maxWidth: .infinity, minHeight: 44)
+                } else {
+                    pages.pickerStyle(.segmented)
+                }
             }
-            .pickerStyle(.segmented)
             .accessibilityIdentifier("menu-pages")
             .padding(.horizontal, 12)
             .padding(.top, 22)
@@ -53,6 +58,12 @@ struct ReaderMenu: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .modifier(ReaderPrompts(id: article.id, active: true, showServer: $showServer))
         .sheet(isPresented: $recommending) { RecommendView(article: article) }
+    }
+
+    private var pages: some View {
+        Picker("Reader menu", selection: $page) {
+            ForEach(Page.allCases) { Text($0.title).tag($0) }
+        }
     }
 
     private var summary: some View {

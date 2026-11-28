@@ -156,6 +156,7 @@ struct EpisodePlayer: View {
     @State private var podcasts = PodcastStore.shared
     private var player: AudioPlayer { .shared }
     @State private var dragged: Double?
+    @ScaledMetric(relativeTo: .largeTitle) private var playSize: CGFloat = 62
 
     var body: some View {
         let mine = player.current == id
@@ -183,7 +184,7 @@ struct EpisodePlayer: View {
                     speaker.stop()
                     player.toggle(id, url: url, title: title, show: show)
                 } label: {
-                    Image(systemName: mine && player.playing ? "pause.circle.fill" : "play.circle.fill").font(.system(size: 62))
+                    Image(systemName: mine && player.playing ? "pause.circle.fill" : "play.circle.fill").font(.system(size: min(playSize, 110)))
                 }
                 .accessibilityLabel(mine && player.playing ? Text("Pause") : Text("Play"))
                 Button { player.skip(30) } label: { Image(systemName: "goforward.30").font(.title2) }
