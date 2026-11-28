@@ -109,6 +109,11 @@ class Store(context: Context) {
         set(v) = prefs.edit().putString("reader.theme", v).apply()
 
     /** Speech rate when an article is read aloud (1 = normal). */
+    /** The name that goes with a recommendation, as typed once. */
+    var recommendName: String
+        get() = prefs.getString("recommend.name", "").orEmpty()
+        set(v) = prefs.edit().putString("recommend.name", v.take(60)).apply()
+
     var ttsRate: Float
         get() = prefs.getFloat("tts.rate", 1f)
         set(v) = prefs.edit().putFloat("tts.rate", v).apply()

@@ -26,6 +26,8 @@ data class Article(
     val local: Boolean = false,
     /** The article's id in the extension (`aid` in the envelope); empty for older senders and for pages opened here. Ends up as `aish_id` in the note. */
     val aid: String = "",
+    /** What someone who sent this article added. */
+    val recommendation: Recommendation? = null,
 )
 
 /**
@@ -73,7 +75,8 @@ object ArticleCodec {
             val text = b.getString(1)
             if (type in TYPES && text.isNotBlank()) blocks.add(Block(type, text))
         }
-        require(blocks.isNotEmpty()) { "empty article" }
+        // a recommended page whose text could not be read is kept for what its sender added
+        require(blocks.isNotEmpty() || o.has("rec")) { "empty article" }
         val marks = ArrayList<Highlight>()
         val hl = o.optJSONArray("hl")
         if (hl != null) for (i in 0 until minOf(hl.length(), 200)) {
@@ -85,6 +88,7 @@ object ArticleCodec {
             id = id, url = url, title = o.optString("title"), site = o.optString("site"), byline = o.optString("byline"),
             lang = o.optString("lang"), summary = o.optString("summary"), blocks = blocks, sentAt = o.optLong("sentAt"),
             truncated = o.optBoolean("truncated", false), highlights = marks, local = o.optBoolean("local", false),
+            recommendation = o.optJSONObject("rec")?.let { Recommendation.from(it) },
             aid = o.optString("aid").takeIf { AID.matches(it) } ?: "",
         )
     }

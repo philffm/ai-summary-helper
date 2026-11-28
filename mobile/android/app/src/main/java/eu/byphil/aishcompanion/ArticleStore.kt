@@ -62,6 +62,14 @@ class ArticleStore(context: Context) {
         }.getOrDefault(false)
     }
 
+    /** Adds what a sender wrote to an article that is here already; its text and summary stay. False where there is none. */
+    fun setRecommendation(id: String, r: Recommendation): Boolean {
+        if (!ID.matches(id)) return false
+        val f = File(dir, "$id.json")
+        if (!f.exists()) return false
+        return runCatching { f.writeText(JSONObject(f.readText()).also { PageSummary.addRecommendation(it, r) }.toString()); true }.getOrDefault(false)
+    }
+
     fun delete(id: String) {
         if (!ID.matches(id)) return
         File(dir, "$id.json").delete(); File(dir, "$id.meta").delete(); File(dir, "$id.hl").delete(); File(dir, "$id.hlp").delete()

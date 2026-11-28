@@ -27,6 +27,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.OpenInBrowser
 import androidx.compose.material.icons.filled.TextDecrease
@@ -266,6 +267,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     var summaryNote by remember(id) { mutableStateOf("") }
     var remindMenu by remember(id) { mutableStateOf(false) }
     var moreMenu by remember(id) { mutableStateOf(false) }
+    var recommending by remember(id) { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val notifPermission = androidx.activity.compose.rememberLauncherForActivityResult(androidx.activity.result.contract.ActivityResultContracts.RequestPermission()) { }
     val voice = remember(id) { ReadAloud(context, model.store.ttsRate) { model.store.ttsRate = it } }
@@ -308,7 +310,8 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
       Column(Modifier.fillMaxSize()) {
         val list = androidx.compose.foundation.lazy.rememberLazyListState()
         val spots = remember(article, placed) { DepthTrack.spots(article.blocks, placed) }
-        val leading = if (article.summary.isNotBlank()) 4 else 3   // the items above the first block: title, actions, summary, divider
+        // the items above the first block: title, sender, actions, summary, divider
+        val leading = (if (article.summary.isNotBlank()) 4 else 3) + (if (article.recommendation != null) 1 else 0)
         val onScreen by remember(article) {
             androidx.compose.runtime.derivedStateOf {
                 val info = list.layoutInfo
@@ -328,6 +331,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                     if (meta.isNotEmpty()) Text(meta, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
+            article.recommendation?.let { sent -> item { RecommendationCard(sent) } }
             item {
                 androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     val playing = voice.state != ReadAloud.State.IDLE
@@ -380,6 +384,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                                     moreMenu = false
                                     shareText(context, ArticleMarkdown.fileName(article.title, article.aid), ArticleMarkdown.render(article.copy(highlights = allHighlights)))
                                 })
+                                if (article.url.startsWith("http")) DropdownMenuItem(text = { Text("Recommend…") }, leadingIcon = { Icon(Icons.AutoMirrored.Filled.Send, null) }, onClick = { moreMenu = false; recommending = true })
                                 DropdownMenuItem(text = { Text("Remind me") }, leadingIcon = { Icon(Icons.Filled.Alarm, null) }, onClick = {
                                     if (android.os.Build.VERSION.SDK_INT >= 33 && !Reminders.canNotify(context)) notifPermission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
                                     remindMenu = true
@@ -451,6 +456,8 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     }
     }
     if (sheet) ReaderSheet(model) { sheet = false }
+    // only the reader's own marks go along, never the AI's suggestions
+    if (recommending) RecommendSheet(article, remember(article, mine) { allHighlights.filter { !it.ghost }.map { it.text } }) { recommending = false }
     if (speedReading) SpeedReadDialog(
         text = remember(id) { Rsvp.build(article.blocks) }, wpm = wpm,
         onWpm = { wpm = it.coerceIn(Rsvp.MIN_WPM, Rsvp.MAX_WPM); model.store.readerWpm = wpm },

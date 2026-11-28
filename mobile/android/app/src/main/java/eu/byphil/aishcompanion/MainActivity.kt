@@ -94,7 +94,7 @@ class MainActivity : ComponentActivity() {
         appModel = model
         intent?.getStringExtra(EXTRA_OPEN_ARTICLE)?.let { model.openArticle = it }
         // Only on a fresh start: after a system restart the saved state already holds the page that was open.
-        if (savedInstanceState == null) intent?.getStringExtra(EXTRA_OPEN_URL)?.takeIf { it.isNotEmpty() }?.let { model.pendingShare = it to (intent?.getBooleanExtra(EXTRA_SUMMARIZE, false) == true) }
+        if (savedInstanceState == null) intent?.getStringExtra(EXTRA_OPEN_URL)?.takeIf { it.isNotEmpty() }?.let { model.pendingRecommendation = recommendationIn(intent); model.pendingShare = it to (intent?.getBooleanExtra(EXTRA_SUMMARIZE, false) == true) }
         if (model.pairing?.canReceive == true) ReceiveWorker.schedule(this)
         FeedWorker.schedule(this)
         runCatching { AlarmScheduler.reschedule(this) }   // keeps the alarm right after updates, restarts and clock changes
@@ -123,6 +123,12 @@ class MainActivity : ComponentActivity() {
         const val EXTRA_SUMMARIZE = "eu.byphil.aishcompanion.SUMMARIZE"
         /** From a reminder notification: open this reading-list article. */
         const val EXTRA_OPEN_ARTICLE = "eu.byphil.aishcompanion.OPEN_ARTICLE"
+        /** With [EXTRA_OPEN_URL]: what someone who sent that page added, as JSON. */
+        const val EXTRA_RECOMMENDATION = "eu.byphil.aishcompanion.RECOMMENDATION"
+
+        /** Checked again here: any app can start this activity. */
+        private fun recommendationIn(intent: Intent?): Recommendation? =
+            intent?.getStringExtra(EXTRA_RECOMMENDATION)?.takeIf { it.length <= Recommendation.MAX_BYTES }?.let { runCatching { Recommendation.from(org.json.JSONObject(it)) }.getOrNull() }
     }
 
     private var appModel: AppModel? = null
@@ -139,7 +145,10 @@ class MainActivity : ComponentActivity() {
         setIntent(intent)
         intent.getStringExtra(EXTRA_OPEN_ARTICLE)?.let { appModel?.openArticle = it }
         // A link shared while the app is open: it replaces the page that is showing instead of being lost.
-        intent.getStringExtra(EXTRA_OPEN_URL)?.takeIf { it.isNotEmpty() }?.let { appModel?.pendingShare = it to intent.getBooleanExtra(EXTRA_SUMMARIZE, false) }
+        intent.getStringExtra(EXTRA_OPEN_URL)?.takeIf { it.isNotEmpty() }?.let {
+            recommendationIn(intent)?.let { r -> appModel?.pendingRecommendation = r }
+            appModel?.pendingShare = it to intent.getBooleanExtra(EXTRA_SUMMARIZE, false)
+        }
     }
 
     private fun scan(onResult: (String?) -> Unit) {
@@ -188,8 +197,10 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
             WebScreen(webUrl, canSend = model.pairing != null, autoSummarize = autoSummarize,
                 queued = queue.size, nextLabel = queue.firstOrNull()?.let { android.net.Uri.parse(it.substring(2)).host ?: it.substring(2) }.orEmpty(), onNext = advance,
                 onSummarized = { u, page, text, marks -> model.saveSummary(u, page, text, marks) },
-                onOpenReading = { id -> articleSel = id; tab = Tab.Reading.ordinal; webUrl = ""; autoSummarize = false; queue = ArrayList() },
-                onClose = advance)
+                onOpenReading = { id -> model.pendingRecommendation = null; articleSel = id; tab = Tab.Reading.ordinal; webUrl = ""; autoSummarize = false; queue = ArrayList() },
+                recommendation = model.pendingRecommendation?.takeIf { it.url == webUrl },
+                onSaveRecommended = { page -> model.pendingRecommendation?.let { model.saveRecommended(it, page) }.orEmpty() },
+                onClose = { if (model.pendingRecommendation?.url == webUrl) model.pendingRecommendation = null; advance() })
         }
         return
     }

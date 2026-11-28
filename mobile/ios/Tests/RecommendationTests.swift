@@ -24,6 +24,14 @@ final class RecommendationTests: XCTestCase {
         }
     }
 
+    /// The pages both phones' apps are tested against: one written here, one by the Android app.
+    func testThePagesOfBothPhonesAreRead() throws {
+        let fixtures = URL(filePath: #filePath).deletingLastPathComponent().appending(path: "../../../plugin/tests/fixtures").standardizedFileURL
+        for name in ["recommendation-vector.html", "recommendation-android-vector.html"] {
+            XCTAssertEqual(Recommendation.read(try Data(contentsOf: fixtures.appending(path: name))), full(), name)
+        }
+    }
+
     func testWhatIsNoRecommendationIsNone() {
         let page = full().page(words)
         XCTAssertNil(Recommendation.read(Data("<html><body>Hello</body></html>".utf8)))

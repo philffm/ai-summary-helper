@@ -108,6 +108,25 @@ class AppModel(context: Context) {
         articleList = articles.list()
     }
 
+    /** A recommendation someone sent, shown above its page until it is saved or the page is closed. */
+    var pendingRecommendation by mutableStateOf<Recommendation?>(null)
+
+    /** Saves a recommended page. Returns the reading-list id. An article that is here already keeps its text. */
+    suspend fun saveRecommended(r: Recommendation, page: Page?): String = withContext(Dispatchers.IO) {
+        val now = System.currentTimeMillis()
+        val known = articles.list().firstOrNull { it.url == r.url }?.id
+        val id = known ?: PageSummary.localId(r.url)
+        val had = articles.load(id)
+        if (had == null || (had.blocks.isEmpty() && page != null)) {
+            val json = PageSummary.articleJson(r.url, page ?: Page(r.title, emptyList(), ""), "", now, recommendation = r)
+            articles.save(ArticleCodec.parse(json, id), json, now)
+        } else articles.setRecommendation(id, r)
+        // once: saving the same recommendation again leaves no second note
+        if (r.note.isNotEmpty() && had?.recommendation != r && notes.add(PageSummary.recommendationNote(r), url = r.url, title = r.title) != null) syncLibrarySoon(app)
+        articleList = articles.list()
+        id
+    }
+
     var leftHanded by mutableStateOf(store.leftHanded.also { Handed.left = it })
     fun changeLeftHanded(on: Boolean) { store.leftHanded = on; leftHanded = on; Handed.left = on }
     var themeMode by mutableStateOf(store.themeMode)

@@ -36,6 +36,26 @@ class ShareActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val shared = intent?.getStringExtra(Intent.EXTRA_TEXT).orEmpty().trim()
         val link = LinkExtractor.firstLink(shared)
+        // A file someone sent: a recommendation in it goes before a link in the message.
+        @Suppress("DEPRECATION")
+        val file = if (intent?.action == Intent.ACTION_VIEW) intent.data else intent?.getParcelableExtra<android.net.Uri>(Intent.EXTRA_STREAM)
+        val recommendation = file?.let { readShared(this, it) }?.let { Recommendation.read(it) }
+        if (recommendation != null) {
+            setContent {
+                AishTheme(highContrast = Store(this).highContrast, reduceMotion = Store(this).reduceMotion, themeMode = Store(this).themeMode, dynamicColor = Store(this).dynamicColor) {
+                    ReceivedSheet(recommendation, onOpen = {
+                        startActivity(Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            .putExtra(MainActivity.EXTRA_OPEN_URL, recommendation.url).putExtra(MainActivity.EXTRA_RECOMMENDATION, recommendation.toJson().toString()))
+                        finish()
+                    }, onDismiss = { finish() })
+                }
+            }
+            return
+        }
+        if (file != null && link == null) {
+            Toast.makeText(this, "This file holds no Kaivo recommendation", Toast.LENGTH_LONG).show()
+            finish(); return
+        }
         if (shared.isEmpty()) {
             Toast.makeText(this, R.string.toast_no_link, Toast.LENGTH_SHORT).show()
             finish(); return
