@@ -26,7 +26,7 @@ class WebdavStore(url: String, root: String, private val username: String, priva
             mkcol(base + parts.joinToString("/") { enc(it) }); made.add(key)
         }
     }
-    private val propfindBody = "<?xml version=\"1.0\"?><d:propfind xmlns:d=\"DAV:\"><d:prop><d:getetag/><d:getcontentlength/><d:resourcetype/></d:prop></d:propfind>".toByteArray()
+    private val propfindBody = "<?xml version=\"1.0\"?><d:propfind xmlns:d=\"DAV:\"><d:prop><d:getetag/><d:getcontentlength/><d:getlastmodified/><d:resourcetype/></d:prop></d:propfind>".toByteArray()
 
     override fun ping(): Boolean {
         try { http.expectOk("PROPFIND", base, auth + ("Depth" to "0")) } catch (e: StoreError) {
@@ -61,12 +61,12 @@ class WebdavStore(url: String, root: String, private val username: String, priva
             val at = p.indexOf(dir); if (at < 0) continue
             p = p.substring(at + dir.length)
             if (p.isEmpty() || p.contains('/')) continue
-            out.add(StoredFile((segs(prefix) + p).joinToString("/"), r.etag, r.size))
+            out.add(StoredFile((segs(prefix) + p).joinToString("/"), r.etag, r.size, r.modified))
         }
         return out
     }
 
-    class Entry(val href: String, val etag: String, val size: Long, val isDir: Boolean)
+    class Entry(val href: String, val etag: String, val size: Long, val isDir: Boolean, val modified: Long = 0)
     companion object {
         /** The responses of a PROPFIND answer, without an XML parser (other prefixes, entity-escaped etags). */
         fun parseMultistatus(xml: String): List<Entry> {
@@ -75,7 +75,8 @@ class WebdavStore(url: String, root: String, private val username: String, priva
                 val block = m.value
                 fun pick(tag: String) = Regex("<(?:[\\w-]+:)?$tag[^>]*>([\\s\\S]*?)</(?:[\\w-]+:)?$tag>", RegexOption.IGNORE_CASE).find(block)?.groupValues?.get(1)?.trim() ?: ""
                 var href = pick("href"); href = try { java.net.URLDecoder.decode(href.replace("+", "%2B"), "UTF-8") } catch (_: Exception) { href }
-                out.add(Entry(href, stripEtag(pick("getetag")), pick("getcontentlength").toLongOrNull() ?: 0, Regex("<(?:[\\w-]+:)?collection\\b", RegexOption.IGNORE_CASE).containsMatchIn(block)))
+                val written = runCatching { java.time.ZonedDateTime.parse(pick("getlastmodified"), java.time.format.DateTimeFormatter.RFC_1123_DATE_TIME).toInstant().toEpochMilli() }.getOrDefault(0L)
+                out.add(Entry(href, stripEtag(pick("getetag")), pick("getcontentlength").toLongOrNull() ?: 0, Regex("<(?:[\\w-]+:)?collection\\b", RegexOption.IGNORE_CASE).containsMatchIn(block), written))
             }
             return out
         }

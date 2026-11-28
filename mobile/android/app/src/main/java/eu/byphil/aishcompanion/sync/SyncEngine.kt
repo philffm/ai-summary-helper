@@ -84,8 +84,9 @@ class SyncEngine(
             }
         }
 
-        // 1) pull
-        val toPull = remote.entries.filter { (name, f) -> val k = known[name]; k == null || !items.has(k) || items.getJSONObject(k).optString("e") != f.etag }.map { it.key }
+        // 1) pull, what was written last first: a large library takes a while, and the new things are the ones looked for
+        val toPull = remote.entries.filter { (name, f) -> val k = known[name]; k == null || !items.has(k) || items.getJSONObject(k).optString("e") != f.etag }
+            .sortedByDescending { it.value.modified }.map { it.key }
         val pool = Executors.newFixedThreadPool(threads)
         try {
             var i = 0
@@ -106,6 +107,11 @@ class SyncEngine(
             val t = rec.optJSONObject("rev")?.optLong("t") ?: 0
             (k in dirty || !items.has(k) || items.getJSONObject(k).optLong("t") < t) && (!stale || t > lastSync)
         }
+        // the newest article goes last, so that the server's times say what a device that fetches should take first;
+        // everything that is no article goes ahead of them
+        fun savedAt(key: String): Long = if (!key.startsWith("article:")) 0L else
+            Regex("_(\\d{13})_").find(key)?.groupValues?.get(1)?.toLong() ?: records.get(key)?.optJSONObject("rev")?.optLong("t") ?: 0L
+        val ordered = pending.sortedBy { savedAt(it) }
         fun push(key: String, retry: Boolean = true) {
             val rec = records.get(key) ?: return
             val name = nameFor(key)
@@ -122,7 +128,7 @@ class SyncEngine(
                 push(key, false)
             }
         }
-        for ((n, key) in pending.withIndex()) {
+        for ((n, key) in ordered.withIndex()) {
             if (overBudget()) { out.more = true; break }
             try { push(key) } catch (e: Exception) { out.errors.add("$key: ${e.message}") }
             if (n % chunk == chunk - 1) save()

@@ -89,7 +89,8 @@ class S3Store(endpoint: String, private val region: String, private val bucket: 
             for (m in Regex("<Contents>[\\s\\S]*?</Contents>").findAll(xml)) {
                 val k = unxml(Regex("<Key>([\\s\\S]*?)</Key>").find(m.value)?.groupValues?.get(1) ?: "")
                 if (!k.startsWith(dir) || k == dir || k.substring(dir.length).contains('/')) continue
-                out.add(StoredFile((segs(prefix) + k.substring(dir.length)).joinToString("/"), stripEtag(unxml(Regex("<ETag>([\\s\\S]*?)</ETag>").find(m.value)?.groupValues?.get(1) ?: "")), Regex("<Size>(\\d+)</Size>").find(m.value)?.groupValues?.get(1)?.toLongOrNull() ?: 0))
+                out.add(StoredFile((segs(prefix) + k.substring(dir.length)).joinToString("/"), stripEtag(unxml(Regex("<ETag>([\\s\\S]*?)</ETag>").find(m.value)?.groupValues?.get(1) ?: "")), Regex("<Size>(\\d+)</Size>").find(m.value)?.groupValues?.get(1)?.toLongOrNull() ?: 0,
+                    runCatching { java.time.Instant.parse(Regex("<LastModified>([^<]*)</LastModified>").find(m.value)?.groupValues?.get(1).orEmpty()).toEpochMilli() }.getOrDefault(0L)))
             }
             token = if (Regex("<IsTruncated>true</IsTruncated>").containsMatchIn(xml)) unxml(Regex("<NextContinuationToken>([\\s\\S]*?)</NextContinuationToken>").find(xml)?.groupValues?.get(1) ?: "") else ""
         } while (token.isNotEmpty())

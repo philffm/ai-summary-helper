@@ -12,17 +12,18 @@ import org.junit.Test
 /** A store in memory with the conditions of a real one; `puts` counts uploads, `beforePut` lets a test change the server under the engine's feet. */
 class MemoryStore : SyncStore {
     val files = LinkedHashMap<String, Pair<ByteArray, String>>(); var puts = 0; private var n = 0; var beforePut: ((String) -> Unit)? = null
+    val written = ArrayList<String>(); val fetched = java.util.Collections.synchronizedList(ArrayList<String>())
     override fun ping() = true
     override fun put(path: String, body: ByteArray, contentType: String, ifMatch: String?, ifNoneMatch: String?): String {
         beforePut?.let { beforePut = null; it(path) }
         val cur = files[path]
         if (ifNoneMatch == "*" && cur != null) throw StoreError(412, "exists")
         if (ifMatch != null && (cur == null || cur.second != ifMatch)) throw StoreError(412, "changed")
-        val etag = "e${++n}"; files[path] = body to etag; puts++; return etag
+        val etag = "e${++n}"; files[path] = body to etag; puts++; written.add(path); return etag
     }
-    override fun get(path: String) = files[path]?.let { Fetched(it.first, it.second) }
+    override fun get(path: String) = files[path]?.let { fetched.add(path); Fetched(it.first, it.second) }
     override fun remove(path: String) = files.remove(path) != null
-    override fun list(prefix: String) = files.filter { it.key.substringBeforeLast('/', "") == prefix.trimEnd('/') }.map { StoredFile(it.key, it.value.second, it.value.first.size.toLong()) }
+    override fun list(prefix: String) = files.filter { it.key.substringBeforeLast('/', "") == prefix.trimEnd('/') }.map { StoredFile(it.key, it.value.second, it.value.first.size.toLong(), it.value.second.drop(1).toLongOrNull() ?: 0) }
 }
 
 class SyncEngineTest {
@@ -55,6 +56,22 @@ class SyncEngineTest {
         val file = JSONObject().put("aish", "rec/1").put("key", key).put("rev", JSONObject().put("t", t).put("d", "d_browser")).put("f", f).put("values", values)
         val name = SyncCrypto.nameOf(keys, key.substringBefore(':'), key.substringAfter(':'))
         server.put("r/$name", SyncCrypto.encrypt(keys, file.toString())); return name
+    }
+
+    @Test fun whatTheServerGotLastIsFetchedFirst() {
+        val names = listOf("n_a", "n_b", "n_c").map { browserWrites("note:$it", JSONObject().put("kind", "note").put("text", it)) }
+        Phone("p").engine().run(chunk = 1, threads = 1)
+        assertEquals(names.reversed().map { "r/$it" }, server.fetched.filter { it.startsWith("r/") })
+    }
+
+    @Test fun theNewestArticleIsSentLast() {
+        val phone = Phone("p")
+        val newer = "article:a_1700000000002_x"; val older = "article:a_1700000000001_y"
+        listOf(newer, older).forEach { phone.records.put(it, SyncFields.stampRecord(null, SyncFields.noteFields(JSONObject().put("text", it)), phone.clock, ++clockNow).record) }
+        val note = phone.addNote("n_z", "zuerst")
+        server.written.clear()
+        SyncEngine(server, keys, meta, phone.records, phone.clock, "p1", now = { clockNow }, extraKeys = setOf(newer, older)).run()
+        assertEquals(listOf(note, older, newer).map { "r/" + SyncCrypto.nameOf(keys, it.substringBefore(':'), it.substringAfter(':')) }, server.written)
     }
 
     @Test fun notesTravelBothWaysAndASecondRoundDoesNothing() {
