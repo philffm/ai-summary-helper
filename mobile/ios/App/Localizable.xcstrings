@@ -1293,6 +1293,82 @@
         }
       }
     },
+    "Added to your library": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يُضاف إلى مكتبتك"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kommt in deine Bibliothek"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Se añade a tu biblioteca"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lisätään kirjastoosi"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajouté à votre bibliothèque"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ライブラリに追加されるもの"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "보관함에 추가"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Adicionado à sua biblioteca"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Добавится в библиотеку"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Буде додано до бібліотеки"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "将加入你的资料库"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "將加入你的資料庫"
+          }
+        }
+      }
+    },
     "Address": {
       "localizations": {
         "ar": {
@@ -2581,6 +2657,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "來自你在 Nextcloud、WebDAV 或 S3 上加密儲存位置的文章和螢光標記。"
+          }
+        }
+      }
+    },
+    "Articles saved on this iPhone": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مقالات محفوظة على هذا الـ iPhone"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Auf diesem iPhone gespeicherte Artikel"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artículos guardados en este iPhone"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tälle iPhonelle tallennetut artikkelit"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Articles enregistrés sur cet iPhone"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "このiPhoneに保存した記事"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "이 iPhone에 저장한 글"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artigos salvos neste iPhone"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Статьи, сохранённые на этом iPhone"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Статті, збережені на цьому iPhone"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "此 iPhone 上保存的文章"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "此 iPhone 上儲存的文章"
           }
         }
       }
@@ -5165,6 +5317,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "在 Safari 的 Kaivo 中刪除帳戶：更多 → 設定 → 帳戶。"
+          }
+        }
+      }
+    },
+    "Deleting on this iPhone does not delete anything in your library yet.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الحذف على هذا الـ iPhone لا يحذف شيئًا من مكتبتك بعد."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Löschen auf diesem iPhone löscht in deiner Bibliothek noch nichts."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Borrar en este iPhone todavía no borra nada en tu biblioteca."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Poistaminen tällä iPhonella ei vielä poista mitään kirjastostasi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Supprimer sur cet iPhone ne supprime encore rien dans votre bibliothèque."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "このiPhoneで削除しても、ライブラリの内容はまだ削除されません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "이 iPhone에서 삭제해도 보관함에서는 아직 삭제되지 않습니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apagar neste iPhone ainda não apaga nada na sua biblioteca."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Удаление на этом iPhone пока ничего не удаляет в вашей библиотеке."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Видалення на цьому iPhone поки нічого не видаляє у вашій бібліотеці."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在此 iPhone 上删除目前不会删除资料库中的内容。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在此 iPhone 上刪除目前不會刪除資料庫中的內容。"
           }
         }
       }
@@ -8665,6 +8893,82 @@
         }
       }
     },
+    "Last synced": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "آخر مزامنة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zuletzt synchronisiert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Última sincronización"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Viimeksi synkronoitu"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dernière synchronisation"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "前回の同期"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "마지막 동기화"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Última sincronização"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Последняя синхронизация"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Остання синхронізація"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "上次同步"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "上次同步"
+          }
+        }
+      }
+    },
     "Leave out bad news": {
       "localizations": {
         "ar": {
@@ -10717,6 +11021,82 @@
         }
       }
     },
+    "Not synced yet": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "لم تتم المزامنة بعد"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Noch nicht synchronisiert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aún sin sincronizar"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ei vielä synkronoitu"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pas encore synchronisé"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "まだ同期していません"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "아직 동기화하지 않음"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ainda não sincronizado"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ещё не синхронизировано"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ще не синхронізовано"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "尚未同步"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "尚未同步"
+          }
+        }
+      }
+    },
     "Note": {
       "localizations": {
         "ar": {
@@ -11401,78 +11781,78 @@
         }
       }
     },
-    "Off: the app only fetches. On: reading progress, highlights, comments, notes and questions of your library go to your place too, also what you changed before.": {
+    "Off: the app only fetches. On: reading progress, highlights, comments, notes, questions and summaries go to your place too, and the articles saved on this iPhone join your library, also those from before.": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "متوقفة: يجلب التطبيق فقط. مشغّلة: يذهب تقدّم القراءة والتظليلات والتعليقات والملاحظات والأسئلة في مكتبتك إلى مكانك أيضًا، بما في ذلك ما غيّرته سابقًا."
+            "value": "متوقفة: يجلب التطبيق فقط. مشغّلة: يذهب تقدّم القراءة والتظليلات والتعليقات والملاحظات والأسئلة والملخصات إلى مساحتك أيضًا، وتنضم المقالات المحفوظة على هذا الـ iPhone إلى مكتبتك، بما فيها السابقة."
           }
         },
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aus: Die App holt nur. Ein: Lesestand, Markierungen, Kommentare, Notizen und Fragen deiner Bibliothek gehen auch an deine Ablage, auch frühere Änderungen."
+            "value": "Aus: Die App holt nur. Ein: Lesestand, Markierungen, Kommentare, Notizen, Fragen und Zusammenfassungen gehen auch an deine Ablage, und die auf diesem iPhone gespeicherten Artikel kommen in deine Bibliothek, auch die früheren."
           }
         },
         "es": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Desactivado: la app solo descarga. Activado: el progreso, los destacados, comentarios, notas y preguntas de tu biblioteca también van a tu almacén, incluidos los cambios anteriores."
+            "value": "Desactivado: la app solo descarga. Activado: el progreso, los destacados, comentarios, notas, preguntas y resúmenes también van a tu almacén, y los artículos guardados en este iPhone pasan a tu biblioteca, incluidos los anteriores."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Pois: sovellus vain hakee. Päällä: kirjastosi lukukohta, korostukset, kommentit, muistiinpanot ja kysymykset menevät myös tallennuspaikkaasi, myös aiemmat muutokset."
+            "value": "Pois: sovellus vain hakee. Päällä: lukukohta, korostukset, kommentit, muistiinpanot, kysymykset ja tiivistelmät menevät myös tallennuspaikkaasi, ja tälle iPhonelle tallennetut artikkelit liittyvät kirjastoosi, myös aiemmat."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Désactivé : l’app ne fait que récupérer. Activé : la progression, les surlignages, commentaires, notes et questions de votre bibliothèque vont aussi vers votre espace, y compris vos changements antérieurs."
+            "value": "Désactivé : l’app ne fait que récupérer. Activé : la progression, les surlignages, commentaires, notes, questions et résumés vont aussi vers votre espace, et les articles enregistrés sur cet iPhone rejoignent votre bibliothèque, y compris les anciens."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "オフ：アプリは取得のみ。オン：ライブラリの読書位置、ハイライト、コメント、メモ、質問も保存先に送られます。以前の変更も含みます。"
+            "value": "オフ：アプリは取得のみ。オン：読書位置、ハイライト、コメント、メモ、質問、要約も保存先に送られ、このiPhoneに保存した記事は以前のものも含めてライブラリに加わります。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "끔: 앱은 가져오기만 합니다. 켬: 보관함의 읽기 위치, 하이라이트, 댓글, 메모, 질문도 저장소로 보냅니다. 이전 변경도 포함됩니다."
+            "value": "끔: 앱은 가져오기만 합니다. 켬: 읽기 위치, 하이라이트, 댓글, 메모, 질문, 요약도 저장소로 보내고, 이 iPhone에 저장한 글은 이전 것까지 보관함에 추가됩니다."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Desligado: o app só busca. Ligado: progresso, destaques, comentários, notas e perguntas da sua biblioteca também vão para o seu local, inclusive mudanças anteriores."
+            "value": "Desligado: o app só busca. Ligado: progresso, destaques, comentários, notas, perguntas e resumos também vão para o seu local, e os artigos salvos neste iPhone entram na sua biblioteca, inclusive os anteriores."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Выкл.: приложение только загружает. Вкл.: прогресс чтения, выделения, комментарии, заметки и вопросы вашей библиотеки отправляются и в ваше хранилище, включая прежние изменения."
+            "value": "Выкл.: приложение только загружает. Вкл.: прогресс чтения, выделения, комментарии, заметки, вопросы и сводки отправляются и в ваше хранилище, а статьи, сохранённые на этом iPhone, попадают в вашу библиотеку, включая прежние."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Вимк.: застосунок лише завантажує. Увімк.: прогрес читання, виділення, коментарі, нотатки та запитання вашої бібліотеки надсилаються й у ваше сховище, зокрема попередні зміни."
+            "value": "Вимк.: застосунок лише завантажує. Увімк.: прогрес читання, виділення, коментарі, нотатки, запитання та підсумки надсилаються й у ваше сховище, а статті, збережені на цьому iPhone, додаються до вашої бібліотеки, зокрема попередні."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "关闭：应用只获取。开启：资料库的阅读进度、高亮、评论、笔记和提问也会发送到你的存储位置，包括之前的更改。"
+            "value": "关闭：应用只获取。开启：阅读进度、高亮、评论、笔记、提问和摘要也会发送到你的存储位置，此 iPhone 上保存的文章（包括之前的）会加入你的资料库。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "關閉：App 只取得。開啟：資料庫的閱讀進度、重點、評論、筆記和提問也會傳到你的儲存位置，包括之前的變更。"
+            "value": "關閉：App 只取得。開啟：閱讀進度、重點、評論、筆記、提問和摘要也會傳到你的儲存位置，此 iPhone 上儲存的文章（包括之前的）會加入你的資料庫。"
           }
         }
       }
@@ -15809,6 +16189,82 @@
         }
       }
     },
+    "Sending to your place": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "جارٍ الإرسال إلى مساحتك"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wird in deine Ablage hochgeladen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Enviando a tu almacén"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lähetetään tallennuspaikkaasi"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Envoi vers votre espace"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "保存先に送信中"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "저장소로 보내는 중"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Enviando para o seu local"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Отправка в ваше хранилище"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Надсилання у ваше сховище"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "正在发送到你的存储位置"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "正在傳送到你的儲存位置"
+          }
+        }
+      }
+    },
     "Server": {
       "localizations": {
         "ar": {
@@ -17553,6 +18009,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "摘要"
+          }
+        }
+      }
+    },
+    "Summaries written on this iPhone": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ملخصات كُتبت على هذا الـ iPhone"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Auf diesem iPhone erstellte Zusammenfassungen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Resúmenes creados en este iPhone"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tällä iPhonella tehdyt tiivistelmät"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Résumés rédigés sur cet iPhone"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "このiPhoneで作成した要約"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "이 iPhone에서 만든 요약"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Resumos criados neste iPhone"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Сводки, созданные на этом iPhone"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Підсумки, створені на цьому iPhone"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在此 iPhone 上生成的摘要"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在此 iPhone 上產生的摘要"
           }
         }
       }
@@ -23025,82 +23557,6 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "重點是什麼？"
-          }
-        }
-      }
-    },
-    "What is only saved on this iPhone stays here.": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "ما هو محفوظ على هذا الـiPhone فقط يبقى هنا."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Was nur auf diesem iPhone gespeichert ist, bleibt hier."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Lo guardado solo en este iPhone se queda aquí."
-          }
-        },
-        "fi": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Vain tähän iPhoneen tallennettu pysyy täällä."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Ce qui n’est enregistré que sur cet iPhone y reste."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "このiPhoneだけに保存したものはここに残ります。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "이 iPhone에만 저장한 것은 여기에 남습니다."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "O que está salvo só neste iPhone fica aqui."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "То, что сохранено только на этом iPhone, остаётся здесь."
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Те, що збережено лише на цьому iPhone, лишається тут."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "仅保存在此 iPhone 上的内容会留在本机。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "僅儲存在此 iPhone 的內容會留在本機。"
           }
         }
       }

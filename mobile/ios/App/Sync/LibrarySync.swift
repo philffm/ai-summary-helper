@@ -6,6 +6,8 @@ struct LibrarySync {
     struct State: Decodable {
         struct Last: Decodable {
             struct Progress: Decodable {
+                /// "checking", "pulling" (fetching) or "uploading"
+                var phase: String?
                 let done: Int
                 let total: Int
             }
@@ -76,6 +78,18 @@ struct LibrarySync {
     /// nil when no library is joined.
     func state() async throws -> State? {
         try JSONDecoder().decode(State?.self, from: try await host.run("return sync.state();"))
+    }
+
+    /// What switching on writing back would add to the library.
+    struct Waiting: Decodable, Equatable {
+        /// Articles saved on this device.
+        let articles: Int
+        /// Summaries written here for articles of the library that have none.
+        let summaries: Int
+    }
+
+    func waiting() async throws -> Waiting {
+        try JSONDecoder().decode(Waiting.self, from: try await host.run("return sync.waiting();"))
     }
 
     /// Whether runs also send what changed here; off for every library until switched on.

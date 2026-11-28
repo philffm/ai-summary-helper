@@ -51,7 +51,10 @@ function memoryStore(files) {
 }
 async function device(files, extra = {}) {
     const storage = memoryStorage();
-    const service = createSyncService({ storage, makeStore: async () => memoryStore(files), stampStore: createStampStore({ storage }) });
+    // with the hooks the extension's background gives it (modules/syncBackgroundBundle.js)
+    const { countWords } = await load('textUtils.js'), { withQuestions } = await load('conversation.js');
+    const service = createSyncService({ storage, makeStore: async () => memoryStore(files), stampStore: createStampStore({ storage }),
+        dataHooks: { count: countWords, compose: (base, turns) => withQuestions(base, turns, { all: false }) } });
     const join = async () => {
         const place = await service.add({ connection: { service: 'webdav', url: 'https://dav.test/files/', username: 'u' }, secret: { password: 'p' },
             place: { mode: 'encrypted', direction: 'twoway', root: 'kaivo-test', passphrase: PASSPHRASE, ...extra } });
@@ -115,28 +118,33 @@ if (mode === 'make') {
     const browserNote = Object.keys(made.expect.notes).find((id) => id.startsWith('n_'));
     assert.deepEqual(records.filter((r) => r.deleted).map((r) => r.key).sort(), ['hl:hl_gone', 'note:' + browserNote].sort(), 'deletion markers only for what was removed on purpose');
     const articles = records.filter((r) => r.key.startsWith('article:'));
-    assert.deepEqual(articles.map((r) => r.key), ['article:x1'], 'only the library\'s own article is there: ' + names.join(', '));
-    const x1 = articles[0].values;
+    assert.deepEqual(articles.map((r) => r.key).sort(), ['article:mine', 'article:x1'], 'the library\'s article, and the one saved on the phone with an address: ' + names.join(', '));
+    const x1 = articles.find((r) => r.key === 'article:x1').values;
     assert.equal(x1.content, made.expect.record.content, 'the text is byte for byte as the browser wrote it');
     assert.equal(x1.title, made.expect.index.title);
-    assert.equal(x1.summaryBase, made.expect.record.summary);
+    assert.equal(x1.summaryBase, '<p>Written on the phone.</p>', 'the summary written on the phone');
     assert.equal(x1.progress, 0.95);
     // and as another browser sees it
     const b = await device(files, { ackBackup: true });
     await b.join();
     const index = (await b.storage.get('articles:index'))['articles:index'];
-    assert.deepEqual(index.map((e) => [e.id, e.progress]), [['x1', 0.95]]);
+    assert.deepEqual(index.map((e) => [e.id, e.progress]).sort(), [['mine', 0], ['x1', 0.95]]);
+    const mine = index.find((e) => e.id === 'mine');
+    assert.deepEqual([mine.url, mine.title, mine.archived, mine.contentWordCount > 0], ['https://example.org/mine', 'Only on this phone', false, true], 'an entry the browser can list, with its length');
+    assert.ok((await b.storage.get('articles:rec:mine'))['articles:rec:mine'].content.includes('Only my words.'));
+    assert.ok((await b.storage.get('articles:rec:x1'))['articles:rec:x1'].summary.includes('Written on the phone.'));
     const seen = (await b.highlights.all({ dismissed: true })).map((h) => [h.text, h.type, !!h.dismissed]).sort();
     assert.deepEqual(seen, [
         ['Grüße aus dem Browser', 'user', false],
         ['Keep this suggestion.', 'user', false],
         ['Turn this down.', 'ghost', true],
         ['before joining', 'user', false],
+        ['my words', 'user', false],
         ['quote', 'user', false],
     ].sort());
     const turns = (await b.storage.get('articles:rec:x1'))['articles:rec:x1'].conversation;
     assert.deepEqual(turns.map((t) => [t.q, !!t.noted]), [['Why does sleep help?', true], ['Asked, not saved', false], ['Why on the phone?', true]], 'the question asked on the phone arrived, the others are as they were');
-    assert.equal((await b.storage.get('articles:index'))['articles:index'][0].qaCount, 3);
+    assert.equal((await b.storage.get('articles:index'))['articles:index'].find((e) => e.id === 'x1').qaCount, 3);
     const kept = createNotesStore({ storage: b.storage, mark: async () => 0 });
     const listed = await kept.list();
     assert.deepEqual(listed.notes.map((n) => [n.text, n.tags]), [['From the phone', ['idea']]], 'the note written on the phone, and only that one');

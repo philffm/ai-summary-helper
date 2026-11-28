@@ -72,6 +72,10 @@ struct RootView: View {
                 }
                 if let link = DeepLink(url) { router.open(link) }
             }
+            // a summary that has just been written goes to the library
+            .onChange(of: summaries.running) { before, now in
+                if before != nil && now == nil { Task { await sync.changedHere() } }
+            }
             .onChange(of: scenePhase, initial: true) { _, phase in
                 if phase == .active {
                     status.refresh()
@@ -94,7 +98,10 @@ struct RootView: View {
 
     /// What Safari and the share sheet have left for the app.
     private func takeHandedOver() {
-        library.importFromSafari()
+        let fromSafari = library.importFromSafari()
+        Task {
+            if fromSafari { await sync.changedHere() }
+        }
         Task {
             await library.takeShared()
             await finishShared()
@@ -109,6 +116,7 @@ struct RootView: View {
         fetching = true
         defer { fetching = false }
         var tried: Set<Article.ID> = []
+        defer { if !tried.isEmpty { Task { await sync.changedHere() } } }
         while let article = library.articles.first(where: { $0.pending != nil && !tried.contains($0.id) }) {
             tried.insert(article.id)
             if article.passages.isEmpty, let url = article.url, let page = await PageFetcher().fetch(url) {

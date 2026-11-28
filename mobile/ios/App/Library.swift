@@ -317,11 +317,13 @@ final class Library {
     }
 
     /// Takes over what Safari saved since the last time. An article already saved here (same page) gains, it is not doubled.
-    func importFromSafari(from folder: URL = SafariInbox.directory) {
-        guard !samples else { return }
+    /// → whether there was something to take over
+    @discardableResult
+    func importFromSafari(from folder: URL = SafariInbox.directory) -> Bool {
+        guard !samples else { return false }
         // what is being taken over already is not taken a second time
         let waiting = SafariInbox.pending(in: folder).filter { !taking.contains($0.file) }
-        guard !waiting.isEmpty else { return }
+        guard !waiting.isEmpty else { return false }
         taking.formUnion(waiting.map(\.file))
         changed { [weak self] store in
             defer { self?.taking.subtract(waiting.map(\.file)) }
@@ -342,6 +344,7 @@ final class Library {
             }
         }
         reload()
+        return true
     }
 
     func remove(_ id: Article.ID) {

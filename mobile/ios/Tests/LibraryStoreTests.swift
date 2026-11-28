@@ -307,20 +307,125 @@ final class LibraryStoreTests: XCTestCase {
         XCTAssertEqual(try JSONDecoder().decode(String.self, from: kept), content, "the stored text is not touched")
     }
 
-    private func serveTheBrowsersPlace() throws -> [String: Any] {
+    private func serveTheBrowsersPlace(folder: String = "kaivo-test") throws -> [String: Any] {
         let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "sync-place", withExtension: "json"))
         let made = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: url)) as? [String: Any])
         for (path, text) in try XCTUnwrap(made["files"] as? [String: String]) {
-            FakeDAV.put("/files/kaivo-test/" + path, try XCTUnwrap(Data(base64Encoded: text)))
+            FakeDAV.put("/files/\(folder)/" + path, try XCTUnwrap(Data(base64Encoded: text)))
         }
         return made
     }
 
+    private func join(_ model: SyncModel, _ made: [String: Any], folder: String = "kaivo-test") async throws {
+        await model.read("aish-library://v1?k=webdav&u=https%3A%2F%2Fdav.test%2Ffiles%2F&n=u&p=p&r=" + folder)
+        model.passphrase = try XCTUnwrap(made["passphrase"] as? String)
+        await model.connect()
+        XCTAssertNil(model.problem)
+    }
+
+    /// Another device that joins the library and fetches it.
+    private func otherDevice(_ made: [String: Any], folder: String = "kaivo-test") async throws -> Library {
+        let at = root.appending(path: "other-" + UUID().uuidString)
+        try FileManager.default.createDirectory(at: at.appending(path: "shared"), withIntermediateDirectories: true)
+        let network = URLSessionConfiguration.ephemeral
+        network.protocolClasses = [FakeDAV.self]
+        let store = try LibraryStore(folder: at.appending(path: "library"), shared: at.appending(path: "shared"),
+                                     vault: SyncVault(scope: "store-" + UUID().uuidString), network: network)
+        let library = Library(samples: false, store: store)
+        await library.settled()
+        try await join(SyncModel(library: library), made, folder: folder)
+        return library
+    }
+
     private var changesOnTheServer: Int { FakeDAV.count("PUT") + FakeDAV.count("MKCOL") + FakeDAV.count("DELETE") }
 
-    /// Writing back, as far as it goes: how far an article of the library was read, and its highlights. The result is read
-    /// by the extension's own code (TEST_RUNNER_KAIVO_SYNC_BACK=<folder>/place, then scripts/sync-compat.mjs back <folder>).
-    func testWritesBackReadingAndHighlightsAndNothingElse() async throws {
+    func testWhatWasSavedHereJoinsTheLibraryOnceSwitchedOn() async throws {
+        let made = try serveTheBrowsersPlace()
+        var mine = Passage(text: "Only my words.")
+        mine.highlight((mine.text as NSString).range(of: "my words"))
+        try saveAsBefore([
+            Article(id: "mine", title: "Saved on the phone", host: "example.org", tags: ["own"], words: 3, savedAt: .now,
+                    passages: [mine], link: "https://example.org/mine"),
+            Article(id: "gone", title: "Deleted again", host: "example.org", tags: [], words: 2, savedAt: .now,
+                    passages: [Passage(text: "Not wanted.")], link: "https://example.org/gone"),
+            Article(id: "later", title: "Text still on its way", host: "example.org", tags: [], words: 0, savedAt: .now,
+                    link: "https://example.org/later", pending: Pending(text: true, summary: false)),
+            Article(id: "nowhere", title: "No address", host: "A feed", tags: [], words: 2, savedAt: .now, passages: [Passage(text: "No link.")]),
+            Article(id: "sample", title: "A made-up page", host: "energywatch.example", tags: [], words: 2, savedAt: .now,
+                    passages: [Passage(text: "Sample.")], link: "https://energywatch.example/a"),
+        ])
+        let library = try await start()
+        library.remove("gone")
+        await library.settled()
+        let model = SyncModel(library: library)
+        try await join(model, made)
+        XCTAssertEqual(changesOnTheServer, 0, "off: nothing is written")
+        let waiting = await model.waiting()
+        XCTAssertEqual(waiting, LibrarySync.Waiting(articles: 1, summaries: 0), "said before the switch is turned on")
+
+        // a yes given before there was more to write does not count for it
+        _ = try await library.store!.sync.host.run("await storage.set({ 'app:writeBack': true });")
+        await model.fetch()
+        XCTAssertEqual(model.state?.writesBack, false)
+        XCTAssertEqual(changesOnTheServer, 0)
+
+        await model.setWriteBack(true)
+        XCTAssertNil(model.problem)
+        await library.settled()
+        var there = try await otherDevice(made)
+        XCTAssertEqual(Set(there.articles.map(\.title)), ["Written in the browser", "Saved on the phone"])
+        let arrived = try XCTUnwrap(there.article("mine"))
+        XCTAssertEqual(arrived.tags, ["own"])
+        XCTAssertEqual(arrived.passages.map(\.text), ["Only my words."])
+        XCTAssertEqual(arrived.passages.first?.marks.map { arrived.passages[0].words(of: $0) }, ["my words"])
+        XCTAssertEqual(Set(library.articles.map(\.title)), ["Written in the browser", "Saved on the phone", "Text still on its way", "No address", "A made-up page"],
+                       "here everything is still there, once")
+        XCTAssertEqual(library.article("mine")?.passages.first?.marks.count, 1)
+        let after = await model.waiting()
+        XCTAssertEqual(after, LibrarySync.Waiting(articles: 0, summaries: 0))
+        let written = changesOnTheServer
+        await model.fetch()
+        await model.fetch()
+        XCTAssertEqual(changesOnTheServer, written, "nothing moves back and forth")
+
+        // a summary written while it is off waits, and goes where the library has none
+        await model.setWriteBack(false)
+        library.setSummary("mine", ["Summarized while it was off."], marking: [])
+        await library.settled()
+        await model.fetch()
+        XCTAssertEqual(changesOnTheServer, written)
+        let one = await model.waiting()
+        XCTAssertEqual(one, LibrarySync.Waiting(articles: 0, summaries: 1))
+        await model.setWriteBack(true)
+        await library.settled()
+        there = try await otherDevice(made)
+        XCTAssertEqual(there.article("mine")?.summary, ["Summarized while it was off."])
+        XCTAssertEqual(library.article("mine")?.summary, ["Summarized while it was off."])
+
+        // while it is on, a new one takes the old one's place and goes at once; its questions stay here
+        library.setSummary("mine", ["The newer summary."], marking: [], questions: "[{\"q\":\"Newer question?\",\"a\":\"A short answer to it.\"}]")
+        await library.settled()
+        await model.changedHere()
+        there = try await otherDevice(made)
+        XCTAssertEqual(there.article("mine")?.summary, ["The newer summary."])
+        XCTAssertEqual(library.article("mine")?.openSuggestions.map(\.question), ["Newer question?"])
+
+        // what came from one library, or went into it, never goes into another
+        let second = try serveTheBrowsersPlace(folder: "second")
+        await model.leave()
+        try await join(model, second, folder: "second")
+        let none = await model.waiting()
+        XCTAssertEqual(none, LibrarySync.Waiting(articles: 0, summaries: 0))
+        await model.setWriteBack(true)
+        await library.settled()
+        there = try await otherDevice(second, folder: "second")
+        XCTAssertEqual(there.articles.map(\.title), ["Written in the browser"])
+        XCTAssertEqual(FakeDAV.count("DELETE"), 0)
+    }
+
+    /// Writing back: how far an article of the library was read, its highlights, a summary, and what was saved here. The
+    /// result is read by the extension's own code (TEST_RUNNER_KAIVO_SYNC_BACK=<folder>/place, then scripts/sync-compat.mjs back <folder>).
+    func testWritesBackWhatWasReadMarkedSummarizedAndSaved() async throws {
         let made = try serveTheBrowsersPlace()
         // before joining: an article only this phone has, and a copy of the browser's own, saved here earlier and read further
         var copy = Passage(text: "Grüße aus dem Browser 🌍, with a \"quote\" & more.")
@@ -399,7 +504,7 @@ final class LibraryStoreTests: XCTestCase {
         await model.fetch()
         XCTAssertNil(model.problem)
         browser = try XCTUnwrap(library.article("x1"))
-        XCTAssertEqual(browser.summary, ["Written on the phone."], "kept by the app")
+        XCTAssertEqual(browser.summary, ["Written on the phone."], "and in the library now")
         XCTAssertEqual(Set(library.entries.filter { $0.kind == .note }.map(\.text)), ["From the phone", "Only on the phone"])
         XCTAssertEqual(try entry("Keep this suggestion.").comment, "Said on the phone")
         XCTAssertEqual(try entry("Keep this suggestion.").kind, .user)
@@ -466,8 +571,9 @@ final class LibraryStoreTests: XCTestCase {
         XCTAssertEqual(got["marks"] as? Int, 700, "no highlight lost, none doubled")
     }
 
-    /// The build before this one kept the app's own articles under the extension's keys, beside a joined library.
-    func testWhatAnEarlierBuildLeftBesideTheLibraryStaysHere() async throws {
+    /// The build before this one kept the app's own articles under the extension's keys, beside a joined library: they
+    /// count as saved here.
+    func testWhatAnEarlierBuildLeftBesideTheLibraryJoinsIt() async throws {
         let made = try serveTheBrowsersPlace()
         let network = URLSessionConfiguration.ephemeral
         network.protocolClasses = [FakeDAV.self]
@@ -490,7 +596,7 @@ final class LibraryStoreTests: XCTestCase {
             """)
         await model.fetch()
         XCTAssertNil(model.problem)
-        XCTAssertEqual(FakeDAV.count("PUT"), 1, "only how far the library's article was read")
+        XCTAssertEqual(FakeDAV.count("PUT"), 3, "how far the library's article was read, and the article saved here with its highlight")
         XCTAssertEqual(FakeDAV.count("DELETE"), 0)
         XCTAssertEqual(Set(library.articles.map(\.id)), ["alone", "x1"], "the screen shows what is there now")
         XCTAssertEqual(library.article("x1")?.progress, 0.99)

@@ -130,7 +130,9 @@ struct LibrarySyncView: View {
                 VStack(spacing: 12) {
                     SyncRing()
                     Group {
-                        if sync.running {
+                        if sync.running && sync.sending {
+                            Text("Sending to your place")
+                        } else if sync.running {
                             Text("Fetching your library")
                         } else if sync.failed {
                             Text("Last sync failed")
@@ -145,9 +147,11 @@ struct LibrarySyncView: View {
                             Text("You can keep using the app.")
                         } else if let date = state.last?.at.flatMap(FeedParser.parseDate) {
                             HStack(spacing: 4) {
-                                Text("Last fetched")
+                                if state.writesBack { Text("Last synced") } else { Text("Last fetched") }
                                 Text(date, format: .relative(presentation: .named))
                             }
+                        } else if state.writesBack {
+                            Text("Not synced yet")
                         } else {
                             Text("Not fetched yet")
                         }
@@ -181,8 +185,8 @@ struct LibrarySyncView: View {
                 .accessibilityIdentifier("write-back")
             } footer: {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Off: the app only fetches. On: reading progress, highlights, comments, notes and questions of your library go to your place too, also what you changed before.")
-                    Text("What is only saved on this iPhone stays here.")
+                    Text("Off: the app only fetches. On: reading progress, highlights, comments, notes, questions and summaries go to your place too, and the articles saved on this iPhone join your library, also those from before.")
+                    Text("Deleting on this iPhone does not delete anything in your library yet.")
                 }
             }
             Section {
@@ -230,12 +234,21 @@ struct LibrarySyncView: View {
 private struct BackupFirst: View {
     let on: () -> Void
     @Environment(\.dismiss) private var dismiss
+    @Environment(SyncModel.self) private var sync
+    /// What the switch adds to the library, said before it is switched on.
+    @State private var waiting: LibrarySync.Waiting?
 
     var body: some View {
         NavigationStack {
             List {
                 Section {
                     Text("From now on this iPhone changes your place. Save your library on your computer first.")
+                }
+                if let waiting, waiting.articles + waiting.summaries > 0 {
+                    Section("Added to your library") {
+                        LabeledContent("Articles saved on this iPhone") { Text(verbatim: waiting.articles.formatted()) }
+                        LabeledContent("Summaries written on this iPhone") { Text(verbatim: waiting.summaries.formatted()) }
+                    }
                 }
                 Section {
                     Label("Open Kaivo on your computer: Settings", systemImage: "1.circle")
@@ -256,6 +269,7 @@ private struct BackupFirst: View {
                     .listRowBackground(Color.clear)
                 }
             }
+            .task { waiting = await sync.waiting() }
             .navigationTitle("A backup first")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } } }

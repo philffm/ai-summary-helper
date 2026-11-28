@@ -36,10 +36,13 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
     const serviceWith = (options) => createSyncService({ storage, makeStore, stampStore, dataHooks, log, engine: { ...engine, ...options } });
     const service = serviceWith({ pullOnly: true });
     const writing = serviceWith({});
-    const library = createLibrary({ storage, stampStore });
     const WRITE = 'app:writeBack';
-    const writes = async () => writeBack || (await storage.get({ [WRITE]: false }))[WRITE] === true;
-    const setWriteBack = ({ on }) => storage.set({ [WRITE]: on === true });
+    // What writing back covers has grown (summaries, the articles saved here): a yes given to less does not cover it, so
+    // the number says which yes was given.
+    const SCOPE = 2;
+    const writes = async () => writeBack || (await storage.get({ [WRITE]: false }))[WRITE] === SCOPE;
+    const setWriteBack = ({ on }) => storage.set({ [WRITE]: on === true ? SCOPE : false });
+    const library = createLibrary({ storage, stampStore, writes });
 
     /**
      * Joins the library the browser made, from the code it shows for a phone. The app never makes one: a folder without a
@@ -100,7 +103,11 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
         // nothing goes out after a fetch that did not end well: what is on the server is not fully known then
         if (!(await toTheEnd(service, place.id, total)) || total.errors.length) return total;
         total.moved = await library.settle(place.id);
-        if (await writes()) await toTheEnd(writing, place.id, total);
+        if (await writes()) {
+            // what was saved here joins the library after everything of the library is known, and goes out at once
+            total.moved += await library.promote(place.id);
+            await toTheEnd(writing, place.id, total);
+        }
         return total;
     }
 
@@ -115,6 +122,7 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
 
     /** Forgets the library and its login. What was fetched stays. */
     async function leave() {
+        await library.disown();
         for (const place of await service.placesNow()) await service.remove(place.id);
         await setWriteBack({ on: false });
     }
@@ -128,7 +136,13 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
         return { service: given.kind, server: host, folder: given.kind === 's3' ? `${given.bucket}/${given.root}` : given.root, words: !!given.words, plain: /^http:/i.test(given.url) };
     }
 
-    return { service, writing, stampStore, highlights: createHighlightStore({ storage }), join, run, state, leave, look, setWriteBack, library };
+    /** What switching on writing back would add to the library: articles saved here, and summaries written here. */
+    async function waiting() {
+        const [place] = await service.placesNow();
+        return place ? library.waiting() : { articles: 0, summaries: 0 };
+    }
+
+    return { service, writing, stampStore, highlights: createHighlightStore({ storage }), join, run, state, leave, look, setWriteBack, waiting, library };
 }
 
 /** The extension's storage under names of its own, which none of its modules reads. */
@@ -217,12 +231,13 @@ function createArea(storage, mark = async () => 0) {
 }
 
 /**
- * What the app reads and writes of the library. Two areas: `shared` is the synced library, under the extension's own keys;
- * it holds what came from the server, and of a change made here only how far an article was read and its highlights go
- * back. `own` holds what is only on this device (saved, shared to the app or handed over by Safari here); the sync never
- * sees it.
+ * What the app reads and writes of the library. Two areas: `shared` is the synced library, under the extension's own keys.
+ * `own` holds what is only on this device (saved, shared to the app or handed over by Safari here); the sync never sees
+ * it. While the app only fetches, of a change made here to a synced article just the reading progress and the highlights
+ * are kept in the library. When it writes back (`writes`), summaries go there too, and what is this device's own moves
+ * into the library (`promote`).
  */
-function createLibrary({ storage, stampStore }) {
+function createLibrary({ storage, stampStore, writes = async () => false }) {
     const shared = createArea(storage, (type, ids) => stampStore.markDeleted(type, ids)), own = createArea(aside(storage, 'local:'));
     const read = async (key, empty) => (await storage.get({ [key]: empty }))[key];
     const extraKey = (id) => 'app:article:' + id;
@@ -310,10 +325,13 @@ function createLibrary({ storage, stampStore }) {
         articles.forEach((a, number) => (library.find(a.entry.id, a.entry.url) ? theirs : ours).push({ a, number }));
         // one pass for each area: a large library is taken over with a handful of writes
         // prepared questions of a page that is in the library already: kept here, where the record has none
-        for (const { a, number } of theirs) {
-            if (!a.record || !(a.record.suggested || []).length) continue;
-            const found = library.find(a.entry.id, a.entry.url), record = found && (await shared.record(found.id));
-            if (found && !((record && record.suggested) || []).length) await keepExtra(found.id, { suggested: a.record.suggested, suggestedAnswers: a.record.suggestedAnswers });
+        for (const { a } of theirs) {
+            const found = a.record && library.find(a.entry.id, a.entry.url);
+            if (!found) continue;
+            const record = (await shared.record(found.id)) || {};
+            if ((a.record.suggested || []).length && !(record.suggested || []).length) await keepExtra(found.id, { suggested: a.record.suggested, suggestedAnswers: a.record.suggestedAnswers });
+            // a summary written in Safari for an article the library has none for: shown here, and written back from there
+            if (a.record.summary && !hasSummary(found, record)) await keepExtra(found.id, { summary: a.record.summary });
         }
         for (const [area, group] of [[shared, theirs], [own, ours]]) {
             if (!group.length) continue;
@@ -356,14 +374,32 @@ function createLibrary({ storage, stampStore }) {
         return ids;
     }
 
+    const hasSummary = (entry, record) => !!(entry.summary || record.summary || record.summaryBase);
+
+    /** A summary written here goes into the library as the browser writes one: with the questions shown with it after it. */
+    async function writeSummary(id, summary) {
+        await shared.edit(async (list) => {
+            const at = list.findIndex((e) => e.id === id);
+            if (at < 0) return null;
+            const record = { ...((await shared.record(id)) || {}), summaryBase: summary };
+            record.summary = withQuestions(summary, record.conversation || [], { all: false });
+            list[at] = { ...list[at], summary: record.summary, summaryWordCount: countWords(record.summary) };
+            return { [articleRecKey(id)]: record };
+        });
+        await keepExtra(id, { summary: undefined });
+    }
+
     /**
-     * Fields of one article: of the list entry, and of its record (text, summary). Of a synced article only how far it was
-     * read goes into the library; a summary written here is kept by the app.
+     * Fields of one article: of the list entry, and of its record (text, summary). Of a synced article how far it was read
+     * goes into the library, and a summary when the app writes back; else the app keeps the summary for itself.
      */
     async function change({ id, entry = {}, record = null }) {
         const synced = (await shared.index()).some((e) => e.id === id);
         const area = synced ? shared : own;
-        if (synced && record && record.summary !== undefined) await keepExtra(id, { summary: record.summary });
+        if (synced && record && record.summary !== undefined) {
+            if (await writes()) await writeSummary(id, record.summary);
+            else await keepExtra(id, { summary: record.summary });
+        }
         if (synced && !('progress' in entry)) return;
         await area.edit(async (list) => {
             const at = list.findIndex((e) => e.id === id);
@@ -448,9 +484,92 @@ function createLibrary({ storage, stampStore }) {
         return articles.length + marked.length + notes.length;
     }
 
+    // ── what is this device's own joins the library ──
+    const FOREIGN = 'app:foreign', PROMOTED = 'app:promoted';
+    /** The articles of the library that is being left: they never travel into another one. */
+    async function disown() {
+        const ids = (await shared.index()).map((e) => e.id);
+        if (ids.length) await storage.set({ [FOREIGN]: [...new Set([...(await read(FOREIGN, [])), ...ids])] });
+    }
+
+    /** A page of the web: not the stand-in of an article without an address, and none of the samples' made-up ones. */
+    function isPage(url) {
+        try { const u = new URL(url); return /^https?:$/.test(u.protocol) && !/\.(invalid|example)$/.test(u.hostname); } catch (_) { return false; }
+    }
+
+    /** The articles saved here that the library can take: with their text and an address, not deleted here, not its own already. */
+    async function ownForTheLibrary() {
+        const library = lookup(await shared.index());
+        const removed = new Set(await read(REMOVED, [])), foreign = new Set(await read(FOREIGN, []));
+        const out = [];
+        for (const e of await own.index()) {
+            if (removed.has(e.id) || foreign.has(e.id) || e.archived || e.feedStub || !isPage(e.url || '') || library.find(e.id, e.url)) continue;
+            const record = (await own.record(e.id)) || {}, pending = (await extra(e.id)).pending;
+            if (!record.content || (pending && pending.text)) continue;   // its text is still on the way
+            out.push({ entry: e, record });
+        }
+        return out;
+    }
+
+    /** Summaries written here for articles of the library that has none for them. */
+    async function summariesForTheLibrary() {
+        const list = await shared.index(), out = [];
+        const kept = new Set((await storage.getKeys()).filter((k) => k.startsWith('app:article:')));
+        for (const e of list) {
+            if (!kept.has(extraKey(e.id))) continue;
+            const here = await extra(e.id);
+            if (here.summary && !hasSummary(e, (await shared.record(e.id)) || {})) out.push({ id: e.id, summary: here.summary });
+        }
+        return out;
+    }
+
+    async function waiting() {
+        return { articles: (await ownForTheLibrary()).length, summaries: (await summariesForTheLibrary()).length };
+    }
+
+    /**
+     * The reverse of setting aside, for an app that writes back: articles saved here move into the synced keys with their
+     * highlights and notes, and summaries written here are written to articles that have none. The stamps see it all as
+     * changes made here, so the run sends it. Call after `settle`. Answers with how many things changed.
+     */
+    async function promote() {
+        const articles = await ownForTheLibrary();
+        if (articles.length) {
+            // noted first: should the run break off before they are sent, the next one must not take them for strangers
+            await storage.set({ [PROMOTED]: [...new Set([...(await read(PROMOTED, [])), ...articles.map((a) => a.entry.id)])] });
+            const pages = new Map(), records = {}, entries = [];
+            for (const { entry, record } of articles) {
+                const next = { description: '', summary: '', ...record };
+                records[articleRecKey(entry.id)] = next;
+                // the fields the browser's list has (content/core.js)
+                entries.push({ ...entry, archived: false, summary: next.summary, summaryWordCount: countWords(next.summary),
+                    contentWordCount: entry.contentWordCount || countWords(next.content), lastOpened: entry.lastOpened || entry.timestamp,
+                    ...((next.conversation || []).length ? { qaCount: next.conversation.length } : {}) });
+                const page = pageKeyForUrl(entry.url);
+                pages.set(page, page);
+            }
+            await shared.edit(async (list) => { list.push(...entries.sort((a, b) => String(a.timestamp || '').localeCompare(String(b.timestamp || '')))); return records; });
+            const marked = (await own.highlights.all({ dismissed: true })).filter((h) => pages.has(h.url));
+            let became = new Map();
+            if (marked.length) {
+                became = await bring(shared, marked);
+                await own.highlights.apply(marked.map((h) => ({ op: 'removeId', id: h.id })));
+            }
+            await moveNotes(own, shared, { became, pages });
+            const gone = new Set(articles.map((a) => a.entry.id));
+            await own.edit(async (list) => { const rest = list.filter((e) => !gone.has(e.id)); list.length = 0; list.push(...rest); return null; });
+            await own.storage.remove([...gone].map(articleRecKey));
+        }
+        const summaries = await summariesForTheLibrary();
+        for (const { id, summary } of summaries) await writeSummary(id, summary);
+        return articles.length + summaries.length;
+    }
+
     /** Called on joining: what the synced keys hold of another library, or from before, becomes the app's own. */
     async function enter(place) {
-        if ((await read('app:place', '')) === place) return;
+        const before = await read('app:place', '');
+        if (before === place) return;
+        if (before) await disown();
         await setAside(await shared.index(), (await shared.highlights.all({ dismissed: true })).filter((h) => h.id), await shared.noteRecords());
         await storage.set({ 'app:place': place });
     }
@@ -504,6 +623,11 @@ function createLibrary({ storage, stampStore }) {
     async function settle(placeId) {
         const ledger = await read(syncLedgerKey(placeId), {});
         const known = new Set(Object.keys(ledger.items || {}));
+        // moved into the library here and not sent yet: they are on their way, as long as the app writes back
+        const promoted = await read(PROMOTED, []);
+        const onTheWay = promoted.filter((id) => !known.has('article:' + id));
+        if (onTheWay.length !== promoted.length) await storage.set({ [PROMOTED]: onTheWay });
+        if (await writes()) for (const id of onTheWay) known.add('article:' + id);
         const index = await shared.index();
         const strangers = index.filter((e) => !known.has('article:' + e.id));
         const pagesKept = new Set(index.filter((e) => known.has('article:' + e.id)).map((e) => pageKeyForUrl(e.url || '')));
@@ -535,6 +659,7 @@ function createLibrary({ storage, stampStore }) {
     async function tidy() {
         const places = await read(SK.syncPlaces, []);
         if (Array.isArray(places) && places.length) return;
+        if (await read('app:place', '')) await disown();
         await setAside(await shared.index(), (await shared.highlights.all({ dismissed: true })).filter((h) => h.id), await shared.noteRecords());
         await storage.set({ 'app:place': '' });
     }
@@ -695,7 +820,7 @@ function createLibrary({ storage, stampStore }) {
         return turn.id;
     }
 
-    /** The questions a model wrote after a summary of this app. They stay on this device, like that summary. */
+    /** The questions a model wrote after a summary of this app. They stay on this device: the sync does not carry them. */
     async function setSuggestions({ id, raw }) {
         const { questions, quick: answers } = parseSuggestionList(raw);
         await keepExtra(id, { suggested: questions, suggestedAnswers: answers });
@@ -713,7 +838,7 @@ function createLibrary({ storage, stampStore }) {
         }));
     }
 
-    return { marks, take, change, mark, hide, enter, settle, tidy, note, editNote, removeNote, comment, stream, askPrompt, answer, quick, setSuggestions, setQuestion };
+    return { marks, take, change, mark, hide, enter, settle, tidy, note, editNote, removeNote, comment, stream, askPrompt, answer, quick, setSuggestions, setQuestion, disown, waiting, promote };
 }
 
 export const API = {

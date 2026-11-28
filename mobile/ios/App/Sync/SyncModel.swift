@@ -34,6 +34,10 @@ final class SyncModel {
     private(set) var joining = false
     private(set) var fetching = false
     private(set) var progress: (done: Int, total: Int)?
+    /// The run is sending what changed here.
+    private(set) var sending = false
+    /// Something changed here while a run was going: another one follows.
+    @ObservationIgnored private var again = false
     var problem: Problem?
     /// The screen is asked for from outside (a scanned code).
     var shown = false
@@ -89,7 +93,8 @@ final class SyncModel {
 
     /// One run, if a library is joined. What it brought is shown afterwards.
     func fetch() async {
-        guard let sync, !fetching else { return }
+        guard let sync else { return }
+        guard !fetching else { return }
         await refresh()
         guard state != nil else { return }
         fetching = true
@@ -100,6 +105,7 @@ final class SyncModel {
                 try? await Task.sleep(for: .milliseconds(400))
                 guard !Task.isCancelled, let running = try? await sync.state()?.last?.running else { continue }
                 self?.progress = (running.done, running.total)
+                self?.sending = running.phase == "uploading"
                 // what has arrived shows while the rest is on its way; what was read before is not read again
                 if running.done != shown, ContinuousClock.now - at >= .seconds(2) {
                     shown = running.done
@@ -119,11 +125,30 @@ final class SyncModel {
         }
         watch.cancel()
         progress = nil
+        sending = false
         // reading a large library again takes a moment: only when there is something new
         if brought { library.reload() }
         await library.settled()
         await refresh()
         fetching = false
+        if again {
+            again = false
+            await fetch()
+        }
+    }
+
+    /// Something was saved or summarized here: where the app writes back, it goes out now and not at the next start.
+    func changedHere() async {
+        await library.settled()
+        if state == nil { await refresh() }
+        guard state?.writesBack == true else { return }
+        if fetching { again = true } else { await fetch() }
+    }
+
+    /// What switching on writing back would add to the library.
+    func waiting() async -> LibrarySync.Waiting? {
+        await library.settled()
+        return try? await sync?.waiting()
     }
 
     /// Switched on, a run follows at once and sends what changed here.
