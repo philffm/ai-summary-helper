@@ -124,6 +124,8 @@ struct LibrarySync {
         let articles: Int
         /// Summaries written here for articles of the library that have none.
         let summaries: Int
+        /// Articles of the library that get prepared questions kept here.
+        let questions: Int
     }
 
     func waiting() async throws -> Waiting {

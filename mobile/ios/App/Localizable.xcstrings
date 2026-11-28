@@ -2965,6 +2965,82 @@
         }
       }
     },
+    "Articles that get suggested questions": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مقالات تحصل على أسئلة مقترحة"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artikel, die vorgeschlagene Fragen bekommen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artículos que reciben preguntas sugeridas"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artikkelit, jotka saavat ehdotettuja kysymyksiä"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Articles qui reçoivent des questions suggérées"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "提案された質問が追加される記事"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "추천 질문이 추가되는 글"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artigos que recebem perguntas sugeridas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Статьи, получающие предложенные вопросы"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Статті, що отримають запропоновані запитання"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "将添加建议问题的文章"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "將加入建議問題的文章"
+          }
+        }
+      }
+    },
     "Articles, PDFs and videos, with the AI model you choose.": {
       "localizations": {
         "ar": {

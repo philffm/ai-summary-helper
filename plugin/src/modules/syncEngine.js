@@ -62,8 +62,9 @@ export async function syncEncryptedPlace(o) {
     let lastSync = L.lastSync || 0;
     let joined = L.joined ? 1 : 0;   // only once everything on the server has been seen here
     const unread = new Set(L.unread || []);   // files a join could not read: still to be joined, and nothing is pushed over them
+    let questions = L.questions || firstRun ? 1 : 0;   // prepared questions from before they synced have gone out (a join reads every record anyway)
     let clean = 0;   // 1 once a run of a join stopped on purpose (time budget): everything it took over is written
-    const save = () => set(storage, { [lk]: { v: 2, joined, clean, salt: (meta && meta.salt) || L.salt || '', items, dirty: [...dirty], unread: [...unread], lastSync, blocked: out.needsConfirm } });
+    const save = () => set(storage, { [lk]: { v: 2, joined, clean, salt: (meta && meta.salt) || L.salt || '', items, dirty: [...dirty], unread: [...unread], lastSync, blocked: out.needsConfirm, questions } });
     const overBudget = () => now() - started > budgetMs;
     const names = new Map();
     const nameFor = async (key) => { let n = names.get(key); if (!n) { n = await nameOf(keys, typeOf(key), idOf(key)); names.set(key, n); } return n; };
@@ -183,6 +184,18 @@ export async function syncEncryptedPlace(o) {
         for (const key of toKeep.keys()) dirty.add(key);
     }
     await dedupe();
+
+    // Prepared questions that were here before the field synced: sent once to each place. This is no edit (the record keeps
+    // its revision, so a deletion made elsewhere still wins), it waits until nothing of the place is in doubt, and it leaves
+    // out what the place no longer holds.
+    if (!questions && !stale && !out.needsConfirm && !out.errors.length && adapter.preparedQuestions && stampStore.introduce) {
+        const here = [...await adapter.preparedQuestions()].filter(([key]) => !(items[key] && !remote.has(items[key].n)));
+        // only what had no stamp for them yet: a stamp that is there came from the place, or from a change here that goes out anyway
+        for (const key of await stampStore.introduce(here.map(([key, value]) => ({ key, name: 'prepared', value })))) dirty.add(key);
+        stamps = await stampStore.all();
+        questions = 1;
+        await save();
+    }
 
     /**
      * The same URL saved on two devices arrives as two articles. After everything is applied, every group of live articles with one

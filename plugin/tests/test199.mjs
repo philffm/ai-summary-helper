@@ -68,7 +68,7 @@ const compose = (base, turns) => base + turns.filter((t) => t.pinned).map((t) =>
 const count = (h) => String(h || '').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
 const hooks = { compose, count };
 const entryA = { id: 'a1', url: 'https://x.test/1', title: 'T', timestamp: '2026-01-01T00:00:00Z', tags: ['One', 'two'], favorite: true, archived: false, summary: 'Base<q>Why?</q>', lastOpened: 'local', qaCount: 1, contentWordCount: 2, summaryWordCount: 1 };
-const recA = { content: '<p>full text</p>', summary: 'Base<q>Why?</q>', summaryBase: 'Base', conversation: [{ q: 'Why?', a: 'Because', pinned: true }], description: 'd', suggested: ['local only'], meta: { paper: { doi: '10.1/x' } } };
+const recA = { content: '<p>full text</p>', summary: 'Base<q>Why?</q>', summaryBase: 'Base', conversation: [{ q: 'Why?', a: 'Because', pinned: true }], description: 'd', suggested: ['Why so?'], meta: { paper: { doi: '10.1/x' } } };
 const fieldsA = S.syncFields('article', entryA, recA);
 const stampsOf = (fields) => ({ f: Object.fromEntries(Object.keys(fields).map((k) => [k, { t: 1, h: S.hashValue(fields[k]) }])), values: fields });
 // a brand new article arriving from another device is complete
@@ -76,13 +76,14 @@ const fresh = A.applyFields('article', { entry: null, rec: null }, stampsOf(fiel
 assert.deepEqual(S.syncFields('article', fresh.entry, fresh.rec), fieldsA, 'syncFields(apply(syncFields(x))) = syncFields(x)');
 assert.equal(fresh.entry.summary, 'Base<q>Why?</q>', 'the shown summary is rebuilt from base + pinned questions'); assert.equal(fresh.rec.summary, fresh.entry.summary);
 assert.equal(fresh.entry.qaCount, 1); assert.equal(fresh.entry.contentWordCount, 2); assert.deepEqual(fresh.entry.tags, ['One', 'two']); assert.equal(fresh.entry.archived, false);
-assert.ok(!('suggested' in fresh.rec) && !('lastOpened' in fresh.entry), 'local-only fields do not travel');
+assert.ok(!('lastOpened' in fresh.entry), 'local-only fields do not travel');
+assert.ok(!('suggested' in fieldsA) && !('prepared' in fresh.rec)); assert.deepEqual(fresh.rec.suggested, ['Why so?'], 'prepared questions travel as one field of their own');
 // an edit applied to an existing article keeps the local-only fields, and the order of tags
 const edit = { f: { title: { t: 9, h: 'x' }, 'tag:one': { t: 9, h: 'x' }, 'tag:three': { t: 9, h: 'x' }, favorite: { t: 9, h: 'x' } }, values: { title: 'Changed', 'tag:three': 'three', 'tag:one': 'One' } };
 const ed = A.applyFields('article', { entry: entryA, rec: recA }, edit, hooks);
 assert.equal(ed.entry.title, 'Changed'); assert.ok(!('favorite' in ed.entry), 'a stamped field without a value is removed'); assert.deepEqual(ed.entry.tags, ['One', 'two', 'three'], 'a tag the merge does not mention stays; a new one is added');
 const rmTag = A.applyFields('article', { entry: entryA, rec: recA }, { f: { 'tag:two': { t: 9, h: 'x' } }, values: {} }, hooks); assert.deepEqual(rmTag.entry.tags, ['One'], 'a stamped tag without a value is removed');
-assert.equal(ed.entry.lastOpened, 'local'); assert.deepEqual(ed.rec.suggested, ['local only']); assert.equal(ed.rec.content, '<p>full text</p>', 'the text is untouched when the merge does not mention it');
+assert.equal(ed.entry.lastOpened, 'local'); assert.deepEqual(ed.rec.suggested, ['Why so?']); assert.equal(ed.rec.content, '<p>full text</p>', 'the text is untouched when the merge does not mention it');
 // inputs are not mutated
 assert.equal(entryA.title, 'T'); assert.deepEqual(entryA.tags, ['One', 'two']);
 // the other device unpins the question: the summary on this device loses the block, the count goes

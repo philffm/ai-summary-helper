@@ -133,6 +133,7 @@ if (mode === 'make') {
     assert.equal(x1.title, made.expect.index.title);
     assert.equal(x1.summaryBase, '<p>Written on the phone.</p>', 'the summary written on the phone');
     assert.equal(x1.progress, 0.95);
+    assert.deepEqual(x1.prepared, [{ q: 'From Safari?', a: 'It did.' }], 'the prepared question kept on the phone');
     // and as another browser sees it
     const b = await device(files, { ackBackup: true });
     await b.join();
@@ -142,6 +143,8 @@ if (mode === 'make') {
     assert.deepEqual([mine.url, mine.title, mine.archived, mine.contentWordCount > 0], ['https://example.org/mine', 'Only on this phone', false, true], 'an entry the browser can list, with its length');
     assert.ok((await b.storage.get('articles:rec:mine'))['articles:rec:mine'].content.includes('Only my words.'));
     assert.ok((await b.storage.get('articles:rec:x1'))['articles:rec:x1'].summary.includes('Written on the phone.'));
+    const asked = (await b.storage.get('articles:rec:x1'))['articles:rec:x1'];
+    assert.deepEqual([asked.suggested, asked.suggestedAnswers, asked.prepared], [['From Safari?'], { 'From Safari?': 'It did.' }, undefined], 'as the browser keeps them');
     const seen = (await b.highlights.all({ dismissed: true })).map((h) => [h.text, h.type, !!h.dismissed]).sort();
     assert.deepEqual(seen, [
         ['Grüße aus dem Browser', 'user', false],

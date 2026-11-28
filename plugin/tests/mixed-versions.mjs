@@ -1,4 +1,5 @@
-// A released browser beside the code of this tree: both sync one library and both keep every question asked about an article.
+// A released browser beside the code of this tree: both sync one library and both keep every question asked about an article,
+// and the released one does not lose the prepared questions, which it does not know as a synced field.
 //     node plugin/tests/mixed-versions.mjs [ref]      ref: the released code, default origin/main
 // Not run by `npm test`: it needs git and unpacks the released sources into a temporary folder.
 import { execFileSync } from 'child_process';
@@ -33,6 +34,8 @@ function memoryStorage() {
         async remove(keys) { for (const k of [].concat(keys)) data.delete(k); },
         async getKeys() { return [...data.keys()]; },
         onChanged: { addListener: (fn) => listeners.push(fn) },
+        // an update of the extension: the old code is gone, the data stays
+        detach() { listeners.length = 0; },
     };
 }
 const files = new Map(); let version = 0, puts = 0;
@@ -48,8 +51,8 @@ const server = () => ({
     async remove(file) { return files.delete(file); },
     async list(prefix) { return [...files].filter(([f]) => f.startsWith(prefix + '/')).map(([f, v]) => ({ path: f, etag: v.etag, size: v.bytes.length })); },
 });
-async function device(older = false) {
-    const storage = memoryStorage(), stampStore = (older ? oldStamps : createStampStore)({ storage });
+async function device(older = false, storage = memoryStorage()) {
+    const stampStore = (older ? oldStamps : createStampStore)({ storage });
     storage.onChanged.addListener((c) => stampStore.onChanged(c));
     // the new one also puts its feed list beside the records, where the released one must not mind it
     const service = (older ? oldService : createSyncService)({ storage, makeStore: async () => server(), stampStore, ...(older ? {} : { feeds: feedSyncAdapter(storage) }), dataHooks: { compose: (base, turns) => withQuestions(base, turns, { all: false }) } });
@@ -90,6 +93,49 @@ for (const d of [young, old]) {
     assert.ok(!('conversation' in entry) && !Object.keys(entry).some((k) => k.startsWith('qa:')), JSON.stringify(Object.keys(entry)));
     assert.equal(entry.qaCount, 7);
 }
+
+// ── prepared questions ───────────────────────────────────────────────────
+const rec = async (d) => (await d.storage.get('articles:rec:a1'))['articles:rec:a1'];
+const entryOf = async (d) => (await d.storage.get('articles:index'))['articles:index'][0];
+const patch = async (d, change) => { await d.storage.set({ 'articles:rec:a1': { ...(await rec(d)), ...change } }); await new Promise((r) => setTimeout(r, 40)); };
+const archive = async (d, archived) => { await d.storage.set({ 'articles:index': [{ ...(await entryOf(d)), archived }] }); await new Promise((r) => setTimeout(r, 40)); };
+const article = (record) => ({ 'hl:schema': 2, 'articles:index': [{ id: 'a1', url: 'https://example.org/a', title: 'A', timestamp: '2026-11-28T09:00:00.000Z', archived: false }],
+    'articles:rec:a1': { content: '<p>Text.</p>', summary: '<p>Short.</p>', ...record } });
+const questions = ['Why?', 'How?'], answers = { 'Why?': 'Because.' };
+
+// the new one has them, the released one receives the article and changes it
+files.clear();
+const fresh = await device(), held = await device(true);
+await fresh.storage.set(article({ suggested: questions, suggestedAnswers: answers }));
+await fresh.sync(); await held.sync();
+assert.equal((await rec(held)).suggested, undefined, 'the released one does not show them');
+await archive(held, true); await held.sync(); await fresh.sync(); await held.sync(); await fresh.sync();
+assert.equal((await entryOf(fresh)).archived, true, 'its change arrived');
+assert.deepEqual((await rec(fresh)).suggested, questions, 'and took nothing away'); assert.deepEqual((await rec(fresh)).suggestedAnswers, answers);
+const third = await device(); await third.sync();
+assert.deepEqual((await rec(third)).suggested, questions, 'the library still holds them');
+const stamped = Object.values(await createStampStore({ storage: held.storage }).all())[0].f;
+assert.ok('prepared' in stamped && !('suggested' in stamped) && !('suggestedAnswers' in stamped), Object.keys(stamped).join());
+// it is updated: what it was holding shows, and nothing is sent back and forth
+held.storage.detach();
+const updated = await device(false, held.storage);
+await updated.sync();
+assert.deepEqual((await rec(updated)).suggested, questions); assert.deepEqual((await rec(updated)).suggestedAnswers, answers);
+assert.ok(!('prepared' in (await entryOf(updated))));
+await fresh.sync(); await updated.sync();
+let writes = puts; await fresh.sync(); await updated.sync(); await third.sync(); assert.equal(puts, writes, 'then nothing is written any more');
+
+// the released one has its own, from before: they go out after its update
+files.clear();
+const had = await device(true), other = await device();
+await had.storage.set(article({ suggested: questions, suggestedAnswers: answers }));
+await had.sync(); await other.sync();
+assert.equal((await rec(other)).suggested, undefined);
+had.storage.detach();
+const now = await device(false, had.storage);
+await now.sync(); await other.sync();
+assert.deepEqual((await rec(other)).suggested, questions); assert.deepEqual((await rec(other)).suggestedAnswers, answers);
+writes = puts; await now.sync(); await other.sync(); assert.equal(puts, writes);
 fs.rmSync(released, { recursive: true, force: true });
 console.log('ok: released and new version side by side');
 process.exit(0);

@@ -339,6 +339,53 @@ final class LibraryStoreTests: XCTestCase {
 
     private var changesOnTheServer: Int { FakeDAV.count("PUT") + FakeDAV.count("MKCOL") + FakeDAV.count("DELETE") }
 
+    /// With writing back on, prepared questions reach the other devices: those kept here for an article of the library,
+    /// those of an article saved here, and those of a summary written here.
+    func testPreparedQuestionsReachTheOtherDevices() async throws {
+        let made = try serveTheBrowsersPlace()
+        var mine = Article(id: "mine", title: "Only on this phone", host: "example.org", tags: [], words: 3, savedAt: .now,
+                           passages: [Passage(text: "Only my words.")], link: "https://example.org/mine")
+        mine.suggestions = [Suggestion(question: "Mine?", answer: "Yes.")]
+        try saveAsBefore([mine])
+        let library = try await start()
+        let model = SyncModel(library: library)
+        try await join(model, made)
+        // Safari on this phone hands the library's article over with its questions
+        try await library.store!.take([["entry": ["id": "safari1", "url": "https://example.org/from-the-browser", "title": "Another title"],
+                                        "record": ["suggested": ["From Safari?"], "suggestedAnswers": ["From Safari?": "It did."]]]])
+        await model.fetch()
+        XCTAssertEqual(changesOnTheServer, 0, "nothing goes out without the switch")
+        let waiting = await model.waiting()
+        XCTAssertEqual(waiting, LibrarySync.Waiting(articles: 1, summaries: 0, questions: 1))
+        await model.setWriteBack(true)
+        XCTAssertNil(model.problem)
+
+        let secret = SyncVault(scope: "store-" + UUID().uuidString)
+        defer { try? secret.write("sync:secrets", nil) }
+        try FileManager.default.createDirectory(at: root.appending(path: "other-shared"), withIntermediateDirectories: true)
+        let network = URLSessionConfiguration.ephemeral
+        network.protocolClasses = [FakeDAV.self]
+        let there = Library(samples: false, store: try LibraryStore(folder: root.appending(path: "other"), shared: root.appending(path: "other-shared"),
+                                                                    vault: secret, network: network))
+        await there.settled()
+        let second = SyncModel(library: there)
+        try await join(second, made)
+        await there.settled()
+        XCTAssertEqual(there.article("x1")?.openSuggestions, [Suggestion(question: "From Safari?", answer: "It did.")])
+        XCTAssertEqual(there.article("mine")?.openSuggestions, [Suggestion(question: "Mine?", answer: "Yes.")])
+
+        library.setSummary("x1", ["Written on the phone."], marking: [], questions: " [{\"q\":\"Asked by the phone?\",\"a\":\"Along with its summary.\"}]")
+        await library.settled()
+        await model.fetch()
+        await second.fetch()
+        await there.settled()
+        XCTAssertEqual(there.article("x1")?.openSuggestions, [Suggestion(question: "Asked by the phone?", answer: "Along with its summary.")])
+        let written = changesOnTheServer
+        await model.fetch()
+        await second.fetch()
+        XCTAssertEqual(changesOnTheServer, written, "then nothing is written any more")
+    }
+
     /// A run with no time left fetches nothing, writes nothing, and the next one brings it all.
     func testARunInTheBackgroundStopsWhenItsTimeIsUp() async throws {
         let made = try serveTheBrowsersPlace()
@@ -562,7 +609,7 @@ final class LibraryStoreTests: XCTestCase {
         try await join(model, made)
         XCTAssertEqual(changesOnTheServer, 0, "off: nothing is written")
         let waiting = await model.waiting()
-        XCTAssertEqual(waiting, LibrarySync.Waiting(articles: 1, summaries: 0), "said before the switch is turned on")
+        XCTAssertEqual(waiting, LibrarySync.Waiting(articles: 1, summaries: 0, questions: 0), "said before the switch is turned on")
 
         // a yes given before there was more to write does not count for it
         _ = try await library.store!.sync.host.run("await storage.set({ 'app:writeBack': true });")
@@ -583,7 +630,7 @@ final class LibraryStoreTests: XCTestCase {
                        "here everything is still there, once")
         XCTAssertEqual(library.article("mine")?.passages.first?.marks.count, 1)
         let after = await model.waiting()
-        XCTAssertEqual(after, LibrarySync.Waiting(articles: 0, summaries: 0))
+        XCTAssertEqual(after, LibrarySync.Waiting(articles: 0, summaries: 0, questions: 0))
         let written = changesOnTheServer
         await model.fetch()
         await model.fetch()
@@ -596,7 +643,7 @@ final class LibraryStoreTests: XCTestCase {
         await model.fetch()
         XCTAssertEqual(changesOnTheServer, written)
         let one = await model.waiting()
-        XCTAssertEqual(one, LibrarySync.Waiting(articles: 0, summaries: 1))
+        XCTAssertEqual(one, LibrarySync.Waiting(articles: 0, summaries: 1, questions: 0))
         await model.setWriteBack(true)
         await library.settled()
         there = try await otherDevice(made)
@@ -616,7 +663,7 @@ final class LibraryStoreTests: XCTestCase {
         await model.leave()
         try await join(model, second, folder: "second")
         let none = await model.waiting()
-        XCTAssertEqual(none, LibrarySync.Waiting(articles: 0, summaries: 0))
+        XCTAssertEqual(none, LibrarySync.Waiting(articles: 0, summaries: 0, questions: 0))
         await model.setWriteBack(true)
         await library.settled()
         there = try await otherDevice(second, folder: "second")
@@ -700,7 +747,8 @@ final class LibraryStoreTests: XCTestCase {
         library.delete(try entry("A note from the browser"))
         // Safari on this phone hands the same page over, with its own title and text
         try await store.take([["entry": ["id": "safari1", "url": "https://example.org/from-the-browser", "title": "Another title", "progress": 0.1],
-                               "record": ["content": "<p>Other text.</p>", "summary": "<p>Other summary.</p>"], "fresher": true]])
+                               "record": ["content": "<p>Other text.</p>", "summary": "<p>Other summary.</p>",
+                                          "suggested": ["From Safari?"], "suggestedAnswers": ["From Safari?": "It did."]], "fresher": true]])
         await library.settled()
         await model.fetch()
         XCTAssertNil(model.problem)

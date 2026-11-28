@@ -8,7 +8,7 @@
 // A removal here is the plain data removal. It never creates a tombstone: the merged stamp (already adopted) is the tombstone.
 import { SK, articleRecKey, collRecKey, noteRecKey } from './storageKeys.js';
 import { withLock } from './articleLock.js';
-import { syncFields, unknownFields } from './syncStamps.js';
+import { syncFields, unknownFields, preparedOf, questionsOf } from './syncStamps.js';
 import { applyFields } from './syncApply.js';
 import { articleKey } from './syncIdentity.js';
 import { createHighlightStore } from './highlightStore.js';
@@ -49,6 +49,39 @@ export function createDataAdapter({ storage, hooks = {} } = {}) {
             }
         }
         return out;
+    }
+
+    /**
+     * Every article with prepared questions: Map('article:<id>' → the synced value). A version that did not know the field
+     * kept what it received on the list entry: that goes to the record first.
+     */
+    async function preparedQuestions() {
+        return withLock('aish-articles', async () => {
+            const index = list((await get(storage, { [SK.articlesIndex]: [] }))[SK.articlesIndex]).slice();
+            const out = new Map();
+            let moved = false;
+            for (let i = 0; i < index.length; i += 25) {
+                const recs = await get(storage, index.slice(i, i + 25).filter((e) => e && e.id).map((e) => articleRecKey(e.id)));
+                const writes = {};
+                for (let at = i; at < Math.min(i + 25, index.length); at++) {
+                    const entry = index[at];
+                    if (!entry || !entry.id) continue;
+                    const rk = articleRecKey(entry.id);
+                    let rec = recs[rk];
+                    if (entry.prepared !== undefined) {
+                        const questions = questionsOf(entry.prepared);
+                        if (questions) writes[rk] = rec = { ...(rec || {}), ...questions };
+                        const { prepared: _, ...rest } = entry;
+                        index[at] = rest; moved = true;
+                    }
+                    const value = preparedOf(rec);
+                    if (value.length) out.set('article:' + entry.id, value);
+                }
+                if (Object.keys(writes).length) await set(storage, writes);
+            }
+            if (moved) await set(storage, { [SK.articlesIndex]: index });
+            return out;
+        });
     }
 
     async function applyMany(items) {
@@ -133,5 +166,5 @@ export function createDataAdapter({ storage, hooks = {} } = {}) {
             if (Object.keys(writes).length) await set(storage, writes);
         });
     }
-    return { readMany, applyMany, articleGroups, remapArticleId };
+    return { readMany, applyMany, articleGroups, remapArticleId, preparedQuestions };
 }

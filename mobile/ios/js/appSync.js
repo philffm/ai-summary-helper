@@ -10,7 +10,7 @@ import { createHighlightStore } from '../../../plugin/src/modules/highlightStore
 import { countWords } from '../../../plugin/src/modules/textUtils.js';
 import { withQuestions, buildPrompt, parseAnswer, newTurn, joinContinuation } from '../../../plugin/src/modules/conversation.js';
 import { parseSuggestionList } from '../../../plugin/src/modules/suggestions.js';
-import { hashValue } from '../../../plugin/src/modules/syncStamps.js';
+import { hashValue, preparedOf, questionsOf } from '../../../plugin/src/modules/syncStamps.js';
 import { mergeRecord } from '../../../plugin/src/modules/syncMerge.js';
 import { deriveMaster, subKeys, nameOf, encryptJson, decryptJson, openMeta, toHex, toB64, fromB64 } from '../../../plugin/src/modules/syncCrypto.js';
 import { canonicalPassphrase } from '../../../plugin/src/modules/syncPassphrase.js';
@@ -275,8 +275,8 @@ function createArea(storage, mark = async () => 0) {
  * What the app reads and writes of the library. Two areas: `shared` is the synced library, under the extension's own keys.
  * `own` holds what is only on this device (saved, shared to the app or handed over by Safari here); the sync never sees
  * it. While the app only fetches, of a change made here to a synced article just the reading progress and the highlights
- * are kept in the library. When it writes back (`writes`), summaries go there too, and what is this device's own moves
- * into the library (`promote`).
+ * are kept in the library. When it writes back (`writes`), summaries and their prepared questions go there too, and what
+ * is this device's own moves into the library (`promote`).
  */
 function createLibrary({ storage, stampStore, writes = async () => false }) {
     const shared = createArea(storage, (type, ids) => stampStore.markDeleted(type, ids)), own = createArea(aside(storage, 'local:'));
@@ -564,13 +564,32 @@ function createLibrary({ storage, stampStore, writes = async () => false }) {
         return out;
     }
 
+    /** Prepared questions kept here for articles of the library that has none for them. */
+    async function questionsForTheLibrary() {
+        const list = await shared.index(), out = [];
+        const kept = new Set((await storage.getKeys()).filter((k) => k.startsWith('app:article:')));
+        for (const e of list) {
+            if (!kept.has(extraKey(e.id))) continue;
+            const here = preparedOf(await extra(e.id));
+            if (here.length && !preparedOf(await shared.record(e.id)).length) out.push({ id: e.id, questions: questionsOf(here) });
+        }
+        return out;
+    }
+
+    /** Prepared questions onto the article's record, from where they reach the other devices. */
+    async function writeQuestions(id, questions) {
+        await shared.edit(async (list) => (list.some((e) => e.id === id)
+            ? { [articleRecKey(id)]: { ...((await shared.record(id)) || {}), ...questions } } : null));
+        await keepExtra(id, { suggested: undefined, suggestedAnswers: undefined });
+    }
+
     async function waiting() {
-        return { articles: (await ownForTheLibrary()).length, summaries: (await summariesForTheLibrary()).length };
+        return { articles: (await ownForTheLibrary()).length, summaries: (await summariesForTheLibrary()).length, questions: (await questionsForTheLibrary()).length };
     }
 
     /**
      * The reverse of setting aside, for an app that writes back: articles saved here move into the synced keys with their
-     * highlights and notes, and summaries written here are written to articles that have none. The stamps see it all as
+     * highlights and notes, and summaries and prepared questions kept here are written to articles that have none. The stamps see it all as
      * changes made here, so the run sends it. Call after `settle`. Answers with how many things changed.
      */
     async function promote() {
@@ -603,7 +622,9 @@ function createLibrary({ storage, stampStore, writes = async () => false }) {
         }
         const summaries = await summariesForTheLibrary();
         for (const { id, summary } of summaries) await writeSummary(id, summary);
-        return articles.length + summaries.length;
+        const questions = await questionsForTheLibrary();
+        for (const one of questions) await writeQuestions(one.id, one.questions);
+        return articles.length + summaries.length + questions.length;
     }
 
     /** Called on joining: what the synced keys hold of another library, or from before, becomes the app's own. */
@@ -627,6 +648,10 @@ function createLibrary({ storage, stampStore, writes = async () => false }) {
             folded.push(e);
             progress.set(twin.id, Math.max(progress.get(twin.id) || 0, Number(e.progress) || 0));
             if (mine.summary && !theirs.summary) await keepExtra(twin.id, { summary: mine.summary });
+            const ready = prepared(await extra(e.id), mine);
+            if (ready.questions.length && !preparedOf(theirs).length && !preparedOf(await extra(twin.id)).length) {
+                await keepExtra(twin.id, { suggested: ready.questions, suggestedAnswers: ready.quick });
+            }
             // what was asked here joins what was asked elsewhere
             const known = new Set((theirs.conversation || []).map((t) => t.id));
             const more = (mine.conversation || []).filter((t) => t && !known.has(t.id));
@@ -861,10 +886,15 @@ function createLibrary({ storage, stampStore, writes = async () => false }) {
         return turn.id;
     }
 
-    /** The questions a model wrote after a summary of this app. They stay on this device: the sync does not carry them. */
+    /**
+     * The questions a model wrote after a summary of this app. On an article of the library they go onto its record when
+     * the app writes back; else they are kept here.
+     */
     async function setSuggestions({ id, raw }) {
         const { questions, quick: answers } = parseSuggestionList(raw);
-        await keepExtra(id, { suggested: questions, suggestedAnswers: answers });
+        const here = { suggested: questions, suggestedAnswers: answers };
+        if (questions.length && await writes() && (await shared.index()).some((e) => e.id === id)) await writeQuestions(id, questionsOf(preparedOf(here)));
+        else await keepExtra(id, here);
     }
 
     /** Saved to the notes (`noted`), shown with the summary (`pinned`). */

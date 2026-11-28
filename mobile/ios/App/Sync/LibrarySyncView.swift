@@ -273,10 +273,13 @@ private struct BackupFirst: View {
                     Text("From now on this iPhone changes your place. Save your library on your computer first.")
                     Text("Feeds you add or remove on this iPhone are added or removed in your library too.")
                 }
-                if let waiting, waiting.articles + waiting.summaries > 0 {
+                if let waiting, waiting.articles + waiting.summaries + waiting.questions > 0 {
                     Section("Added to your library") {
                         LabeledContent("Articles saved on this iPhone") { Text(verbatim: waiting.articles.formatted()) }
                         LabeledContent("Summaries written on this iPhone") { Text(verbatim: waiting.summaries.formatted()) }
+                        if waiting.questions > 0 {
+                            LabeledContent("Articles that get suggested questions") { Text(verbatim: waiting.questions.formatted()) }
+                        }
                     }
                 }
                 Section {
