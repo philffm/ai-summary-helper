@@ -4,6 +4,8 @@ import SwiftUI
 enum NetLayout {
     static let height: CGFloat = 220
     static let centre: CGFloat = 46
+    /// The small circle on the middle's lower rim that leads back; straight below stays free of connected topics.
+    static let back: CGFloat = 30
     static let satellite: ClosedRange<CGFloat> = 26...34
     static let most = 6
 
@@ -113,6 +115,11 @@ struct TopicNet: View {
                             .stroke(KaivoTokens.accent.opacity(0.35), lineWidth: 1.5 + 5 * Double(topic.count) / Double(max(1, articles)))
                     }
                     .accessibilityHidden(true)
+                    if #available(iOS 26.0, *), !reduceMotion, let held, let index = shown.firstIndex(where: { $0.name == held.name }) {
+                        droplets(middle: middle, over: held.over,
+                                 pulled: CGPoint(x: places[index].x + held.offset.width, y: places[index].y + held.offset.height),
+                                 radius: NetLayout.radius(shown[index].count, of: most))
+                    }
                     ForEach(outer, id: \.item.id) { node in distant(node.item).position(node.at) }
                     centre(covered: held?.over == true).scaleEffect(held?.over == true && !reduceMotion ? 1.14 : 1).position(middle)
                     ForEach(Array(shown.enumerated()), id: \.element.id) { index, topic in
@@ -126,11 +133,15 @@ struct TopicNet: View {
                             .position(places[index])
                             .zIndex(pulled == nil ? 0 : 1)
                     }
+                    backButton
+                        // a topic pulled onto the middle covers it too; where the two flow into each other, it steps back at once
+                        .opacity(held?.over == true || (Self.liquid && held != nil) ? 0 : 1)
+                        .position(x: middle.x, y: middle.y + NetLayout.centre)
                     if let held, held.over, let topic = shown.first(where: { $0.name == held.name }) {
                         Text("Release to narrow · \(topic.count)")
                             .font(.footnote.weight(.semibold))
                             .padding(.horizontal, 12).padding(.vertical, 6)
-                            .background(.regularMaterial, in: Capsule())
+                            .modifier(FloatingNote())
                             .position(x: middle.x, y: NetLayout.height - 14)
                             .zIndex(2)
                     }
@@ -213,6 +224,46 @@ struct TopicNet: View {
         .accessibilityAddTraits(.isSelected)
     }
 
+    /// Shows that there is a way back, where the eyes are: one step, as tapping the middle does.
+    private var backButton: some View {
+        Button { choose(Array(chosen.dropLast())) } label: {
+            Image(systemName: "chevron.backward")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(KaivoTokens.accent)
+                .frame(width: NetLayout.back, height: NetLayout.back)
+                .modifier(FloatingButton())
+                // easy to hit
+                .frame(width: 44, height: 44)
+                .contentShape(Circle())
+        }
+        .buttonStyle(PressedBubble(reduceMotion: reduceMotion))
+        .accessibilityLabel("Goes back one step")
+        .accessibilityIdentifier("net-back")
+    }
+
+    private static var liquid: Bool { if #available(iOS 26.0, *) { true } else { false } }
+
+    /// While a topic is pulled, it and the middle lie on glass that flows together as they come close, like two drops:
+    /// the pull is seen to join them before letting go does.
+    @available(iOS 26.0, *)
+    private func droplets(middle: CGPoint, over: Bool, pulled: CGPoint, radius: CGFloat) -> some View {
+        let rim: CGFloat = 7
+        // as the circles above it grow
+        let large = (NetLayout.centre * (over ? 1.14 : 1) + rim) * 2, small = (radius * 1.08 + rim) * 2
+        return GlassEffectContainer(spacing: 36) {
+            ZStack {
+                Color.clear.frame(width: large, height: large)
+                    .glassEffect(.regular.tint(KaivoTokens.accent.opacity(0.55)), in: Circle())
+                    .position(middle)
+                Color.clear.frame(width: small, height: small)
+                    .glassEffect(.regular.tint(KaivoTokens.accent.opacity(0.55)), in: Circle())
+                    .position(pulled)
+            }
+        }
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
+    }
+
     // no Button: its tap would also fire at the end of a pull, wherever the topic was let go
     private func satellite(_ topic: TopicBubbles.Topic, radius: CGFloat) -> some View {
         label(topic.name, count: topic.count, font: .footnote.weight(.semibold))
@@ -238,5 +289,30 @@ struct TopicNet: View {
 
     private func choose(_ next: [String]) {
         withAnimation(reduceMotion ? nil : .snappy) { chosen = next }
+    }
+}
+
+/// The way back, floating on the middle's rim: Liquid Glass from iOS 26 on, tinted so that the chevron stays clear
+/// where the glass lies over the dark circle.
+private struct FloatingButton: ViewModifier {
+    func body(content: Content) -> some View {
+        if #available(iOS 26.0, *) {
+            content.glassEffect(.regular.tint(Color(.systemBackground).opacity(0.75)).interactive(), in: Circle())
+        } else {
+            content.background(Circle().fill(Color(.systemBackground)))
+                .overlay(Circle().strokeBorder(KaivoTokens.accent, lineWidth: 1.5))
+                .shadow(color: .black.opacity(0.15), radius: 3, y: 1)
+        }
+    }
+}
+
+/// What letting go would do, floating at the foot of the net.
+private struct FloatingNote: ViewModifier {
+    func body(content: Content) -> some View {
+        if #available(iOS 26.0, *) {
+            content.glassEffect(.regular, in: Capsule())
+        } else {
+            content.background(.regularMaterial, in: Capsule())
+        }
     }
 }
