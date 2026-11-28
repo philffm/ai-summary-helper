@@ -26,6 +26,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreHoriz
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.Delete
@@ -146,11 +149,12 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
             TopAppBar(
-                title = { Text("Reading list") },
+                // an open article stands for itself
+                title = { if (isWide() || current == null) Text("Reading list") },
                 navigationIcon = { if (!isWide() && current != null) IconButton(onClick = { onSelect("") }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") } },
                 actions = {
                     if (isWide() && current != null) FocusToggle(model.focusReading) { model.focusReading = !model.focusReading }
-                    if (model.articleList.isNotEmpty()) IconButton(onClick = { searching = !searching; if (!searching) query = "" }) {
+                    if (model.articleList.isNotEmpty() && (isWide() || current == null)) IconButton(onClick = { searching = !searching; if (!searching) query = "" }) {
                         Icon(if (searching) Icons.Filled.Close else Icons.Filled.Search, contentDescription = if (searching) "Close search" else "Search")
                     }
                     if (canReceive) IconButton(onClick = { scope.launch { snackbar.showSnackbar(model.checkArticles()) } }, enabled = !model.checking) { Icon(Icons.Filled.Refresh, contentDescription = "Check for new articles") }
@@ -266,7 +270,8 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     var summarizing by remember(id) { mutableStateOf(false) }
     var summaryNote by remember(id) { mutableStateOf("") }
     var remindMenu by remember(id) { mutableStateOf(false) }
-    var moreMenu by remember(id) { mutableStateOf(false) }
+    var menu by rememberSaveable(id) { mutableStateOf(false) }
+    var menuPage by rememberSaveable { mutableStateOf(ReaderPage.SUMMARY) }
     var recommending by remember(id) { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val notifPermission = androidx.activity.compose.rememberLauncherForActivityResult(androidx.activity.result.contract.ActivityResultContracts.RequestPermission()) { }
@@ -297,7 +302,6 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
     val placed = remember(id, allHighlights, mineTick) { Highlighter.place(article.blocks, allHighlights, model.articles.highlightAnchors(id)) }
     val archived = model.readTick >= 0 && model.articles.isArchived(id)
     val scale = model.readerScale   // set in the reader sheet or Settings → Accessibility
-    var sheet by remember(id) { mutableStateOf(false) }
     val look = ReaderLook.colors(model.readerTheme)
     val style = ReaderStyle(ReaderLook.family(model.readerFont), model.readerSpacing)
     val density = androidx.compose.ui.platform.LocalDensity.current
@@ -310,8 +314,8 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
       Column(Modifier.fillMaxSize()) {
         val list = androidx.compose.foundation.lazy.rememberLazyListState()
         val spots = remember(article, placed) { DepthTrack.spots(article.blocks, placed) }
-        // the items above the first block: title, sender, actions, summary, divider
-        val leading = (if (article.summary.isNotBlank()) 4 else 3) + (if (article.recommendation != null) 1 else 0)
+        // the items above the first block: title, sender, summary, divider
+        val leading = 2 + (if (article.summary.isNotBlank()) 1 else 0) + (if (article.recommendation != null) 1 else 0)
         val onScreen by remember(article) {
             androidx.compose.runtime.derivedStateOf {
                 val info = list.layoutInfo
@@ -323,82 +327,15 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
         val scroll = androidx.compose.runtime.rememberCoroutineScope()
         val still = LocalReduceMotion.current
         androidx.compose.foundation.layout.Box(Modifier.weight(1f).fillMaxWidth()) {
-        LazyColumn(Modifier.fillMaxSize(), state = list, verticalArrangement = Arrangement.spacedBy(12.dp), contentPadding = PaddingValues(start = 20.dp, end = if (spots.isEmpty()) 20.dp else 36.dp, top = 12.dp, bottom = 40.dp)) {
+        LazyColumn(Modifier.fillMaxSize(), state = list, verticalArrangement = Arrangement.spacedBy(12.dp), contentPadding = PaddingValues(start = 20.dp, end = if (spots.isEmpty()) 20.dp else 36.dp, top = 12.dp, bottom = 104.dp)) {
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text(article.title.ifBlank { article.url }, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, modifier = Modifier.semantics { heading() })
+                    Text(article.title.ifBlank { article.url }, style = MaterialTheme.typography.headlineMedium, fontFamily = androidx.compose.ui.text.font.FontFamily.Serif, fontWeight = FontWeight.Bold, modifier = Modifier.semantics { heading() })
                     val meta = listOf(article.byline, article.site).filter { it.isNotBlank() }.joinToString(" · ")
                     if (meta.isNotEmpty()) Text(meta, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
             article.recommendation?.let { sent -> item { RecommendationCard(sent) } }
-            item {
-                androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    val playing = voice.state != ReadAloud.State.IDLE
-                    AssistChip(shape = PillShape, 
-                        modifier = Modifier.semantics {
-                            stateDescription = when (voice.state) {
-                                ReadAloud.State.PLAYING -> "Playing, sentence ${voice.index + 1} of ${voice.total}"
-                                ReadAloud.State.PAUSED -> "Paused at sentence ${voice.index + 1} of ${voice.total}"
-                                else -> "Not playing"
-                            }
-                        },
-                        onClick = {
-                            if (playing) voice.toggle() else voice.start(ReadAloudUnits.article(article.title, article.blocks), article.lang)
-                        },
-                        label = { Text(when (voice.state) { ReadAloud.State.PLAYING -> "Pause"; ReadAloud.State.PAUSED -> "Resume"; else -> "Listen" }) },
-                        leadingIcon = { Icon(if (voice.state == ReadAloud.State.PLAYING) Icons.Filled.Pause else if (voice.state == ReadAloud.State.PAUSED) Icons.Filled.PlayArrow else Icons.Filled.VolumeUp, null) },
-                    )
-                    if (playing) {
-                        AssistChip(shape = PillShape, onClick = { voice.cycleRate() }, label = { Text(if (voice.rate == 1f) "1×" else "${voice.rate}×") }, leadingIcon = { Icon(Icons.Filled.Speed, null) })
-                        AssistChip(shape = PillShape, onClick = { voice.stop() }, label = { Text("Stop · ${voice.index + 1}/${voice.total}") }, leadingIcon = { Icon(Icons.Filled.Close, null) })
-                    }
-                    if (LocalLlm.installed(context)) AssistChip(shape = PillShape, 
-                        onClick = { summarize() },
-                        label = { Text(if (summarizing) summaryNote else if (article.summary.isBlank()) "Summarize" else "Summarize again", modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }) },
-                        leadingIcon = { Icon(Icons.Filled.AutoAwesome, null) },
-                    )
-                    // Everything else lives behind ⋯ so the top of the article stays calm.
-                    Box {
-                        AssistChip(shape = PillShape, onClick = { moreMenu = true }, label = { Text("More") }, leadingIcon = { Icon(Icons.Filled.MoreVert, null) })
-                        DropdownMenu(expanded = moreMenu, onDismissRequest = { moreMenu = false; remindMenu = false }) {
-                            if (remindMenu) {
-                                for (o in ReminderTimes.options(java.time.ZonedDateTime.now())) DropdownMenuItem(
-                                    text = { Text(o.label) },
-                                    onClick = {
-                                        moreMenu = false; remindMenu = false
-                                        Reminders.schedule(context, o.delayMs, article.title, article.url, id)
-                                        android.widget.Toast.makeText(context, "I will remind you: ${o.label.lowercase()}", android.widget.Toast.LENGTH_SHORT).show()
-                                    },
-                                )
-                            } else {
-                                DropdownMenuItem(text = { Text("Speed read") }, leadingIcon = { Icon(Icons.Filled.Speed, null) }, onClick = { moreMenu = false; voice.stop(); speedReading = true })
-                                DropdownMenuItem(text = { Text("Text & layout") }, leadingIcon = { Icon(Icons.Filled.TextIncrease, null) }, onClick = { moreMenu = false; sheet = true })
-                                DropdownMenuItem(text = { Text("Copy Markdown") }, leadingIcon = { Icon(Icons.Filled.ContentCopy, null) }, onClick = {
-                                    moreMenu = false
-                                    val cm = context.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
-                                    cm.setPrimaryClip(android.content.ClipData.newPlainText(article.title, ArticleMarkdown.render(article.copy(highlights = allHighlights))))
-                                    android.widget.Toast.makeText(context, "Copied as Markdown", android.widget.Toast.LENGTH_SHORT).show()
-                                })
-                                DropdownMenuItem(text = { Text("Share .md") }, leadingIcon = { Icon(Icons.Filled.Description, null) }, onClick = {
-                                    moreMenu = false
-                                    shareText(context, ArticleMarkdown.fileName(article.title, article.aid), ArticleMarkdown.render(article.copy(highlights = allHighlights)))
-                                })
-                                if (article.url.startsWith("http")) DropdownMenuItem(text = { Text("Recommend…") }, leadingIcon = { Icon(Icons.AutoMirrored.Filled.Send, null) }, onClick = { moreMenu = false; recommending = true })
-                                DropdownMenuItem(text = { Text("Remind me") }, leadingIcon = { Icon(Icons.Filled.Alarm, null) }, onClick = {
-                                    if (android.os.Build.VERSION.SDK_INT >= 33 && !Reminders.canNotify(context)) notifPermission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
-                                    remindMenu = true
-                                })
-                                DropdownMenuItem(
-                                    text = { Text(if (archived) "Unarchive" else "Archive") },
-                                    leadingIcon = { Icon(if (archived) Icons.Filled.Unarchive else Icons.Filled.Archive, null) },
-                                    onClick = { moreMenu = false; if (archived) model.setArchived(id, false) else onArchive(id) },
-                                )
-                            }
-                        }
-                    }
-                }
-            }
             if (article.summary.isNotBlank()) item {
                 AishCard(Modifier.fillMaxWidth(), tone = CardTone.Summary) {
                     Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -441,22 +378,53 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
             // a third of the screen above the block, so that the highlight is not glued to the top edge
             onSpot = { spot -> scroll.launch { val above = -list.layoutInfo.viewportSize.height / 3; if (still) list.scrollToItem(leading + spot.block, above) else list.animateScrollToItem(leading + spot.block, above) } },
             onSeek = { fraction -> DepthTrack.blockAt(article.blocks, fraction)?.let { block -> scroll.launch { list.scrollToItem(leading + block) } } },
-            modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight().padding(vertical = 12.dp),
+            modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight().padding(top = 12.dp, bottom = 96.dp),
         )
+        // one button for everything else, on the thumb's side; while something is read aloud, pause sits above it
+        Column(Modifier.align(if (Handed.left) Alignment.BottomStart else Alignment.BottomEnd).padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            if (voice.state != ReadAloud.State.IDLE) SmallFloatingActionButton(onClick = { voice.toggle() }) {
+                Icon(if (voice.state == ReadAloud.State.PLAYING) Icons.Filled.Pause else Icons.Filled.PlayArrow, contentDescription = if (voice.state == ReadAloud.State.PLAYING) "Pause reading" else "Resume reading")
+            }
+            FloatingActionButton(onClick = { remindMenu = false; menu = true }) { Icon(Icons.Filled.MoreHoriz, contentDescription = "Reader menu") }
         }
-        ActionBar(
-            primary = BarAction(Icons.Filled.OpenInBrowser, "Read original") { onOpenWeb(article.url) },
-            secondary = listOfNotNull(
-                if (article.summary.isNotBlank() || allHighlights.isNotEmpty()) BarAction(Icons.Filled.Share, "Share") { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url, allHighlights.map { it.text })) } else null,
-                if (model.pairing != null && article.local) BarAction(Icons.AutoMirrored.Filled.Send, if (sent) "Sent" else "Send to the browser", enabled = !sent) { SendWorker.enqueue(context, article.url); sent = true } else null,
-                BarAction(Icons.Filled.Delete, "Delete") { onDelete(id) },
-            ),
-        )
+        }
       }
     }
     }
     }
-    if (sheet) ReaderSheet(model) { sheet = false }
+    if (menu) {
+        val text = { ArticleMarkdown.render(article.copy(highlights = allHighlights)) }
+        val actions = if (remindMenu) ReminderTimes.options(java.time.ZonedDateTime.now()).map { o ->
+            ReaderAction(Icons.Filled.Alarm, o.label) {
+                Reminders.schedule(context, o.delayMs, article.title, article.url, id)
+                android.widget.Toast.makeText(context, "I will remind you: ${o.label.lowercase()}", android.widget.Toast.LENGTH_SHORT).show()
+            }
+        } else listOfNotNull(
+            ReaderAction(Icons.Filled.OpenInBrowser, "Read original") { onOpenWeb(article.url) },
+            if (article.url.startsWith("http")) ReaderAction(Icons.AutoMirrored.Filled.Send, "Recommend…") { recommending = true } else null,
+            if (article.summary.isNotBlank() || allHighlights.isNotEmpty()) ReaderAction(Icons.Filled.Share, "Share") { shareText(context, article.title, PageSummary.shareText(article.title, article.summary, article.url, allHighlights.map { it.text })) } else null,
+            ReaderAction(Icons.Filled.ContentCopy, "Copy Markdown") {
+                val cm = context.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+                cm.setPrimaryClip(android.content.ClipData.newPlainText(article.title, text()))
+                android.widget.Toast.makeText(context, "Copied as Markdown", android.widget.Toast.LENGTH_SHORT).show()
+            },
+            ReaderAction(Icons.Filled.Description, "Share .md") { shareText(context, ArticleMarkdown.fileName(article.title, article.aid), text()) },
+            ReaderAction(Icons.Filled.Alarm, "Remind me", stays = true) {
+                if (android.os.Build.VERSION.SDK_INT >= 33 && !Reminders.canNotify(context)) notifPermission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                remindMenu = true
+            },
+            if (model.pairing != null && article.local) ReaderAction(Icons.AutoMirrored.Filled.Send, if (sent) "Sent to the browser" else "Send to the browser") { if (!sent) { SendWorker.enqueue(context, article.url); sent = true } } else null,
+            ReaderAction(if (archived) Icons.Filled.Unarchive else Icons.Filled.Archive, if (archived) "Unarchive" else "Archive") { if (archived) model.setArchived(id, false) else onArchive(id) },
+            ReaderAction(Icons.Filled.Delete, "Delete", danger = true) { onDelete(id) },
+        )
+        ReaderMenu(
+            model, menuPage, { menuPage = it; remindMenu = false },
+            SummaryState(article.summary, article.local, summarizing, summaryNote, LocalLlm.installed(context), summarize), voice,
+            onListen = { if (voice.state != ReadAloud.State.IDLE) voice.toggle() else voice.start(ReadAloudUnits.article(article.title, article.blocks), article.lang) },
+            onSpeedRead = { menu = false; voice.stop(); speedReading = true },
+            actions = actions, onDismiss = { menu = false; remindMenu = false },
+        )
+    }
     // only the reader's own marks go along, never the AI's suggestions
     if (recommending) RecommendSheet(article, remember(article, mine) { allHighlights.filter { !it.ghost }.map { it.text } }) { recommending = false }
     if (speedReading) SpeedReadDialog(

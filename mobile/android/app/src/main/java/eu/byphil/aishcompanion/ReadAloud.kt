@@ -82,6 +82,12 @@ class ReadAloud(context: Context, initialRate: Float = 1f, private val onRate: (
         }
     }
 
+    /** A sentence in progress starts again at the new speed. */
+    fun changeRate(next: Float) {
+        rate = next; onRate(next)
+        if (state == State.PLAYING) speakAt(index)
+    }
+
     /** Next speed in the cycle 1× → 1.25× → 1.5× → 0.8×; a sentence in progress starts again at the new speed. */
     fun cycleRate() {
         val steps = listOf(1f, 1.25f, 1.5f, 0.8f)
