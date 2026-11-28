@@ -93,6 +93,7 @@ class MainActivity : ComponentActivity() {
         val model = AppModel(this)
         appModel = model
         intent?.getStringExtra(EXTRA_OPEN_ARTICLE)?.let { model.openArticle = it }
+        if (savedInstanceState == null) intent?.action?.takeIf { it in Shortcuts.ALL }?.let { model.asked = it }
         // Only on a fresh start: after a system restart the saved state already holds the page that was open.
         if (savedInstanceState == null) intent?.getStringExtra(EXTRA_OPEN_URL)?.takeIf { it.isNotEmpty() }?.let { model.pendingRecommendation = recommendationIn(intent); model.pendingShare = it to (intent?.getBooleanExtra(EXTRA_SUMMARIZE, false) == true) }
         if (model.pairing?.canReceive == true) ReceiveWorker.schedule(this)
@@ -144,6 +145,7 @@ class MainActivity : ComponentActivity() {
         super.onNewIntent(intent)
         setIntent(intent)
         intent.getStringExtra(EXTRA_OPEN_ARTICLE)?.let { appModel?.openArticle = it }
+        intent.action?.takeIf { it in Shortcuts.ALL }?.let { appModel?.asked = it }
         // A link shared while the app is open: it replaces the page that is showing instead of being lost.
         intent.getStringExtra(EXTRA_OPEN_URL)?.takeIf { it.isNotEmpty() }?.let {
             recommendationIn(intent)?.let { r -> appModel?.pendingRecommendation = r }
@@ -191,6 +193,17 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
             model.pendingShare = null
         }
     }
+    val shortcutContext = androidx.compose.ui.platform.LocalContext.current
+    androidx.compose.runtime.LaunchedEffect(model.asked) {
+        when (model.asked) {
+            Shortcuts.CONTINUE_READING -> { webUrl = ""; tab = Tab.Reading.ordinal; articleSel = model.store.lastArticle.takeIf { model.articles.has(it) }.orEmpty() }
+            Shortcuts.BRIEFING -> { webUrl = ""; tab = Tab.Feeds.ordinal; model.briefingAsked = true }
+            Shortcuts.CONTINUE_EPISODE -> { webUrl = ""; tab = Tab.Feeds.ordinal; if (!PodcastPlayer.carryOn(shortcutContext)) model.message = "There is no episode to go on with." }
+            else -> return@LaunchedEffect
+        }
+        model.asked = ""
+    }
+
     if (webUrl.isNotEmpty()) {
         // A fresh page state for every link: the summary and the reading of one page never leak into the next.
         androidx.compose.runtime.key(webUrl) {

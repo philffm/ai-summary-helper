@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A long press on the app icon, or an assistant. The actions are those of Shortcuts.kt. -->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut android:shortcutId="read" android:enabled="true" android:icon="@drawable/ic_shortcut_read" android:shortcutShortLabel="@string/shortcut_reading">
+        <intent android:action="eu.byphil.aishcompanion.action.CONTINUE_READING" android:targetPackage="eu.byphil.aishcompanion" android:targetClass="eu.byphil.aishcompanion.MainActivity" />
+    </shortcut>
+    <shortcut android:shortcutId="briefing" android:enabled="true" android:icon="@drawable/ic_shortcut_briefing" android:shortcutShortLabel="@string/shortcut_briefing">
+        <intent android:action="eu.byphil.aishcompanion.action.BRIEFING" android:targetPackage="eu.byphil.aishcompanion" android:targetClass="eu.byphil.aishcompanion.MainActivity" />
+    </shortcut>
+    <shortcut android:shortcutId="episode" android:enabled="true" android:icon="@drawable/ic_shortcut_episode" android:shortcutShortLabel="@string/shortcut_episode">
+        <intent android:action="eu.byphil.aishcompanion.action.CONTINUE_EPISODE" android:targetPackage="eu.byphil.aishcompanion" android:targetClass="eu.byphil.aishcompanion.MainActivity" />
+    </shortcut>
+</shortcuts>

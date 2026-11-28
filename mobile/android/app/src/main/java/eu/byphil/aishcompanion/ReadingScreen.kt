@@ -289,7 +289,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
             }
         }
     }
-    LaunchedEffect(id) { model.articles.markRead(id) }
+    LaunchedEffect(id) { model.articles.markRead(id); model.store.lastArticle = id }
     if (article == null) { EmptyState("This article could not be opened", "It may have been removed from this phone."); return }
     var mineTick by remember(id) { mutableIntStateOf(0) }   // bumped when the reader marks or unmarks a paragraph
     val mine = remember(id, mineTick) { model.articles.userHighlights(id).map { Highlight(false, it) } }

@@ -102,6 +102,7 @@ object PodcastPlayer {
         if (episode?.url == ep.url && player != null) { toggle(); return }
         release(saveSpot = true)
         episode = ep; loading = true; error = null; positionMs = 0; durationMs = 0
+        prefs(c).edit().putString("last.url", ep.url).putString("last.title", ep.title).putString("last.feed", ep.feed).apply()
         try {
             val mp = MediaPlayer()
             player = mp
@@ -116,7 +117,7 @@ object PodcastPlayer {
                 positionMs = at
                 start()
             }
-            mp.setOnCompletionListener { if (player === mp) { prefs(c).edit().remove(key(ep.url)).apply(); playing = false; positionMs = 0; abandonFocus(); PodcastService.refresh(c) } }
+            mp.setOnCompletionListener { if (player === mp) { prefs(c).edit().remove(key(ep.url)).remove("last.url").apply(); playing = false; positionMs = 0; abandonFocus(); PodcastService.refresh(c) } }
             mp.setOnErrorListener { _, _, _ -> if (player === mp) { loading = false; playing = false; error = "This episode could not be played."; PodcastService.refresh(c) }; true }
             mp.prepareAsync()
         } catch (_: Exception) {
@@ -141,6 +142,16 @@ object PodcastPlayer {
     }
 
     fun toggle() { if (playing) pause() else if (player != null && !loading) start() }
+
+    /** Plays on where listening stopped: the episode that is loaded, else the last one. False when there is none to go on with. */
+    fun carryOn(context: Context): Boolean {
+        val loaded = episode
+        if (loaded != null && player != null) { if (!playing && !loading) { app = context.applicationContext; start() }; return true }
+        val p = prefs(context.applicationContext)
+        val url = p.getString("last.url", null) ?: return false
+        play(context, Episode(url, p.getString("last.title", "").orEmpty(), p.getString("last.feed", "").orEmpty()))
+        return true
+    }
 
     fun seekBy(ms: Int) { seekTo(positionMs + ms) }
 

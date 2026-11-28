@@ -131,6 +131,9 @@ fun FeedsScreen(
     var unreadOnly by remember { mutableStateOf(false) }
     var moodFilter by remember { mutableStateOf("any") }   // any, pos (positive only), nonneg (hide heavy)
     var favOnly by remember { mutableStateOf(false) }
+    var podcastsOnly by rememberSaveable { mutableStateOf(false) }
+    var downloadedOnly by rememberSaveable { mutableStateOf(false) }
+    var autoBriefing by remember { mutableStateOf(false) }
     var menuOpen by remember { mutableStateOf(false) }
     var openStacks by remember { mutableStateOf(setOf<String>()) }
     var searching by remember { mutableStateOf(false) }
@@ -147,6 +150,7 @@ fun FeedsScreen(
     // a search looks through everything; the source and the other filters apply when not searching
     val visible = if (searchActive) model.entries.filter { FeedSearch.matches(it, query) } else model.entries.filter {
         matches(source, it) && (!unreadOnly || !it.stored.read) && (!favOnly || it.stored.fav) &&
+            (!podcastsOnly || (it.stored.item.audio.isNotEmpty() && (!downloadedOnly || PodcastDownloads.has(context, it.stored.item.audio)))) &&
             when (moodFilter) { "pos" -> Mood.of(it.stored.sent) == "pos"; "nonneg" -> Mood.of(it.stored.sent) != "neg"; else -> true }
     }
     val anyRated = model.entries.any { it.stored.sent != null }
@@ -218,12 +222,21 @@ fun FeedsScreen(
                             if (!searching && model.feeds.isNotEmpty() && !showOnboarding) {
                             Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 4.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                 FilterChip(shape = PillShape, selected = unreadOnly, onClick = { unreadOnly = !unreadOnly }, label = { Text("Unread") })
+                                if (podcastsOnly || model.entries.any { it.stored.item.audio.isNotEmpty() }) {
+                                    FilterChip(shape = PillShape, selected = podcastsOnly, onClick = { podcastsOnly = !podcastsOnly; if (!podcastsOnly) downloadedOnly = false }, label = { Text("Podcasts") }, leadingIcon = { Icon(Icons.Filled.Headphones, null, Modifier.size(18.dp)) })
+                                    if (podcastsOnly) FilterChip(shape = PillShape, selected = downloadedOnly, onClick = { downloadedOnly = !downloadedOnly }, label = { Text("Downloaded") }, leadingIcon = { Icon(Icons.Filled.DownloadDone, null, Modifier.size(18.dp)) })
+                                }
                                 FilterChip(shape = PillShape, selected = favOnly, onClick = { favOnly = !favOnly }, label = { Text("Favorites") }, leadingIcon = { Icon(if (favOnly) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)) })
                                 if (anyRated) {
                                     FilterChip(shape = PillShape, selected = moodFilter == "pos", onClick = { moodFilter = if (moodFilter == "pos") "any" else "pos" }, label = { Text("😊 Positive only") })
                                     FilterChip(shape = PillShape, selected = moodFilter == "nonneg", onClick = { moodFilter = if (moodFilter == "nonneg") "any" else "nonneg" }, label = { Text("Hide 😢") })
                                 }
                                 if (source != "all") FilterChip(shape = PillShape, selected = false, onClick = { onSource("all") }, label = { Text("All feeds") })
+                                // the categories of the feeds, as named in the browser; tapping the chosen one lifts it
+                                model.feeds.flatMap { it.tags }.distinct().sortedBy { it.lowercase() }.forEach { tag ->
+                                    val on = source == "folder:$tag"
+                                    FilterChip(shape = PillShape, selected = on, onClick = { onSource(if (on) "all" else "folder:$tag") }, label = { Text(tag) })
+                                }
                                 if (visible.any { !it.stored.read }) FilterChip(shape = PillShape, selected = false, onClick = { scope.launch { model.markAllRead(visible.map { it.feed.url }.distinct()) } }, label = { Text("Mark all read") }, leadingIcon = { Icon(Icons.Filled.DoneAll, null, Modifier.size(18.dp)) })
                             }
                             }
@@ -304,7 +317,9 @@ fun FeedsScreen(
     }
 
     if (showAdd) AddFeedDialog(model, onDismiss = { showAdd = false }, onAdded = { showAdd = false; scope.launch { snackbar.showSnackbar("Feed added.") } })
-    if (showBriefing) BriefingDialog(model) { showBriefing = false }
+    // asked for by an app shortcut: shown and read out
+    LaunchedEffect(model.briefingAsked) { if (model.briefingAsked) { model.briefingAsked = false; autoBriefing = true; showBriefing = true } }
+    if (showBriefing) BriefingDialog(model, autoPlay = autoBriefing) { showBriefing = false; autoBriefing = false }
     if (showSources) SourcesSheet(model, source, onAdd = { showSources = false; showAdd = true }, onPick = { onSource(it); onSelect(""); showSources = false }, onDismiss = { showSources = false })
 }
 

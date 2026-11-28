@@ -109,6 +109,11 @@ class Store(context: Context) {
         set(v) = prefs.edit().putString("reader.theme", v).apply()
 
     /** Speech rate when an article is read aloud (1 = normal). */
+    /** The reading-list article opened last, for "Continue reading". */
+    var lastArticle: String
+        get() = prefs.getString("read.last", "").orEmpty()
+        set(v) = prefs.edit().putString("read.last", v).apply()
+
     /** The name that goes with a recommendation, as typed once. */
     var recommendName: String
         get() = prefs.getString("recommend.name", "").orEmpty()

@@ -58,6 +58,9 @@ class AppModel(context: Context) {
 
     /** Set by a reminder notification: the reading-list article to open (the UI clears it). */
     var openArticle by mutableStateOf("")
+    /** What an app shortcut asked for (an action of [Shortcuts]), until it is done. */
+    var asked by mutableStateOf("")
+    var briefingAsked by mutableStateOf(false)
 
     /** Wide screens: the open item is read full screen (list and navigation rail hidden). */
     var focusReading by mutableStateOf(false)
