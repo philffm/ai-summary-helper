@@ -6,6 +6,21 @@ struct FeedEntry: Identifiable, Hashable {
     var feed: Feed
     var stored: StoredItem
     var id: String { feed.url + "\n" + stored.item.id }
+    /// It comes with something to listen to.
+    var isPodcast: Bool { stored.item.audio?.isEmpty == false }
+}
+
+/// What the list of "Feeds" shows.
+enum FeedFilter: CaseIterable {
+    case all, unread, podcasts
+
+    func shows(_ entry: FeedEntry) -> Bool {
+        switch self {
+        case .all: true
+        case .unread: !entry.stored.read
+        case .podcasts: entry.isPodcast
+        }
+    }
 }
 
 struct SuggestedFeed: Decodable, Identifiable, Hashable {

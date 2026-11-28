@@ -7,6 +7,20 @@ final class ReadingTests: XCTestCase {
         Article(id: "a", title: "t", host: host, tags: [], words: 1, savedAt: .now, passages: passages, link: link, paper: paper)
     }
 
+    func testFeedsCanShowOnlyWhatThereIsToListenTo() {
+        let feed = Feed(url: "https://example.org/feed", title: "F", tags: [], updatedAt: 0)
+        func entry(_ id: String, audio: String?, read: Bool) -> FeedEntry {
+            let item = FeedItem(id: id, title: id, link: "https://example.org/" + id, published: nil, audio: audio)
+            var stored = StoredItem(item: item)
+            stored.read = read
+            return FeedEntry(feed: feed, stored: stored)
+        }
+        let all = [entry("text", audio: nil, read: false), entry("heard", audio: "https://example.org/a.mp3", read: true), entry("new", audio: "https://example.org/b.mp3", read: false)]
+        XCTAssertEqual(all.filter(FeedFilter.all.shows).count, 3)
+        XCTAssertEqual(all.filter(FeedFilter.unread.shows).map(\.stored.item.id), ["text", "new"])
+        XCTAssertEqual(all.filter(FeedFilter.podcasts.shows).map(\.stored.item.id), ["heard", "new"])
+    }
+
     func testSafariHeadingsStayHeadings() {
         let blocks = SafariImport.blocks("<h2 class=\"x\">1. <em>Abstract</em></h2><p>Words.</p><img src=\"https://e.org/p.png\" alt=\"a\"><h3>More</h3><p>Rest.</p>", article: "x")
         XCTAssertEqual(blocks.map(\.text), ["1. Abstract", "Words.", "a", "More", "Rest."])

@@ -4,7 +4,7 @@ struct FeedsView: View {
     @Environment(FeedsModel.self) private var feeds
     @Environment(Router.self) private var router
     @Environment(SyncModel.self) private var sync
-    @State private var unreadOnly = false
+    @State private var filter = FeedFilter.all
     @State private var sheet: Sheet?
 
     private enum Sheet: String, Identifiable { case add, manage; var id: String { rawValue } }
@@ -21,15 +21,20 @@ struct FeedsView: View {
                     .listRowBackground(Color.clear)
                     SuggestedSection()
                 } else {
-                    Picker("Show", selection: $unreadOnly) {
-                        Text("All").tag(false)
-                        Text("Unread").tag(true)
+                    let entries = feeds.entries
+                    // offered where there is something to listen to
+                    let podcasts = entries.contains(where: \.isPodcast)
+                    let chosen = filter == .podcasts && !podcasts ? .all : filter
+                    Picker("Show", selection: Binding(get: { chosen }, set: { filter = $0 })) {
+                        Text("All").tag(FeedFilter.all)
+                        Text("Unread").tag(FeedFilter.unread)
+                        if podcasts { Text("Podcasts").tag(FeedFilter.podcasts) }
                     }
                     .pickerStyle(.segmented)
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
                     Section {
-                        let shown = feeds.entries.filter { !unreadOnly || !$0.stored.read }
+                        let shown = entries.filter(chosen.shows)
                         ForEach(shown) { entry in
                             NavigationLink(value: Route.item(feed: entry.feed.url, id: entry.stored.item.id)) { EntryRow(entry: entry) }
                                 .swipeActions(edge: .leading) {
