@@ -5,6 +5,99 @@ Commit history has the details: <https://github.com/philffm/ai-summary-helper/co
 
 ## Unreleased
 
+## 2.2.58 (2026-11-28)
+
+### All changes
+
+#### Changed
+
+- feat(sync): the questions prepared with a summary travel with the article
+- feat(sync): feeds added or removed on a phone reach the library
+- feat(ios): read a library from a folder in Files, for example in iCloud Drive
+- feat(android): large titles and grouped rows, serif headlines
+- feat(android): the feeds of the library appear in the app
+- feat(ios): the feeds of the library appear in the app
+- feat(sync): the feed list travels with the library
+- feat(android): one button in the reader, with the menu's tabs
+- feat(android): show the pictures saved inside library articles
+- feat(android): filter for podcasts and categories, and app shortcuts
+- feat(android): recommend an article, and open what someone recommends
+- feat(android): fetch the newest records first, send the newest article last
+- feat(ios): a welcome that shows how to switch Kaivo on in Safari
+- feat(ios): fetch feeds and sync now and then in the background
+- feat(ios): four shortcuts for Siri, the Shortcuts app, Spotlight and the action button
+- feat(ios): read aloud with the screen locked, and show the sentence being read
+- feat(ios): recommend an article, and receive a recommendation
+- feat(ios): podcasts offline, feed categories
+- feat(plugin): the Safari extension hands a feed's AI topics to the app with its tags
+- feat(ios): show only podcasts in Feeds
+- feat(ios): summaries and the articles saved on the phone go back to the library
+- feat(ios): read aloud in the text's language, test builds with their own icon
+- feat(ios): ask about an article, one button for the reader
+- feat(plugin): keep the prepared questions when a summary is saved
+- feat(sync): keep the questions of both devices, fetch the newest first
+- feat(ios): Notes, writing back as a switch, Apple's on-device model
+- feat(notes): save an answer to Notes
+- feat(ios): sync in the bar with its progress, "Settings", the summary in the article
+- feat(ios): a way back on the topic net; Liquid Glass where it floats
+- test(ios): a relaunch keeps the joined library under the extension's keys
+- feat(ios): write reading progress and highlights back to the synced library
+- feat(ios): the library in the extension's format; join a synced library from the app
+- feat(ios): sync with the extension's own modules; join a library and fetch it
+- test(ios): the takes for the store pictures and preview videos; store notes
+- feat(ios): the reader's appearance: text size, typeface, line spacing and background
+- i18n: Hindi, remove a doubled verb in the Pocket article
+- i18n: Vietnamese, Thai, Hindi and Arabic up to date (translated by Claude)
+- i18n: Russian, Ukrainian and Turkish up to date (translated by Claude)
+- i18n: Finnish, Indonesian and Polish up to date (translated by Claude)
+- i18n: Swedish, Danish and Norwegian up to date (translated by Claude)
+- i18n: German and the main markets up to date without OpenRouter; OpenRouter is now optional
+  - de, fr, es, pt, it, nl, ja, zh, zh-TW, ko rebuilt from the current English pages; the new strings were translated by Claude (recorded per string in docs/i18n/manifest.json)
+  - translate.mjs: --export-missing, --import (checked, all or nothing) and --cache-only, none of which needs an API key
+  - translate.yml runs by hand, or on pushes only while the repository variable OPENROUTER_AUTO is "true"; it now tags the store links, which a rebuild would otherwise strip
+  - repairs cached ja/zh fragments where punctuation or a command carried half a sentence
+  - the German MCP article stays as it is (short hand-written version)
+- feat(site): new blog videos in 11 languages, in the Kaivo brand
+- feat(plugin): a Home page setting; backup and sync in one place
+  - Settings > Home page: open it, copy its address, how each browser makes it the start page
+  - Backup & sync holds files, places, restore and publishing; Storage & cleanup keeps space, tags and delete, with the newest full copy above the delete buttons
+  - the delete-account dialog says that a running subscription is cancelled with it
+- feat(ios): topic net, summaries in the app, share extension, wake alarm; ready for TestFlight
+- feat(plugin): the iOS build for the App Store, account deletion, a compact layout for iPhone
+  - iOS build only: nothing to buy, a yes before text goes to an AI service, descriptions of at most 112 characters
+  - delete the account from Settings; hand saved pages and the active model to the app
+  - iPhone sheet: compact navigation, a lighter graph for large libraries, translucent bottom bar
+  - remove the podcast generator, unreachable since 2.0.22 (podcast playback stays)
+- feat(android): depth rail in the reader and a wake alarm that reads the briefing
+- feat(site): Kaivo website for phones, Kaivo pictures, story landing page in test
+  - floating logo island, install button in the top bar only after the hero, a bottom bar with equal buttons
+  - on a phone or tablet the install buttons offer "send to my computer" (Android: the companion app)
+  - language button on every size, showing only an alphabetical language list; close icon on the open menu
+  - compact, floating privacy notice; pricing removed from the menus (the section stays)
+  - the same navigation changes applied to the translated pages, without a translation run
+  - builds produce Kaivo unless another brand is named; `site:build` also writes docs-kaivo/ (ignored)
+  - Kaivo product screenshots, demo posters, blog pictures and social preview in brands/kaivo/site/, localized pictures per language, and the scripts that draw them (brand:images, brand:shots)
+  - /start/: a scroll story in five steps with phone-sized screenshots; noindex, not linked, not translated
+  - build-site includes for parts of the home page; [data-story] and [data-dock-stay] in main.js
+- feat(ios): the Kaivo app for iPhone and iPad
+- feat(android): highlight single words with the system's text selection
+- feat(ios): the Safari extension hands saved articles, pictures and highlights to the app
+
+#### Fixed
+
+- fix(android): sending an article again keeps what other devices added to it
+- fix(ios): bring an iCloud folder down at once, and try again by itself
+- fix(android): the system's navigation bar, and the save button of a recommendation stays in sight
+- fix(ios): a sync run in the background looks at its time and can be ended
+- fix(ios): large text holds its words, and an audit of the main screens
+- fix(sync): a restored backup sends nothing back and revives nothing
+- fix(site): hide the play button on article videos while they play
+- fix(backup): sync servers and places are part of backups
+
+#### Developer experience
+
+- docs: relative links in ARCHITECTURE.md
+
 ## 2.2.57 (2026-11-25)
 
 ### All changes
