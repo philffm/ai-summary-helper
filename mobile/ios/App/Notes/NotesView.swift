@@ -144,6 +144,11 @@ struct NoteRow: View {
     let keep: () -> Void
     let dismiss: () -> Void
 
+    /// A word that can be tapped over a finger's height.
+    private func target(_ title: LocalizedStringKey) -> some View {
+        Text(title).frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 6) {
@@ -180,12 +185,11 @@ struct NoteRow: View {
             }
             if item.kind == .ghost {
                 HStack(spacing: 20) {
-                    Button("Keep", action: keep).fontWeight(.semibold)
-                    Button("Dismiss", action: dismiss).foregroundStyle(.secondary)
+                    Button(action: keep) { target("Keep").fontWeight(.semibold) }
+                    Button(action: dismiss) { target("Dismiss").foregroundStyle(.secondary) }
                 }
                 .buttonStyle(.borderless)
                 .font(.subheadline)
-                .frame(minHeight: 36)
             }
         }
         .padding(.vertical, 4)

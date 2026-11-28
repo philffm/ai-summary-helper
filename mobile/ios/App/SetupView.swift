@@ -8,6 +8,7 @@ struct SettingsView: View {
     @Environment(ExtensionStatus.self) private var status
     @Environment(SyncModel.self) private var sync
     @State private var path: [Page]
+    @State private var welcoming = false
 
     /// `start`: a page to open right away, as if its row had been tapped.
     init(start: Page? = nil) { _path = State(initialValue: start.map { [$0] } ?? []) }
@@ -58,6 +59,10 @@ struct SettingsView: View {
                     }
                 }
                 Section {
+                    Button { welcoming = true } label: { Label("How to start", systemImage: "questionmark.circle") }
+                        .accessibilityIdentifier("settings-welcome")
+                }
+                Section {
                     Text("Delete your account in Kaivo in Safari: More → Settings → Account.").font(.footnote)
                 } header: {
                     Text("Your account")
@@ -81,6 +86,7 @@ struct SettingsView: View {
                 }
             }
             .task { await sync.refresh() }
+            .sheet(isPresented: $welcoming) { WelcomeView().environment(status) }
         }
     }
 

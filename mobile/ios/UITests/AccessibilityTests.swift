@@ -2,6 +2,7 @@ import XCTest
 
 /// The system's accessibility audit over the main screens, and pictures of them in the largest text size. It writes what
 /// it finds into a folder and only runs on request: TEST_RUNNER_KAIVO_AUDIT=<folder>.
+/// TEST_RUNNER_KAIVO_AUDIT_ONLY=welcome,notes keeps to some of them (tab names, "reader", "settings", "welcome").
 final class AccessibilityTests: XCTestCase {
     @MainActor
     func testAudit() throws {
@@ -35,18 +36,33 @@ final class AccessibilityTests: XCTestCase {
             Thread.sleep(forTimeInterval: 1.5)
             XCTAssertNoThrow(try XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "\(folder)/\(name).png")))
         }
+        let only = ProcessInfo.processInfo.environment["KAIVO_AUDIT_ONLY"]?.split(separator: ",").map(String.init)
+        func asked(_ screen: String) -> Bool { only?.contains(screen) ?? true }
         let large = ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
         for (suffix, size) in [("", [String]()), ("-large", large)] {
-            for tab in ["today", "library", "feeds", "notes"] {
+            if asked("welcome") {
+                start(["-KaivoWelcome", "YES"] + size)
+                for step in 1...4 {
+                    audit("welcome\(step)" + suffix)
+                    shot("welcome\(step)" + suffix)
+                    let next = app.buttons["welcome-next"].firstMatch
+                    guard step < 4, next.waitForExistence(timeout: 10) else { break }
+                    for _ in 0..<6 where !next.isHittable { app.swipeUp() }
+                    next.tap()
+                }
+            }
+            for tab in ["today", "library", "feeds", "notes"] where asked(tab) {
                 start(["-KaivoStartTab", tab] + size)
                 audit(tab + suffix)
                 shot(tab + suffix)
             }
-            start(["-KaivoStartTab", "library", "-KaivoStartArticle", "sleep-memory"] + size)
-            audit("reader" + suffix)
-            shot("reader" + suffix)
+            if asked("reader") {
+                start(["-KaivoStartTab", "library", "-KaivoStartArticle", "sleep-memory"] + size)
+                audit("reader" + suffix)
+                shot("reader" + suffix)
+            }
             let menu = app.buttons["reader-menu"].firstMatch
-            if menu.waitForExistence(timeout: 10) {
+            if asked("reader") && menu.waitForExistence(timeout: 10) {
                 menu.tap()
                 for (index, name) in ["summary", "text", "listen", "more"].enumerated() {
                     let pages = app.descendants(matching: .any)["menu-pages"].firstMatch
@@ -60,6 +76,7 @@ final class AccessibilityTests: XCTestCase {
                     shot("menu-\(name)\(suffix)")
                 }
             }
+            guard asked("settings") else { continue }
             start(["-KaivoStartTab", "today"] + size)
             let settings = app.buttons["Einstellungen"].firstMatch
             if settings.waitForExistence(timeout: 10) {

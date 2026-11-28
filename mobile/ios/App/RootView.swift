@@ -15,6 +15,8 @@ struct RootView: View {
     @State private var questions = Questions()
     @State private var inbox = InboxWatch()
     @State private var fetching = false
+    @State private var welcoming = false
+    @AppStorage(WelcomeView.seenKey) private var welcomed = false
     @Environment(\.horizontalSizeClass) private var width
 
     init() {
@@ -73,6 +75,13 @@ struct RootView: View {
                     return
                 }
                 if let link = DeepLink(url) { router.open(link) }
+            }
+            .sheet(isPresented: $welcoming, onDismiss: { welcomed = true }) {
+                WelcomeView().environment(status).interactiveDismissDisabled()
+            }
+            // once, when the library has been read and holds nothing yet
+            .onChange(of: library.loaded, initial: true) { _, loaded in
+                if loaded && WelcomeView.isDue(empty: library.articles.isEmpty, seen: welcomed) { welcoming = true }
             }
             // asked for by Siri or a shortcut: acted on once the library is there
             .onChange(of: AppRequests.shared.pending, initial: true) { _, _ in answerRequest() }
