@@ -60,6 +60,10 @@ struct Article: Codable, Identifiable, Hashable {
     var paper: Paper?
     /// What the app still has to do for an article that was shared to it.
     var pending: Pending?
+    /// The questions about it that were saved to the notes in the browser.
+    var questions: [Question]?
+    /// The summary was written by the model on this device.
+    var summaryOnDevice: Bool?
 
     var minutes: Int { max(1, Int((Double(words) / 220).rounded(.up))) }
     var minutesLeft: Int { max(1, Int((Double(minutes) * (1 - progress)).rounded(.up))) }
@@ -78,6 +82,14 @@ struct Article: Codable, Identifiable, Hashable {
     private static func format(minutes: Int) -> String {
         Duration.seconds(minutes * 60).formatted(.units(allowed: [.minutes], width: .abbreviated))
     }
+}
+
+/// A question about an article and its answer, as the browser keeps them with it.
+struct Question: Codable, Identifiable, Hashable {
+    var id: String
+    var question: String
+    var answer: String
+    var date: String
 }
 
 struct Paper: Codable, Hashable {

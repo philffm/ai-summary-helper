@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // A WebDAV server on this Mac with a library in it, for trying the app's sync over a real connection. The library is made by
 // the extension's own modules, which upload it through this server as a browser would.
-//     node mobile/ios/scripts/sync-test-server.mjs [--articles=600] [--images=0] [--image-mb=3] [--out=<file.json>]
+//     node mobile/ios/scripts/sync-test-server.mjs [--articles=600] [--images=0] [--image-mb=3] [--notes=1] [--out=<file.json>]
+// --notes=1: a note, a comment and a saved question, dated now, on the newest article that has a highlight.
 // --images: that many articles carry a picture of --image-mb megabytes inside their text, as saved pages do.
 // It prints (and writes to --out) the code a phone joins with, the passphrase and what must arrive; then it serves until it
 // is stopped. GET /_stats tells what was asked of it. Listens on 127.0.0.1 only; the login is made up on every start.
@@ -17,6 +18,7 @@ const { createStampStore } = await load('syncStampStore.js');
 const { createSyncService } = await load('syncService.js');
 const { makeStore } = await load('syncStores.js');
 const { createHighlightStore } = await load('highlightStore.js');
+const { createNotesStore } = await load('notesStore.js');
 const { buildPhoneCode } = await load('syncPhoneCode.js');
 const { hashValue } = await load('syncStamps.js');
 
@@ -87,6 +89,14 @@ for (let i = 0; i < COUNT; i++) {
 }
 await storage.set({ 'articles:index': index });
 await createHighlightStore({ storage }).apply(marks);
+if (arg('notes', '')) {
+    const about = marks[marks.length - 1].hl, id = about.id.slice(3), now = new Date().toISOString();
+    const notes = createNotesStore({ storage, mark: async () => 0 });
+    await notes.add({ text: 'Anna fragen, ob sie das für ihr Seminar nutzen will.', tags: ['todo'], url: about.url });
+    await notes.setComment(about.id, { text: 'Passt zu meinem Lernplan.', tags: ['lernen'], url: about.url });
+    const key = `articles:rec:${id}`, record = (await storage.get(key))[key];
+    await storage.set({ [key]: { ...record, conversation: [{ id: 'q_saved', q: 'Warum hilft Schlaf beim Erinnern?', a: 'Das Gehirn geht den Tag noch einmal durch.\n\n- vor allem im **Tiefschlaf**\n- ein kurzer Rückblick hilft zusätzlich', sources: [], pinned: false, noted: true, ts: now }] } });
+}
 const service = createSyncService({ storage, makeStore, stampStore: createStampStore({ storage }) });
 const connection = { service: 'webdav', url: address, username: user, allowInsecureLan: true };
 const place = await service.add({ connection, secret: { password }, place: { mode: 'encrypted', direction: 'twoway', root: 'kaivo-test', passphrase: PASSPHRASE } });

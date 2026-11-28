@@ -5,6 +5,8 @@ import UIKit
 struct LibrarySyncView: View {
     @Environment(SyncModel.self) private var sync
     @State private var asking = false
+    /// Before writing back is switched on, the backup is asked for.
+    @State private var backup = false
 
     var body: some View {
         Group {
@@ -21,6 +23,7 @@ struct LibrarySyncView: View {
         .navigationTitle("Sync")
         .navigationBarTitleDisplayMode(.inline)
         .task { await sync.refresh() }
+        .sheet(isPresented: $backup) { BackupFirst { Task { await sync.setWriteBack(true) } } }
     }
 
     // MARK: - Not connected
@@ -95,7 +98,7 @@ struct LibrarySyncView: View {
         }
         .safeAreaInset(edge: .bottom) {
             VStack(spacing: 8) {
-                Text("For now Kaivo only fetches. Nothing on the server changes.")
+                Text("Connecting only fetches. Writing back stays off until you switch it on.")
                     .font(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.center)
                 primary("Connect") { Task { await sync.connect() } }
                     .disabled(!offer.info.words && sync.passphrase.trimmingCharacters(in: .whitespaces).isEmpty)
@@ -169,9 +172,17 @@ struct LibrarySyncView: View {
                 }
                 .disabled(sync.fetching)
             } footer: {
+                problem
+            }
+            Section {
+                Toggle("Write back", isOn: Binding(get: { state.writesBack }, set: { on in
+                    if on { backup = true } else { Task { await sync.setWriteBack(false) } }
+                }))
+                .accessibilityIdentifier("write-back")
+            } footer: {
                 VStack(alignment: .leading, spacing: 8) {
-                    problem
-                    Text("What you read and mark here stays on this device for now.")
+                    Text("Off: the app only fetches. On: reading progress, highlights, comments and notes of your library go to your place too, also what you changed before.")
+                    Text("What is only saved on this iPhone stays here.")
                 }
             }
             Section {
@@ -212,5 +223,42 @@ struct LibrarySyncView: View {
         .buttonStyle(.borderedProminent)
         .buttonBorderShape(.capsule)
         .controlSize(.large)
+    }
+}
+
+/// Asked before the phone may change the place for the first time: a backup made on the computer.
+private struct BackupFirst: View {
+    let on: () -> Void
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    Text("From now on this iPhone changes your place. Save your library on your computer first.")
+                }
+                Section {
+                    Label("Open Kaivo on your computer: Settings", systemImage: "1.circle")
+                    Label("Backup & sync", systemImage: "2.circle")
+                    Label("Once, as a file → Save to a file, with your articles", systemImage: "3.circle")
+                }
+                // in the list, so that it never covers the steps, whatever the text size
+                Section {
+                    Button {
+                        on()
+                        dismiss()
+                    } label: {
+                        Text("The backup is made, switch on").frame(maxWidth: .infinity, minHeight: 34)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(KaivoTokens.accent)
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
+                }
+            }
+            .navigationTitle("A backup first")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } } }
+        }
     }
 }

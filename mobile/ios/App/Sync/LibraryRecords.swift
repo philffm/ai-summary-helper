@@ -29,6 +29,8 @@ enum LibraryRecords {
         var host: String?
         /// A summary written here for an article of the synced library, which does not take it yet.
         var summary: String?
+        /// The summary the model on this device wrote; compared with the one shown, which another may have replaced.
+        var deviceSummary: String?
     }
 
     static let context = 32   // characters around a highlight, as plugin/src/content/anchor.js keeps them
@@ -67,7 +69,19 @@ enum LibraryRecords {
                        link: link,
                        safariID: extra?.safari == true ? id : nil,
                        paper: extra?.paper,
-                       pending: extra?.pending)
+                       pending: extra?.pending,
+                       questions: saved(record["conversation"]),
+                       summaryOnDevice: !summary.isEmpty && extra?.deviceSummary == summary ? true : nil)
+    }
+
+    /// Of the questions asked about an article, those saved to the notes (`noted`).
+    static func saved(_ conversation: Any?) -> [Question]? {
+        let turns = (conversation as? [[String: Any]] ?? []).filter { flag($0["noted"]) }
+        let questions = turns.compactMap { turn -> Question? in
+            guard let id = turn["id"] as? String, let question = turn["q"] as? String, let answer = turn["a"] as? String else { return nil }
+            return Question(id: id, question: question, answer: answer, date: turn["ts"] as? String ?? "")
+        }
+        return questions.isEmpty ? nil : questions
     }
 
     private static func flag(_ value: Any?) -> Bool { (value as? NSNumber)?.boolValue ?? false }

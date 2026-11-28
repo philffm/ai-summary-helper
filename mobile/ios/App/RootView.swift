@@ -131,6 +131,7 @@ struct RootView: View {
                 Tab("Today", systemImage: "sun.max", value: "today") { TodayView() }
                 Tab("Feeds", systemImage: "dot.radiowaves.up.forward", value: "feeds") { FeedsView() }
                 Tab("Library", systemImage: "books.vertical", value: "library") { LibraryView() }
+                Tab("Notes", systemImage: "note.text", value: "notes") { NotesView() }
             }
             .tabViewStyle(.sidebarAdaptable)
         } else {
@@ -150,6 +151,9 @@ struct RootView: View {
             LibraryView()
                 .tabItem { Label("Library", systemImage: "books.vertical") }
                 .tag("library")
+            NotesView()
+                .tabItem { Label("Notes", systemImage: "note.text") }
+                .tag("notes")
         }
     }
 

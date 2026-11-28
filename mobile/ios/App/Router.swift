@@ -12,6 +12,7 @@ final class Router {
     var tab = LaunchOptions.startTab
     var todayPath: [Route] = []
     var feedsPath: [Route] = []
+    var notesPath: [Route] = []
     var libraryPath: [Route] = LaunchOptions.startArticle.map { [.article($0)] } ?? []
 
     func open(_ link: DeepLink) {

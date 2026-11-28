@@ -7,6 +7,8 @@ struct ReaderView: View {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(Summaries.self) private var summaries
     @State private var showReferences = false
+    /// The highlight that is being written on.
+    @State private var commenting: NoteItem?
     @State private var showServer = false
     private var stored = StoredReaderLook()
     @Environment(\.dynamicTypeSize) private var systemTextSize
@@ -182,6 +184,9 @@ struct ReaderView: View {
                 }
             }
         }
+        .sheet(item: $commenting) { item in
+            NoteEditor(quote: item.text, title: "Comment", text: item.written) { library.write($0, on: item) }
+        }
         .sheet(isPresented: $showServer) { NavigationStack { ModelServerView(closable: true) } }
         .alert("Send text to an AI service?",
                isPresented: Binding(get: { summaries.question?.article == article.id }, set: { if !$0 { summaries.question = nil } }),
@@ -249,7 +254,8 @@ struct ReaderView: View {
                             citations: paper && !small,
                             highlight: { range in library.change(passage.id, in: id) { $0.highlight(range) } },
                             unmark: { range in library.change(passage.id, in: id) { $0.unmark(range) } },
-                            resolve: { mark, keep in library.change(passage.id, in: id) { $0.resolve(suggestion: mark, keep: keep) } })
+                            resolve: { mark, keep in library.change(passage.id, in: id) { $0.resolve(suggestion: mark, keep: keep) } },
+                            comment: { mark in commenting = library.entry(for: mark, in: id) })
                 // said once, at the first suggestion: the actions are behind a tap
                 if passage.id == hint {
                     Text("Tap a suggestion of the AI to keep or dismiss it.").font(.footnote).foregroundStyle(.secondary)

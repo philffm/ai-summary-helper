@@ -15,6 +15,8 @@ struct PassageText: UIViewRepresentable {
     let unmark: (NSRange) -> Void
     /// Keeps (true) or dismisses a suggestion of the AI: offered where it is tapped.
     let resolve: (Mark.ID, Bool) -> Void
+    /// Writes on a highlight: offered where one is tapped; nil where highlights cannot be written on.
+    var comment: ((Mark.ID) -> Void)?
 
     func makeCoordinator() -> Coordinator { Coordinator(self) }
 
@@ -89,7 +91,7 @@ struct PassageText: UIViewRepresentable {
     final class Coordinator: NSObject, UITextViewDelegate, UIGestureRecognizerDelegate, UIEditMenuInteractionDelegate {
         var parent: PassageText
         weak var menu: UIEditMenuInteraction?
-        /// The suggestion the menu is about, and where its words lie.
+        /// The highlight the menu is about, and where its words lie.
         private var asked: (id: Mark.ID, frame: CGRect)?
         init(_ parent: PassageText) { self.parent = parent }
 
@@ -101,7 +103,8 @@ struct PassageText: UIViewRepresentable {
             // the nearest glyph is not enough: a tap beside the words means nothing
             guard layout.boundingRect(forGlyphRange: NSRange(location: glyph, length: 1), in: container).insetBy(dx: -6, dy: -6).contains(point) else { return }
             let character = layout.characterIndexForGlyph(at: glyph)
-            guard let mark = parent.passage.marks.first(where: { $0.ai && NSLocationInRange(character, $0.range) }) else { return }
+            // the reader's own highlights offer something only where they can be written on
+            guard let mark = parent.passage.marks.first(where: { ($0.ai || parent.comment != nil) && NSLocationInRange(character, $0.range) }) else { return }
             let words = layout.glyphRange(forCharacterRange: mark.range, actualCharacterRange: nil)
             // the line that was tapped, so that the menu stands beside the finger, also for a long suggestion
             var line = NSRange()
@@ -114,14 +117,23 @@ struct PassageText: UIViewRepresentable {
         func gestureRecognizer(_ recognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith other: UIGestureRecognizer) -> Bool { true }
 
         func editMenuInteraction(_ interaction: UIEditMenuInteraction, menuFor configuration: UIEditMenuConfiguration, suggestedActions: [UIMenuElement]) -> UIMenu? {
-            guard let id = asked?.id else { return nil }
+            guard let id = asked?.id, let mark = parent.passage.marks.first(where: { $0.id == id }) else { return nil }
+            let write = parent.comment == nil ? [] : [UIAction(title: String(localized: "Comment"), image: UIImage(systemName: "text.bubble")) { [weak self] _ in
+                self?.parent.comment?(id)
+            }]
+            guard mark.ai else {
+                return UIMenu(children: write + [UIAction(title: String(localized: "Remove highlight"), image: UIImage(systemName: "eraser")) { [weak self] _ in
+                    guard let self, let mark = parent.passage.marks.first(where: { $0.id == id }) else { return }
+                    parent.unmark(mark.range)
+                }])
+            }
             return UIMenu(children: [
                 UIAction(title: String(localized: "Keep"), image: UIImage(systemName: "checkmark")) { [weak self] _ in
                     self?.parent.resolve(id, true)
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
                 },
                 UIAction(title: String(localized: "Dismiss"), image: UIImage(systemName: "xmark")) { [weak self] _ in self?.parent.resolve(id, false) },
-            ])
+            ] + write)
         }
 
         func editMenuInteraction(_ interaction: UIEditMenuInteraction, targetRectFor configuration: UIEditMenuConfiguration) -> CGRect {

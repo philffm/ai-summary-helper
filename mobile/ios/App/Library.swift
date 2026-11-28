@@ -18,6 +18,11 @@ final class Library {
     @ObservationIgnored let store: LibraryStore?
     /// The last piece of work: the next one waits for it.
     @ObservationIgnored private var tail: Task<Void, Never>?
+    /// Notes and highlights as the store tells them.
+    private(set) var stored: [NoteItem] = []
+    /// The samples' notes, which live only as long as the app.
+    private var sampleNotes: [NoteItem] = []
+    private var sampleComments: [String: String] = [:]
     /// Counts the changes, so that a reading that started before one of them is repeated.
     @ObservationIgnored private var changes = 0
     private static let logger = Logger(subsystem: "eu.byphil.kaivo", category: "library")
@@ -58,12 +63,133 @@ final class Library {
             while let self {
                 let before = self.changes
                 let read = try await store.articles()
+                let notes = try await store.stream()
                 guard self.changes == before else { continue }
                 if self.articles != read { self.articles = read }
+                if self.stored != notes { self.stored = notes }
                 self.loaded = true
                 return
             }
         }
+    }
+
+    /// Reads the notes again, after one of them changed.
+    private func reloadNotes() {
+        then { [weak self] store in
+            let notes = try await store.stream()
+            if let self, self.stored != notes { self.stored = notes }
+        }
+    }
+
+    /// Everything "Notes" lists: notes, highlights and the saved questions, newest first.
+    var entries: [NoteItem] {
+        let questions = articles.flatMap { article in
+            (article.questions ?? []).map { question in
+                NoteItem(kind: .question, id: question.id, text: question.question, when: question.date, answer: question.answer,
+                         article: article.id, title: article.title)
+            }
+        }
+        return ((store == nil ? sampleEntries : stored) + questions).sorted { ($1.when, $0.id) < ($0.when, $1.id) }
+    }
+
+    /// Without a store: the samples' marks, as the library would list them.
+    private var sampleEntries: [NoteItem] {
+        sampleNotes + articles.flatMap { article in
+            article.passages.flatMap { passage in
+                passage.marks.map { mark in
+                    let id = mark.highlight ?? mark.id.uuidString
+                    let comment = NoteItem.split(sampleComments[id] ?? "")
+                    return NoteItem(kind: mark.ai ? .ghost : .user, id: id, text: passage.words(of: mark), tags: comment.tags,
+                                    when: LibraryRecords.timestamp(article.savedAt), comment: comment.text, article: article.id, title: article.title)
+                }
+            }
+        }
+    }
+
+    func addNote(_ text: String) {
+        let text = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !text.isEmpty else { return }
+        if store == nil {
+            let parts = NoteItem.split(text)
+            sampleNotes.insert(NoteItem(kind: .note, id: "sample-" + UUID().uuidString, text: parts.text, tags: parts.tags,
+                                        when: LibraryRecords.timestamp(.now)), at: 0)
+            return
+        }
+        changed { try await $0.note(text) }
+        reloadNotes()
+    }
+
+    /// New words for a note, or a comment on a highlight (none take it away).
+    func write(_ text: String, on item: NoteItem) {
+        if item.kind == .note {
+            guard !text.isEmpty else { return }
+            if store == nil {
+                let parts = NoteItem.split(text)
+                if let i = sampleNotes.firstIndex(where: { $0.id == item.id }) { sampleNotes[i].text = parts.text; sampleNotes[i].tags = parts.tags }
+                return
+            }
+            changed { try await $0.editNote(item.id, text: text) }
+        } else {
+            comment(item.id, text: text, url: item.url ?? "")
+            return
+        }
+        reloadNotes()
+    }
+
+    /// The comment on a highlight.
+    func comment(_ highlight: String, text: String, url: String) {
+        if store == nil {
+            sampleComments[highlight] = text
+            return
+        }
+        changed { try await $0.comment(highlight, text: text, url: url) }
+        reloadNotes()
+    }
+
+    /// The highlight behind a mark of an article, with its comment; made known to the library first where it is new.
+    func entry(for mark: Mark.ID, in id: Article.ID) -> NoteItem? {
+        guard let article = article(id),
+              let passage = article.passages.first(where: { $0.marks.contains { $0.id == mark } }),
+              let found = passage.marks.first(where: { $0.id == mark }) else { return nil }
+        let highlight = found.highlight ?? found.id.uuidString
+        if let listed = entries.first(where: { $0.isHighlight && $0.id == highlight }) { return listed }
+        return NoteItem(kind: found.ai ? .ghost : .user, id: highlight, text: passage.words(of: found), when: "",
+                        url: Self.address(of: article), article: id, title: article.title)
+    }
+
+    /// A suggestion of the AI becomes the reader's own.
+    func keep(_ item: NoteItem) { resolve(item, keep: true) }
+
+    /// A note goes, a highlight is removed, a suggestion is turned down.
+    func delete(_ item: NoteItem) {
+        if item.kind == .note {
+            if store == nil { sampleNotes.removeAll { $0.id == item.id }; return }
+            stored.removeAll { $0.id == item.id }
+            changed { try await $0.removeNote(item.id) }
+            reloadNotes()
+        } else if item.isHighlight {
+            resolve(item, keep: false)
+        }
+    }
+
+    private func resolve(_ item: NoteItem, keep: Bool) {
+        // the article on screen shows it at once
+        for a in articles.indices {
+            for p in articles[a].passages.indices {
+                guard let m = articles[a].passages[p].marks.firstIndex(where: { ($0.highlight ?? $0.id.uuidString) == item.id }) else { continue }
+                if keep { articles[a].passages[p].marks[m].ai = false } else { articles[a].passages[p].marks.remove(at: m) }
+            }
+        }
+        guard store != nil else { return }
+        if keep { if let i = stored.firstIndex(where: { $0.id == item.id }) { stored[i].kind = .user } }
+        else { stored.removeAll { $0.id == item.id } }
+        let url = item.url ?? ""
+        changed { store in
+            if keep { try await store.mark(url: url, keep: [item.id]) }
+            else if item.kind == .ghost { try await store.mark(url: url, dismiss: [item.id]) }
+            else { try await store.mark(url: url, remove: [item.id]) }
+        }
+        reloadNotes()
     }
 
     private func then(_ work: @escaping @MainActor (LibraryStore) async throws -> Void) {
@@ -236,10 +362,11 @@ final class Library {
     }
 
     /// A finished summary; the sentences the model copied become its suggested highlights.
-    func setSummary(_ id: Article.ID, _ lines: [String], marking sentences: [String]) {
+    func setSummary(_ id: Article.ID, _ lines: [String], marking sentences: [String], onDevice: Bool = false) {
         guard let i = articles.firstIndex(where: { $0.id == id }) else { return }
         articles[i].summary = lines
         articles[i].summaryHTML = LibraryRecords.summaryHTML(lines)
+        articles[i].summaryOnDevice = onDevice ? true : nil
         articles[i].pending = nil
         for sentence in sentences { SafariImport.mark(sentence, ai: true, in: &articles[i].passages) }
         var added: [[String: Any]] = []
@@ -256,6 +383,7 @@ final class Library {
             try await store.mark(url: url, add: added)
             var extra = try await store.extra(id)
             extra.pending = nil
+            extra.deviceSummary = onDevice ? LibraryRecords.summaryHTML(lines) : nil
             try await store.setExtra(id, extra)
         }
     }
@@ -292,6 +420,7 @@ final class Library {
         guard !(added.isEmpty && keep.isEmpty && dismiss.isEmpty && remove.isEmpty) else { return }
         let url = Self.address(of: articles[a])
         changed { try await $0.mark(url: url, add: added, keep: keep, dismiss: dismiss, remove: remove) }
+        reloadNotes()
     }
 
     /// Where an article's highlights are filed: its address, or one of the app's own for an article without.

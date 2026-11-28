@@ -27,6 +27,7 @@ struct SummaryCard: View {
             DisclosureGroup(isExpanded: $open) {
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(blocks) { row($0) }
+                    if article.summaryOnDevice == true { Text("Created on this device").font(.footnote).foregroundStyle(.secondary) }
                     if waiting {
                         progress
                     } else if again {

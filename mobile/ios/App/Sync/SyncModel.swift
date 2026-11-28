@@ -119,6 +119,15 @@ final class SyncModel {
         fetching = false
     }
 
+    /// Switched on, a run follows at once and sends what changed here.
+    func setWriteBack(_ on: Bool) async {
+        guard let sync else { return }
+        while fetching { try? await Task.sleep(for: .milliseconds(200)) }
+        do { try await sync.setWriteBack(on) } catch { problem = Problem(error) }
+        await refresh()
+        if on { await fetch() }
+    }
+
     func leave() async {
         guard let sync else { return }
         // a run that is going on ends first: the tap must not get lost

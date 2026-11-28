@@ -247,6 +247,9 @@ final class LibraryStoreTests: XCTestCase {
         let store = try LibraryStore(folder: root.appending(path: "library"), shared: shared, vault: vault, writeBack: true, network: network)
         let library = Library(samples: false, store: store)
         await library.settled()
+        // written before any library is joined: it stays on this phone
+        library.addNote("Only on the phone #private")
+        await library.settled()
         let model = SyncModel(library: library)
         await model.read("aish-library://v1?k=webdav&u=https%3A%2F%2Fdav.test%2Ffiles%2F&n=u&p=p&r=kaivo-test")
         model.passphrase = try XCTUnwrap(made["passphrase"] as? String)
@@ -257,6 +260,15 @@ final class LibraryStoreTests: XCTestCase {
         var browser = try XCTUnwrap(library.article("x1"))
         XCTAssertEqual(browser.progress, 0.9)
 
+        // what "Notes" lists: the browser's note and comment, and of its questions the one saved to the notes
+        func entry(_ words: String) throws -> NoteItem { try XCTUnwrap(library.entries.first { $0.text == words }, words) }
+        XCTAssertEqual(try entry("A note from the browser").tags, ["todo"])
+        XCTAssertEqual(try entry("A note from the browser").article, "x1")
+        XCTAssertEqual(try entry("Grüße aus dem Browser").comment, "Said in the browser")
+        XCTAssertEqual(library.entries.filter { $0.kind == .question }.map(\.text), ["Why does sleep help?"])
+        XCTAssertEqual(try entry("Only on the phone").here, true)
+        XCTAssertEqual(try entry("A note from the browser").here, false)
+
         // read on, keep a suggestion, turn one down, remove a mark, mark something new, and ask for a summary
         func paragraph(_ start: String) throws -> Passage { try XCTUnwrap(browser.passages.first { $0.text.hasPrefix(start) }, start) }
         library.read("x1", upTo: 0.95)
@@ -265,6 +277,9 @@ final class LibraryStoreTests: XCTestCase {
         library.change(try paragraph("Remove this").id, in: "x1") { $0.unmark(NSRange(location: 0, length: 6)) }
         library.change(try paragraph("Grüße").id, in: "x1") { $0.highlight(($0.text as NSString).range(of: "quote")) }
         library.setSummary("x1", ["Written on the phone."], marking: [])
+        library.addNote("From the phone #idea")
+        library.write("Said on the phone", on: try entry("Keep this suggestion."))
+        library.delete(try entry("A note from the browser"))
         // Safari on this phone hands the same page over, with its own title and text
         try await store.take([["entry": ["id": "safari1", "url": "https://example.org/from-the-browser", "title": "Another title", "progress": 0.1],
                                "record": ["content": "<p>Other text.</p>", "summary": "<p>Other summary.</p>"], "fresher": true]])
@@ -273,6 +288,9 @@ final class LibraryStoreTests: XCTestCase {
         XCTAssertNil(model.problem)
         browser = try XCTUnwrap(library.article("x1"))
         XCTAssertEqual(browser.summary, ["Written on the phone."], "kept by the app")
+        XCTAssertEqual(Set(library.entries.filter { $0.kind == .note }.map(\.text)), ["From the phone", "Only on the phone"])
+        XCTAssertEqual(try entry("Keep this suggestion.").comment, "Said on the phone")
+        XCTAssertEqual(try entry("Keep this suggestion.").kind, .user)
         XCTAssertEqual(browser.title, "Written in the browser")
 
         let written = changesOnTheServer
@@ -365,6 +383,103 @@ final class LibraryStoreTests: XCTestCase {
         XCTAssertEqual(Set(library.articles.map(\.id)), ["alone", "x1"], "the screen shows what is there now")
         XCTAssertEqual(library.article("x1")?.progress, 0.99)
         XCTAssertEqual(library.article("alone")?.passages.first?.marks.count, 1)
+    }
+
+    /// The switch in "Sync": off for a library until the reader turns it on, and off again for the next one.
+    func testWritingBackIsASwitch() async throws {
+        let made = try serveTheBrowsersPlace()
+        let library = try await start()
+        let model = SyncModel(library: library)
+        let code = "aish-library://v1?k=webdav&u=https%3A%2F%2Fdav.test%2Ffiles%2F&n=u&p=p&r=kaivo-test"
+        await model.read(code)
+        model.passphrase = try XCTUnwrap(made["passphrase"] as? String)
+        await model.connect()
+        library.addNote("Waiting to go")
+        library.read("x1", upTo: 0.8)
+        await library.settled()
+        await model.fetch()
+        XCTAssertEqual(model.state?.writesBack, false)
+        XCTAssertEqual(changesOnTheServer, 0)
+
+        await model.setWriteBack(true)
+        XCTAssertNil(model.problem)
+        XCTAssertEqual(model.state?.writesBack, true)
+        XCTAssertEqual(FakeDAV.count("PUT"), 2, "the note and how far the article was read, also what was changed before")
+        let after = try await start()
+        let kept = try await after.store!.sync.state()
+        XCTAssertEqual(kept?.writesBack, true, "still on after a new start")
+
+        await model.setWriteBack(false)
+        library.addNote("Stays for now")
+        await library.settled()
+        await model.fetch()
+        XCTAssertEqual(FakeDAV.count("PUT"), 2)
+
+        await model.setWriteBack(true)
+        await model.leave()
+        await model.read(code)
+        model.passphrase = try XCTUnwrap(made["passphrase"] as? String)
+        await model.connect()
+        XCTAssertEqual(model.state?.writesBack, false, "a backup comes first, for every library anew")
+        XCTAssertEqual(FakeDAV.count("DELETE"), 0)
+    }
+
+    /// Comments follow their highlight when it is folded into the library's or dropped as a double, and nothing of one
+    /// library's notes goes into the next.
+    func testNotesFollowWhatTheyBelongTo() async throws {
+        let store = try store()
+        let result = try await store.sync.host.run("""
+            const page = 'https://example.org/p', at = '2026-11-01T10:00:00.000Z';
+            const hl = (id, text) => ({ id, url: page, text, type: 'user', timestamp: at });
+            // before a library: everything is this phone's
+            await sync.library.take({ articles: [{ entry: { id: 'mine', url: page, title: 'Mine', timestamp: at }, record: { content: '<p>a b</p>' },
+                highlights: [{ id: 'hl_own', text: 'same words', ai: false, timestamp: at }] }] });
+            await sync.library.comment({ highlightId: 'hl_own', text: 'my thought #t', url: page });
+            await sync.library.note({ text: 'on the page', url: page });
+            // a library with the same page and the same words arrives, with a comment of its own
+            await storage.set({ 'sync:places': [{ id: 'p' }], 'hl:schema': 2,
+                'articles:index': [{ id: 'srv', url: page, title: 'Theirs', timestamp: at }], 'articles:rec:srv': { content: '<p>a b</p>' } });
+            // `upsert`, as the sync writes what it pulls: a plain add would refuse the second one of the same words
+            await sync.highlights.apply([hl('hl_srv', 'same words'), hl('hl_app_double', 'more words'), hl('hl_srv2', 'more words ')].map((h) => ({ op: 'upsert', hl: h })));
+            await sync.library.comment({ highlightId: 'hl_app_double', text: 'on the double', url: page });
+            await storage.set({ 'sync:ledger:p': { items: { 'article:srv': {}, 'hl:hl_srv': {}, 'hl:hl_srv2': {} } } });
+            await sync.library.settle('p');
+            const view = async () => (await sync.library.stream()).map((x) => [x.kind, x.id.startsWith('n_') ? 'note' : x.id, x.comment || x.text, !!x.here]).sort();
+            const settled = await view();
+            // another library: what the first one holds stays on this phone, unmarked as deleted
+            await sync.library.enter('another');
+            const theirs = (await storage.get({ 'notes:index': [] }))['notes:index'];
+            const marks = Object.keys(await storage.get((await storage.getKeys()).filter((k) => k.startsWith('sync:stamps:'))))
+                .length && Object.values(await storage.get((await storage.getKeys()).filter((k) => k.startsWith('sync:stamps:'))))
+                .flatMap((shard) => Object.values(shard)).filter((s) => s.deleted).length;
+            return { settled, theirs: theirs.length, after: await view(), marks: marks || 0 };
+            """)
+        let got = try XCTUnwrap(JSONSerialization.jsonObject(with: result) as? [String: Any])
+        let rows = try XCTUnwrap(got["settled"] as? [[Any]]).map { $0.map { "\($0)" }.joined(separator: "|") }
+        XCTAssertEqual(rows, ["note|note|on the page|0", "user|hl_srv|my thought|0", "user|hl_srv2|on the double|0"])
+        XCTAssertEqual(got["theirs"] as? Int, 0)
+        XCTAssertEqual((got["after"] as? [[Any]])?.count, 3, "nothing lost")
+        XCTAssertEqual(got["marks"] as? Int, 0)
+    }
+
+    func testARemovedHighlightTakesItsCommentAlong() async throws {
+        let store = try store()
+        let result = try await store.sync.host.run("""
+            const page = 'https://example.org/c', at = '2026-11-01T10:00:00.000Z';
+            await storage.set({ 'sync:places': [{ id: 'p' }], 'hl:schema': 2, 'articles:index': [{ id: 'srv', url: page, title: 'Theirs', timestamp: at }], 'articles:rec:srv': {} });
+            await sync.highlights.apply([{ op: 'add', hl: { id: 'hl_mine', url: page, text: 'mine', type: 'user', timestamp: at } },
+                { op: 'add', hl: { id: 'hl_ai', url: page, text: 'theirs', type: 'ghost', timestamp: at } }]);
+            for (const id of ['hl_mine', 'hl_ai']) await sync.library.comment({ highlightId: id, text: 'on ' + id, url: page });
+            await sync.library.mark({ url: page, remove: ['hl_mine'], dismiss: ['hl_ai'] });
+            await new Promise((resolve) => setTimeout(resolve, 100));
+            const shards = await storage.get((await storage.getKeys()).filter((k) => k.startsWith('sync:stamps:')));
+            const deleted = Object.values(shards).flatMap((s) => Object.entries(s)).filter(([, v]) => v.deleted).map(([k]) => k).sort();
+            return { comments: (await storage.get({ 'notes:index': [] }))['notes:index'].length, listed: (await sync.library.stream()).length, deleted };
+            """)
+        let got = try XCTUnwrap(JSONSerialization.jsonObject(with: result) as? [String: Any])
+        XCTAssertEqual(got["comments"] as? Int, 0)
+        XCTAssertEqual(got["listed"] as? Int, 0)
+        XCTAssertEqual(got["deleted"] as? [String], ["hl:hl_mine", "note:c_hl_ai", "note:c_hl_mine"], "turned down is kept, removed is marked")
     }
 
     func testWithoutTheSwitchNothingIsWritten() async throws {

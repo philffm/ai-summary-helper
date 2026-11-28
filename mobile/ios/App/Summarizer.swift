@@ -44,9 +44,13 @@ enum SummaryError: LocalizedError {
     }
 }
 
-/// Where one summary is asked for: the connection set in Safari, or the reader's own server.
+/// Where one summary is asked for: the reader's own server, the connection set in Safari, or the model on this device.
 struct ModelEndpoint: Equatable {
-    enum Format { case openai, gemini }
+    enum Format {
+        case openai, gemini
+        /// The model on this device: no request leaves it.
+        case device
+    }
 
     var url: URL
     var model: String
@@ -86,13 +90,21 @@ struct ModelEndpoint: Equatable {
                              name: base.host() ?? server.address)
     }
 
-    /// Safari's connection unless the reader chose the own server; whichever works when the other cannot.
-    static func choose(safari: ModelEndpoint?, own: ModelEndpoint?, preferOwn: Bool) -> ModelEndpoint? {
-        preferOwn ? own ?? safari : safari ?? own
+    /// The model on this device, where it is ready to answer.
+    static func device(_ state: DeviceModel.State) -> ModelEndpoint? {
+        guard state == .ready, let url = URL(string: "kaivo://device") else { return nil }
+        return ModelEndpoint(url: url, model: "apple-intelligence", format: .device, name: String(localized: "This device"))
+    }
+
+    /// Safari's connection unless the reader chose the own server; whichever works when the other cannot. A server the
+    /// reader set up comes before the device's own model, which needs no setting up.
+    static func choose(safari: ModelEndpoint?, own: ModelEndpoint?, preferOwn: Bool, device: ModelEndpoint? = nil) -> ModelEndpoint? {
+        (preferOwn ? own ?? safari : safari ?? own) ?? device
     }
 
     static var current: ModelEndpoint? {
-        choose(safari: SafariModel.load().flatMap { safari($0) }, own: own(.saved), preferOwn: UserDefaults.standard.bool(forKey: "summaryOwnServer"))
+        choose(safari: SafariModel.load().flatMap { safari($0) }, own: own(.saved), preferOwn: UserDefaults.standard.bool(forKey: "summaryOwnServer"),
+               device: device(DeviceModel.state))
     }
 
     /// This device or the reader's own network.
@@ -116,6 +128,8 @@ struct ModelEndpoint: Equatable {
     func request(system: String, user: String) throws -> URLRequest {
         let body: [String: Any]
         switch format {
+        case .device:
+            throw SummaryError.noServer   // asked directly, never over the network
         case .gemini:
             body = ["contents": [["role": "user", "parts": [["text": system + "\n\n" + user]]]]]
         case .openai:
@@ -185,7 +199,8 @@ struct ModelClient {
     }
 
     func ask(_ endpoint: ModelEndpoint, system: String, user: String) async throws -> String {
-        ModelEndpoint.text(of: try await answer(endpoint.request(system: system, user: user), fromSafari: endpoint.fromSafari))
+        if endpoint.format == .device { return try await DeviceModel.ask(system: system, user: user) }
+        return ModelEndpoint.text(of: try await answer(endpoint.request(system: system, user: user), fromSafari: endpoint.fromSafari))
     }
 }
 
@@ -198,7 +213,7 @@ struct AIConsent {
     var hosts: [String] { store.stringArray(forKey: Self.key) ?? [] }
 
     func isNeeded(for endpoint: ModelEndpoint) -> Bool {
-        guard !ModelEndpoint.isLocal(endpoint.url), let host = endpoint.url.host()?.lowercased() else { return false }
+        guard endpoint.format != .device, !ModelEndpoint.isLocal(endpoint.url), let host = endpoint.url.host()?.lowercased() else { return false }
         return !hosts.contains(host)
     }
 
@@ -232,9 +247,9 @@ enum SummaryPrompt {
     static let join = "These are notes from consecutive parts of one web page. Write the summary of the whole page: one sentence on what it is about, then 3 to 5 key points, one per line, each starting with '- '. Use only the notes; no preamble. Keep it under 150 words. Reply in the language of the notes."
 
     /// The text cut into model-sized parts at paragraph or sentence ends, at most `maxChunks`.
-    static func parts(_ text: String, size: Int = chunk) -> [String] {
+    static func parts(_ text: String, size: Int = chunk, most: Int = maxChunks) -> [String] {
         var rest = Substring(text.trimmingCharacters(in: .whitespacesAndNewlines)), out: [String] = []
-        while !rest.isEmpty && out.count < maxChunks {
+        while !rest.isEmpty && out.count < most {
             if rest.count <= size { out.append(String(rest)); break }
             let window = rest.prefix(size)
             var cut = window.endIndex
@@ -284,11 +299,12 @@ enum SummaryPrompt {
     }
 
     /// One request for a short text; for a long one a request per part and one to join the notes.
-    static func summarize(title: String, paragraphs: [String], ask: (String, String) async throws -> String,
+    static func summarize(title: String, paragraphs: [String], size: Int = chunk, most: Int = maxChunks,
+                          ask: (String, String) async throws -> String,
                           progress: (Int, Int) async -> Void) async throws -> (lines: [String], sentences: [String]) {
         let body = paragraphs.joined(separator: "\n")
         guard body.count >= minText else { throw SummaryError.empty }
-        let parts = parts(title + "\n\n" + body)
+        let parts = parts(title + "\n\n" + body, size: size, most: most)
         var copied = "", summary = ""
         if parts.count == 1 {
             await progress(1, 1)
@@ -372,10 +388,22 @@ final class Summaries {
                     running = nil
                     continue
                 }
-                let result = try await SummaryPrompt.summarize(title: article.title, paragraphs: paragraphs,
-                                                               ask: { try await client.ask(endpoint, system: $0, user: $1) },
-                                                               progress: { at, of in await MainActor.run { self.step = (at, of) } })
-                library.setSummary(id, result.lines, marking: result.sentences)
+                let onDevice = endpoint.format == .device
+                var cut = onDevice ? DeviceModel.parts(for: paragraphs.joined(separator: "\n")) : (size: SummaryPrompt.chunk, most: SummaryPrompt.maxChunks)
+                func write() async throws -> (lines: [String], sentences: [String]) {
+                    try await SummaryPrompt.summarize(title: article.title, paragraphs: paragraphs, size: cut.size, most: cut.most,
+                                                      ask: { try await client.ask(endpoint, system: $0, user: $1) },
+                                                      progress: { at, of in await MainActor.run { self.step = (at, of) } })
+                }
+                let result: (lines: [String], sentences: [String])
+                do {
+                    result = try await write()
+                } catch DeviceModel.Failure.tooLong {
+                    // once more in parts half as long
+                    cut = (cut.size / 2, cut.most * 2)
+                    result = try await write()
+                }
+                library.setSummary(id, result.lines, marking: result.sentences, onDevice: onDevice)
             } catch {
                 failure = error.localizedDescription
             }

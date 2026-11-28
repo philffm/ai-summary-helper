@@ -227,6 +227,27 @@ final class LibraryStore: @unchecked Sendable {
     }
 
     /// Gone from this device, or back again. (Deleting on every device comes with a later version.)
+    /// Notes and highlights of the whole library, newest first.
+    func stream() async throws -> [NoteItem] {
+        try JSONDecoder().decode([NoteItem].self, from: try await host.run("return sync.library.stream();"))
+    }
+
+    func note(_ text: String, url: String = "", title: String = "") async throws {
+        _ = try await host.run("return sync.library.note(input);", input: ["text": text, "url": url, "title": title])
+    }
+
+    func editNote(_ id: String, text: String) async throws {
+        _ = try await host.run("return sync.library.editNote(input);", input: ["id": id, "text": text])
+    }
+
+    func removeNote(_ id: String) async throws {
+        _ = try await host.run("return sync.library.removeNote(input);", input: ["id": id])
+    }
+
+    func comment(_ highlight: String, text: String, url: String) async throws {
+        _ = try await host.run("return sync.library.comment(input);", input: ["highlightId": highlight, "text": text, "url": url])
+    }
+
     func hide(_ id: String, gone: Bool = true) async throws {
         _ = try await host.run("return sync.library.hide(input);", input: ["id": id, "gone": gone])
     }

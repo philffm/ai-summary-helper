@@ -13,7 +13,9 @@ import { mergeRecord } from '../../../plugin/src/modules/syncMerge.js';
 import { deriveMaster, subKeys, nameOf, encryptJson, decryptJson, openMeta, toHex, toB64, fromB64 } from '../../../plugin/src/modules/syncCrypto.js';
 import { canonicalPassphrase } from '../../../plugin/src/modules/syncPassphrase.js';
 import { parsePhoneCode } from '../../../plugin/src/modules/syncPhoneCode.js';
-import { SK, articleRecKey, syncLedgerKey } from '../../../plugin/src/modules/storageKeys.js';
+import { SK, articleRecKey, noteRecKey, syncLedgerKey } from '../../../plugin/src/modules/storageKeys.js';
+import { createNotesStore } from '../../../plugin/src/modules/notesStore.js';
+import { splitTags } from '../../../plugin/src/modules/noteText.js';
 import { signV4 } from '../../../plugin/src/modules/syncS3.js';
 import { pageKeyForUrl } from '../../../plugin/src/modules/pageKey.js';
 import { articleKey } from '../../../plugin/src/modules/syncIdentity.js';
@@ -24,8 +26,8 @@ const dataHooks = { count: countWords, compose: (base, turns) => withQuestions(b
 
 /**
  * The sync of one library. `storage` behaves like the extension's local storage (host.js); its change events are stamped
- * here, as the extension's background does. Without `writeBack` runs only fetch: nothing on the server changes.
- * `engine`: further options for the runs.
+ * here, as the extension's background does. Runs only fetch, unless writing back is switched on: kept with the library
+ * (`setWriteBack`), or forced by `writeBack` for tests. `engine`: further options for the runs.
  */
 function createSync({ storage, log = () => {}, writeBack = false, engine = {} }) {
     const stampStore = createStampStore({ storage });
@@ -34,6 +36,9 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
     const service = serviceWith({ pullOnly: true });
     const writing = serviceWith({});
     const library = createLibrary({ storage, stampStore });
+    const WRITE = 'app:writeBack';
+    const writes = async () => writeBack || (await storage.get({ [WRITE]: false }))[WRITE] === true;
+    const setWriteBack = ({ on }) => storage.set({ [WRITE]: on === true });
 
     /**
      * Joins the library the browser made, from the code it shows for a phone. The app never makes one: a folder without a
@@ -57,6 +62,8 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
         const before = await service.placesNow();
         const place = await service.add({ connection, secret, place: { mode: 'encrypted', direction: 'twoway', root: given.root, passphrase: words, ackBackup: true } });
         for (const old of before) await service.remove(old.id);
+        // switched on for each library anew: a backup of this one comes first
+        await setWriteBack({ on: false });
         // what another library brought stays on this device: it must never travel into this one
         await library.enter([connection.service, connection.url, connection.bucket || '', place.root].join('|'));
         return { id: place.id, root: place.root };
@@ -92,7 +99,7 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
         // nothing goes out after a fetch that did not end well: what is on the server is not fully known then
         if (!(await toTheEnd(service, place.id, total)) || total.errors.length) return total;
         total.moved = await library.settle(place.id);
-        if (writeBack) await toTheEnd(writing, place.id, total);
+        if (await writes()) await toTheEnd(writing, place.id, total);
         return total;
     }
 
@@ -102,12 +109,13 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
         if (!place) return null;
         const connection = (await service.connectionsNow()).find((c) => c.id === place.connectionId) || {};
         const articles = (await storage.get({ [SK.articlesIndex]: [] }))[SK.articlesIndex];
-        return { id: place.id, service: connection.service, server: connection.name, root: place.root, articles: articles.length, writesBack: writeBack, last: (await service.statusNow())[place.id] || null };
+        return { id: place.id, service: connection.service, server: connection.name, root: place.root, articles: articles.length, writesBack: await writes(), last: (await service.statusNow())[place.id] || null };
     }
 
     /** Forgets the library and its login. What was fetched stays. */
     async function leave() {
         for (const place of await service.placesNow()) await service.remove(place.id);
+        await setWriteBack({ on: false });
     }
 
     /** What a code says, to be looked at before joining. No password. */
@@ -119,7 +127,7 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
         return { service: given.kind, server: host, folder: given.kind === 's3' ? `${given.bucket}/${given.root}` : given.root, words: !!given.words, plain: /^http:/i.test(given.url) };
     }
 
-    return { service, writing, stampStore, highlights: createHighlightStore({ storage }), join, run, state, leave, look, library };
+    return { service, writing, stampStore, highlights: createHighlightStore({ storage }), join, run, state, leave, look, setWriteBack, library };
 }
 
 /** The extension's storage under names of its own, which none of its modules reads. */
@@ -134,7 +142,7 @@ function aside(storage, prefix) {
             return out;
         },
         set: (items) => storage.set(Object.fromEntries(Object.entries(items).map(([k, v]) => [prefix + k, v]))),
-        remove: (keys) => storage.remove(own(keys)),
+        remove: (keys, done) => storage.remove(own(keys), done),
         getKeys: async () => (await storage.getKeys()).filter((k) => k.startsWith(prefix)).map((k) => k.slice(prefix.length)),
     };
 }
@@ -151,9 +159,11 @@ const sameHighlight = (a, b) => {
     return (p.endsWith(q) || q.endsWith(p)) && (s.startsWith(t) || t.startsWith(s));
 };
 
-/** Articles and highlights in the extension's shapes, written through its modules, in one storage. */
-function createArea(storage) {
+/** Articles, highlights and notes in the extension's shapes, written through its modules, in one storage. `mark` leaves
+ * the deletion markers of removed notes. */
+function createArea(storage, mark = async () => 0) {
     const highlights = createHighlightStore({ storage });
+    const notes = createNotesStore({ storage, mark });
     const read = async (key, empty) => (await storage.get({ [key]: empty }))[key];
 
     /** A store that is new starts as an extension does today: highlights filed by page. */
@@ -178,7 +188,31 @@ function createArea(storage) {
             await storage.set({ [SK.articlesIndex]: list });
         });
     }
-    return { storage, highlights, prepare, index, record, find, edit };
+    /** Every note and comment record. */
+    async function noteRecords() {
+        const all = await notes.list();
+        return [...all.notes, ...Object.values(all.comments)];
+    }
+    /** Writes note records as they are, without making them new. */
+    async function putNotes(records) {
+        if (!records.length) return;
+        await withLock('aish-notes', async () => {
+            const ids = new Set(records.map((r) => r.id));
+            const index = (await read(SK.notesIndex, [])).filter((e) => !ids.has(e.id));
+            for (const r of records) index.push({ id: r.id, kind: r.kind, created: r.created, updated: r.updated, ...(r.highlightId ? { hl: r.highlightId } : {}) });
+            await storage.set({ ...Object.fromEntries(records.map((r) => [noteRecKey(r.id), r])), [SK.notesIndex]: index });
+        });
+    }
+    /** Takes note records out of this storage. No deletion marker: they are only moved. */
+    async function dropNotes(ids) {
+        if (!ids.length) return;
+        await withLock('aish-notes', async () => {
+            const gone = new Set(ids);
+            await storage.set({ [SK.notesIndex]: (await read(SK.notesIndex, [])).filter((e) => !gone.has(e.id)) });
+            await storage.remove(ids.map(noteRecKey));
+        });
+    }
+    return { storage, highlights, notes, noteRecords, putNotes, dropNotes, prepare, index, record, find, edit };
 }
 
 /**
@@ -188,7 +222,7 @@ function createArea(storage) {
  * sees it.
  */
 function createLibrary({ storage, stampStore }) {
-    const shared = createArea(storage), own = createArea(aside(storage, 'local:'));
+    const shared = createArea(storage, (type, ids) => stampStore.markDeleted(type, ids)), own = createArea(aside(storage, 'local:'));
     const read = async (key, empty) => (await storage.get({ [key]: empty }))[key];
     const extraKey = (id) => 'app:article:' + id;
     const extra = (id) => read(extraKey(id), {});
@@ -201,9 +235,10 @@ function createLibrary({ storage, stampStore }) {
     async function bring(area, list) {
         await area.prepare();
         const here = await area.highlights.all({ dismissed: true });
-        const ops = [];
+        const ops = [], became = new Map();
         for (const hl of list) {
             const same = here.find((x) => sameHighlight(x, hl));
+            became.set(hl.id, same ? same.id : hl.id);
             if (!same) { ops.push({ op: 'add', hl }); continue; }
             if (same.dismissed) continue;
             if (hl.dismissed && same.type === 'ghost') ops.push({ op: 'dismiss', page: same.url, id: same.id });
@@ -211,6 +246,35 @@ function createLibrary({ storage, stampStore }) {
         }
         // `add` refuses a second one of the same words even when turned down; `upsert` keeps a turned-down one as it is
         if (ops.length) await area.highlights.apply(ops.map((o) => (o.op === 'add' && o.hl.dismissed ? { op: 'upsert', hl: o.hl } : o)));
+        return became;
+    }
+
+    /**
+     * Notes go with what they belong to, from one storage to another (or the same): comments with their highlight, which
+     * may be known by another id there (`became`); free notes with their page (`pages`: old address → new one). Two
+     * comments that meet on one highlight are both kept, one below the other.
+     */
+    async function moveNotes(from, to, { became = new Map(), pages = new Map(), all = false } = {}) {
+        const there = new Map((await to.noteRecords()).map((r) => [r.id, r]));
+        const put = new Map(), drop = [];
+        for (const r of await from.noteRecords()) {
+            const comment = r.kind === 'comment';
+            const follows = comment ? became.has(r.highlightId) : pages.has(r.url);
+            if (!all && !follows) continue;
+            const next = { ...r, ...(comment && became.has(r.highlightId) ? { id: 'c_' + became.get(r.highlightId), highlightId: became.get(r.highlightId) } : {}),
+                ...(r.url && pages.has(r.url) ? { url: pages.get(r.url) } : {}) };
+            if (from === to && next.id === r.id && next.url === r.url) continue;
+            const met = put.get(next.id) || there.get(next.id);
+            if (met && (from !== to || next.id !== r.id)) {
+                const text = met.text === next.text || met.text.includes(next.text) ? met.text : [met.text, next.text].filter(Boolean).join('\n\n');
+                const tags = [...new Set([...(met.tags || []), ...(next.tags || [])])];
+                if (text !== met.text || tags.length !== (met.tags || []).length) put.set(next.id, { ...met, text, tags, updated: next.updated });
+            } else put.set(next.id, next);
+            if (from !== to || next.id !== r.id) drop.push(r.id);
+        }
+        await to.putNotes([...put.values()]);
+        await from.dropNotes(drop);
+        return drop.length;
     }
 
     /** What the index and the records do not tell: every highlight, and the page each article's highlights are filed under. */
@@ -321,6 +385,8 @@ function createLibrary({ storage, stampStore }) {
             const result = await area.highlights.apply(ops);
             // as in the extension: a removed highlight gets a deletion marker (one turned down is kept, so it is not deleted)
             if (area === shared && result.removed.length) await stampStore.markDeleted('hl', result.removed);
+            // its comment goes with it, as in the extension's "Notes": it would reach the other devices as an orphan
+            for (const id of [...result.removed, ...dismiss.filter(theirs)]) await area.notes.setComment(id, { text: '', tags: [] });
         }
         if (add.length) {
             const onSynced = (await shared.index()).some((e) => pageKeyForUrl(e.url || '') === page);
@@ -341,8 +407,8 @@ function createLibrary({ storage, stampStore }) {
         await storage.set({ [REMOVED]: gone ? [...rest, ...all] : rest });
     }
 
-    /** Moves articles and highlights out of the synced keys into the app's own, without any deletion marker. */
-    async function setAside(articles, marked) {
+    /** Moves articles, highlights and notes out of the synced keys into the app's own, without any deletion marker. */
+    async function setAside(articles, marked, notes = []) {
         if (articles.length) {
             const records = await shared.storage.get(articles.map((e) => articleRecKey(e.id)));
             await own.edit(async (list) => {
@@ -358,17 +424,23 @@ function createLibrary({ storage, stampStore }) {
             await shared.edit(async (list) => { const rest = list.filter((e) => !gone.has(e.id)); list.length = 0; list.push(...rest); return null; });
             await storage.remove(articles.map((e) => articleRecKey(e.id)));
         }
+        let became = new Map();
         if (marked.length) {
-            await bring(own, marked);
+            became = await bring(own, marked);
             await shared.highlights.apply(marked.map((h) => ({ op: 'removeId', id: h.id })));
         }
-        return articles.length + marked.length;
+        if (notes.length) {
+            await own.putNotes(notes.map((r) => (r.kind === 'comment' && became.has(r.highlightId)
+                ? { ...r, id: 'c_' + became.get(r.highlightId), highlightId: became.get(r.highlightId) } : r)));
+            await shared.dropNotes(notes.map((r) => r.id));
+        }
+        return articles.length + marked.length + notes.length;
     }
 
     /** Called on joining: what the synced keys hold of another library, or from before, becomes the app's own. */
     async function enter(place) {
         if ((await read('app:place', '')) === place) return;
-        await setAside(await shared.index(), (await shared.highlights.all({ dismissed: true })).filter((h) => h.id));
+        await setAside(await shared.index(), (await shared.highlights.all({ dismissed: true })).filter((h) => h.id), await shared.noteRecords());
         await storage.set({ 'app:place': place });
     }
 
@@ -388,10 +460,12 @@ function createLibrary({ storage, stampStore }) {
         }
         if (!folded.length) return 0;
         const marked = (await own.highlights.all({ dismissed: true })).filter((h) => pages.has(h.url));
+        let became = new Map();
         if (marked.length) {
-            await bring(shared, marked.map((h) => ({ ...h, url: pages.get(h.url) })));
+            became = await bring(shared, marked.map((h) => ({ ...h, url: pages.get(h.url) })));
             await own.highlights.apply(marked.map((h) => ({ op: 'removeId', id: h.id })));
         }
+        await moveNotes(own, shared, { became, pages });
         const further = (await shared.index()).some((e) => (progress.get(e.id) || 0) > (Number(e.progress) || 0));
         if (further) await shared.edit(async (list) => {
             list.forEach((e, at) => { if ((progress.get(e.id) || 0) > (Number(e.progress) || 0)) list[at] = { ...e, progress: progress.get(e.id) }; });
@@ -416,7 +490,12 @@ function createLibrary({ storage, stampStore }) {
         const strangers = index.filter((e) => !known.has('article:' + e.id));
         const pagesKept = new Set(index.filter((e) => known.has('article:' + e.id)).map((e) => pageKeyForUrl(e.url || '')));
         const all = (await shared.highlights.all({ dismissed: true })).filter((h) => h.id);
-        let moved = await setAside(strangers, all.filter((h) => !known.has('hl:' + h.id) && !pagesKept.has(h.url)));
+        const leaving = all.filter((h) => !known.has('hl:' + h.id) && !pagesKept.has(h.url));
+        const pagesLeaving = new Set(strangers.map((e) => pageKeyForUrl(e.url || '')).filter((p) => p && !pagesKept.has(p)));
+        const idsLeaving = new Set(leaving.map((h) => h.id));
+        const notesLeaving = (await shared.noteRecords()).filter((r) => !known.has('note:' + r.id)
+            && (r.kind === 'comment' ? idsLeaving.has(r.highlightId) : pagesLeaving.has(r.url)));
+        let moved = await setAside(strangers, leaving, notesLeaving);
         moved += await fold();
 
         const now = (await shared.highlights.all({ dismissed: true })).filter((h) => h.id);
@@ -429,6 +508,7 @@ function createLibrary({ storage, stampStore }) {
         if (doubles.length) {
             await bring(shared, doubles.map(({ double: _, ...h }) => h));
             await shared.highlights.apply(doubles.map((h) => ({ op: 'removeId', id: h.double })));
+            await moveNotes(shared, shared, { became: new Map(doubles.map((h) => [h.double, h.id])) });
         }
         return moved + doubles.length;
     }
@@ -437,11 +517,72 @@ function createLibrary({ storage, stampStore }) {
     async function tidy() {
         const places = await read(SK.syncPlaces, []);
         if (Array.isArray(places) && places.length) return;
-        await setAside(await shared.index(), (await shared.highlights.all({ dismissed: true })).filter((h) => h.id));
+        await setAside(await shared.index(), (await shared.highlights.all({ dismissed: true })).filter((h) => h.id), await shared.noteRecords());
         await storage.set({ 'app:place': '' });
     }
 
-    return { marks, take, change, mark, hide, enter, settle, tidy };
+    const joined = async () => (await read(SK.syncPlaces, [])).length > 0;
+    /** Where a note of this page is kept: with the library, unless the page is only this device's (or no library is joined). */
+    async function areaOfPage(url) {
+        if (!(await joined())) return own;
+        if (!url) return shared;
+        const on = async (area) => (await area.index()).some((e) => pageKeyForUrl(e.url || '') === pageKeyForUrl(url));
+        return !(await on(shared)) && (await on(own)) ? own : shared;
+    }
+    const areaOfNote = async (id) => ((await shared.notes.get(id)) ? shared : own);
+    async function areaOfHighlight(id) {
+        return (await shared.highlights.all({ dismissed: true })).some((h) => h.id === id) ? shared : own;
+    }
+
+    /** A free note; `url` links it to a page. Hashtags at its end become its tags. */
+    async function note({ text, url = '', title = '' }) {
+        const parts = splitTags(text);
+        const area = await areaOfPage(url);
+        await area.prepare();
+        return area.notes.add({ text: parts.text || text, tags: parts.tags, url: url ? pageKeyForUrl(url) : '', title });
+    }
+    /** New words for a note. */
+    async function editNote({ id, text }) {
+        const parts = splitTags(text);
+        return (await areaOfNote(id)).notes.update(id, { text: parts.text || text, tags: parts.tags });
+    }
+    async function removeNote({ id }) { return (await areaOfNote(id)).notes.remove(id); }
+    /** The comment on a highlight; empty words remove it. It is kept where its highlight is. */
+    async function comment({ highlightId, text, url = '' }) {
+        const parts = splitTags(text);
+        const area = await areaOfHighlight(highlightId);
+        return area.notes.setComment(highlightId, { text: parts.text, tags: parts.tags, url: url ? pageKeyForUrl(url) : '' });
+    }
+
+    /** Notes, own highlights and the AI's, newest first, as the extension's "Notes" lists them (notesView.js: buildStream). */
+    async function stream() {
+        const pages = new Map(), out = [], connected = await joined();
+        for (const area of [shared, own]) {
+            for (const e of await area.index()) {
+                const source = { article: e.id, title: e.title || e.url || '' };
+                for (const key of [pageKeyForUrl(e.url || ''), articleKey(e.url || '')]) if (key && !pages.has(key)) pages.set(key, source);
+            }
+        }
+        const from = (url) => (url ? pages.get(pageKeyForUrl(url)) || pages.get(articleKey(url)) || {} : {});
+        const comments = new Map();
+        for (const area of [shared, own]) for (const r of await area.noteRecords()) if (r.kind === 'comment') comments.set(r.highlightId, r);
+        for (const area of [shared, own]) {
+            const here = connected && area === own;
+            for (const r of await area.noteRecords()) {
+                if (r.kind !== 'note') continue;
+                out.push({ kind: 'note', id: r.id, text: r.text, tags: r.tags || [], when: r.created, url: r.url || '', quote: r.quote || '', here, ...from(r.url) });
+            }
+            for (const h of await area.highlights.all()) {
+                if (!h.id || !h.text) continue;
+                const c = comments.get(h.id);
+                out.push({ kind: h.type === 'ghost' ? 'ghost' : 'user', id: h.id, text: h.text, tags: (c && c.tags) || [], when: h.timestamp || '', url: h.url || '',
+                    comment: c ? c.text : '', here, ...from(h.url) });
+            }
+        }
+        return out.sort((a, b) => String(b.when).localeCompare(String(a.when)));
+    }
+
+    return { marks, take, change, mark, hide, enter, settle, tidy, note, editNote, removeNote, comment, stream };
 }
 
 export const API = {

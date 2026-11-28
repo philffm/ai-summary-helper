@@ -78,6 +78,11 @@ struct LibrarySync {
         try JSONDecoder().decode(State?.self, from: try await host.run("return sync.state();"))
     }
 
+    /// Whether runs also send what changed here; off for every library until switched on.
+    func setWriteBack(_ on: Bool) async throws {
+        _ = try await host.run("return sync.setWriteBack(input);", input: ["on": on])
+    }
+
     func leave() async throws {
         _ = try await host.run("return sync.leave();")
     }

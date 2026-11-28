@@ -302,7 +302,7 @@
                     return Promise.resolve();
                 } catch (e) { return Promise.reject(e); }
             },
-            remove(query) {
+            remove(query, done) {
                 try {
                     const names = Array.isArray(query) ? query : [query];
                     const before = read(names);
@@ -310,6 +310,7 @@
                     const changes = {};
                     for (const k of Object.keys(before)) changes[k] = { oldValue: before[k] };
                     announce(changes);
+                    if (done) done();   // some of the extension's modules wait this way
                     return Promise.resolve();
                 } catch (e) { return Promise.reject(e); }
             },
