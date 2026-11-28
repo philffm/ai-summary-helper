@@ -71,8 +71,10 @@ struct LibrarySync {
         _ = try await host.run("return sync.join(input);", input: ["code": code, "passphrase": passphrase])
     }
 
-    func run() async throws -> Run {
-        try JSONDecoder().decode(Run.self, from: try await host.run("return sync.run();"))
+    /// `seconds`: no longer than about this; what is left comes with the next run.
+    func run(seconds: Double? = nil) async throws -> Run {
+        let input: [String: Any] = seconds.map { ["seconds": $0] } ?? [:]
+        return try JSONDecoder().decode(Run.self, from: try await host.run("return sync.run(input);", input: input))
     }
 
     /// nil when no library is joined.

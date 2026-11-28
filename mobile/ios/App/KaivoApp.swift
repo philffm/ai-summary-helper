@@ -15,5 +15,6 @@ struct KaivoApp: App {
         WindowGroup {
             RootView().tint(KaivoTokens.accent)
         }
+        .backgroundTask(.appRefresh(BackgroundRefresh.identifier)) { await BackgroundRefresh.run() }
     }
 }

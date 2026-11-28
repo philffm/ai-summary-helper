@@ -339,6 +339,24 @@ final class LibraryStoreTests: XCTestCase {
 
     private var changesOnTheServer: Int { FakeDAV.count("PUT") + FakeDAV.count("MKCOL") + FakeDAV.count("DELETE") }
 
+    /// A run with no time left fetches nothing, writes nothing, and the next one brings it all.
+    func testARunInTheBackgroundStopsWhenItsTimeIsUp() async throws {
+        let made = try serveTheBrowsersPlace()
+        let library = try await start()
+        let model = SyncModel(library: library)
+        await model.read("aish-library://v1?k=webdav&u=https%3A%2F%2Fdav.test%2Ffiles%2F&n=u&p=p&r=kaivo-test")
+        model.passphrase = try XCTUnwrap(made["passphrase"] as? String)
+        try await library.store!.sync.join(code: try XCTUnwrap(model.offer?.code), passphrase: model.passphrase)
+        await model.fetch(seconds: -1)
+        XCTAssertNil(model.problem)
+        await library.settled()
+        XCTAssertNil(library.article("x1"), "nothing was fetched")
+        XCTAssertEqual(changesOnTheServer, 0)
+        await model.fetch()
+        await library.settled()
+        XCTAssertNotNil(library.article("x1"))
+    }
+
     func testWhatWasSavedHereJoinsTheLibraryOnceSwitchedOn() async throws {
         let made = try serveTheBrowsersPlace()
         var mine = Passage(text: "Only my words.")

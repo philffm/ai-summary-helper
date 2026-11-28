@@ -73,7 +73,8 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
         return { id: place.id, root: place.root };
     }
 
-    async function toTheEnd(runs, id, total) {
+    /** `until`: no further round after this moment. */
+    async function toTheEnd(runs, id, total, until = Infinity) {
         for (let round = 0; round < 1000; round++) {
             const result = (await runs.syncNow(id))[id];
             if (!result || result.skipped) { total.skipped = true; return false; }
@@ -81,14 +82,15 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
             for (const k of ['pulled', 'applied', 'pushed']) total[k] += result[k] || 0;
             total.errors.push(...result.errors);
             if (!result.more) return true;
+            if (Date.now() >= until) return false;
         }
         return false;
     }
 
     let going = null;
     /** One run at a time: a second one asked for meanwhile is the same run. */
-    function run() {
-        if (!going) going = once().finally(() => { going = null; });
+    function run({ seconds } = {}) {
+        if (!going) going = once(seconds).finally(() => { going = null; });
         return going;
     }
 
@@ -96,17 +98,21 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
      * One run of the joined library, to its end: first everything is fetched, then what the app keeps for itself is told
      * apart from the library, and only then, when the app writes back, what changed here goes out. Throws what went wrong.
      */
-    async function once() {
+    async function once(seconds) {
+        // a run with little time (in the background) stops at a package's end and goes on the next time
+        const timed = seconds !== undefined;
+        const until = timed ? Date.now() + seconds * 1000 : Infinity;
+        const fetching = timed ? serviceWith({ pullOnly: true, budgetMs: seconds * 1000 }) : service;
         const [place] = await service.placesNow();
         if (!place) throw new Error('No library is connected.');
         const total = { pulled: 0, applied: 0, pushed: 0, moved: 0, errors: [] };
         // nothing goes out after a fetch that did not end well: what is on the server is not fully known then
-        if (!(await toTheEnd(service, place.id, total)) || total.errors.length) return total;
+        if (!(await toTheEnd(fetching, place.id, total, until)) || total.errors.length) return total;
         total.moved = await library.settle(place.id);
         if (await writes()) {
             // what was saved here joins the library after everything of the library is known, and goes out at once
             total.moved += await library.promote(place.id);
-            await toTheEnd(writing, place.id, total);
+            if (Date.now() < until) await toTheEnd(timed ? serviceWith({ budgetMs: Math.max(1, until - Date.now()) }) : writing, place.id, total, until);
         }
         return total;
     }

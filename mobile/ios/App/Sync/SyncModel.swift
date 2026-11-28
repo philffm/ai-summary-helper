@@ -91,8 +91,9 @@ final class SyncModel {
         await fetch()
     }
 
-    /// One run, if a library is joined. What it brought is shown afterwards.
-    func fetch() async {
+    /// One run, if a library is joined. What it brought is shown afterwards. `seconds`: no longer than about this; the
+    /// rest comes with the next run.
+    func fetch(seconds: Double? = nil) async {
         guard let sync else { return }
         guard !fetching else { return }
         await refresh()
@@ -117,7 +118,7 @@ final class SyncModel {
         // a run that broke off may have brought a part
         var brought = true
         do {
-            let run = try await sync.run()
+            let run = try await sync.run(seconds: seconds)
             brought = run.applied > 0 || (run.moved ?? 0) > 0
             if let first = run.errors.first { problem = .other(first) }
         } catch {

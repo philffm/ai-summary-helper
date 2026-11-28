@@ -7,7 +7,7 @@ struct RootView: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var library: Library
     @State private var sync: SyncModel
-    @State private var feeds = FeedsModel()
+    @State private var feeds: FeedsModel
     @State private var status = ExtensionStatus()
     @State private var speaker = Speaker()
     @State private var router = Router()
@@ -18,9 +18,11 @@ struct RootView: View {
     @Environment(\.horizontalSizeClass) private var width
 
     init() {
-        let library = Library()
-        _library = State(initialValue: library)
-        _sync = State(initialValue: SyncModel(library: library))
+        // the same ones the work in the background uses
+        let models = AppModels.shared
+        _library = State(initialValue: models.library)
+        _sync = State(initialValue: models.sync)
+        _feeds = State(initialValue: models.feeds)
     }
 
     var body: some View {
@@ -90,6 +92,7 @@ struct RootView: View {
                 } else if phase == .background {
                     inbox.stop()
                     AudioPlayer.shared.note()
+                    BackgroundRefresh.schedule()
                 }
             }
             // not before the library is read: the widgets would show an empty one
