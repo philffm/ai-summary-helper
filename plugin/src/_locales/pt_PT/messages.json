@@ -8221,5 +8221,26 @@
   },
   "f_ago_dfc8": {
     "message": "há {t}"
+  },
+  "f_in_notes_f1cf": {
+    "message": "Nas notas"
+  },
+  "f_question_0065": {
+    "message": "Pergunta"
+  },
+  "f_remove_from_notes_2dfe": {
+    "message": "Remover das notas"
+  },
+  "f_removed_from_notes_fa58": {
+    "message": "Removida das notas"
+  },
+  "f_save_to_notes_45f0": {
+    "message": "Guardar nas notas"
+  },
+  "f_show_this_question_and_its_a_a1a0": {
+    "message": "Mostrar esta pergunta e a resposta nas tuas notas"
+  },
+  "f_shown_in_your_notes_9b71": {
+    "message": "Aparece nas tuas notas"
   }
 }

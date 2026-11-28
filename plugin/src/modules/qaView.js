@@ -3,7 +3,7 @@ import { T, TN } from './feedI18n.js';
 import { pinnedCount, cleanAnswer } from './conversation.js';
 import { setIconLabel } from './icons.js';
 
-/** One Q&A turn: question bubble, answer bubble with 📌 pin toggle and ¶ source chips. */
+/** One Q&A turn: question bubble, answer bubble with 📌 pin toggle, "save to notes" toggle and ¶ source chips. */
 /** Safe renderer for cleaned answer text: headings, paragraphs, lists, **bold** / *italic* / `code` and pipe tables (DOM nodes only, no innerHTML). */
 const TABLE_ROW = /^\s*\|.*\|\s*$/;
 const TABLE_SEP = /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?\s*$/;
@@ -100,6 +100,17 @@ export function turnEl(turn, { onPin, onSource } = {}) {
     paint();
     pin.addEventListener('click', (e) => { e.stopPropagation(); turn.pinned = !turn.pinned; paint(); if (onPin) onPin(turn); });
     foot.appendChild(pin);
+    // Separate from the pin: "In article" shows the question with the summary, this one lists it under Notes. Off until chosen.
+    const note = document.createElement('button');
+    note.type = 'button'; note.className = 'chat-pin chat-note';
+    const paintNote = () => {
+        note.setAttribute('aria-pressed', String(!!turn.noted));
+        setIconLabel(note, 'sticky-note', turn.noted ? T('In notes') : T('Save to notes'), 'icon--sm');
+        note.title = turn.noted ? T('Shown in your notes') : T('Show this question and its answer in your notes');
+    };
+    paintNote();
+    note.addEventListener('click', (e) => { e.stopPropagation(); if (turn.noted) delete turn.noted; else turn.noted = true; paintNote(); if (onPin) onPin(turn); });
+    foot.appendChild(note);
     a.appendChild(foot);
     wrap.append(q, a);
     return wrap;

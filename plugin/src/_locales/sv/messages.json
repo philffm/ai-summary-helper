@@ -8503,5 +8503,26 @@
   },
   "f_ago_dfc8": {
     "message": "för {t} sedan"
+  },
+  "f_in_notes_f1cf": {
+    "message": "I anteckningar"
+  },
+  "f_question_0065": {
+    "message": "Fråga"
+  },
+  "f_remove_from_notes_2dfe": {
+    "message": "Ta bort från anteckningar"
+  },
+  "f_removed_from_notes_fa58": {
+    "message": "Borttagen från anteckningar"
+  },
+  "f_save_to_notes_45f0": {
+    "message": "Spara i anteckningar"
+  },
+  "f_show_this_question_and_its_a_a1a0": {
+    "message": "Visa frågan och svaret i dina anteckningar"
+  },
+  "f_shown_in_your_notes_9b71": {
+    "message": "Visas i dina anteckningar"
   }
 }

@@ -782,7 +782,7 @@ export function initMainScreen(ui) {
             try { instant && instant.chatDone(a || ''); } catch (_) { /* optional */ }
             if (prev) conversation.turns = conversation.turns.filter(t => t !== prev);
             const turn = newTurn(conversation.turns, { q, a, sources });
-            if (prev) turn.pinned = prev.pinned;
+            if (prev) { turn.pinned = prev.pinned; if (prev.noted) turn.noted = true; }
             conversation.turns.push(turn);
             try { instant && instant.refresh(); } catch (_) { /* optional */ }
             paintAskCount();

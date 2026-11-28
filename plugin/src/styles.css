@@ -4403,6 +4403,7 @@ html[data-mood="off"] .feed-item.has-mood { background-image: none; box-shadow: 
 .graph-cite:hover, .graph-cite:focus-visible { background: var(--accent); color: var(--on-accent); }
 .chat-pin { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; }
 .chat-pin[aria-pressed="true"] { background: var(--accent-a12); border-color: var(--accent-a30); color: var(--accent); }
+.chat-pin.chat-note { margin-left: 0; }   /* beside the pin, which takes the space before both */
 .qa-section { display: flex; flex-direction: column; gap: 10px; }
 .qa-title { color: var(--text-secondary); }
 .qa-more summary { cursor: pointer; font-size: var(--fs-xs); color: var(--text-muted); margin-bottom: 6px; }
@@ -5735,6 +5736,10 @@ html[data-motion="reduce"] .detail-split-more .icon { transition: none; }
 .st-user { background: var(--saved-note-user-bg); color: var(--saved-note-user-fg); }
 .st-ghost { background: var(--saved-note-ghost-bg); color: var(--saved-note-ghost-fg); }
 .st-note { background: var(--saved-note-note-bg); color: var(--saved-note-note-fg); }
+.st-qa { background: var(--saved-note-note-bg); color: var(--saved-note-note-fg); }
+.st-ask { font-weight: 600; }
+.st-answer > * { margin: 0 0 6px; }
+.st-answer ul, .st-answer ol { padding-left: 18px; }
 .st header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: .02em; }
 .st-when { font-weight: 500; opacity: .7; }
 .st p { margin: 0; font-size: var(--fs-md); line-height: 1.45; overflow-wrap: anywhere; }

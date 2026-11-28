@@ -8503,5 +8503,26 @@
   },
   "f_ago_dfc8": {
     "message": "{t} temu"
+  },
+  "f_in_notes_f1cf": {
+    "message": "W notatkach"
+  },
+  "f_question_0065": {
+    "message": "Pytanie"
+  },
+  "f_remove_from_notes_2dfe": {
+    "message": "Usuń z notatek"
+  },
+  "f_removed_from_notes_fa58": {
+    "message": "Usunięto z notatek"
+  },
+  "f_save_to_notes_45f0": {
+    "message": "Zapisz w notatkach"
+  },
+  "f_show_this_question_and_its_a_a1a0": {
+    "message": "Pokaż to pytanie i odpowiedź w notatkach"
+  },
+  "f_shown_in_your_notes_9b71": {
+    "message": "Widoczne w Twoich notatkach"
   }
 }

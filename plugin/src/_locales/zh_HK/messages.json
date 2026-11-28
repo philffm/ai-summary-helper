@@ -8221,5 +8221,26 @@
   },
   "f_ago_dfc8": {
     "message": "{t}前"
+  },
+  "f_in_notes_f1cf": {
+    "message": "已在筆記中"
+  },
+  "f_question_0065": {
+    "message": "提問"
+  },
+  "f_remove_from_notes_2dfe": {
+    "message": "從筆記中移除"
+  },
+  "f_removed_from_notes_fa58": {
+    "message": "已從筆記中移除"
+  },
+  "f_save_to_notes_45f0": {
+    "message": "儲存到筆記"
+  },
+  "f_show_this_question_and_its_a_a1a0": {
+    "message": "在筆記中顯示此提問和回答"
+  },
+  "f_shown_in_your_notes_9b71": {
+    "message": "顯示在你的筆記中"
   }
 }
