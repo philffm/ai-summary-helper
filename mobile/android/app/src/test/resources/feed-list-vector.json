@@ -1,0 +1,34 @@
+{
+ "passphrase": "abandon ability able about above",
+ "meta": {
+  "aish": "sync/1",
+  "mode": "encrypted",
+  "kdf": "pbkdf2-sha256",
+  "iterations": 600000,
+  "salt": "pVPI9yv1S8H1n2twjcwvqQ==",
+  "check": "AT3qteI1FQFqyzlzQbD4PoSC2oMr5WwvIOqMYTxdmW0aYFNySoY6diYTBFVzkq1k95rWkvAPnQHAQ/5yNCpC"
+ },
+ "file": "AQcHBwcHBwcHBwcHB+SvL11vL8WjM/DJT9zFgqnQWRhF9hztm5e6DlCXGmaCs5V9jiQ1C53F5EA4jveORrT3kAy8D8lbb5OZI96XZow840QlIQJOjWFrDvkiRZwrYziDusqH7MBD4jFcM/t4V4Frq4R0XcjoUelRu2w3jNBVtwpTjiuDgTT0IVdmhAAiASk5NM7qsaCnp35JKBM9dggFlCm+INnJxymbwwdUP+KrLKK5hg787fh+KxuB6myw/iEfVJXDJuCJFrj0EjmV4ZbwK/SWL3+wpwyzhbYWIw==",
+ "entries": [
+  {
+   "url": "https://policy.example/feed",
+   "title": "Policy Review",
+   "tags": [
+    "Politics",
+    "Grüße"
+   ],
+   "updatedAt": 1795000000000
+  },
+  {
+   "url": "https://energy.example/feed",
+   "title": "Energy Watch",
+   "tags": [],
+   "updatedAt": 1794000000000
+  },
+  {
+   "url": "https://gone.example/feed",
+   "updatedAt": 1793000000000,
+   "removed": true
+  }
+ ]
+}

@@ -32,6 +32,8 @@ class AppModel(context: Context) {
     fun materialize(): Int {
         val r = ArticleMaterializer(library.records, ArticleStoreSink(articles), File(app.filesDir, "sync/materialized.json"), own = { PhoneUploader(library.records, { System.currentTimeMillis() }, File(app.filesDir, "sync/uploaded.json")).ownKeys() }).run()
         if (r.saved + r.removed > 0) articleList = articles.list()
+        // the sync may have brought the library's feed list
+        feedStore.feeds().let { if (it != feeds) { feeds = it; entries = feedStore.everything() } }
         return r.saved + r.removed
     }
     val feedStore = FeedStore(File(app.filesDir, "feeds"))

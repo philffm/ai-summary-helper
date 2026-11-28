@@ -1,5 +1,7 @@
 package eu.byphil.aishcompanion.sync
 
+import eu.byphil.aishcompanion.FeedEntry
+import eu.byphil.aishcompanion.FeedSync
 import org.json.JSONObject
 import java.security.SecureRandom
 import java.util.Base64
@@ -21,6 +23,8 @@ class LibrarySync(
     private val now: () -> Long = { System.currentTimeMillis() },
     /** Runs after a complete pull: turns what was saved on this phone into records and returns the keys it made (the engine then uploads them). */
     private val afterPull: (SyncClock) -> Set<String> = { emptySet() },
+    /** Takes the library's feed list (the place's id, the entries) after a run that could read it. */
+    private val takeFeeds: (String, List<FeedEntry>) -> Unit = { _, _ -> },
 ) {
     /** Where the library lives. kind: "webdav" (Nextcloud, ownCloud, most NAS) or "s3". */
     data class Config(
@@ -43,6 +47,7 @@ class LibrarySync(
 
     companion object {
         private const val CFG = "cfg"; private const val MASTER = "master"; private const val WORDS = "words"; private const val LAST = "last"
+        const val FEED_LIST = "feeds.bin"
         private const val ERR = "err"; private const val PLACE = "place"; private const val CLOCK = "clock"; private const val DEVICE = "device"
         fun defaultStore(c: Config): SyncStore = if (c.kind == "s3") S3Store(c.url, c.region, c.bucket, c.accessKeyId, c.secretKey, c.root, SyncHttp())
         else WebdavStore(c.url, c.root, c.username, c.password, SyncHttp())
@@ -88,10 +93,20 @@ class LibrarySync(
                     r.pushed += second.pushed; r.pulled += second.pulled; r.applied += second.applied; r.errors.addAll(second.errors); r.more = r.more || second.more
                 }
             }
+            // the feed list lies beside the records and is only read here; where it cannot be, the rest stands
+            runCatching { feedList(store, keys)?.let { takeFeeds(placeId, it) } }
             kv.put(CLOCK, clock.t.toString())
             if (r.errors.isEmpty() && !r.more) { kv.put(LAST, now().toString()); kv.put(ERR, null) } else kv.put(ERR, r.errors.firstOrNull() ?: "Not finished yet, it continues next time.")
             return Summary(r.pulled, r.pushed, r.applied, r.needsConfirm, r.more, r.errors.toList())
         } catch (e: Exception) { kv.put(ERR, e.message ?: e.javaClass.simpleName); throw e }
+    }
+
+    /** The entries of the library's feed list (feeds.bin, "feeds/1"); null where there is none, or one of a newer kind. */
+    fun feedList(store: SyncStore, keys: SyncCrypto.Keys): List<FeedEntry>? {
+        val file = store.get(FEED_LIST) ?: return null
+        val doc = JSONObject(SyncCrypto.decrypt(keys, file.bytes))
+        if (doc.optString("aish") != "feeds/1") return null
+        return FeedSync.cleanEntries(FeedSync.parseEntries(doc.getJSONArray("entries")))
     }
 
     /** This phone's clock and id, kept between runs (notes written offline are stamped with it, so they merge cleanly later). */

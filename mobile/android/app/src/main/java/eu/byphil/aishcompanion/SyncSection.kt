@@ -52,7 +52,7 @@ fun libraryOf(context: Context): LibrarySync {
     }
     val records = FileRecordStore(File(app.filesDir, "sync"))
     val uploaded = File(app.filesDir, "sync/uploaded.json")
-    return LibrarySync(kv, records, afterPull = { clock ->
+    return LibrarySync(kv, records, takeFeeds = { place, list -> FeedStore(File(app.filesDir, "feeds")).takeLibrary(place, list, System.currentTimeMillis()) }, afterPull = { clock ->
         val up = PhoneUploader(records, { System.currentTimeMillis() }, uploaded)
         up.run(StorePhoneArticles(ArticleStore(app)), clock)
         up.ownKeys()
