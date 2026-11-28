@@ -51,6 +51,8 @@ final class SyncModel {
     @ObservationIgnored private var later: Task<Void, Never>?
     /// Takes the library's feed list, after a run that read it.
     @ObservationIgnored var takeFeeds: (([LibrarySync.FeedEntry]) -> Void)?
+    /// The app's feed list as it is, removed feeds included.
+    @ObservationIgnored var giveFeeds: (() -> [Feed])?
     var problem: Problem?
     /// The screen is asked for from outside (a scanned code).
     var shown = false
@@ -159,7 +161,7 @@ final class SyncModel {
         var brought = true
         do {
             let run = try await withTaskCancellationHandler {
-                try await sync.run(seconds: seconds)
+                try await sync.run(seconds: seconds, feeds: giveFeeds?() ?? [])
             } onCancel: {
                 Task { await sync.stop() }
             }

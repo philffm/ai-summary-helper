@@ -6,6 +6,7 @@
 //
 // Safety rules (each has a test):
 //   • a document this version cannot read is left as it is: nothing is written over it, nothing here changes;
+//   • at first contact the library wins: a device does not bring its own name or categories to a feed that is there;
 //   • many removals at once are not carried out: more than the larger of 10 and a quarter of the feeds here;
 //   • a feed list that vanished here as a whole (more than that) is taken for lost, not for removed: it comes back;
 //   • a restore only adds.
@@ -16,6 +17,7 @@ import { feedListKey } from './storageKeys.js';
 export const FEED_LIST_FILE = 'feeds.bin';
 export const FEED_LIST_KIND = 'feeds/1';
 const most = (feeds) => Math.max(10, Math.ceil(feeds * 0.25));
+const liveUrls = (entries) => new Set(entries.filter((e) => !e.removed).map((e) => e.url));
 
 /** The document of the place: { entries, etag }; an empty one where there is none yet. Throws where it cannot be read. */
 export async function readFeedList(store, keys) {
@@ -24,6 +26,26 @@ export async function readFeedList(store, keys) {
     const doc = await decryptJson(keys, file.bytes);
     if (!doc || doc.aish !== FEED_LIST_KIND || !Array.isArray(doc.entries)) throw new Error('The feed list on the server was written by a newer version. It was not changed.');
     return { entries: cleanEntries(doc.entries), etag: file.etag };
+}
+
+const write = async (store, keys, entries, etag) => store.put(FEED_LIST_FILE, await encryptJson(keys, { aish: FEED_LIST_KIND, entries }),
+    { contentType: 'application/octet-stream', ...(etag ? { ifMatch: etag } : { ifNoneMatch: '*' }) });
+
+/**
+ * A phone's run: its own entries (a removed feed as a marker) joined with the document, which is written only where
+ * `mayWrite`. The phone changes which feeds there are, never the name or the categories of one the library holds.
+ * → the entries the phone applies
+ */
+export async function joinFeedList({ store, keys, local, mayWrite, now = Date.now }) {
+    for (let attempt = 0; ; attempt++) {
+        const remote = await readFeedList(store, keys);
+        if (!mayWrite) return remote.entries;
+        const theirs = liveUrls(remote.entries);
+        const merged = mergeEntries(cleanEntries(local).filter((e) => e.removed || !theirs.has(e.url)), remote.entries, now());
+        if (!merged.length || sameEntries(merged, remote.entries)) return merged;
+        try { await write(store, keys, merged, remote.etag); return merged; }
+        catch (e) { if (!(e && e.status === 412 && attempt < 3)) throw e; }
+    }
 }
 
 /**
@@ -47,14 +69,15 @@ export async function syncFeedList({ store, keys, adapter, storage, placeId, mod
     const local = localEntries(subs, base, now());
     for (let attempt = 0; ; attempt++) {
         const remote = await readFeedList(store, keys);
-        const merged = mergeEntries(local, remote.entries, now());
+        // what this device never had from the place does not overrule it
+        const theirs = liveUrls(remote.entries), seen = new Set(base.map((e) => e.url));
+        const merged = mergeEntries(local.filter((e) => e.removed || seen.has(e.url) || !theirs.has(e.url)), remote.entries, now());
         const plan = mode === 'push' ? { add: [], update: [], remove: [] } : planChanges(subs, merged);
         const held = new Set(plan.remove.length > most(subs.length) ? plan.remove : []);
         if (held.size) plan.remove = [];
         if (merged.length && !sameEntries(merged, remote.entries)) {
             try {
-                await store.put(FEED_LIST_FILE, await encryptJson(keys, { aish: FEED_LIST_KIND, entries: merged }),
-                    { contentType: 'application/octet-stream', ...(remote.etag ? { ifMatch: remote.etag } : { ifNoneMatch: '*' }) });
+                await write(store, keys, merged, remote.etag);
                 out.uploaded = true;
             } catch (e) {
                 if (e && e.status === 412 && attempt < 3) continue;   // another device wrote meanwhile: read, merge, once more

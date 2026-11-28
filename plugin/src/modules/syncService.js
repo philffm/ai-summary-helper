@@ -10,7 +10,7 @@
 // One server can hold several places, for example `public/` (a readable list for a website) next to `backup/`.
 // Encrypted places and two-way sync are not built yet and are refused.
 import { SK, syncLedgerKey, feedListKey } from './storageKeys.js';
-import { syncFeedList, readFeedList } from './syncFeedList.js';
+import { syncFeedList, joinFeedList } from './syncFeedList.js';
 import { pushPlace } from './syncPush.js';
 import { syncEncryptedPlace, loadOrCreateMeta } from './syncEngine.js';
 import { createDataAdapter } from './syncDataAdapter.js';
@@ -164,14 +164,15 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
     return {
         placesNow, connectionsNow, statusNow,
 
-        /** The feed list of an encrypted place, for a caller that keeps its feeds elsewhere (the phone app). Reads only. */
-        async feedList(id) {
+        /** The feed list of an encrypted place, for a caller that keeps its feeds elsewhere (the phone app): `local` is
+         * joined with it and written back only with `mayWrite`. Without, it is only read. */
+        async feedList(id, { local = [], mayWrite = false } = {}) {
             const st = await load();
             const place = st.places.find((p) => p.id === id);
             const connection = place && st.connections.find((c) => c.id === place.connectionId);
             if (!connection) throw new Error('This place no longer exists.');
             const { store, keys } = await openEncrypted(place, connection, st);
-            return (await readFeedList(store, keys)).entries;
+            return joinFeedList({ store, keys, local, mayWrite, now });
         },
 
         /** How many articles a place with this scope would publish (no network). */

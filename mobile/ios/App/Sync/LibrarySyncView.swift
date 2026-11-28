@@ -211,7 +211,8 @@ struct LibrarySyncView: View {
             } footer: {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Off: the app only fetches. On: reading progress, highlights, comments, notes, questions and summaries go to your place too, and the articles saved on this iPhone join your library, also those from before.")
-                    Text("Deleting on this iPhone does not delete anything in your library yet.")
+                    Text("Feeds you add or remove on this iPhone are added or removed in your library too.")
+                    Text("Deleting articles on this iPhone does not delete them in your library yet.")
                 }
             }
             }
@@ -270,6 +271,7 @@ private struct BackupFirst: View {
             List {
                 Section {
                     Text("From now on this iPhone changes your place. Save your library on your computer first.")
+                    Text("Feeds you add or remove on this iPhone are added or removed in your library too.")
                 }
                 if let waiting, waiting.articles + waiting.summaries > 0 {
                     Section("Added to your library") {

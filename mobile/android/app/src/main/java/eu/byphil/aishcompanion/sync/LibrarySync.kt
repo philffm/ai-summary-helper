@@ -11,8 +11,8 @@ interface KeyValue { fun get(key: String): String?; fun put(key: String, value: 
 
 /**
  * The phone's one library place: joins the encrypted place the browser made (WebDAV/Nextcloud or S3), keeps its key on this device and syncs
- * the records into [records]. The phone never creates a library: that is done in the browser, where the articles are. Own notes are the only
- * thing it writes back (see SyncEngine).
+ * the records into [records]. The phone never creates a library: that is done in the browser, where the articles are. It writes back its own
+ * notes and what it saved (see SyncEngine), and its changes to the feed list ([syncFeeds]).
  *
  * What is kept here: the server settings and its login, the key derived from the passphrase (so syncing can run in the background), and, only
  * when the passphrase is the suggested kind (random words), the words, so they can be shown again. An own passphrase is never kept.
@@ -23,8 +23,8 @@ class LibrarySync(
     private val now: () -> Long = { System.currentTimeMillis() },
     /** Runs after a complete pull: turns what was saved on this phone into records and returns the keys it made (the engine then uploads them). */
     private val afterPull: (SyncClock) -> Set<String> = { emptySet() },
-    /** Takes the library's feed list (the place's id, the entries) after a run that could read it. */
-    private val takeFeeds: (String, List<FeedEntry>) -> Unit = { _, _ -> },
+    /** Joins the library's feed list (the place's id, its entries) with the phone's own; returns what the library should hold, or null. */
+    private val joinFeeds: (String, List<FeedEntry>) -> List<FeedEntry>? = { _, _ -> null },
 ) {
     /** Where the library lives. kind: "webdav" (Nextcloud, ownCloud, most NAS) or "s3". */
     data class Config(
@@ -93,20 +93,40 @@ class LibrarySync(
                     r.pushed += second.pushed; r.pulled += second.pulled; r.applied += second.applied; r.errors.addAll(second.errors); r.more = r.more || second.more
                 }
             }
-            // the feed list lies beside the records and is only read here; where it cannot be, the rest stands
-            runCatching { feedList(store, keys)?.let { takeFeeds(placeId, it) } }
+            // the feed list lies beside the records; where it cannot be read or written, the rest stands
+            runCatching { syncFeeds(store, keys, placeId) }
             kv.put(CLOCK, clock.t.toString())
             if (r.errors.isEmpty() && !r.more) { kv.put(LAST, now().toString()); kv.put(ERR, null) } else kv.put(ERR, r.errors.firstOrNull() ?: "Not finished yet, it continues next time.")
             return Summary(r.pulled, r.pushed, r.applied, r.needsConfirm, r.more, r.errors.toList())
         } catch (e: Exception) { kv.put(ERR, e.message ?: e.javaClass.simpleName); throw e }
     }
 
-    /** The entries of the library's feed list (feeds.bin, "feeds/1"); null where there is none, or one of a newer kind. */
-    fun feedList(store: SyncStore, keys: SyncCrypto.Keys): List<FeedEntry>? {
-        val file = store.get(FEED_LIST) ?: return null
-        val doc = JSONObject(SyncCrypto.decrypt(keys, file.bytes))
+    /** The entries of a feed list document ("feeds/1"); null for one of a newer kind. */
+    private fun entries(keys: SyncCrypto.Keys, bytes: ByteArray): List<FeedEntry>? {
+        val doc = JSONObject(SyncCrypto.decrypt(keys, bytes))
         if (doc.optString("aish") != "feeds/1") return null
         return FeedSync.cleanEntries(FeedSync.parseEntries(doc.getJSONArray("entries")))
+    }
+
+    /** The library's feed list (feeds.bin); null where there is none, or one of a newer kind. */
+    fun feedList(store: SyncStore, keys: SyncCrypto.Keys): List<FeedEntry>? = store.get(FEED_LIST)?.let { entries(keys, it.bytes) }
+
+    /**
+     * Joins the library's feed list with the phone's and writes the result where it differs. A document of a newer kind is left as
+     * it is. Where another device wrote meanwhile, it is read and joined once more.
+     */
+    fun syncFeeds(store: SyncStore, keys: SyncCrypto.Keys, placeId: String) {
+        repeat(4) { attempt ->
+            val file = store.get(FEED_LIST)
+            val remote = if (file == null) emptyList() else entries(keys, file.bytes) ?: return
+            val joined = joinFeeds(placeId, remote) ?: return
+            if (joined.isEmpty() || FeedSync.same(joined, remote)) return
+            val doc = "{\"aish\":\"feeds/1\",\"entries\":[${joined.joinToString(",") { FeedSync.canon(it) }}]}"
+            try {
+                store.put(FEED_LIST, SyncCrypto.encrypt(keys, doc), ifMatch = file?.etag, ifNoneMatch = if (file == null) "*" else null)
+                return
+            } catch (e: StoreError) { if (e.status != 412 || attempt == 3) throw e }
+        }
     }
 
     /** This phone's clock and id, kept between runs (notes written offline are stamped with it, so they merge cleanly later). */

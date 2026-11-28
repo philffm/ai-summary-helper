@@ -223,6 +223,7 @@ class AppModel(context: Context) {
                     feedStore.saveItems(f.url, r.feed.items)
                     feedStore.update(f.url) { it.copy(lastFetched = now) }
                     reload()
+                    syncLibrarySoon(app)
                     if (pairing?.canSync == true) syncFeeds()
                     null
                 }
@@ -238,6 +239,7 @@ class AppModel(context: Context) {
             val now = System.currentTimeMillis()
             val added = list.count { feedStore.add(it.url, it.title, it.tags, now) != null }
             reload()
+            if (added > 0) syncLibrarySoon(app)
             if (added > 0 && pairing?.canSync == true) syncFeeds()
             if (added == 0) "All ${list.size} feeds were already here." else "Added $added feed" + (if (added == 1) "" else "s") + (if (added < list.size) ", ${list.size - added} were already here." else ".")
         }
@@ -247,17 +249,20 @@ class AppModel(context: Context) {
 
     suspend fun removeFeed(url: String) = withContext(Dispatchers.IO) {
         feedStore.remove(url); reload()
+        syncLibrarySoon(app)
         if (pairing?.canSync == true) syncFeeds()
     }
 
     /** Replaces the feed's tags with the comma-separated [tagText]. The extension's tags are all kept and shown; nothing is reduced to one folder. */
     suspend fun setTags(url: String, tagText: String) = withContext(Dispatchers.IO) {
         feedStore.update(url) { it.copy(tags = parseTags(tagText)) }; reload()
+        syncLibrarySoon(app)
         if (pairing?.canSync == true) syncFeeds()
     }
 
     suspend fun rename(url: String, name: String) = withContext(Dispatchers.IO) {
         feedStore.update(url) { it.copy(customTitle = if (name.isBlank() || name == it.title) "" else name.trim().take(200)) }; reload()
+        syncLibrarySoon(app)
         if (pairing?.canSync == true) syncFeeds()
     }
 

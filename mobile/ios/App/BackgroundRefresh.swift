@@ -10,6 +10,8 @@ final class AppModels {
     lazy var sync: SyncModel = {
         let sync = SyncModel(library: library)
         sync.takeFeeds = { [feeds] in feeds.take(library: $0) }
+        sync.giveFeeds = { [feeds] in feeds.forLibrary }
+        feeds.changed = { [weak sync] in Task { await sync?.changedHere() } }
         return sync
     }()
     lazy var feeds = FeedsModel()

@@ -5929,6 +5929,82 @@
         }
       }
     },
+    "Deleting articles on this iPhone does not delete them in your library yet.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "حذف المقالات على هذا الـ iPhone لا يحذفها من مكتبتك بعد."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artikel auf diesem iPhone zu löschen löscht sie noch nicht in deiner Bibliothek."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Borrar artículos en este iPhone todavía no los borra de tu biblioteca."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artikkelien poistaminen tällä iPhonella ei vielä poista niitä kirjastostasi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Supprimer des articles sur cet iPhone ne les supprime pas encore de votre bibliothèque."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "このiPhoneで記事を削除しても、ライブラリからはまだ削除されません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "이 iPhone에서 글을 삭제해도 보관함에서는 아직 삭제되지 않습니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Excluir artigos neste iPhone ainda não os exclui da sua biblioteca."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Удаление статей на этом iPhone пока не удаляет их из библиотеки."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Видалення статей на цьому iPhone поки не видаляє їх із бібліотеки."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在此 iPhone 上删除文章，暂时不会从资料库中删除。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在此 iPhone 上刪除文章，目前不會從資料庫中刪除。"
+          }
+        }
+      }
+    },
     "Deleting on this iPhone does not delete anything in your library yet.": {
       "localizations": {
         "ar": {
@@ -6913,6 +6989,82 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "訂閱來源"
+          }
+        }
+      }
+    },
+    "Feeds you add or remove on this iPhone are added or removed in your library too.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الخلاصات التي تضيفها أو تزيلها على هذا الـ iPhone تُضاف أو تُزال في مكتبتك أيضًا."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Feeds, die du auf diesem iPhone hinzufügst oder entfernst, werden auch in deiner Bibliothek hinzugefügt oder entfernt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Las fuentes que añadas o quites en este iPhone también se añaden o quitan en tu biblioteca."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tällä iPhonella lisäämäsi tai poistamasi syötteet lisätään tai poistetaan myös kirjastostasi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Les flux ajoutés ou retirés sur cet iPhone le sont aussi dans votre bibliothèque."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "このiPhoneで追加・削除したフィードは、ライブラリにも反映されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "이 iPhone에서 추가하거나 삭제한 피드는 보관함에도 반영됩니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Os feeds que você adiciona ou remove neste iPhone também são adicionados ou removidos na sua biblioteca."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ленты, добавленные или удалённые на этом iPhone, добавляются или удаляются и в библиотеке."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Стрічки, додані чи вилучені на цьому iPhone, додаються чи вилучаються й у бібліотеці."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在此 iPhone 上添加或移除的订阅源，也会在资料库中添加或移除。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在此 iPhone 上加入或移除的訂閱來源，也會在資料庫中加入或移除。"
           }
         }
       }

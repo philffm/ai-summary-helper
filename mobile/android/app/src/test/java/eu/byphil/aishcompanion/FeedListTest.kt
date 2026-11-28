@@ -33,6 +33,39 @@ class FeedListTest {
         assertNull("a newer kind is not guessed at", library.feedList(store, keys))
     }
 
+    @Test fun whatThePhoneChangesReachesTheLibrary() {
+        val vector = JSONObject(javaClass.classLoader!!.getResourceAsStream("feed-list-vector.json")!!.readBytes().toString(Charsets.UTF_8))
+        val keys = SyncCrypto.openMeta(vector.getJSONObject("meta"), vector.getString("passphrase")).keys
+        val feeds = FeedStore(folder.newFolder("feeds"))
+        // as the phone joins it: a feed of its own, and one the library has, under other categories
+        feeds.add("https://mine.example/feed", "Mine", listOf("Own"), 1)
+        feeds.add("https://policy.example/feed", "Phone's name", listOf("Phone"), 2)
+        var now = 1_795_000_100_000L
+        val phone = LibrarySync(object : KeyValue { override fun get(key: String): String? = null; override fun put(key: String, value: String?) {} }, MemoryRecordStore(),
+            joinFeeds = { place, list -> feeds.takeLibrary(place, list, ++now) })
+        val store = MemoryStore()
+        store.put("feeds.bin", Base64.getDecoder().decode(vector.getString("file")))
+        fun server() = phone.feedList(store, keys)!!.associateBy { it.url }
+        phone.syncFeeds(store, keys, "p1")
+        assertEquals("Mine", server()["https://mine.example/feed"]!!.title)
+        assertEquals(listOf("Politics", "Grüße"), server()["https://policy.example/feed"]!!.tags)
+        assertEquals(listOf("Politics", "Grüße"), feeds.feeds().first { it.url == "https://policy.example/feed" }.tags)
+        val writes = store.puts
+        phone.syncFeeds(store, keys, "p1")
+        assertEquals("nothing new: nothing written", writes, store.puts)
+        feeds.remove("https://policy.example/feed")
+        feeds.update("https://mine.example/feed") { it.copy(tags = listOf("Changed")) }
+        phone.syncFeeds(store, keys, "p1")
+        assertEquals(true, server()["https://policy.example/feed"]!!.removed)
+        assertEquals(listOf("Changed"), server()["https://mine.example/feed"]!!.tags)
+        // a document of a newer kind is not written over
+        store.put("feeds.bin", SyncCrypto.encrypt(keys, "{\"aish\":\"feeds/2\",\"entries\":[]}"))
+        val kept = store.puts
+        feeds.add("https://more.example/feed", "More", emptyList(), ++now)
+        phone.syncFeeds(store, keys, "p1")
+        assertEquals(kept, store.puts)
+    }
+
     @Test fun theListJoinsTheFeedsOfThePhone() {
         val feeds = FeedStore(folder.newFolder("feeds"))
         feeds.add("https://mine.example/feed", "Mine", emptyList(), 1)

@@ -47,6 +47,10 @@ final class FeedsModel {
     private struct Vault: Codable { var v = 1; var feeds: [Feed] }
 
     private var all: [Feed] = []
+    /// Told when a feed was added or removed here, so that the library can have it.
+    @ObservationIgnored var changed: (() -> Void)?
+    /// The list as the library takes it, removed feeds included; the made-up one of a debug start never leaves.
+    var forLibrary: [Feed] { samples ? [] : all }
     /// Entries that stay however old they get: the loaded episodes.
     @ObservationIgnored var keeps: (String) -> Bool = { PodcastStore.shared.keeps($0) }
     private(set) var states: [String: FeedState] = [:]
@@ -102,9 +106,11 @@ final class FeedsModel {
     func importFromSafari() {
         let waiting = SafariInbox.pendingFeeds
         guard !samples, !waiting.isEmpty else { return }
+        let before = all.count
         take(waiting)
         save()
         SafariInbox.clearFeeds()
+        if all.count != before { changed?() }
     }
 
     /// The categories are the extension's: where it names some for a feed that is here, they are taken.
@@ -127,7 +133,7 @@ final class FeedsModel {
         let live = all.filter { !$0.removed }.count
         let gone = handed.filter { entry in entry.removed == true && all.contains { $0.url == entry.url && !$0.removed && $0.updatedAt <= entry.updatedAt } }
         let held = gone.count > max(10, (live + 3) / 4)
-        var changed = false
+        var differs = false
         for entry in handed {
             guard let url = URL(string: entry.url), ["http", "https"].contains(url.scheme?.lowercased() ?? "") else { continue }
             let removed = entry.removed == true
@@ -145,13 +151,14 @@ final class FeedsModel {
                     all[i].tags = entry.tags ?? []
                 }
                 all[i].updatedAt = entry.updatedAt
-                changed = true
-            } else if !removed {
-                all.append(Feed(url: entry.url, title: entry.title ?? "", tags: entry.tags ?? [], updatedAt: entry.updatedAt))
-                changed = true
+                differs = true
+            } else {
+                // a removal of a feed that was never here is kept too: Safari must not bring it back
+                all.append(Feed(url: entry.url, title: entry.title ?? "", tags: entry.tags ?? [], updatedAt: entry.updatedAt, removed: removed))
+                differs = true
             }
         }
-        guard changed else { return }
+        guard differs else { return }
         save()
         Task { await refresh() }
     }
@@ -165,6 +172,7 @@ final class FeedsModel {
         if let i = all.firstIndex(where: { $0.url == address }) { all[i] = feed } else { all.append(feed) }
         apply(result, to: address)
         save()
+        changed?()
     }
 
     func remove(_ url: String) {
@@ -173,6 +181,7 @@ final class FeedsModel {
         all[i].updatedAt = Self.now
         states[url] = nil
         save()
+        changed?()
     }
 
     func setRead(_ entry: FeedEntry, _ read: Bool) {

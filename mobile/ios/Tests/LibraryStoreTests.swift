@@ -369,7 +369,7 @@ final class LibraryStoreTests: XCTestCase {
         XCTAssertEqual(changesOnTheServer, 0, "not switched on")
 
         // switched on without the run that the switch in Settings starts at once
-        _ = try await library.store!.sync.host.run("await storage.set({ 'app:writeBack': 2 });")
+        _ = try await library.store!.sync.host.run("await storage.set({ 'app:writeBack': 3 });")
         await model.fetch(seconds: 30)
         XCTAssertNil(model.problem)
         XCTAssertGreaterThan(changesOnTheServer, 0)
@@ -501,6 +501,43 @@ final class LibraryStoreTests: XCTestCase {
         await model.read(folder: empty)
         XCTAssertEqual(model.problem, .noLibrary)
         XCTAssertNil(model.offer)
+    }
+
+    /// With writing back on, what is added to or removed from the feeds here reaches the library; off, nothing goes.
+    func testTheFeedListGoesBothWaysOnceSwitchedOn() async throws {
+        let made = try serveTheBrowsersPlace()
+        let library = try await start()
+        let model = SyncModel(library: library)
+        let now = Int64(Date.now.timeIntervalSince1970 * 1000)
+        var mine = [Feed(url: "https://phone.example/feed", title: "From the phone", tags: [], updatedAt: now),
+                    Feed(url: "https://energy.example/feed", title: "Energy Watch", tags: [], updatedAt: now, removed: true)]
+        var handed: [LibrarySync.FeedEntry] = []
+        model.giveFeeds = { mine }
+        model.takeFeeds = { handed = $0 }
+        try await join(model, made)
+        XCTAssertEqual(changesOnTheServer, 0, "off: nothing is written")
+        XCTAssertFalse(handed.contains { $0.url == "https://phone.example/feed" })
+
+        await model.setWriteBack(true)
+        XCTAssertNil(model.problem)
+        XCTAssertGreaterThan(changesOnTheServer, 0)
+        mine = []
+        let at = root.appending(path: "other-feeds")
+        try FileManager.default.createDirectory(at: at.appending(path: "shared"), withIntermediateDirectories: true)
+        let network = URLSessionConfiguration.ephemeral
+        network.protocolClasses = [FakeDAV.self]
+        let other = Library(samples: false, store: try LibraryStore(folder: at.appending(path: "library"), shared: at.appending(path: "shared"),
+                                                                    vault: SyncVault(scope: "feeds-" + UUID().uuidString), network: network))
+        await other.settled()
+        let second = SyncModel(library: other)
+        var there: [LibrarySync.FeedEntry] = []
+        second.takeFeeds = { there = $0 }
+        try await join(second, made)
+        XCTAssertEqual(there.first { $0.url == "https://phone.example/feed" }?.title, "From the phone")
+        XCTAssertEqual(there.first { $0.url == "https://energy.example/feed" }?.removed, true)
+        let written = changesOnTheServer
+        await model.fetch()
+        XCTAssertEqual(changesOnTheServer, written, "nothing moves back and forth")
     }
 
     func testWhatWasSavedHereJoinsTheLibraryOnceSwitchedOn() async throws {

@@ -43,7 +43,7 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {}, f
     const WRITE = 'app:writeBack';
     // What writing back covers has grown (summaries, the articles saved here): a yes given to less does not cover it, so
     // the number says which yes was given.
-    const SCOPE = 2;
+    const SCOPE = 3;
     // a folder is only read
     const inFolder = async () => (await service.connectionsNow()).some((c) => c.service === 'folder');
     const writes = async () => !(await inFolder()) && (writeBack || (await storage.get({ [WRITE]: false }))[WRITE] === SCOPE);
@@ -114,10 +114,10 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {}, f
     let stopped = false;
     const stop = () => { stopped = true; };
     /** One run at a time: a second one asked for meanwhile is the same run. */
-    function run({ seconds } = {}) {
+    function run({ seconds, feeds } = {}) {
         if (!going) {
             stopped = false;
-            going = once(seconds).finally(() => { going = null; });
+            going = once(seconds, feeds).finally(() => { going = null; });
         }
         return going;
     }
@@ -126,7 +126,7 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {}, f
      * One run of the joined library, to its end: first everything is fetched, then what the app keeps for itself is told
      * apart from the library, and only then, when the app writes back, what changed here goes out. Throws what went wrong.
      */
-    async function once(seconds) {
+    async function once(seconds, feeds = []) {
         // a run with little time (in the background) stops at a package's end and goes on the next time
         const timed = seconds !== undefined;
         const until = timed ? Date.now() + seconds * 1000 : Infinity;
@@ -138,8 +138,9 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {}, f
         const total = { pulled: 0, applied: 0, pushed: 0, moved: 0, errors: [] };
         // nothing goes out after a fetch that did not end well: what is on the server is not fully known then
         const all = await toTheEnd(fetching, place.id, total, until);
-        // the feed list lies beside the records and is only read here; where it cannot be, the rest goes on
-        try { total.feeds = await service.feedList(place.id); } catch (e) { log('feed list: ' + e.message); }
+        // the feed list lies beside the records; it is written under the same yes as everything else, and only after a
+        // fetch that ended well. Where it cannot be read, the rest goes on.
+        try { total.feeds = await service.feedList(place.id, { local: feeds, mayWrite: all && !total.errors.length && await writes() }); } catch (e) { log('feed list: ' + e.message); }
         if (!all || total.errors.length) return total;
         total.moved = await library.settle(place.id);
         if (await writes()) {

@@ -150,6 +150,35 @@ assert.ok(/newer version/.test(r.error), JSON.stringify(r));
 assert.equal(files.get(FEED_LIST_FILE).etag, 'newer');
 assert.deepEqual(await fresh.urls(), url('kept', 'own'));
 
+// a phone: it keeps its own list, with markers for what it removed
+const { joinFeedList } = await import('../src/modules/syncFeedList.js');
+files.clear();
+const home = device(); await home.add('home'); await home.sync();
+const place = await onServer();
+const phone = async (local, mayWrite) => joinFeedList({ store: server(), keys: place.keys, local, mayWrite, now: () => (clock += 1000) });
+const entry = (n, extra = {}) => ({ url: url(n)[0], title: n, tags: ['phone'], updatedAt: (clock += 1000), ...extra });
+const etag = files.get(FEED_LIST_FILE).etag;
+assert.deepEqual((await phone([entry('mine')], false)).map((e) => e.url), url('home'), 'only read');
+assert.equal(files.get(FEED_LIST_FILE).etag, etag);
+// switched on: its own feed goes up, and it does not overrule the categories of one that is there
+await phone([entry('own'), entry('home')], true); await home.sync();
+assert.deepEqual(await home.urls(), url('home', 'own'));
+assert.deepEqual((await home.subs()).find((s) => s.url === url('home')[0]).tags, ['news']);
+// removed on the phone: removed in the browser
+await phone([entry('own', { removed: true })], true); await home.sync();
+assert.deepEqual(await home.urls(), url('home'));
+// and added there again: back
+await phone([entry('own')], true); await home.sync();
+assert.deepEqual(await home.urls(), url('home', 'own'));
+const idle = files.get(FEED_LIST_FILE).etag;
+await phone([], true);
+assert.equal(files.get(FEED_LIST_FILE).etag, idle, 'nothing new: nothing written');
+
+// a second computer with the same address brings neither its name nor its categories
+const second = device(); await second.add('home'); await second.setSubs([{ ...(await second.subs())[0], tags: ['mine'] }]); await second.sync(); await home.sync();
+assert.deepEqual((await home.subs()).find((s) => s.url === url('home')[0]).tags, ['news']);
+assert.deepEqual((await second.subs()).find((s) => s.url === url('home')[0]).tags, ['news']);
+
 // the document both phones are tested against
 const vector = JSON.parse((await import('fs')).readFileSync(new URL('./fixtures/feed-list-vector.json', import.meta.url), 'utf8'));
 const vk = (await openMeta(vector.meta, { passphrase: vector.passphrase })).keys;

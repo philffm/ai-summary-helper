@@ -106,8 +106,10 @@ struct LibrarySync {
     }
 
     /// `seconds`: no longer than about this; what is left comes with the next run.
-    func run(seconds: Double? = nil) async throws -> Run {
-        let input: [String: Any] = seconds.map { ["seconds": $0] } ?? [:]
+    /// `feeds`: the app's own feed list, a removed feed as a marker; it joins the library's where writing back is on.
+    func run(seconds: Double? = nil, feeds: [Feed] = []) async throws -> Run {
+        var input: [String: Any] = ["feeds": feeds.map { ["url": $0.url, "title": $0.title, "tags": $0.tags, "updatedAt": $0.updatedAt, "removed": $0.removed] }]
+        if let seconds { input["seconds"] = seconds }
         return try JSONDecoder().decode(Run.self, from: try await host.run("return sync.run(input);", input: input))
     }
 
