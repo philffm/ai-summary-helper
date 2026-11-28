@@ -52,7 +52,7 @@ export function collectPageMeta(doc = document, loc = window.location) {
   return meta;
 }
 
-export function saveToLocalStorage(content, summary, url, title, description, tags = [], modelId = '', summaryLength = 200, moodScore, extra, pageMeta) {
+export function saveToLocalStorage(content, summary, url, title, description, tags = [], modelId = '', summaryLength = 200, moodScore, extra, pageMeta, followUps) {
   return new Promise((resolve, reject) => {
     const timestamp = new Date().toISOString();
     const id = `article_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
@@ -75,6 +75,13 @@ export function saveToLocalStorage(content, summary, url, title, description, ta
     if (extra && typeof extra === 'object') Object.assign(indexEntry, extra);
     const record = { content, summary, description: description || (pageMeta && pageMeta.description) || '' };
     if (pageMeta && Object.keys(pageMeta).length) record.meta = pageMeta;
+    // The questions the model prepared with the summary, kept even when no side panel is open to offer them
+    // (the same two fields saveConversation writes).
+    const asked = ((followUps && followUps.questions) || []).filter((q) => typeof q === 'string' && q.trim()).slice(0, 8);
+    if (asked.length) {
+      record.suggested = asked;
+      record.suggestedAnswers = Object.fromEntries(asked.filter((q) => typeof (followUps.quick || {})[q] === 'string').map((q) => [q, followUps.quick[q]]));
+    }
 
     chrome.storage.local.get({ [SK.articlesIndex]: [] }, (data) => {
       const articlesIndex = data[SK.articlesIndex] || [];

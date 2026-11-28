@@ -123,7 +123,7 @@ export async function finalizeSummary(o) {
 /** Same as the in-page path: store the finished summary. `ctx` is what the page handed to the background when the run started. */
 export function saveFinished(ctx, f, contentHtml) {
   const extra = { ...(ctx.feedUrl && ctx.feedUrl !== ctx.sourceUrl ? { feedUrl: ctx.feedUrl } : {}), ...paperIndexFields(f.pageMeta && f.pageMeta.paper) };
-  return saveToLocalStorage(contentHtml, f.cleanHtml, ctx.sourceUrl, f.title, '', f.tags, ctx.modelIdentifier, ctx.summaryLength, f.moodScore, withTagEn(extra, f.tagEn), f.pageMeta);
+  return saveToLocalStorage(contentHtml, f.cleanHtml, ctx.sourceUrl, f.title, '', f.tags, ctx.modelIdentifier, ctx.summaryLength, f.moodScore, withTagEn(extra, f.tagEn), f.pageMeta, { questions: f.questions, quick: f.quick });
 }
 
 /** Background: a run whose page went away is finished here. */

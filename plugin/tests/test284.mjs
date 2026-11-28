@@ -32,6 +32,9 @@ const withImages = plain(N.toPackage(entry, { content: `<p>before</p><img src="d
 assert.deepEqual(withImages.images.map((i) => [i.name, i.data.length]), [['0', 300000]], 'pictures travel apart; other kinds are left out');
 assert.ok(withImages.content.includes('kaivo-image:0') && withImages.content.endsWith('<p>after</p>') && !withImages.content.includes('base64') && withImages.content.includes('https://example.com/i.png'), 'the text is complete'); assert.equal(p.progress, 0.4); assert.equal(p.words, 12);
 assert.deepEqual(p.highlights, [{ text: 'one', ai: true }, { text: 'two', ai: false }]);
+assert.ok(!('questions' in p), 'none prepared, none sent');
+assert.deepEqual(plain(N.toPackage(entry, { suggested: ['Why so?', 'And then?', ''], suggestedAnswers: { 'Why so?': 'Because of it.' } }, [])).questions,
+    [{ q: 'Why so?', a: 'Because of it.' }, { q: 'And then?', a: '' }]);
 assert.equal(N.toPackage({ id: '../x', url: 'https://example.com' }), null, 'an id becomes a file name');
 assert.equal(N.toPackage({ id: 'ok', url: 'javascript:alert(1)' }), null);
 
@@ -82,6 +85,24 @@ lib['feeds:subs'] = lib['feeds:subs'].slice(0, 1); log.length = 0; await both();
     vm.runInNewContext(code, { self: {}, chrome, URL, setTimeout: (f) => { timer = f; return 1; }, clearTimeout: () => {}, console: { warn: () => {} } });
     await timer();
     assert.deepEqual(alarms, ['create', 'clear']);
+}
+// a page just saved goes at once, and later writes do not push it back; an import waits for quiet
+{
+    const waits = []; let listener = null, fire = null;
+    const chrome = { runtime: { getManifest: () => ({ permissions: ['nativeMessaging'] }), sendNativeMessage: () => Promise.resolve({ ok: true, folder: 'f' }) },
+        storage: { local: { get: (k, cb) => cb({}), set: (v, cb) => cb() }, onChanged: { addListener: (f) => { listener = f; } } } };
+    vm.runInNewContext(code, { self: {}, chrome, URL, setTimeout: (f, ms) => { waits.push(ms); fire = f; return waits.length; }, clearTimeout: () => {}, console });
+    const list = (...ids) => ids.map((id) => ({ id }));
+    waits.length = 0;
+    listener({ 'articles:index': { oldValue: list('a'), newValue: list('a', 'b') } }, 'local');
+    assert.deepEqual(waits, [300], 'saved: at once');
+    listener({ 'articles:rec:b': { newValue: {} } }, 'local');
+    assert.deepEqual(waits, [300], 'what follows leaves it be');
+    await fire();
+    waits.length = 0;
+    listener({ 'articles:index': { oldValue: list('a'), newValue: list('a') } }, 'local');
+    listener({ 'articles:index': { oldValue: [], newValue: list('a', 'b', 'c', 'd') } }, 'local');
+    assert.deepEqual(waits, [4000, 4000], 'a change or an import waits for quiet');
 }
 console.log('TEST 284 OK');
 process.exit(0);
