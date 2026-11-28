@@ -7,7 +7,11 @@ import WidgetKit
 final class AppModels {
     static let shared = AppModels()
     lazy var library = Library()
-    lazy var sync = SyncModel(library: library)
+    lazy var sync: SyncModel = {
+        let sync = SyncModel(library: library)
+        sync.takeFeeds = { [feeds] in feeds.take(library: $0) }
+        return sync
+    }()
     lazy var feeds = FeedsModel()
 }
 

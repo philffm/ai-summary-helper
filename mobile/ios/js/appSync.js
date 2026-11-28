@@ -115,7 +115,10 @@ function createSync({ storage, log = () => {}, writeBack = false, engine = {} })
         if (!place) throw new Error('No library is connected.');
         const total = { pulled: 0, applied: 0, pushed: 0, moved: 0, errors: [] };
         // nothing goes out after a fetch that did not end well: what is on the server is not fully known then
-        if (!(await toTheEnd(fetching, place.id, total, until)) || total.errors.length) return total;
+        const all = await toTheEnd(fetching, place.id, total, until);
+        // the feed list lies beside the records and is only read here; where it cannot be, the rest goes on
+        try { total.feeds = await service.feedList(place.id); } catch (e) { log('feed list: ' + e.message); }
+        if (!all || total.errors.length) return total;
         total.moved = await library.settle(place.id);
         if (await writes()) {
             // what was saved here joins the library after everything of the library is known, and goes out at once

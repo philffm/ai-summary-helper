@@ -25,7 +25,18 @@ struct LibrarySync {
         let last: Last?
     }
 
+    /// An entry of the library's feed list; a removed one holds only its address and time.
+    struct FeedEntry: Decodable, Equatable {
+        let url: String
+        let title: String?
+        let tags: [String]?
+        let updatedAt: Int64
+        let removed: Bool?
+    }
+
     struct Run: Decodable {
+        /// The library's feed list; nil where it could not be read.
+        var feeds: [FeedEntry]?
         let pulled: Int
         let applied: Int
         let pushed: Int

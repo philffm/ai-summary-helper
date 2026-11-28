@@ -120,6 +120,42 @@ final class FeedsModel {
         }
     }
 
+    /// The feed list of the library, joined with the one here: for each address the newer entry counts, so what was
+    /// removed on the computer goes here too, and what was removed here stays away until it is added again. Many removals
+    /// at once (more than 10 and a quarter of the feeds) are not carried out.
+    func take(library handed: [LibrarySync.FeedEntry]) {
+        let live = all.filter { !$0.removed }.count
+        let gone = handed.filter { entry in entry.removed == true && all.contains { $0.url == entry.url && !$0.removed && $0.updatedAt <= entry.updatedAt } }
+        let held = gone.count > max(10, (live + 3) / 4)
+        var changed = false
+        for entry in handed {
+            guard let url = URL(string: entry.url), ["http", "https"].contains(url.scheme?.lowercased() ?? "") else { continue }
+            let removed = entry.removed == true
+            if let i = all.firstIndex(where: { $0.url == entry.url }) {
+                let here = all[i]
+                // on a tie a removal wins, as everywhere
+                guard entry.updatedAt > here.updatedAt || (entry.updatedAt == here.updatedAt && removed && !here.removed) else { continue }
+                if removed {
+                    guard !held, !here.removed else { continue }
+                    all[i].removed = true
+                    states[entry.url] = nil
+                } else {
+                    all[i].removed = false
+                    if let title = entry.title, !title.isEmpty { all[i].title = title }
+                    all[i].tags = entry.tags ?? []
+                }
+                all[i].updatedAt = entry.updatedAt
+                changed = true
+            } else if !removed {
+                all.append(Feed(url: entry.url, title: entry.title ?? "", tags: entry.tags ?? [], updatedAt: entry.updatedAt))
+                changed = true
+            }
+        }
+        guard changed else { return }
+        save()
+        Task { await refresh() }
+    }
+
     /// Subscribes after a successful download, so a wrong address never ends up in the list.
     func add(_ input: String, title: String = "", tags: [String] = []) async throws {
         guard let url = FeedFetcher.normalize(input) else { throw FeedFetcher.Failure.address }

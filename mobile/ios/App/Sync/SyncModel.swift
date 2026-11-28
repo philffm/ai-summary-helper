@@ -39,6 +39,8 @@ final class SyncModel {
     /// Something changed here while a run was going: another one follows.
     @ObservationIgnored private var again = false
     @ObservationIgnored private var limited = false
+    /// Takes the library's feed list, after a run that read it.
+    @ObservationIgnored var takeFeeds: (([LibrarySync.FeedEntry]) -> Void)?
     var problem: Problem?
     /// The screen is asked for from outside (a scanned code).
     var shown = false
@@ -132,6 +134,7 @@ final class SyncModel {
                 Task { await sync.stop() }
             }
             brought = run.applied > 0 || (run.moved ?? 0) > 0
+            if let list = run.feeds, !list.isEmpty { takeFeeds?(list) }
             if let first = run.errors.first { problem = .other(first) }
         } catch {
             problem = Problem(error)

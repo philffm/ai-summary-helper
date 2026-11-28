@@ -110,4 +110,31 @@ final class FeedTests: XCTestCase {
         XCTAssertEqual(SampleData.stories.count, 5)
         XCTAssertTrue(SampleData.stories.allSatisfy { !$0.passages.isEmpty && $0.firstHighlight != nil })
     }
+
+    /// The library's list is joined with the one here: the newer entry counts, a removal goes and stays, many at once are held.
+    @MainActor
+    func testTheLibrarysListJoinsTheOneHere() {
+        func entry(_ url: String, _ at: Int64, title: String = "", tags: [String] = [], removed: Bool = false) -> LibrarySync.FeedEntry {
+            .init(url: url, title: title, tags: tags, updatedAt: at, removed: removed)
+        }
+        let feeds = FeedsModel(samples: true)
+        let before = feeds.feeds.count
+        let new = "https://new.example/feed"
+        feeds.take(library: [entry(new, 10, title: "New", tags: ["Politics"]), entry("not an address", 10), entry("file:///etc/passwd", 10)])
+        XCTAssertEqual(feeds.feeds.count, before + 1)
+        XCTAssertEqual(feeds.feeds.first { $0.url == new }?.tags, ["Politics"])
+        feeds.take(library: [entry(new, 5, removed: true)])
+        XCTAssertNotNil(feeds.feeds.first { $0.url == new }, "an older removal does not count")
+        feeds.take(library: [entry(new, 20, removed: true)])
+        XCTAssertNil(feeds.feeds.first { $0.url == new })
+        feeds.take(library: [entry(new, 15, title: "New")])
+        XCTAssertNil(feeds.feeds.first { $0.url == new }, "it stays away")
+        let many = (0..<30).map { "https://m\($0).example/feed" }
+        feeds.take(library: many.map { entry($0, 100) })
+        feeds.take(library: many.map { entry($0, 200, removed: true) })
+        XCTAssertEqual(feeds.feeds.count, before + 30, "thirty at once are not carried out")
+        feeds.take(library: many.prefix(5).map { entry($0, 300, removed: true) })
+        XCTAssertEqual(feeds.feeds.count, before + 25)
+    }
+
 }

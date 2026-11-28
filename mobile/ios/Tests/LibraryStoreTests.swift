@@ -380,6 +380,20 @@ final class LibraryStoreTests: XCTestCase {
         XCTAssertEqual(changesOnTheServer, written, "nothing moves back and forth")
     }
 
+    /// The library's feed list arrives with a run and is only read, with writing back on or off.
+    func testTheLibrarysFeedListArrives() async throws {
+        let made = try serveTheBrowsersPlace()
+        let library = try await start()
+        let model = SyncModel(library: library)
+        var handed: [LibrarySync.FeedEntry] = []
+        model.takeFeeds = { handed = $0 }
+        try await join(model, made)
+        XCTAssertEqual(Set(handed.map(\.url)), ["https://policy.example/feed", "https://energy.example/feed", "https://gone.example/feed"])
+        XCTAssertEqual(handed.first { $0.url == "https://policy.example/feed" }?.tags, ["Politics", "Grüße"])
+        XCTAssertEqual(handed.first { $0.url == "https://gone.example/feed" }?.removed, true)
+        XCTAssertEqual(changesOnTheServer, 0)
+    }
+
     func testWhatWasSavedHereJoinsTheLibraryOnceSwitchedOn() async throws {
         let made = try serveTheBrowsersPlace()
         var mine = Passage(text: "Only my words.")
