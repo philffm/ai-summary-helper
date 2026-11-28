@@ -3,6 +3,7 @@ package eu.byphil.aishcompanion
 import eu.byphil.aishcompanion.sync.RecordStore
 import eu.byphil.aishcompanion.sync.SyncClock
 import eu.byphil.aishcompanion.sync.SyncFields
+import eu.byphil.aishcompanion.sync.SyncStamps
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
@@ -21,7 +22,7 @@ interface PhoneArticles { fun all(): List<PhoneArticle> }
 class StorePhoneArticles(private val store: ArticleStore) : PhoneArticles {
     override fun all(): List<PhoneArticle> = store.list().mapNotNull { m ->
         val a = store.load(m.id) ?: return@mapNotNull null
-        PhoneArticle(m.id, a.url, a.title, m.receivedAt, a.blocks.map { it.type to it.text }, a.summary, store.userHighlights(m.id), m.local, a.aid)
+        PhoneArticle(m.id, a.url, a.title, m.receivedAt, a.blocks.filter { it.type != "img" }.map { it.type to it.text }, a.summary, store.userHighlights(m.id), m.local, a.aid)
     }
 }
 
@@ -31,6 +32,8 @@ class StorePhoneArticles(private val store: ArticleStore) : PhoneArticles {
  *    does not hold that page yet (same page = same address, ignoring tracking parameters, www, # and a trailing slash). A page the browser has keeps
  *    the browser's text; nothing here replaces it.
  *  • the passages marked on this phone become "hl:ph_<hash>" records for their page (new ones are added, one unmarked here gets a deletion marker).
+ * What other devices add to a record made here (tags, how far it was read, questions) stays: after the first upload the phone sends only
+ * what changed on the phone itself, for which it remembers what it sent.
  * Records that came from the browser are never written, and what was made here is remembered (id → key), so nothing is made twice, the reading list
  * does not receive its own articles back, and the same article is never uploaded under two keys.
  */
@@ -61,8 +64,23 @@ class PhoneUploader(private val records: RecordStore, private val now: () -> Lon
             val key = ArticleIdentity.key(rec.optJSONObject("values")?.optString("url").orEmpty()); if (key.isNotEmpty()) library.add(key)
         }
         val desiredHl = LinkedHashSet<String>()
+        // per record, a hash of each value as the phone last had it
+        val sent = state.optJSONObject("sent") ?: JSONObject()
         fun put(key: String, fields: JSONObject): Boolean {
-            val r = SyncFields.stampRecord(records.get(key), fields, c, now()); if (r.changed) records.put(key, r.record); return r.changed
+            val prev = records.get(key)
+            val before = sent.optJSONObject(key)
+            val seen = JSONObject(); for (name in fields.keys()) seen.put(name, SyncStamps.hashValue(fields.get(name)))
+            sent.put(key, seen)
+            val r = if (prev == null) SyncFields.stampRecord(null, fields, c, now()) else {
+                val changes = JSONObject()
+                for (name in fields.keys()) {
+                    // uploaded before the phone remembered this: what the record names has been sent
+                    val old = if (before == null) prev.optJSONObject("f")?.has(name) == true else before.optString(name) == seen.getString(name)
+                    if (!old) changes.put(name, fields.get(name))
+                }
+                SyncFields.edit(prev, changes, c, now())
+            }
+            if (r.changed) records.put(key, r.record); return r.changed
         }
         for (a in source.all()) {
             val pageKey = ArticleIdentity.key(a.url)
@@ -88,7 +106,7 @@ class PhoneUploader(private val records: RecordStore, private val now: () -> Lon
             val t = SyncFields.tombstone(rec, c, now()); if (t.changed) { records.put(key, t.record); out.removed++ }
         }
         stateFile.parentFile?.mkdirs()
-        stateFile.writeText(JSONObject().put("articles", upArticles).put("hl", JSONArray(desiredHl.toList())).toString())
+        stateFile.writeText(JSONObject().put("articles", upArticles).put("hl", JSONArray(desiredHl.toList())).put("sent", sent).toString())
         return out
     }
 

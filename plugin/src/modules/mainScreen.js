@@ -782,7 +782,8 @@ export function initMainScreen(ui) {
             try { instant && instant.chatDone(a || ''); } catch (_) { /* optional */ }
             if (prev) conversation.turns = conversation.turns.filter(t => t !== prev);
             const turn = newTurn(conversation.turns, { q, a, sources });
-            if (prev) turn.pinned = prev.pinned;
+            // a continued answer stays the same question: other devices must not take it for a second one
+            if (prev) { turn.id = prev.id; turn.ts = prev.ts; turn.pinned = prev.pinned; if (prev.noted) turn.noted = true; }
             conversation.turns.push(turn);
             try { instant && instant.refresh(); } catch (_) { /* optional */ }
             paintAskCount();

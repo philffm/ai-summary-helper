@@ -46,6 +46,60 @@ class PhoneUploaderTest {
         assertEquals("nothing changes the second time", 0, run().articles)
     }
 
+    /** What another device did to a record, as the sync merges it into the phone's copy. */
+    private fun elsewhere(key: String, vararg changes: Pair<String, Any>) {
+        val r = SyncFields.edit(records.get(key)!!, JSONObject().apply { changes.forEach { put(it.first, it.second) } }, SyncClock(device = "d_browser"), t + 1000)
+        t += 1000
+        records.put(key, r.record)
+    }
+    private fun value(key: String, name: String) = records.get(key)!!.getJSONObject("values").opt(name)
+    private fun stamp(key: String, name: String) = records.get(key)!!.getJSONObject("f").getJSONObject(name).toString()
+
+    @Test fun whatAnotherDeviceAddsToAnUploadedArticleStays() {
+        list = listOf(art("a1", "https://phone.example/post"))
+        run()
+        val key = "article:ph_a1"
+        elsewhere(key, "tag:ai" to "AI", "archived" to true, "progress" to 0.5, "title" to "A better title", "summaryBase" to "<p>The browser's summary.</p>")
+        val tag = stamp(key, "tag:ai"); val title = stamp(key, "title")
+        assertEquals(0, run().articles)
+        assertEquals("AI", value(key, "tag:ai")); assertEquals(true, value(key, "archived")); assertEquals(0.5, (value(key, "progress") as Number).toDouble(), 0.0)
+        assertEquals("A better title", value(key, "title")); assertEquals("<p>The browser's summary.</p>", value(key, "summaryBase"))
+        assertEquals(tag, stamp(key, "tag:ai")); assertEquals(title, stamp(key, "title"))
+    }
+
+    @Test fun whatChangesOnThePhoneStillGoesUp_andNothingElseWithIt() {
+        val first = art("a1", "https://phone.example/post").copy(summary = "")
+        list = listOf(first); run()
+        val key = "article:ph_a1"
+        elsewhere(key, "title" to "A better title", "tag:ai" to "AI")
+        list = listOf(first.copy(summary = "Written later."))
+        assertEquals(1, run().articles)
+        assertEquals("<p>Written later.</p>", value(key, "summaryBase")); assertEquals("A better title", value(key, "title")); assertEquals("AI", value(key, "tag:ai"))
+        list = listOf(first.copy(summary = "Written again.", title = "Renamed on the phone"))
+        assertEquals(1, run().articles)
+        assertEquals("<p>Written again.</p>", value(key, "summaryBase")); assertEquals("Renamed on the phone", value(key, "title")); assertEquals("AI", value(key, "tag:ai"))
+    }
+
+    @Test fun afterAnUpdateOfTheAppNothingOfAnEarlierUploadIsSentAgain() {
+        list = listOf(art("a1", "https://phone.example/post"))
+        run()
+        // the state an earlier version of the app kept
+        state.writeText(JSONObject(state.readText()).apply { remove("sent") }.toString())
+        val key = "article:ph_a1"
+        elsewhere(key, "title" to "A better title", "tag:ai" to "AI")
+        assertEquals(0, run().articles)
+        assertEquals("A better title", value(key, "title")); assertEquals("AI", value(key, "tag:ai"))
+    }
+
+    @Test fun aDecisionAboutAPhoneHighlightStays() {
+        list = listOf(art("own", "https://phone.example/a", hl = listOf("A passage of mine")))
+        run()
+        val key = records.keys("hl:").single()
+        elsewhere(key, "dismissed" to true, "color" to "green")
+        assertEquals(0, run().highlights)
+        assertEquals(true, value(key, "dismissed")); assertEquals("green", value(key, "color"))
+    }
+
     @Test fun aPageTheLibraryAlreadyHasIsNeverUploaded_inAnySpelling() {
         libraryArticle("b1", "https://www.econ.example/post/")
         for ((i, url) in listOf("https://econ.example/post", "http://econ.example/post?utm_source=x&fbclid=1", "https://econ.example/post#section").withIndex()) list = list + art("p$i", url)

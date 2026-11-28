@@ -10,10 +10,12 @@ A companion for the AISH browser extension, in two directions, both end-to-end e
 
 * **Feeds:** a basic RSS reader (RSS, Atom, JSON Feed; own parser, no external entities). The feed *list* (URL, name, tags; the
   first tag is the folder) syncs end-to-end encrypted with the extension through one vault document; items and articles never sync,
-  each device fetches its own. In a feed item tap **To browser** to send the link to the extension, or **Read page** to open it in
+  each device fetches its own. A joined **library** carries the same list too (`feeds.bin` beside its records): feeds added,
+  removed or sorted on the phone reach the browser, and the other way round. In a feed item tap **To browser** to send the link to the extension, or **Read page** to open it in
   the in-app web view.
 * **Reading list:** articles from **Send to phone**, with the AI summary as bullets and your highlights and the AI's ghost highlights
-  marked in the text (yellow, blue) and listed below.
+  marked in the text (yellow, blue) and listed below. Articles that come with the library sync also show the pictures saved inside their text; nothing is loaded from
+  the web.
 * **Reading tools:** per article, read aloud (play, pause, speed), speed reading (one word at a time, 150–900 wpm), copy or share as
   Markdown (front matter like the extension), archive (swipe left; an Archive filter keeps them), and search over title, site and text.
   **Settings → Backup & restore** exports preferences to a file (never the pairing, licence or account) and imports them on a new phone.

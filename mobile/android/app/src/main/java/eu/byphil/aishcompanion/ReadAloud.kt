@@ -18,7 +18,7 @@ object ReadAloudUnits {
 
     /** Title, then the article text (code blocks are skipped: they do not read well). */
     fun article(title: String, blocks: List<Block>): List<String> =
-        (if (title.isNotBlank()) listOf(title.trim()) else emptyList()) + blocks.filter { it.type != "pre" }.flatMap { sentences(it.text) }
+        (if (title.isNotBlank()) listOf(title.trim()) else emptyList()) + blocks.filter { it.type != "pre" && it.type != "img" }.flatMap { sentences(it.text) }
 
     fun summary(summary: String): List<String> = sentences(summary)
 
@@ -80,6 +80,12 @@ class ReadAloud(context: Context, initialRate: Float = 1f, private val onRate: (
             State.PAUSED -> { state = State.PLAYING; speakAt(index) }
             State.IDLE -> {}
         }
+    }
+
+    /** A sentence in progress starts again at the new speed. */
+    fun changeRate(next: Float) {
+        rate = next; onRate(next)
+        if (state == State.PLAYING) speakAt(index)
     }
 
     /** Next speed in the cycle 1× → 1.25× → 1.5× → 0.8×; a sentence in progress starts again at the new speed. */

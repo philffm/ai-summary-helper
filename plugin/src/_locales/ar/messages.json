@@ -8221,5 +8221,26 @@
   },
   "f_ago_dfc8": {
     "message": "قبل {t}"
+  },
+  "f_in_notes_f1cf": {
+    "message": "في الملاحظات"
+  },
+  "f_question_0065": {
+    "message": "سؤال"
+  },
+  "f_remove_from_notes_2dfe": {
+    "message": "إزالة من الملاحظات"
+  },
+  "f_removed_from_notes_fa58": {
+    "message": "أُزيل من الملاحظات"
+  },
+  "f_save_to_notes_45f0": {
+    "message": "حفظ في الملاحظات"
+  },
+  "f_show_this_question_and_its_a_a1a0": {
+    "message": "أظهِر هذا السؤال وجوابه في ملاحظاتك"
+  },
+  "f_shown_in_your_notes_9b71": {
+    "message": "يظهر في ملاحظاتك"
   }
 }

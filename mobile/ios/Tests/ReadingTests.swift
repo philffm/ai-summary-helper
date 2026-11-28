@@ -7,6 +7,20 @@ final class ReadingTests: XCTestCase {
         Article(id: "a", title: "t", host: host, tags: [], words: 1, savedAt: .now, passages: passages, link: link, paper: paper)
     }
 
+    func testFeedsCanShowOnlyWhatThereIsToListenTo() {
+        let feed = Feed(url: "https://example.org/feed", title: "F", tags: [], updatedAt: 0)
+        func entry(_ id: String, audio: String?, read: Bool) -> FeedEntry {
+            let item = FeedItem(id: id, title: id, link: "https://example.org/" + id, published: nil, audio: audio)
+            var stored = StoredItem(item: item)
+            stored.read = read
+            return FeedEntry(feed: feed, stored: stored)
+        }
+        let all = [entry("text", audio: nil, read: false), entry("heard", audio: "https://example.org/a.mp3", read: true), entry("new", audio: "https://example.org/b.mp3", read: false)]
+        XCTAssertEqual(all.filter(FeedFilter.all.shows).count, 3)
+        XCTAssertEqual(all.filter(FeedFilter.unread.shows).map(\.stored.item.id), ["text", "new"])
+        XCTAssertEqual(all.filter(FeedFilter.podcasts.shows).map(\.stored.item.id), ["heard", "new"])
+    }
+
     func testSafariHeadingsStayHeadings() {
         let blocks = SafariImport.blocks("<h2 class=\"x\">1. <em>Abstract</em></h2><p>Words.</p><img src=\"https://e.org/p.png\" alt=\"a\"><h3>More</h3><p>Rest.</p>", article: "x")
         XCTAssertEqual(blocks.map(\.text), ["1. Abstract", "Words.", "a", "More", "Rest."])
@@ -76,6 +90,13 @@ final class ReadingTests: XCTestCase {
         let (summary, copied) = SummaryPrompt.split("About sleep.\n- one\n**KEY SENTENCES:**\n1. \"Sleep moves what you read into memory.\"\n- invented sentence that is nowhere at all")
         XCTAssertEqual(SummaryPrompt.lines(summary), ["About sleep.", "one"])
         XCTAssertEqual(SummaryPrompt.sentences(copied, in: ["Sleep moves what you read into memory. More."]), ["Sleep moves what you read into memory."])
+        // the questions come last and are taken off before the rest is read
+        let (rest, listed) = SummaryPrompt.cutQuestions("About sleep.\n- one\nKEY SENTENCES:\nSleep moves it.\n**QUESTIONS:** [{\"q\":\"Why?\",\"a\":\"Because.\"}]")
+        XCTAssertFalse(rest.contains("QUESTIONS") || rest.contains("Because."))
+        XCTAssertTrue(listed.contains("\"q\":\"Why?\""))
+        XCTAssertEqual(SummaryPrompt.cutQuestions("Open questions: nobody knows.\n- one").1, "", "a sentence of the summary is no marker")
+        let fenced = SummaryPrompt.cutQuestions("Text.\nQUESTIONS:\n```json\n[{\"q\":\"Why?\"}]\n```")
+        XCTAssertTrue(fenced.0.hasPrefix("Text.") && fenced.1.contains("Why?"))
         let inline = SummaryPrompt.split("KEY SENTENCES: Sleep moves what you read into memory. A short review keeps more than a second reading.")
         XCTAssertEqual(inline.0, "")
         XCTAssertEqual(SummaryPrompt.sentences(inline.1, in: ["Sleep moves what you read into memory.", "A short review keeps more than a second reading."]).count, 2, "taken apart when they stand apart")
@@ -208,8 +229,11 @@ final class ConsentTests: XCTestCase {
     }
 
     @MainActor
-    func testNothingStartsWithoutTheYes() {
-        let summaries = Summaries(), library = Library()
+    func testNothingStartsWithoutTheYes() throws {
+        // a library of its own, not the one of the app on this device
+        let folder = FileManager.default.temporaryDirectory.appending(path: "yes-" + UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let summaries = Summaries(), library = Library(samples: false, store: try LibraryStore(folder: folder, shared: folder, vault: SyncVault(scope: "yes")))
         summaries.consent = AIConsent(store: store)
         let outside = endpoint("https://api.deepseek.com/v1")
         summaries.endpoint = { outside }

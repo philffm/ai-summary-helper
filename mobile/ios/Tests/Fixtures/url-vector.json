@@ -1,0 +1,790 @@
+{
+  "urls": [
+    {
+      "input": "https://example.org",
+      "href": "https://example.org/",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://example.org/",
+      "href": "https://example.org/",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "HTTPS://Example.ORG:443/A/b?c=D#E",
+      "href": "https://example.org/A/b?c=D#E",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/A/b",
+      "search": "?c=D",
+      "query": [
+        [
+          "c",
+          "D"
+        ]
+      ]
+    },
+    {
+      "input": "http://example.org:80/x",
+      "href": "http://example.org/x",
+      "protocol": "http:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "http://example.org",
+      "pathname": "/x",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "http://192.168.1.20:8080/dav/",
+      "href": "http://192.168.1.20:8080/dav/",
+      "protocol": "http:",
+      "host": "192.168.1.20:8080",
+      "hostname": "192.168.1.20",
+      "origin": "http://192.168.1.20:8080",
+      "pathname": "/dav/",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://cloud.example.com/remote.php/dav/files/phil/",
+      "href": "https://cloud.example.com/remote.php/dav/files/phil/",
+      "protocol": "https:",
+      "host": "cloud.example.com",
+      "hostname": "cloud.example.com",
+      "origin": "https://cloud.example.com",
+      "pathname": "/remote.php/dav/files/phil/",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://example.org/a b/ü?q=ö x&y=%20#frag ment",
+      "href": "https://example.org/a%20b/%C3%BC?q=%C3%B6%20x&y=%20#frag%20ment",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/a%20b/%C3%BC",
+      "search": "?q=%C3%B6%20x&y=%20",
+      "query": [
+        [
+          "q",
+          "ö x"
+        ],
+        [
+          "y",
+          " "
+        ]
+      ]
+    },
+    {
+      "input": "https://example.org/%41%2f?x=%zz",
+      "href": "https://example.org/%41%2f?x=%zz",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/%41%2f",
+      "search": "?x=%zz",
+      "query": [
+        [
+          "x",
+          "%zz"
+        ]
+      ]
+    },
+    {
+      "input": "https://example.org/a/./b/../c/.%2e/d",
+      "href": "https://example.org/a/d",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/a/d",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://example.org/a/..",
+      "href": "https://example.org/",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://example.org/a/.",
+      "href": "https://example.org/a/",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/a/",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://example.org//double//slash/",
+      "href": "https://example.org//double//slash/",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "//double//slash/",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://user:pa ss@example.org/x",
+      "href": "https://user:pa%20ss@example.org/x",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/x",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://s3.test:9000/bucket/aish%20sync/r/abc?list-type=2&delimiter=%2F&prefix=a%2Fb%2F",
+      "href": "https://s3.test:9000/bucket/aish%20sync/r/abc?list-type=2&delimiter=%2F&prefix=a%2Fb%2F",
+      "protocol": "https:",
+      "host": "s3.test:9000",
+      "hostname": "s3.test",
+      "origin": "https://s3.test:9000",
+      "pathname": "/bucket/aish%20sync/r/abc",
+      "search": "?list-type=2&delimiter=%2F&prefix=a%2Fb%2F",
+      "query": [
+        [
+          "list-type",
+          "2"
+        ],
+        [
+          "delimiter",
+          "/"
+        ],
+        [
+          "prefix",
+          "a/b/"
+        ]
+      ]
+    },
+    {
+      "input": "https://example.org/'quote'?q='x'&r=\"y\"",
+      "href": "https://example.org/'quote'?q=%27x%27&r=%22y%22",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/'quote'",
+      "search": "?q=%27x%27&r=%22y%22",
+      "query": [
+        [
+          "q",
+          "'x'"
+        ],
+        [
+          "r",
+          "\"y\""
+        ]
+      ]
+    },
+    {
+      "input": "https://example.org/p[1]|2^3{4}`5",
+      "href": "https://example.org/p[1]|2%5E3%7B4%7D%605",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/p[1]|2%5E3%7B4%7D%605",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://bücher.example/straße",
+      "href": "https://xn--bcher-kva.example/stra%C3%9Fe",
+      "protocol": "https:",
+      "host": "xn--bcher-kva.example",
+      "hostname": "xn--bcher-kva.example",
+      "origin": "https://xn--bcher-kva.example",
+      "pathname": "/stra%C3%9Fe",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://[::1]:8443/x",
+      "href": "https://[::1]:8443/x",
+      "protocol": "https:",
+      "host": "[::1]:8443",
+      "hostname": "[::1]",
+      "origin": "https://[::1]:8443",
+      "pathname": "/x",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https:\\\\example.org\\back\\slash",
+      "href": "https://example.org/back/slash",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/back/slash",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "  https://example.org/trim  ",
+      "href": "https://example.org/trim",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/trim",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://example.org?only=query",
+      "href": "https://example.org/?only=query",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/",
+      "search": "?only=query",
+      "query": [
+        [
+          "only",
+          "query"
+        ]
+      ]
+    },
+    {
+      "input": "https://example.org#only",
+      "href": "https://example.org/#only",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://www.youtube.com/watch?v=abc123&t=42s",
+      "href": "https://www.youtube.com/watch?v=abc123&t=42s",
+      "protocol": "https:",
+      "host": "www.youtube.com",
+      "hostname": "www.youtube.com",
+      "origin": "https://www.youtube.com",
+      "pathname": "/watch",
+      "search": "?v=abc123&t=42s",
+      "query": [
+        [
+          "v",
+          "abc123"
+        ],
+        [
+          "t",
+          "42s"
+        ]
+      ]
+    },
+    {
+      "input": "https://www.linkedin.com/jobs/view/?currentJobId=99&utm=x",
+      "href": "https://www.linkedin.com/jobs/view/?currentJobId=99&utm=x",
+      "protocol": "https:",
+      "host": "www.linkedin.com",
+      "hostname": "www.linkedin.com",
+      "origin": "https://www.linkedin.com",
+      "pathname": "/jobs/view/",
+      "search": "?currentJobId=99&utm=x",
+      "query": [
+        [
+          "currentJobId",
+          "99"
+        ],
+        [
+          "utm",
+          "x"
+        ]
+      ]
+    },
+    {
+      "input": "https://news.ycombinator.com/item?id=1&p=2",
+      "href": "https://news.ycombinator.com/item?id=1&p=2",
+      "protocol": "https:",
+      "host": "news.ycombinator.com",
+      "hostname": "news.ycombinator.com",
+      "origin": "https://news.ycombinator.com",
+      "pathname": "/item",
+      "search": "?id=1&p=2",
+      "query": [
+        [
+          "id",
+          "1"
+        ],
+        [
+          "p",
+          "2"
+        ]
+      ]
+    },
+    {
+      "input": "https://example.org/article?utm_source=x&id=7&fbclid=y",
+      "href": "https://example.org/article?utm_source=x&id=7&fbclid=y",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/article",
+      "search": "?utm_source=x&id=7&fbclid=y",
+      "query": [
+        [
+          "utm_source",
+          "x"
+        ],
+        [
+          "id",
+          "7"
+        ],
+        [
+          "fbclid",
+          "y"
+        ]
+      ]
+    },
+    {
+      "input": "https://archive.ph/2024/https://example.org/x",
+      "href": "https://archive.ph/2024/https://example.org/x",
+      "protocol": "https:",
+      "host": "archive.ph",
+      "hostname": "archive.ph",
+      "origin": "https://archive.ph",
+      "pathname": "/2024/https://example.org/x",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://web.archive.org/web/20240101000000/https://example.org/y?v=1",
+      "href": "https://web.archive.org/web/20240101000000/https://example.org/y?v=1",
+      "protocol": "https:",
+      "host": "web.archive.org",
+      "hostname": "web.archive.org",
+      "origin": "https://web.archive.org",
+      "pathname": "/web/20240101000000/https://example.org/y",
+      "search": "?v=1",
+      "query": [
+        [
+          "v",
+          "1"
+        ]
+      ]
+    },
+    {
+      "input": "mailto:someone@example.org",
+      "href": "mailto:someone@example.org",
+      "protocol": "mailto:",
+      "host": "",
+      "hostname": "",
+      "origin": "null",
+      "pathname": "someone@example.org",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "file:///etc/hosts",
+      "href": "file:///etc/hosts",
+      "protocol": "file:",
+      "host": "",
+      "hostname": "",
+      "origin": "null",
+      "pathname": "/etc/hosts",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "about:blank",
+      "href": "about:blank",
+      "protocol": "about:",
+      "host": "",
+      "hostname": "",
+      "origin": "null",
+      "pathname": "blank",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "not a url",
+      "invalid": true
+    },
+    {
+      "input": "",
+      "invalid": true
+    },
+    {
+      "input": "/relative/only",
+      "invalid": true
+    },
+    {
+      "input": "https://",
+      "invalid": true
+    },
+    {
+      "input": "https://exa mple.org/",
+      "invalid": true
+    },
+    {
+      "input": "https://example.org:99999/",
+      "invalid": true
+    },
+    {
+      "input": "https://example.org/emoji/😀?😀=1",
+      "href": "https://example.org/emoji/%F0%9F%98%80?%F0%9F%98%80=1",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/emoji/%F0%9F%98%80",
+      "search": "?%F0%9F%98%80=1",
+      "query": [
+        [
+          "😀",
+          "1"
+        ]
+      ]
+    },
+    {
+      "input": "https://example.org/a+b?c+d=e+f",
+      "href": "https://example.org/a+b?c+d=e+f",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/a+b",
+      "search": "?c+d=e+f",
+      "query": [
+        [
+          "c d",
+          "e f"
+        ]
+      ]
+    },
+    {
+      "input": "x",
+      "base": "https://example.org/a/b",
+      "href": "https://example.org/a/x",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/a/x",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "./y?z",
+      "base": "https://example.org/a/b/",
+      "href": "https://example.org/a/b/y?z",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/a/b/y",
+      "search": "?z",
+      "query": [
+        [
+          "z",
+          ""
+        ]
+      ]
+    },
+    {
+      "input": "../../q",
+      "base": "https://example.org/a/b/c",
+      "href": "https://example.org/q",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/q",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "/root",
+      "base": "https://example.org/a/b?c#d",
+      "href": "https://example.org/root",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/root",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "?only",
+      "base": "https://example.org/a/b?c",
+      "href": "https://example.org/a/b?only",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/a/b",
+      "search": "?only",
+      "query": [
+        [
+          "only",
+          ""
+        ]
+      ]
+    },
+    {
+      "input": "#h",
+      "base": "https://example.org/a/b?c",
+      "href": "https://example.org/a/b?c#h",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/a/b",
+      "search": "?c",
+      "query": [
+        [
+          "c",
+          ""
+        ]
+      ]
+    },
+    {
+      "input": "//other.test/p",
+      "base": "https://example.org/a",
+      "href": "https://other.test/p",
+      "protocol": "https:",
+      "host": "other.test",
+      "hostname": "other.test",
+      "origin": "https://other.test",
+      "pathname": "/p",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "https://abs.test/z",
+      "base": "https://example.org/",
+      "href": "https://abs.test/z",
+      "protocol": "https:",
+      "host": "abs.test",
+      "hostname": "abs.test",
+      "origin": "https://abs.test",
+      "pathname": "/z",
+      "search": "",
+      "query": []
+    },
+    {
+      "input": "",
+      "base": "https://example.org/a?b",
+      "href": "https://example.org/a?b",
+      "protocol": "https:",
+      "host": "example.org",
+      "hostname": "example.org",
+      "origin": "https://example.org",
+      "pathname": "/a",
+      "search": "?b",
+      "query": [
+        [
+          "b",
+          ""
+        ]
+      ]
+    },
+    {
+      "input": "aish-sync/r/",
+      "base": "https://cloud.example.com/remote.php/dav/files/phil/",
+      "href": "https://cloud.example.com/remote.php/dav/files/phil/aish-sync/r/",
+      "protocol": "https:",
+      "host": "cloud.example.com",
+      "hostname": "cloud.example.com",
+      "origin": "https://cloud.example.com",
+      "pathname": "/remote.php/dav/files/phil/aish-sync/r/",
+      "search": "",
+      "query": []
+    }
+  ],
+  "pageKeys": [
+    {
+      "input": "https://example.org",
+      "key": "https://example.org/"
+    },
+    {
+      "input": "https://example.org/",
+      "key": "https://example.org/"
+    },
+    {
+      "input": "HTTPS://Example.ORG:443/A/b?c=D#E",
+      "key": "https://example.org/A/b"
+    },
+    {
+      "input": "http://example.org:80/x",
+      "key": "http://example.org/x"
+    },
+    {
+      "input": "http://192.168.1.20:8080/dav/",
+      "key": "http://192.168.1.20:8080/dav/"
+    },
+    {
+      "input": "https://cloud.example.com/remote.php/dav/files/phil/",
+      "key": "https://cloud.example.com/remote.php/dav/files/phil/"
+    },
+    {
+      "input": "https://example.org/a b/ü?q=ö x&y=%20#frag ment",
+      "key": "https://example.org/a%20b/%C3%BC"
+    },
+    {
+      "input": "https://example.org/%41%2f?x=%zz",
+      "key": "https://example.org/%41%2f"
+    },
+    {
+      "input": "https://example.org/a/./b/../c/.%2e/d",
+      "key": "https://example.org/a/d"
+    },
+    {
+      "input": "https://example.org/a/..",
+      "key": "https://example.org/"
+    },
+    {
+      "input": "https://example.org/a/.",
+      "key": "https://example.org/a/"
+    },
+    {
+      "input": "https://example.org//double//slash/",
+      "key": "https://example.org//double//slash/"
+    },
+    {
+      "input": "https://user:pa ss@example.org/x",
+      "key": "https://example.org/x"
+    },
+    {
+      "input": "https://s3.test:9000/bucket/aish%20sync/r/abc?list-type=2&delimiter=%2F&prefix=a%2Fb%2F",
+      "key": "https://s3.test:9000/bucket/aish%20sync/r/abc"
+    },
+    {
+      "input": "https://example.org/'quote'?q='x'&r=\"y\"",
+      "key": "https://example.org/'quote'"
+    },
+    {
+      "input": "https://example.org/p[1]|2^3{4}`5",
+      "key": "https://example.org/p[1]|2%5E3%7B4%7D%605"
+    },
+    {
+      "input": "https://bücher.example/straße",
+      "key": "https://xn--bcher-kva.example/stra%C3%9Fe"
+    },
+    {
+      "input": "https://[::1]:8443/x",
+      "key": "https://[::1]:8443/x"
+    },
+    {
+      "input": "https:\\\\example.org\\back\\slash",
+      "key": "https://example.org/back/slash"
+    },
+    {
+      "input": "  https://example.org/trim  ",
+      "key": "https://example.org/trim"
+    },
+    {
+      "input": "https://example.org?only=query",
+      "key": "https://example.org/"
+    },
+    {
+      "input": "https://example.org#only",
+      "key": "https://example.org/"
+    },
+    {
+      "input": "https://www.youtube.com/watch?v=abc123&t=42s",
+      "key": "https://www.youtube.com/watch?v=abc123"
+    },
+    {
+      "input": "https://www.linkedin.com/jobs/view/?currentJobId=99&utm=x",
+      "key": "https://www.linkedin.com/jobs/view/?currentJobId=99"
+    },
+    {
+      "input": "https://news.ycombinator.com/item?id=1&p=2",
+      "key": "https://news.ycombinator.com/item?id=1"
+    },
+    {
+      "input": "https://example.org/article?utm_source=x&id=7&fbclid=y",
+      "key": "https://example.org/article?id=7"
+    },
+    {
+      "input": "https://archive.ph/2024/https://example.org/x",
+      "key": "https://example.org/x"
+    },
+    {
+      "input": "https://web.archive.org/web/20240101000000/https://example.org/y?v=1",
+      "key": "https://example.org/y?v=1"
+    },
+    {
+      "input": "mailto:someone@example.org",
+      "key": "nullsomeone@example.org"
+    },
+    {
+      "input": "file:///etc/hosts",
+      "key": "null/etc/hosts"
+    },
+    {
+      "input": "about:blank",
+      "key": "nullblank"
+    },
+    {
+      "input": "not a url",
+      "key": "not a url"
+    },
+    {
+      "input": "",
+      "key": ""
+    },
+    {
+      "input": "/relative/only",
+      "key": "/relative/only"
+    },
+    {
+      "input": "https://",
+      "key": "https://"
+    },
+    {
+      "input": "https://exa mple.org/",
+      "key": "https://exa mple.org/"
+    },
+    {
+      "input": "https://example.org:99999/",
+      "key": "https://example.org:99999/"
+    },
+    {
+      "input": "https://example.org/emoji/😀?😀=1",
+      "key": "https://example.org/emoji/%F0%9F%98%80"
+    },
+    {
+      "input": "https://example.org/a+b?c+d=e+f",
+      "key": "https://example.org/a+b"
+    }
+  ]
+}

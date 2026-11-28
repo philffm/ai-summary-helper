@@ -80,14 +80,28 @@ object PageSummary {
     }
 
     /** The article as the reading list stores it (wire format v2 plus local=true), with the summary and the extracted text. */
-    fun articleJson(url: String, page: Page, summary: String, now: Long, passages: List<String> = emptyList()): String {
+    fun articleJson(url: String, page: Page, summary: String, now: Long, passages: List<String> = emptyList(), recommendation: Recommendation? = null): String {
         val blocks = JSONArray(); page.blocks.forEach { (t, x) -> blocks.put(JSONArray().put(t).put(x)) }
         val host = runCatching { java.net.URI(url).host }.getOrNull().orEmpty().removePrefix("www.")
         return JSONObject().put("v", 2).put("url", url).put("sentAt", now).put("title", page.title.ifBlank { host.ifBlank { url } })
             .put("site", host).put("byline", "").put("lang", page.lang).put("summary", summary).put("blocks", blocks).put("local", true).also { o ->
                 if (passages.isNotEmpty()) o.put("hl", JSONArray().also { hl -> passages.forEach { hl.put(JSONArray().put("g").put(it)) } })   // "g" = ghost (AI) highlight, as the extension sends them
+                if (recommendation != null) addRecommendation(o, recommendation)
             }.toString()
     }
+
+    /** Keeps with a stored article what its sender added; their marks are suggestions, as the AI's are. */
+    fun addRecommendation(article: JSONObject, r: Recommendation) {
+        article.put("rec", r.toJson())
+        if (r.marks.isEmpty()) return
+        val hl = article.optJSONArray("hl") ?: JSONArray()
+        val have = (0 until hl.length()).mapNotNull { hl.optJSONArray(it)?.optString(1) }.toSet()
+        r.marks.filter { it !in have }.forEach { hl.put(JSONArray().put("g").put(it)) }
+        article.put("hl", hl)
+    }
+
+    /** The note a recommendation leaves behind. */
+    fun recommendationNote(r: Recommendation): String = "Recommended by ${r.from.ifEmpty { "someone" }} (name as sent): ${r.note}"
 
     const val SHARE_PASSAGES = 6
     const val SHARE_PASSAGE_MAX = 240

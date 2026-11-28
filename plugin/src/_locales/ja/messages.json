@@ -8221,5 +8221,26 @@
   },
   "f_ago_dfc8": {
     "message": "{t}前"
+  },
+  "f_in_notes_f1cf": {
+    "message": "ノートに保存済み"
+  },
+  "f_question_0065": {
+    "message": "質問"
+  },
+  "f_remove_from_notes_2dfe": {
+    "message": "ノートから削除"
+  },
+  "f_removed_from_notes_fa58": {
+    "message": "ノートから削除しました"
+  },
+  "f_save_to_notes_45f0": {
+    "message": "ノートに保存"
+  },
+  "f_show_this_question_and_its_a_a1a0": {
+    "message": "この質問と回答をノートに表示する"
+  },
+  "f_shown_in_your_notes_9b71": {
+    "message": "ノートに表示されます"
   }
 }

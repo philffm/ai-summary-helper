@@ -2,8 +2,8 @@ package eu.byphil.aishcompanion.sync
 
 import java.net.URLEncoder
 
-/** One file in a place. */
-data class StoredFile(val path: String, val etag: String, val size: Long)
+/** One file in a place. [modified]: when the server last wrote it, in milliseconds; 0 where it does not say. */
+data class StoredFile(val path: String, val etag: String, val size: Long, val modified: Long = 0)
 class Fetched(val bytes: ByteArray, val etag: String)
 
 /**

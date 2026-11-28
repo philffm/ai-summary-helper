@@ -32,6 +32,8 @@ class AppModel(context: Context) {
     fun materialize(): Int {
         val r = ArticleMaterializer(library.records, ArticleStoreSink(articles), File(app.filesDir, "sync/materialized.json"), own = { PhoneUploader(library.records, { System.currentTimeMillis() }, File(app.filesDir, "sync/uploaded.json")).ownKeys() }).run()
         if (r.saved + r.removed > 0) articleList = articles.list()
+        // the sync may have brought the library's feed list
+        feedStore.feeds().let { if (it != feeds) { feeds = it; entries = feedStore.everything() } }
         return r.saved + r.removed
     }
     val feedStore = FeedStore(File(app.filesDir, "feeds"))
@@ -58,6 +60,9 @@ class AppModel(context: Context) {
 
     /** Set by a reminder notification: the reading-list article to open (the UI clears it). */
     var openArticle by mutableStateOf("")
+    /** What an app shortcut asked for (an action of [Shortcuts]), until it is done. */
+    var asked by mutableStateOf("")
+    var briefingAsked by mutableStateOf(false)
 
     /** Wide screens: the open item is read full screen (list and navigation rail hidden). */
     var focusReading by mutableStateOf(false)
@@ -106,6 +111,25 @@ class AppModel(context: Context) {
         val json = PageSummary.articleJson(url, page, summary, now, passages)
         articles.save(ArticleCodec.parse(json, id), json, now)
         articleList = articles.list()
+    }
+
+    /** A recommendation someone sent, shown above its page until it is saved or the page is closed. */
+    var pendingRecommendation by mutableStateOf<Recommendation?>(null)
+
+    /** Saves a recommended page. Returns the reading-list id. An article that is here already keeps its text. */
+    suspend fun saveRecommended(r: Recommendation, page: Page?): String = withContext(Dispatchers.IO) {
+        val now = System.currentTimeMillis()
+        val known = articles.list().firstOrNull { it.url == r.url }?.id
+        val id = known ?: PageSummary.localId(r.url)
+        val had = articles.load(id)
+        if (had == null || (had.blocks.isEmpty() && page != null)) {
+            val json = PageSummary.articleJson(r.url, page ?: Page(r.title, emptyList(), ""), "", now, recommendation = r)
+            articles.save(ArticleCodec.parse(json, id), json, now)
+        } else articles.setRecommendation(id, r)
+        // once: saving the same recommendation again leaves no second note
+        if (r.note.isNotEmpty() && had?.recommendation != r && notes.add(PageSummary.recommendationNote(r), url = r.url, title = r.title) != null) syncLibrarySoon(app)
+        articleList = articles.list()
+        id
     }
 
     var leftHanded by mutableStateOf(store.leftHanded.also { Handed.left = it })
@@ -199,6 +223,7 @@ class AppModel(context: Context) {
                     feedStore.saveItems(f.url, r.feed.items)
                     feedStore.update(f.url) { it.copy(lastFetched = now) }
                     reload()
+                    syncLibrarySoon(app)
                     if (pairing?.canSync == true) syncFeeds()
                     null
                 }
@@ -214,6 +239,7 @@ class AppModel(context: Context) {
             val now = System.currentTimeMillis()
             val added = list.count { feedStore.add(it.url, it.title, it.tags, now) != null }
             reload()
+            if (added > 0) syncLibrarySoon(app)
             if (added > 0 && pairing?.canSync == true) syncFeeds()
             if (added == 0) "All ${list.size} feeds were already here." else "Added $added feed" + (if (added == 1) "" else "s") + (if (added < list.size) ", ${list.size - added} were already here." else ".")
         }
@@ -223,17 +249,20 @@ class AppModel(context: Context) {
 
     suspend fun removeFeed(url: String) = withContext(Dispatchers.IO) {
         feedStore.remove(url); reload()
+        syncLibrarySoon(app)
         if (pairing?.canSync == true) syncFeeds()
     }
 
     /** Replaces the feed's tags with the comma-separated [tagText]. The extension's tags are all kept and shown; nothing is reduced to one folder. */
     suspend fun setTags(url: String, tagText: String) = withContext(Dispatchers.IO) {
         feedStore.update(url) { it.copy(tags = parseTags(tagText)) }; reload()
+        syncLibrarySoon(app)
         if (pairing?.canSync == true) syncFeeds()
     }
 
     suspend fun rename(url: String, name: String) = withContext(Dispatchers.IO) {
         feedStore.update(url) { it.copy(customTitle = if (name.isBlank() || name == it.title) "" else name.trim().take(200)) }; reload()
+        syncLibrarySoon(app)
         if (pairing?.canSync == true) syncFeeds()
     }
 

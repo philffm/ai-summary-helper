@@ -1,17 +1,19 @@
 package eu.byphil.aishcompanion
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.Slider
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.style.TextOverflow
+import kotlin.math.roundToInt
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.compositionLocalOf
@@ -45,30 +47,38 @@ object ReaderLook {
     }
 }
 
-/** Font, size, line spacing and background for the article reader. Choices apply at once and are remembered. */
+/** Text size, typeface, line spacing and background of the article reader. Choices apply at once and are remembered. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ReaderSheet(model: AppModel, onDismiss: () -> Unit) {
-    ModalBottomSheet(onDismissRequest = onDismiss) {
-        Column(Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 24.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
-            Text("Reading", style = MaterialTheme.typography.titleMedium)
-            ChipGroup("Typeface", ReaderLook.FONTS, model.readerFont) { model.changeReaderFont(it) }
-            ChipGroup("Text size", listOf("0.9" to "Small", "1.0" to "Normal", "1.2" to "Large", "1.5" to "Huge"),
-                listOf(0.9f, 1.0f, 1.2f, 1.5f).minByOrNull { kotlin.math.abs(it - model.readerScale) }.toString()) { model.changeReaderScale(it.toFloat()) }
-            ChipGroup("Line spacing", ReaderLook.SPACING.map { it.first.toString() to it.second },
-                ReaderLook.SPACING.minByOrNull { kotlin.math.abs(it.first - model.readerSpacing) }!!.first.toString()) { model.changeReaderSpacing(it.toFloat()) }
-            ChipGroup("Background", ReaderLook.THEMES, model.readerTheme) { model.changeReaderTheme(it) }
-        }
+fun ReaderSettings(model: AppModel) {
+    val sizes = listOf(0.9f to "Small", 1.0f to "Normal", 1.2f to "Large", 1.5f to "Huge")
+    val at = sizes.indices.minByOrNull { kotlin.math.abs(sizes[it].first - model.readerScale) } ?: 1
+    Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text("Text size · ${sizes[at].second}", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Slider(
+            value = at.toFloat(), onValueChange = { v -> val i = v.roundToInt().coerceIn(sizes.indices); if (i != at) model.changeReaderScale(sizes[i].first) },
+            valueRange = 0f..(sizes.size - 1).toFloat(), steps = sizes.size - 2,
+            modifier = Modifier.semantics { contentDescription = "Text size"; stateDescription = sizes[at].second },
+        )
+        Choices("Typeface", ReaderLook.FONTS, model.readerFont) { model.changeReaderFont(it) }
+        Choices("Line spacing", ReaderLook.SPACING.map { it.first.toString() to it.second },
+            ReaderLook.SPACING.minByOrNull { kotlin.math.abs(it.first - model.readerSpacing) }!!.first.toString()) { model.changeReaderSpacing(it.toFloat()) }
+        Choices("Background", ReaderLook.THEMES, model.readerTheme) { model.changeReaderTheme(it) }
     }
 }
 
-@OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+/** One of a few: a row of segmented buttons. */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ChipGroup(title: String, options: List<Pair<String, String>>, selected: String, onPick: (String) -> Unit) {
-    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+fun Choices(title: String, options: List<Pair<String, String>>, selected: String, onPick: (String) -> Unit) {
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Text(title, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            for ((key, label) in options) FilterChip(shape = PillShape, selected = key == selected, onClick = { onPick(key) }, label = { Text(label) })
+        SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
+            options.forEachIndexed { i, (key, label) ->
+                SegmentedButton(selected = key == selected, onClick = { onPick(key) }, shape = SegmentedButtonDefaults.itemShape(i, options.size), icon = {}) {
+                    Text(label, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                }
+            }
         }
     }
 }

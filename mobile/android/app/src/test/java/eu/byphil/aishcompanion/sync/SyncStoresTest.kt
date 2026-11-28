@@ -46,7 +46,7 @@ class SyncStoresTest {
         val b = st.put("r/a1", byteArrayOf(4), ifMatch = a); assertNotEquals(a, b)
         st.put("r/ä ö.json", byteArrayOf(5)); assertEquals(1, dav.files.keys.count { it.endsWith("ä ö.json") })
         st.put("meta.json", "{}".toByteArray())
-        assertEquals(listOf("r/a1", "r/ä ö.json"), st.list("r").map { it.path }.sorted()); assertTrue(st.list("r").all { it.etag.isNotEmpty() && it.size > 0 })
+        assertEquals(listOf("r/a1", "r/ä ö.json"), st.list("r").map { it.path }.sorted()); assertTrue(st.list("r").all { it.etag.isNotEmpty() && it.size > 0 && it.modified > 0 })
         assertEquals("folders are not files", listOf("meta.json"), st.list("").map { it.path }); assertEquals(emptyList<StoredFile>(), st.list("nothing"))
         assertTrue(st.remove("r/a1")); assertFalse(st.remove("r/a1"))
         // the folder disappears on the server: the next upload makes it again
@@ -69,7 +69,7 @@ class SyncStoresTest {
         assertNotEquals(a, st.put("r/a1", byteArrayOf(4), ifMatch = a))
         st.put("r/ä ö+&.json", byteArrayOf(5)); assertArrayEquals(byteArrayOf(5), st.get("r/ä ö+&.json")!!.bytes)
         for (i in 0 until 7) st.put("r/f$i", byteArrayOf(1)); st.put("meta.json", "{}".toByteArray()); st.put("deep/er/file", byteArrayOf(1))
-        val listed = st.list("r"); assertEquals("across pages", 9, listed.size); assertTrue(listed.any { it.path == "r/ä ö+&.json" }); assertTrue(listed.all { it.path.startsWith("r/") && it.etag.isNotEmpty() && it.size > 0 })
+        val listed = st.list("r"); assertEquals("across pages", 9, listed.size); assertTrue(listed.any { it.path == "r/ä ö+&.json" }); assertTrue(listed.all { it.path.startsWith("r/") && it.etag.isNotEmpty() && it.size > 0 && it.modified > 0 })
         assertEquals(listOf("meta.json"), st.list("").map { it.path }); assertEquals(emptyList<StoredFile>(), st.list("nothing"))
         assertTrue(st.remove("r/f0")); assertFalse(st.remove("r/f0"))
     }
@@ -84,6 +84,8 @@ class SyncStoresTest {
 
     @Test fun parsesPropfindAnswersWithOtherPrefixesAndEscapedEtags() {
         val xml = "<D:multistatus xmlns:D=\"DAV:\"><D:response><D:href>/dav/x/a%20b.json</D:href><D:propstat><D:prop><D:getetag>&quot;abc&quot;</D:getetag><D:getcontentlength>12</D:getcontentlength><D:resourcetype/></D:prop></D:propstat></D:response></D:multistatus>"
-        val e = WebdavStore.parseMultistatus(xml).single(); assertEquals("/dav/x/a b.json", e.href); assertEquals("abc", e.etag); assertEquals(12L, e.size); assertFalse(e.isDir)
+        val e = WebdavStore.parseMultistatus(xml).single(); assertEquals("/dav/x/a b.json", e.href); assertEquals("abc", e.etag); assertEquals(12L, e.size); assertFalse(e.isDir); assertEquals(0L, e.modified)
+        val dated = xml.replace("<D:resourcetype/>", "<D:getlastmodified>Sat, 28 Nov 2026 10:00:00 GMT</D:getlastmodified><D:resourcetype/>")
+        assertEquals(Instant.parse("2026-11-28T10:00:00Z").toEpochMilli(), WebdavStore.parseMultistatus(dated).single().modified)
     }
 }

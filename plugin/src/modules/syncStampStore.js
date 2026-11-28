@@ -140,6 +140,22 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
         } catch (_) { return 0; }
     }
 
+    /**
+     * Adds the stamp of a field that did not sync before, to records that have none for it: [{ key, name, value }]. This is
+     * no edit: the stamp gets the record's own revision, which stays, so whatever happened elsewhere since (a deletion
+     * above all) still wins. → the keys that got one.
+     */
+    async function introduce(list) {
+        const stamped = [];
+        if (!(await enabled())) return stamped;
+        await commit(list.map(({ key, name, value }) => ({ key, apply: (prev) => {
+            if (!prev || prev.deleted || !prev.f || prev.f[name]) return { entry: prev, changed: false };
+            stamped.push(key);
+            return { entry: { rev: prev.rev, f: { ...prev.f, [name]: { t: prev.rev.t, h: hashValue(value) } } }, changed: true };
+        } })));
+        return stamped;
+    }
+
     async function markDeleted(type, ids) {
         try {
             if (!(await enabled())) return 0;
@@ -290,5 +306,5 @@ export function createStampStore({ storage, now = Date.now, lock = withStampLock
         return out;
     }
 
-    return { onChanged, markDeleted, keep, scan, all, adopt, revert, release, purge, backfillHighlightIds, enabled };
+    return { onChanged, markDeleted, keep, introduce, scan, all, adopt, revert, release, purge, backfillHighlightIds, enabled };
 }

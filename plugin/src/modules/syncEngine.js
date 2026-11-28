@@ -15,9 +15,11 @@
 //   • a field this device does not hold (pruned text) is taken from the server's copy on push, so it is never erased there;
 //   • joining a place that already has data (empty ledger): fields that differ take the server's value; local-only records are pushed;
 //   • the local backup hook runs before the first write and aborts the run if it fails.
-import { syncLedgerKey } from './storageKeys.js';
+import { SK, syncLedgerKey } from './storageKeys.js';
 import { mergeRecord } from './syncMerge.js';
+import { keepAllQuestions } from './syncQuestions.js';
 import { decryptJson, encryptJson, nameOf } from './syncCrypto.js';
+import { hashValue } from './syncStamps.js';
 import { typeOf, idOf } from './syncDataAdapter.js';
 import { canonicalOrder, IDENTITY_FIELDS } from './syncIdentity.js';
 
@@ -60,8 +62,9 @@ export async function syncEncryptedPlace(o) {
     let lastSync = L.lastSync || 0;
     let joined = L.joined ? 1 : 0;   // only once everything on the server has been seen here
     const unread = new Set(L.unread || []);   // files a join could not read: still to be joined, and nothing is pushed over them
+    let questions = L.questions || firstRun ? 1 : 0;   // prepared questions from before they synced have gone out (a join reads every record anyway)
     let clean = 0;   // 1 once a run of a join stopped on purpose (time budget): everything it took over is written
-    const save = () => set(storage, { [lk]: { v: 2, joined, clean, salt: (meta && meta.salt) || L.salt || '', items, dirty: [...dirty], unread: [...unread], lastSync, blocked: out.needsConfirm } });
+    const save = () => set(storage, { [lk]: { v: 2, joined, clean, salt: (meta && meta.salt) || L.salt || '', items, dirty: [...dirty], unread: [...unread], lastSync, blocked: out.needsConfirm, questions } });
     const overBudget = () => now() - started > budgetMs;
     const names = new Map();
     const nameFor = async (key) => { let n = names.get(key); if (!n) { n = await nameOf(keys, typeOf(key), idOf(key)); names.set(key, n); } return n; };
@@ -100,6 +103,7 @@ export async function syncEncryptedPlace(o) {
     async function ingest(files) {
         if (!files.length) return;
         const data = await adapter.readMany(files.map((x) => x.rec.key));
+        const device = (await get(storage, { [SK.syncDeviceId]: '' }))[SK.syncDeviceId];
         const adopt = {}, apply = [], before = {};
         for (const { name, etag, rec } of files) {
             const joining = firstRun || unread.has(name);
@@ -113,13 +117,20 @@ export async function syncEncryptedPlace(o) {
                     else if (joining && rec.f[n] && rec.f[n].h !== f[n].h) f[n].t = 0;   // joining: the server's value wins where the two differ
                 }
                 local = { rev: st.rev, f, values };
+                // joining: the server wins here too, over a copy that is older than its deletion but was stamped just now
+                // (a restored backup, a place joined again). A restore from the place deletes nothing.
+                if (joining && !forceFirst && rec.deleted) local.rev = { ...st.rev, t: 0 };
             }
-            const r = mergeRecord(local, rec);
+            // two devices that each asked something about an article keep both (syncQuestions.js)
+            let r = key.startsWith('article:') ? keepAllQuestions(local, rec, mergeRecord(local, rec), { device, now: now() }) : mergeRecord(local, rec);
+            // joining with nothing the server lacks: its record is taken as it is, and nothing is sent
+            if (joining && local && !local.deleted && !rec.deleted && !r.merged.deleted && hashValue([r.merged.f, r.merged.values]) === hashValue([rec.f, rec.values || {}])) r = { merged: clone(rec), changedLocal: true, changedRemote: false };
             if (r.merged.deleted && d && r.changedLocal && !confirmDeletes && !removeSet.has(key)) {   // another device deleted something that is here: a few are normal, a lot is asked about first
-                if (keepSet.has(key)) { toKeep.set(key, (rec.rev && rec.rev.t) || 0); continue; }   // the person said keep it: not adopted, stamped again below
+                if (keepSet.has(key)) { toKeep.set(key, (rec.rev && rec.rev.t) || 0); unread.delete(name); continue; }   // the person said keep it: not adopted, stamped again below
                 if (deletesApplied >= deleteBudget) {   // left alone: not adopted, not in the ledger, seen again next run
                     out.needsConfirm++;
                     if (out.pending.length < PENDING_MAX) out.pending.push({ key, at: (rec.rev && rec.rev.t) || 0 });
+                    if (joining) { unread.add(name); known.set(name, key); }   // still to be joined: asked again, not sent over the marker
                     continue;
                 }
                 deletesApplied++;
@@ -147,9 +158,10 @@ export async function syncEncryptedPlace(o) {
         out.applied += apply.length;
     }
 
-    // 1) pull
+    // 1) pull, what was written last first: a large library takes a while, and the new things are the ones looked for
     const toPull = pushOnly ? [] : [...remote.entries()].filter(([name, f]) => { if (forceFirst) return true;   // a restore looks at every file: the ledger says what was seen, not what is still here
-        const k = known.get(name); return !k || !items[k] || items[k].e !== f.etag; }).map(([name]) => name);
+        const k = known.get(name); return !k || !items[k] || items[k].e !== f.etag; })
+        .sort(([, a], [, b]) => (b.modified || 0) - (a.modified || 0)).map(([name]) => name);
     for (let i = 0; i < toPull.length; i += chunk) {
         if (overBudget()) { out.more = true; break; }
         onProgress({ phase: 'pulling', done: i, total: toPull.length });
@@ -172,6 +184,18 @@ export async function syncEncryptedPlace(o) {
         for (const key of toKeep.keys()) dirty.add(key);
     }
     await dedupe();
+
+    // Prepared questions that were here before the field synced: sent once to each place. This is no edit (the record keeps
+    // its revision, so a deletion made elsewhere still wins), it waits until nothing of the place is in doubt, and it leaves
+    // out what the place no longer holds.
+    if (!questions && !stale && !out.needsConfirm && !out.errors.length && adapter.preparedQuestions && stampStore.introduce) {
+        const here = [...await adapter.preparedQuestions()].filter(([key]) => !(items[key] && !remote.has(items[key].n)));
+        // only what had no stamp for them yet: a stamp that is there came from the place, or from a change here that goes out anyway
+        for (const key of await stampStore.introduce(here.map(([key, value]) => ({ key, name: 'prepared', value })))) dirty.add(key);
+        stamps = await stampStore.all();
+        questions = 1;
+        await save();
+    }
 
     /**
      * The same URL saved on two devices arrives as two articles. After everything is applied, every group of live articles with one
@@ -218,8 +242,11 @@ export async function syncEncryptedPlace(o) {
         out.merged = tomb.length;
     }
 
-    // 2) push
-    const pending = Object.entries(stamps).filter(([key, st]) => st && st.rev && (dirty.has(key) || !items[key] || items[key].t < st.rev.t) && (!stale || st.rev.t > L.lastSync)).map(([key]) => key);   // after a long absence only what changed since is pushed
+    // 2) push. The newest article goes last, so that the server's times say what a device that fetches should take first;
+    // everything that is no article goes ahead of them.
+    const savedAt = (key) => (key.startsWith('article:') ? Number((/_(\d{13})_/.exec(key) || [])[1]) || stamps[key].rev.t : 0);
+    const pending = Object.entries(stamps).filter(([key, st]) => st && st.rev && (dirty.has(key) || !items[key] || items[key].t < st.rev.t) && (!stale || st.rev.t > L.lastSync)).map(([key]) => key)   // after a long absence only what changed since is pushed
+        .sort((a, b) => savedAt(a) - savedAt(b));
     for (const name of unread) { const key = known.get(name), at = pending.indexOf(key); if (at >= 0) pending.splice(at, 1); }
     for (let i = 0; i < pending.length; i += chunk) {
         if (overBudget()) { out.more = true; break; }

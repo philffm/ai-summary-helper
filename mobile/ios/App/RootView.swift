@@ -5,17 +5,31 @@ import WidgetKit
 /// Do not give bars or lists a background of their own: that switches the system material off.
 struct RootView: View {
     @Environment(\.scenePhase) private var scenePhase
-    @State private var library = Library()
-    @State private var feeds = FeedsModel()
+    @State private var library: Library
+    @State private var sync: SyncModel
+    @State private var feeds: FeedsModel
     @State private var status = ExtensionStatus()
     @State private var speaker = Speaker()
     @State private var router = Router()
     @State private var summaries = Summaries()
+    @State private var questions = Questions()
+    @State private var inbox = InboxWatch()
     @State private var fetching = false
+    @State private var welcoming = false
+    @AppStorage(WelcomeView.seenKey) private var welcomed = false
     @Environment(\.horizontalSizeClass) private var width
 
+    init() {
+        // the same ones the work in the background uses
+        let models = AppModels.shared
+        _library = State(initialValue: models.library)
+        _sync = State(initialValue: models.sync)
+        _feeds = State(initialValue: models.feeds)
+    }
+
     var body: some View {
-        tabs
+        @Bindable var sync = sync
+        return tabs
             .environment(\.tabsStay, width == .regular)
             .environment(library)
             .environment(feeds)
@@ -23,6 +37,15 @@ struct RootView: View {
             .environment(speaker)
             .environment(router)
             .environment(summaries)
+            .environment(questions)
+            .environment(sync)
+            // a scanned library code leads straight to the screen that asks before it connects
+            .sheet(isPresented: $sync.shown) {
+                NavigationStack {
+                    LibrarySyncView().toolbar { Button("Done") { sync.shown = false } }
+                }
+                .environment(sync)
+            }
             .fullScreenCover(item: Binding(get: { WakeCenter.shared.playing }, set: { WakeCenter.shared.playing = $0 })) { request in
                 WakePlayerView(request: request)
                     .environment(library)
@@ -46,23 +69,93 @@ struct RootView: View {
                 #if DEBUG
                 if url.host() == "wake-preview" { WakeCenter.shared.playing = WakeRequest(mode: .briefing, noBadNews: false); return }
                 #endif
+                if url.scheme == "aish-library" {
+                    sync.shown = true
+                    Task { await sync.read(url.absoluteString) }
+                    return
+                }
                 if let link = DeepLink(url) { router.open(link) }
+            }
+            .sheet(isPresented: $welcoming, onDismiss: { welcomed = true }) {
+                WelcomeView().environment(status).interactiveDismissDisabled()
+            }
+            // once, when the library has been read and holds nothing yet
+            .onChange(of: library.loaded, initial: true) { _, loaded in
+                if loaded && WelcomeView.isDue(empty: library.articles.isEmpty, seen: welcomed) { welcoming = true }
+            }
+            // asked for by Siri or a shortcut: acted on once the library is there
+            .onChange(of: AppRequests.shared.pending, initial: true) { _, _ in answerRequest() }
+            .onChange(of: library.loaded) { _, _ in answerRequest() }
+            // a summary that has just been written goes to the library
+            .onChange(of: summaries.running) { before, now in
+                if before != nil && now == nil { Task { await sync.changedHere() } }
             }
             .onChange(of: scenePhase, initial: true) { _, phase in
                 if phase == .active {
                     status.refresh()
-                    library.importFromSafari()
-                    library.takeShared()
-                    Task { await finishShared() }
-                    feeds.importFromSafari()
+                    takeHandedOver()
+                    Task { await sync.fetch() }
                     Task { await feeds.refresh(ifOlderThan: 15 * 60) }
+                    // what arrives while the app is in front shows at once
+                    inbox.start([SafariInbox.directory, SharedLinks.directory]) { takeHandedOver() }
+                } else if phase == .background {
+                    inbox.stop()
+                    AudioPlayer.shared.note()
+                    BackgroundRefresh.schedule()
                 }
             }
-            .onChange(of: snapshot, initial: true) { _, value in
-                guard !LaunchOptions.samples else { return }
+            // not before the library is read: the widgets would show an empty one
+            .onChange(of: library.loaded ? snapshot : nil, initial: true) { _, value in
+                guard !LaunchOptions.samples, let value else { return }
                 SharedStore.write(value, to: Snapshot.file)
                 WidgetCenter.shared.reloadAllTimelines()
             }
+    }
+
+    private func answerRequest() {
+        guard library.loaded, let request = AppRequests.shared.pending else { return }
+        AppRequests.shared.pending = nil
+        switch request {
+        case .continueReading:
+            // the first started article, as "Today" and the widget show it
+            if let article = library.articles.first(where: { $0.progress > 0 && $0.progress < 1 }) ?? library.articles.first {
+                router.open(.article(article.id))
+            }
+        case .briefing:
+            router.open(.today)
+            let text = feeds.briefingText
+            if !text.isEmpty && speaker.current != "briefing" { speaker.toggle("briefing", text: text, title: String(localized: "Briefing")) }
+        case .continueEpisode:
+            guard let (id, sound, title, show) = Self.episodeToContinue(PodcastStore.shared, feeds) else { return router.open(.today) }
+            if let entry = feeds.entries.first(where: { $0.id == id }) { router.open(.item(feed: entry.feed.url, id: entry.stored.item.id)) }
+            speaker.stop()
+            if AudioPlayer.shared.current != id || !AudioPlayer.shared.playing { AudioPlayer.shared.toggle(id, url: sound, title: title, show: show) }
+        }
+    }
+
+    /// The episode listened to last that is not finished and can still be played.
+    static func episodeToContinue(_ podcasts: PodcastStore, _ feeds: FeedsModel) -> (String, URL, String, String)? {
+        let entries = feeds.entries
+        for id in podcasts.started {
+            if let entry = entries.first(where: { $0.id == id }), let sound = entry.stored.item.audio.flatMap(URL.init(string:)) {
+                return (id, sound, entry.stored.item.title, entry.feed.name)
+            }
+            if podcasts.file(id) != nil, let kept = podcasts.episode(id), let sound = URL(string: kept.address) { return (id, sound, kept.title, kept.show) }
+        }
+        return nil
+    }
+
+    /// What Safari and the share sheet have left for the app.
+    private func takeHandedOver() {
+        let fromSafari = library.importFromSafari()
+        Task {
+            if fromSafari { await sync.changedHere() }
+        }
+        Task {
+            await library.takeShared()
+            await finishShared()
+        }
+        feeds.importFromSafari()
     }
 
     /// Fetches the text of shared links, one after the other, and starts the summaries asked for with them. A page that
@@ -72,6 +165,7 @@ struct RootView: View {
         fetching = true
         defer { fetching = false }
         var tried: Set<Article.ID> = []
+        defer { if !tried.isEmpty { Task { await sync.changedHere() } } }
         while let article = library.articles.first(where: { $0.pending != nil && !tried.contains($0.id) }) {
             tried.insert(article.id)
             if article.passages.isEmpty, let url = article.url, let page = await PageFetcher().fetch(url) {
@@ -106,6 +200,7 @@ struct RootView: View {
                 Tab("Today", systemImage: "sun.max", value: "today") { TodayView() }
                 Tab("Feeds", systemImage: "dot.radiowaves.up.forward", value: "feeds") { FeedsView() }
                 Tab("Library", systemImage: "books.vertical", value: "library") { LibraryView() }
+                Tab("Notes", systemImage: "note.text", value: "notes") { NotesView() }
             }
             .tabViewStyle(.sidebarAdaptable)
         } else {
@@ -125,6 +220,9 @@ struct RootView: View {
             LibraryView()
                 .tabItem { Label("Library", systemImage: "books.vertical") }
                 .tag("library")
+            NotesView()
+                .tabItem { Label("Notes", systemImage: "note.text") }
+                .tag("notes")
         }
     }
 
@@ -165,6 +263,8 @@ enum LaunchOptions {
     static var wake: Bool { debugValue("KaivoWake") != nil }
     /// App Store screenshots: samples without the "sample" notes and the setup reminder.
     static var screenshots: Bool { debugValue("KaivoScreenshots") != nil }
+    /// `-KaivoWriteBack YES`: runs of the library also write back. For trying it against a test place.
+    static var writeBack: Bool { debugValue("KaivoWriteBack") != nil }
     /// Made-up feeds and articles instead of the real ones (never in a release build).
     static var samples: Bool { screenshots || debugValue("KaivoSamples") != nil }
 

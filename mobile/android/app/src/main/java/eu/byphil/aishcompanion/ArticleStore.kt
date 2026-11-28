@@ -62,13 +62,41 @@ class ArticleStore(context: Context) {
         }.getOrDefault(false)
     }
 
+    /** Adds what a sender wrote to an article that is here already; its text and summary stay. False where there is none. */
+    fun setRecommendation(id: String, r: Recommendation): Boolean {
+        if (!ID.matches(id)) return false
+        val f = File(dir, "$id.json")
+        if (!f.exists()) return false
+        return runCatching { f.writeText(JSONObject(f.readText()).also { PageSummary.addRecommendation(it, r) }.toString()); true }.getOrDefault(false)
+    }
+
     fun delete(id: String) {
         if (!ID.matches(id)) return
         File(dir, "$id.json").delete(); File(dir, "$id.meta").delete(); File(dir, "$id.hl").delete(); File(dir, "$id.hlp").delete()
+        pictureDir(id).deleteRecursively()
         prefs.edit().remove(id).remove("arch:$id").apply()
     }
 
-    init { trashDir.listFiles()?.forEach { it.delete() } }   // a new process has no pending undo, so whatever is left in the bin is gone for good
+    init {
+        trashDir.listFiles()?.forEach { it.delete() }   // a new process has no pending undo, so whatever is left in the bin is gone for good
+        // and with it the pictures of articles that are no longer here
+        dir.listFiles { f -> f.isDirectory && f.name.endsWith(".img") }?.forEach { if (!File(dir, it.name.removeSuffix(".img") + ".json").exists()) it.deleteRecursively() }
+    }
+
+    private fun pictureDir(id: String) = File(dir, "$id.img")
+
+    fun savePictures(id: String, pictures: Map<String, ByteArray>) {
+        if (!ID.matches(id)) return
+        val folder = pictureDir(id)
+        folder.deleteRecursively()
+        if (pictures.isEmpty()) return
+        folder.mkdirs()
+        pictures.forEach { (name, data) -> if (ArticlePictures.NAME.matches(name)) File(folder, name).writeBytes(data) }
+    }
+
+    /** The file of a picture saved with an article, or null. */
+    fun picture(id: String, name: String): File? =
+        if (!ID.matches(id) || !ArticlePictures.NAME.matches(name)) null else File(pictureDir(id), name).takeIf { it.isFile }
 
     /** Takes the article out of the list but keeps it in a bin until [purge] or [restore] (for "Undo"). One level: a newer trash replaces nothing, ids are separate files. */
     fun trash(id: String): Boolean {
@@ -87,6 +115,7 @@ class ArticleStore(context: Context) {
     fun purge(id: String) {
         if (!ID.matches(id)) return
         File(trashDir, "$id.json").delete(); File(trashDir, "$id.meta").delete(); File(trashDir, "$id.hl").delete(); File(trashDir, "$id.hlp").delete()
+        if (!File(dir, "$id.json").exists()) pictureDir(id).deleteRecursively()
         prefs.edit().remove(id).remove("arch:$id").apply()
     }
 

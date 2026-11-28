@@ -81,6 +81,11 @@ final class ReadingPosition {
         if reached > 0 { save(reached) }
     }
 
+    /// The first paragraph on screen.
+    func top(height: CGFloat) -> Int? {
+        frames.filter { $0.value.maxY > 0 && $0.value.minY < height }.keys.min()
+    }
+
     func update(_ passages: [Passage], height: CGFloat) {
         var visible: [Int: (above: Double, upTo: Double)] = [:]
         for (index, frame) in frames where frame.height > 0 && frame.maxY > 0 && frame.minY < height {

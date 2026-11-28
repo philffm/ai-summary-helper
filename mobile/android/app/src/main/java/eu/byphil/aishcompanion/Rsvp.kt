@@ -25,7 +25,7 @@ object Rsvp {
     fun build(blocks: List<Block>): Built {
         val words = mutableListOf<Word>(); val sentences = mutableListOf<Sentence>(); val paragraphs = mutableListOf<List<Int>>()
         for (b in blocks) {
-            if (b.type == "pre") continue
+            if (b.type == "pre" || b.type == "img") continue
             val text = b.text.replace(Regex("\\s+"), " ").trim()
             if (text.isEmpty()) continue
             val heading = HEADING.matches(b.type)

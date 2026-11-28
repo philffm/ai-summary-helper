@@ -8503,5 +8503,26 @@
   },
   "f_ago_dfc8": {
     "message": "{t} sitten"
+  },
+  "f_in_notes_f1cf": {
+    "message": "Muistiinpanoissa"
+  },
+  "f_question_0065": {
+    "message": "Kysymys"
+  },
+  "f_remove_from_notes_2dfe": {
+    "message": "Poista muistiinpanoista"
+  },
+  "f_removed_from_notes_fa58": {
+    "message": "Poistettu muistiinpanoista"
+  },
+  "f_save_to_notes_45f0": {
+    "message": "Tallenna muistiinpanoihin"
+  },
+  "f_show_this_question_and_its_a_a1a0": {
+    "message": "Näytä tämä kysymys ja vastaus muistiinpanoissasi"
+  },
+  "f_shown_in_your_notes_9b71": {
+    "message": "Näkyy muistiinpanoissasi"
   }
 }

@@ -8221,5 +8221,26 @@
   },
   "f_ago_dfc8": {
     "message": "{t} पहले"
+  },
+  "f_in_notes_f1cf": {
+    "message": "नोट्स में"
+  },
+  "f_question_0065": {
+    "message": "प्रश्न"
+  },
+  "f_remove_from_notes_2dfe": {
+    "message": "नोट्स से हटाएँ"
+  },
+  "f_removed_from_notes_fa58": {
+    "message": "नोट्स से हटाया गया"
+  },
+  "f_save_to_notes_45f0": {
+    "message": "नोट्स में सहेजें"
+  },
+  "f_show_this_question_and_its_a_a1a0": {
+    "message": "यह प्रश्न और इसका उत्तर अपने नोट्स में दिखाएँ"
+  },
+  "f_shown_in_your_notes_9b71": {
+    "message": "आपके नोट्स में दिखता है"
   }
 }

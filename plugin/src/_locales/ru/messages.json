@@ -8221,5 +8221,26 @@
   },
   "f_ago_dfc8": {
     "message": "{t} назад"
+  },
+  "f_in_notes_f1cf": {
+    "message": "В заметках"
+  },
+  "f_question_0065": {
+    "message": "Вопрос"
+  },
+  "f_remove_from_notes_2dfe": {
+    "message": "Убрать из заметок"
+  },
+  "f_removed_from_notes_fa58": {
+    "message": "Убрано из заметок"
+  },
+  "f_save_to_notes_45f0": {
+    "message": "Сохранить в заметки"
+  },
+  "f_show_this_question_and_its_a_a1a0": {
+    "message": "Показывать этот вопрос и ответ в ваших заметках"
+  },
+  "f_shown_in_your_notes_9b71": {
+    "message": "Показывается в ваших заметках"
   }
 }

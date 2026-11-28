@@ -478,11 +478,11 @@ The one control for choosing 1 of 2-4 options at once (Appearance, send format, 
 
 Status: stable · Figma node 1289:334
 
-A note, a highlight or an AI highlight in Notes (sticky), with comment, source, tags and actions.
+A note, a highlight, an AI highlight or a saved question with its answer in Notes (sticky), with comment, source, tags and actions.
 
-- CSS: `.st`, `.st-user`, `.st-ghost`, `.st-note`, `.st-c`, `.st-act`
+- CSS: `.st`, `.st-user`, `.st-ghost`, `.st-note`, `.st-qa`, `.st-ask`, `.st-answer`, `.st-c`, `.st-act`
 - Source: `plugin/src/modules/notesView.js`
-- Variants: Kind (Highlight / AI highlight / Note) · State (Default / Hover / Focus / Editing)
+- Variants: Kind (Highlight / AI highlight / Note / Question) · State (Default / Hover / Focus / Editing)
 - Properties: Text (text), Source (text), Tags (text), Show comment (boolean)
 - Tokens: `--fs-md`, `--fs-xs`, `--glass-card`, `--outline`, `--saved-note-ghost-bg`, `--saved-note-ghost-fg`, `--saved-note-note-bg`, `--saved-note-note-fg`, `--saved-note-user-bg`, `--saved-note-user-fg`, `--text-primary`
 - Accessibility:

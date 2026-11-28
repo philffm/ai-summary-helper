@@ -23,6 +23,8 @@ struct FeedItem: Codable, Identifiable, Hashable {
     var body: String = ""
     /// The address of a podcast episode's sound; nil for everything else (and for items stored before podcasts were read).
     var audio: String?
+    /// The size of that file as the feed gives it, where it is believable.
+    var audioBytes: Int?
 }
 
 struct StoredItem: Codable, Hashable {
@@ -51,6 +53,8 @@ struct Article: Codable, Identifiable, Hashable {
     var progress: Double = 0
     var passages: [Passage] = []
     var summary: [String] = []
+    /// The summary as it is stored, with its headings and lists; nil where only its lines are known.
+    var summaryHTML: String?
     var link: String = ""
     /// The id the Safari extension knows it by, when it came from there.
     var safariID: String?
@@ -58,6 +62,20 @@ struct Article: Codable, Identifiable, Hashable {
     var paper: Paper?
     /// What the app still has to do for an article that was shared to it.
     var pending: Pending?
+    /// The questions asked about it, here or on another device, oldest first.
+    var questions: [Question]?
+    /// The summary was written by the model on this device.
+    var summaryOnDevice: Bool?
+    /// Someone sent it to the reader.
+    var recommendation: Recommendation?
+    /// Questions a model prepared about it, asked or not.
+    var suggestions: [Suggestion]?
+
+    /// The prepared ones to offer: not asked yet, at most three.
+    var openSuggestions: [Suggestion] {
+        var taken = Set((questions ?? []).map { Suggestion.key($0.question) })
+        return Array((suggestions ?? []).filter { taken.insert(Suggestion.key($0.question)).inserted }.prefix(3))
+    }
 
     var minutes: Int { max(1, Int((Double(words) / 220).rounded(.up))) }
     var minutesLeft: Int { max(1, Int((Double(minutes) * (1 - progress)).rounded(.up))) }
@@ -78,6 +96,29 @@ struct Article: Codable, Identifiable, Hashable {
     }
 }
 
+/// A question a model prepared with the summary or with an answer.
+struct Suggestion: Codable, Hashable {
+    var question: String
+    /// The short answer that came with it: shown at once, without asking a model again.
+    var answer: String?
+
+    static func key(_ question: String) -> String { question.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() }
+}
+
+/// A question about an article and its answer, as the library keeps them with it.
+struct Question: Codable, Identifiable, Hashable {
+    var id: String
+    var question: String
+    var answer: String
+    var date: String
+    /// Passages of the article the answer rests on.
+    var sources: [String]?
+    /// Listed under "Notes".
+    var noted: Bool?
+    /// Shown with the summary on the other devices ("In article" in the browser).
+    var pinned: Bool?
+}
+
 struct Paper: Codable, Hashable {
     var authors: [String] = []
     var journal: String = ""
@@ -96,6 +137,8 @@ struct Mark: Codable, Identifiable, Hashable {
     var length: Int
     /// Suggested by the AI and not yet kept.
     var ai: Bool = false
+    /// The id the library stores it under.
+    var highlight: String?
     var range: NSRange { NSRange(location: start, length: length) }
 }
 

@@ -9,18 +9,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.draw.clip
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.selection.selectable
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
@@ -39,6 +27,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Scaffold
@@ -48,7 +38,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -93,8 +82,9 @@ class MainActivity : ComponentActivity() {
         val model = AppModel(this)
         appModel = model
         intent?.getStringExtra(EXTRA_OPEN_ARTICLE)?.let { model.openArticle = it }
+        if (savedInstanceState == null) intent?.action?.takeIf { it in Shortcuts.ALL }?.let { model.asked = it }
         // Only on a fresh start: after a system restart the saved state already holds the page that was open.
-        if (savedInstanceState == null) intent?.getStringExtra(EXTRA_OPEN_URL)?.takeIf { it.isNotEmpty() }?.let { model.pendingShare = it to (intent?.getBooleanExtra(EXTRA_SUMMARIZE, false) == true) }
+        if (savedInstanceState == null) intent?.getStringExtra(EXTRA_OPEN_URL)?.takeIf { it.isNotEmpty() }?.let { model.pendingRecommendation = recommendationIn(intent); model.pendingShare = it to (intent?.getBooleanExtra(EXTRA_SUMMARIZE, false) == true) }
         if (model.pairing?.canReceive == true) ReceiveWorker.schedule(this)
         FeedWorker.schedule(this)
         runCatching { AlarmScheduler.reschedule(this) }   // keeps the alarm right after updates, restarts and clock changes
@@ -123,6 +113,12 @@ class MainActivity : ComponentActivity() {
         const val EXTRA_SUMMARIZE = "eu.byphil.aishcompanion.SUMMARIZE"
         /** From a reminder notification: open this reading-list article. */
         const val EXTRA_OPEN_ARTICLE = "eu.byphil.aishcompanion.OPEN_ARTICLE"
+        /** With [EXTRA_OPEN_URL]: what someone who sent that page added, as JSON. */
+        const val EXTRA_RECOMMENDATION = "eu.byphil.aishcompanion.RECOMMENDATION"
+
+        /** Checked again here: any app can start this activity. */
+        private fun recommendationIn(intent: Intent?): Recommendation? =
+            intent?.getStringExtra(EXTRA_RECOMMENDATION)?.takeIf { it.length <= Recommendation.MAX_BYTES }?.let { runCatching { Recommendation.from(org.json.JSONObject(it)) }.getOrNull() }
     }
 
     private var appModel: AppModel? = null
@@ -138,8 +134,12 @@ class MainActivity : ComponentActivity() {
         super.onNewIntent(intent)
         setIntent(intent)
         intent.getStringExtra(EXTRA_OPEN_ARTICLE)?.let { appModel?.openArticle = it }
+        intent.action?.takeIf { it in Shortcuts.ALL }?.let { appModel?.asked = it }
         // A link shared while the app is open: it replaces the page that is showing instead of being lost.
-        intent.getStringExtra(EXTRA_OPEN_URL)?.takeIf { it.isNotEmpty() }?.let { appModel?.pendingShare = it to intent.getBooleanExtra(EXTRA_SUMMARIZE, false) }
+        intent.getStringExtra(EXTRA_OPEN_URL)?.takeIf { it.isNotEmpty() }?.let {
+            recommendationIn(intent)?.let { r -> appModel?.pendingRecommendation = r }
+            appModel?.pendingShare = it to intent.getBooleanExtra(EXTRA_SUMMARIZE, false)
+        }
     }
 
     private fun scan(onResult: (String?) -> Unit) {
@@ -182,14 +182,27 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
             model.pendingShare = null
         }
     }
+    val shortcutContext = androidx.compose.ui.platform.LocalContext.current
+    androidx.compose.runtime.LaunchedEffect(model.asked) {
+        when (model.asked) {
+            Shortcuts.CONTINUE_READING -> { webUrl = ""; tab = Tab.Reading.ordinal; articleSel = model.store.lastArticle.takeIf { model.articles.has(it) }.orEmpty() }
+            Shortcuts.BRIEFING -> { webUrl = ""; tab = Tab.Feeds.ordinal; model.briefingAsked = true }
+            Shortcuts.CONTINUE_EPISODE -> { webUrl = ""; tab = Tab.Feeds.ordinal; if (!PodcastPlayer.carryOn(shortcutContext)) model.message = "There is no episode to go on with." }
+            else -> return@LaunchedEffect
+        }
+        model.asked = ""
+    }
+
     if (webUrl.isNotEmpty()) {
         // A fresh page state for every link: the summary and the reading of one page never leak into the next.
         androidx.compose.runtime.key(webUrl) {
             WebScreen(webUrl, canSend = model.pairing != null, autoSummarize = autoSummarize,
                 queued = queue.size, nextLabel = queue.firstOrNull()?.let { android.net.Uri.parse(it.substring(2)).host ?: it.substring(2) }.orEmpty(), onNext = advance,
                 onSummarized = { u, page, text, marks -> model.saveSummary(u, page, text, marks) },
-                onOpenReading = { id -> articleSel = id; tab = Tab.Reading.ordinal; webUrl = ""; autoSummarize = false; queue = ArrayList() },
-                onClose = advance)
+                onOpenReading = { id -> model.pendingRecommendation = null; articleSel = id; tab = Tab.Reading.ordinal; webUrl = ""; autoSummarize = false; queue = ArrayList() },
+                recommendation = model.pendingRecommendation?.takeIf { it.url == webUrl },
+                onSaveRecommended = { page -> model.pendingRecommendation?.let { model.saveRecommended(it, page) }.orEmpty() },
+                onClose = { if (model.pendingRecommendation?.url == webUrl) model.pendingRecommendation = null; advance() })
         }
         return
     }
@@ -209,14 +222,17 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
     @Composable
     fun TabIcon(t: Tab) {
         val n = badge[t] ?: 0
-        if (n > 0) BadgedBox(badge = { Badge { Text(if (n > 99) "99+" else "$n") } }) { Icon(t.icon, contentDescription = t.label) }
-        else Icon(t.icon, contentDescription = t.label)
+        if (n > 0) BadgedBox(badge = { Badge { Text(if (n > 99) "99+" else "$n") } }) { Icon(t.icon, contentDescription = null) }
+        else Icon(t.icon, contentDescription = null)
     }
 
     Scaffold(
         contentWindowInsets = if (wide) WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom) else WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal),
         bottomBar = {
-            if (!wide) FloatingNav(Tab.entries, tab, { TabIcon(it) }, { tab = it })
+            // Android's own navigation bar; a wide window has the rail instead
+            if (!wide) NavigationBar {
+                Tab.entries.forEach { t -> NavigationBarItem(selected = tab == t.ordinal, onClick = { tab = t.ordinal }, icon = { TabIcon(t) }, label = { Text(t.label) }) }
+            }
         },
     ) { padding ->
         Row(Modifier.padding(padding).consumeWindowInsets(padding).fillMaxSize()) {   // consume: the keyboard padding of the screens inside then does not count the bar twice
@@ -236,38 +252,6 @@ private fun App(model: AppModel, onScan: ((String?) -> Unit) -> Unit, onReady: (
                     }
                 }
                 MiniPlayer()
-            }
-        }
-    }
-}
-
-/**
- * The bottom navigation as in the extension: a rounded bar that floats above the content, the current tab as a filled pill. Sizes keep every item a
- * comfortable touch target (48 dp or more); the pill carries white/dark text on the brand teal, so the current tab is told by shape and colour.
- */
-@Composable
-private fun FloatingNav(tabs: List<Tab>, selected: Int, icon: @Composable (Tab) -> Unit, onSelect: (Int) -> Unit) {
-    val scheme = MaterialTheme.colorScheme
-    Box(Modifier.fillMaxWidth().windowInsetsPadding(WindowInsets.navigationBars).padding(horizontal = 20.dp, vertical = 10.dp), contentAlignment = Alignment.Center) {
-        Surface(
-            Modifier.widthIn(max = 520.dp).fillMaxWidth(), shape = RoundedCornerShape(28.dp), color = scheme.surfaceContainerLow,
-            tonalElevation = 3.dp, shadowElevation = 6.dp, border = androidx.compose.foundation.BorderStroke(1.dp, scheme.outlineVariant),
-        ) {
-            Row(Modifier.padding(6.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                tabs.forEach { t ->
-                    val on = selected == t.ordinal
-                    val content = if (on) scheme.onPrimary else scheme.onSurfaceVariant
-                    androidx.compose.foundation.layout.Column(
-                        Modifier.weight(1f).heightIn(min = 52.dp).clip(RoundedCornerShape(22.dp)).background(if (on) scheme.primary else androidx.compose.ui.graphics.Color.Transparent)
-                            .selectable(selected = on, role = androidx.compose.ui.semantics.Role.Tab, onClick = { onSelect(t.ordinal) }).padding(vertical = 8.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center,
-                    ) {
-                        androidx.compose.runtime.CompositionLocalProvider(androidx.compose.material3.LocalContentColor provides content) {
-                            icon(t)
-                            Text(t.label, style = MaterialTheme.typography.labelSmall, fontWeight = if (on) androidx.compose.ui.text.font.FontWeight.SemiBold else androidx.compose.ui.text.font.FontWeight.Medium)
-                        }
-                    }
-                }
             }
         }
     }

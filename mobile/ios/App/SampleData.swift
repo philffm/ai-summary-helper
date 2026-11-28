@@ -119,7 +119,9 @@ enum SampleData {
         // Loading the samples without it gives the app as it normally looks.
         if LaunchOptions.demo { UserDefaults.standard.set(true, forKey: "KaivoTouches") }
         else { UserDefaults.standard.removeObject(forKey: "KaivoTouches") }
-        SharedStore.write(ordered, to: "library.json")
+        // the library starts over from these: taken over like the one the app kept before
+        try? FileManager.default.removeItem(at: LibraryStore.folder)
+        SharedStore.write(ordered, to: LibraryStore.oldFile)
         let (list, states) = feeds
         FeedsModel.seed(list, states)
     }

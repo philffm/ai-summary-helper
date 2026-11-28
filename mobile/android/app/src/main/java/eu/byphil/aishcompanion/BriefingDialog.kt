@@ -35,12 +35,13 @@ import java.util.Locale
  * If the model is missing or fails, the plain briefing is shown instead. Can be read aloud or shared.
  */
 @Composable
-fun BriefingDialog(model: AppModel, onDismiss: () -> Unit) {
+fun BriefingDialog(model: AppModel, autoPlay: Boolean = false, onDismiss: () -> Unit) {
     val context = LocalContext.current
     var text by remember { mutableStateOf<String?>(null) }
     var byAi by remember { mutableStateOf(false) }
     var speaking by remember { mutableStateOf(false) }
     var tts by remember { mutableStateOf<TextToSpeech?>(null) }
+    var voiceReady by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         val (t, ai) = withContext(Dispatchers.Default) {
@@ -52,7 +53,7 @@ fun BriefingDialog(model: AppModel, onDismiss: () -> Unit) {
         text = t; byAi = ai
     }
     DisposableEffect(Unit) {
-        val engine = TextToSpeech(context.applicationContext) { status -> if (status != TextToSpeech.SUCCESS) tts = null }
+        val engine = TextToSpeech(context.applicationContext) { status -> if (status != TextToSpeech.SUCCESS) tts = null else voiceReady = true }
         engine.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
             override fun onStart(id: String?) {}
             override fun onDone(id: String?) { if (id == "briefing-end") speaking = false }
@@ -69,6 +70,8 @@ fun BriefingDialog(model: AppModel, onDismiss: () -> Unit) {
         speaking = true
         parts.forEachIndexed { i, p -> engine.speak(p, TextToSpeech.QUEUE_ADD, null, if (i == parts.lastIndex) "briefing-end" else "briefing-$i") }
     }
+
+    LaunchedEffect(text, voiceReady) { if (autoPlay && text != null && voiceReady && !speaking) toggleSpeech() }
 
     AlertDialog(
         onDismissRequest = onDismiss,

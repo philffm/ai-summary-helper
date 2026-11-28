@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Where summaries come from: the model set in Kaivo in Safari, or a server of one's own.
+/// Where summaries come from: a server of one's own, the model set in Kaivo in Safari, or the model on this device.
 struct ModelServerView: View {
     var closable = false
     @Environment(\.dismiss) private var dismiss
@@ -14,12 +14,16 @@ struct ModelServerView: View {
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage("summaryOwnServer") private var preferOwn = false
     @State private var allowed = AIConsent().hosts
+    @State private var device = DeviceModel.state
 
     private var fromSafari: ModelEndpoint? { safari.flatMap { ModelEndpoint.safari($0) } }
-    private var active: ModelEndpoint? { ModelEndpoint.choose(safari: fromSafari, own: .own(server), preferOwn: preferOwn) }
+    private var active: ModelEndpoint? {
+        ModelEndpoint.choose(safari: fromSafari, own: .own(server), preferOwn: preferOwn, device: .device(device))
+    }
 
     var body: some View {
         Form {
+            if device != .unsupported { onDevice }
             Section {
                 if let safari {
                     LabeledContent("From Safari") { Text(verbatim: safari.name + " · " + safari.model) }
@@ -41,7 +45,7 @@ struct ModelServerView: View {
             } footer: {
                 if safari != nil && fromSafari == nil {
                     Text("The model set in Safari points at this device itself, which the app cannot reach.")
-                } else if let active {
+                } else if let active, active.format != .device {
                     Text("The text of an article you summarize is sent to \(active.name).")
                 }
             }
@@ -105,7 +109,45 @@ struct ModelServerView: View {
         .onChange(of: scenePhase) { _, phase in if phase == .active { look() } }
     }
 
+    /// Whether the device's own model can write, and whether it is the one that does.
+    private var onDevice: some View {
+        Section {
+            HStack(spacing: 12) {
+                Image(systemName: "iphone.gen3").font(.title3).foregroundStyle(device == .ready ? KaivoTokens.accent : .secondary).accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: 2) {
+                    switch device {
+                    case .ready:
+                        Text(verbatim: "Apple Intelligence")
+                        Group {
+                            if active?.format == .device { Text("Ready · in use") } else { Text("Ready · another model comes first") }
+                        }
+                        .font(.footnote).foregroundStyle(.secondary)
+                    case .off:
+                        Text("Apple Intelligence is off")
+                        Text("Switch it on in Settings → Apple Intelligence & Siri. The device then fetches the model.").font(.footnote).foregroundStyle(.secondary)
+                    case .loading:
+                        Text("The model is still being fetched")
+                        Text("The device does that by itself.").font(.footnote).foregroundStyle(.secondary)
+                    case .notEligible, .unsupported:
+                        Text("Not possible").foregroundStyle(.secondary)
+                        Text("This device does not support Apple Intelligence. Set up a server below.").font(.footnote).foregroundStyle(.secondary)
+                    }
+                }
+                Spacer(minLength: 0)
+                if active?.format == .device { Image(systemName: "checkmark").fontWeight(.bold).foregroundStyle(KaivoTokens.accent).accessibilityLabel("In use") }
+                if device == .loading { ProgressView() }
+            }
+            .accessibilityElement(children: .combine)
+            .accessibilityIdentifier("device-model")
+        } header: {
+            Text("On this device")
+        } footer: {
+            if device == .ready { Text("The text stays on this device. No key, no cost.") }
+        }
+    }
+
     private func look() {
+        device = DeviceModel.state
         safari = SafariModel.load()
         allowed = AIConsent().hosts
         contact = SafariModel.contact

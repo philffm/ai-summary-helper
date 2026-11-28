@@ -71,7 +71,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = false, onSummarized: suspend (String, Page, String, List<String>) -> Unit = { _, _, _, _ -> }, onOpenReading: (String) -> Unit = {}, queued: Int = 0, nextLabel: String = "", onNext: () -> Unit = {}, onClose: () -> Unit) {
+fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = false, onSummarized: suspend (String, Page, String, List<String>) -> Unit = { _, _, _, _ -> }, onOpenReading: (String) -> Unit = {}, queued: Int = 0, nextLabel: String = "", onNext: () -> Unit = {}, recommendation: Recommendation? = null, onSaveRecommended: suspend (Page?) -> String = { "" }, onClose: () -> Unit) {
     val context = LocalContext.current
     var progress by remember { mutableFloatStateOf(0f) }
     var title by remember { mutableStateOf("") }
@@ -148,6 +148,24 @@ fun WebScreen(url: String, canSend: Boolean = false, autoSummarize: Boolean = fa
             }
         }
         if (progress in 0.01f..0.99f) LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth())
+        if (recommendation != null) {
+            var keptAs by rememberSaveable { mutableStateOf("") }
+            var keeping by remember { mutableStateOf(false) }
+            // the words scroll, the button below them stays in sight
+            Column(Modifier.fillMaxWidth().heightIn(max = 300.dp).padding(horizontal = 12.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Column(Modifier.weight(1f, fill = false).verticalScroll(rememberScrollState())) { RecommendationCard(recommendation, withMarks = true) }
+                if (keptAs.isNotEmpty()) FilledTonalButton(onClick = { onOpenReading(keptAs) }, modifier = Modifier.fillMaxWidth()) { Text("Saved. Open in reading list") }
+                else FilledTonalButton(enabled = !keeping && progress >= 1f, modifier = Modifier.fillMaxWidth(), onClick = {
+                    val view = web ?: return@FilledTonalButton
+                    keeping = true
+                    view.evaluateJavascript(PageExtract.SCRIPT) { raw ->
+                        // an error page or a wall has too little text to be the article
+                        val page = PageExtract.parse(raw)?.takeIf { PageSummary.enough(it) }
+                        scope.launch { keptAs = onSaveRecommended(page); keeping = false }
+                    }
+                }) { Text("Save to reading list") }
+            }
+        }
         AndroidView(
             modifier = Modifier.weight(1f).fillMaxWidth(),   // the page gets exactly the space left under the bars and panels
             factory = { ctx ->

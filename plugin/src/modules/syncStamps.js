@@ -20,14 +20,35 @@
 export const LOCAL_ONLY = {
     // feedStub and savedOnly DO sync: reconcileStubs needs both flags to clean a stub up on every device
     article: ['lastOpened', 'sentTo', 'qaCount', 'contentWordCount', 'summaryWordCount', 'favicon', 'moodScore', 'fromPhone',
-        'contentPruned', 'summary', 'suggested', 'suggestedAnswers', 'summaryBase', 'conversation', 'content', 'tags'],
+        'contentPruned', 'summary', 'suggested', 'suggestedAnswers', 'prepared', 'summaryBase', 'conversation', 'content', 'tags'],
     highlight: [],
     collection: ['updated', 'sources'],
     note: ['updated', 'tags'],   // tags are stamped one by one (tag:<name>)
 };
 
 /** Article fields that live in the full record, not in the lean index entry: unknown whenever the record is not loaded. */
-export const RECORD_SIDE = ['content', 'description', 'meta', 'sourceProfile', 'sourceCheck', 'summaryBase', 'conversation'];
+export const RECORD_SIDE = ['content', 'description', 'meta', 'sourceProfile', 'sourceCheck', 'summaryBase', 'conversation', 'prepared'];
+
+// The questions prepared with a summary and their short answers are kept as record.suggested and record.suggestedAnswers.
+// They sync as one field of another name, `prepared`: [{ q, a? }]. Versions that know the first two as local fields would
+// take them for removed the next time they stamp the article; a name they do not know they keep as it is. Only a list
+// with something in it says anything: an empty one stamps nothing and removes nothing anywhere (a question that was asked
+// is left out where the questions are shown).
+const MAX_PREPARED = 8;
+const cut = (text, max) => (typeof text === 'string' ? text.slice(0, max) : '');
+
+/** A record's prepared questions as the synced field; [] when it has none. */
+export function preparedOf(rec) {
+    const answers = (rec && rec.suggestedAnswers) || {};
+    return (rec && Array.isArray(rec.suggested) ? rec.suggested : []).filter((q) => typeof q === 'string' && q.trim()).slice(0, MAX_PREPARED)
+        .map((q) => { const a = Object.prototype.hasOwnProperty.call(answers, q) ? cut(answers[q], 500) : ''; return a ? { q: cut(q, 200), a } : { q: cut(q, 200) }; });
+}
+
+/** The synced field back as a record keeps it: { suggested, suggestedAnswers }, or null when it holds no question. */
+export function questionsOf(prepared) {
+    const list = (Array.isArray(prepared) ? prepared : []).filter((x) => x && typeof x.q === 'string' && x.q.trim()).slice(0, MAX_PREPARED);
+    return list.length ? { suggested: list.map((x) => x.q), suggestedAnswers: Object.fromEntries(list.filter((x) => typeof x.a === 'string' && x.a).map((x) => [x.q, x.a])) } : null;
+}
 
 // Sets are stamped one pseudo-field per element, so a tag added on one device and another added on a second device both
 // survive a merge (a whole-list stamp could only keep the newer list). A removed element is a missing field.
@@ -114,6 +135,8 @@ export function syncFields(type, entry, rec) {
     }
     if (!rec) return out;                                   // record not loaded: its fields are unknown, see unknownFields
     take(rec);
+    const prepared = preparedOf(rec);
+    if (prepared.length) out.prepared = prepared;
     const base = rec.summaryBase !== undefined ? rec.summaryBase : rec.summary;   // never the index copy: it already holds the pinned questions
     if (base !== undefined) out.summaryBase = base;
     if (Array.isArray(rec.conversation) && rec.conversation.length) out.conversation = rec.conversation;
@@ -128,7 +151,7 @@ const textUnknown = (entry, r) => !(typeof r.content === 'string' && r.content) 
 export function unknownFields(type, entry, rec) {
     if (type !== 'article') return [];
     if (!rec) return [...RECORD_SIDE];                      // an index-only event says nothing about the record's fields
-    return textUnknown(entry, rec) ? ['content'] : [];
+    return [...(textUnknown(entry, rec) ? ['content'] : []), ...(preparedOf(rec).length ? [] : ['prepared'])];
 }
 
 // ── stamping ─────────────────────────────────────────────────────────────

@@ -40,7 +40,12 @@
         if (!entry || typeof entry.id !== 'string' || !/^[A-Za-z0-9_-]{1,80}$/.test(entry.id) || !/^https?:/i.test(entry.url || '')) return null;
         const progress = Number(entry.progress);
         const body = splitImages(record && record.content);
+        const answers = (record && record.suggestedAnswers) || {};
+        const questions = (record && Array.isArray(record.suggested) ? record.suggested : []).filter((q) => typeof q === 'string' && q.trim()).slice(0, 8)
+            .map((q) => ({ q: q.slice(0, 200), a: str(answers[q], 500) }));
         return {
+            // the questions prepared with the summary, with their short answers
+            ...(questions.length ? { questions } : {}),
             images: body.images,
             id: entry.id,
             url: str(entry.url, 2048),
@@ -56,10 +61,14 @@
         };
     }
 
-    /** What the app gets of the subscriptions: address, name and tags of every web feed. */
+    /** What the app gets of the subscriptions: address, name, and the categories of every web feed (the reader's tags and the AI's topics). */
     function toFeeds(subs) {
         return (Array.isArray(subs) ? subs : []).filter((f) => f && /^https?:/i.test(f.url || '')).slice(0, MAX_FEEDS)
-            .map((f) => ({ url: str(f.url, 2048), title: str(f.customTitle || f.title, 500), tags: (Array.isArray(f.tags) ? f.tags : []).filter((t) => typeof t === 'string').slice(0, 12) }));
+            .map((f) => {
+                const all = [...(Array.isArray(f.tags) ? f.tags : []), ...(Array.isArray(f.topics) ? f.topics : [])].filter((t) => typeof t === 'string' && t.trim());
+                const tags = all.filter((t, i) => all.findIndex((x) => x.trim().toLowerCase() === t.trim().toLowerCase()) === i).slice(0, 12);
+                return { url: str(f.url, 2048), title: str(f.customTitle || f.title, 500), tags };
+            });
     }
 
     /**
@@ -195,21 +204,35 @@
         return toModel(sync, local, services, typeof aiTokenExpired === 'function' ? aiTokenExpired : null);
     }
     const run = createSender({ storage: api.storage.local, send: (message) => Promise.resolve(api.runtime.sendNativeMessage(APP, message)), connection });
-    let timer = null;
+    let timer = null, urgent = false;
     // a few seconds of quiet first: a sync or an import writes many times in a row
     // iOS puts the background to sleep in the middle of a long hand-over: an alarm wakes it to go on, and goes when it is done
     const alarm = (on) => { try { if (on) api.alarms.create(RESUME_ALARM, { periodInMinutes: 1 }); else api.alarms.clear(RESUME_ALARM); } catch (_) { /* no alarms */ } };
     // a run that returns has ended, whatever it says: only one that was cut off leaves the alarm behind
     const start = () => { alarm(true); return run().then((r) => { alarm(false); if (!r.ok) console.warn('[Kaivo] the app did not take the library', r.error || ''); }); };
-    const soon = () => { clearTimeout(timer); timer = setTimeout(start, 4000); };
+    // A page that was just saved goes at once: the reader may switch to the app right away, and iOS then puts this
+    // background to sleep. What is written after it does not push that moment back.
+    const soon = (now) => {
+        if (urgent && !now) return;
+        clearTimeout(timer);
+        urgent = now === true;
+        timer = setTimeout(() => { urgent = false; return start(); }, urgent ? 300 : 4000);
+    };
     if (api.alarms && api.alarms.onAlarm) api.alarms.onAlarm.addListener((a) => { if (a && a.name === RESUME_ALARM) soon(); });
+    // one or a few entries more in the list: someone saved a page (an import or a restore brings many)
+    const justSaved = (change) => {
+        if (!change || !Array.isArray(change.newValue)) return false;
+        const before = new Set((Array.isArray(change.oldValue) ? change.oldValue : []).map((e) => e && e.id));
+        const added = change.newValue.filter((e) => e && !before.has(e.id)).length;
+        return added > 0 && added <= 3;
+    };
     api.storage.onChanged.addListener((changes, area) => {
         const keys = Object.keys(changes);
         if (area === 'sync' && keys.some((k) => k === 'activeService' || k === 'connectionMode' || k === 'preferredCloudModel' || k === 'cloudRegionPref')) soon();
         if (area !== 'local') return;
         if (keys.some((k) => k === 'config:services' || k === 'account:token' || k === 'account:licenseKey')) soon();
         run.touch(keys.filter((k) => k.startsWith(KEY_REC)).map((k) => k.slice(KEY_REC.length)));
-        if (keys.some((k) => k === KEY_INDEX || k === KEY_HL_INDEX || k === KEY_FEEDS || k.startsWith(KEY_REC) || k.startsWith(KEY_HL_PAGE))) soon();
+        if (keys.some((k) => k === KEY_INDEX || k === KEY_HL_INDEX || k === KEY_FEEDS || k.startsWith(KEY_REC) || k.startsWith(KEY_HL_PAGE))) soon(justSaved(changes[KEY_INDEX]));
     });
     soon();   // whatever was saved while this was not running
 }());

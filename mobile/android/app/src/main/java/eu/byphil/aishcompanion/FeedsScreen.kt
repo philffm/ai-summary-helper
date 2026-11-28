@@ -21,6 +21,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.draw.clip
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
@@ -131,6 +134,9 @@ fun FeedsScreen(
     var unreadOnly by remember { mutableStateOf(false) }
     var moodFilter by remember { mutableStateOf("any") }   // any, pos (positive only), nonneg (hide heavy)
     var favOnly by remember { mutableStateOf(false) }
+    var podcastsOnly by rememberSaveable { mutableStateOf(false) }
+    var downloadedOnly by rememberSaveable { mutableStateOf(false) }
+    var autoBriefing by remember { mutableStateOf(false) }
     var menuOpen by remember { mutableStateOf(false) }
     var openStacks by remember { mutableStateOf(setOf<String>()) }
     var searching by remember { mutableStateOf(false) }
@@ -147,6 +153,7 @@ fun FeedsScreen(
     // a search looks through everything; the source and the other filters apply when not searching
     val visible = if (searchActive) model.entries.filter { FeedSearch.matches(it, query) } else model.entries.filter {
         matches(source, it) && (!unreadOnly || !it.stored.read) && (!favOnly || it.stored.fav) &&
+            (!podcastsOnly || (it.stored.item.audio.isNotEmpty() && (!downloadedOnly || PodcastDownloads.has(context, it.stored.item.audio)))) &&
             when (moodFilter) { "pos" -> Mood.of(it.stored.sent) == "pos"; "nonneg" -> Mood.of(it.stored.sent) != "neg"; else -> true }
     }
     val anyRated = model.entries.any { it.stored.sent != null }
@@ -172,7 +179,12 @@ fun FeedsScreen(
         Unit
     }
     LaunchedEffect(current == null) { if (current == null) model.focusReading = false }
+    // a large title that folds away while scrolling, on a phone's list
+    val folding = androidx.compose.material3.TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val large = !isWide() && current == null && picked.isEmpty()
     Scaffold(
+        modifier = if (large) Modifier.nestedScroll(folding.nestedScrollConnection) else Modifier,
+        containerColor = if (large) groupGround() else MaterialTheme.colorScheme.surface,
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
@@ -182,8 +194,9 @@ fun FeedsScreen(
                 actions = {
                     IconButton(onClick = { picked = visible.map { selectionKey(it.feed.url, it.stored.item.id) }.toSet() }) { Icon(Icons.Filled.SelectAll, contentDescription = "Select all") }
                 },
-            ) else TopAppBar(
-                title = { Text(sourceLabel(source, model), maxLines = 1, overflow = TextOverflow.Ellipsis) },
+            ) else FoldingBar(
+                large, folding,
+                title = { Text(sourceLabel(source, model), maxLines = 1, overflow = TextOverflow.Ellipsis, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     if (!isWide() && current != null) IconButton(onClick = { onSelect("") }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") }
                 },
@@ -218,12 +231,21 @@ fun FeedsScreen(
                             if (!searching && model.feeds.isNotEmpty() && !showOnboarding) {
                             Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 4.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                 FilterChip(shape = PillShape, selected = unreadOnly, onClick = { unreadOnly = !unreadOnly }, label = { Text("Unread") })
+                                if (podcastsOnly || model.entries.any { it.stored.item.audio.isNotEmpty() }) {
+                                    FilterChip(shape = PillShape, selected = podcastsOnly, onClick = { podcastsOnly = !podcastsOnly; if (!podcastsOnly) downloadedOnly = false }, label = { Text("Podcasts") }, leadingIcon = { Icon(Icons.Filled.Headphones, null, Modifier.size(18.dp)) })
+                                    if (podcastsOnly) FilterChip(shape = PillShape, selected = downloadedOnly, onClick = { downloadedOnly = !downloadedOnly }, label = { Text("Downloaded") }, leadingIcon = { Icon(Icons.Filled.DownloadDone, null, Modifier.size(18.dp)) })
+                                }
                                 FilterChip(shape = PillShape, selected = favOnly, onClick = { favOnly = !favOnly }, label = { Text("Favorites") }, leadingIcon = { Icon(if (favOnly) Icons.Filled.Star else Icons.Filled.StarBorder, null, Modifier.size(18.dp)) })
                                 if (anyRated) {
                                     FilterChip(shape = PillShape, selected = moodFilter == "pos", onClick = { moodFilter = if (moodFilter == "pos") "any" else "pos" }, label = { Text("😊 Positive only") })
                                     FilterChip(shape = PillShape, selected = moodFilter == "nonneg", onClick = { moodFilter = if (moodFilter == "nonneg") "any" else "nonneg" }, label = { Text("Hide 😢") })
                                 }
                                 if (source != "all") FilterChip(shape = PillShape, selected = false, onClick = { onSource("all") }, label = { Text("All feeds") })
+                                // the categories of the feeds, as named in the browser; tapping the chosen one lifts it
+                                model.feeds.flatMap { it.tags }.distinct().sortedBy { it.lowercase() }.forEach { tag ->
+                                    val on = source == "folder:$tag"
+                                    FilterChip(shape = PillShape, selected = on, onClick = { onSource(if (on) "all" else "folder:$tag") }, label = { Text(tag) })
+                                }
                                 if (visible.any { !it.stored.read }) FilterChip(shape = PillShape, selected = false, onClick = { scope.launch { model.markAllRead(visible.map { it.feed.url }.distinct()) } }, label = { Text("Mark all read") }, leadingIcon = { Icon(Icons.Filled.DoneAll, null, Modifier.size(18.dp)) })
                             }
                             }
@@ -238,14 +260,19 @@ fun FeedsScreen(
                                 if (searchActive) "No matches" else if (favOnly) "No favorites yet" else if (unreadOnly) "All read" else "Nothing here yet",
                                 if (searchActive) "Nothing in your feeds matches that." else if (favOnly) "Tap the star on an item to keep it here." else if (unreadOnly) "Turn off the Unread filter to see older items." else "Pull down to refresh.",
                             )
-                            else LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            else LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
                                 if (!searchActive && source == "all") item(key = "recap") {
-                                    RecapCard(model) { scope.launch { model.refreshRecap()?.let { snackbar.showSnackbar(it) } } }
+                                    Box(Modifier.padding(bottom = 10.dp)) { RecapCard(model) { scope.launch { model.refreshRecap()?.let { snackbar.showSnackbar(it) } } } }
                                 }
-                                items(stacks, key = { selectionKey(it.lead.feed.url, it.lead.stored.item.id) }) { st ->
+                                itemsIndexed(stacks, key = { _, it -> selectionKey(it.lead.feed.url, it.lead.stored.item.id) }) { row, st ->
                                     val leadKey = selectionKey(st.lead.feed.url, st.lead.stored.item.id)
-                                    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                                        for (e in listOf(st.lead) + (if (leadKey in openStacks) st.others else emptyList())) {
+                                    Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                                        val told = listOf(st.lead) + (if (leadKey in openStacks) st.others else emptyList())
+                                        told.forEachIndexed { within, e ->
+                                            // the row's place in the whole list: the first of the first story and the last of the last are round
+                                            val first = row == 0 && within == 0
+                                            val last = row == stacks.size - 1 && within == told.size - 1
+                                            val shape = groupShape(if (first) 0 else 1, if (last) (if (first) 1 else 2) else 3)
                                             val key = selectionKey(e.feed.url, e.stored.item.id)
                                             SwipeableCard(
                                                 e, enabled = picked.isEmpty(),
@@ -253,7 +280,7 @@ fun FeedsScreen(
                                                 onFav = { scope.launch { model.setFavorite(e.feed.url, e.stored.item.id, !e.stored.fav) } },
                                             ) {
                                                 ItemCard(
-                                                    e, selected = key == selected, picked = key in picked, selecting = picked.isNotEmpty(),
+                                                    shape, e, selected = key == selected, picked = key in picked, selecting = picked.isNotEmpty(),
                                                     onFav = { scope.launch { model.setFavorite(e.feed.url, e.stored.item.id, !e.stored.fav) } },
                                                     onLong = { picked = if (key in picked) picked - key else picked + key },
                                                 ) {
@@ -304,7 +331,9 @@ fun FeedsScreen(
     }
 
     if (showAdd) AddFeedDialog(model, onDismiss = { showAdd = false }, onAdded = { showAdd = false; scope.launch { snackbar.showSnackbar("Feed added.") } })
-    if (showBriefing) BriefingDialog(model) { showBriefing = false }
+    // asked for by an app shortcut: shown and read out
+    LaunchedEffect(model.briefingAsked) { if (model.briefingAsked) { model.briefingAsked = false; autoBriefing = true; showBriefing = true } }
+    if (showBriefing) BriefingDialog(model, autoPlay = autoBriefing) { showBriefing = false; autoBriefing = false }
     if (showSources) SourcesSheet(model, source, onAdd = { showSources = false; showAdd = true }, onPick = { onSource(it); onSelect(""); showSources = false }, onDismiss = { showSources = false })
 }
 
@@ -317,13 +346,13 @@ private fun moodTint(sent: Double?, base: androidx.compose.ui.graphics.Color): a
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun ItemCard(e: FeedEntryRef, selected: Boolean, picked: Boolean, selecting: Boolean, onFav: () -> Unit, onLong: () -> Unit, onClick: () -> Unit) {
+private fun ItemCard(shape: androidx.compose.ui.graphics.Shape, e: FeedEntryRef, selected: Boolean, picked: Boolean, selecting: Boolean, onFav: () -> Unit, onLong: () -> Unit, onClick: () -> Unit) {
     val unread = !e.stored.read
     val item = e.stored.item
-    AishCard(
-        modifier = Modifier.fillMaxWidth().combinedClickable(onClick = onClick, onLongClick = onLong),
-        tone = if (picked || selected) CardTone.Selected else CardTone.Outlined,
-        container = if (picked || selected) null else moodTint(e.stored.sent, MaterialTheme.colorScheme.surface),   // rated items carry a faint mood tint
+    androidx.compose.material3.Surface(
+        modifier = Modifier.fillMaxWidth().clip(shape).combinedClickable(onClick = onClick, onLongClick = onLong),
+        shape = shape,
+        color = if (picked || selected) MaterialTheme.colorScheme.secondaryContainer else moodTint(e.stored.sent, groupRow()),   // rated items carry a faint mood tint
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -343,7 +372,7 @@ private fun ItemCard(e: FeedEntryRef, selected: Boolean, picked: Boolean, select
                         tint = if (e.stored.fav) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(20.dp))
                 }
             }
-            Text(item.title, style = MaterialTheme.typography.titleMedium, fontWeight = if (unread) FontWeight.Bold else FontWeight.Normal, maxLines = 3, overflow = TextOverflow.Ellipsis)
+            Text(item.title, style = MaterialTheme.typography.titleMedium, fontFamily = androidx.compose.ui.text.font.FontFamily.Serif, fontWeight = if (unread) FontWeight.Bold else FontWeight.Normal, maxLines = if (androidx.compose.ui.platform.LocalDensity.current.fontScale >= 1.5f) 6 else 3, overflow = TextOverflow.Ellipsis)
             if (item.summary.isNotBlank() && item.summary != item.title) Text(item.summary, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2, overflow = TextOverflow.Ellipsis)
         }
     }

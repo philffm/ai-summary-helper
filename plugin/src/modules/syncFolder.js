@@ -91,7 +91,7 @@ export function createFolderStore(cfg) {
             for await (const [name, entry] of h.entries()) {
                 if (entry.kind !== 'file') continue;
                 const f = await entry.getFile();
-                out.push({ path: [...segs(prefix), name].join('/'), etag: etagOf(f), size: f.size });
+                out.push({ path: [...segs(prefix), name].join('/'), etag: etagOf(f), size: f.size, modified: f.lastModified });
             }
             return out;
         },

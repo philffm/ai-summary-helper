@@ -166,6 +166,9 @@ const isSyncStampsKey = (k) => typeof k === 'string' && k.startsWith(SYNC_STAMPS
 const SYNC_LEDGER = 'sync:ledger:';
 const syncLedgerKey = (placeId) => SYNC_LEDGER + placeId;
 const isSyncLedgerKey = (k) => typeof k === 'string' && k.startsWith(SYNC_LEDGER);
+/** Prefix of the feed list as a place last had it: sync:feedlist:<placeId> (syncFeedList.js). Per device. */
+const SYNC_FEEDLIST = 'sync:feedlist:';
+const feedListKey = (placeId) => SYNC_FEEDLIST + placeId;
 
 /** old (pre-registry) key → new key. Used by the migration and by backup import. */
 const SK_LEGACY = {
@@ -433,14 +436,19 @@ const syncSoon = (min) => {
     if (min < 1) syncNextRun = Date.now() + min * 60000; else if (Date.now() < syncNextRun) return;
     try { chrome.alarms?.create(SYNC_SOON, { delayInMinutes: Math.max(0.5, min) }); } catch (_) { /* no alarms */ }
 };   // same name replaces the last one: a debounce
-const syncSvc = syncStamps ? SYNC.createSyncService({ storage: chrome.storage.local, makeStore: SYNC.makeStore, stampStore: syncStamps, dataHooks: SYNC.dataHooks, log: (...a) => console.log(...a), scheduleSoon: syncSoon, engine: SMALL_DEVICE ? { chunk: 10, concurrency: 2, pullConcurrency: 3 } : {},
+const syncSvc = syncStamps ? SYNC.createSyncService({ storage: chrome.storage.local, makeStore: SYNC.makeStore, stampStore: syncStamps, dataHooks: SYNC.dataHooks, feeds: SYNC.feedSyncAdapter(chrome.storage.local), log: (...a) => console.log(...a), scheduleSoon: syncSoon, engine: SMALL_DEVICE ? { chunk: 10, concurrency: 2, pullConcurrency: 3 } : {},
     viewerSource: async (place) => SYNC.renderViewer(await SYNC.loadViewerTemplates({ getUrl: (p) => chrome.runtime.getURL(p) }), { title: place.name }) }) : null;
+// the list of feeds, not their fetching: a refresh writes the same list with new times
+const feedListChanged = (c) => {
+    const shape = (list) => JSON.stringify((Array.isArray(list) ? list : []).map((f) => [f.url, f.customTitle || f.title, f.tags]));
+    return !!c && shape(c.oldValue) !== shape(c.newValue);
+};
 if (syncStamps) {
     chrome.storage.onChanged.addListener((changes, area) => {
         if (area !== 'local') return;
         syncStamps.onChanged(changes);
         // a change to the library (not to sync's own ledger or status) publishes a little later
-        if (SK.articlesIndex in changes || SK.annotations in changes || Object.keys(changes).some((k) => isArticleRecKey(k) || isHlPageKey(k))) syncStamps.enabled().then((on) => { if (on) syncSoon(2); });
+        if (SK.articlesIndex in changes || SK.annotations in changes || feedListChanged(changes[SK.feedSubs]) || Object.keys(changes).some((k) => isArticleRecKey(k) || isHlPageKey(k))) syncStamps.enabled().then((on) => { if (on) syncSoon(2); });
     });
     syncStamps.scan().catch(() => {});
     (async () => { try { if (!(await chrome.alarms.get(SYNC_ALARM))) chrome.alarms.create(SYNC_ALARM, { delayInMinutes: 5, periodInMinutes: 30 }); } catch (_) { /* no alarms */ } })();

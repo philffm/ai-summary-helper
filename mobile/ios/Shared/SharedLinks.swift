@@ -7,6 +7,8 @@ struct SharedLink: Codable, Equatable {
     /// The reader wants a summary once the text is there.
     var summarize: Bool
     var date: Date
+    /// What someone else sent along when they recommended it.
+    var recommendation: Recommendation?
 }
 
 /// The hand-over folder for shared links: the share extension writes one file per link, the app reads and removes them.

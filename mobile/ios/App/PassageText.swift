@@ -6,12 +6,19 @@ import UIKit
 struct PassageText: UIViewRepresentable {
     let passage: Passage
     let style: UIFont.TextStyle
+    var look = ReaderLook()
+    /// The system's text size; the look moves from there.
+    var textSize = DynamicTypeSize.large
     /// In a research paper, numbers such as [3] step back behind the words.
     var citations = false
+    /// The sentence being read aloud.
+    var spoken: NSRange?
     let highlight: (NSRange) -> Void
     let unmark: (NSRange) -> Void
     /// Keeps (true) or dismisses a suggestion of the AI: offered where it is tapped.
     let resolve: (Mark.ID, Bool) -> Void
+    /// Writes on a highlight: offered where one is tapped; nil where highlights cannot be written on.
+    var comment: ((Mark.ID) -> Void)?
 
     func makeCoordinator() -> Coordinator { Coordinator(self) }
 
@@ -22,7 +29,8 @@ struct PassageText: UIViewRepresentable {
         view.backgroundColor = .clear
         view.textContainerInset = .zero
         view.textContainer.lineFragmentPadding = 0
-        view.adjustsFontForContentSizeCategory = true
+        // the size comes with the font: the view must not set it back to the system's
+        view.adjustsFontForContentSizeCategory = false
         view.delegate = context.coordinator
         let menu = UIEditMenuInteraction(delegate: context.coordinator)
         view.addInteraction(menu)
@@ -38,6 +46,8 @@ struct PassageText: UIViewRepresentable {
 
     func updateUIView(_ view: UITextView, context: Context) {
         context.coordinator.parent = self
+        // highlights and system colours resolve for the page they lie on
+        view.overrideUserInterfaceStyle = look.ground.scheme.map { $0 == .dark ? .dark : .light } ?? .unspecified
         let text = attributed()
         if view.attributedText != text { view.attributedText = text }
         // VoiceOver cannot point at a sentence: each suggestion is offered as actions of its paragraph
@@ -60,14 +70,13 @@ struct PassageText: UIViewRepresentable {
     }
 
     func attributed() -> NSAttributedString {
-        let base = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
-        let serif = base.withDesign(.serif) ?? base
-        let font = UIFont(descriptor: passage.heading == nil ? serif : serif.withSymbolicTraits(.traitBold) ?? serif, size: 0)
+        let font = look.font(style, bold: passage.heading != nil, system: textSize)
         let lines = NSMutableParagraphStyle()
-        lines.lineSpacing = 4
-        let result = NSMutableAttributedString(string: passage.text, attributes: [.font: font, .foregroundColor: UIColor.label, .paragraphStyle: lines])
+        lines.lineSpacing = look.lineSpacing(for: font.pointSize)
+        let result = NSMutableAttributedString(string: passage.text, attributes: [.font: font, .foregroundColor: look.ground.ink, .paragraphStyle: lines])
         if citations {
-            for range in PaperSense.citations(in: passage.text) { result.addAttribute(.foregroundColor, value: UIColor.secondaryLabel, range: range) }
+            let quiet = look.ground.page == nil ? UIColor.secondaryLabel : look.ground.ink.withAlphaComponent(0.6)
+            for range in PaperSense.citations(in: passage.text) { result.addAttribute(.foregroundColor, value: quiet, range: range) }
         }
         for mark in passage.marks where mark.start >= 0 && mark.start + mark.length <= result.length {
             if mark.ai {
@@ -78,13 +87,16 @@ struct PassageText: UIViewRepresentable {
                 result.addAttributes([.backgroundColor: UIColor(KaivoTokens.savedNoteUserBg), .foregroundColor: UIColor(KaivoTokens.savedNoteUserFg)], range: mark.range)
             }
         }
+        if let spoken, spoken.location >= 0, NSMaxRange(spoken) <= result.length {
+            result.addAttribute(.backgroundColor, value: UIColor(KaivoTokens.accent).withAlphaComponent(0.22), range: spoken)
+        }
         return result
     }
 
     final class Coordinator: NSObject, UITextViewDelegate, UIGestureRecognizerDelegate, UIEditMenuInteractionDelegate {
         var parent: PassageText
         weak var menu: UIEditMenuInteraction?
-        /// The suggestion the menu is about, and where its words lie.
+        /// The highlight the menu is about, and where its words lie.
         private var asked: (id: Mark.ID, frame: CGRect)?
         init(_ parent: PassageText) { self.parent = parent }
 
@@ -96,7 +108,8 @@ struct PassageText: UIViewRepresentable {
             // the nearest glyph is not enough: a tap beside the words means nothing
             guard layout.boundingRect(forGlyphRange: NSRange(location: glyph, length: 1), in: container).insetBy(dx: -6, dy: -6).contains(point) else { return }
             let character = layout.characterIndexForGlyph(at: glyph)
-            guard let mark = parent.passage.marks.first(where: { $0.ai && NSLocationInRange(character, $0.range) }) else { return }
+            // the reader's own highlights offer something only where they can be written on
+            guard let mark = parent.passage.marks.first(where: { ($0.ai || parent.comment != nil) && NSLocationInRange(character, $0.range) }) else { return }
             let words = layout.glyphRange(forCharacterRange: mark.range, actualCharacterRange: nil)
             // the line that was tapped, so that the menu stands beside the finger, also for a long suggestion
             var line = NSRange()
@@ -109,14 +122,23 @@ struct PassageText: UIViewRepresentable {
         func gestureRecognizer(_ recognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith other: UIGestureRecognizer) -> Bool { true }
 
         func editMenuInteraction(_ interaction: UIEditMenuInteraction, menuFor configuration: UIEditMenuConfiguration, suggestedActions: [UIMenuElement]) -> UIMenu? {
-            guard let id = asked?.id else { return nil }
+            guard let id = asked?.id, let mark = parent.passage.marks.first(where: { $0.id == id }) else { return nil }
+            let write = parent.comment == nil ? [] : [UIAction(title: String(localized: "Comment"), image: UIImage(systemName: "text.bubble")) { [weak self] _ in
+                self?.parent.comment?(id)
+            }]
+            guard mark.ai else {
+                return UIMenu(children: write + [UIAction(title: String(localized: "Remove highlight"), image: UIImage(systemName: "eraser")) { [weak self] _ in
+                    guard let self, let mark = parent.passage.marks.first(where: { $0.id == id }) else { return }
+                    parent.unmark(mark.range)
+                }])
+            }
             return UIMenu(children: [
                 UIAction(title: String(localized: "Keep"), image: UIImage(systemName: "checkmark")) { [weak self] _ in
                     self?.parent.resolve(id, true)
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
                 },
                 UIAction(title: String(localized: "Dismiss"), image: UIImage(systemName: "xmark")) { [weak self] _ in self?.parent.resolve(id, false) },
-            ])
+            ] + write)
         }
 
         func editMenuInteraction(_ interaction: UIEditMenuInteraction, targetRectFor configuration: UIEditMenuConfiguration) -> CGRect {

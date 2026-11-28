@@ -154,6 +154,32 @@ class FeedStore(private val dir: File) {
         write(feeds, state)
     }
 
+    /**
+     * Joins the library's feed list with the one here, by the rules of the feed vault (the newer entry counts, a removal stays as a
+     * marker), and returns what the library should hold. What each library last said is remembered beside the feeds, apart from the
+     * vault's. At first contact the library's name and categories win. A list that vanished here as a whole comes back, and many
+     * removals at once (more than 10 and a quarter) are not carried out.
+     */
+    @Synchronized fun takeLibrary(placeId: String, remote: List<FeedEntry>, now: Long): List<FeedEntry> {
+        val file = File(dir, "feeds-library-${placeId.filter { it.isLetterOrDigit() || it == '_' }}.json")
+        var base = runCatching { FeedSync.parseEntries(JSONArray(file.readText())) }.getOrDefault(emptyList())
+        val subs = syncSubs()
+        fun most(n: Int) = maxOf(10, (n + 3) / 4)
+        val known = base.count { !it.removed }
+        if (subs.isEmpty() && known > most(known)) base = emptyList()
+        val theirs = remote.filter { !it.removed }.map { it.url }.toSet()
+        val seen = base.map { it.url }.toSet()
+        val merged = FeedSync.merge(FeedSync.localEntries(subs, base, now).filter { it.removed || it.url in seen || it.url !in theirs }, remote, now)
+        var plan = FeedSync.plan(subs, merged)
+        val held = if (plan.remove.size > most(subs.size)) plan.remove.toSet() else emptySet()
+        if (held.isNotEmpty()) plan = plan.copy(remove = emptyList())
+        if (plan.add.isNotEmpty() || plan.update.isNotEmpty() || plan.remove.isNotEmpty()) applyPlan(plan, now)
+        val was = base.associateBy { it.url }
+        val next = merged.mapNotNull { if (it.url in held) was[it.url] else it }
+        file.writeText(JSONArray(next.map { JSONObject(FeedSync.canon(it)) }).toString())
+        return merged
+    }
+
     // ── items ──
 
     /**

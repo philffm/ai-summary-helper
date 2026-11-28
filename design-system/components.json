@@ -1174,12 +1174,15 @@
     {
       "name": "Note card",
       "status": "stable",
-      "purpose": "A note, a highlight or an AI highlight in Notes (sticky), with comment, source, tags and actions.",
+      "purpose": "A note, a highlight, an AI highlight or a saved question with its answer in Notes (sticky), with comment, source, tags and actions.",
       "selectors": [
         ".st",
         ".st-user",
         ".st-ghost",
         ".st-note",
+        ".st-qa",
+        ".st-ask",
+        ".st-answer",
         ".st-c",
         ".st-act"
       ],
@@ -1194,7 +1197,8 @@
         "Kind": [
           "Highlight",
           "AI highlight",
-          "Note"
+          "Note",
+          "Question"
         ],
         "State": [
           "Default",

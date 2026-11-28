@@ -10,7 +10,7 @@
 // Only fields the merge knows about (`stamped`: the names in the merged record's `f`) are touched. A stamped field without a value was
 // removed on the other device and is removed here; local-only fields and fields the merge says nothing about stay exactly as they are.
 // The round trip holds: syncFields(type, apply(type, x, syncFields(type, y))) carries y's fields for every stamped name.
-import { LOCAL_ONLY, RECORD_SIDE, TAG, SRC } from './syncStamps.js';
+import { LOCAL_ONLY, RECORD_SIDE, TAG, SRC, questionsOf } from './syncStamps.js';
 
 const clone = (x) => (x === undefined ? undefined : JSON.parse(JSON.stringify(x)));
 
@@ -59,7 +59,7 @@ export function applyFields(type, current, merged, hooks = {}) {
     const entry = (current && current.entry) ? clone(current.entry) : {};
     let rec = (current && current.rec) ? clone(current.rec) : null;
     if (hooks.id && !entry.id) entry.id = hooks.id;
-    const recNames = names.filter((n) => RECORD_SIDE.includes(n)), entryNames = names.filter((n) => !RECORD_SIDE.includes(n));
+    const recNames = names.filter((n) => RECORD_SIDE.includes(n) && n !== 'prepared'), entryNames = names.filter((n) => !RECORD_SIDE.includes(n));
     setFields(entry, entryNames, values, deny);
     if (touches(names, TAG)) entry.tags = mergeSet(entry.tags, names, values, TAG, tagKey);
 
@@ -70,6 +70,13 @@ export function applyFields(type, current, merged, hooks = {}) {
             entry.contentWordCount = hooks.count ? hooks.count(rec.content) : entry.contentWordCount;
             delete entry.contentPruned; delete rec.contentPruned;   // the text is here now
         }
+    }
+    // prepared questions go back into the two fields they are kept in. Without a value nothing is removed: no device takes
+    // them away on purpose, so one that says so has lost them (an older phone app could), and those here stay
+    if (names.includes('prepared')) {
+        delete entry.prepared;                  // a version that did not know the field kept it on the list entry
+        const questions = questionsOf(values.prepared);
+        if (questions) rec = { ...(rec || {}), ...questions };
     }
     // the displayed summary is derived: the base plus the pinned questions, rebuilt on this device
     if (names.includes('summaryBase') || names.includes('conversation')) {

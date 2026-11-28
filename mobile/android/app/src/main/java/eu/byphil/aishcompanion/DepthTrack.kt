@@ -8,7 +8,8 @@ data class Shown(val block: Int, val above: Float, val upTo: Float)
 
 /** Where things lie along an article. Length is counted in characters. Pure, unit-tested (as DepthTrack.swift on iOS). */
 object DepthTrack {
-    private fun weight(b: Block) = maxOf(1, b.text.length)
+    /** A picture takes the room of a few paragraphs, whatever its description says. */
+    private fun weight(b: Block) = if (b.type == "img") 400 else maxOf(1, b.text.length)
 
     private fun starts(blocks: List<Block>): Pair<IntArray, Float> {
         val out = IntArray(blocks.size); var at = 0

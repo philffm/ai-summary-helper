@@ -72,6 +72,19 @@ if (want('ios')) {
     fs.writeFileSync(path.join(dir, 'Contents.json'), JSON.stringify({ info: { author: 'xcode', version: 1 } }, null, 2) + '\n');
     fs.writeFileSync(path.join(dir, 'AppIcon.appiconset', 'Contents.json'), JSON.stringify({ images: [{ filename: 'icon-1024.png', idiom: 'universal', platform: 'ios', size: '1024x1024' }], info: { author: 'xcode', version: 1 } }, null, 2) + '\n');
     await shot(path.join(dir, 'AppIcon.appiconset', 'icon-1024.png'), 1024, root(1024, 128, full + placed(128, 70)), false);
+    // The test builds look different, so that they are told apart from the store's app on one phone: their own colour and a
+    // word in a band at the bottom. "Dev" is installed from this Mac, "Beta" goes to TestFlight (scripts/upload-testflight.sh).
+    for (const [name, word, ground, band, ink] of [['Dev', 'DEV', '#C2410C', '#111827', '#FFFFFF'], ['Beta', 'BETA', '#5B21B6', '#FACC15', '#1F1147']]) {
+        const set = path.join(dir, `AppIcon-${name}.appiconset`);
+        fs.mkdirSync(set, { recursive: true });
+        fs.writeFileSync(path.join(set, 'Contents.json'), JSON.stringify({ images: [{ filename: 'icon-1024.png', idiom: 'universal', platform: 'ios', size: '1024x1024' }], info: { author: 'xcode', version: 1 } }, null, 2) + '\n');
+        const k = 56 / box.w;
+        const picture = `<rect width="128" height="128" fill="${ground}"/>`
+            + `<g transform="translate(${(128 - 56) / 2 - box.x * k} ${(90 - box.h * k) / 2 + 3 - box.y * k}) scale(${k})">${glyph}</g>`
+            + `<rect y="88" width="128" height="40" fill="${band}"/>`
+            + `<text x="64" y="115" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="700" font-size="25" letter-spacing="2" fill="${ink}">${word}</text>`;
+        await shot(path.join(set, 'icon-1024.png'), 1024, root(1024, 128, picture), false);
+    }
     // the same picture for use inside the app (an app icon set cannot be loaded as an image)
     fs.mkdirSync(path.join(dir, 'Logo.imageset'), { recursive: true });
     fs.writeFileSync(path.join(dir, 'Logo.imageset', 'Contents.json'), JSON.stringify({ images: [{ filename: 'logo.png', idiom: 'universal' }], info: { author: 'xcode', version: 1 } }, null, 2) + '\n');

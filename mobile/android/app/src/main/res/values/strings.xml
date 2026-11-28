@@ -5,6 +5,9 @@
     <string name="toast_queued">Will send to Kaivo when you are online</string>
     <string name="toast_no_link">No web link found to share</string>
     <string name="toast_not_paired">Open Kaivo and pair it first</string>
+    <string name="shortcut_reading">Continue reading</string>
+    <string name="shortcut_briefing">Play the briefing</string>
+    <string name="shortcut_episode">Continue the episode</string>
     <string name="widget_title">TODAY IN YOUR FEEDS</string>
     <string name="widget_description">The day recap from your feeds</string>
     <string name="widget_empty">No recap yet. Open Kaivo and tap Recap in Feeds to write one.</string>

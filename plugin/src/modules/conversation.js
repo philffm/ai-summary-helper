@@ -1,5 +1,5 @@
 // conversation.js — follow-up Q&A on a summarized page. Pure helpers (no chrome.*, no DOM): testable in jsdom/node.
-// A turn: { id, q, a, sources: [quote], pinned, ts }.
+// A turn: { id, q, a, sources: [quote], pinned, ts, noted? }. `pinned`: shown with the summary; `noted`: listed under Notes.
 import { T } from './feedI18n.js';
 import { parseSuggestionList } from './suggestions.js';
 

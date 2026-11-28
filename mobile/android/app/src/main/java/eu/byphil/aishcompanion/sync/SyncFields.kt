@@ -57,6 +57,27 @@ object SyncFields {
         return Stamped(JSONObject().put("rev", JSONObject().put("t", top).put("d", clock.device)).put("f", f).put("values", JSONObject(fields.toString())), true)
     }
 
+    /**
+     * Sets some fields of a record as an edit on this phone (KOReader's stamps.edit): a field whose value changes gets a new stamp, every
+     * other field, with its stamp, stays as it is. For records other devices write to as well: [stampRecord] takes a field it is not given
+     * for removed. A record with a deletion marker stays dead.
+     */
+    fun edit(prev: JSONObject, changes: JSONObject, clock: SyncClock, now: Long): Stamped {
+        if (prev.optBoolean("deleted", false)) return Stamped(prev, false)
+        val f = JSONObject(prev.optJSONObject("f")?.toString() ?: "{}")
+        val values = JSONObject(prev.optJSONObject("values")?.toString() ?: "{}")
+        var t = 0L
+        for (name in changes.keys()) {
+            val h = hashValue(changes.get(name))
+            if (f.optJSONObject(name)?.optString("h") == h) continue
+            if (t == 0L) t = clock.tick(now)
+            f.put(name, JSONObject().put("t", t).put("h", h)); values.put(name, changes.get(name))
+        }
+        if (t == 0L) return Stamped(prev, false)
+        var top = 0L; for (n in f.keys()) top = maxOf(top, f.getJSONObject(n).optLong("t"))
+        return Stamped(JSONObject().put("rev", JSONObject().put("t", top).put("d", clock.device)).put("f", f).put("values", values), true)
+    }
+
     /** The explicit deletion marker: only the delete paths make one. */
     fun tombstone(prev: JSONObject?, clock: SyncClock, now: Long): Stamped {
         if (prev != null && prev.optBoolean("deleted", false)) return Stamped(prev, false)

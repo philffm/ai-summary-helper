@@ -13,14 +13,36 @@ struct TopicBubbles: View {
     let pick: (String) -> Void
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shown = false
+    @Environment(\.dynamicTypeSize) private var textSize
 
     var body: some View {
+        // bubbles cannot hold very large words: the topics stand in rows then, each in full
+        if textSize.isAccessibilitySize { rows } else { cluster }
+    }
+
+    private var rows: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            ForEach(topics) { topic in
+                Button { pick(topic.name) } label: {
+                    Text(verbatim: topic.name).font(.headline).multilineTextAlignment(.leading)
+                        .padding(.horizontal, 18).padding(.vertical, 10)
+                        .background(KaivoTokens.accent.opacity(0.18), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Topic \(topic.name)")
+                .accessibilityValue(Text(verbatim: topic.count.formatted()))
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var cluster: some View {
         let most = Double(topics.map(\.count).max() ?? 1)
         // area follows how often a topic is used; a small taper keeps equally used topics from looking like a row of coins
         let radii = topics.enumerated().map { index, topic in
             CGFloat(max(0.5, (Double(topic.count) / most).squareRoot() - 0.07 * Double(index)))
         }
-        BubbleLayout(radii: radii) {
+        return BubbleLayout(radii: radii) {
             ForEach(Array(topics.enumerated()), id: \.element.id) { rank, topic in
                 bubble(topic, rank: rank)
                     .scaleEffect(shown || reduceMotion ? 1 : 0.3)

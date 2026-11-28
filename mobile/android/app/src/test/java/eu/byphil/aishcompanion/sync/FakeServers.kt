@@ -35,7 +35,7 @@ class FakeDav(private val prefix: String = "/dav/", private val user: String = "
                 if (req.getHeader("Depth") == "1" && path in dirs) {
                     fun inDir(p: String) = p != path && p.substringBeforeLast('/', "") == path
                     for (d in dirs) if (d.isNotEmpty() && inDir(d)) rows.append("<d:response><d:href>$prefix${d.split('/').joinToString("/") { enc(it) }}/</d:href><d:propstat><d:prop><d:resourcetype><d:collection/></d:resourcetype></d:prop></d:propstat></d:response>")
-                    for ((p, f) in files) if (inDir(p)) rows.append("<d:response><d:href>$prefix${p.split('/').joinToString("/") { enc(it) }}</d:href><d:propstat><d:prop><d:getetag>&quot;${f.second}&quot;</d:getetag><d:getcontentlength>${f.first.size}</d:getcontentlength><d:resourcetype/></d:prop></d:propstat></d:response>")
+                    for ((p, f) in files) if (inDir(p)) rows.append("<d:response><d:href>$prefix${p.split('/').joinToString("/") { enc(it) }}</d:href><d:propstat><d:prop><d:getetag>&quot;${f.second}&quot;</d:getetag><d:getcontentlength>${f.first.size}</d:getcontentlength><d:getlastmodified>Sat, 28 Nov 2026 10:00:00 GMT</d:getlastmodified><d:resourcetype/></d:prop></d:propstat></d:response>")
                 }
                 r(207, "<?xml version=\"1.0\"?><d:multistatus xmlns:d=\"DAV:\">$rows</d:multistatus>".toByteArray(), "Content-Type" to "application/xml")
             }
@@ -65,7 +65,7 @@ class FakeS3(private val bucket: String = "bucket1", private val accessKeyId: St
             val page = keys.drop(token).take(pageSize); val more = token + pageSize < keys.size
             fun esc(s: String) = s.replace("&", "&amp;").replace("<", "&lt;")
             return r(200, ("<?xml version=\"1.0\"?><ListBucketResult><IsTruncated>$more</IsTruncated>${if (more) "<NextContinuationToken>${token + pageSize}</NextContinuationToken>" else ""}" +
-                page.joinToString("") { "<Contents><Key>${esc(it)}</Key><ETag>&quot;${files[it]!!.second}&quot;</ETag><Size>${files[it]!!.first.size}</Size></Contents>" } + "</ListBucketResult>").toByteArray(), "Content-Type" to "application/xml")
+                page.joinToString("") { "<Contents><Key>${esc(it)}</Key><ETag>&quot;${files[it]!!.second}&quot;</ETag><Size>${files[it]!!.first.size}</Size><LastModified>2026-11-28T10:00:00.000Z</LastModified></Contents>" } + "</ListBucketResult>").toByteArray(), "Content-Type" to "application/xml")
         }
         val cur = files[key]
         return when (method) {

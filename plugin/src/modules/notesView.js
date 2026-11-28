@@ -1,11 +1,14 @@
-// modules/notesView.js — the Notes tab: your notes, your highlights, the AI's highlights and the comments on them, newest first.
+// modules/notesView.js — the Notes tab: your notes, your highlights, the AI's highlights and the comments on them, and the questions
+// about saved articles that were saved to the notes, newest first.
 //   List (grouped by day) or Grid (sticky notes); the grid is the default from 720px. The composer is docked at the bottom, in
 //   thumb and mouse reach, and opens upwards.
 // Highlights live in hl:all and are only read here. A comment on a highlight is its own record in the notes store (see notesStore.js),
 // so nothing on this tab rewrites the highlight array that page scripts write.
 import { T, TN, TU } from './feedI18n.js';
 import { undoToast } from './confirmSheet.js';
-import { SK, isNoteRecKey, isHlPageKey } from './storageKeys.js';
+import { SK, isNoteRecKey, isHlPageKey, articleRecKey } from './storageKeys.js';
+import { renderAnswer } from './qaView.js';
+import { cleanAnswer } from './conversation.js';
 import { createHighlightStore } from './highlightStore.js';
 import { iconEl } from './icons.js';
 import { isMac } from './shortcuts.js';
@@ -33,7 +36,7 @@ const stripQuery = (u) => String(u || '').split('#')[0].split('?')[0];
 export { splitTags };
 
 /** The stream: notes and highlights together, newest first. Pure: everything it needs is passed in. */
-export function buildStream({ notes, comments, highlights, articles }) {
+export function buildStream({ notes, comments, highlights, articles, questions }) {
     const byKey = new Map();
     for (const a of articles || []) { if (!a || !a.url) continue; const s = { id: a.id, title: a.title || a.url, site: (() => { try { return new URL(a.url).host.replace(/^www\./, ''); } catch (_) { return ''; } })() }; byKey.set(pageKeyForUrl(a.url), s); byKey.set(stripQuery(a.url), s); }
     const source = (url) => (url ? (byKey.get(url) || byKey.get(pageKeyForUrl(url)) || byKey.get(stripQuery(url)) || null) : null);
@@ -44,6 +47,7 @@ export function buildStream({ notes, comments, highlights, articles }) {
         const c = comments && comments[h.id];
         out.push({ kind: h.type === 'ghost' ? 'ghost' : 'user', id: h.id, text: h.text, tags: (c && c.tags) || [], when: h.timestamp, url: h.url || '', comment: c ? c.text : '', source: source(h.url) });
     }
+    for (const t of questions || []) out.push({ kind: 'qa', id: t.id, articleId: t.articleId, text: t.q, answer: t.a, tags: [], when: t.ts, url: t.url || '', source: source(t.url) });
     return out.sort((a, b) => String(b.when).localeCompare(String(a.when)));
 }
 
@@ -52,11 +56,11 @@ export function filterStream(items, { filter = 'all', q = '', tag = '', article 
     return items.filter((i) => {
         if (filter === 'mine' && i.kind !== 'user') return false;
         if (filter === 'ai' && i.kind !== 'ghost') return false;
-        if (filter === 'notes' && i.kind !== 'note') return false;
+        if (filter === 'notes' && i.kind !== 'note' && i.kind !== 'qa') return false;
         if (tag && !(i.tags || []).some((t) => t.toLowerCase() === tag.toLowerCase())) return false;
         if (article && (article === FREE ? !!i.source : !(i.source && i.source.id === article))) return false;
         if (!words.length) return true;
-        const hay = [i.text, i.comment, (i.tags || []).join(' '), i.source && i.source.title, i.source && i.source.site].filter(Boolean).join(' ').toLowerCase();
+        const hay = [i.text, i.comment, i.answer, (i.tags || []).join(' '), i.source && i.source.title, i.source && i.source.site].filter(Boolean).join(' ').toLowerCase();
         return words.every((w) => hay.includes(w));
     });
 }
@@ -71,7 +75,7 @@ function dayLabel(iso) {
 }
 const timeLabel = (iso) => { const d = new Date(iso); return isNaN(d) ? '' : (dayKey(d) === dayKey(new Date()) ? d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })); };
 
-const KIND = () => ({ user: { icon: 'pencil', label: T('Highlight') }, ghost: { icon: 'sparkles', label: T('AI highlight') }, note: { icon: 'sticky-note', label: T('Note') } });
+const KIND = () => ({ user: { icon: 'pencil', label: T('Highlight') }, ghost: { icon: 'sparkles', label: T('AI highlight') }, note: { icon: 'sticky-note', label: T('Note') }, qa: { icon: 'message-square', label: T('Question') } });
 
 // ── one sticky ──
 function sticky(item, inst) {
@@ -79,7 +83,8 @@ function sticky(item, inst) {
     const card = el('article', 'st st-' + item.kind);
     const head = el('header'); const kind = el('span', 'st-kind'); kind.append(iconEl(k.icon), document.createTextNode(' ' + k.label)); head.append(kind, el('span', 'st-when', timeLabel(item.when)));
     card.append(head);
-    card.append(el('p', item.kind === 'note' ? 'st-note-text' : 'st-q', item.text));
+    card.append(el('p', item.kind === 'note' ? 'st-note-text' : item.kind === 'qa' ? 'st-ask' : 'st-q', item.text));
+    if (item.kind === 'qa') { const answer = el('div', 'st-answer'); renderAnswer(answer, cleanAnswer(item.answer)); card.append(answer); }
     if (item.kind === 'note' && item.quote) card.append(el('p', 'st-quote', '“' + item.quote + '”'));
     const editing = inst.editing === item.id;
     if (item.comment && !editing) { const c = el('p', 'st-c'); c.append(iconEl('message-square'), document.createTextNode(' ' + item.comment)); card.append(c); }
@@ -89,7 +94,10 @@ function sticky(item, inst) {
     for (const t of item.tags || []) foot.append(button('#' + t, 'st-tag', () => { shared.tag = shared.tag === t ? '' : t; renderAll(); }));
     const actions = el('span', 'st-actions');
     if (!editing) {
-        if (item.kind === 'note') {
+        if (item.kind === 'qa') {
+            // the question stays with its article; it only leaves the notes
+            actions.append(button(T('Remove from notes'), 'st-act st-del', () => removeWithUndo(item, T('Removed from notes'), () => leaveNotes(item))));
+        } else if (item.kind === 'note') {
             actions.append(button(T('Edit'), 'st-act', () => { inst.editing = item.id; render(inst); }));
             actions.append(button(T('Delete'), 'st-act st-del', () => removeWithUndo(item, T('Note deleted'), () => store.remove(item.id))));
         } else {
@@ -114,6 +122,15 @@ function removeWithUndo(item, message, commit) {
         commit: async () => { await commit(); hiddenItems.delete(item.id); },
         undo: () => { hiddenItems.delete(item.id); renderAll(); },
     });
+}
+
+async function leaveNotes(item) {
+    const { default: StorageManager } = await import('./storageManager.js');
+    const turns = await StorageManager.getConversation(item.articleId);
+    const turn = turns.find((t) => t.id === item.id);
+    if (!turn) return false;
+    delete turn.noted;
+    return StorageManager.saveConversation(item.articleId, turns);
 }
 
 async function removeHighlight(item) {
@@ -148,9 +165,29 @@ function editor(item, inst) {
 // ── the panes ──
 function viewMode() { return state.view || lsGet('aish.notesView') || ((window.innerWidth || 0) >= WIDE ? 'grid' : 'list'); }
 
-async function load() {
+/**
+ * The questions saved to the notes. Only articles that were asked something are read (qaCount), a few at a time: their records
+ * hold the full text. `only`: one article's id.
+ */
+export async function savedQuestions(articles, read = getL, only = '') {
+    const asked = (articles || []).filter((a) => a && a.id && a.qaCount > 0 && (!only || a.id === only)), out = [];
+    for (let i = 0; i < asked.length; i += 20) {
+        const part = asked.slice(i, i + 20), got = await read(part.map((a) => articleRecKey(a.id)));
+        for (const a of part) {
+            const turns = (got[articleRecKey(a.id)] || {}).conversation;
+            for (const t of Array.isArray(turns) ? turns : []) {
+                if (t && t.noted && t.id && t.q) out.push({ id: t.id, q: t.q, a: t.a || '', ts: t.ts || '', url: a.url || '', articleId: a.id });
+            }
+        }
+    }
+    return out;
+}
+
+/** questions: false leaves them out (counting them would read article records); an article id reads only that article's. */
+async function load({ questions = true } = {}) {
     const [d, highlights, { notes, comments }] = await Promise.all([getL({ [SK.articlesIndex]: [] }), createHighlightStore({ storage: chrome.storage.local }).all({ dismissed: true }), store.list()]);
-    return { notes, comments, highlights, articles: Array.isArray(d[SK.articlesIndex]) ? d[SK.articlesIndex] : [] };
+    const articles = Array.isArray(d[SK.articlesIndex]) ? d[SK.articlesIndex] : [];
+    return { notes, comments, highlights, articles, questions: questions ? await savedQuestions(articles, getL, typeof questions === 'string' ? questions : '') : [] };
 }
 
 /** Which articles carry items, and how many of each kind: the By article pane. */
@@ -173,7 +210,7 @@ export function tagCounts(all) {
 async function render(inst) {
     if (!inst || !inst.body) return;
     const token = ++inst.token;
-    const data = await load();
+    const data = await load({ questions: inst.mode === 'article' ? inst.article.id : true });
     if (token !== inst.token) return;
     const all = buildStream(data).filter((i) => !hiddenItems.has(i.id));
     if (inst.mode === 'article') return renderOfArticle(inst, all);
@@ -260,7 +297,7 @@ function articleComposer(inst) {
 /** Notes for the History cards: { articleId → { mine, ai, notes } } for every article that has any. */
 export async function noteCountsByArticle() {
     const out = new Map();
-    for (const r of groupByArticle(buildStream(await load()))) if (r.key !== FREE) out.set(r.key, { mine: r.mine, ai: r.ai, notes: r.notes });
+    for (const r of groupByArticle(buildStream(await load({ questions: false })))) if (r.key !== FREE) out.set(r.key, { mine: r.mine, ai: r.ai, notes: r.notes });
     return out;
 }
 

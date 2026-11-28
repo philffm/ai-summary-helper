@@ -25,6 +25,20 @@ targets:
       # the starter feeds, shared with the extension and the Android app
       - path: ../../shared/suggested-feeds.json
         group: Shared
+      # what the extension's sync modules need from a browser (App/Sync); the modules themselves are bundled below
+      - path: js/host.js
+        group: Sync
+        buildPhase: resources
+      # the reader's typefaces and their licence, shared with the Android app
+      - path: ../android/app/src/main/res/font/atkinson_hyperlegible.ttf
+        group: Fonts
+      - path: ../android/app/src/main/res/font/atkinson_hyperlegible_bold.ttf
+        group: Fonts
+      - path: ../android/app/src/main/res/font/hanken_grotesk.ttf
+        group: Fonts
+      - path: ../android/FONT-LICENSES.txt
+        group: Fonts
+        buildPhase: resources
     dependencies:
       - target: KaivoExtension
       - target: KaivoWidgets
@@ -36,16 +50,19 @@ targets:
     info:
       path: App/Info.plist
       properties:
-        CFBundleDisplayName: Kaivo
+        CFBundleDisplayName: $(KAIVO_NAME)
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         UILaunchScreen: {}
+        UIAppFonts: [atkinson_hyperlegible.ttf, atkinson_hyperlegible_bold.ttf, hanken_grotesk.ttf]
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         ITSAppUsesNonExemptEncryption: false
         NSAlarmKitUsageDescription: Kaivo sets the wake alarm you switch on, so that it rings even when the phone is silent.
         NSSupportsLiveActivities: true
-        UIBackgroundModes: [audio]
+        UIBackgroundModes: [audio, fetch]
+        # feeds and the library now and then without the app being opened (App/BackgroundRefresh.swift)
+        BGTaskSchedulerPermittedIdentifiers: [$(PRODUCT_BUNDLE_IDENTIFIER).refresh]
         # summaries come from a model server in the reader's own network, which speaks plain http
         NSLocalNetworkUsageDescription: Kaivo asks the model server you set up in your network to summarize articles.
         NSAppTransportSecurity:
@@ -55,10 +72,19 @@ targets:
         CFBundleURLTypes:
           - CFBundleURLName: $(KAIVO_BUNDLE_ID)
             CFBundleURLSchemes: [kaivo]
+          # the code the browser shows for a phone (plugin/src/modules/syncPhoneCode.js), scanned with the camera
+          - CFBundleURLName: $(KAIVO_BUNDLE_ID).library
+            CFBundleURLSchemes: [aish-library]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(KAIVO_BUNDLE_ID)
-        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_APPICON_NAME: $(KAIVO_ICON)
+        # the script below runs node and writes into the bundle
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+    postBuildScripts:
+      - name: Bundle the sync modules
+        script: '"$SRCROOT/scripts/bundle-sync.sh"'
+        basedOnDependencyAnalysis: false
   KaivoWidgets:
     type: app-extension
     platform: iOS
@@ -97,6 +123,8 @@ targets:
         group: ShareExtension
       - path: Shared/SharedLinks.swift
         group: ShareExtension
+      - path: Shared/Recommendation.swift
+        group: ShareExtension
       - path: App/Localizable.xcstrings
         group: ShareExtension
     entitlements:
@@ -106,7 +134,7 @@ targets:
     info:
       path: ShareExtension/Info.plist
       properties:
-        CFBundleDisplayName: Kaivo
+        CFBundleDisplayName: $(KAIVO_NAME)
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         KaivoAppGroup: $(KAIVO_APP_GROUP)
@@ -114,9 +142,16 @@ targets:
           NSExtensionPointIdentifier: com.apple.share-services
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
           NSExtensionAttributes:
-            NSExtensionActivationRule:
-              NSExtensionActivationSupportsWebURLWithMaxCount: 1
-              NSExtensionActivationSupportsText: true
+            # a web link, text that may hold one, or an HTML file (a recommendation); no other files
+            NSExtensionActivationRule: >-
+              SUBQUERY(extensionItems, $item,
+              SUBQUERY($item.attachments, $attachment,
+              (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.url"
+              AND NOT (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.file-url"))
+              OR (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.plain-text"
+              AND NOT (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.file-url"))
+              OR ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.html"
+              ).@count >= 1).@count >= 1
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(KAIVO_BUNDLE_ID).share
@@ -125,6 +160,10 @@ targets:
     platform: iOS
     sources:
       - Tests
+      # what the extension computes, and every other platform has to compute the same
+      - path: ../../plugin/tests/fixtures/sync-vector.json
+        group: Tests
+        buildPhase: resources
     dependencies:
       - target: Kaivo
     settings:

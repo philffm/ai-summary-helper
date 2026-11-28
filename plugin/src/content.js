@@ -971,7 +971,7 @@ import {
                 });
               }
 
-              saveToLocalStorage(finalContentHtml, cleanHtml, sourceUrl, articleTitle, '', tags, usedModel || modelIdentifier, summaryLength, moodScore, withTagEn({ ...(pendingFeedUrl && pendingFeedUrl !== sourceUrl ? { feedUrl: pendingFeedUrl } : {}), ...paperIndexFields(pageMeta && pageMeta.paper) }, tagEn), pageMeta)
+              saveToLocalStorage(finalContentHtml, cleanHtml, sourceUrl, articleTitle, '', tags, usedModel || modelIdentifier, summaryLength, moodScore, withTagEn({ ...(pendingFeedUrl && pendingFeedUrl !== sourceUrl ? { feedUrl: pendingFeedUrl } : {}), ...paperIndexFields(pageMeta && pageMeta.paper) }, tagEn), pageMeta, { questions: suggestedQuestions, quick: quickAnswers })
                 .then(savedArticle => {
                   try { chrome.runtime.sendMessage({ action: 'runSaved', requestId }).catch(() => {}); } catch (_) { /* optional */ }
                   if (savedArticle && savedArticle.id) relay('summarySaved', { id: savedArticle.id, url: sourceUrl });

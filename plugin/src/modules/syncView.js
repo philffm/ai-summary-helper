@@ -15,6 +15,7 @@ import { bgMessage } from './bgMessage.js';
 import qrcode from '../lib/qrcode.js';
 import { timeAgo } from './feedUtil.js';
 import { createSyncService, cleanPlace } from './syncService.js';
+import { feedSyncAdapter } from './feedSyncStore.js';
 import { createStampStore } from './syncStampStore.js';
 import { makeStore } from './syncStores.js';
 import { folderSupported, createFolderStore } from './syncFolder.js';
@@ -24,7 +25,7 @@ import { createHandleVault, queryFolderAccess } from './syncFolderHandles.js';
 const $ = (id) => document.getElementById(id);
 const getL = (keys) => new Promise((r) => chrome.storage.local.get(keys, r));
 
-const svc = createSyncService({ storage: chrome.storage.local, makeStore, stampStore: createStampStore({ storage: chrome.storage.local }) });
+const svc = createSyncService({ storage: chrome.storage.local, makeStore, stampStore: createStampStore({ storage: chrome.storage.local }), feeds: feedSyncAdapter(chrome.storage.local) });
 
 // ── state that survives re-renders ──
 let view = 'list';            // 'list' | 'add' | 'form' | 'recovery'

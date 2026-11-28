@@ -9,7 +9,8 @@
 //     filter: { tag } | { excludeTag } | {}, include: { highlights, qa }, viewer (also publish index.html), enabled, created }
 // One server can hold several places, for example `public/` (a readable list for a website) next to `backup/`.
 // Encrypted places and two-way sync are not built yet and are refused.
-import { SK, syncLedgerKey } from './storageKeys.js';
+import { SK, syncLedgerKey, feedListKey } from './storageKeys.js';
+import { syncFeedList, joinFeedList } from './syncFeedList.js';
 import { pushPlace } from './syncPush.js';
 import { syncEncryptedPlace, loadOrCreateMeta } from './syncEngine.js';
 import { createDataAdapter } from './syncDataAdapter.js';
@@ -101,7 +102,7 @@ export function migrateLegacy(places, connections, secrets) {
     return { places: out, connections: conns, secrets: sec, changed };
 }
 
-export function createSyncService({ storage, makeStore, stampStore, viewerSource, dataHooks = {}, now = () => Date.now(), log = () => {}, scheduleSoon = () => {}, engine = {} }) {
+export function createSyncService({ storage, makeStore, stampStore, viewerSource, dataHooks = {}, now = () => Date.now(), log = () => {}, scheduleSoon = () => {}, engine = {}, feeds = null }) {
     const active = new Set();   // places with a run going: the alarm, the debounce and "Publish now" must not start a second one on the same place
     const statusNow = async () => { const d = await get(storage, { [SK.syncStatus]: {} }); return d[SK.syncStatus] && typeof d[SK.syncStatus] === 'object' ? d[SK.syncStatus] : {}; };
     const setStatus = async (id, s) => storage.set({ [SK.syncStatus]: { ...(await statusNow()), [id]: s } });
@@ -135,19 +136,44 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
         return { connection: cleanConnection(conn, {}), secret: secret || {}, isNew: true };
     }
 
-    /** One run of an encrypted place with the key kept on this device. opts: pullOnly / forceFirst (restore). */
-    async function runEncrypted(place, connection, st, opts = {}) {
+    /** The server of an encrypted place, opened with the key kept on this device. */
+    async function openEncrypted(place, connection, st) {
         const store = await storeOf(connection, place, st.secrets[connection.id]);
         const meta = await readMeta(store);
         if (!meta) throw new Error('The place has no meta.json on the server any more. It was removed or set up again.');
         const held = st.secrets[keyOfPlace(place.id)];
         if (!held || !held.master) throw new Error('The key for this place is not on this device. Remove the place and add it again with the passphrase.');
         const keys = await openWithMaster(meta, fromB64(held.master));
-        return syncEncryptedPlace({ place, storage, store, keys, meta, stampStore, adapter: createDataAdapter({ storage, hooks: dataHooks }), now, pushOnly: place.direction === 'push' && !opts.pullOnly, ...engine, ...opts });
+        return { store, meta, keys };
+    }
+
+    /** One run of an encrypted place with the key kept on this device. opts: pullOnly / forceFirst (restore). */
+    async function runEncrypted(place, connection, st, opts = {}) {
+        const { store, meta, keys } = await openEncrypted(place, connection, st);
+        const result = await syncEncryptedPlace({ place, storage, store, keys, meta, stampStore, adapter: createDataAdapter({ storage, hooks: dataHooks }), now, pushOnly: place.direction === 'push' && !opts.pullOnly, ...engine, ...opts });
+        // where the caller keeps feeds in this storage (the extension): their list travels with the library. Its problems are
+        // told apart from the records': they hold nothing else up.
+        if (feeds) {
+            const mode = opts.pullOnly ? 'restore' : place.direction === 'push' ? 'push' : 'both';
+            try { result.feeds = await syncFeedList({ store, keys, adapter: feeds, storage, placeId: place.id, mode, now }); }
+            catch (e) { result.feeds = { error: e.message }; log('[Sync] feed list:', e.message); }
+        }
+        return result;
     }
 
     return {
         placesNow, connectionsNow, statusNow,
+
+        /** The feed list of an encrypted place, for a caller that keeps its feeds elsewhere (the phone app): `local` is
+         * joined with it and written back only with `mayWrite`. Without, it is only read. */
+        async feedList(id, { local = [], mayWrite = false } = {}) {
+            const st = await load();
+            const place = st.places.find((p) => p.id === id);
+            const connection = place && st.connections.find((c) => c.id === place.connectionId);
+            if (!connection) throw new Error('This place no longer exists.');
+            const { store, keys } = await openEncrypted(place, connection, st);
+            return joinFeedList({ store, keys, local, mayWrite, now });
+        },
 
         /** How many articles a place with this scope would publish (no network). */
         async preview(input) { return { count: await matchingCount(cleanPlace({ ...input, connectionId: input.connectionId || 'x' }, { id: 'preview' })) }; },
@@ -247,7 +273,7 @@ export function createSyncService({ storage, makeStore, stampStore, viewerSource
             if (place && !keep) delete secrets[place.connectionId];
             delete secrets[keyOfPlace(id)];
             await storage.set({ [SK.syncPlaces]: places, [SK.syncStatus]: status, [SK.syncSecrets]: secrets, [SK.syncConnections]: place && !keep ? st.connections.filter((c) => c.id !== place.connectionId) : st.connections });
-            await storage.remove(syncLedgerKey(id));
+            await storage.remove([syncLedgerKey(id), feedListKey(id)]);
         },
 
         /** The code a phone scans to join this encrypted place (server login included, so it is made on request and never stored). */

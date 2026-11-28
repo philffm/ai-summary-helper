@@ -1,31 +1,47 @@
 import SwiftUI
 
 struct ReaderView: View {
-    private enum TextSize: String, CaseIterable, Identifiable {
-        case small = "Small", standard = "Default", large = "Large"   // the stored values
-        var id: Self { self }
-        var title: LocalizedStringKey { LocalizedStringKey(rawValue) }
-        var style: UIFont.TextStyle { self == .small ? .callout : self == .large ? .title3 : .body }
-    }
-
     let id: Article.ID
     @Environment(Library.self) private var library
     @Environment(Speaker.self) private var speaker
     @Environment(\.scenePhase) private var scenePhase
     @Environment(Summaries.self) private var summaries
+    @Environment(Questions.self) private var questions
     @State private var showReferences = false
+    /// The highlight that is being written on.
+    @State private var commenting: NoteItem?
     @State private var showServer = false
-    @AppStorage("readerTextSize") private var textSize = TextSize.standard
-    @State private var showSummary = LaunchOptions.showSummary
+    @State private var menu = false
+    /// A question is being written in the article: the button would lie on its arrow.
+    @State private var writing = false
+    @State private var menuPage = ReaderMenu.Page.summary
+    @State private var detent = PresentationDetent.medium
+    private var stored = StoredReaderLook()
+    @Environment(\.dynamicTypeSize) private var systemTextSize
+    @State private var summaryOpen = LaunchOptions.showSummary
+    /// Where the reader was before jumping to the summary.
+    @State private var returnTo: Return?
     @State private var position = ReadingPosition()
     @State private var height: CGFloat = 0
     /// Jumping along the rail is not reading: until then, paragraphs coming into view do not count.
     @State private var jumpedAt = Date.distantPast
 
+    init(id: Article.ID) { self.id = id }
+
+    private struct Return: Equatable {
+        var passage: Passage.ID
+        var percent: Double
+    }
+    /// Room the button takes at the bottom.
+    private static let buttonRoom: CGFloat = 72
+
     var body: some View {
         Group {
-            if let article = library.article(id) {
+            // until the library is read, an article without text is one whose text is still on its way
+            if let article = library.article(id), library.loaded || !article.passages.isEmpty {
                 content(article)
+            } else if !library.loaded {
+                ProgressView()
             } else {
                 ContentUnavailableView("Article removed", systemImage: "trash")
             }
@@ -36,6 +52,7 @@ struct ReaderView: View {
 
     private func content(_ article: Article) -> some View {
         let paper = PaperSense.isPaper(article)
+        let look = stored.look
         let abstract = paper ? PaperSense.abstract(article.passages) : nil
         // a paper's list of sources stays folded until asked for; the rail and the progress count only what is on screen
         let references = paper ? PaperSense.references(article.passages) : nil
@@ -47,8 +64,24 @@ struct ReaderView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 Text(verbatim: "\(article.host) · \(article.duration)").font(.footnote).foregroundStyle(.secondary)
-                Text(article.title).font(.title.weight(.semibold)).fontDesign(.serif).accessibilityAddTraits(.isHeader)
+                Text(article.title).readerText(look, title: true).accessibilityAddTraits(.isHeader)
                 if paper { PaperHead(paper: article.paper, link: article.link) }
+                if let recommendation = article.recommendation { RecommendationCard(recommendation: recommendation) }
+                if !article.passages.isEmpty || !article.summary.isEmpty {
+                    SummaryCard(article: article, open: $summaryOpen, waiting: summaries.isWaiting(article.id),
+                                step: summaries.running == article.id ? summaries.step : (0, 0),
+                                again: ModelEndpoint.current != nil, summarize: { summarize(article.id) })
+                }
+                if !article.passages.isEmpty {
+                    ArticleQuestions(article: article, show: { jump(toWords: $0, of: article, shown: shown, with: proxy) },
+                                     setUp: { showServer = true }) { now in
+                        writing = now
+                        if now {
+                            jumpedAt = .now
+                            proxy.keepInView(ArticleQuestions.composer)
+                        }
+                    }
+                }
                 if article.passages.isEmpty {
                     Text("The text of this article is not on this device yet.").foregroundStyle(.secondary)
                     if let url = article.url { Link(destination: url) { Label("Read the full article in Safari", systemImage: "safari") } }
@@ -57,7 +90,7 @@ struct ReaderView: View {
                 LazyVStack(alignment: .leading, spacing: 18) {
                     ForEach(Array(shown.enumerated()), id: \.element.id) { index, passage in
                         let at = article.passages.firstIndex { $0.id == passage.id } ?? index
-                        paragraph(passage, paper: paper, small: references?.contains(at) ?? false, hint: shown.first { $0.marks.contains(where: \.ai) }?.id)
+                        paragraph(passage, look: look, paper: paper, small: references?.contains(at) ?? false, hint: shown.first { $0.marks.contains(where: \.ai) }?.id)
                             .modifier(AbstractBox(on: abstract?.contains(at) ?? false))
                             .id(passage.id)
                             .onGeometryChange(for: CGRect.self) { $0.frame(in: .named("reader")) } action: { frame in
@@ -66,6 +99,8 @@ struct ReaderView: View {
                             }
                             .onAppear {
                                 guard Date.now.timeIntervalSince(jumpedAt) > 1.5 else { return }
+                                // scrolled back there by hand: the way back is not needed any more
+                                if returnTo?.passage == passage.id { returnTo = nil }
                                 position.reach(Double(index + 1) / Double(shown.count)) { library.read(id, upTo: $0) }
                             }
                             .onDisappear { position.frames[index] = nil }
@@ -85,9 +120,11 @@ struct ReaderView: View {
             }
             .frame(maxWidth: 640, alignment: .leading)
             .padding(20)
+            .padding(.bottom, Self.buttonRoom)
             .padding(.trailing, spots.isEmpty ? 0 : 14)   // room for the rail
             .frame(maxWidth: .infinity)
         }
+        .scrollDismissesKeyboard(.interactively)
         .scrollIndicators(spots.isEmpty ? .automatic : .hidden)   // the rail shows the position
         .coordinateSpace(.named("reader"))
         .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { value in
@@ -103,92 +140,75 @@ struct ReaderView: View {
                     jumpedAt = .now
                     if let i = DepthTrack.index(shown, at: fraction) { proxy.scrollTo(shown[i].id, anchor: .top) }
                 }
-                .padding(.vertical, 24)
+                .padding(.top, 24)
+                .padding(.bottom, Self.buttonRoom + 16)
                 .padding(.trailing, 2)
             }
         }
+        .overlay(alignment: .bottomTrailing) {
+            VStack(alignment: .trailing, spacing: 10) {
+                if let back = returnTo, !writing {
+                    Button {
+                        jumpedAt = .now
+                        returnTo = nil
+                        withAnimation(.snappy) { proxy.scrollTo(back.passage, anchor: .top) }
+                    } label: {
+                        Label("Back to where you were · \(back.percent.formatted(.percent.precision(.fractionLength(0))))",
+                              systemImage: "arrow.uturn.backward")
+                            .font(.subheadline.weight(.semibold))
+                    }
+                    .modifier(FloatingAction())
+                }
+                HStack(spacing: 10) {
+                    if speaker.current == article.id && !writing {
+                        Button { listen(article) } label: {
+                            Label("Stop", systemImage: "stop.fill").font(.subheadline.weight(.semibold))
+                                .padding(.horizontal, 18).frame(height: 56).contentShape(Capsule())
+                                .foregroundStyle(KaivoTokens.accent)
+                        }
+                        .buttonStyle(.plain)
+                        .modifier(FloatingGlass(shape: Capsule()))
+                        .accessibilityIdentifier("reading-stop")
+                    }
+                    Button { menu.toggle() } label: {
+                        Image(systemName: "ellipsis").font(.title2.weight(.bold)).frame(width: 56, height: 56).contentShape(Circle())
+                            .foregroundStyle(KaivoTokens.accent)
+                    }
+                    .buttonStyle(.plain)
+                    .modifier(FloatingGlass(shape: Circle()))
+                    .accessibilityLabel("Reader menu")
+                    .accessibilityIdentifier("reader-menu")
+                    .opacity(writing ? 0 : 1)
+                    .disabled(writing)
+                    .accessibilityHidden(writing)
+                    // a sheet from below on a phone, beside the button where there is room
+                    .popover(isPresented: $menu) {
+                        ReaderMenu(article: article, page: $menuPage, headings: headings,
+                                   summarize: { summarize(article.id) },
+                                   go: { menu = false; jump(to: $0, shown: shown, with: proxy) },
+                                   show: { menu = false; jump(toWords: $0, of: article, shown: shown, with: proxy) },
+                                   listen: { listen(article) },
+                                   close: { menu = false })
+                            .frame(minWidth: 360, idealWidth: 400, minHeight: 420, idealHeight: 580)
+                            .presentationDetents([.medium, .large], selection: $detent)
+                            .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+                            .presentationDragIndicator(.visible)
+                            // solid: the article behind it would show through the choices
+                            .presentationBackground(Color(.secondarySystemBackground))
+                    }
+                }
+            }
+            .padding(.leading, 16)
+            .padding(.trailing, 20)
+            .padding(.bottom, 8)
+        }
+        .readerPage(look.ground)
         .onDisappear { position.settle { library.read(id, upTo: $0) } }
         .onChange(of: scenePhase) { _, phase in
             if phase != .active { position.settle { library.read(id, upTo: $0) } }
         }
-        .toolbar {
-            ToolbarItemGroup(placement: .topBarTrailing) {
-                if headings.count > 1 {
-                    Menu {
-                        ForEach(headings) { heading in
-                            Button { go(to: heading.id, with: proxy) } label: { Text(verbatim: heading.text) }
-                        }
-                    } label: {
-                        Label("Contents", systemImage: "list.bullet")
-                    }
-                }
-                Menu {
-                    Picker("Text size", selection: $textSize) {
-                        ForEach(TextSize.allCases) { Text($0.title).tag($0) }
-                    }
-                } label: {
-                    Label("Text size", systemImage: "textformat.size")
-                }
-                if let url = article.url { ShareLink(item: url, subject: Text(article.title)) }
-            }
-            ToolbarItemGroup(placement: .bottomBar) {
-                Button {
-                    speaker.toggle(article.id, text: ([article.title] + article.passages.filter { $0.kind != .image }.map(\.text)).joined(separator: " "))
-                } label: {
-                    if speaker.current == article.id {
-                        Label("Stop", systemImage: "stop.fill")
-                    } else {
-                        Label("Listen", systemImage: "headphones")
-                    }
-                }
-                Spacer()
-                if !article.summary.isEmpty {
-                    Button { showSummary = true } label: { Label("Summary", systemImage: "text.alignleft") }
-                } else if summaries.isWaiting(article.id) {
-                    HStack(spacing: 6) {
-                        ProgressView()
-                        if summaries.running == article.id && summaries.step.of > 1 {
-                            Text("Part \(summaries.step.at) of \(summaries.step.of)").font(.footnote)
-                        }
-                    }
-                    .accessibilityElement(children: .combine)
-                    .accessibilityLabel("Summarizing")
-                } else if !article.passages.isEmpty {
-                    Button { summarize(article.id) } label: { Label("Summarize", systemImage: "sparkles") }
-                }
-            }
-        }
-        .sheet(isPresented: $showSummary) {
-            NavigationStack {
-                List {
-                    Section {
-                        ForEach(article.summary, id: \.self) { Text($0) }
-                    } footer: {
-                        SampleNote()
-                    }
-                    if ModelEndpoint.current != nil {
-                        Section {
-                            Button("Summarize again") {
-                                showSummary = false
-                                summarize(article.id)
-                            }
-                        }
-                    }
-                }
-                .navigationTitle("Summary")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar { Button("Done") { showSummary = false } }
-            }
-            .presentationDetents([.medium, .large])
-        }
-        .sheet(isPresented: $showServer) { NavigationStack { ModelServerView(closable: true) } }
-        .alert("Send text to an AI service?",
-               isPresented: Binding(get: { summaries.question?.article == article.id }, set: { if !$0 { summaries.question = nil } }),
-               presenting: summaries.question) { question in
-            Button("Allow") { summaries.answer(question, allow: true, in: library) }
-            Button("Not now", role: .cancel) { summaries.answer(question, allow: false, in: library) }
-        } message: { question in
-            Text("To write the summary, Kaivo sends the text of this article to \(question.endpoint.recipient). Nothing is sent before you allow it.")
+        .sheet(item: $commenting) { item in
+            NoteEditor(quote: item.text, title: "Comment", text: item.written) { library.write($0, on: item) }
         }
         // a summary asked for while sharing waits for the yes until the article is looked at
         .task(id: article.passages.isEmpty) {
@@ -196,20 +216,37 @@ struct ReaderView: View {
                 summaries.summarize(article.id, in: library)
             }
         }
-        .alert("No summary", isPresented: Binding(get: { summaries.failure != nil }, set: { if !$0 { summaries.failure = nil } })) {
-            Button("Model") { showServer = true }
-            Button("OK", role: .cancel) {}
-        } message: {
-            Text(verbatim: summaries.failure ?? "")
+        // while the menu is open, it asks: a second window cannot come up from behind it
+        .modifier(ReaderPrompts(id: article.id, active: !menu, showServer: $showServer))
         }
+    }
+
+    private func listen(_ article: Article) {
+        let parts = [Speaker.Part(passage: nil, text: article.title)]
+            + article.passages.filter { $0.kind != .image }.map { Speaker.Part(passage: $0.id, text: $0.text) }
+        speaker.toggle(article.id, parts: parts, title: article.title)
+    }
+
+    /// To a passage from the menu or from an answer. Whoever was somewhere else gets the way back.
+    private func jump(to passage: Passage.ID, shown: [Passage], with proxy: ScrollViewProxy) {
+        if let index = position.top(height: height), shown.indices.contains(index), shown[index].id != passage {
+            returnTo = Return(passage: shown[index].id, percent: position.window.lowerBound)
         }
+        go(to: passage, with: proxy)
+    }
+
+    /// To the paragraph that holds the words an answer quotes.
+    private func jump(toWords quote: String, of article: Article, shown: [Passage], with proxy: ScrollViewProxy) {
+        let wanted = quote.split(whereSeparator: \.isWhitespace).joined(separator: " ")
+        guard let passage = article.passages.first(where: { $0.text.localizedCaseInsensitiveContains(wanted) }) else { return }
+        jump(to: passage.id, shown: shown, with: proxy)
     }
 
     private func summarize(_ id: Article.ID) {
         if ModelEndpoint.current != nil { summaries.summarize(id, in: library) } else { showServer = true }
     }
 
-    /// From the contents: a heading among the references unfolds them first.
+    /// A passage among the references unfolds them first.
     private func go(to passage: Passage.ID, with proxy: ScrollViewProxy) {
         jumpedAt = .now
         showReferences = true
@@ -221,19 +258,22 @@ struct ReaderView: View {
 
     private func style(of passage: Passage, small: Bool) -> UIFont.TextStyle {
         if let level = passage.heading { return level == 1 ? .title2 : level == 2 ? .title3 : .headline }
-        return small ? .footnote : textSize.style
+        return small ? .footnote : .body
     }
 
     @ViewBuilder
-    private func paragraph(_ passage: Passage, paper: Bool, small: Bool, hint: Passage.ID?) -> some View {
+    private func paragraph(_ passage: Passage, look: ReaderLook, paper: Bool, small: Bool, hint: Passage.ID?) -> some View {
         if passage.kind == .image {
             ArticleImage(source: passage.image ?? "", description: passage.text)
         } else {
             VStack(alignment: .leading, spacing: 10) {
-                PassageText(passage: passage, style: style(of: passage, small: small), citations: paper && !small,
+                PassageText(passage: passage, style: style(of: passage, small: small), look: look, textSize: systemTextSize,
+                            citations: paper && !small,
+                            spoken: speaker.spoken.flatMap { $0.id == id && $0.passage == passage.id ? $0.sentence : nil },
                             highlight: { range in library.change(passage.id, in: id) { $0.highlight(range) } },
                             unmark: { range in library.change(passage.id, in: id) { $0.unmark(range) } },
-                            resolve: { mark, keep in library.change(passage.id, in: id) { $0.resolve(suggestion: mark, keep: keep) } })
+                            resolve: { mark, keep in library.change(passage.id, in: id) { $0.resolve(suggestion: mark, keep: keep) } },
+                            comment: { mark in commenting = library.entry(for: mark, in: id) })
                 // said once, at the first suggestion: the actions are behind a tap
                 if passage.id == hint {
                     Text("Tap a suggestion of the AI to keep or dismiss it.").font(.footnote).foregroundStyle(.secondary)
@@ -306,5 +346,16 @@ struct ArticleImage: View {
         image.resizable().scaledToFit()
             .frame(maxWidth: .infinity)
             .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+    }
+}
+
+/// A button that floats over the article: Liquid Glass from iOS 26 on.
+private struct FloatingAction: ViewModifier {
+    func body(content: Content) -> some View {
+        if #available(iOS 26.0, *) {
+            content.buttonStyle(.glass)
+        } else {
+            content.buttonStyle(.borderedProminent)
+        }
     }
 }

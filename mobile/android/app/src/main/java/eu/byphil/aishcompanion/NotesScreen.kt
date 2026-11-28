@@ -1,5 +1,6 @@
 package eu.byphil.aishcompanion
 
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.Color
@@ -36,7 +37,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -84,8 +85,9 @@ fun NotesScreen(model: AppModel) {
         }
     }
 
-    Column(Modifier.fillMaxSize().imePadding()) {
-        TopAppBar(title = { Text("Notes") }, actions = {
+    val folding = androidx.compose.material3.TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    Column(Modifier.fillMaxSize().background(groupGround()).imePadding().nestedScroll(folding.nestedScrollConnection)) {
+        FoldingBar(!isWide(), folding, title = { Text("Notes", fontWeight = FontWeight.Bold) }, actions = {
             if (connected) IconButton(onClick = { syncNow() }, enabled = !syncing) { Icon(Icons.Outlined.Sync, contentDescription = "Sync now") }
         })
         val sub = when {

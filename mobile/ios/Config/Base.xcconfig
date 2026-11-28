@@ -1,6 +1,10 @@
 // The one place for the bundle id. The extension's id is this plus ".extension".
 // It can no longer change once an app with this id has been submitted to App Store Connect.
 KAIVO_BUNDLE_ID = eu.byphil.kaivo
+// The app's icon and name on the home screen. Test builds take others, so that they are told apart from the store's app:
+// scripts/upload-testflight.sh sets AppIcon-Beta, a device build with a test id sets AppIcon-Dev (Local.xcconfig).
+KAIVO_ICON = AppIcon
+KAIVO_NAME = Kaivo
 // Shared between the app and the widgets (and later the Safari extension).
 KAIVO_APP_GROUP = group.$(KAIVO_BUNDLE_ID)
 

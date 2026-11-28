@@ -48,11 +48,18 @@ final class SafariTests: XCTestCase {
         XCTAssertEqual(blocks[3].image, "https://x/z.png")
     }
 
-    func testImportMarksAndKeepsWhatWasDoneInTheApp() throws {
+    @MainActor
+    func testImportMarksAndKeepsWhatWasDoneInTheApp() async throws {
+        let folder = FileManager.default.temporaryDirectory.appending(path: "safari-" + UUID().uuidString)
+        let vault = SyncVault(scope: "safari-" + UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let store = try LibraryStore(folder: folder, shared: folder, vault: vault)
         let data = try JSONSerialization.data(withJSONObject: message["article"]!)
         let inbox = try JSONDecoder().decode(InboxArticle.self, from: data)
-        let article = SafariImport.article(inbox, existing: nil)
-        XCTAssertEqual(article.id, "safari-test_1")
+        try await store.take([SafariImport.package(inbox)])
+        var articles = try await store.articles()
+        let article = try XCTUnwrap(articles.first)
+        XCTAssertEqual(article.id, "test_1", "the id the extension knows it by")
         XCTAssertEqual(article.host, "example.com")
         XCTAssertEqual(article.tags, ["a"])
         XCTAssertEqual(article.summary, ["Head", "Point."])
@@ -62,11 +69,13 @@ final class SafariTests: XCTestCase {
         XCTAssertEqual(article.firstHighlight, "Marked words here.")
         XCTAssertGreaterThan(article.words, 0)
 
-        var mine = article
-        mine.progress = 0.9
-        mine.passages[1].resolve(suggestion: mine.passages[1].marks[0].id, keep: true)   // kept in the app
-        let again = SafariImport.article(inbox, existing: mine)
-        XCTAssertEqual(again.progress, 0.9)
-        XCTAssertEqual(again.passages.flatMap(\.marks).map(\.ai), [false, false])
+        // read further and the suggestion kept in the app, then Safari hands the article over again
+        try await store.change(article.id, entry: ["progress": 0.9])
+        try await store.mark(url: article.link, keep: [try XCTUnwrap(article.passages[1].marks[0].highlight)])
+        try await store.take([SafariImport.package(inbox)])
+        articles = try await store.articles()
+        XCTAssertEqual(articles.count, 1)
+        XCTAssertEqual(articles[0].progress, 0.9)
+        XCTAssertEqual(articles[0].passages.flatMap(\.marks).map(\.ai), [false, false])
     }
 }

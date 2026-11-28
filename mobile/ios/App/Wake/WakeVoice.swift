@@ -33,7 +33,7 @@ final class WakeVoice: NSObject, AVSpeechSynthesizerDelegate {
         guard stories.indices.contains(next) else { speaking = false; return }
         index = next
         speaking = true
-        let voice = Self.voice(for: stories[next].joined(separator: " "))
+        let voice = Voices.voice(for: stories[next].joined(separator: " "))
         for piece in stories[next].flatMap(Self.sentences) {
             let utterance = AVSpeechUtterance(string: piece)
             utterance.voice = voice
@@ -76,12 +76,5 @@ final class WakeVoice: NSObject, AVSpeechSynthesizerDelegate {
             guard let last, ObjectIdentifier(last) == done else { return }
             if index + 1 < stories.count { play(index + 1) } else { speaking = false }
         }
-    }
-
-    /// The text's own language, when the system has a voice for it; else the device's.
-    private static func voice(for text: String) -> AVSpeechSynthesisVoice? {
-        guard let language = NLLanguageRecognizer.dominantLanguage(for: text)?.rawValue else { return nil }
-        if AVSpeechSynthesisVoice.currentLanguageCode().hasPrefix(language) { return nil }
-        return AVSpeechSynthesisVoice(language: language)
     }
 }
