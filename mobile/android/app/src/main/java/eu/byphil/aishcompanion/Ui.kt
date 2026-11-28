@@ -45,6 +45,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -176,6 +177,34 @@ fun FieldDialog(title: String, label: String, initial: String = "", label2: Stri
         dismissButton = { TextButton(onClick = onDismiss, enabled = !busy) { Text("Cancel") } },
     )
 }
+
+/** A screen's top bar: large and folding away while scrolling where [large], else the plain one. */
+@OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
+@Composable
+fun FoldingBar(
+    large: Boolean, folding: androidx.compose.material3.TopAppBarScrollBehavior, title: @Composable () -> Unit,
+    navigationIcon: @Composable () -> Unit = {}, actions: @Composable androidx.compose.foundation.layout.RowScope.() -> Unit = {},
+) {
+    if (large) androidx.compose.material3.LargeTopAppBar(title = title, navigationIcon = navigationIcon, actions = actions, scrollBehavior = folding,
+        colors = androidx.compose.material3.TopAppBarDefaults.topAppBarColors(containerColor = groupGround(), scrolledContainerColor = groupGround()))
+    else androidx.compose.material3.TopAppBar(title = title, navigationIcon = navigationIcon, actions = actions)
+}
+
+// ── lists: rows that belong together ──
+
+/** A row's shape within its group: round at the group's two ends, barely between. */
+fun groupShape(index: Int, count: Int): androidx.compose.ui.graphics.Shape {
+    val top = if (index == 0) 20.dp else 4.dp
+    val bottom = if (index == count - 1) 20.dp else 4.dp
+    return RoundedCornerShape(topStart = top, topEnd = top, bottomStart = bottom, bottomEnd = bottom)
+}
+
+/** The ground of a screen of grouped rows, and the rows on it: the rows are the lighter of the two in light and in dark. */
+@Composable
+fun groupGround(): Color = if (MaterialTheme.colorScheme.surface.luminance() < 0.5f) MaterialTheme.colorScheme.surface else MaterialTheme.colorScheme.surfaceContainer
+
+@Composable
+fun groupRow(): Color = if (MaterialTheme.colorScheme.surface.luminance() < 0.5f) MaterialTheme.colorScheme.surfaceContainerHigh else MaterialTheme.colorScheme.surfaceContainerLowest
 
 // ── reading: text with highlights ──
 

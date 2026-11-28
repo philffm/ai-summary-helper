@@ -21,6 +21,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.draw.clip
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
@@ -176,7 +179,12 @@ fun FeedsScreen(
         Unit
     }
     LaunchedEffect(current == null) { if (current == null) model.focusReading = false }
+    // a large title that folds away while scrolling, on a phone's list
+    val folding = androidx.compose.material3.TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val large = !isWide() && current == null && picked.isEmpty()
     Scaffold(
+        modifier = if (large) Modifier.nestedScroll(folding.nestedScrollConnection) else Modifier,
+        containerColor = if (large) groupGround() else MaterialTheme.colorScheme.surface,
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
@@ -186,8 +194,9 @@ fun FeedsScreen(
                 actions = {
                     IconButton(onClick = { picked = visible.map { selectionKey(it.feed.url, it.stored.item.id) }.toSet() }) { Icon(Icons.Filled.SelectAll, contentDescription = "Select all") }
                 },
-            ) else TopAppBar(
-                title = { Text(sourceLabel(source, model), maxLines = 1, overflow = TextOverflow.Ellipsis) },
+            ) else FoldingBar(
+                large, folding,
+                title = { Text(sourceLabel(source, model), maxLines = 1, overflow = TextOverflow.Ellipsis, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     if (!isWide() && current != null) IconButton(onClick = { onSelect("") }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") }
                 },
@@ -251,14 +260,19 @@ fun FeedsScreen(
                                 if (searchActive) "No matches" else if (favOnly) "No favorites yet" else if (unreadOnly) "All read" else "Nothing here yet",
                                 if (searchActive) "Nothing in your feeds matches that." else if (favOnly) "Tap the star on an item to keep it here." else if (unreadOnly) "Turn off the Unread filter to see older items." else "Pull down to refresh.",
                             )
-                            else LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            else LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
                                 if (!searchActive && source == "all") item(key = "recap") {
-                                    RecapCard(model) { scope.launch { model.refreshRecap()?.let { snackbar.showSnackbar(it) } } }
+                                    Box(Modifier.padding(bottom = 10.dp)) { RecapCard(model) { scope.launch { model.refreshRecap()?.let { snackbar.showSnackbar(it) } } } }
                                 }
-                                items(stacks, key = { selectionKey(it.lead.feed.url, it.lead.stored.item.id) }) { st ->
+                                itemsIndexed(stacks, key = { _, it -> selectionKey(it.lead.feed.url, it.lead.stored.item.id) }) { row, st ->
                                     val leadKey = selectionKey(st.lead.feed.url, st.lead.stored.item.id)
-                                    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                                        for (e in listOf(st.lead) + (if (leadKey in openStacks) st.others else emptyList())) {
+                                    Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                                        val told = listOf(st.lead) + (if (leadKey in openStacks) st.others else emptyList())
+                                        told.forEachIndexed { within, e ->
+                                            // the row's place in the whole list: the first of the first story and the last of the last are round
+                                            val first = row == 0 && within == 0
+                                            val last = row == stacks.size - 1 && within == told.size - 1
+                                            val shape = groupShape(if (first) 0 else 1, if (last) (if (first) 1 else 2) else 3)
                                             val key = selectionKey(e.feed.url, e.stored.item.id)
                                             SwipeableCard(
                                                 e, enabled = picked.isEmpty(),
@@ -266,7 +280,7 @@ fun FeedsScreen(
                                                 onFav = { scope.launch { model.setFavorite(e.feed.url, e.stored.item.id, !e.stored.fav) } },
                                             ) {
                                                 ItemCard(
-                                                    e, selected = key == selected, picked = key in picked, selecting = picked.isNotEmpty(),
+                                                    shape, e, selected = key == selected, picked = key in picked, selecting = picked.isNotEmpty(),
                                                     onFav = { scope.launch { model.setFavorite(e.feed.url, e.stored.item.id, !e.stored.fav) } },
                                                     onLong = { picked = if (key in picked) picked - key else picked + key },
                                                 ) {
@@ -332,13 +346,13 @@ private fun moodTint(sent: Double?, base: androidx.compose.ui.graphics.Color): a
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun ItemCard(e: FeedEntryRef, selected: Boolean, picked: Boolean, selecting: Boolean, onFav: () -> Unit, onLong: () -> Unit, onClick: () -> Unit) {
+private fun ItemCard(shape: androidx.compose.ui.graphics.Shape, e: FeedEntryRef, selected: Boolean, picked: Boolean, selecting: Boolean, onFav: () -> Unit, onLong: () -> Unit, onClick: () -> Unit) {
     val unread = !e.stored.read
     val item = e.stored.item
-    AishCard(
-        modifier = Modifier.fillMaxWidth().combinedClickable(onClick = onClick, onLongClick = onLong),
-        tone = if (picked || selected) CardTone.Selected else CardTone.Outlined,
-        container = if (picked || selected) null else moodTint(e.stored.sent, MaterialTheme.colorScheme.surface),   // rated items carry a faint mood tint
+    androidx.compose.material3.Surface(
+        modifier = Modifier.fillMaxWidth().clip(shape).combinedClickable(onClick = onClick, onLongClick = onLong),
+        shape = shape,
+        color = if (picked || selected) MaterialTheme.colorScheme.secondaryContainer else moodTint(e.stored.sent, groupRow()),   // rated items carry a faint mood tint
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -358,7 +372,7 @@ private fun ItemCard(e: FeedEntryRef, selected: Boolean, picked: Boolean, select
                         tint = if (e.stored.fav) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(20.dp))
                 }
             }
-            Text(item.title, style = MaterialTheme.typography.titleMedium, fontWeight = if (unread) FontWeight.Bold else FontWeight.Normal, maxLines = 3, overflow = TextOverflow.Ellipsis)
+            Text(item.title, style = MaterialTheme.typography.titleMedium, fontFamily = androidx.compose.ui.text.font.FontFamily.Serif, fontWeight = if (unread) FontWeight.Bold else FontWeight.Normal, maxLines = if (androidx.compose.ui.platform.LocalDensity.current.fontScale >= 1.5f) 6 else 3, overflow = TextOverflow.Ellipsis)
             if (item.summary.isNotBlank() && item.summary != item.title) Text(item.summary, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2, overflow = TextOverflow.Ellipsis)
         }
     }

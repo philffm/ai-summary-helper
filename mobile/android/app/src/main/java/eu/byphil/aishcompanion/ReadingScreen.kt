@@ -25,6 +25,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.material3.SegmentedButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreHoriz
 import androidx.compose.material3.FloatingActionButton
@@ -144,15 +149,20 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
     }
 
     LaunchedEffect(current == null) { if (current == null) model.focusReading = false }
+    // the list has a large title that folds away while scrolling; an open article stands for itself
+    val folding = androidx.compose.material3.TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val large = !isWide() && current == null
     Scaffold(
+        modifier = if (large) Modifier.nestedScroll(folding.nestedScrollConnection) else Modifier,
+        containerColor = if (large) groupGround() else MaterialTheme.colorScheme.surface,
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
-            TopAppBar(
-                // an open article stands for itself
-                title = { if (isWide() || current == null) Text("Reading list") },
-                navigationIcon = { if (!isWide() && current != null) IconButton(onClick = { onSelect("") }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") } },
-                actions = {
+            FoldingBar(
+                large, folding,
+                { if (isWide() || current == null) Text("Reading list", fontWeight = FontWeight.Bold) },
+                { if (!isWide() && current != null) IconButton(onClick = { onSelect("") }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") } },
+                {
                     if (isWide() && current != null) FocusToggle(model.focusReading) { model.focusReading = !model.focusReading }
                     if (model.articleList.isNotEmpty() && (isWide() || current == null)) IconButton(onClick = { searching = !searching; if (!searching) query = "" }) {
                         Icon(if (searching) Icons.Filled.Close else Icons.Filled.Search, contentDescription = if (searching) "Close search" else "Search")
@@ -181,10 +191,11 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                 placeholder = { Text("Search title, site and text") }, shape = MaterialTheme.shapes.extraLarge,
                                 leadingIcon = { Icon(Icons.Filled.Search, null) },
                             )
-                            Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                FilterChip(shape = PillShape, selected = view == ReadingView.UNREAD, onClick = { view = ReadingView.UNREAD }, label = { Text("Unread") })
-                                FilterChip(shape = PillShape, selected = view == ReadingView.ALL, onClick = { view = ReadingView.ALL }, label = { Text("All") })
-                                FilterChip(shape = PillShape, selected = view == ReadingView.ARCHIVED, onClick = { view = ReadingView.ARCHIVED }, label = { Text("Archive") })
+                            val views = listOf(ReadingView.ALL to "All", ReadingView.UNREAD to "Unread", ReadingView.ARCHIVED to "Archive")
+                            androidx.compose.material3.SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
+                                views.forEachIndexed { i, (v, label) ->
+                                    SegmentedButton(selected = view == v, onClick = { view = v }, shape = androidx.compose.material3.SegmentedButtonDefaults.itemShape(i, views.size), icon = {}) { Text(label, maxLines = 1) }
+                                }
                             }
                             if (query.isNotBlank() && shown.isNotEmpty()) Text(
                                 "${shown.size} ${if (shown.size == 1) "result" else "results"}",
@@ -199,8 +210,9 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                     else "Switch the filter above to see the rest.",
                                 )
                             } else PullToRefreshBox(isRefreshing = model.checking, onRefresh = { scope.launch { snackbar.showSnackbar(model.checkArticles()) } }, modifier = Modifier.weight(1f).fillMaxWidth()) {
-                                LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                                    items(shown, key = { it.id }) { a ->
+                                LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 16.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                                    itemsIndexed(shown, key = { _, a -> a.id }) { row, a ->
+                                        val shape = groupShape(row, shown.size)
                                         val unread = model.readTick >= 0 && !model.articles.isRead(a.id)
                                         val inArchive = view == ReadingView.ARCHIVED
                                         val dismiss = rememberSwipeToDismissBoxState(confirmValueChange = { v ->
@@ -216,7 +228,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                             backgroundContent = {
                                                 val right = dismiss.dismissDirection == SwipeToDismissBoxValue.StartToEnd
                                                 Box(
-                                                    Modifier.fillMaxSize().background(if (right) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.errorContainer, MaterialTheme.shapes.medium).padding(horizontal = 24.dp),
+                                                    Modifier.fillMaxSize().background(if (right) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.errorContainer, shape).padding(horizontal = 24.dp),
                                                     contentAlignment = if (right) Alignment.CenterStart else Alignment.CenterEnd,
                                                 ) {
                                                     if (right) Icon(if (unread) Icons.Filled.DoneAll else Icons.Filled.MarkEmailUnread, contentDescription = if (unread) "Mark as read" else "Mark as unread")
@@ -225,7 +237,7 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                                 }
                                             },
                                         ) {
-                                            AishCard(
+                                            androidx.compose.material3.Surface(
                                                 onClick = { onSelect(a.id); model.articles.markRead(a.id) },
                                                 // The swipe gestures as TalkBack actions (swiping is not reachable without sight or fine motor control).
                                                 modifier = Modifier.fillMaxWidth().semantics {
@@ -233,15 +245,16 @@ fun ReadingScreen(model: AppModel, selected: String, onSelect: (String) -> Unit,
                                                         CustomAccessibilityAction(if (unread) "Mark as read" else "Mark as unread") { model.toggleRead(a.id); true },
                                                         CustomAccessibilityAction(if (inArchive) "Delete" else "Archive") { if (inArchive) deleteWithUndo(a.id) else archiveWithUndo(a.id); true },
                                                     )
-                                                }, 
-                                                tone = if (a.id == selected) CardTone.Selected else CardTone.Outlined,
+                                                },
+                                                shape = shape, color = if (a.id == selected) MaterialTheme.colorScheme.secondaryContainer else groupRow(),
                                             ) {
-                                                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                                                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                                        if (unread) Box(Modifier.size(8.dp).background(MaterialTheme.colorScheme.primary, CircleShape))
-                                                        Text(listOf(a.site, relativeTime(a.receivedAt), if (a.local) "Summarized on this phone" else "").filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                                Row(Modifier.padding(16.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                                                    // the dot keeps its room, so that titles stand in one line
+                                                    Box(Modifier.padding(top = 8.dp).size(8.dp).background(if (unread) MaterialTheme.colorScheme.primary else Color.Transparent, CircleShape))
+                                                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                                                        Text(a.title, style = MaterialTheme.typography.titleMedium, fontFamily = androidx.compose.ui.text.font.FontFamily.Serif, fontWeight = if (unread) FontWeight.Bold else FontWeight.Normal, maxLines = if (LocalDensity.current.fontScale >= 1.5f) 6 else 3, overflow = TextOverflow.Ellipsis)
+                                                        Text(listOf(a.site, relativeTime(a.receivedAt), if (a.local) "Saved on this phone" else "").filter { it.isNotBlank() }.joinToString(" · "), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                                     }
-                                                    Text(a.title, style = MaterialTheme.typography.titleMedium, fontWeight = if (unread) FontWeight.Bold else FontWeight.Normal, maxLines = 3, overflow = TextOverflow.Ellipsis)
                                                 }
                                             }
                                         }
