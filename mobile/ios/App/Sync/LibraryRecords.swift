@@ -34,6 +34,8 @@ enum LibraryRecords {
         /// Questions prepared here (or handed over for a page the library had already), with their short answers.
         var suggested: [String]?
         var suggestedAnswers: [String: String]?
+        /// Who sent it and what they wrote; stays on this device.
+        var recommendation: Recommendation?
     }
 
     static let context = 32   // characters around a highlight, as plugin/src/content/anchor.js keeps them
@@ -76,6 +78,7 @@ enum LibraryRecords {
                        pending: extra?.pending,
                        questions: questions(record["conversation"]),
                        summaryOnDevice: !summary.isEmpty && extra?.deviceSummary == summary ? true : nil,
+                       recommendation: extra?.recommendation,
                        suggestions: suggestions(record, extra))
     }
 

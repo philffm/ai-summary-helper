@@ -121,6 +121,8 @@ targets:
         group: ShareExtension
       - path: Shared/SharedLinks.swift
         group: ShareExtension
+      - path: Shared/Recommendation.swift
+        group: ShareExtension
       - path: App/Localizable.xcstrings
         group: ShareExtension
     entitlements:
@@ -130,7 +132,7 @@ targets:
     info:
       path: ShareExtension/Info.plist
       properties:
-        CFBundleDisplayName: Kaivo
+        CFBundleDisplayName: $(KAIVO_NAME)
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         KaivoAppGroup: $(KAIVO_APP_GROUP)
@@ -138,9 +140,16 @@ targets:
           NSExtensionPointIdentifier: com.apple.share-services
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
           NSExtensionAttributes:
-            NSExtensionActivationRule:
-              NSExtensionActivationSupportsWebURLWithMaxCount: 1
-              NSExtensionActivationSupportsText: true
+            # a web link, text that may hold one, or an HTML file (a recommendation); no other files
+            NSExtensionActivationRule: >-
+              SUBQUERY(extensionItems, $item,
+              SUBQUERY($item.attachments, $attachment,
+              (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.url"
+              AND NOT (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.file-url"))
+              OR (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.plain-text"
+              AND NOT (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.file-url"))
+              OR ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.html"
+              ).@count >= 1).@count >= 1
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(KAIVO_BUNDLE_ID).share

@@ -66,6 +66,7 @@ struct ReaderView: View {
                 Text(verbatim: "\(article.host) · \(article.duration)").font(.footnote).foregroundStyle(.secondary)
                 Text(article.title).readerText(look, title: true).accessibilityAddTraits(.isHeader)
                 if paper { PaperHead(paper: article.paper, link: article.link) }
+                if let recommendation = article.recommendation { RecommendationCard(recommendation: recommendation) }
                 if !article.passages.isEmpty || !article.summary.isEmpty {
                     SummaryCard(article: article, open: $summaryOpen, waiting: summaries.isWaiting(article.id),
                                 step: summaries.running == article.id ? summaries.step : (0, 0),

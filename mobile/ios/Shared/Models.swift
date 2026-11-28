@@ -66,6 +66,8 @@ struct Article: Codable, Identifiable, Hashable {
     var questions: [Question]?
     /// The summary was written by the model on this device.
     var summaryOnDevice: Bool?
+    /// Someone sent it to the reader.
+    var recommendation: Recommendation?
     /// Questions a model prepared about it, asked or not.
     var suggestions: [Suggestion]?
 

@@ -65,6 +65,7 @@ final class LibraryStore: @unchecked Sendable {
             let before = try await extra(id)
             var after = before
             after.paper = article.paper ?? before.paper
+            after.recommendation = article.recommendation ?? before.recommendation
             after.pending = article.pending ?? before.pending
             if article.safariID != nil { after.safari = true }
             if article.host != URL(string: article.link)?.host() { after.host = article.host }

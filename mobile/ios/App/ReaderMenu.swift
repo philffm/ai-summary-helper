@@ -27,6 +27,7 @@ struct ReaderMenu: View {
     let listen: () -> Void
     let close: () -> Void
     @State private var showServer = false
+    @State private var recommending = false
 
     @Environment(Summaries.self) private var summaries
     @Environment(Speaker.self) private var speaker
@@ -51,6 +52,7 @@ struct ReaderMenu: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .modifier(ReaderPrompts(id: article.id, active: true, showServer: $showServer))
+        .sheet(isPresented: $recommending) { RecommendView(article: article) }
     }
 
     private var summary: some View {
@@ -110,6 +112,8 @@ struct ReaderMenu: View {
         List {
             if let url = article.url {
                 Section {
+                    Button { recommending = true } label: { Label("Recommend…", systemImage: "paperplane") }
+                        .accessibilityIdentifier("recommend")
                     ShareLink(item: url, subject: Text(article.title)) { Label("Share…", systemImage: "square.and.arrow.up") }
                     Button { UIPasteboard.general.url = url; close() } label: { Label("Copy link", systemImage: "link") }
                     Link(destination: url) { Label("Open in Safari", systemImage: "safari") }

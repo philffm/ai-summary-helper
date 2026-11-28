@@ -108,7 +108,8 @@ final class Library {
         }
     }
 
-    func addNote(_ text: String) {
+    /// `url`, `title`: the page the note belongs to, where it belongs to one.
+    func addNote(_ text: String, url: String = "", title: String = "") {
         let text = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
         if store == nil {
@@ -117,7 +118,7 @@ final class Library {
                                         when: LibraryRecords.timestamp(.now)), at: 0)
             return
         }
-        changed { try await $0.note(text) }
+        changed { try await $0.note(text, url: url, title: title) }
         reloadNotes()
     }
 
@@ -364,8 +365,14 @@ final class Library {
         let waiting = SharedLinks.waiting(in: folder)
         guard !waiting.isEmpty else { return }
         var new: [Article] = [], wanted: [(Article.ID, Pending)] = []
+        // what was sent to the reader, for pages that are here already
+        var sent: [(Article.ID, Recommendation)] = []
         for (_, shared) in waiting {
             if let i = articles.firstIndex(where: { $0.link == shared.url }) {
+                if let recommendation = shared.recommendation {
+                    articles[i].recommendation = recommendation
+                    sent.append((articles[i].id, recommendation))
+                }
                 // shared again: only a summary can be wanted that is not there yet
                 if shared.summarize && articles[i].summary.isEmpty {
                     articles[i].pending = Pending(text: articles[i].passages.isEmpty, summary: true)
@@ -374,8 +381,9 @@ final class Library {
                 continue
             }
             let host = URL(string: shared.url)?.host() ?? shared.url
-            let article = Article(id: UUID().uuidString.lowercased(), title: shared.title.isEmpty ? host : shared.title, host: host, tags: [], words: 0,
+            var article = Article(id: UUID().uuidString.lowercased(), title: shared.title.isEmpty ? host : shared.title, host: host, tags: [], words: 0,
                                   savedAt: shared.date, link: shared.url, pending: Pending(text: true, summary: shared.summarize))
+            article.recommendation = shared.recommendation
             articles.insert(article, at: 0)
             new.append(article)
         }
@@ -392,9 +400,49 @@ final class Library {
                 extra.pending = pending
                 try await store.setExtra(id, extra)
             }
+            for (id, recommendation) in sent {
+                var extra = try await store.extra(id)
+                extra.recommendation = recommendation
+                try await store.setExtra(id, extra)
+            }
             for (file, _) in waiting { try? FileManager.default.removeItem(at: file) }
         }
         await settled()
+        // the sender's words go to "Notes", and their marks onto text that is here already
+        for (_, shared) in waiting {
+            guard let recommendation = shared.recommendation, let article = articles.first(where: { $0.link == shared.url }) else { continue }
+            if !recommendation.note.isEmpty { addNote(Self.note(recommendation), url: Self.address(of: article), title: article.title) }
+            suggest(recommendation.marks, in: article.id)
+        }
+        await settled()
+    }
+
+    private static func note(_ recommendation: Recommendation) -> String {
+        let name = recommendation.from.isEmpty ? String(localized: "someone") : recommendation.from
+        return String(localized: "Recommended by \(name) (name as sent):") + " " + recommendation.note
+    }
+
+    /// Marks passages of an article as suggestions, which the reader keeps or dismisses.
+    private func suggest(_ sentences: [String], in id: Article.ID) {
+        guard !sentences.isEmpty, let i = articles.firstIndex(where: { $0.id == id }), !articles[i].passages.isEmpty else { return }
+        for sentence in sentences { SafariImport.mark(sentence, ai: true, in: &articles[i].passages) }
+        let added = takeNewMarks(of: i)
+        guard !added.isEmpty else { return }
+        let url = Self.address(of: articles[i])
+        changed { try await $0.mark(url: url, add: added) }
+    }
+
+    /// Marks that have no id yet get one, in the shape the library keeps them.
+    private func takeNewMarks(of i: Int) -> [[String: Any]] {
+        var added: [[String: Any]] = []
+        for p in articles[i].passages.indices {
+            for m in articles[i].passages[p].marks.indices where articles[i].passages[p].marks[m].highlight == nil {
+                let highlight = LibraryRecords.newHighlightID()
+                articles[i].passages[p].marks[m].highlight = highlight
+                added.append(LibraryRecords.new(articles[i].passages[p].marks[m], in: articles[i].passages[p], id: highlight))
+            }
+        }
+        return added
     }
 
     /// The text of a shared page has arrived.
@@ -406,6 +454,8 @@ final class Library {
         articles[i].words = Self.words(in: page.passages.map(\.text).joined(separator: " "))
         articles[i].pending?.text = false
         let article = articles[i]
+        // the sender's marks waited for the text
+        defer { suggest(article.recommendation?.marks ?? [], in: id) }
         changed { store in
             try await store.change(id, entry: ["title": article.title, "contentWordCount": article.words],
                                    record: ["content": LibraryRecords.html(article.passages)])
@@ -434,14 +484,7 @@ final class Library {
         articles[i].summaryOnDevice = onDevice ? true : nil
         articles[i].pending = nil
         for sentence in sentences { SafariImport.mark(sentence, ai: true, in: &articles[i].passages) }
-        var added: [[String: Any]] = []
-        for p in articles[i].passages.indices {
-            for m in articles[i].passages[p].marks.indices where articles[i].passages[p].marks[m].highlight == nil {
-                let highlight = LibraryRecords.newHighlightID()
-                articles[i].passages[p].marks[m].highlight = highlight
-                added.append(LibraryRecords.new(articles[i].passages[p].marks[m], in: articles[i].passages[p], id: highlight))
-            }
-        }
+        let added = takeNewMarks(of: i)
         let url = Self.address(of: articles[i])
         changed { store in
             try await store.change(id, record: ["summary": LibraryRecords.summaryHTML(lines)])
