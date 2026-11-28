@@ -51,6 +51,8 @@ struct Article: Codable, Identifiable, Hashable {
     var progress: Double = 0
     var passages: [Passage] = []
     var summary: [String] = []
+    /// The summary as it is stored, with its headings and lists; nil where only its lines are known.
+    var summaryHTML: String?
     var link: String = ""
     /// The id the Safari extension knows it by, when it came from there.
     var safariID: String?

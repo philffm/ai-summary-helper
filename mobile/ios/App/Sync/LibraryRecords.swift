@@ -63,6 +63,7 @@ enum LibraryRecords {
                        progress: min(1, max(0, (entry["progress"] as? NSNumber)?.doubleValue ?? 0)),
                        passages: passages,
                        summary: paragraphs(HTMLText.plain(summary)),
+                       summaryHTML: summary.isEmpty ? nil : summary,
                        link: link,
                        safariID: extra?.safari == true ? id : nil,
                        paper: extra?.paper,

@@ -71,7 +71,7 @@ final class SyncScreenTests: XCTestCase {
         field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: 40) + passphrase)
         press("Verbinden")
         shot("7-running", after: 0.6)
-        XCTAssertTrue(app.staticTexts["Verbunden"].waitForExistence(timeout: 60))
+        XCTAssertTrue(app.staticTexts["Alles aktuell"].waitForExistence(timeout: 60))
         shot("8-connected", after: 2)
         press("Fertig")
         start(["-KaivoStartTab", "library"])
@@ -79,15 +79,15 @@ final class SyncScreenTests: XCTestCase {
 
         // the way there from the app, and out again
         start(["-KaivoStartTab", "today"])
-        press("Safari-Erweiterung")
-        // below the fold of the sheet
-        let row = button("Synchronisieren")
-        XCTAssertTrue(app.buttons["Fertig"].firstMatch.waitForExistence(timeout: 10))
-        for _ in 0..<4 where !(row.exists && row.isHittable) { app.swipeUp() }
-        XCTAssertTrue(row.exists, "the way to the sync screen is missing")
-        shot("10-setup")
+        XCTAssertTrue(app.buttons["sync-button"].waitForExistence(timeout: 20), "a joined library shows in the bar")
+        shot("9b-today")
+        press("Einstellungen")
+        // by its identifier: the button in the bar behind the sheet has the same name
+        let row = app.buttons["settings-sync"]
+        XCTAssertTrue(row.waitForExistence(timeout: 10), "the way to the sync screen is missing")
+        shot("10-settings")
         row.tap()
-        XCTAssertTrue(app.staticTexts["Verbunden"].waitForExistence(timeout: 20))
+        XCTAssertTrue(app.staticTexts["Alles aktuell"].waitForExistence(timeout: 20))
         shot("11-connected-again", after: 3)
         let leave = button("Verbindung trennen …")
         for _ in 0..<3 where !leave.isHittable { app.swipeUp() }

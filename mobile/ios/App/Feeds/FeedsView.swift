@@ -3,6 +3,7 @@ import SwiftUI
 struct FeedsView: View {
     @Environment(FeedsModel.self) private var feeds
     @Environment(Router.self) private var router
+    @Environment(SyncModel.self) private var sync
     @State private var unreadOnly = false
     @State private var sheet: Sheet?
 
@@ -53,6 +54,7 @@ struct FeedsView: View {
             .navigationTitle("Feeds")
             .refreshable { await feeds.refresh() }
             .toolbar {
+                SyncToolbar(sync: sync)
                 if !feeds.feeds.isEmpty {
                     ToolbarItem(placement: .topBarLeading) {
                         Button { sheet = .manage } label: { Label("Your feeds", systemImage: "list.bullet") }

@@ -10,13 +10,21 @@ struct ReaderView: View {
     @State private var showServer = false
     private var stored = StoredReaderLook()
     @Environment(\.dynamicTypeSize) private var systemTextSize
-    @State private var showSummary = LaunchOptions.showSummary
+    @State private var summaryOpen = LaunchOptions.showSummary
+    /// Where the reader was before jumping to the summary.
+    @State private var returnTo: Return?
     @State private var position = ReadingPosition()
     @State private var height: CGFloat = 0
     /// Jumping along the rail is not reading: until then, paragraphs coming into view do not count.
     @State private var jumpedAt = Date.distantPast
 
     init(id: Article.ID) { self.id = id }
+
+    private struct Return: Equatable {
+        var passage: Passage.ID
+        var percent: Double
+    }
+    private static let summaryAnchor = "summary"
 
     var body: some View {
         Group {
@@ -49,6 +57,12 @@ struct ReaderView: View {
                 Text(verbatim: "\(article.host) · \(article.duration)").font(.footnote).foregroundStyle(.secondary)
                 Text(article.title).readerText(look, title: true).accessibilityAddTraits(.isHeader)
                 if paper { PaperHead(paper: article.paper, link: article.link) }
+                if !article.passages.isEmpty || !article.summary.isEmpty {
+                    SummaryCard(article: article, open: $summaryOpen, waiting: summaries.isWaiting(article.id),
+                                step: summaries.running == article.id ? summaries.step : (0, 0),
+                                again: ModelEndpoint.current != nil) { summarize(article.id) }
+                        .id(Self.summaryAnchor)
+                }
                 if article.passages.isEmpty {
                     Text("The text of this article is not on this device yet.").foregroundStyle(.secondary)
                     if let url = article.url { Link(destination: url) { Label("Read the full article in Safari", systemImage: "safari") } }
@@ -66,6 +80,8 @@ struct ReaderView: View {
                             }
                             .onAppear {
                                 guard Date.now.timeIntervalSince(jumpedAt) > 1.5 else { return }
+                                // scrolled back there by hand: the way back is not needed any more
+                                if returnTo?.passage == passage.id { returnTo = nil }
                                 position.reach(Double(index + 1) / Double(shown.count)) { library.read(id, upTo: $0) }
                             }
                             .onDisappear { position.frames[index] = nil }
@@ -107,6 +123,20 @@ struct ReaderView: View {
                 .padding(.trailing, 2)
             }
         }
+        .overlay(alignment: .bottom) {
+            if let back = returnTo {
+                Button {
+                    jumpedAt = .now
+                    returnTo = nil
+                    withAnimation(.snappy) { proxy.scrollTo(back.passage, anchor: .top) }
+                } label: {
+                    Label("Back to where you were · \(back.percent.formatted(.percent.precision(.fractionLength(0))))", systemImage: "arrow.down")
+                        .font(.subheadline.weight(.semibold))
+                }
+                .modifier(FloatingAction())
+                .padding(.bottom, 8)
+            }
+        }
         .readerPage(look.ground)
         .onDisappear { position.settle { library.read(id, upTo: $0) } }
         .onChange(of: scenePhase) { _, phase in
@@ -137,44 +167,20 @@ struct ReaderView: View {
                     }
                 }
                 Spacer()
-                if !article.summary.isEmpty {
-                    Button { showSummary = true } label: { Label("Summary", systemImage: "text.alignleft") }
-                } else if summaries.isWaiting(article.id) {
-                    HStack(spacing: 6) {
-                        ProgressView()
-                        if summaries.running == article.id && summaries.step.of > 1 {
-                            Text("Part \(summaries.step.at) of \(summaries.step.of)").font(.footnote)
+                if !article.passages.isEmpty || !article.summary.isEmpty {
+                    Button {
+                        showSummary(of: article, shown: shown, with: proxy)
+                    } label: {
+                        // a bar shows a label's picture only: the word is wanted with it
+                        HStack(spacing: 6) {
+                            Image(systemName: "sparkles")
+                            Text("In short").fontWeight(.semibold)
                         }
                     }
-                    .accessibilityElement(children: .combine)
-                    .accessibilityLabel("Summarizing")
-                } else if !article.passages.isEmpty {
-                    Button { summarize(article.id) } label: { Label("Summarize", systemImage: "sparkles") }
+                    .accessibilityLabel("In short")
+                    .accessibilityIdentifier("summary-jump")
                 }
             }
-        }
-        .sheet(isPresented: $showSummary) {
-            NavigationStack {
-                List {
-                    Section {
-                        ForEach(article.summary, id: \.self) { Text($0) }
-                    } footer: {
-                        SampleNote()
-                    }
-                    if ModelEndpoint.current != nil {
-                        Section {
-                            Button("Summarize again") {
-                                showSummary = false
-                                summarize(article.id)
-                            }
-                        }
-                    }
-                }
-                .navigationTitle("Summary")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar { Button("Done") { showSummary = false } }
-            }
-            .presentationDetents([.medium, .large])
         }
         .sheet(isPresented: $showServer) { NavigationStack { ModelServerView(closable: true) } }
         .alert("Send text to an AI service?",
@@ -197,6 +203,20 @@ struct ReaderView: View {
         } message: {
             Text(verbatim: summaries.failure ?? "")
         }
+        }
+    }
+
+    /// To the summary at the top, unfolded; one is written first where there is none. Whoever was further down gets the
+    /// way back.
+    private func showSummary(of article: Article, shown: [Passage], with proxy: ScrollViewProxy) {
+        if article.summary.isEmpty && !summaries.isWaiting(article.id) { summarize(article.id) }
+        if let index = position.top(height: height), index > 0, shown.indices.contains(index) {
+            returnTo = Return(passage: shown[index].id, percent: position.window.lowerBound)
+        }
+        jumpedAt = .now
+        withAnimation(.snappy) {
+            summaryOpen = true
+            proxy.scrollTo(Self.summaryAnchor, anchor: .top)
         }
     }
 
@@ -302,5 +322,16 @@ struct ArticleImage: View {
         image.resizable().scaledToFit()
             .frame(maxWidth: .infinity)
             .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+    }
+}
+
+/// A button that floats over the article: Liquid Glass from iOS 26 on.
+private struct FloatingAction: ViewModifier {
+    func body(content: Content) -> some View {
+        if #available(iOS 26.0, *) {
+            content.buttonStyle(.glass)
+        } else {
+            content.buttonStyle(.borderedProminent)
+        }
     }
 }

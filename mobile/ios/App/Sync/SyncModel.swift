@@ -120,7 +120,9 @@ final class SyncModel {
     }
 
     func leave() async {
-        guard let sync, !fetching else { return }
+        guard let sync else { return }
+        // a run that is going on ends first: the tap must not get lost
+        while fetching { try? await Task.sleep(for: .milliseconds(200)) }
         do { try await sync.leave() } catch { problem = Problem(error) }
         await refresh()
     }

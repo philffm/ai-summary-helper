@@ -6,9 +6,16 @@ struct TodayView: View {
     @Environment(ExtensionStatus.self) private var status
     @Environment(Speaker.self) private var speaker
     @Environment(Router.self) private var router
-    @State private var showSetup = false
+    @State private var settings: Settings?
     @State private var showWake = false
+    @Environment(SyncModel.self) private var sync
     @Environment(\.horizontalSizeClass) private var width
+
+    /// How the settings were asked for: from the bar, or by the hint about Safari.
+    private enum Settings: Int, Identifiable {
+        case all, safari
+        var id: Int { rawValue }
+    }
 
     private var briefing: [FeedEntry] { Array(feeds.newest.prefix(3)) }
     private var started: [Article] { library.articles.filter { $0.progress > 0 && $0.progress < 1 } }
@@ -37,13 +44,16 @@ struct TodayView: View {
             .routes()
             .refreshable { await feeds.refresh() }
             .toolbar {
-                // the wake alarm needs the system's alarm service of iOS 26
-                if #available(iOS 26.0, *) {
-                    Button { showWake = true } label: { Label("Wake", systemImage: "alarm") }
+                SyncToolbar(sync: sync)
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    // the wake alarm needs the system's alarm service of iOS 26
+                    if #available(iOS 26.0, *) {
+                        Button { showWake = true } label: { Label("Wake", systemImage: "alarm") }
+                    }
+                    Button { settings = .all } label: { Label("Settings", systemImage: "gearshape") }
                 }
-                Button { showSetup = true } label: { Label("Safari extension", systemImage: "safari") }
             }
-            .sheet(isPresented: $showSetup) { SetupView() }
+            .sheet(item: $settings) { which in SettingsView(start: which == .safari ? .safari : nil) }
             .sheet(isPresented: $showWake) {
                 if #available(iOS 26.0, *) { WakeView() }
             }
@@ -55,7 +65,7 @@ struct TodayView: View {
     private var new: some View {
         if status.state != .on && !LaunchOptions.screenshots && !LaunchOptions.touches {
             Section {
-                Button { showSetup = true } label: {
+                Button { settings = .safari } label: {
                     Label("Switch on Kaivo in Safari", systemImage: "puzzlepiece.extension")
                 }
             }

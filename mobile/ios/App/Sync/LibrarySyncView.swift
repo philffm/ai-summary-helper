@@ -105,18 +105,13 @@ struct LibrarySyncView: View {
         }
     }
 
-    // MARK: - Fetching
+    // MARK: - Fetching for the first time
 
     private var running: some View {
-        VStack(spacing: 16) {
-            Text("Fetching your library").font(.title2.weight(.bold)).accessibilityAddTraits(.isHeader)
-            if let progress = sync.progress, progress.total > 0 {
-                ProgressView(value: Double(min(progress.done, progress.total)), total: Double(progress.total))
-                Text("\(String(progress.done)) of \(String(progress.total)) entries").monospacedDigit()
-            } else {
-                ProgressView()
-            }
-            Text("You can keep using the app.").font(.footnote).foregroundStyle(.secondary)
+        VStack(spacing: 14) {
+            SyncRing()
+            Text("Fetching your library").font(.title3.weight(.semibold)).accessibilityAddTraits(.isHeader)
+            Text("You can keep using the app.").font(.subheadline).foregroundStyle(.secondary)
         }
         .multilineTextAlignment(.center)
         .padding(32)
@@ -129,36 +124,48 @@ struct LibrarySyncView: View {
     private func connected(_ state: LibrarySync.State) -> some View {
         List {
             Section {
-                HStack(spacing: 12) {
-                    Image(systemName: "checkmark.circle.fill").font(.largeTitle).foregroundStyle(KaivoTokens.accent).accessibilityHidden(true)
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Connected").font(.headline)
-                        Text(verbatim: "\(state.server ?? "") · \(state.root)").font(.footnote).foregroundStyle(.secondary)
+                VStack(spacing: 12) {
+                    SyncRing()
+                    Group {
+                        if sync.running {
+                            Text("Fetching your library")
+                        } else if sync.failed {
+                            Text("Last sync failed")
+                        } else {
+                            Text("All up to date")
+                        }
                     }
+                    .font(.title3.weight(.semibold))
+                    .accessibilityAddTraits(.isHeader)
+                    Group {
+                        if sync.running {
+                            Text("You can keep using the app.")
+                        } else if let date = state.last?.at.flatMap(FeedParser.parseDate) {
+                            HStack(spacing: 4) {
+                                Text("Last fetched")
+                                Text(date, format: .relative(presentation: .named))
+                            }
+                        } else {
+                            Text("Not fetched yet")
+                        }
+                    }
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
                 }
-                .accessibilityElement(children: .combine)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+                .listRowBackground(Color.clear)
             }
             Section {
                 LabeledContent("Articles") { Text(verbatim: state.articles.formatted()) }
-                LabeledContent("Last fetched") {
-                    if let date = state.last?.at.flatMap(FeedParser.parseDate) {
-                        Text(date, format: .relative(presentation: .named))
-                    } else {
-                        Text("Not fetched yet")
-                    }
-                }
+                LabeledContent("Server") { Text(verbatim: state.server ?? "") }
+                LabeledContent("Folder") { Text(verbatim: state.root) }
             }
             Section {
                 Button {
                     Task { await sync.fetch() }
                 } label: {
-                    HStack {
-                        Text("Sync now")
-                        if sync.fetching {
-                            Spacer()
-                            ProgressView()
-                        }
-                    }
+                    Text("Sync now").fontWeight(.semibold).frame(maxWidth: .infinity)
                 }
                 .disabled(sync.fetching)
             } footer: {

@@ -239,6 +239,7 @@ final class Library {
     func setSummary(_ id: Article.ID, _ lines: [String], marking sentences: [String]) {
         guard let i = articles.firstIndex(where: { $0.id == id }) else { return }
         articles[i].summary = lines
+        articles[i].summaryHTML = LibraryRecords.summaryHTML(lines)
         articles[i].pending = nil
         for sentence in sentences { SafariImport.mark(sentence, ai: true, in: &articles[i].passages) }
         var added: [[String: Any]] = []

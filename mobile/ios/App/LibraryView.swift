@@ -15,6 +15,7 @@ struct LibraryView: View {
     /// A topic held over the middle of the net.
     @State private var preview: String?
     @Environment(Router.self) private var router
+    @Environment(SyncModel.self) private var sync
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     /// What the filter and the search leave, before any topic.
@@ -91,6 +92,7 @@ struct LibraryView: View {
                 }
             }
             .navigationTitle("Library")
+            .toolbar { SyncToolbar(sync: sync) }
             .searchable(text: $search, prompt: "Words, topics, sources")
         }
     }
