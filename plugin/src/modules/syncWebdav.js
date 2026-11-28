@@ -27,7 +27,8 @@ export function parseMultistatus(xml) {
         let href = pick('href');
         try { href = decodeURIComponent(href); } catch (_) { /* keep as sent */ }
         const etag = pick('getetag').replace(/&quot;/g, '"').replace(/^W\//, '').replace(/^"|"$/g, '');
-        out.push({ href, etag, size: Number(pick('getcontentlength')) || 0, isDir: /<(?:[\w-]+:)?collection\b/i.test(block) });
+        const modified = Date.parse(pick('getlastmodified')) || 0;
+        out.push({ href, etag, size: Number(pick('getcontentlength')) || 0, isDir: /<(?:[\w-]+:)?collection\b/i.test(block), ...(modified ? { modified } : {}) });
     }
     return out;
 }
@@ -104,7 +105,7 @@ export function createWebdavStore(cfg, { fetchFn, timeoutMs, log } = {}) {
         },
         async list(prefix = '') {
             let res;
-            try { res = await safe(urlOf(prefix), { method: 'PROPFIND', headers: { ...auth, depth: '1', 'content-type': 'application/xml' }, body: '<?xml version="1.0"?><d:propfind xmlns:d="DAV:"><d:prop><d:getetag/><d:getcontentlength/><d:resourcetype/></d:prop></d:propfind>' }); }
+            try { res = await safe(urlOf(prefix), { method: 'PROPFIND', headers: { ...auth, depth: '1', 'content-type': 'application/xml' }, body: '<?xml version="1.0"?><d:propfind xmlns:d="DAV:"><d:prop><d:getetag/><d:getcontentlength/><d:getlastmodified/><d:resourcetype/></d:prop></d:propfind>' }); }
             catch (e) { if (status(e) === 404) return []; throw e; }
             const dir = '/' + [...rootSegs, ...segs(prefix)].join('/') + '/';
             const files = [];
@@ -115,7 +116,7 @@ export function createWebdavStore(cfg, { fetchFn, timeoutMs, log } = {}) {
                 if (at < 0) continue;
                 p = p.slice(at + dir.length);
                 if (!p || p.includes('/')) continue;
-                files.push({ path: [...segs(prefix), p].join('/'), etag: r.etag, size: r.size });
+                files.push({ path: [...segs(prefix), p].join('/'), etag: r.etag, size: r.size, ...(r.modified ? { modified: r.modified } : {}) });
             }
             return files;
         }

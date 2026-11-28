@@ -26,6 +26,9 @@ const unxml = (s) => String(s).replace(/&lt;/g, '<').replace(/&gt;/g, '>').repla
  * AWS Signature Version 4. `headers` are exactly the ones to sign (lower-case names, must include host and x-amz-date).
  * → { authorization, signature, canonicalRequest, stringToSign }
  */
+/** When the server last wrote the file, if it says so. */
+const modifiedOf = (block) => { const t = Date.parse((/<LastModified>([^<]*)<\/LastModified>/.exec(block) || [])[1] || ''); return t ? { modified: t } : {}; };
+
 export async function signV4({ method, url, headers, payloadHash, accessKeyId, secretAccessKey, region, service = 's3', amzDate }) {
     const u = new URL(url);
     const names = Object.keys(headers).map((h) => h.toLowerCase()).sort();
@@ -118,7 +121,7 @@ export function createS3Store(cfg, { fetchFn, timeoutMs, log, now = () => new Da
                 for (const block of xml.match(/<Contents>[\s\S]*?<\/Contents>/g) || []) {
                     const k = unxml((/<Key>([\s\S]*?)<\/Key>/.exec(block) || [])[1] || '');
                     if (!k.startsWith(dir) || k === dir || k.slice(dir.length).includes('/')) continue;
-                    out.push({ path: [...segs(prefix), k.slice(dir.length)].join('/'), etag: stripEtag(unxml((/<ETag>([\s\S]*?)<\/ETag>/.exec(block) || [])[1] || '')), size: Number((/<Size>(\d+)<\/Size>/.exec(block) || [])[1]) || 0 });
+                    out.push({ path: [...segs(prefix), k.slice(dir.length)].join('/'), etag: stripEtag(unxml((/<ETag>([\s\S]*?)<\/ETag>/.exec(block) || [])[1] || '')), size: Number((/<Size>(\d+)<\/Size>/.exec(block) || [])[1]) || 0, ...modifiedOf(block) });
                 }
                 token = /<IsTruncated>true<\/IsTruncated>/.test(xml) ? unxml((/<NextContinuationToken>([\s\S]*?)<\/NextContinuationToken>/.exec(xml) || [])[1] || '') : '';
             } while (token);

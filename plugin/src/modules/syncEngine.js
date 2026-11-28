@@ -15,8 +15,9 @@
 //   • a field this device does not hold (pruned text) is taken from the server's copy on push, so it is never erased there;
 //   • joining a place that already has data (empty ledger): fields that differ take the server's value; local-only records are pushed;
 //   • the local backup hook runs before the first write and aborts the run if it fails.
-import { syncLedgerKey } from './storageKeys.js';
+import { SK, syncLedgerKey } from './storageKeys.js';
 import { mergeRecord } from './syncMerge.js';
+import { keepAllQuestions } from './syncQuestions.js';
 import { decryptJson, encryptJson, nameOf } from './syncCrypto.js';
 import { typeOf, idOf } from './syncDataAdapter.js';
 import { canonicalOrder, IDENTITY_FIELDS } from './syncIdentity.js';
@@ -100,6 +101,7 @@ export async function syncEncryptedPlace(o) {
     async function ingest(files) {
         if (!files.length) return;
         const data = await adapter.readMany(files.map((x) => x.rec.key));
+        const device = (await get(storage, { [SK.syncDeviceId]: '' }))[SK.syncDeviceId];
         const adopt = {}, apply = [], before = {};
         for (const { name, etag, rec } of files) {
             const joining = firstRun || unread.has(name);
@@ -114,7 +116,8 @@ export async function syncEncryptedPlace(o) {
                 }
                 local = { rev: st.rev, f, values };
             }
-            const r = mergeRecord(local, rec);
+            // two devices that each asked something about an article keep both (syncQuestions.js)
+            const r = key.startsWith('article:') ? keepAllQuestions(local, rec, mergeRecord(local, rec), { device, now: now() }) : mergeRecord(local, rec);
             if (r.merged.deleted && d && r.changedLocal && !confirmDeletes && !removeSet.has(key)) {   // another device deleted something that is here: a few are normal, a lot is asked about first
                 if (keepSet.has(key)) { toKeep.set(key, (rec.rev && rec.rev.t) || 0); continue; }   // the person said keep it: not adopted, stamped again below
                 if (deletesApplied >= deleteBudget) {   // left alone: not adopted, not in the ledger, seen again next run
@@ -147,9 +150,10 @@ export async function syncEncryptedPlace(o) {
         out.applied += apply.length;
     }
 
-    // 1) pull
+    // 1) pull, what was written last first: a large library takes a while, and the new things are the ones looked for
     const toPull = pushOnly ? [] : [...remote.entries()].filter(([name, f]) => { if (forceFirst) return true;   // a restore looks at every file: the ledger says what was seen, not what is still here
-        const k = known.get(name); return !k || !items[k] || items[k].e !== f.etag; }).map(([name]) => name);
+        const k = known.get(name); return !k || !items[k] || items[k].e !== f.etag; })
+        .sort(([, a], [, b]) => (b.modified || 0) - (a.modified || 0)).map(([name]) => name);
     for (let i = 0; i < toPull.length; i += chunk) {
         if (overBudget()) { out.more = true; break; }
         onProgress({ phase: 'pulling', done: i, total: toPull.length });
@@ -218,8 +222,11 @@ export async function syncEncryptedPlace(o) {
         out.merged = tomb.length;
     }
 
-    // 2) push
-    const pending = Object.entries(stamps).filter(([key, st]) => st && st.rev && (dirty.has(key) || !items[key] || items[key].t < st.rev.t) && (!stale || st.rev.t > L.lastSync)).map(([key]) => key);   // after a long absence only what changed since is pushed
+    // 2) push. The newest article goes last, so that the server's times say what a device that fetches should take first;
+    // everything that is no article goes ahead of them.
+    const savedAt = (key) => (key.startsWith('article:') ? Number((/_(\d{13})_/.exec(key) || [])[1]) || stamps[key].rev.t : 0);
+    const pending = Object.entries(stamps).filter(([key, st]) => st && st.rev && (dirty.has(key) || !items[key] || items[key].t < st.rev.t) && (!stale || st.rev.t > L.lastSync)).map(([key]) => key)   // after a long absence only what changed since is pushed
+        .sort((a, b) => savedAt(a) - savedAt(b));
     for (const name of unread) { const key = known.get(name), at = pending.indexOf(key); if (at >= 0) pending.splice(at, 1); }
     for (let i = 0; i < pending.length; i += chunk) {
         if (overBudget()) { out.more = true; break; }
