@@ -13,7 +13,8 @@ A companion for the AISH browser extension, in two directions, both end-to-end e
   each device fetches its own. In a feed item tap **To browser** to send the link to the extension, or **Read page** to open it in
   the in-app web view.
 * **Reading list:** articles from **Send to phone**, with the AI summary as bullets and your highlights and the AI's ghost highlights
-  marked in the text (yellow, blue) and listed below.
+  marked in the text (yellow, blue) and listed below. Articles that come with the library sync also show the pictures saved inside their text; nothing is loaded from
+  the web.
 * **Reading tools:** per article, read aloud (play, pause, speed), speed reading (one word at a time, 150–900 wpm), copy or share as
   Markdown (front matter like the extension), archive (swipe left; an Archive filter keeps them), and search over title, site and text.
   **Settings → Backup & restore** exports preferences to a file (never the pairing, licence or account) and imports them on a new phone.

@@ -278,7 +278,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
             if (a != null) {
                 summarizing = true; summaryNote = "Summarizing on this phone…"
                 scope.launch {
-                    val page = Page(a.title, a.blocks.map { it.type to it.text }, a.lang)
+                    val page = Page(a.title, a.blocks.filter { it.type != "img" }.map { it.type to it.text }, a.lang)
                     val result = withContext(Dispatchers.Default) {
                         runCatching { PageSummary.summarize(context, page, progress = { i, n -> summaryNote = if (n > 1) "Part $i of $n…" else "Summarizing on this phone…" }) }.getOrNull()
                     }
@@ -411,7 +411,8 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
             items(article.blocks.size) { i ->
                 val block = article.blocks[i]
                 val here = placed[i] ?: emptyList()
-                BlockView(block, here, marking = Marking(
+                if (block.type == "img") ArticleImage(model.articles.picture(id, block.image), block.text)
+                else BlockView(block, here, marking = Marking(
                     highlight = { from, to ->
                         Highlighter.wholeWords(block.text, from, to)?.let { words ->
                             // own marks the selection touches become one with it
@@ -419,7 +420,7 @@ private fun ArticleReader(model: AppModel, id: String, onDelete: (String) -> Uni
                             val start = minOf(words.first, touched.minOfOrNull { it.start } ?: words.first)
                             val end = maxOf(words.last + 1, touched.maxOfOrNull { it.end } ?: 0)
                             model.articles.removeHighlights(id, touched.map { block.text.substring(it.start, it.end) })
-                            model.articles.addHighlight(id, block.text.substring(start, end), i, start)
+                            model.articles.addHighlight(id, block.text.substring(start, end), Highlighter.anchorOf(article.blocks, i), start)
                             mineTick++
                         }
                     },

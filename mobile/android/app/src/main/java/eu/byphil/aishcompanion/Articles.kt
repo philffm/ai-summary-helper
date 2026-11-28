@@ -5,7 +5,8 @@ import java.io.ByteArrayOutputStream
 import java.util.zip.GZIPInputStream
 
 /** One text block of an article: type is h1, h2, h3, p, li, q or pre. The extension sends no markup and no images, so nothing here can run or load anything. */
-data class Block(val type: String, val text: String)
+/** [type] "img" is a picture saved with the article: [text] describes it, [image] names its file. */
+data class Block(val type: String, val text: String, val image: String = "")
 
 /** A passage the user (or the AI, `ghost`) highlighted in the extension. Marked in the text where the same words are found. */
 data class Highlight(val ghost: Boolean, val text: String)
@@ -37,7 +38,7 @@ data class Article(
  */
 object ArticleCodec {
     const val MAX_RAW = 4_000_000   // decompressed bytes accepted; guards against a decompression bomb
-    private val TYPES = setOf("h1", "h2", "h3", "p", "li", "q", "pre")
+    private val TYPES = setOf("h1", "h2", "h3", "p", "li", "q", "pre", "img")
     private val AID = Regex("[A-Za-z0-9_-]{1,80}")
 
     fun gunzip(bytes: ByteArray, limit: Int = MAX_RAW): ByteArray {
@@ -73,7 +74,8 @@ object ArticleCodec {
             val b = arr.getJSONArray(i)
             val type = b.getString(0)
             val text = b.getString(1)
-            if (type in TYPES && text.isNotBlank()) blocks.add(Block(type, text))
+            if (type == "img") b.optString(2).takeIf { ArticlePictures.NAME.matches(it) }?.let { blocks.add(Block(type, text, it)) }
+            else if (type in TYPES && text.isNotBlank()) blocks.add(Block(type, text))
         }
         // a recommended page whose text could not be read is kept for what its sender added
         require(blocks.isNotEmpty() || o.has("rec")) { "empty article" }

@@ -1,8 +1,8 @@
 package eu.byphil.aishcompanion
 
 /**
- * An article's HTML as the compact text blocks the reader shows: h1/h2/h3, p, li, q, pre. No images, links or markup survive, so there is nothing to
- * render unsafely. The Kotlin side of articleBlocks.js in the extension (same block types and limits); it reads HTML itself because the app has no
+ * An article's HTML as the compact text blocks the reader shows: h1/h2/h3, p, li, q, pre, and the pictures saved inside the text where [toBlocks] is
+ * given somewhere to keep them. No links or markup survive, and nothing is loaded from an address, so there is nothing to render unsafely. The Kotlin side of articleBlocks.js in the extension (same block types and limits); it reads HTML itself because the app has no
  * HTML library, and is tolerant: unclosed tags, stray text and odd nesting never throw.
  */
 object HtmlBlocks {
@@ -33,8 +33,31 @@ object HtmlBlocks {
     }
     private fun cp(n: Int): String = if (n in 1..0x10FFFF && n !in 0xD800..0xDFFF) String(Character.toChars(n)) else ""
 
-    /** The blocks of an HTML (or plain text) string, in reading order. */
-    fun toBlocks(html: String): List<Pair<String, String>> {
+    /** The value of an attribute in the inside of a tag. Read by hand: a picture's address can be megabytes long. */
+    private fun attribute(tag: String, name: String): String? {
+        var from = 0
+        while (true) {
+            val at = tag.indexOf(name, from, ignoreCase = true); if (at < 0) return null
+            from = at + name.length
+            if (at == 0 || !tag[at - 1].isWhitespace()) continue
+            var i = from
+            while (i < tag.length && tag[i].isWhitespace()) i++
+            if (i >= tag.length || tag[i] != '=') continue
+            i++
+            while (i < tag.length && tag[i].isWhitespace()) i++
+            if (i >= tag.length) return null
+            val quote = tag[i]
+            if (quote != '"' && quote != '\'') return tag.substring(i).takeWhile { !it.isWhitespace() }
+            val end = tag.indexOf(quote, i + 1)
+            return if (end < 0) null else tag.substring(i + 1, end)
+        }
+    }
+
+    /**
+     * The blocks of an HTML (or plain text) string, in reading order. With [pictures], a picture saved in the text becomes a block of type
+     * "img:<name>" whose words describe it.
+     */
+    fun toBlocks(html: String, pictures: ArticlePictures? = null): List<Pair<String, String>> {
         if (!Regex("<[a-zA-Z/!]").containsMatchIn(html)) return textToBlocks(html)
         val blocks = ArrayList<Pair<String, String>>()
         val buf = StringBuilder(); var kind = "p"
@@ -63,6 +86,13 @@ object HtmlBlocks {
                 if (name == skipTag) { if (closing) skipDepth-- else if (!selfClosed) skipDepth++ }
                 continue
             }
+            if (pictures != null && !closing && name == "img" && !inPre && heading == null) {
+                val kept = attribute(raw, "src")?.let { pictures.take(it) }
+                if (kept != null) { flush(); blocks.add("img:$kept" to squash(decode(attribute(raw, "alt").orEmpty())).take(500)) }
+                continue
+            }
+            // a <picture> only wraps the <img> that carries the saved bytes
+            if (pictures != null && name == "picture") continue
             if (!closing && name in SKIP) {
                 if (!selfClosed) { skipTag = name; skipDepth = 1; if (name == "script" || name == "style") { val e = Regex("</$name\\s*>", RegexOption.IGNORE_CASE).find(html, i); i = e?.range?.last?.plus(1) ?: n; skipDepth = 0 } }
                 continue

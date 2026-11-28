@@ -21,7 +21,7 @@ interface PhoneArticles { fun all(): List<PhoneArticle> }
 class StorePhoneArticles(private val store: ArticleStore) : PhoneArticles {
     override fun all(): List<PhoneArticle> = store.list().mapNotNull { m ->
         val a = store.load(m.id) ?: return@mapNotNull null
-        PhoneArticle(m.id, a.url, a.title, m.receivedAt, a.blocks.map { it.type to it.text }, a.summary, store.userHighlights(m.id), m.local, a.aid)
+        PhoneArticle(m.id, a.url, a.title, m.receivedAt, a.blocks.filter { it.type != "img" }.map { it.type to it.text }, a.summary, store.userHighlights(m.id), m.local, a.aid)
     }
 }
 

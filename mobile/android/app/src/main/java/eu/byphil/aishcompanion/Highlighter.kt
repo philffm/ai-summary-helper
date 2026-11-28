@@ -25,9 +25,13 @@ object Highlighter {
         return if (first < 0) null else first until last
     }
 
-    /** [anchors] say where the reader marked the words on this phone (block to start), so a repeated word stays where it was marked. */
+    /** The number an anchor gives block [index]: pictures are not counted, so that anchors hold when an article gains them. */
+    fun anchorOf(blocks: List<Block>, index: Int): Int = blocks.take(index).count { it.type != "img" }
+
+    /** [anchors] say where the reader marked the words on this phone (text block as [anchorOf] counts, to start), so a repeated word stays where it was marked. */
     fun place(blocks: List<Block>, highlights: List<Highlight>, anchors: Map<String, Pair<Int, Int>> = emptyMap()): Map<Int, List<Mark>> {
         val out = HashMap<Int, MutableList<Mark>>()
+        val text = blocks.indices.filter { blocks[it].type != "img" }
         for (h in highlights) {
             val words = h.text.trim().split(SPACES).filter { it.isNotEmpty() }
             if (words.isEmpty()) continue
@@ -35,15 +39,16 @@ object Highlighter {
             val anchor = anchors[h.text]
             if (anchor != null) {
                 val (i, at) = anchor
-                val m = blocks.getOrNull(i)?.takeIf { it.type != "pre" && at in 0..it.text.length }?.let { re.matchAt(it.text, at) }
+                val j = text.getOrNull(i) ?: -1
+                val m = blocks.getOrNull(j)?.takeIf { it.type != "pre" && at in 0..it.text.length }?.let { re.matchAt(it.text, at) }
                 if (m != null) {
-                    val list = out.getOrPut(i) { ArrayList() }
+                    val list = out.getOrPut(j) { ArrayList() }
                     if (list.none { m.range.first < it.end && m.range.last + 1 > it.start }) list.add(Mark(m.range.first, m.range.last + 1, h.ghost))
                     continue
                 }
             }
             for ((i, b) in blocks.withIndex()) {
-                if (b.type == "pre") continue
+                if (b.type == "pre" || b.type == "img") continue
                 val m = re.find(b.text) ?: continue
                 val list = out.getOrPut(i) { ArrayList() }
                 val start = m.range.first; val end = m.range.last + 1

@@ -18,7 +18,7 @@ object ReadAloudUnits {
 
     /** Title, then the article text (code blocks are skipped: they do not read well). */
     fun article(title: String, blocks: List<Block>): List<String> =
-        (if (title.isNotBlank()) listOf(title.trim()) else emptyList()) + blocks.filter { it.type != "pre" }.flatMap { sentences(it.text) }
+        (if (title.isNotBlank()) listOf(title.trim()) else emptyList()) + blocks.filter { it.type != "pre" && it.type != "img" }.flatMap { sentences(it.text) }
 
     fun summary(summary: String): List<String> = sentences(summary)
 

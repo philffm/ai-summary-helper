@@ -91,7 +91,7 @@ data class Wake(
         fun article(article: Article, hour: Int, now: Long): Wake {
             val title = article.title.ifBlank { article.site.ifBlank { article.url } }
             val parts = listOf("${greeting(hour)} From your reading list: ${sentence(title)}") + ReadAloudUnits.article("", article.blocks)
-            return Wake(WakeMode.ARTICLE, now, article.id, title, article.site, article.blocks.filter { it.type != "pre" }.take(6).map { it.text }, parts.take(MAX_PARTS), lang = article.lang)
+            return Wake(WakeMode.ARTICLE, now, article.id, title, article.site, article.blocks.filter { it.type != "pre" && it.type != "img" }.take(6).map { it.text }, parts.take(MAX_PARTS), lang = article.lang)
         }
 
         fun remember(card: Card, seed: Int, lang: String, hour: Int, now: Long): Wake? {

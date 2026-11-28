@@ -35,7 +35,7 @@ object ArticleMarkdown {
         if (ai.isNotEmpty()) { sb.append("## AI highlights\n\n"); ai.forEach { sb.append(quote(it.text)).append("\n\n") } }
         if (includeText) {
             sb.append("## Original text\n\n")
-            for (b in a.blocks) {
+            for (b in a.blocks.filter { it.type != "img" }) {   // pictures stay on the phone
                 when (b.type) {
                     "h1" -> sb.append("# ").append(b.text)
                     "h2" -> sb.append("## ").append(b.text)
